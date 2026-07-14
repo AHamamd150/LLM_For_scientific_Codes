@@ -1,0 +1,42 @@
+==================================================
+CRITIQUE OUTPUT RULES
+==================================================
+
+Return ONLY a structured finding list.
+
+Use the judgment categories defined by the domain context. If the domain context does not define markers for a category, use the closest marker below:
+- ◎ for correct implementations and matches to the SPEC
+- ⚠️ for inconsistencies, violations, and missing implementations
+- ❓ for ambiguities and underconstrained specification regions
+- 🌟 for extra behavior
+
+
+For each finding, use exactly this format:
+
+<marker> <type>
+
+SPEC:
+<relevant SPEC text or "none">
+
+CODE:
+<relevant extracted code-level expression(s) or "none">
+
+Reason:
+<brief explanation>
+
+Evidence priority:
+<which part of the TRACER OUTPUT supports this finding>
+
+Generator bias:
+<brief note, or "none">
+
+==================================================
+GENERIC JUDGMENT GUIDANCE
+==================================================
+
+- A similarly named variable is NOT enough for a match.
+- Judge the implementation by concrete traced definitions and upstream dependencies.
+- When possible, cite the concrete code-level definition from the TRACER OUTPUT, not a guessed interpretation.
+- Prefer specification ambiguity over definition mismatch when the SPEC leaves multiple plausible code-level definitions unresolved.
+- Do not use ambiguity when the domain context says the traced implementation violates an explicitly defined semantic requirement.
+- Do not report correct implementations.

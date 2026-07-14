@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codegen-workflows"
+version = "0.1.0"
+description = "Workflow composition for helper selection, code generation, execution recovery, and critique"
+requires-python = ">=3.10"
+dependencies = [
+  "workbench-contracts",
+  "helper-selector",
+  "critique-pipeline",
+  "code-generator",
+]
+
+[project.optional-dependencies]
+huggingface = [
+  "huggingface-hub>=0.27",
+  "requests>=2.31",
+]
+
+[project.scripts]
+agentic-code-workbench = "codegen_workflows.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = ["--import-mode=importlib"]
+testpaths = ["tests"]
+pythonpath = [
+  "src",
+  "../packages/workbench-contracts/src",
+  "../packages/helper-selector/src",
+  "../packages/golden-axe-oracle/src",
+  "../packages/critique-pipeline/src",
+  "../backends/code-generator/src",
+  "../domains/dummy-domain/src",
+]

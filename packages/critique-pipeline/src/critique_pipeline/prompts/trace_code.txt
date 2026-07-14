@@ -1,0 +1,270 @@
+You are reviewing a generated analysis code.
+
+=== SPEC (original generation prompt) ===
+{spec}
+
+=== CODE (generated code with line numbers) ===
+{code}
+
+
+=== TASK ===
+
+Produce an "AS-IMPLEMENTED SPEC" using the SAME bullet structure and
+order as the original SPEC.
+
+Your analysis must be derived ONLY from the provided CODE.
+Do not infer missing steps or assume domain knowledge not visible in code.
+
+For each SPEC bullet:
+
+- Identify the concrete code fragment(s) implementing the SPEC item.
+- Describe the implementation using the concrete code-level definition.
+- Ground every claim in explicit code evidence (variables, expressions,
+  or function calls) with line references.
+
+If a SPEC item references a concept not appearing in the code,
+mark ⚠️ and write "NOT IMPLEMENTED".
+
+Follow the FINAL OUTPUT FORMAT at the end of this prompt exactly.
+The internal analysis order may differ from the final output order.
+STEP 1 is performed before STEP 2, but its output must appear in SECTION 2.
+
+Finding one issue does not complete the task.
+Continue processing every remaining SPEC bullet and sub-bullet in order,
+including plots, CSV/output fields, cutflow, and file-saving requirements.
+
+=== STEP 1: DEFINITION EXTRACTION (MANDATORY)　===
+
+Before evaluating any SPEC bullet, first identify the concrete
+code-level definitions of all quantities defined in the code that correspond to the following:
+
+- event selection (cut conditions)
+- CSV/output fields
+- plotted quantities
+- composite or system-level quantities mentioned in the SPEC
+
+Include both quantities explicitly mentioned in the SPEC and quantities
+introduced in the code that implement or correspond to those SPEC items.
+
+Trace each quantity definition through helper functions, intermediate variables,
+and wrappers until the effective inputs and source collections are clear.
+
+For conditions that immediately lead to `continue`, treat the condition as a rejection condition.
+Do not report that condition alone as the implemented computation.
+Report either the surrounding control-flow statement that contains `continue`, or the corresponding effective pass condition.
+
+Do not stop at variable aliases or helper names if the definition
+is visible in the same file.
+
+The extracted definitions are the basis for the SPEC bullet judgments.
+SPEC bullet judgments must be consistent with these definitions,
+not with surface names, helper labels, or variable names alone.
+
+Also include intermediate or helper quantities defined in the code
+if they implement or contribute to a SPEC quantity.
+When such a quantity is assigned by a function/helper/wrapper call, record the exact call expression as written in the code, including all arguments, before any expansion.
+
+=== DEFINITION CHECK (mandatory, domain-agnostic) ===
+
+- For each SPEC bullet and each cut/CSV item, state how it is computed in code.
+- Ground every claim in a concrete code fragment (variable, expression, or function call) from the referenced lines.
+- If a composite quantity is implied, verify explicit construction.
+- If the definition cannot be determined, mark ❓.
+- Prefer quoting the exact code expression when describing a computation.
+
+Do not report generic helper/utility functions as notable extra features
+unless they directly implement a SPEC-relevant quantity, cut condition,
+or CSV/output field.
+
+Utility functions used only as building blocks
+should be mentioned only inside definition tracing,
+not as separate extra implementation highlights.
+
+A match requires agreement not only in the high-level quantity name
+but also in the object definition when that definition is explicit in the SPEC.
+
+
+
+=== ADDITIONAL TRACE RULES (important for later code comparison) ===
+
+When describing how a quantity is computed, do not stop at variable aliases
+or wrapper/helper function names if the underlying definition is visible in code.
+
+For quantities used in:
+- event selection (cut conditions)
+- CSV/output fields
+
+trace the definition through intermediate variables and helper calls until the
+effective inputs and source collections are identified.　
+
+Prefer describing the definition as a short chain when helpful, for example:
+
+A computed as B -> C -> D
+
+rather than stopping at a high-level helper name.
+
+If a wrapper function is used, expand it enough to reveal the effective input objects 
+whenever the definitions are visible in the same file.
+
+Do NOT collapse implementations into abstract labels.
+Preserve the concrete code expressions instead.
+When expanding a function/helper/wrapper call, first show the exact call expression as written in the code, including its arguments.
+
+When a SPEC bullet refers to a composite object or system,
+check whether the code computes that system-level quantity itself
+or instead uses only one constituent object as a proxy.
+
+If the code uses only a constituent object where the SPEC calls for
+a composite/system-level quantity, do not mark it as a full match.
+State explicitly which concrete object/expression is used in code.
+
+If a quantity is computed from object aliases (e.g. elements extracted
+from a list or collection), continue tracing upstream until the
+collection they originate from is identified.
+
+If an upstream chain includes a selected, filtered, sorted, or otherwise
+redefined collection, do not name that collection alone.
+You must explicitly state how that collection is defined in code,
+including its filtering or redefinition condition if visible.
+
+Do not stop the upstream chain at the quantity definition itself;
+continue tracing until the relevant object collection is identified.
+
+When that collection is identified, also state its filtering or
+selection condition if visible in code.
+
+Stop the upstream chain once the nearest selected, filtered,
+sorted, or otherwise redefined collection is identified.
+Do not continue tracing into generic input containers such as
+event records or raw object lists.
+
+
+===　DEFINITION SUMMARY (mandatory, CHECK CAREFULLY) ===
+This section must be included as SECTION 2 of the final answer,
+after the SPEC BULLET ANALYSIS.
+
+Each bullet must describe a concrete quantity definition.
+Do NOT summarize categories such as "event selection", "CSV fields",
+or "plotted quantities".
+
+Also include any selected, filtered, sorted, or otherwise redefined
+collections as separate entries when they are reused to define
+multiple quantities or cut conditions.
+
+If a quantity depends on a selected, filtered, sorted, or otherwise
+redefined collection, the bullet must also state how that collection
+is defined in code (its filtering or selection condition),
+not only its variable name.
+
+If a selected, filtered, sorted, matched, vetoed, narrowed, or otherwise redefined collection
+is used in any cut condition, plotted quantity, saved quantity, or derived quantity,
+it MUST appear as its own separate entry in the DEFINITION SUMMARY.
+
+For derived quantities, write the upstream chain starting from the quantity itself,
+then its immediate inputs, then the nearest selected/filtered/redefined collection.
+
+For each derived quantity, also include a brief structural note describing
+whether the implementation uses:
+- a single constituent input
+- or a combination of multiple inputs
+
+If the quantity appears to correspond to a named object or system in the SPEC,
+and the implementation uses only a subset or a single constituent,
+this must be explicitly stated.
+
+The structure field is mandatory for all derived quantities and must not be omitted.
+
+- Include a bullet header exactly:
+  "* [CHECK CAREFULLY] DEFINITION SUMMARY"
+
+- Then list bullets (no markers):
+
+* <Quantity or collection name>
+  - computed/defined as: <code-level expression>
+  - upstream chain: <...>
+  - collection definition: <filter condition if applicable>
+  - structure: <single-constituent | multi-input | composite-derived>
+
+- Do NOT include any evaluation or reasoning in this section.
+
+Collection definitions MUST be shown using the exact code-level
+filtering expression when available.
+
+Do not summarize with phrases.　Instead show the explicit expression used in the code.
+
+When a SPEC bullet refers to a composite or system-level quantity,
+verify that the code expression uses the same composite objects
+identified in the DEFINITION SUMMARY rather than only one of their components.
+
+=== STEP 2: SPEC BULLET ANALYSIS ===
+
+The final answer must present the SPEC bullet analysis first and the
+[CHECK CAREFULLY] DEFINITION SUMMARY afterward.  
+
+Match SPEC bullets to code ONLY through the concrete code-level
+definitions identified in the DEFINITION SUMMARY.
+
+Do not judge a match based on surface names, helper function names,
+or variable names alone.
+
+For each bullet, produce a single line in the following format:
+
+<marker> * <SPEC bullet text>; computed as: <code-level expression>;
+upstream chain: <variable / helper chain>; 〔Lx-Ly〕
+
+Do NOT include explanations, interpretations, or "Reason:" sentences.
+
+Only report the concrete code-level evidence:
+- the expression used in code
+- the upstream variable chain
+- the line reference
+
+Before assigning a ✅ marker, verify that the object used in the SPEC
+bullet corresponds to the same code-level quantity identified in the
+DEFINITION SUMMARY.
+
+If the SPEC refers to a composite or system-level quantity but the code
+expression uses only one of its components, mark ⚠️ instead of ✅.
+
+=== MARKING POLICY (strict) ===
+- Use ✅ ONLY if the code-level definition exactly matches the SPEC-implied definition.
+- If there is any ambiguity or partial match, use ⚠️ (do not default to ✅).
+- If SPEC implies a composite/derived quantity but code uses fewer inputs, mark ⚠️.
+- If a SPEC item is not implemented at all, mark ⚠️ and write "NOT IMPLEMENTED".
+- If the objects used to compute a quantity differ from those implied by the SPEC
+(e.g. using a constituent object instead of the specified composite/system),
+mark ⚠️ even if a similarly named quantity exists.
+
+=== FINAL OUTPUT FORMAT (strict) ===
+
+Return exactly two sections in this order.
+
+SECTION 1: SPEC BULLET ANALYSIS
+
+For each SPEC bullet or sub-bullet, output exactly one line:
+
+<marker> * <SPEC bullet text>; computed as: <code-level expression>;
+upstream chain: <variable / helper chain>; 〔Lx-Ly〕
+
+Markers:
+✅ exact match
+⚠️ differs or partially matches
+❓ unclear from code
+🌟 extra behavior not in SPEC
+
+Do not include explanations, interpretations, or Reason paragraphs.
+
+SECTION 2: DEFINITION SUMMARY
+
+Then output the definition summary exactly in this format:
+
+* [CHECK CAREFULLY] DEFINITION SUMMARY
+
+* <Quantity or collection name>
+  - computed/defined as: <code-level expression>
+  - upstream chain: <...>
+  - collection definition: <filter condition if applicable>
+  - structure: <single-constituent | multi-input | composite-derived>
+
+Do not include markers in the DEFINITION SUMMARY.
+Do not include evaluation or reasoning in the DEFINITION SUMMARY.

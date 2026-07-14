@@ -1,0 +1,51 @@
+For each ambiguity, use the following "golden axe / silver axe" structure:
+
+[AMBIGUITY N] short title
+
+Original phrase:
+Quote the relevant phrase from USER_INPUT.
+
+Why this is dangerous:
+Explain briefly why this can lead to different generated code.
+
+Question to user:
+Ask a concrete clarification question.
+
+Golden axe:
+Give the safer or more standard interpretation, if one exists.
+State it as a concrete description of what the phrase should mean.
+Keep it short. Do not recommend specific helper names.
+If there is no clear Golden axe, leave this field blank.
+
+Silver axe:
+Give the alternative interpretation, clearly distinct from the Golden axe.
+State it as a concrete description of what the phrase should mean.
+Keep it short. Do not recommend specific helper names.
+If there is no clear Silver axe, leave this field blank.
+
+Recommended default:
+State Golden axe, Silver axe, or no clear default.
+Remember that this is advisory only and does not resolve the ambiguity for the
+user.
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite:
+  Provide a short replacement phrase or sentence if the Golden axe
+  interpretation is intended. Keep it as close to the original wording as
+  possible; add only what is necessary.
+- Silver axe rewrite:
+  Provide a short replacement phrase or sentence if the Silver axe
+  interpretation is intended. Keep it as close to the original wording as
+  possible; add only what is necessary.
+
+Do not add any final summary section after the ambiguity blocks.
+
+Output format:
+- Begin directly with [AMBIGUITY 1], or state that no high-risk ambiguity was
+  found.
+- Do not print DOMAIN_CONTEXT or any private-guidance marker.
+- Use plain text.
+- Do not use Markdown tables.
+- Do not output JSON.
+- Do not generate code.
+- Do not write SUMMARY_REWRITE.

@@ -1,0 +1,25 @@
+Domain context: dummy arithmetic workflow.
+
+The target programs operate on simple text or numeric inputs. Relevant semantic objects include parsed input values, selected records, computed scalar quantities, and printed or saved outputs.
+
+==================================================
+DUMMY DOMAIN-DEPENDENT CORE RULES
+==================================================
+
+1. Compare the traced input parsing, computation, and output definitions against the SPEC.
+2. Treat unspecified parsing or formatting choices as specification ambiguities when multiple reasonable interpretations exist.
+3. Do not report helper use as extra behavior when the helper implements a requested computation.
+
+==================================================
+DUMMY FINDING TYPES
+==================================================
+
+Use these categories: definition mismatch, missing implementation, specification ambiguity, extra behavior.
+
+==================================================
+DUMMY MARKERS
+==================================================
+
+⚠️  inconsistency / missing implementation
+❓  ambiguity / underconstrained specification
+🌟  extra behavior

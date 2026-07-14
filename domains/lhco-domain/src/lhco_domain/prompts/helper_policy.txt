@@ -1,0 +1,16 @@
+The spec is an LHCO physics-analysis specification.
+
+Every explicit cut, veto, reconstruction step, plotted quantity, histogram,
+requested observable, and requested output quantity stated in the spec should
+be accounted for by the selected helpers.
+
+Select domain-specific helpers only when the spec explicitly names the
+corresponding physics object, decay channel, reconstruction target, or
+observable.
+
+Do not select helpers from other physics channels or reconstruction targets
+merely because they involve similar particles, masses, or kinematic variables.
+
+If the spec first defines selected physics objects, prefer helpers whose
+semantics match that selected-object workflow for downstream cuts, observables,
+plots, histograms, or output quantities.

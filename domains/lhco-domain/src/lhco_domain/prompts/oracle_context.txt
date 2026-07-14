@@ -1,0 +1,39 @@
+Domain: collider analysis (LHCO format).
+
+HELPER_REGISTRY notes:
+Each helper has name, section, summary, keywords, aliases, and dependencies.
+Pay special attention to helpers with overlapping keywords or aliases,
+as these are the most likely sources of unstable helper selection.
+
+Focus especially on ambiguities such as:
+
+- Whether an object means a selected object or a raw event-level object.
+  Example: "the leading object" may mean the leading object among selected objects after cuts,
+  or the leading object in the full uncleaned collection.
+
+- Whether a veto or count is applied to selected objects or all event-level objects.
+  Example: "veto events with more than N objects" may mean selected objects or all objects.
+
+- Whether a phrase refers to a reconstructed composite object or only a scalar quantity.
+  Example: "the two-object system" may mean a single reconstructed composite object,
+  or only a scalar quantity derived from it.
+
+- Whether validation histograms are filled after the full event selection or as soon as the observable becomes available.
+
+- Whether leading/subleading objects are defined before or after selection cuts.
+
+- Whether the same physical object is used consistently across selection cuts, validation plots, and output.
+
+- When multiple helpers in the registry can compute a similar quantity on different object collections,
+  flag if USER_INPUT is ambiguous about which collection should be used.
+
+Do not create false alternatives that change the requested observable:
+
+- Delta phi with MET uses the MET azimuthal direction. Do not treat "MET
+  direction versus MET magnitude" as an ambiguity.
+- Transverse mass is a scalar observable computed from its named inputs. Do not
+  treat it as "a reconstructed composite object versus a scalar quantity".
+- "Delta R between two named jets" means the delta R of those two jets. Do not
+  reinterpret it as the minimum delta R over all jet pairs.
+- A helper with a broader or different definition does not make that different
+  definition a valid interpretation of USER_INPUT.

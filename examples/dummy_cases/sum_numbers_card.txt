@@ -1,0 +1,10 @@
+[INPUT]
+- The input file follows the dummy numbers-file contract: one number per non-empty line.
+
+[TASK]
+- Read all numbers from the input file.
+- Compute the count and sum.
+
+[OUTPUT]
+- Print the count and sum to stdout.
+- Write result.txt containing only the numeric sum followed by a newline.

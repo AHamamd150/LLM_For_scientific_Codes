@@ -1,0 +1,5 @@
+Domain context: general Python programming.
+
+HELPER_REGISTRY notes:
+Each helper has name, section, summary, and keywords.
+Flag ambiguities in USER_INPUT that could cause the wrong helper to be selected.
