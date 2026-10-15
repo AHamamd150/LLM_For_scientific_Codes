@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "code-generator"
+version = "0.1.0"
+description = "Profile-driven Python code-generation backend"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+huggingface = ["huggingface-hub>=0.27"]
+local = [
+  "torch",
+  "transformers",
+  "accelerate",
+]
+
+[project.scripts]
+code-generate = "code_generator.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
