@@ -1,0 +1,67 @@
+
+
+* Leading jet
+  - computed/defined as: helper_get_leading(jets)
+  - upstream chain: helper_get_leading -> max(particles, key=lambda p: p['pt'])
+  - collection definition: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - structure: single-constituent
+
+* Subleading jet
+  - computed/defined as: helper_get_subleading(jets)
+  - upstream chain: helper_get_subleading -> sorted(particles, key=lambda p: p['pt'], reverse=True)[1]
+  - collection definition: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - structure: single-constituent
+
+* Dijet system
+  - computed/defined as: sum_objects(leading_jet, subleading_jet)
+  - upstream chain: sum_objects -> E, px, py, pz from four_momentum
+  - collection definition: leading_jet and subleading_jet from jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - structure: composite-derived
+
+* Opposite-sign tau pair
+  - computed/defined as: opposite_sign(leading_tau, subleading_tau)
+  - upstream chain: opposite_sign -> obj1['charge'] * obj2['charge'] < 0
+  - collection definition: leading_tau and subleading_tau from taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]
+  - structure: multi-input
+
+* Dijet invariant mass (m_jj)
+  - computed/defined as: helper_invariant_mass(leading_jet, subleading_jet)
+  - upstream chain: helper_invariant_mass -> sum_objects -> E, px, py, pz from four_momentum
+  - collection definition: leading_jet and subleading_jet from jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - structure: composite-derived
+
+* Delta eta between leading jets
+  - computed/defined as: abs(leading_jet['eta'] - subleading_jet['eta'])
+  - upstream chain: leading_jet['eta'], subleading_jet['eta'] from helper_get_leading and helper_get_subleading
+  - collection definition: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - structure: multi-input
+
+* Ditau invariant mass (m_tt)
+  - computed/defined as: helper_invariant_mass(leading_tau, subleading_tau)
+  - upstream chain: helper_invariant_mass -> sum_objects -> E, px, py, pz from four_momentum
+  - collection definition: leading_tau and subleading_tau from taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]
+  - structure: composite-derived
+
+* B-tagged jets
+  - computed/defined as: n_bjets(event, pt_cut=30, eta_cut=4.7)
+  - upstream chain: n_bjets -> get_bjets(event) -> [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]
+  - collection definition: o['type'] == 4 and int(o['btag']) == 1
+  - structure: single-constituent
+
+* Delta R between taus
+  - computed/defined as: helper_delta_r(leading_tau, subleading_tau)
+  - upstream chain: helper_delta_r -> deta = obj1['eta'] - obj2['eta'], dphi = helper_delta_phi(obj1['phi'], obj2['phi'])
+  - collection definition: leading_tau and subleading_tau from taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]
+  - structure: multi-input
+
+* Delta phi between ditau and dijet
+  - computed/defined as: helper_delta_phi(leading_tau['phi'] + subleading_tau['phi'], leading_jet['phi'] + subleading_jet['phi'])
+  - upstream chain: helper_delta_phi -> dphi = phi1 - phi2
+  - collection definition: leading_tau, subleading_tau from taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3], leading_jet, subleading_jet from jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - structure: multi-input
+
+* Centrality of ditau relative to jets
+  - computed/defined as: centrality_between_jets(sum_objects(leading_tau, subleading_tau), leading_jet, subleading_jet)
+  - upstream chain: centrality_between_jets -> |eta_obj - eta_center_jj| / |delta_eta_jj|
+  - collection definition: leading_tau, subleading_tau from taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3], leading_jet, subleading_jet from jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - structure: composite-derived

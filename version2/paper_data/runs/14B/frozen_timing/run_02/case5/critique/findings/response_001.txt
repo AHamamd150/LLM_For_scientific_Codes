@@ -1,0 +1,376 @@
+◎ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+
+CODE:
+- sum_objects(leading_tau, subleading_tau)
+
+Reason:
+The code correctly constructs the ditau_obj from the summed four-momentum of the leading and subleading taus.
+
+Evidence priority:
+〔L291-L292〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Define dijet_obj from the summed momentum of the leading jet and subleading jet.
+
+CODE:
+- sum_objects(leading_jet, subleading_jet)
+
+Reason:
+The code correctly constructs the dijet_obj from the summed four-momentum of the leading and subleading jets.
+
+Evidence priority:
+〔L277-L278〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the ditau system and the dijet system
+
+CODE:
+- helper_delta_phi(leading_tau['phi'] + subleading_tau['phi'], leading_jet['phi'] + subleading_jet['phi'])
+
+Reason:
+The code computes the delta phi between the sum of the phi values of the leading and subleading taus and the sum of the phi values of the leading and subleading jets, rather than between the ditau system and dijet system as defined in the SPEC.
+
+Evidence priority:
+〔L309-L310〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- centrality_between_jets(sum_objects(leading_tau, subleading_tau), leading_jet, subleading_jet)
+
+Reason:
+The code correctly computes the centrality of the ditau system relative to the two jets.
+
+Evidence priority:
+〔L311-L312〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV
+
+CODE:
+- helper_invariant_mass(leading_jet, subleading_jet) > 400
+
+Reason:
+The code correctly computes the invariant mass of the leading and subleading jets.
+
+Evidence priority:
+〔L277-L280〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select |delta eta| between the two leading jets > 2.5
+
+CODE:
+- abs(leading_jet['eta'] - subleading_jet['eta']) > 2.5
+
+Reason:
+The code correctly computes the absolute difference in eta between the leading and subleading jets.
+
+Evidence priority:
+〔L283-L285〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select ditau invariant mass between 60 and 150 GeV
+
+CODE:
+- 60 < helper_invariant_mass(leading_tau, subleading_tau) < 150
+
+Reason:
+The code correctly computes the invariant mass of the leading and subleading taus.
+
+Evidence priority:
+〔L294-L296〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Veto events with b-tagged jets
+
+CODE:
+- n_bjets(event, pt_cut=30, eta_cut=4.7) == 0
+
+Reason:
+The code correctly vetoes events with b-tagged jets.
+
+Evidence priority:
+〔L288-L290〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+CODE:
+- The code applies the cuts sequentially and skips the event when a cut is not satisfied.
+
+Reason:
+The code correctly applies the cuts sequentially and skips the event when a cut is not satisfied.
+
+Evidence priority:
+〔L246-L297〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Increment each cutflow counter immediately after its cut is passed.
+
+CODE:
+- The code increments each cutflow counter immediately after its cut is passed.
+
+Reason:
+The code correctly increments each cutflow counter immediately after its cut is passed.
+
+Evidence priority:
+〔L248-L297〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the following as histograms:
+1 Plot the ditau invariant mass in the range 50 to 160 GeV
+
+CODE:
+- helper_invariant_mass(leading_tau, subleading_tau)
+
+Reason:
+The code correctly plots the ditau invariant mass.
+
+Evidence priority:
+〔L294-L295〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the dijet invariant mass (m_jj) in the range 200 to 2000 GeV
+
+CODE:
+- helper_invariant_mass(leading_jet, subleading_jet)
+
+Reason:
+The code correctly plots the dijet invariant mass.
+
+Evidence priority:
+〔L277-L278〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta eta between the two leading jets
+
+CODE:
+- abs(leading_jet['eta'] - subleading_jet['eta'])
+
+Reason:
+The code correctly plots the delta eta between the two leading jets.
+
+Evidence priority:
+〔L283-L284〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading tau
+
+CODE:
+- leading_tau['pt']
+
+Reason:
+The code correctly plots the pT of the leading tau.
+
+Evidence priority:
+〔L303-L304〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading tau
+
+CODE:
+- subleading_tau['pt']
+
+Reason:
+The code correctly plots the pT of the subleading tau.
+
+Evidence priority:
+〔L304-L305〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading jet
+
+CODE:
+- leading_jet['pt']
+
+Reason:
+The code correctly plots the pT of the leading jet.
+
+Evidence priority:
+〔L305-L306〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading jet
+
+CODE:
+- subleading_jet['pt']
+
+Reason:
+The code correctly plots the pT of the subleading jet.
+
+Evidence priority:
+〔L306-L307〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta R between the two taus
+
+CODE:
+- helper_delta_r(leading_tau, subleading_tau)
+
+Reason:
+The code correctly plots the delta R between the two taus.
+
+Evidence priority:
+〔L307-L308〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- centrality_between_jets(sum_objects(leading_tau, subleading_tau), leading_jet, subleading_jet)
+
+Reason:
+The code correctly plots the centrality of the ditau system relative to the two jets.
+
+Evidence priority:
+〔L311-L312〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- The code prints one cutflow summary with the number of events after each selection step.
+
+Reason:
+The code correctly prints one cutflow summary with the number of events after each selection step.
+
+Evidence priority:
+〔L314-L316〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(filename)
+
+Reason:
+The code correctly saves the plots in png format.
+
+Evidence priority:
+〔L325-L326〕
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the ditau system and the dijet system
+
+CODE:
+- helper_delta_phi(leading_tau['phi'] + subleading_tau['phi'], leading_jet['phi'] + subleading_jet['phi'])
+
+Reason:
+The code computes the delta phi between the sum of the phi values of the leading and subleading taus and the sum of the phi values of the leading and subleading jets. However, the SPEC requests the delta phi between the ditau system and the dijet system, which should be computed using the four-momentum of the composite systems, not the sum of individual phi values.
+
+Evidence priority:
+〔L309-L310〕
+
+Generator bias:
+none

@@ -1,0 +1,9 @@
+Cutflow:
+initial: 30000
+2_taus: 2752
+2_jets: 1685
+opposite_sign: 2622
+m_jj > 400: 801
+delta_eta_jj > 2.5: 779
+m_tautau 60-150: 2283
+no_bjets: 1535

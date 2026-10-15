@@ -1,0 +1,19 @@
+
+
+* ht
+  - computed/defined as: scalar_pt_sum(jets)
+  - upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* n_jets
+  - computed/defined as: len(jets)
+  - upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* leading_bjet_eta
+  - computed/defined as: leading_bjet['eta']
+  - upstream chain: leading_bjet = bjets_sorted[0]
+  - collection definition: bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(j['eta']) < 2.5]
+  - structure: single-constituent

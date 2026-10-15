@@ -1,0 +1,117 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- light_jets = [j for j in jets if j not in bjets]
+- light_jets_sorted = sorted(light_jets, key=lambda j: j['pt'], reverse=True)
+- w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Reason:
+The SPEC does not specify whether the "selected non-b-tagged jets" should be taken from the selected jets collection (after pT and |eta| cuts) or from the broader event-level jet collection. The implementation uses the selected jets collection, which is a valid interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+Computed as: sum_objects(light_jets_sorted[0], light_jets_sorted[1]); upstream chain: light_jets_sorted = sorted(light_jets, key=lambda j: j['pt'], reverse=True); light_jets = [j for j in jets if j not in bjets]; 〔L0341-L0343〕
+
+Generator bias:
+none
+
+[KEPT 2] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)
+- top_hadronic = sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The SPEC does not specify whether the "leading selected b-tagged jet" should be taken from the selected b-jets collection (after pT and |eta| cuts) or from the broader event-level b-jet collection. The implementation uses the selected b-jets collection, which is a valid interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+Computed as: sum_objects(bjets_sorted[0], w_hadronic); upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True); 〔L0349-L0351〕
+
+Generator bias:
+none
+
+---
+
+[KEPT 3] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- if met is None or met['pt'] < 20: continue
+
+Reason:
+The code uses a strict inequality (met['pt'] < 20) to reject events with MET less than 20 GeV. The SPEC says "Select MET > 20 GeV", which is consistent with the implementation. However, the code also includes a check for `met is None`, which is not explicitly required by the SPEC but is a valid safeguard. The main issue is that the code uses a strict inequality, which may exclude valid events with MET exactly equal to 20 GeV.
+
+Evidence priority:
+Computed as: if met is None or met['pt'] < 20: continue; upstream chain: helper_get_met(event) -> [o for o in event['objects'] if o['type'] == 6]; 〔L0325-L0327〕
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+[DROPPED 1] drop: matched noise signal 'inclusive'
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if w_hadronic is None or not (40 < w_hadronic['mass'] < 120): continue
+
+Reason:
+The code uses a strict inequality (40 < mass < 120), but the SPEC says "between 40 to 120 GeV" without specifying whether the boundaries are inclusive. However, in physics analysis, such mass ranges are typically inclusive. The implementation uses an exclusive range, which may exclude valid events that fall exactly on the boundaries.
+
+Evidence priority:
+Computed as: if w_hadronic is None or not (40 < w_hadronic['mass'] < 120): continue; upstream chain: w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1]); 〔L0343-L0345〕
+
+Generator bias:
+none
+
+[DROPPED 2] drop: matched noise signal 'inclusive'
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV.
+
+CODE:
+- if top_hadronic is None or not (100 < top_hadronic['mass'] < 250): continue
+
+Reason:
+Similar to the hadronic W mass, the code uses a strict inequality (100 < mass < 250) for the hadronic top mass. The SPEC does not specify whether the boundaries are inclusive, but in physics analysis, such mass ranges are typically inclusive. The implementation may exclude valid events that fall exactly on the boundaries.
+
+Evidence priority:
+Computed as: if top_hadronic is None or not (100 < top_hadronic['mass'] < 250): continue; upstream chain: top_hadronic = sum_objects(bjets_sorted[0], w_hadronic); 〔L0351-L0353〕
+
+Generator bias:
+none
+
+[DROPPED 3] drop: matched noise signal 'inclusive'
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- if not (30 < mt < 150): continue
+
+Reason:
+The code uses a strict inequality (30 < mt < 150) for the transverse mass cut. The SPEC says "between 30 and 150 GeV" without specifying whether the boundaries are inclusive. In physics analysis, such mass ranges are typically inclusive. The implementation may exclude valid events that fall exactly on the boundaries.
+
+Evidence priority:
+Computed as: if not (30 < mt < 150): continue; upstream chain: mt = helper_transverse_mass(lepton, met); 〔L0330-L0333〕
+
+Generator bias:
+none

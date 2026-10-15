@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\nNone",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1789521011,
+  "id": "chatcmpl-14e97ebe-62ea-48a9-b4e9-d1593738f18e",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 6,
+    "prompt_tokens": 12651,
+    "prompt_tokens_details": null,
+    "total_tokens": 12657
+  }
+}

@@ -1,0 +1,24 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- top_hadronic = sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The code builds the hadronic top candidate from the leading b-jet and the hadronic W candidate, which is correct. However, the hadronic W candidate is constructed from the two leading non-b-tagged jets, not the full set of jets contributing to the W hadronic system. The SPEC explicitly requires the hadronic W candidate to be built from the two leading non-b-tagged jets, which is correctly implemented. Therefore, this is not a composite violation.
+
+Evidence priority:
+- top_hadronic = sum_objects(leading_bjet, w_hadronic); 〔L333-L333〕
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

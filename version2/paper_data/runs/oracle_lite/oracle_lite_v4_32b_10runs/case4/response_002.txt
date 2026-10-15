@@ -1,0 +1,92 @@
+[CANDIDATE 1] z_obj definition and reuse
+
+Original phrase:
+"- Build z_obj from the two selected electrons using summed four-momentum."
+
+Unresolved choice:
+It is unclear whether the z_obj is meant to be a temporary object for the invariant mass cut or a persistent object that will be reused in later steps (e.g., for plotting delta phi between z_obj and MET or for the three-lepton system).
+
+Why this may matter:
+If z_obj is only used for the invariant mass cut and not preserved, it may need to be rebuilt for later plots, which could introduce inconsistencies if the selection criteria for the two electrons change between steps.
+
+[CANDIDATE 2] W candidate lepton definition and reuse
+
+Original phrase:
+"- Define the selected muon as the W candidate lepton."
+
+Unresolved choice:
+It is unclear whether this definition is meant to be a label for the muon (e.g., for clarity in plots) or if it implies a specific object that must be preserved and used consistently in subsequent calculations (e.g., for transverse mass and delta phi with MET).
+
+Why this may matter:
+If the W candidate lepton is not preserved as a named object, it may be difficult to ensure that the same muon is used in all subsequent calculations involving it, potentially leading to inconsistencies in the analysis.
+
+[CANDIDATE 3] Three-lepton system definition
+
+Original phrase:
+"4 Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Unresolved choice:
+It is unclear whether the three-lepton system is a new object that should be built and preserved for all future calculations or if it is only a temporary object for the purpose of this plot.
+
+Why this may matter:
+If the three-lepton system is not preserved, it may need to be rebuilt for any further analysis involving it, which could lead to inconsistencies if the selection criteria for the electrons and muon change between steps.
+
+[CANDIDATE 4] Cutflow counter timing
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether "immediately after its cut is passed" refers to the moment the cut is applied or whether it refers to the moment the event is still valid after all previous cuts.
+
+Why this may matter:
+If the timing of the cutflow increment is misinterpreted, the cutflow may not accurately reflect the number of events passing each cut, leading to incorrect validation of the analysis.
+
+[CANDIDATE 5] "selected electrons" and "selected muon" consistency
+
+Original phrase:
+"- Select electrons with pT > 15 GeV and |eta| < 2.5."
+"- Select muons with pT > 10 GeV and |eta| < 2.4."
+"- Require exactly 2 selected electrons and exactly 1 selected muon."
+"- Build z_obj from the two selected electrons using summed four-momentum."
+"- Define the selected muon as the W candidate lepton."
+
+Unresolved choice:
+It is unclear whether "selected electrons" and "selected muon" refer to the full set of objects passing the initial cuts or to a subset that may be further filtered in subsequent steps (e.g., by charge or pT requirements).
+
+Why this may matter:
+If the selected electrons and muon are redefined in later steps, the z_obj and W candidate lepton may not be built from the same objects used in the initial selection, leading to inconsistencies in the analysis.
+
+[CANDIDATE 6] "selected muon" pT requirement timing
+
+Original phrase:
+"- The W candidate muon must have pT > 20 GeV."
+
+Unresolved choice:
+It is unclear whether this pT requirement is applied before or after the muon is defined as the W candidate lepton.
+
+Why this may matter:
+If the pT requirement is applied after the muon is defined as the W candidate lepton, the definition may include muons that later fail the pT requirement, leading to inconsistencies in the analysis.
+
+[CANDIDATE 7] "selected electrons" charge requirement timing
+
+Original phrase:
+"- Require the two selected electrons to have opposite charge."
+
+Unresolved choice:
+It is unclear whether this charge requirement is applied before or after the z_obj is built from the two selected electrons.
+
+Why this may matter:
+If the charge requirement is applied after the z_obj is built, the z_obj may be built from same-charge electrons and then rejected, leading to inconsistencies in the analysis.
+
+[CANDIDATE 8] "selected muon" and "W candidate muon" equivalence
+
+Original phrase:
+"- Define the selected muon as the W candidate lepton."
+"- The W candidate muon must have pT > 20 GeV."
+
+Unresolved choice:
+It is unclear whether "W candidate muon" and "selected muon" are the same object or if "W candidate muon" is a subset of the "selected muon" that passes additional requirements.
+
+Why this may matter:
+If the W candidate muon is a subset of the selected muon, the pT requirement may be applied to a different set of objects than the initial selection, leading to inconsistencies in the analysis.

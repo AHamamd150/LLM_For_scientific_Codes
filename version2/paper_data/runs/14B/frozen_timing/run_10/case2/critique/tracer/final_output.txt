@@ -1,0 +1,130 @@
+SECTION 1: SPEC BULLET ANALYSIS
+
+✅ * Select electrons with pT > 25 GeV and |eta| < 2.5; computed as: [e for e in electrons if e['pt'] > 25 and abs(e['eta']) < 2.5]; upstream chain: electrons -> selected_electrons; 〔L293-L294〕
+✅ * Select muons with pT > 25 GeV and |eta| < 2.4; computed as: [m for m in muons if m['pt'] > 25 and abs(m['eta']) < 2.4]; upstream chain: muons -> selected_muons; 〔L294-L295〕
+✅ * Require exactly one lepton (electron or muon); computed as: len(selected_leptons) != 1; upstream chain: selected_electrons + selected_muons -> selected_leptons; 〔L295-L297〕
+✅ * Require at least 4 jets with pT > 30 GeV and |eta| < 2.5; computed as: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]; upstream chain: jets -> selected_jets; 〔L302-L304〕
+✅ * Require at least 2 b-tagged jets; computed as: [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]; upstream chain: bjets -> selected_bjets; 〔L309-L311〕
+✅ * Select MET > 20 GeV; computed as: met['pt'] < 20; upstream chain: helper_get_met -> met; 〔L315-L317〕
+✅ * Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate); computed as: mt < 30 or mt > 150; upstream chain: helper_transverse_mass -> mt; 〔L322-L325〕
+✅ * Build the hadronic W candidate from the two leading non-b-tagged jets.; computed as: sum_objects(leading_light_jet, subleading_light_jet); upstream chain: light_jets -> selected_light_jets -> leading_light_jet, subleading_light_jet; 〔L332-L340〕
+✅ * Select the hadronic W mass between 40 to 120 GeV.; computed as: w_hadronic_mass < 40 or w_hadronic_mass > 120; upstream chain: helper_invariant_mass -> w_hadronic_mass; 〔L342-L344〕
+✅ * Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.; computed as: sum_objects(leading_bjet, w_hadronic); upstream chain: selected_bjets -> leading_bjet, w_hadronic; 〔L349-L351〕
+
+SECTION 2: DEFINITION SUMMARY
+
+* [CHECK CAREFULLY] DEFINITION SUMMARY
+
+* selected_electrons
+  - computed/defined as: [e for e in electrons if e['pt'] > 25 and abs(e['eta']) < 2.5]
+  - upstream chain: electrons -> selected_electrons
+  - collection definition: e['pt'] > 25 and abs(e['eta']) < 2.5
+  - structure: single-constituent
+
+* selected_muons
+  - computed/defined as: [m for m in muons if m['pt'] > 25 and abs(m['eta']) < 2.4]
+  - upstream chain: muons -> selected_muons
+  - collection definition: m['pt'] > 25 and abs(m['eta']) < 2.4
+  - structure: single-constituent
+
+* selected_leptons
+  - computed/defined as: selected_electrons + selected_muons
+  - upstream chain: selected_electrons, selected_muons -> selected_leptons
+  - collection definition: N/A
+  - structure: multi-input
+
+* selected_jets
+  - computed/defined as: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - upstream chain: jets -> selected_jets
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* selected_bjets
+  - computed/defined as: [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - upstream chain: bjets -> selected_bjets
+  - collection definition: b['pt'] > 30 and abs(b['eta']) < 2.5
+  - structure: single-constituent
+
+* met
+  - computed/defined as: helper_get_met(event)
+  - upstream chain: event -> helper_get_met -> met
+  - collection definition: N/A
+  - structure: single-constituent
+
+* mt
+  - computed/defined as: helper_transverse_mass(lepton, met)
+  - upstream chain: lepton, met -> helper_transverse_mass -> mt
+  - collection definition: N/A
+  - structure: multi-input
+
+* selected_light_jets
+  - computed/defined as: [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - upstream chain: light_jets -> selected_light_jets
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* w_hadronic
+  - computed/defined as: sum_objects(leading_light_jet, subleading_light_jet)
+  - upstream chain: selected_light_jets -> leading_light_jet, subleading_light_jet -> sum_objects -> w_hadronic
+  - collection definition: N/A
+  - structure: composite-derived
+
+* w_hadronic_mass
+  - computed/defined as: w_hadronic['mass'] if w_hadronic else 0.0
+  - upstream chain: w_hadronic -> w_hadronic_mass
+  - collection definition: N/A
+  - structure: single-constituent
+
+* leading_bjet
+  - computed/defined as: helper_get_leading(selected_bjets)
+  - upstream chain: selected_bjets -> helper_get_leading -> leading_bjet
+  - collection definition: N/A
+  - structure: single-constituent
+
+* top_candidate
+  - computed/defined as: sum_objects(leading_bjet, w_hadronic)
+  - upstream chain: leading_bjet, w_hadronic -> sum_objects -> top_candidate
+  - collection definition: N/A
+  - structure: composite-derived
+
+* top_mass
+  - computed/defined as: top_candidate['mass'] if top_candidate else 0.0
+  - upstream chain: top_candidate -> top_mass
+  - collection definition: N/A
+  - structure: single-constituent
+
+* dr_lepton_bjet
+  - computed/defined as: helper_delta_r(lepton, leading_bjet)
+  - upstream chain: lepton, leading_bjet -> helper_delta_r -> dr_lepton_bjet
+  - collection definition: N/A
+  - structure: multi-input
+
+* ht
+  - computed/defined as: scalar_pt_sum(selected_jets)
+  - upstream chain: selected_jets -> scalar_pt_sum -> ht
+  - collection definition: N/A
+  - structure: single-constituent
+
+* njet_list
+  - computed/defined as: len(selected_jets)
+  - upstream chain: selected_jets -> njet_list
+  - collection definition: N/A
+  - structure: single-constituent
+
+* leading_bjet_pt
+  - computed/defined as: leading_bjet['pt']
+  - upstream chain: leading_bjet -> leading_bjet_pt
+  - collection definition: N/A
+  - structure: single-constituent
+
+* subleading_bjet_pt
+  - computed/defined as: helper_get_subleading(selected_bjets)['pt']
+  - upstream chain: selected_bjets -> helper_get_subleading -> subleading_bjet_pt
+  - collection definition: N/A
+  - structure: single-constituent
+
+* leading_bjet_eta
+  - computed/defined as: leading_bjet['eta']
+  - upstream chain: leading_bjet -> leading_bjet_eta
+  - collection definition: N/A
+  - structure: single-constituent

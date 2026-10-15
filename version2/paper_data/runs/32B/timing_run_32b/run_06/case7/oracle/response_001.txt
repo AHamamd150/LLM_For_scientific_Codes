@@ -1,0 +1,72 @@
+[AMBIGUITY 1] Leading and subleading objects defined before or after cuts
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this is dangerous:
+The phrase "selected taus" implies that the selection cuts have already been applied, but the exact timing of when "selected taus" is defined is not clear. If the leading and subleading objects are defined before applying all cuts, it could result in different objects being used in later validation plots and final output compared to the case where they are defined after all cuts.
+
+Question to user:
+Are the leading and subleading taus defined after all tau selection cuts (pT > 20 GeV and |eta| < 2.3) have been applied?
+
+Golden axe:
+Leading and subleading taus are defined after applying the tau selection cuts.
+
+Silver axe:
+Leading and subleading taus are defined before applying the tau selection cuts.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Define the leading tau and subleading tau from the taus that pass the pT > 20 GeV and |eta| < 2.3 cuts."
+- Silver axe rewrite: "Define the leading tau and subleading tau from all taus in the event before applying the pT > 20 GeV and |eta| < 2.3 cuts."
+
+[AMBIGUITY 2] Ditau and dijet system definition scope
+
+Original phrase:
+"Define ditau_obj from the summed four-momentum of the leading tau and subleading tau."
+"Define dijet_obj from the summed four-momentum of the leading jet and subleading jet."
+
+Why this is dangerous:
+It is unclear whether these composite objects (ditau_obj and dijet_obj) are defined once per event and reused consistently for all subsequent cuts and plots, or if they are redefined at different stages of the analysis. This could lead to inconsistent use of the same physical system across different parts of the analysis.
+
+Question to user:
+Should the ditau_obj and dijet_obj be defined once per event and used consistently for all subsequent cuts and plots, or should they be re-evaluated at different stages of the analysis?
+
+Golden axe:
+Ditau_obj and dijet_obj are defined once per event and used consistently for all subsequent cuts and plots.
+
+Silver axe:
+Ditau_obj and dijet_obj may be redefined at different stages of the analysis depending on the context.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Define ditau_obj and dijet_obj once per event from the leading and subleading tau and jet pairs, and use these definitions consistently for all subsequent cuts and plots."
+- Silver axe rewrite: "Define ditau_obj and dijet_obj as needed for each cut and plot based on the current leading and subleading tau and jet pairs."
+
+[AMBIGUITY 3] B-tagged jet veto scope
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Why this is dangerous:
+It is ambiguous whether the veto applies to all selected jets (after applying the jet pT and eta cuts) or only to a subset of selected jets (e.g., the jets used in the dijet system). This could lead to different interpretations of which jets are considered in the veto condition.
+
+Question to user:
+Should the b-tagged jet veto apply to all selected jets (after pT > 30 GeV and |eta| < 4.7 cuts), or only to the jets used in the dijet system (leading and subleading jets)?
+
+Golden axe:
+The b-tagged jet veto applies to all selected jets after the pT and eta cuts.
+
+Silver axe:
+The b-tagged jet veto applies only to the jets used in the dijet system (leading and subleading jets).
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Veto events with any b-tagged jets among all jets that pass the pT > 30 GeV and |eta| < 4.7 cuts."
+- Silver axe rewrite: "Veto events with b-tagged jets among the leading and subleading jets used to define the dijet system."

@@ -1,0 +1,69 @@
+{
+  "selected_helpers": [
+    {
+      "name": "get_taus",
+      "reason": ""
+    },
+    {
+      "name": "get_jets",
+      "reason": ""
+    },
+    {
+      "name": "helper_delta_eta",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_leading",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_subleading",
+      "reason": ""
+    },
+    {
+      "name": "get_particle_mass",
+      "reason": "dependency of four_momentum"
+    },
+    {
+      "name": "four_momentum",
+      "reason": "dependency of sum_objects"
+    },
+    {
+      "name": "obj_from_four_momentum",
+      "reason": "dependency of sum_objects"
+    },
+    {
+      "name": "sum_objects",
+      "reason": ""
+    },
+    {
+      "name": "helper_invariant_mass",
+      "reason": ""
+    },
+    {
+      "name": "opposite_sign",
+      "reason": ""
+    },
+    {
+      "name": "get_bjets",
+      "reason": "dependency of n_bjets"
+    },
+    {
+      "name": "n_bjets",
+      "reason": ""
+    },
+    {
+      "name": "helper_delta_phi",
+      "reason": "dependency of helper_delta_r"
+    },
+    {
+      "name": "helper_delta_r",
+      "reason": ""
+    },
+    {
+      "name": "centrality_between_jets",
+      "reason": ""
+    }
+  ],
+  "rejected_but_close": []
+}

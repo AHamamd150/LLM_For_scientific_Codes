@@ -1,0 +1,23 @@
+
+
+bjets_sorted[1] -> subleading_bjet['pt']
+  - collection definition: subleading_bjet
+  - structure: single-constituent
+
+* leading_bjet_eta
+  - computed/defined as: leading_bjet['eta']
+  - upstream chain: leading_bjet = bjets_sorted[0] -> leading_bjet['eta']
+  - collection definition: leading_bjet
+  - structure: single-constituent
+
+* met_values
+  - computed/defined as: met['pt']
+  - upstream chain: helper_get_met(event) -> met['pt']
+  - collection definition: met
+  - structure: single-constituent
+
+* cutflow
+  - computed/defined as: dictionary with counters for each selection step
+  - upstream chain: cutflow dictionary -> print statements
+  - collection definition: cutflow dictionary
+  - structure: multi-input

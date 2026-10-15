@@ -1,0 +1,10 @@
+Initial events: 30000
+Electrons (pT > 15, |eta| < 2.5): 5676
+Muons (pT > 10, |eta| < 2.4): 1306
+Exactly 2 electrons and 1 muon: 1305
+Opposite sign electrons: 1305
+Z mass (76 < m < 106 GeV): 1251
+MET > 30 GeV: 907
+W muon pT > 20 GeV: 789
+W transverse mass > 30 GeV: 722
+Final selected events: 722

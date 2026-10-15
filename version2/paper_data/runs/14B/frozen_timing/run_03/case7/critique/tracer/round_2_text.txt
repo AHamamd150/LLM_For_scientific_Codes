@@ -1,0 +1,19 @@
+
+
+* delta_r_tt
+  - computed/defined as: helper_delta_r(leading_tau, subleading_tau)
+  - upstream chain: leading_tau, subleading_tau -> helper_delta_r(leading_tau, subleading_tau)
+  - collection definition: leading_tau, subleading_tau
+  - structure: multi-input
+
+* delta_phi_tt_dijet
+  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])
+  - upstream chain: ditau_obj, dijet_obj -> helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])
+  - collection definition: ditau_obj, dijet_obj
+  - structure: multi-input
+
+* centrality_tt_jj
+  - computed/defined as: centrality_between_jets(ditau_obj, leading_jet, subleading_jet)
+  - upstream chain: ditau_obj, leading_jet, subleading_jet -> centrality_between_jets(ditau_obj, leading_jet, subleading_jet)
+  - collection definition: ditau_obj, leading_jet, subleading_jet
+  - structure: multi-input

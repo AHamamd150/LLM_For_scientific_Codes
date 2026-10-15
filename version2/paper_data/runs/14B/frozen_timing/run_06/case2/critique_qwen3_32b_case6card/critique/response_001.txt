@@ -1,0 +1,16 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- top_hadronic = sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The code builds the hadronic top candidate by summing the four-momenta of the leading b-jet and the hadronic W candidate. However, the SPEC explicitly requires the hadronic top to be built from the leading selected b-tagged jet and the hadronic W candidate. While the code uses the leading b-jet, it does not ensure that the b-jet is the one closest to the selected lepton in ΔR as required by the SPEC. Instead, it uses the leading b-jet in pT, which may not be the same object.
+
+Evidence priority:
+- leading_bjet is defined as helper_get_leading(selected_bjets) 〔L332-L332〕
+
+Generator bias:
+none

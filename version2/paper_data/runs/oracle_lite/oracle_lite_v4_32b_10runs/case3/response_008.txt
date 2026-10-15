@@ -1,0 +1,87 @@
+[CANDIDATE 1] Photon selection and veto regions
+
+Original phrase:
+"Select photons with pT > 25 GeV and |eta| < 2.37. Exclude photons in the crack region 1.37 < |eta| < 1.52."
+
+Unresolved choice:
+It is unclear whether the crack region veto is applied in addition to the |eta| < 2.37 cut or if it is already implicitly excluded by that condition.
+
+Why this may matter:
+If the crack veto is redundant with the |eta| < 2.37 cut, it would have no effect. If it is meant to remove a subset of the allowed |eta| range, it must be implemented as an explicit veto after the initial selection.
+
+[CANDIDATE 2] Leading and subleading photon definitions
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection. Leading photon pT > 35 GeV. Subleading photon pT > 25 GeV."
+
+Unresolved choice:
+It is unclear whether the "leading photon pT > 35 GeV" and "subleading photon pT > 25 GeV" are additional cuts or part of the definition of the leading and subleading photons.
+
+Why this may matter:
+If these are cuts, they must be applied after defining the leading and subleading photons. If they are part of the definition, then the selection of leading and subleading photons must include these pT thresholds as part of the sorting or selection process.
+
+[CANDIDATE 3] Diphoton system reuse
+
+Original phrase:
+"Build the diphoton system from the leading photon and the subleading photon. Define m_gammagamma as the invariant mass of this diphoton system. Use this same diphoton system to compute diphoton pT."
+
+Unresolved choice:
+It is unclear whether the diphoton system is a fixed object defined once and reused for all subsequent calculations or if it is a temporary object used only to compute specific values.
+
+Why this may matter:
+If the diphoton system is meant to be reused in later steps or plots, it should be stored as a named object. If it is only used to compute m_gammagamma and diphoton pT, it may not need to be preserved beyond those calculations.
+
+[CANDIDATE 4] Diphoton system for plots
+
+Original phrase:
+"Plot the following as histograms: 1 Plot diphoton invariant mass in the range 100 to 160 GeV"
+
+Unresolved choice:
+It is unclear whether the diphoton invariant mass in the plot refers to the same m_gammagamma defined in the selection cuts or if it is a separate calculation.
+
+Why this may matter:
+If the diphoton invariant mass in the plot is a different calculation (e.g., using a different pair of photons), it could lead to inconsistencies in the analysis.
+
+[CANDIDATE 5] Cutflow counter timing
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether the cutflow counters are incremented for each individual cut or if they are cumulative (i.e., whether each counter represents the number of events that passed up to that point or the number that passed that specific cut).
+
+Why this may matter:
+If the counters are cumulative, the interpretation of the cutflow will differ from a per-cut interpretation. This affects how the analysis will be validated and interpreted.
+
+[CANDIDATE 6] Delta R and delta phi definitions
+
+Original phrase:
+"Plot delta R between the two photons. Plot delta phi between the two photons."
+
+Unresolved choice:
+It is unclear whether these quantities refer to the leading and subleading photons defined in the selection or to all pairs of photons in the event.
+
+Why this may matter:
+If the delta R and delta phi are computed between all pairs of photons, the plots would include more data than just the diphoton system. If they are only between the leading and subleading photons, the plots will be more specific to the selected system.
+
+[CANDIDATE 7] Collins-Soper frame definition
+
+Original phrase:
+"Plot the |cos(theta*)| of the diphoton system in Collins-Soper frame"
+
+Unresolved choice:
+It is unclear whether the Collins-Soper frame is computed using the diphoton system as defined in the selection or if it uses additional information from the event (e.g., MET or jets).
+
+Why this may matter:
+The Collins-Soper frame typically depends on the diphoton system and the event's missing transverse energy or jet system. If MET or jets are not used, the frame may not be correctly defined.
+
+[CANDIDATE 8] CSV output for MLP analysis
+
+Original phrase:
+"Save to CSV for MLP analysis: 1- Diphoton invariant mass 2- Leading photon pT 3- Subleading photon pT 4- Delta R between photons 5- pT of diphoton system 6- |cos(theta*)|"
+
+Unresolved choice:
+It is unclear whether the diphoton system used to compute these variables is the same one defined in the selection or if it is a different system (e.g., using a different pair of photons or a different definition).
+
+Why this may matter:
+If the diphoton system used for the CSV differs from the one used in the selection, the variables may not be consistent with the analysis cuts, leading to misinterpretation of the MLP training data.

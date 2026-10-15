@@ -1,0 +1,33 @@
+{
+  "light_jets": {
+    "name": "light_jets",
+    "definition": "[j for j in jets if j not in bjets]",
+    "used_by": [
+      "Hadronic W candidate"
+    ]
+  },
+  "light_jets_sorted": {
+    "name": "light_jets_sorted",
+    "definition": "sorted(light_jets, key=lambda j: j['pt'], reverse=True)",
+    "used_by": [
+      "Hadronic W mass"
+    ]
+  },
+  "bjets": {
+    "name": "bjets",
+    "definition": "[b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]",
+    "used_by": [
+      "Hadronic top candidate",
+      "Leading b-jet pT",
+      "Subleading b-jet pT",
+      "Leading b-jet η"
+    ]
+  },
+  "bjets_sorted": {
+    "name": "bjets_sorted",
+    "definition": "sorted(bjets, key=lambda j: j['pt'], reverse=True)",
+    "used_by": [
+      "Hadronic top mass"
+    ]
+  }
+}

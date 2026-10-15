@@ -1,0 +1,60 @@
+[UNDERSPECIFICATION 1] Definition of "leading tau" and "subleading tau" in context of cuts
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this matters:
+The phrase does not specify whether the "leading" and "subleading" taus are defined before or after the "opposite-sign tau pair" cut. If the cut is applied before defining the pair, the leading and subleading may not be the correct ones for the OS requirement. If the cut is applied after, the selection of leading and subleading may change based on the OS condition.
+
+Question to user:
+Are the leading and subleading taus defined before or after the opposite-sign requirement is applied?
+
+Golden axe:
+Leading and subleading taus are defined from the selected taus before the opposite-sign cut.
+
+Silver axe:
+Leading and subleading taus are defined only after ensuring the pair is opposite-sign.
+
+Recommended default: Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Definition of "leading jet" and "subleading jet" in context of b-tag veto
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Why this matters:
+It is unclear whether the "selected jets" refers to all jets passing the pT and |eta| cuts, or to the subset of jets that survive the b-tag veto. If the leading and subleading jets are defined before the veto, the dijet system may include b-jets. If defined after, the veto may remove the leading or subleading jet, changing the dijet system.
+
+Question to user:
+Are the leading and subleading jets defined before or after the b-tag veto is applied?
+
+Golden axe:
+Leading and subleading jets are defined from the selected jets before the b-tag veto.
+
+Silver axe:
+Leading and subleading jets are defined from the selected jets after the b-tag veto.
+
+Recommended default: Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Definition of "dijet_obj" and its use in m_jj and delta eta cuts
+
+Original phrase:
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Why this matters:
+The phrase does not clarify whether the dijet_obj is used to compute both the invariant mass (m_jj) and the delta eta between the two jets. If the dijet_obj is a composite object, it may not retain the individual jet positions needed for delta eta. Alternatively, the jets may need to be preserved separately for angular calculations.
+
+Question to user:
+Is the dijet_obj used only for computing m_jj, or is it also used for computing the delta eta between the two jets?
+
+Golden axe:
+The dijet_obj is used only for computing m_jj; the jets are kept separately for angular calculations.
+
+Silver axe:
+The dijet_obj is used for both m_jj and delta eta calculations.
+
+Recommended default: Golden axe

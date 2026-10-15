@@ -1,0 +1,82 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+◎ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+- Define dijet_obj from the summed four-momentum of the leading jet and subleading jet.
+
+CODE:
+- ditau_obj = sum_objects(tau1, tau2)
+- dijet_obj = sum_objects(jet1, jet2)
+
+Reason:
+The code correctly constructs the ditau_obj and dijet_obj from the summed four-momentum of the leading and subleading tau and jet, respectively. The composite system is built from all required constituents.
+
+Evidence priority:
+- ditau_obj = sum_objects(tau1, tau2); dijet_obj = sum_objects(jet1, jet2)
+
+Generator bias:
+none
+
+---
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV
+
+CODE:
+- m_jj_val = helper_invariant_mass(jet1, jet2)
+- if m_jj_val < 400: continue
+
+Reason:
+The code computes the invariant mass of the leading and subleading jets using helper_invariant_mass, but the condition is implemented as m_jj_val < 400, which skips the event if the mass is below 400 GeV. This is a mismatch with the SPEC, which requires m_jj > 400 GeV.
+
+Evidence priority:
+- m_jj_val = helper_invariant_mass(jet1, jet2); if m_jj_val < 400: continue
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select |delta eta| between the two leading jets > 2.5
+
+CODE:
+- delta_eta_jj_val = abs(helper_delta_eta(jet1, jet2))
+- if delta_eta_jj_val < 2.5: continue
+
+Reason:
+The code computes the absolute delta eta between the two leading jets and skips the event if the value is less than 2.5. This is a mismatch with the SPEC, which requires |delta eta| > 2.5.
+
+Evidence priority:
+- delta_eta_jj_val = abs(helper_delta_eta(jet1, jet2)); if delta_eta_jj_val < 2.5: continue
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select ditau invariant mass between 60 and 150 GeV
+
+CODE:
+- m_tautau_val = helper_invariant_mass(tau1, tau2)
+- if not (60 < m_tautau_val < 150): continue
+
+Reason:
+The code computes the ditau invariant mass and skips the event if the mass is not in the range (60, 150). This is a mismatch with the SPEC, which requires the mass to be between 60 and 150 GeV.
+
+Evidence priority:
+- m_tautau_val = helper_invariant_mass(tau1, tau2); if not (60 < m_tautau_val < 150): continue
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

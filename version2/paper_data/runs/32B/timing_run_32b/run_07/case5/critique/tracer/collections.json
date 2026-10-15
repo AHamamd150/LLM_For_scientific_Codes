@@ -1,0 +1,47 @@
+{
+  "taus": {
+    "name": "taus",
+    "definition": "[t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]",
+    "used_by": [
+      "tau1",
+      "tau2",
+      "leading tau pT",
+      "subleading tau pT"
+    ]
+  },
+  "tau1": {
+    "name": "tau1",
+    "definition": "helper_get_leading(taus), tau2 = helper_get_subleading(taus)",
+    "used_by": [
+      "ditau_obj",
+      "ditau invariant mass",
+      "delta R between taus"
+    ]
+  },
+  "jets": {
+    "name": "jets",
+    "definition": "[j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]",
+    "used_by": [
+      "jet1",
+      "leading jet pT",
+      "subleading jet pT"
+    ]
+  },
+  "jet1": {
+    "name": "jet1",
+    "definition": "helper_get_leading(jets), jet2 = helper_get_subleading(jets)",
+    "used_by": [
+      "dijet_obj",
+      "dijet invariant mass (m_jj)",
+      "delta eta between jets"
+    ]
+  },
+  "ditau_obj": {
+    "name": "ditau_obj",
+    "definition": "sum_objects(tau1, tau2), dijet_obj = sum_objects(jet1, jet2)",
+    "used_by": [
+      "delta phi between ditau and dijet",
+      "centrality between jets and ditau"
+    ]
+  }
+}

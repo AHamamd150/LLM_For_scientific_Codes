@@ -1,0 +1,32 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+3,4,requirement,R1,Select photons with pT > 25 GeV and |eta| < 2.37.,yes,yes,yes,no,Correctly identifies the photons_selected comprehension at lines 262-264.
+3,4,requirement,R2,Exclude photons in the crack region 1.37 < |eta| < 1.52.,yes,yes,yes,no,Correctly identifies photons_clean at lines 268-270.
+3,4,requirement,R3,Require at least 2 photons.,yes,yes,yes,no,The len(photons_clean) < 2 rejection is at lines 270-271; the tracer reports the equivalent requirement.
+3,4,requirement,R4,Define the leading photon and subleading photon after photon selection.,yes,yes,yes,no,Correctly identifies helper_get_leading and helper_get_subleading on photons_clean at lines 274-276.
+3,4,requirement,R5,Leading photon pT > 35 GeV.,yes,yes,yes,no,Correctly identifies the comparison at lines 281-283.
+3,4,requirement,R6,Subleading photon pT > 25 GeV.,yes,yes,yes,no,Correctly identifies the comparison at lines 286-288.
+3,4,requirement,R7,Build the diphoton system from the leading and subleading photons.,yes,yes,yes,no,"Correctly traces sum_objects(leading_photon, subleading_photon) at lines 291-292."
+3,4,requirement,R8,Define m_gammagamma as the invariant mass of the diphoton system.,yes,yes,yes,no,Correctly identifies diphoton['mass'] at line 293.
+3,4,requirement,R9,Use the same diphoton system to compute diphoton pT.,yes,yes,yes,no,"Correctly traces diphoton['pt'] into pt_diphoton_list at line 315, although the cited line is off by one."
+3,4,requirement,R10,Select diphoton invariant mass between 105 and 160 GeV.,yes,yes,yes,no,Correctly identifies 105 < m_gammagamma < 160 at lines 294-295.
+3,4,requirement,R11,Select leading photon pT / m_gammagamma > 0.35.,yes,yes,yes,no,Correctly identifies the rejection condition and equivalent selection at lines 298-301.
+3,4,requirement,R12,Select subleading photon pT / m_gammagamma > 0.25.,yes,yes,yes,no,Correctly identifies the rejection condition and equivalent selection at lines 303-306.
+3,4,requirement,R13,"Apply cuts sequentially, skip immediately on failure, and increment each cutflow counter immediately after the corresponding cut passes.",no,na,na,no,"The tracer does not trace this sequencing/counter relationship. The code also has counter misplacement: the leading-pT counter is incremented before the leading-pT cut, and the subleading and mass counters are incremented before their corresponding cuts."
+3,4,requirement,R14,Plot diphoton invariant mass in the range 100 to 160 GeV.,partial,yes,yes,no,"The tracer identifies m_gammagamma_list at line 312, but does not trace the actual plotting call or the requested 100-160 range. The call at line 331 has no range argument."
+3,4,requirement,R15,Plot pT of the leading photon.,partial,yes,yes,no,It traces the plotted data list at line 313 but not the actual plot_histogram call at line 332.
+3,4,requirement,R16,Plot pT of the subleading photon.,partial,yes,yes,no,It traces the plotted data list at line 314 but not the actual plot call at line 333.
+3,4,requirement,R17,Plot pT of the diphoton system.,partial,yes,yes,no,"It traces pt_diphoton_list, but does not identify the actual plot call at line 334."
+3,4,requirement,R18,Plot eta of the leading photon.,partial,yes,yes,no,It traces eta_leading_photon_list at line 316 but not the plot call at line 335.
+3,4,requirement,R19,Plot eta of the subleading photon.,partial,yes,yes,no,It traces eta_subleading_photon_list at line 317 but not the plot call at line 336.
+3,4,requirement,R20,Plot delta R between the two photons.,partial,yes,yes,no,"It correctly traces the value computation at line 318, but omits the histogram call at line 337."
+3,4,requirement,R21,Plot delta phi between the two photons.,partial,yes,yes,no,"It correctly traces the value computation at line 319, but omits the histogram call at line 338."
+3,4,requirement,R22,Plot |cos(theta*)| of the diphoton system in the Collins-Soper frame.,partial,yes,yes,no,"It correctly traces the absolute Collins-Soper computation at line 320, but omits the histogram call at line 339."
+3,4,requirement,R23,"Use simple validation histograms with figure creation, 40 bins, density normalization, labels, PNG saving, and closing.",partial,yes,yes,no,"The tracer identifies saving via plt.savefig at line 329, but does not trace the shared histogram implementation at lines 323-329 or its 40-bin, density, label, and close operations."
+3,4,requirement,R24,"After the event loop, print one cutflow summary with the number of events after each selection step.",partial,yes,no,no,"It correctly identifies printing the cutflow dictionary at lines 357-358, but does not trace the individual counter updates or their association with each selection step."
+3,4,requirement,R25,Save the figures in PNG format.,yes,yes,yes,no,The tracer correctly identifies plt.savefig at line 329; concrete calls use .png filenames at lines 331-339.
+3,4,requirement,R26,Save diphoton invariant mass to CSV for MLP analysis.,yes,yes,yes,no,Correctly traces m_gammagamma_list to the CSV row at line 347.
+3,4,requirement,R27,Save leading photon pT to CSV for MLP analysis.,yes,yes,yes,no,Correctly traces pt_leading_photon_list to line 348.
+3,4,requirement,R28,Save subleading photon pT to CSV for MLP analysis.,yes,yes,yes,no,Correctly traces pt_subleading_photon_list to line 349.
+3,4,requirement,R29,Save delta R between photons to CSV for MLP analysis.,yes,yes,yes,no,Correctly traces dr_photons_list to line 350.
+3,4,requirement,R30,Save diphoton pT to CSV for MLP analysis.,yes,yes,yes,no,Correctly traces pt_diphoton_list to line 351.
+3,4,requirement,R31,Save |cos(theta*)| to CSV for MLP analysis.,yes,yes,yes,no,Correctly traces cos_theta_star_list to line 352.

@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/Users/nojiri/resubmission/test_runs/timing_run_32b/run_07/case5/execution/generated_analysis.py", line 393, in <module>
+    main()
+  File "/Users/nojiri/resubmission/test_runs/timing_run_32b/run_07/case5/execution/generated_analysis.py", line 313, in main
+    centrality.append(centrality_between_jets(ditau_obj, jet1, jet2))
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'centrality_between_jets' is not defined

@@ -1,0 +1,16 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the pT of the three-lepton system built from the two selected electrons and the selected muon
+
+CODE:
+- three_lepton_pt = three_lepton['pt'] if three_lepton else 0.0
+
+Reason:
+The three-lepton system is defined as the sum of the two selected electrons and the selected muon. The code correctly constructs the system using sum_objects(e1, e2, w_muon), but the pT is taken directly from the composite object. This is correct, but the code does not explicitly compute the pT from the summed four-momentum. However, the helper function obj_from_four_momentum already ensures that the pT is correctly derived from the sum.
+
+Evidence priority:
+- three_lepton = sum_objects(e1, e2, w_muon); three_lepton_pt = three_lepton['pt'] if three_lepton else 0.0 〔L298-L300〕
+
+Generator bias:
+none

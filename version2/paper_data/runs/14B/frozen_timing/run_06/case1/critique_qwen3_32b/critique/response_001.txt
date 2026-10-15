@@ -1,0 +1,52 @@
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+- Select muons with pT > 20 GeV and |eta| < 2.4
+
+CODE:
+l['pt'] > 25 and abs(l['eta']) < 2.5 and l['type'] == 1
+l['pt'] > 20 and abs(l['eta']) < 2.4 and l['type'] == 2
+
+Reason:
+The code applies the lepton type check (l['type'] == 1 or 2) as part of the selection criteria, which is not explicitly mentioned in the SPEC. The SPEC only specifies pT and |eta| cuts for electrons and muons, but does not explicitly require type checks to ensure the selection is applied to the correct particle types.
+
+Evidence priority:
+Selected electrons and muons; 〔L291-L296〕
+
+Generator bias:
+The code may have been influenced by the LHCO format's particle type field, but the SPEC does not explicitly require this check as part of the selection criteria.
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Veto events with b-tagged jets 
+
+CODE:
+n_bjets(event, 30, 2.5) > 0
+
+Reason:
+The code applies pT > 30 and |eta| < 2.5 cuts to b-jets when performing the veto, but the SPEC does not specify that b-jets should be required to pass these cuts to trigger the veto. The veto should apply to any b-tagged jet regardless of its pT or |eta|.
+
+Evidence priority:
+Veto b-tagged jets; 〔L311-L313〕
+
+Generator bias:
+The code may have been influenced by the jet selection pattern used earlier in the code, but the SPEC does not explicitly require these cuts for the veto condition.
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Select delta phi between the lepton and the two-jet system
+
+CODE:
+helper_delta_phi(lepton['phi'], jet_system['phi'])
+
+Reason:
+The SPEC does not specify whether the two-jet system should be defined using the full four-momentum sum of the two leading jets or just their phi component. The code uses the phi of the summed four-momentum, but the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+Delta phi between lepton and two-jet system; 〔L361-L366〕
+
+Generator bias:
+none

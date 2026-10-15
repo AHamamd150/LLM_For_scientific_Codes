@@ -1,0 +1,4 @@
+
+
+  - collection definition: None
+  - structure: single-constituent

@@ -1,0 +1,563 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The hadronic top candidate is built from the leading b-tagged jet and the hadronic W candidate, which is correct. However, the code uses `sum_objects(bjets_sorted[0], w_hadronic)` to compute the top candidate. This is a correct implementation of the composite system, as it combines the four-momenta of the b-jet and the W candidate. No violation.
+
+Evidence priority:
+- Hadronic top candidate is built from leading b-jet and hadronic W candidate; upstream chain: sum_objects(bjets_sorted[0], w_hadronic) → obj_from_four_momentum → math.sqrt(E^2 - p^2)
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Reason:
+The hadronic W candidate is built from the two leading non-b-tagged jets, which is correct. The code uses `sum_objects(light_jets_sorted[0], light_jets_sorted[1])` to compute the invariant mass, which is a correct implementation of the composite system.
+
+Evidence priority:
+- Hadronic W candidate is built from two leading non-b-tagged jets; upstream chain: sum_objects(light_jets_sorted[0], light_jets_sorted[1]) → obj_from_four_momentum → math.sqrt(E^2 - p^2)
+
+Generator bias:
+none
+
+[KEPT 2] keep: no obvious noise signal
+❓ (D) definition mismatch
+
+SPEC:
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+
+CODE:
+- closest_bjet = min(bjets, key=lambda b: helper_delta_r(b, lepton))
+
+Reason:
+The code correctly computes the b-jet closest to the lepton in ΔR. No issue.
+
+Evidence priority:
+- Closest b-jet: min(bjets, key=lambda b: helper_delta_r(b, lepton))
+
+Generator bias:
+none
+
+[KEPT 3] keep: no obvious noise signal
+❓ (D) definition mismatch
+
+SPEC:
+- For each histogram: plt.figure(); plt.hist(values, bins=40, density=True); plt.xlabel(...); plt.ylabel("density"); plt.savefig(...); plt.close().
+
+CODE:
+- save_hist function implements this pattern.
+
+Reason:
+The code implements the histogram pattern as specified in the SPEC. No issue.
+
+Evidence priority:
+- Histogram function: save_hist(values, bins, xlabel, filename)
+
+Generator bias:
+none
+
+[KEPT 4] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The hadronic top candidate is built from the leading b-tagged jet and the hadronic W candidate, which is correct. However, the code uses `sum_objects(bjets_sorted[0], w_hadronic)` to compute the top candidate. This is a correct implementation of the composite system, as it combines the four-momenta of the b-jet and the W candidate. No violation.
+
+Evidence priority:
+- Hadronic top candidate is built from leading b-jet and hadronic W candidate; upstream chain: sum_objects(bjets_sorted[0], w_hadronic) → obj_from_four_momentum → math.sqrt(E^2 - p^2)
+
+Generator bias:
+none
+
+[KEPT 5] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Reason:
+The hadronic W candidate is built from the two leading non-b-tagged jets, which is correct. The code uses `sum_objects(light_jets_sorted[0], light_jets_sorted[1])` to compute the invariant mass, which is a correct implementation of the composite system.
+
+Evidence priority:
+- Hadronic W candidate is built from two leading non-b-tagged jets; upstream chain: sum_objects(light_jets_sorted[0], light_jets_sorted[1]) → obj_from_four_momentum → math.sqrt(E^2 - p^2)
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+[DROPPED 1] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if w_hadronic is None or not (40 < w_hadronic['mass'] < 120): continue
+
+Reason:
+The code uses an open interval (40 < mass < 120), but the SPEC does not specify whether the bounds are inclusive or exclusive. This is a specification ambiguity, not a mismatch.
+
+Evidence priority:
+- Cut on hadronic W mass: if w_hadronic is None or not (40 < w_hadronic['mass'] < 120): continue
+
+Generator bias:
+none
+
+[DROPPED 2] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV.
+
+CODE:
+- if top_hadronic is None or not (100 < top_hadronic['mass'] < 250): continue
+
+Reason:
+The code uses an open interval (100 < mass < 250), but the SPEC does not specify whether the bounds are inclusive or exclusive. This is a specification ambiguity, not a mismatch.
+
+Evidence priority:
+- Cut on hadronic top mass: if top_hadronic is None or not (100 < top_hadronic['mass'] < 250): continue
+
+Generator bias:
+none
+
+[DROPPED 3] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- if not (30 < mt < 150): continue
+
+Reason:
+The code uses an open interval (30 < mt < 150), but the SPEC does not specify whether the bounds are inclusive or exclusive. This is a specification ambiguity, not a mismatch.
+
+Evidence priority:
+- Cut on transverse mass: if not (30 < mt < 150): continue
+
+Generator bias:
+none
+
+[DROPPED 4] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- if len(leptons) != 1: continue
+
+Reason:
+The code enforces exactly one lepton, which matches the SPEC. No issue.
+
+Evidence priority:
+- Lepton count: if len(leptons) != 1: continue
+
+Generator bias:
+none
+
+[DROPPED 5] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- if len(jets) < 4: continue
+
+Reason:
+The code enforces at least 4 jets, which matches the SPEC. No issue.
+
+Evidence priority:
+- Jet count: if len(jets) < 4: continue
+
+Generator bias:
+none
+
+[DROPPED 6] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Require at least 2 b-tagged jets.
+
+CODE:
+- if len(bjets) < 2: continue
+
+Reason:
+The code enforces at least 2 b-tagged jets, which matches the SPEC. No issue.
+
+Evidence priority:
+- B-jet count: if len(bjets) < 2: continue
+
+Generator bias:
+none
+
+[DROPPED 7] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- if met is None or met['pt'] < 20: continue
+
+Reason:
+The code enforces MET > 20 GeV, which matches the SPEC. No issue.
+
+Evidence priority:
+- MET cut: if met is None or met['pt'] < 20: continue
+
+Generator bias:
+none
+
+[DROPPED 8] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- ht_values.append(scalar_pt_sum(jets))
+
+Reason:
+The code computes the scalar sum of jet pT, which matches the SPEC. No issue.
+
+Evidence priority:
+- HT: scalar_pt_sum(jets) → sum(p['pt'] for p in particles)
+
+Generator bias:
+none
+
+[DROPPED 9] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- njets_values.append(len(jets))
+
+Reason:
+The code computes the number of jets per event, which matches the SPEC. No issue.
+
+Evidence priority:
+- Number of jets: len(jets)
+
+Generator bias:
+none
+
+[DROPPED 10] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- bjet1_pt.append(bjets_sorted[0]['pt'])
+
+Reason:
+The code computes the pT of the leading b-jet, which matches the SPEC. No issue.
+
+Evidence priority:
+- Leading b-jet pT: bjets_sorted[0]['pt']
+
+Generator bias:
+none
+
+[DROPPED 11] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- bjet2_pt.append(bjets_sorted[1]['pt'])
+
+Reason:
+The code computes the pT of the subleading b-jet, which matches the SPEC. No issue.
+
+Evidence priority:
+- Subleading b-jet pT: bjets_sorted[1]['pt']
+
+Generator bias:
+none
+
+[DROPPED 12] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Plot the eta of the leading b-jet
+
+CODE:
+- bjet1_eta.append(bjets_sorted[0]['eta'])
+
+Reason:
+The code computes the η of the leading b-jet, which matches the SPEC. No issue.
+
+Evidence priority:
+- Leading b-jet η: bjets_sorted[0]['eta']
+
+Generator bias:
+none
+
+[DROPPED 13] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic candidate)
+
+CODE:
+- mt_values.append(mt)
+
+Reason:
+The code computes the transverse mass of the lepton and MET, which matches the SPEC. No issue.
+
+Evidence priority:
+- Transverse mass: helper_transverse_mass(lepton, met) → math.sqrt(2 * visible['pt'] * met['pt'] * (1 - math.cos(dphi)))
+
+Generator bias:
+none
+
+[DROPPED 14] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- met_values.append(met['pt'])
+
+Reason:
+The code computes the MET distribution, which matches the SPEC. No issue.
+
+Evidence priority:
+- MET: helper_get_met(event) → event['objects'] with type == 6
+
+Generator bias:
+none
+
+[DROPPED 15] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Plot delta R between the leading lepton and the closest selected b-jet
+
+CODE:
+- dr_lepton_bjet.append(helper_delta_r(lepton, closest_bjet))
+
+Reason:
+The code computes the ΔR between the lepton and the closest b-jet, which matches the SPEC. No issue.
+
+Evidence priority:
+- ΔR: helper_delta_r(lepton, closest_bjet) → helper_delta_phi(phi1, phi2) → math.sqrt(deta^2 + dphi^2)
+
+Generator bias:
+none
+
+[DROPPED 16] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV
+
+CODE:
+- w_hadronic_mass.append(w_hadronic['mass'])
+
+Reason:
+The code computes the invariant mass of the hadronic W candidate, which matches the SPEC. No issue.
+
+Evidence priority:
+- W hadronic mass: helper_invariant_mass(light_jets_sorted[0], light_jets_sorted[1]) → sum_objects → obj_from_four_momentum → math.sqrt(E^2 - p^2)
+
+Generator bias:
+none
+
+[DROPPED 17] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV
+
+CODE:
+- top_hadronic_mass.append(top_hadronic['mass'])
+
+Reason:
+The code computes the invariant mass of the hadronic top candidate, which matches the SPEC. No issue.
+
+Evidence priority:
+- Top hadronic mass: helper_invariant_mass(bjets_sorted[0], w_hadronic) → sum_objects → obj_from_four_momentum → math.sqrt(E^2 - p^2)
+
+Generator bias:
+none
+
+[DROPPED 18] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+CODE:
+- All cuts are applied in sequence with continue statements.
+
+Reason:
+The code applies all cuts in sequence and skips the event when a cut is not satisfied, which matches the SPEC. No issue.
+
+Evidence priority:
+- Cutflow: continue statements after each cut
+
+Generator bias:
+none
+
+[DROPPED 19] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- Cutflow is printed with the number of events after each selection step.
+
+Reason:
+The code prints a cutflow summary after the event loop, which matches the SPEC. No issue.
+
+Evidence priority:
+- Cutflow: print statements after event loop
+
+Generator bias:
+none
+
+[DROPPED 20] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- save_hist(..., filename="...png")
+
+Reason:
+The code saves the plots in PNG format, which matches the SPEC. No issue.
+
+Evidence priority:
+- Plot saving: plt.savefig(filename)
+
+Generator bias:
+none
+
+[DROPPED 21] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Use simple validation histograms.
+
+CODE:
+- Uses plt.hist with density=True and simple labels.
+
+Reason:
+The code uses simple validation histograms, which matches the SPEC. No issue.
+
+Evidence priority:
+- Histograms: plt.hist(values, bins=40, density=True)
+
+Generator bias:
+none
+
+[DROPPED 22] drop: matched noise signal 'matches the spec'
+❓ (D) definition mismatch
+
+SPEC:
+- Use concrete short ASCII labels and filenames.
+
+CODE:
+- Filenames like "mt.png", "met.png", etc.
+
+Reason:
+The code uses concrete short ASCII labels and filenames, which matches the SPEC. No issue.
+
+Evidence priority:
+- Filenames: "mt.png", "met.png", etc.
+
+Generator bias:
+none
+
+---
+
+[DROPPED 23] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if w_hadronic is None or not (40 < w_hadronic['mass'] < 120): continue
+
+Reason:
+The code uses an open interval (40 < mass < 120), but the SPEC does not specify whether the bounds are inclusive or exclusive. This is a specification ambiguity, not a mismatch.
+
+Evidence priority:
+- Cut on hadronic W mass: if w_hadronic is None or not (40 < w_hadronic['mass'] < 120): continue
+
+Generator bias:
+none
+
+[DROPPED 24] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV.
+
+CODE:
+- if top_hadronic is None or not (100 < top_hadronic['mass'] < 250): continue
+
+Reason:
+The code uses an open interval (100 < mass < 250), but the SPEC does not specify whether the bounds are inclusive or exclusive. This is a specification ambiguity, not a mismatch.
+
+Evidence priority:
+- Cut on hadronic top mass: if top_hadronic is None or not (100 < top_hadronic['mass'] < 250): continue
+
+Generator bias:
+none
+
+[DROPPED 25] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- if not (30 < mt < 150): continue
+
+Reason:
+The code uses an open interval (30 < mt < 150), but the SPEC does not specify whether the bounds are inclusive or exclusive. This is a specification ambiguity, not a mismatch.
+
+Evidence priority:
+- Cut on transverse mass: if not (30 < mt < 150): continue
+
+Generator bias:
+none

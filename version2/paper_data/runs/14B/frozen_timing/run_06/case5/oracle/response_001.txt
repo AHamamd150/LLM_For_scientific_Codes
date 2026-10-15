@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading and subleading object definitions
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading and subleading taus are defined before or after applying the "opposite-sign tau pair" requirement. This affects which taus are considered for the ditau system and the invariant mass selection.
+
+Question to user:
+Are the leading and subleading taus defined before or after applying the opposite-sign requirement?
+
+Golden axe:
+Leading and subleading taus are defined after applying the opposite-sign requirement.
+
+Silver axe:
+Leading and subleading taus are defined before applying the opposite-sign requirement.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Dijet system definition
+
+Original phrase:
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading and subleading jets are defined before or after applying the "VBF topology" requirement (at least 2 jets). This affects which jets are used to form the dijet system.
+
+Question to user:
+Are the leading and subleading jets defined before or after applying the "at least 2 jets" requirement?
+
+Golden axe:
+Leading and subleading jets are defined after applying the "at least 2 jets" requirement.
+
+Silver axe:
+Leading and subleading jets are defined before applying the "at least 2 jets" requirement.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Centrality of the ditau system
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Why this is dangerous:
+The phrase does not clarify whether the "two jets" refer to the leading and subleading jets defined in the VBF topology requirement or to any two jets in the event. This affects which jets are used to compute the centrality.
+
+Question to user:
+Does the "centrality of the ditau system relative to the two jets" refer to the leading and subleading jets defined in the VBF topology requirement, or to any two jets in the event?
+
+Golden axe:
+The "two jets" refer to the leading and subleading jets defined in the VBF topology requirement.
+
+Silver axe:
+The "two jets" refer to any two jets in the event.
+
+Recommended default:
+Golden axe

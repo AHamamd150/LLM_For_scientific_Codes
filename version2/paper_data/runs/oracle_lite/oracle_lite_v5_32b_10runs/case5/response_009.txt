@@ -1,0 +1,62 @@
+[UNDERSPECIFICATION 1] Dijet and ditau system definitions
+
+Original phrase:
+"Define ditau_obj from the summed four-momentum of the leading tau and subleading tau."  
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Why this matters:
+The phrase "summed four-momentum" and "summed momentum" could imply different composite object definitions. The ditau_obj and dijet_obj may be used later for angular variables or centrality, and whether they are treated as true composite objects or just as intermediate values affects how they are handled in subsequent calculations.
+
+Question to user:
+Are the ditau_obj and dijet_obj meant to be used as composite system objects in later calculations (e.g., for delta phi or centrality), or are they only used to compute their invariant masses?
+
+Golden axe:
+Treat ditau_obj and dijet_obj as composite system objects for all subsequent calculations.
+
+Silver axe:
+Use the summed four-momentum only to compute the invariant mass and not as a named object for further analysis.
+
+Recommended default: Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Leading jet and tau definitions
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."  
+"Define the leading jet and subleading jet from the selected jets."
+
+Why this matters:
+The phrase "from the selected taus" and "from the selected jets" implies that the selection (pT and |eta| cuts) is already applied. However, it is not explicitly stated whether the leading and subleading objects are defined before or after any additional cuts (like the opposite-sign requirement or b-tag veto). This affects the order of operations and the actual objects used in the dijet and ditau system definitions.
+
+Question to user:
+Are the leading and subleading tau and jet objects defined before or after the opposite-sign requirement and b-tag veto?
+
+Golden axe:
+Leading and subleading objects are defined after all previous cuts, including opposite-sign and b-tag veto.
+
+Silver axe:
+Leading and subleading objects are defined from the selected taus and jets before applying the opposite-sign and b-tag veto.
+
+Recommended default: Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Veto on b-tagged jets
+
+Original phrase:
+"Veto events with b-tagged jets"
+
+Why this matters:
+It is not clear whether this veto applies to all jets in the event (including those not selected by the pT and |eta| cuts) or only to the selected jets. This distinction affects the jet veto's sensitivity and the event rejection rate.
+
+Question to user:
+Does the b-tagged jet veto apply to all jets in the event, or only to the jets that pass the pT and |eta| selection?
+
+Golden axe:
+The veto applies to all jets in the event, regardless of whether they pass the pT and |eta| cuts.
+
+Silver axe:
+The veto applies only to the selected jets (those passing pT and |eta| cuts).
+
+Recommended default: Golden axe

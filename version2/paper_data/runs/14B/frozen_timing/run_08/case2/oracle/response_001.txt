@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading b-jet definition
+
+Original phrase:
+"Plot the pT of the leading b-jet"
+
+Why this is dangerous:
+The phrase does not specify whether the leading b-jet is defined before or after applying the selection cuts, which could affect which jets are considered in the ranking.
+
+Question to user:
+Are the leading b-jet and subleading b-jet defined before or after applying the selection cuts?
+
+Golden axe:
+Leading b-jet is defined after applying the selection cuts.
+
+Silver axe:
+Leading b-jet is defined before applying the selection cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Hadronic W candidate definition
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Why this is dangerous:
+The phrase does not clarify whether the two leading non-b-tagged jets are selected before or after applying the jet selection cuts, which could affect which jets are used to build the hadronic W candidate.
+
+Question to user:
+Are the two leading non-b-tagged jets used to build the hadronic W candidate selected before or after applying the jet selection cuts?
+
+Golden axe:
+The two leading non-b-tagged jets are selected after applying the jet selection cuts.
+
+Silver axe:
+The two leading non-b-tagged jets are selected before applying the jet selection cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Hadronic top candidate definition
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading b-jet is defined before or after applying the b-jet selection cuts, which could affect which b-jet is used to build the hadronic top candidate.
+
+Question to user:
+Is the leading b-jet used to build the hadronic top candidate selected before or after applying the b-jet selection cuts?
+
+Golden axe:
+The leading b-jet is selected after applying the b-jet selection cuts.
+
+Silver axe:
+The leading b-jet is selected before applying the b-jet selection cuts.
+
+Recommended default:
+Golden axe

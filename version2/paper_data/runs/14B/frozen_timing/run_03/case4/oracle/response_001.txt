@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Selection of z_obj and W candidate lepton
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum. Define the selected muon as the W candidate lepton."
+
+Why this is dangerous:
+The phrase "selected muon" may refer to the first muon in the event (raw collection) or the only muon that passed the selection cuts. This ambiguity affects whether the W candidate lepton is defined before or after applying the pT > 20 GeV cut.
+
+Question to user:
+Are the selected muon and selected electrons defined as those that passed all previous cuts, or are they the first muon/electrons in the event that meet the basic pT and eta requirements?
+
+Golden axe:
+The selected muon is the only muon that passed all previous cuts, including the pT > 20 GeV requirement.
+
+Silver axe:
+The selected muon is the first muon in the event that passed the basic pT and eta requirements, regardless of the pT > 20 GeV cut.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Definition of three-lepton system
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Why this is dangerous:
+The phrase "three-lepton system" could be interpreted as a composite object built from the three selected leptons (two electrons and one muon) using summed four-momenta, or it could be interpreted as a scalar quantity derived from the three leptons (e.g., scalar sum of pT).
+
+Question to user:
+Is the three-lepton system a composite object built from the three selected leptons using summed four-momenta, or is it a scalar quantity derived from the three leptons (e.g., scalar sum of pT)?
+
+Golden axe:
+The three-lepton system is a composite object built from the three selected leptons using summed four-momenta.
+
+Silver axe:
+The three-lepton system refers to a scalar quantity derived from the three selected leptons, such as the scalar sum of their pT.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Delta phi between z_obj and MET
+
+Original phrase:
+"Plot delta phi between z_obj and MET"
+
+Why this is dangerous:
+The phrase "delta phi between z_obj and MET" could be interpreted as the azimuthal angle difference between the MET vector and the z_obj vector, or it could be interpreted as the azimuthal angle difference between the MET vector and the MET direction (which is trivially zero).
+
+Question to user:
+Is the delta phi between z_obj and MET the azimuthal angle difference between the MET vector and the z_obj vector, or is it the azimuthal angle difference between the MET vector and the MET direction?
+
+Golden axe:
+The delta phi between z_obj and MET is the azimuthal angle difference between the MET vector and the z_obj vector.
+
+Silver axe:
+The delta phi between z_obj and MET is the azimuthal angle difference between the MET vector and the MET direction (which is trivially zero).
+
+Recommended default:
+Golden axe

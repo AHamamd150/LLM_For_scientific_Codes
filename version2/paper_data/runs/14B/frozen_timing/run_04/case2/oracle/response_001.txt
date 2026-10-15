@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading b-jet definition
+
+Original phrase:
+"Plot the pT of the leading b-jet"
+
+Why this is dangerous:
+The phrase "leading b-jet" could refer to the highest-pT b-tagged jet among all jets in the event, or it could refer to the highest-pT b-tagged jet among the jets selected after the current cuts. This distinction affects whether the jet is selected before or after applying the cuts.
+
+Question to user:
+Are the leading b-jet and subleading b-jet defined before or after applying the selection cuts?
+
+Golden axe:
+The leading b-jet is defined after applying the selection cuts.
+
+Silver axe:
+The leading b-jet is defined before applying the selection cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Hadronic W candidate construction
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Why this is dangerous:
+The phrase "two leading non-b-tagged jets" could refer to the two highest-pT non-b-tagged jets among all jets in the event, or it could refer to the two highest-pT non-b-tagged jets among the jets selected after the current cuts. This distinction affects whether the jets are selected before or after applying the cuts.
+
+Question to user:
+Are the two leading non-b-tagged jets used to build the hadronic W candidate defined before or after applying the selection cuts?
+
+Golden axe:
+The two leading non-b-tagged jets are defined after applying the selection cuts.
+
+Silver axe:
+The two leading non-b-tagged jets are defined before applying the selection cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Validation histograms timing
+
+Original phrase:
+"Plot the following as histograms: 1 Plot the transverse mass of lepton + MET (W leptonic candidate)"
+
+Why this is dangerous:
+The phrase "transverse mass of lepton + MET" could be filled as soon as the lepton and MET are available, or it could be filled only after the full event selection is completed. This distinction affects whether the histogram is filled early in the event processing or only at the end.
+
+Question to user:
+Should the transverse mass of the lepton and MET be plotted as soon as it becomes available, or only after the full event selection is completed?
+
+Golden axe:
+The histogram should be filled after the full event selection is completed.
+
+Silver axe:
+The histogram should be filled as soon as the lepton and MET are available.
+
+Recommended default:
+Golden axe

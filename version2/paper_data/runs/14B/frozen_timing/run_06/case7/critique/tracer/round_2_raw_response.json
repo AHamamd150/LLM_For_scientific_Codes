@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n  - collection definition: None\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1789041749,
+  "id": "chatcmpl-a4073951-f4e1-49fe-80b8-e69b28f7c92c",
+  "model": "Qwen/Qwen3-14B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-7e17f8bc",
+  "usage": {
+    "completion_tokens": 21,
+    "prompt_tokens": 10848,
+    "prompt_tokens_details": null,
+    "total_tokens": 10869
+  }
+}

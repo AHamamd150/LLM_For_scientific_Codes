@@ -1,0 +1,109 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the pT of the three-lepton system built from the two selected electrons and the selected muon
+
+CODE:
+- three_lepton_pt is defined as three_lepton['pt'], where three_lepton is the result of sum_objects(e1, e2, w_muon)
+
+Reason:
+The three-lepton system is a composite object, and its pT is correctly computed from the summed four-momentum of the two electrons and the muon. This is a correct implementation of the composite system.
+
+Evidence priority:
+three_lepton_pt is defined as three_lepton['pt'], where three_lepton is the result of sum_objects(e1, e2, w_muon)
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot the invariant mass of the three-lepton system
+
+CODE:
+- three_lepton_mass is defined as helper_invariant_mass(e1, e2, w_muon)
+
+Reason:
+The three-lepton system is a composite object, and its invariant mass is correctly computed from the summed four-momentum of the two electrons and the muon. This is a correct implementation of the composite system.
+
+Evidence priority:
+three_lepton_mass is defined as helper_invariant_mass(e1, e2, w_muon)
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Build z_obj from the two selected electrons using summed four-momentum
+
+CODE:
+- z_obj is defined as sum_objects(e1, e2)
+
+Reason:
+The z_obj is a composite object, and it is correctly built from the summed four-momentum of the two selected electrons. This is a correct implementation of the composite system.
+
+Evidence priority:
+z_obj is defined as sum_objects(e1, e2)
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Select invariant mass of z_obj between 76 and 106 GeV
+
+CODE:
+- z_mass is defined as helper_invariant_mass(e1, e2)
+
+Reason:
+The invariant mass of the z_obj is correctly computed from the summed four-momentum of the two selected electrons. This is a correct implementation of the composite system.
+
+Evidence priority:
+z_mass is defined as helper_invariant_mass(e1, e2)
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot delta phi between z_obj and MET
+
+CODE:
+- delta_phi_z_met is defined as helper_delta_phi(z_obj['phi'], met['phi'])
+
+Reason:
+The delta phi between the z_obj and MET is correctly computed from the phi of the z_obj and the MET. This is a correct implementation of the composite system.
+
+Evidence priority:
+delta_phi_z_met is defined as helper_delta_phi(z_obj['phi'], met['phi'])
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot delta R between the two electrons forming z_obj
+
+CODE:
+- delta_r_electrons is defined as helper_delta_r(e1, e2)
+
+Reason:
+The delta R between the two electrons forming the z_obj is correctly computed from the two selected electrons. This is a correct implementation of the composite system.
+
+Evidence priority:
+delta_r_electrons is defined as helper_delta_r(e1, e2)
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

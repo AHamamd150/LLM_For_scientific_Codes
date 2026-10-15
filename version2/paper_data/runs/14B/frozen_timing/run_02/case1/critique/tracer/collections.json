@@ -1,0 +1,37 @@
+{
+  "lepton": {
+    "name": "lepton",
+    "definition": "leptons[0], met = helper_get_met(event)",
+    "used_by": [
+      "mt",
+      "lepton_pt",
+      "dphi_lepton_met",
+      "lepton_eta",
+      "dphi_lepton_jets"
+    ]
+  },
+  "jet1": {
+    "name": "jet1",
+    "definition": "helper_get_leading(jets), jet2 = helper_get_subleading(jets)",
+    "used_by": [
+      "mjj",
+      "jet1_pt",
+      "dr",
+      "jet_system"
+    ]
+  },
+  "met": {
+    "name": "met",
+    "definition": "helper_get_met(event)",
+    "used_by": [
+      "met"
+    ]
+  },
+  "jet2": {
+    "name": "jet2",
+    "definition": "helper_get_subleading(jets)",
+    "used_by": [
+      "jet2_pt"
+    ]
+  }
+}

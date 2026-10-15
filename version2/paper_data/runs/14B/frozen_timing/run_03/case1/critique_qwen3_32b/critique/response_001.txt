@@ -1,0 +1,18 @@
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+- Select muons with pT > 20 GeV and |eta| < 2.4
+- Use selected electrons and selected muons to define selected leptons.
+
+CODE:
+- Selected leptons are defined as: [l for l in electrons + muons if l['pt'] > 25 and abs(l['eta']) < 2.5 and l['type'] == 1 or l['pt'] > 20 and abs(l['eta']) < 2.4 and l['type'] == 2]
+
+Reason:
+The code applies the electron and muon selection cuts in a disjunctive (OR) manner, which is incorrect. The electrons and muons should be selected separately with their respective cuts and then combined. The current implementation allows a muon to pass if it satisfies the electron cuts, and vice versa, which is a definition mismatch.
+
+Evidence priority:
+L291-L295
+
+Generator bias:
+none

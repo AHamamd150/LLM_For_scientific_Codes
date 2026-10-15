@@ -1,0 +1,89 @@
+[CANDIDATE 1] Leading and subleading tau definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Unresolved choice:
+It is unclear whether the leading and subleading tau are defined based on pT of the raw taus or the selected taus after all cuts.
+
+Why this may matter:
+If the selection or cuts affect the pT of the taus (e.g., via jet overlap removal or other post-selection adjustments), then the leading and subleading tau may differ depending on whether they are defined before or after such adjustments.
+
+[CANDIDATE 2] Leading and subleading jet definition
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Unresolved choice:
+It is unclear whether the leading and subleading jets are defined based on pT of the raw jets or the selected jets after all cuts.
+
+Why this may matter:
+If the selection or cuts affect the pT of the jets (e.g., via jet vetoing or other post-selection adjustments), then the leading and subleading jet may differ depending on whether they are defined before or after such adjustments.
+
+[CANDIDATE 3] Dijet invariant mass and delta eta
+
+Original phrase:
+"Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV"
+"Select |delta eta| between the two leading jets > 2.5"
+
+Unresolved choice:
+It is unclear whether the "leading jets" in the delta eta cut refer to the same jets used to compute the invariant mass or to the original unselected jets.
+
+Why this may matter:
+If the jets used for the invariant mass and the jets used for the delta eta cut are different (e.g., due to a veto or additional selection), the cut could be applied to different jet pairs, leading to different physics interpretations.
+
+[CANDIDATE 4] Dijet_obj and ditau_obj reuse
+
+Original phrase:
+"Define ditau_obj from the summed four-momentum of the leading tau and subleading tau."
+"Define dijet_obj from the summed four-momentum of the leading jet and subleading jet."
+
+Unresolved choice:
+It is unclear whether these composite objects (ditau_obj and dijet_obj) are meant to be reused in later steps or only used for the specific purpose of computing their invariant mass.
+
+Why this may matter:
+If these objects are intended to be used in further calculations (e.g., for delta phi between them), their definition must be preserved and accessible in the code. Otherwise, they may be treated as temporary variables and discarded after use.
+
+[CANDIDATE 5] Delta phi between ditau_obj and dijet_obj
+
+Original phrase:
+"Plot delta phi between the ditau_obj and the dijet_obj"
+
+Unresolved choice:
+It is unclear whether the ditau_obj and dijet_obj are defined in a way that is consistent with the rest of the analysis (e.g., whether they are built from the same leading and subleading objects used in other parts of the analysis).
+
+Why this may matter:
+If the ditau_obj or dijet_obj are defined differently in this context (e.g., using different ordering or selection criteria), the delta phi could be computed between different objects than intended.
+
+[CANDIDATE 6] Centrality of the ditau system relative to the two jets
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Unresolved choice:
+It is unclear whether the "two jets" refer to the original unselected jets or the selected jets used in the dijet_obj.
+
+Why this may matter:
+If the jets used for centrality are different from those used in the dijet invariant mass or delta eta cuts, the centrality could be computed with respect to a different jet pair, leading to a different physical interpretation.
+
+[CANDIDATE 7] Veto on b-tagged jets
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Unresolved choice:
+It is unclear whether the veto applies to all selected jets or only to a subset (e.g., the leading and subleading jets used in the dijet_obj).
+
+Why this may matter:
+If the veto is applied to all selected jets, it could remove events with b-jets in the jet collection even if they are not part of the dijet system. If it is applied only to the dijet system, it could allow b-jets in other jets.
+
+[CANDIDATE 8] Cutflow counter placement
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether the cutflow counters are incremented at the point of the cut in the sequence or whether they are applied in a different order (e.g., after all cuts are applied).
+
+Why this may matter:
+If the cutflow is not incremented immediately after each cut, the reported numbers may not reflect the true progression of the event through the selection, leading to confusion in the analysis.

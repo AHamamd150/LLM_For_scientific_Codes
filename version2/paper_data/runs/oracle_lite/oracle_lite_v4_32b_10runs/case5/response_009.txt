@@ -1,0 +1,109 @@
+[CANDIDATE 1] Leading and subleading tau definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Unresolved choice:
+It is unclear whether the leading and subleading tau are defined based on pT of the selected taus or if additional criteria (e.g., isolation, decay mode) are involved.
+
+Why this may matter:
+Different criteria for selecting leading and subleading objects can affect the invariant mass calculation and subsequent analysis steps, especially if the ordering is not purely based on pT.
+
+[CANDIDATE 2] Leading and subleading jet definition
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Unresolved choice:
+It is not specified whether the leading and subleading jets are defined based on pT of the selected jets or if other properties (e.g., b-tagging, jet mass) are considered.
+
+Why this may matter:
+The jet ordering can influence the dijet invariant mass and the delta eta between jets, which are key variables in the VBF topology selection.
+
+[CANDIDATE 3] Dijet invariant mass selection
+
+Original phrase:
+"Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV"
+
+Unresolved choice:
+It is not clear whether the invariant mass is computed from the four-momenta of the selected jets or from the full jet collection before selection.
+
+Why this may matter:
+If the jets used for m_jj are not the same as those selected earlier, the invariant mass could be computed from a different jet pair, leading to inconsistent results.
+
+[CANDIDATE 4] Delta eta between jets
+
+Original phrase:
+"Select |delta eta| between the two leading jets > 2.5"
+
+Unresolved choice:
+It is not specified whether the two leading jets are the same as the ones used to compute the dijet invariant mass or if they are defined independently.
+
+Why this may matter:
+If the jets used for delta eta are not the same as those used for m_jj, the VBF topology requirement may not be consistently applied.
+
+[CANDIDATE 5] Dijet system definition
+
+Original phrase:
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Unresolved choice:
+It is not clear whether the dijet_obj is defined from the selected jets or from the full jet collection.
+
+Why this may matter:
+If the jets used to define dijet_obj are not the same as those used for m_jj and delta eta, the dijet system may not correspond to the same jet pair, leading to inconsistencies in the analysis.
+
+[CANDIDATE 6] Dijet system reuse
+
+Original phrase:
+"Plot delta phi between the ditau system and the dijet system"
+
+Unresolved choice:
+It is not clear whether the dijet system used here is the same as the one defined earlier or if it is redefined for this specific purpose.
+
+Why this may matter:
+If the dijet system is redefined, the delta phi could be computed from a different jet pair, leading to inconsistent results.
+
+[CANDIDATE 7] Ditau system reuse
+
+Original phrase:
+"Plot delta phi between the ditau system and the dijet system"
+
+Unresolved choice:
+It is not clear whether the ditau system used here is the same as the one defined earlier or if it is redefined for this specific purpose.
+
+Why this may matter:
+If the ditau system is redefined, the delta phi could be computed from a different tau pair, leading to inconsistent results.
+
+[CANDIDATE 8] Dijet centrality
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Unresolved choice:
+It is not clear whether the two jets used for centrality are the same as the ones used to define the dijet system or if they are defined independently.
+
+Why this may matter:
+If the jets used for centrality are not the same as those used for the dijet system, the centrality calculation may not correspond to the same jet pair, leading to inconsistent results.
+
+[CANDIDATE 9] Opposite-sign tau pair
+
+Original phrase:
+"Require opposite-sign tau pair"
+
+Unresolved choice:
+It is not clear whether the opposite-sign requirement applies to the selected taus in general or specifically to the leading and subleading taus used to define the ditau system.
+
+Why this may matter:
+If the opposite-sign requirement is applied to all selected taus rather than just the leading and subleading ones, it could lead to a different set of events being considered for the ditau system.
+
+[CANDIDATE 10] B-tagged jet veto
+
+Original phrase:
+"Veto events with b-tagged jets"
+
+Unresolved choice:
+It is not clear whether the veto applies to all jets in the event or only to the selected jets.
+
+Why this may matter:
+If the veto is applied to all jets, it could exclude events that would otherwise pass the analysis if the b-tagged jets are not part of the selected jet collection.

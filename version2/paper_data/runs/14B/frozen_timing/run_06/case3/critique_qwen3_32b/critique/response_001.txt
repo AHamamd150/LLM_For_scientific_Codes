@@ -1,0 +1,145 @@
+◎ (A) composite violation
+
+SPEC:
+- Build the diphoton system from the leading photon and the subleading photon.
+- Define m_gammagamma as the invariant mass of this diphoton system.
+- Use this same diphoton system to compute diphoton pT.
+
+CODE:
+- diphoton = sum_objects(leading_photon, subleading_photon)
+- m_gammagamma = diphoton['mass'] if diphoton else 0.0
+- pt_diphoton = diphoton['pt'] if diphoton else 0.0
+
+Reason:
+The diphoton system is correctly constructed from the leading and subleading photons, and the invariant mass and pT are computed from the full system. This matches the SPEC.
+
+Evidence priority:
+- diphoton is defined as sum_objects(leading_photon, subleading_photon) 〔L297-L298〕
+- m_gammagamma is defined as diphoton['mass'] 〔L299-L300〕
+- pt_diphoton is defined as diphoton['pt'] 〔L318-L319〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select diphoton invariant mass between 105 and 160 GeV.
+
+CODE:
+- if m_gammagamma < 105 or m_gammagamma > 160: continue
+
+Reason:
+The code correctly implements the cut as m_gammagamma in [105, 160] GeV.
+
+Evidence priority:
+- m_gammagamma is checked against 105 and 160 〔L300-L301〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select leading photon pT / m_gammagamma > 0.35.
+- Select subleading photon pT / m_gammagamma > 0.25.
+
+CODE:
+- if leading_photon['pt'] / m_gammagamma <= 0.35: continue
+- if subleading_photon['pt'] / m_gammagamma <= 0.25: continue
+
+Reason:
+The code correctly implements the cuts as specified in the SPEC.
+
+Evidence priority:
+- leading_photon['pt'] / m_gammagamma is checked against 0.35 〔L305-L306〕
+- subleading_photon['pt'] / m_gammagamma is checked against 0.25 〔L310-L311〕
+
+Generator bias:
+none
+
+◎ (C) missing implementation
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+- Increment each cutflow counter immediately after its cut is passed.
+
+CODE:
+- cutflow counters are incremented after each cut is passed.
+
+Reason:
+The code correctly implements the cutflow as specified in the SPEC.
+
+Evidence priority:
+- cutflow is updated after each cut is passed 〔L272, L278, L285, L290, L295, L302, L307, L312, L325〕
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot diphoton invariant mass in the range 100 to 160 GeV.
+
+CODE:
+- plt.hist(m_gammagamma_list, bins=40, range=(100, 160), density=True)
+
+Reason:
+The SPEC does not specify whether the histogram should be computed from the selected diphoton system or from the broader event-level collection. The code uses the selected diphoton system, which is a valid interpretation.
+
+Evidence priority:
+- m_gammagamma_list is filled with values from the selected diphoton system 〔L332-L334〕
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Save to CSV for MLP analysis: 6- |cos(theta*)|.
+
+CODE:
+- cos_theta_star_list is filled with abs(cos_theta_star_collins_soper(...))
+
+Reason:
+The SPEC does not specify whether the |cos(theta*)| should be computed from the selected diphoton system or from the broader event-level collection. The code uses the selected diphoton system, which is a valid interpretation.
+
+Evidence priority:
+- cos_theta_star_list is filled with values from the selected diphoton system 〔L388-L390〕
+
+Generator bias:
+none
+
+◎ (E) extra behavior
+
+SPEC:
+- None of the plots or CSV outputs are explicitly requested to include additional variables beyond those listed.
+
+CODE:
+- The code includes all the requested plots and CSV outputs as specified in the SPEC.
+
+Reason:
+The code does not include any extra behavior beyond what is requested in the SPEC.
+
+Evidence priority:
+- All plots and CSV outputs are explicitly requested in the SPEC and implemented in the code.
+
+Generator bias:
+none
+
+◎ (F) generator-induced bias
+
+SPEC:
+- None of the code-level definitions appear to be influenced by the generation system prompt.
+
+CODE:
+- The code uses standard helper functions and follows the SPEC closely.
+
+Reason:
+The code does not show signs of generator-induced bias.
+
+Evidence priority:
+- The code uses standard helper functions and follows the SPEC closely.
+
+Generator bias:
+none

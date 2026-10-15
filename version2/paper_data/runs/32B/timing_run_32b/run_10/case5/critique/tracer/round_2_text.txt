@@ -1,0 +1,61 @@
+
+
+* dijet_obj
+  - computed/defined as: sum_objects(jet1, jet2)
+  - upstream chain: sum_objects -> sum of four-momenta of particles
+  - collection definition: jet1 and jet2 from jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - structure: composite-derived
+
+* opposite_sign
+  - computed/defined as: opposite_sign(tau1, tau2)
+  - upstream chain: opposite_sign -> obj1['charge'] * obj2['charge'] < 0
+  - collection definition: tau1 and tau2 from taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]
+  - structure: multi-input
+
+* m_jj
+  - computed/defined as: dijet_obj['mass']
+  - upstream chain: dijet_obj = sum_objects(jet1, jet2)
+  - collection definition: jet1 and jet2 from jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - structure: composite-derived
+
+* delta_eta_jj
+  - computed/defined as: abs_delta_eta(jet1, jet2)
+  - upstream chain: abs_delta_eta -> abs(obj1['eta'] - obj2['eta'])
+  - collection definition: jet1 and jet2 from jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - structure: multi-input
+
+* m_tautau
+  - computed/defined as: ditau_obj['mass']
+  - upstream chain: ditau_obj = sum_objects(tau1, tau2)
+  - collection definition: tau1 and tau2 from taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]
+  - structure: composite-derived
+
+* bjets
+  - computed/defined as: get_bjets(event)
+  - upstream chain: get_bjets(event) -> [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]
+  - collection definition: o['type'] == 4 and int(o['btag']) == 1
+  - structure: single-constituent
+
+* n_bjets
+  - computed/defined as: n_bjets(event, pt_cut=30, eta_cut=4.7)
+  - upstream chain: n_bjets -> sum(1 for b in bjets if b['pt'] > pt_cut and abs(b['eta']) < eta_cut)
+  - collection definition: bjets = [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]
+  - structure: multi-input
+
+* delta_r_tautau
+  - computed/defined as: helper_delta_r(tau1, tau2)
+  - upstream chain: helper_delta_r -> sqrt(deta^2 + dphi^2)
+  - collection definition: tau1 and tau2 from taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]
+  - structure: multi-input
+
+* delta_phi_tautau_dijet
+  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])
+  - upstream chain: helper_delta_phi -> normalized Δφ to [-π, π]
+  - collection definition: ditau_obj and dijet_obj from tau1, tau2, jet1, jet2
+  - structure: multi-input
+
+* centrality
+  - computed/defined as: centrality_between_jets(ditau_obj, jet1, jet2)
+  - upstream chain: centrality_between_jets -> |eta_obj - eta_center_jj| / |delta_eta_jj|
+  - collection definition: ditau_obj, jet1, and jet2 from tau1, tau2, jet1, jet2
+  - structure: multi-input

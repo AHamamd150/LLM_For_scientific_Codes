@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading and subleading object definitions
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading and subleading taus are defined before or after applying the "opposite-sign tau pair" cut. This affects which objects are considered for the ditau system and subsequent cuts.
+
+Question to user:
+Are the leading and subleading taus defined before or after applying the opposite-sign requirement?
+
+Golden axe:
+Leading and subleading taus are defined after the opposite-sign requirement is applied.
+
+Silver axe:
+Leading and subleading taus are defined before the opposite-sign requirement is applied.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Dijet system definition
+
+Original phrase:
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading and subleading jets are defined before or after the "VBF topology" requirement of at least 2 jets. This affects which jets are used to form the dijet system.
+
+Question to user:
+Are the leading and subleading jets defined before or after requiring at least 2 jets for the VBF topology?
+
+Golden axe:
+Leading and subleading jets are defined after requiring at least 2 jets for the VBF topology.
+
+Silver axe:
+Leading and subleading jets are defined before requiring at least 2 jets for the VBF topology.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Centrality of the ditau system
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Why this is dangerous:
+The phrase does not clarify whether the jets used for the centrality calculation are the same as the jets used in the dijet system. This could lead to different jet selections being used for different purposes.
+
+Question to user:
+Are the jets used for the centrality calculation the same as the jets used to define the dijet system?
+
+Golden axe:
+The jets used for the centrality calculation are the same as the jets used to define the dijet system.
+
+Silver axe:
+The jets used for the centrality calculation are a separate jet selection from the jets used to define the dijet system.
+
+Recommended default:
+Golden axe

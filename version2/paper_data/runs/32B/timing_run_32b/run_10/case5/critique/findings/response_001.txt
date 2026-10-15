@@ -1,0 +1,326 @@
+◎ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+
+CODE:
+- ditau_obj = sum_objects(tau1, tau2)
+
+Reason:
+The code correctly constructs the ditau_obj from the four-momentum sum of the leading and subleading tau, as required by the SPEC.
+
+Evidence priority:
+- ditau_obj = sum_objects(tau1, tau2); upstream chain: sum_objects -> sum of four-momenta of particles; 〔L320-L321, L69-L91〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Define dijet_obj from the summed momentum of the leading jet and subleading jet.
+
+CODE:
+- dijet_obj = sum_objects(jet1, jet2)
+
+Reason:
+The code correctly constructs the dijet_obj from the four-momentum sum of the leading and subleading jet, as required by the SPEC.
+
+Evidence priority:
+- dijet_obj = sum_objects(jet1, jet2); upstream chain: sum_objects -> sum of four-momenta of particles; 〔L309-L310, L69-L91〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require opposite-sign tau pair
+
+CODE:
+- opposite_sign(tau1, tau2)
+
+Reason:
+The code correctly checks for opposite-sign tau pairs using the charge of the selected taus.
+
+Evidence priority:
+- opposite_sign(tau1, tau2); upstream chain: opposite_sign -> obj1['charge'] * obj2['charge'] < 0; 〔L304-L306, L137-L139〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV
+
+CODE:
+- dijet_obj['mass'] > 400
+
+Reason:
+The code correctly computes the invariant mass of the dijet system and applies the cut.
+
+Evidence priority:
+- dijet_obj['mass'] > 400; upstream chain: dijet_obj = sum_objects(jet1, jet2); 〔L309-L311, L69-L91〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select |delta eta| between the two leading jets > 2.5
+
+CODE:
+- abs_delta_eta(jet1, jet2) > 2.5
+
+Reason:
+The code correctly computes the absolute delta eta between the two leading jets and applies the cut.
+
+Evidence priority:
+- abs_delta_eta(jet1, jet2) > 2.5; upstream chain: abs_delta_eta -> abs(obj1['eta'] - obj2['eta']); 〔L314-L316, L117-L119〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select ditau invariant mass between 60 and 150 GeV
+
+CODE:
+- 60 < ditau_obj['mass'] < 150
+
+Reason:
+The code correctly computes the invariant mass of the ditau system and applies the cut.
+
+Evidence priority:
+- 60 < ditau_obj['mass'] < 150; upstream chain: ditau_obj = sum_objects(tau1, tau2); 〔L320-L322, L69-L91〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Veto events with b-tagged jets
+
+CODE:
+- n_bjets(event, pt_cut=30, eta_cut=4.7) == 0
+
+Reason:
+The code correctly vetoes events with b-tagged jets that pass the jet selection criteria.
+
+Evidence priority:
+- n_bjets(event, pt_cut=30, eta_cut=4.7) == 0; upstream chain: n_bjets -> sum(1 for b in bjets if b['pt'] > pt_cut and abs(b['eta']) < eta_cut); 〔L325-L328, L157-L160〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the ditau invariant mass in the range 50 to 160 GeV
+
+CODE:
+- ditau_obj['mass']
+
+Reason:
+The code correctly plots the ditau invariant mass.
+
+Evidence priority:
+- ditau_obj['mass']; upstream chain: ditau_obj = sum_objects(tau1, tau2); 〔L331, L69-L91〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the dijet invariant mass (m_jj) in the range 200 to 2000 GeV
+
+CODE:
+- dijet_obj['mass']
+
+Reason:
+The code correctly plots the dijet invariant mass.
+
+Evidence priority:
+- dijet_obj['mass']; upstream chain: dijet_obj = sum_objects(jet1, jet2); 〔L332, L69-L91〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta eta between the two leading jets
+
+CODE:
+- abs_delta_eta(jet1, jet2)
+
+Reason:
+The code correctly plots the delta eta between the two leading jets.
+
+Evidence priority:
+- abs_delta_eta(jet1, jet2); upstream chain: abs_delta_eta -> abs(obj1['eta'] - obj2['eta']); 〔L333, L117-L119〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading tau
+
+CODE:
+- tau1['pt']
+
+Reason:
+The code correctly plots the pT of the leading tau.
+
+Evidence priority:
+- tau1['pt']; upstream chain: tau1 = helper_get_leading(taus); 〔L334, L142-L146〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading tau
+
+CODE:
+- tau2['pt']
+
+Reason:
+The code correctly plots the pT of the subleading tau.
+
+Evidence priority:
+- tau2['pt']; upstream chain: tau2 = helper_get_subleading(taus); 〔L335, L149-L155〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading jet
+
+CODE:
+- jet1['pt']
+
+Reason:
+The code correctly plots the pT of the leading jet.
+
+Evidence priority:
+- jet1['pt']; upstream chain: jet1 = helper_get_leading(jets); 〔L336, L142-L146〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading jet
+
+CODE:
+- jet2['pt']
+
+Reason:
+The code correctly plots the pT of the subleading jet.
+
+Evidence priority:
+- jet2['pt']; upstream chain: jet2 = helper_get_subleading(jets); 〔L337, L149-L155〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta R between the two taus
+
+CODE:
+- helper_delta_r(tau1, tau2)
+
+Reason:
+The code correctly plots the delta R between the two taus.
+
+Evidence priority:
+- helper_delta_r(tau1, tau2); upstream chain: helper_delta_r -> sqrt(deta^2 + dphi^2); 〔L338, L110-L114〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the ditau system and the dijet system
+
+CODE:
+- helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])
+
+Reason:
+The code correctly plots the delta phi between the ditau system and the dijet system.
+
+Evidence priority:
+- helper_delta_phi(ditau_obj['phi'], dijet_obj['phi']); upstream chain: helper_delta_phi -> normalized Δφ to [-π, π]; 〔L339, L100-L107〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- centrality_between_jets(ditau_obj, jet1, jet2)
+
+Reason:
+The code correctly plots the centrality of the ditau system relative to the two jets.
+
+Evidence priority:
+- centrality_between_jets(ditau_obj, jet1, jet2); upstream chain: centrality_between_jets -> |eta_obj - eta_center_jj| / |delta_eta_jj|; 〔L340, L222-L234〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- print("Cutflow:"); for key in cutflow: print(f"{key}: {cutflow[key]}")
+
+Reason:
+The code correctly prints the cutflow summary after the event loop.
+
+Evidence priority:
+- print("Cutflow:"); for key in cutflow: print(f"{key}: {cutflow[key]}"); upstream chain: cutflow = { ... }; 〔L364-L366, L252-L261〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(filename)
+
+Reason:
+The code correctly saves the plots in png format.
+
+Evidence priority:
+- plt.savefig(filename); upstream chain: save_hist -> plt.savefig(filename); 〔L350, L343-L351〕
+
+Generator bias:
+none
+
+---
+
+None

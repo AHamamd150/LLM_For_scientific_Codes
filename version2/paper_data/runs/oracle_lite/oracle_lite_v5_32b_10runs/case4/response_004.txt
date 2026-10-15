@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] z_obj reuse and definition
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum."
+
+Why this matters:
+The phrase does not clarify whether z_obj is a temporary object used only for the invariant mass cut, or if it is meant to be reused in later plots (e.g., for pT or delta R). This affects whether the object must be preserved for later use or can be discarded after the cut.
+
+Question to user:
+Is the z_obj meant to be used only for the invariant mass cut, or will it be used in other plots or selections later?
+
+Golden axe:
+z_obj is built for the invariant mass cut and used in later plots like pT and delta R.
+
+Silver axe:
+z_obj is built only for the invariant mass cut and not preserved for later use.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] W candidate muon definition
+
+Original phrase:
+"Define the selected muon as the W candidate lepton."
+
+Why this matters:
+It is unclear whether this refers to the only selected muon (which is required by the cuts), or if there is a possibility of multiple muons and a specific selection logic (e.g., highest pT) is implied. This affects how the muon is identified and used in transverse mass and other plots.
+
+Question to user:
+Is the W candidate muon simply the only selected muon in the event, or is there an implicit selection (e.g., highest pT) among multiple muons?
+
+Golden axe:
+The W candidate muon is the only selected muon in the event.
+
+Silver axe:
+The W candidate muon is selected as the highest-pT muon among multiple selected muons.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Three-lepton system definition
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Why this matters:
+It is unclear whether the three-lepton system is built from the raw selected objects or from the z_obj and the W candidate muon. This affects the four-momentum sum and the resulting pT and invariant mass of the system.
+
+Question to user:
+Is the three-lepton system built from the two selected electrons and the selected muon directly, or from the z_obj and the W candidate muon?
+
+Golden axe:
+The three-lepton system is built from the two selected electrons and the selected muon directly.
+
+Silver axe:
+The three-lepton system is built from the z_obj and the W candidate muon.
+
+Recommended default:
+Golden axe

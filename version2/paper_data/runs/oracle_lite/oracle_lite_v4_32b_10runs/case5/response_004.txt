@@ -1,0 +1,65 @@
+[CANDIDATE 1] Tau selection and ordering
+
+Original phrase:
+"Select taus with pT > 20 GeV and |eta| < 2.3 [...] Define the leading tau and subleading tau from the selected taus."
+
+Unresolved choice:
+It is unclear whether the pT and |eta| cuts are applied before or after defining the leading and subleading taus.
+
+Why this may matter:
+If the cuts are applied after defining the leading and subleading taus, the selection might exclude the highest-pT tau, which would change the definition of the ditau system and affect all subsequent cuts and plots involving the leading and subleading taus.
+
+[CANDIDATE 2] Jet selection and ordering
+
+Original phrase:
+"Select jets with pT > 30 GeV and |eta| < 4.7 [...] Define the leading jet and subleading jet from the selected jets."
+
+Unresolved choice:
+It is unclear whether the pT and |eta| cuts are applied before or after defining the leading and subleading jets.
+
+Why this may matter:
+If the cuts are applied after defining the leading and subleading jets, the selection might exclude the highest-pT jet, which would change the definition of the dijet system and affect all subsequent cuts and plots involving the leading and subleading jets.
+
+[CANDIDATE 3] Jet multiplicity and veto
+
+Original phrase:
+"Require at least 2 jets (VBF topology) [...] Veto events with b-tagged jets"
+
+Unresolved choice:
+It is unclear whether the b-tagged jet veto applies to the selected jets or to all jets in the event.
+
+Why this may matter:
+If the veto applies to all jets, it could exclude events that would otherwise satisfy the jet multiplicity requirement, potentially changing the event selection and the resulting analysis.
+
+[CANDIDATE 4] Ditau invariant mass
+
+Original phrase:
+"Select ditau invariant mass between 60 and 150 GeV"
+
+Unresolved choice:
+It is unclear whether this cut applies to the invariant mass of the selected taus or to the invariant mass of the leading and subleading taus.
+
+Why this may matter:
+If the cut applies to all selected taus rather than just the leading and subleading ones, it could result in a different set of events being selected, which would affect the analysis and the resulting plots.
+
+[CANDIDATE 5] Dijet invariant mass and delta eta
+
+Original phrase:
+"Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV [...] Select |delta eta| between the two leading jets > 2.5"
+
+Unresolved choice:
+It is unclear whether the "leading and subleading jets" refer to the selected jets or to the jets in the event before any selection.
+
+Why this may matter:
+If the jets are not selected before computing the invariant mass and delta eta, the analysis might include jets that do not satisfy the pT and |eta| cuts, which would affect the VBF topology requirement and the resulting analysis.
+
+[CANDIDATE 6] Centrality of the ditau system
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Unresolved choice:
+It is unclear whether the "two jets" refer to the selected jets or to the leading and subleading jets.
+
+Why this may matter:
+If the centrality is computed relative to all selected jets rather than just the leading and subleading ones, the resulting plot might show different behavior, which could affect the interpretation of the analysis.

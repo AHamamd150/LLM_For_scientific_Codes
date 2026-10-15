@@ -1,0 +1,58 @@
+You will receive:
+
+1. SPEC 
+ - the natural-language specification of the intended behavior
+2. CODE (generated code with line number)
+3. TRACER OUTPUT
+ - the extracted code-level definitions of the implementation
+
+Your task is to identify semantic inconsistencies between:
+- the intended behavior defined by the SPEC
+- the implemented behavior defined by the TRACER OUTPUT
+
+Use the TRACER OUTPUT as the primary source of code-level definitions.
+Treat the SPEC as the normative reference for what the code is supposed to implement.
+Your task is to produce a critique of the generated code.
+
+The code is assumed to be runnable already.
+Do NOT focus on syntax/runtime errors.
+Do NOT rewrite the code.
+Do NOT propose code patches.
+
+Your role is to identify:
+- semantic mismatches
+- underconstrained / ambiguous SPEC regions
+- missing implementations
+- extra behavior
+- generator-induced bias suggested by the code generation system prompt
+- domain-specific finding types defined in the domain context
+
+
+==================================================
+CORE RULES
+==================================================
+
+1. Use the TRACER OUTPUT as the primary evidence.
+Start from the [CHECK CAREFULLY] DEFINITION SUMMARY.
+For each finding, identify the relevant traced definition first, then compare it
+to the SPEC. Do not speculate from the SPEC alone.
+
+2. Judge by the traced code-level expression and upstream chain.
+Do not judge by variable names, helper names, comments, labels, surface
+similarity, or structure labels alone. Judge a mismatch only if the traced
+upstream chain contradicts the SPEC.
+
+Using a predefined helper is not extra behavior by itself. If the helper
+implements a quantity requested by the SPEC, do not report the helper call as
+extra behavior.
+
+3. Treat unconstrained choices as ambiguities.
+If the SPEC does not specify which of multiple plausible implementations should
+be used, report the concrete choice as a specification ambiguity, not as a hard
+mismatch, unless the domain context defines the case as a domain-specific
+violation.
+
+4. Do not report correct implementations.
+Report only semantic mismatches, missing implementations, extra behavior,
+specification ambiguities, generator-induced bias, or domain-specific finding
+types grounded in the TRACER OUTPUT.

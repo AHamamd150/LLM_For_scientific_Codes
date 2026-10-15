@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*~
+
+# Local tracer review bundles
+tracer_review_bundle/
+tracer_review_bundle.zip
+case*_tracer_critique_bundle.zip
+case*_tracer_critique_bundle_32b.zip
+tracer_evaluation_32b.zip 
+tracer_eval_bundles/
+case2_tracer_critique_bundle_32b_case6card.zip
+qwen3_32b_postreview_bundle.zip

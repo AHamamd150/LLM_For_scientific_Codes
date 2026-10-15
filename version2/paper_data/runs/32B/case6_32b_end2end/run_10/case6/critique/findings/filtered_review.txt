@@ -1,0 +1,62 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Reason:
+The code builds the hadronic W candidate from the two leading non-b-tagged jets, but the SPEC explicitly requires the jets to be "selected" (i.e., passing the pT and |eta| cuts). The code uses the full jet collection to define "light_jets" as [j for j in jets if j not in bjets], but this does not ensure that the non-b-tagged jets also pass the pT and |eta| cuts applied to the jets in the earlier step. This is a composite violation because the hadronic W is constructed from jets that may not meet the required selection criteria.
+
+Evidence priority:
+- light_jets = [j for j in jets if j not in bjets]; jets are defined as [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Generator bias:
+none
+
+---
+
+[KEPT 2] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The code builds the hadronic top candidate from the leading b-tagged jet and the hadronic W candidate, but the SPEC explicitly requires the b-tagged jet to be "selected" (i.e., passing the pT and |eta| cuts). The code uses the full bjet collection to define "bjets_sorted" as [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5], which is correct. However, the code does not explicitly ensure that the leading b-tagged jet is part of the selected b-jets collection used in the earlier steps. This is a definition mismatch because the code does not clearly reference the selected b-jets collection for the top candidate construction.
+
+Evidence priority:
+- bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True); bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Generator bias:
+none
+
+[KEPT 3] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- bjet2_pt; computed as: bjets_sorted[1]['pt'] if len(bjets_sorted) > 1 else 0.0
+
+Reason:
+The SPEC does not specify whether the subleading b-jet pT should be computed from the selected b-jets collection or from a broader collection. The code uses the selected b-jets collection, which is a valid interpretation, but the choice is not explicitly constrained by the SPEC. This is a specification ambiguity.
+
+Evidence priority:
+- bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True); bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

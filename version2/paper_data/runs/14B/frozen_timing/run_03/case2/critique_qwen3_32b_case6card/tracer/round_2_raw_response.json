@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* w_hadronic_mass_list\n  - computed/defined as: w_hadronic_mass_list.append(w_mass)\n  - upstream chain: w_mass -> helper_invariant_mass(w_hadronic)\n  - collection definition: w_hadronic from sum_objects(leading_light_jet, subleading_light_jet)\n  - structure: composite-derived\n\n* top_hadronic_mass_list\n  - computed/defined as: top_hadronic_mass_list.append(top_mass)\n  - upstream chain: top_mass -> helper_invariant_mass(top_hadronic)\n  - collection definition: top_hadronic from sum_objects(leading_bjet, w_hadronic)\n  - structure: composite-derived\n\n* dr_lepton_bjet_list\n  - computed/defined as: dr_lepton_bjet_list.append(helper_delta_r(lepton, leading_bjet))\n  - upstream chain: lepton -> selected_leptons[0], leading_bjet -> helper_get_leading(selected_bjets)\n  - collection definition: lepton from selected_leptons, leading_bjet from selected_bjets\n  - structure: composite-derived\n\n* ht_list\n  - computed/defined as: ht_list.append(scalar_pt_sum(selected_jets))\n  - upstream chain: selected_jets -> [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - collection definition: selected_jets from [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - structure: single-constituent\n\n* njet_list\n  - computed/defined as: njet_list.append(len(selected_jets))\n  - upstream chain: selected_jets -> [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - collection definition: selected_jets from [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - structure: single-constituent\n\n* leading_bjet_eta_list\n  - computed/defined as: leading_bjet_eta_list.append(leading_bjet['eta'])\n  - upstream chain: leading_bjet -> helper_get_leading(selected_bjets)\n  - collection definition: selected_bjets -> [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788971035,
+  "id": "chatcmpl-972bf13d-bb36-4d11-8cea-2a7e3698a371",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 531,
+    "prompt_tokens": 11144,
+    "prompt_tokens_details": null,
+    "total_tokens": 11675
+  }
+}

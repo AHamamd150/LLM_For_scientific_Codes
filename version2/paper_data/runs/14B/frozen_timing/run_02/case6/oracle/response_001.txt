@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading b-jet definition
+
+Original phrase:
+"Plot the pT of the leading b-jet"
+
+Why this is dangerous:
+The phrase does not specify whether "leading b-jet" refers to the highest-pT b-tagged jet among all selected jets, or the highest-pT b-tagged jet among the jets selected after all cuts.
+
+Question to user:
+Are the "leading b-jet" and "subleading b-jet" plots based on the b-tagged jets selected after all cuts, or on the full b-tagged jet collection before any cuts?
+
+Golden axe:
+The leading b-jet refers to the highest-pT b-tagged jet among the selected jets after all cuts.
+
+Silver axe:
+The leading b-jet refers to the highest-pT b-tagged jet among all b-tagged jets in the event, regardless of selection cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Hadronic W candidate definition
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Why this is dangerous:
+The phrase does not clarify whether "selected non-b-tagged jets" refers to jets that have passed all selection cuts, or to jets that have passed only the basic pT and eta cuts but not the b-tagging selection.
+
+Question to user:
+Are the "two leading selected non-b-tagged jets" used to build the hadronic W candidate the highest-pT non-b-tagged jets among all jets that have passed all selection cuts, or among all jets that have passed only the basic pT and eta cuts?
+
+Golden axe:
+The two leading selected non-b-tagged jets refer to the highest-pT non-b-tagged jets among all jets that have passed all selection cuts.
+
+Silver axe:
+The two leading selected non-b-tagged jets refer to the highest-pT non-b-tagged jets among all jets that have passed only the basic pT and eta cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Delta R between lepton and b-jet
+
+Original phrase:
+"Plot delta R between the leading lepton and the closest selected b-jet"
+
+Why this is dangerous:
+The phrase does not clarify whether "selected b-jet" refers to b-tagged jets that have passed all selection cuts, or to b-tagged jets that have passed only the basic pT and eta cuts.
+
+Question to user:
+Is the "closest selected b-jet" the b-tagged jet closest in delta R to the leading lepton among all b-tagged jets that have passed all selection cuts, or among all b-tagged jets that have passed only the basic pT and eta cuts?
+
+Golden axe:
+The closest selected b-jet refers to the b-tagged jet closest in delta R to the leading lepton among all b-tagged jets that have passed all selection cuts.
+
+Silver axe:
+The closest selected b-jet refers to the b-tagged jet closest in delta R to the leading lepton among all b-tagged jets that have passed only the basic pT and eta cuts.
+
+Recommended default:
+Golden axe

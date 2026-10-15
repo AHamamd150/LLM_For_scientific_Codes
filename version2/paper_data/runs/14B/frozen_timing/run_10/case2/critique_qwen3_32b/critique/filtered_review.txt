@@ -1,0 +1,24 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- top_candidate = sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The code correctly builds the hadronic top candidate from the leading b-jet and the hadronic W candidate. This is a correct implementation of the composite system-level object.
+
+Evidence priority:
+- top_candidate = sum_objects(leading_bjet, w_hadronic); upstream chain: leading_bjet, w_hadronic; 〔L351-L352〕
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

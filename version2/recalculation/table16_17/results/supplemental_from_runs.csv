@@ -1,0 +1,4 @@
+issue,setting,generation_error,tracer_exposure,critique_detection,provenance
+Incorrect ditau-dijet Delta phi,"Same Case 5 / 14B code, 32B post-review",10/10,10/10,5/10,run-level reproduced
+Cutflow bookkeeping / ordering,Case 5 / 32B,5/10,0/5,unknown in original summary (run-level marks 0/5),supplemental: prior summary leaves strict count unknown
+Cutflow bookkeeping / ordering,Case 7 / 32B,10/10,10/10,0/10,run-level reproduced

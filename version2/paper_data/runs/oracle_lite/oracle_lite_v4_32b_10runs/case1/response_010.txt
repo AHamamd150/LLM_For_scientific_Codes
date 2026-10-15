@@ -1,0 +1,76 @@
+[CANDIDATE 1] Lepton definition and selection consistency
+
+Original phrase:
+"Select electrons with pT > 25 GeV and |eta| < 2.5", "Select muons with pT > 20 GeV and |eta| < 2.4", "Use selected electrons and selected muons to define selected leptons."
+
+Unresolved choice:
+It is unclear whether the phrase "selected leptons" refers to the union of electrons and muons after their respective cuts, or whether there is a further requirement (e.g. a common pT or eta cut) to define the selected lepton collection.
+
+Why this may matter:
+If the cuts on electrons and muons are applied separately, the definition of "selected leptons" could be ambiguous—should the lepton collection be the union of the two, or is there an additional cut applied to both to define the final lepton collection? This affects how the "exactly 1 selected lepton" requirement is interpreted.
+
+[CANDIDATE 2] Leading and subleading jet definition
+
+Original phrase:
+"Plot the pT of the leading jet", "Plot the pT of the subleading jet"
+
+Unresolved choice:
+It is unclear whether the "leading" and "subleading" jets refer to the two leading jets in the full jet collection or in the selected jet collection (i.e., jets with pT > 30 GeV and |eta| < 2.5).
+
+Why this may matter:
+If the leading and subleading jets are defined before the jet selection, the pT values may include jets that are later vetoed or not used in the analysis. This could lead to incorrect plots and misinterpretation of jet activity.
+
+[CANDIDATE 3] Jet veto and jet selection consistency
+
+Original phrase:
+"Require at least 2 jets with pT > 30 GeV and |eta| < 2.5", "Veto events with b-tagged jets"
+
+Unresolved choice:
+It is unclear whether the "b-tagged jet veto" applies to the full jet collection or only to the selected jets (i.e., jets passing the pT and eta cuts).
+
+Why this may matter:
+If the veto is applied to the full jet collection, it may include jets that are not used in the analysis. If it is applied only to the selected jets, the veto could be more restrictive and affect the event selection differently.
+
+[CANDIDATE 4] W hadronic candidate definition
+
+Original phrase:
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+
+Unresolved choice:
+It is unclear whether the "two leading jets" used to compute the invariant mass are the same as those used in the "delta R between the two leading jets < 3.0" cut.
+
+Why this may matter:
+If the two cuts are applied to different jet selections (e.g., different jet orderings or different jet collections), the invariant mass and delta R may not correspond to the same jet pair, leading to inconsistent or misleading selections.
+
+[CANDIDATE 5] Delta phi between lepton and two-jet system
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system", "Select delta phi between the lepton and the two-jet system"
+
+Unresolved choice:
+It is unclear whether the "two-jet system" refers to the two leading jets in the full jet collection, the selected jet collection, or the W hadronic candidate jets (i.e., the two jets used in the invariant mass cut).
+
+Why this may matter:
+If the two-jet system is not consistently defined across the selection and plotting steps, the delta phi values may not correspond to the same jet pair, leading to inconsistent analysis and plots.
+
+[CANDIDATE 6] Delta phi between lepton and MET
+
+Original phrase:
+"Plot delta phi between the lepton and MET", "Select transverse mass of lepton + MET between 40 and 120 GeV (W leptonic candidate)"
+
+Unresolved choice:
+It is unclear whether the "lepton" used in the delta phi and transverse mass calculations refers to the same object (e.g., the same selected lepton with the same pT and eta cuts).
+
+Why this may matter:
+If the lepton used in the delta phi and transverse mass calculations is not consistently defined, the selection and plotting may refer to different lepton objects, leading to inconsistent or misleading results.
+
+[CANDIDATE 7] Cut order and event skipping
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied."
+
+Unresolved choice:
+It is unclear whether the phrase "skip the event immediately" implies that all subsequent cuts are not applied to the event, or whether some cuts are applied regardless of earlier failures (e.g., for validation or debugging).
+
+Why this may matter:
+If the event is skipped entirely after a cut failure, the cutflow summary and validation histograms may not reflect the true behavior of the cuts. If some cuts are still applied, the analysis may include inconsistent or invalid data in the output.

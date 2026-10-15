@@ -1,0 +1,10 @@
+
+
+  - collection definition: N/A
+  - structure: single-constituent
+
+* cutflow
+  - computed/defined as: dictionary with keys "Initial", "Lepton Selection", "Jet Selection", "BJet Selection", "MET Selection", "Transverse Mass Selection", "Hadronic W Selection", "Hadronic Top Selection"
+  - upstream chain: events -> cutflow
+  - collection definition: N/A
+  - structure: composite-derived

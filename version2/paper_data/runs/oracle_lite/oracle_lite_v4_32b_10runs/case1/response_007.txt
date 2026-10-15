@@ -1,0 +1,67 @@
+[CANDIDATE 1] Lepton definition and selection
+
+Original phrase:
+"Use selected electrons and selected muons to define selected leptons."
+
+Unresolved choice:
+It is unclear whether "selected leptons" refers to the union of selected electrons and muons, or if there is an additional implicit requirement (e.g., a pT or isolation cut) that applies to the combined collection.
+
+Why this may matter:
+If "selected leptons" is interpreted as a new collection with potentially different criteria than the individual electron and muon selections, it could lead to inconsistencies in later cuts (e.g., "require exactly 1 selected lepton") and affect the final event selection.
+
+[CANDIDATE 2] Jet selection for invariant mass and delta R
+
+Original phrase:
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+"Select delta R between the two leading jets < 3.0"
+
+Unresolved choice:
+It is unclear whether the "leading jets" are defined before or after the jet selection (pT > 30 GeV and |eta| < 2.5), and whether the veto on b-tagged jets applies to the jets used in the invariant mass and delta R calculation.
+
+Why this may matter:
+If the leading jets are selected before the jet pT and eta cuts, or if b-tagged jets are not excluded from the leading jet selection, the invariant mass and delta R could be computed from jets that do not satisfy the event-level jet selection criteria, leading to incorrect or inconsistent results.
+
+[CANDIDATE 3] MET and lepton for transverse mass
+
+Original phrase:
+"Select transverse mass of lepton + MET between 40 and 120 GeV (W leptonic candidate)"
+
+Unresolved choice:
+It is unclear whether the transverse mass is computed using the selected lepton (after all previous cuts) and the selected MET (after the MET cut), or if it is computed using pre-cut lepton and MET values.
+
+Why this may matter:
+If the transverse mass is computed using pre-cut values, the cut may not reflect the final lepton and MET state, potentially leading to incorrect event selection and misinterpretation of the W leptonic candidate.
+
+[CANDIDATE 4] Delta phi between lepton and two-jet system
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+"Save the following in a CSV file for MLP analysis: ... 6- Delta phi between lepton and the two-jet system"
+
+Unresolved choice:
+It is unclear whether the "two-jet system" refers to the two leading jets (after jet selection and ordering), or if it refers to a specific dijet combination (e.g., invariant mass-selected jets).
+
+Why this may matter:
+If the two-jet system is not consistently defined (e.g., if it refers to jets used in the invariant mass cut), the delta phi could be computed from a different jet pair than intended, leading to inconsistent or misleading features for the MLP.
+
+[CANDIDATE 5] Cutflow summary
+
+Original phrase:
+"After the event loop, print one cutflow summary with the number of events after each selection step."
+
+Unresolved choice:
+It is unclear whether the cutflow counts events that pass each individual cut (i.e., cumulative counts), or if it counts the number of events that fail at each step (i.e., a breakdown of rejection reasons).
+
+Why this may matter:
+The interpretation of the cutflow could change significantly depending on whether it is cumulative or per-step rejection counts, which could affect how the analysis is debugged or optimized.
+
+[CANDIDATE 6] CSV output for MLP
+
+Original phrase:
+"Save the following in a CSV file for MLP analysis: ... 2- Dijet invariant mass"
+
+Unresolved choice:
+It is unclear whether the "dijet invariant mass" refers to the invariant mass of the two leading jets (after jet selection and ordering), or if it refers to the invariant mass used in the cut (i.e., the one between 60 and 100 GeV).
+
+Why this may matter:
+If the dijet invariant mass is not consistently defined (e.g., if it is computed from a different jet pair than the one used in the cut), the CSV output may not reflect the intended physics object, leading to incorrect training or interpretation of the MLP.

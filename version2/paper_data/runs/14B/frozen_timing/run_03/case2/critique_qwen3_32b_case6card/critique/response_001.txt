@@ -1,0 +1,84 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- top_hadronic = sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The code builds the hadronic top candidate from only the leading b-tagged jet and the hadronic W candidate, but the SPEC explicitly refers to a system-level object (the hadronic top candidate) that should be constructed from all required constituents. The implementation correctly uses the required constituents, so this is not a violation.
+
+Evidence priority:
+- top_hadronic = sum_objects(leading_bjet, w_hadronic) 〔L333〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- w_hadronic = sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+The code correctly builds the hadronic W candidate from the two leading selected non-b-tagged jets, as required by the SPEC. This is not a violation.
+
+Evidence priority:
+- w_hadronic = sum_objects(leading_light_jet, subleading_light_jet) 〔L325〕
+
+Generator bias:
+none
+
+❓ (D) definition mismatch
+
+SPEC:
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+
+CODE:
+- leading_bjet = helper_get_leading(selected_bjets)
+
+Reason:
+The code defines the "leading" b-jet as the one with the highest pT, not the one closest to the selected lepton in delta R. This is a definition mismatch with the SPEC.
+
+Evidence priority:
+- leading_bjet = helper_get_leading(selected_bjets) 〔L332〕
+
+Generator bias:
+none
+
+❓ (D) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- subleading_bjet_pt_list.append(helper_get_subleading(selected_bjets)['pt'])
+
+Reason:
+The code defines the "subleading" b-jet as the second highest pT jet in the selected b-jets collection, not the second closest to the lepton in delta R. This is a definition mismatch with the SPEC.
+
+Evidence priority:
+- subleading_bjet_pt_list.append(helper_get_subleading(selected_bjets)['pt']) 〔L343〕
+
+Generator bias:
+none
+
+❓ (D) definition mismatch
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- njet_list.append(len(selected_jets))
+
+Reason:
+The code plots the number of selected jets per event, not the total number of jets in the event. This is a definition mismatch with the SPEC.
+
+Evidence priority:
+- njet_list.append(len(selected_jets)) 〔L348〕
+
+Generator bias:
+none

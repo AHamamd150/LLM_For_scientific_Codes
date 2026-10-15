@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/Users/nojiri/resubmission/test_runs/timing_run_32b/run_06/case5/execution/generated_analysis.py", line 388, in <module>
+    main()
+  File "/Users/nojiri/resubmission/test_runs/timing_run_32b/run_06/case5/execution/generated_analysis.py", line 294, in main
+    if n_bjets(event, pt_cut=30, eta_cut=4.7) > 0:
+       ^^^^^^^
+NameError: name 'n_bjets' is not defined. Did you mean: 'get_bjets'?

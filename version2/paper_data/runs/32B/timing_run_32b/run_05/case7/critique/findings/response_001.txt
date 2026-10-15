@@ -1,0 +1,335 @@
+◎ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+- Define dijet_obj from the summed four-momentum of the leading jet and subleading jet.
+
+CODE:
+- ditau_obj = sum_objects(tau1, tau2)
+- dijet_obj = sum_objects(jet1, jet2)
+
+Reason:
+The code correctly constructs the ditau_obj and dijet_obj from the summed four-momentum of the leading and subleading tau and jet, respectively. The composite system is built from all required constituents.
+
+Evidence priority:
+- sum_objects(tau1, tau2) for ditau_obj
+- sum_objects(jet1, jet2) for dijet_obj
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV
+
+CODE:
+- m_jj_val = helper_invariant_mass(jet1, jet2)
+- if m_jj_val < 400: continue
+
+Reason:
+The code computes the invariant mass of the leading and subleading jets correctly using helper_invariant_mass, and applies the cut m_jj > 400 GeV. The definition matches the specification.
+
+Evidence priority:
+- helper_invariant_mass(jet1, jet2) for m_jj_val
+- m_jj_val < 400 for the cut
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select |delta eta| between the two leading jets > 2.5
+
+CODE:
+- delta_eta_jj_val = abs(helper_delta_eta(jet1, jet2))
+- if delta_eta_jj_val < 2.5: continue
+
+Reason:
+The code computes the absolute delta eta between the two leading jets and applies the cut |delta eta| > 2.5. The definition matches the specification.
+
+Evidence priority:
+- helper_delta_eta(jet1, jet2) for delta_eta_jj_val
+- delta_eta_jj_val < 2.5 for the cut
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select ditau invariant mass between 60 and 150 GeV
+
+CODE:
+- m_tautau_val = helper_invariant_mass(tau1, tau2)
+- if not (60 < m_tautau_val < 150): continue
+
+Reason:
+The code computes the ditau invariant mass correctly using helper_invariant_mass and applies the cut 60 < m_tautau < 150. The definition matches the specification.
+
+Evidence priority:
+- helper_invariant_mass(tau1, tau2) for m_tautau_val
+- 60 < m_tautau_val < 150 for the cut
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Veto events with b-tagged jets among the selected jets
+
+CODE:
+- if any(j['btag'] == 1.0 for j in jets): continue
+
+Reason:
+The code correctly vetoes events with b-tagged jets among the selected jets by checking if any jet has btag == 1.0. The definition matches the specification.
+
+Evidence priority:
+- any(j['btag'] == 1.0 for j in jets) for the veto
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the ditau invariant mass in the range 50 to 160 GeV
+
+CODE:
+- plt.hist(m_tautau, bins=40, range=(50, 160), density=True)
+
+Reason:
+The code correctly plots the ditau invariant mass in the range 50 to 160 GeV. The definition matches the specification.
+
+Evidence priority:
+- plt.hist(m_tautau, bins=40, range=(50, 160), density=True)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the dijet invariant mass (m_jj) in the range 400 to 2000 GeV
+
+CODE:
+- plt.hist(m_jj, bins=40, range=(400, 2000), density=True)
+
+Reason:
+The code correctly plots the dijet invariant mass in the range 400 to 2000 GeV. The definition matches the specification.
+
+Evidence priority:
+- plt.hist(m_jj, bins=40, range=(400, 2000), density=True)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta eta between the two leading jets
+
+CODE:
+- plt.hist(delta_eta_jj, bins=40, range=(0, 10), density=True)
+
+Reason:
+The code correctly plots the delta eta between the two leading jets. The definition matches the specification.
+
+Evidence priority:
+- plt.hist(delta_eta_jj, bins=40, range=(0, 10), density=True)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading tau
+
+CODE:
+- plt.hist(pt_tau1, bins=40, range=(0, 200), density=True)
+
+Reason:
+The code correctly plots the pT of the leading tau. The definition matches the specification.
+
+Evidence priority:
+- plt.hist(pt_tau1, bins=40, range=(0, 200), density=True)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading tau
+
+CODE:
+- plt.hist(pt_tau2, bins=40, range=(0, 200), density=True)
+
+Reason:
+The code correctly plots the pT of the subleading tau. The definition matches the specification.
+
+Evidence priority:
+- plt.hist(pt_tau2, bins=40, range=(0, 200), density=True)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading jet
+
+CODE:
+- plt.hist(pt_jet1, bins=40, range=(0, 500), density=True)
+
+Reason:
+The code correctly plots the pT of the leading jet. The definition matches the specification.
+
+Evidence priority:
+- plt.hist(pt_jet1, bins=40, range=(0, 500), density=True)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading jet
+
+CODE:
+- plt.hist(pt_jet2, bins=40, range=(0, 500), density=True)
+
+Reason:
+The code correctly plots the pT of the subleading jet. The definition matches the specification.
+
+Evidence priority:
+- plt.hist(pt_jet2, bins=40, range=(0, 500), density=True)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta R between the two taus
+
+CODE:
+- plt.hist(delta_r_tautau, bins=40, range=(0, 5), density=True)
+
+Reason:
+The code correctly plots the delta R between the two taus. The definition matches the specification.
+
+Evidence priority:
+- plt.hist(delta_r_tautau, bins=40, range=(0, 5), density=True)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the ditau_obj and the dijet_obj
+
+CODE:
+- plt.hist(delta_phi_tautau_dijet, bins=40, range=(-math.pi, math.pi), density=True)
+
+Reason:
+The code correctly plots the delta phi between the ditau_obj and the dijet_obj. The definition matches the specification.
+
+Evidence priority:
+- plt.hist(delta_phi_tautau_dijet, bins=40, range=(-math.pi, math.pi), density=True)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- plt.hist(centrality, bins=40, range=(0, 1), density=True)
+
+Reason:
+The code correctly plots the centrality of the ditau system relative to the two jets. The definition matches the specification.
+
+Evidence priority:
+- plt.hist(centrality, bins=40, range=(0, 1), density=True)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+CODE:
+- continue is used after each cut to skip the event if the cut is not satisfied.
+
+Reason:
+The code correctly applies the cuts sequentially and skips the event immediately when a cut is not satisfied. The definition matches the specification.
+
+Evidence priority:
+- continue is used after each cut
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Increment each cutflow counter immediately after its cut is passed.
+
+CODE:
+- cutflow counters are incremented immediately after each cut is passed.
+
+Reason:
+The code correctly increments each cutflow counter immediately after its cut is passed. The definition matches the specification.
+
+Evidence priority:
+- cutflow["2_taus"] += 1, cutflow["opposite_sign"] += 1, etc.
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- print statements for the cutflow summary are included after the event loop.
+
+Reason:
+The code correctly prints a cutflow summary with the number of events after each selection step. The definition matches the specification.
+
+Evidence priority:
+- print(f"Initial events: {cutflow['initial']}"), etc.
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig("m_tautau.png"), etc.
+
+Reason:
+The code correctly saves the plots in png format. The definition matches the specification.
+
+Evidence priority:
+- plt.savefig("m_tautau.png"), etc.
+
+Generator bias:
+none
+
+---
+
+None

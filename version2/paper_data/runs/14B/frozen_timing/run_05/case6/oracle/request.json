@@ -1,0 +1,13 @@
+{
+  "profile": "oracle",
+  "card": "examples/cases/user_input_6.txt",
+  "registry": "lhco_domain.registry:HELPER_REGISTRY",
+  "codegen_system_prompt": null,
+  "model": "Qwen/Qwen3-14B",
+  "system_prompt": "bundled oracle",
+  "oracle_context": "/Users/nojiri/resubmission/test_runs/domains/lhco-domain/src/lhco_domain/prompts/oracle_context.txt",
+  "oracle_output_contract": "auto",
+  "runs": 1,
+  "max_tokens": 1800,
+  "temperature": 0.2
+}

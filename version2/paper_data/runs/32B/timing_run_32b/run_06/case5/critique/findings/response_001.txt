@@ -1,0 +1,140 @@
+◎ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau. 
+- Define dijet_obj from the summed momentum of the leading jet and subleading jet.
+
+CODE:
+- ditau_obj = sum_objects(lead_tau, sublead_tau)
+- dijet_obj = sum_objects(lead_jet, sublead_jet)
+
+Reason:
+The code correctly constructs the ditau_obj and dijet_obj by summing the four-momenta of the leading and subleading tau and jet, respectively. The composite objects are built from all required constituents.
+
+Evidence priority:
+- ditau_obj -> sum_objects(lead_tau, sublead_tau)
+- dijet_obj -> sum_objects(lead_jet, sublead_jet)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV
+
+CODE:
+- if dijet_obj is None or dijet_obj['mass'] < 400:
+
+Reason:
+The code uses a strict less-than comparison (< 400) for the m_jj cut, but the SPEC specifies "m_jj > 400 GeV", which should be implemented as a greater-than comparison. The code is using the opposite condition.
+
+Evidence priority:
+- dijet_obj['mass'] < 400
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select ditau invariant mass between 60 and 150 GeV
+
+CODE:
+- if ditau_obj is None or not (60 < ditau_obj['mass'] < 150):
+
+Reason:
+The code correctly implements the condition 60 < m_tautau < 150, which matches the SPEC. No mismatch.
+
+Evidence priority:
+- ditau_obj['mass'] < 150
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Veto events with b-tagged jets
+
+CODE:
+- if n_bjets(event, pt_cut=30, eta_cut=4.7) > 0:
+
+Reason:
+The code correctly vetoes events with any b-tagged jets by checking if the count is greater than zero. This matches the SPEC.
+
+Evidence priority:
+- n_bjets(event, pt_cut=30, eta_cut=4.7) > 0
+
+Generator bias:
+none
+
+◎ (C) missing implementation
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+CODE:
+- The code applies cuts sequentially, but the cutflow counters are incremented only after a cut is passed. However, the code does not explicitly skip the event when a cut is not satisfied, but this is implicitly handled by the continue statements.
+
+Reason:
+The code does not explicitly skip the event when a cut is not satisfied, but this is implicitly handled by the continue statements. No missing implementation.
+
+Evidence priority:
+- continue statements after each cut
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- centrality_tautau.append(centrality_between_jets(ditau_obj, lead_jet, sublead_jet))
+
+Reason:
+The SPEC does not define how to compute the centrality of the ditau system relative to the two jets. The code uses a placeholder function `centrality_between_jets` that always returns 0.5. This is a specification ambiguity because the SPEC does not constrain the implementation.
+
+Evidence priority:
+- centrality_between_jets(ditau_obj, lead_jet, sublead_jet)
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV
+
+CODE:
+- if dijet_obj is None or dijet_obj['mass'] < 400:
+
+Reason:
+The code implements a condition that continues the event processing if the dijet mass is less than 400 GeV, which contradicts the SPEC that requires the invariant mass to be greater than 400 GeV. The condition should be `dijet_obj['mass'] > 400` instead of `< 400`.
+
+Evidence priority:
+- dijet_obj['mass'] < 400
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select |delta eta| between the two leading jets > 2.5
+
+CODE:
+- if abs_delta_eta(lead_jet, sublead_jet) < 2.5:
+
+Reason:
+The code implements a condition that continues the event processing if the |delta eta| is less than 2.5, which contradicts the SPEC that requires |delta eta| to be greater than 2.5. The condition should be `abs_delta_eta(...) > 2.5` instead of `< 2.5`.
+
+Evidence priority:
+- abs_delta_eta(lead_jet, sublead_jet) < 2.5
+
+Generator bias:
+none

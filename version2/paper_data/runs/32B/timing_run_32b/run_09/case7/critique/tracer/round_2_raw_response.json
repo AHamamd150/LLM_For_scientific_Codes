@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* delta_eta_jj_val\n  - computed/defined as: abs(helper_delta_eta(lead_jet, sublead_jet))\n  - upstream chain: lead_jet, sublead_jet -> helper_delta_eta(lead_jet, sublead_jet) -> abs(helper_delta_eta(lead_jet, sublead_jet))\n  - collection definition: lead_jet, sublead_jet\n  - structure: composite-derived\n\n* pt_lead_tau\n  - computed/defined as: lead_tau['pt']\n  - upstream chain: lead_tau -> lead_tau['pt']\n  - collection definition: lead_tau\n  - structure: single-constituent\n\n* pt_sublead_tau\n  - computed/defined as: sublead_tau['pt']\n  - upstream chain: sublead_tau -> sublead_tau['pt']\n  - collection definition: sublead_tau\n  - structure: single-constituent\n\n* pt_lead_jet\n  - computed/defined as: lead_jet['pt']\n  - upstream chain: lead_jet -> lead_jet['pt']\n  - collection definition: lead_jet\n  - structure: single-constituent\n\n* pt_sublead_jet\n  - computed/defined as: sublead_jet['pt']\n  - upstream chain: sublead_jet -> sublead_jet['pt']\n  - collection definition: sublead_jet\n  - structure: single-constituent\n\n* delta_r_taus\n  - computed/defined as: helper_delta_r(lead_tau, sublead_tau)\n  - upstream chain: lead_tau, sublead_tau -> helper_delta_r(lead_tau, sublead_tau)\n  - collection definition: lead_tau, sublead_tau\n  - structure: composite-derived\n\n* delta_phi_tautau_dijet\n  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])\n  - upstream chain: ditau_obj, dijet_obj -> helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])\n  - collection definition: ditau_obj, dijet_obj\n  - structure: composite-derived\n\n* centrality\n  - computed/defined as: centrality_between_jets(ditau_obj, lead_jet, sublead_jet)\n  - upstream chain: ditau_obj, lead_jet, sublead_jet -> centrality_between_jets(ditau_obj, lead_jet, sublead_jet)\n  - collection definition: ditau_obj, lead_jet, sublead_jet\n  - structure: composite-derived",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1789522264,
+  "id": "chatcmpl-1c9eba2f-7988-42b0-a69f-789e710fd32a",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 519,
+    "prompt_tokens": 10610,
+    "prompt_tokens_details": null,
+    "total_tokens": 11129
+  }
+}

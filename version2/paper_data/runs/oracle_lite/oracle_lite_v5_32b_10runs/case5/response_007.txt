@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] Ambiguity in "leading tau and subleading tau" definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this matters:
+The phrase does not specify whether the leading and subleading taus are defined before or after the "opposite-sign tau pair" cut. This affects whether the selection of the leading/subleading pair is based on all selected taus or only on the surviving opposite-sign pair.
+
+Question to user:
+Are the leading and subleading taus defined from all selected taus (before the opposite-sign requirement), or only from the subset of taus that form an opposite-sign pair?
+
+Golden axe:
+Leading and subleading are defined from all selected taus, before applying the opposite-sign requirement.
+
+Silver axe:
+Leading and subleading are defined from the opposite-sign pair only, after the requirement is applied.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Ambiguity in "leading jet and subleading jet" definition
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Why this matters:
+The phrase does not clarify whether the leading and subleading jets are defined before or after the "m_jj > 400 GeV" and "delta eta > 2.5" cuts. This affects whether the jet ordering is based on the full selected jet collection or a subset that satisfies the VBF-like topology.
+
+Question to user:
+Are the leading and subleading jets defined from all selected jets (before the m_jj and delta eta cuts), or only from the subset of jets that satisfy the VBF topology requirements?
+
+Golden axe:
+Leading and subleading jets are defined from all selected jets, before applying the m_jj and delta eta cuts.
+
+Silver axe:
+Leading and subleading jets are defined from the subset of jets that satisfy the VBF topology cuts.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Ambiguity in "ditau system" and "dijet system" for delta phi
+
+Original phrase:
+"Plot delta phi between the ditau system and the dijet system"
+
+Why this matters:
+The phrase does not clarify whether the ditau and dijet systems are defined using the same leading/subleading definitions used earlier in the selection. This could lead to inconsistencies if the systems are redefined for this purpose.
+
+Question to user:
+Are the ditau and dijet systems used in the delta phi plot the same as those defined earlier (from leading/subleading taus and jets), or are they redefined for this purpose?
+
+Golden axe:
+The ditau and dijet systems are the same as those defined earlier in the selection.
+
+Silver axe:
+The ditau and dijet systems are redefined for the purpose of the delta phi plot.
+
+Recommended default:
+Golden axe

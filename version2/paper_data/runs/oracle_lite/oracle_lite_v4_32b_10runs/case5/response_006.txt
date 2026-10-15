@@ -1,0 +1,76 @@
+[CANDIDATE 1] Leading and subleading tau definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Unresolved choice:
+It is unclear whether the leading and subleading tau are defined based on pT or another property (e.g., charge, decay mode, or isolation).
+
+Why this may matter:
+If the helper assumes pT ordering by default, but the user intended a different ordering, the analysis could select different tau pairs, affecting the ditau system and subsequent cuts.
+
+[CANDIDATE 2] Leading and subleading jet definition
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Unresolved choice:
+It is not specified whether the leading and subleading jets are defined based on pT or another property (e.g., b-tagging, jet mass, or jet flavor).
+
+Why this may matter:
+If the helper assumes pT ordering by default, but the user intended a different ordering, the dijet system and m_jj calculation could be based on different jets, affecting the VBF topology selection.
+
+[CANDIDATE 3] Opposite-sign tau pair requirement
+
+Original phrase:
+"Require opposite-sign tau pair"
+
+Unresolved choice:
+It is not clear whether this requirement applies to the leading and subleading tau pair specifically or to any pair of taus in the event.
+
+Why this may matter:
+If the requirement applies to any pair, the analysis may need to generate all OS pairs and select one, which could affect the event selection and the definition of the ditau system.
+
+[CANDIDATE 4] Ditau system definition
+
+Original phrase:
+"Define ditau_obj from the summed four-momentum of the leading tau and subleading tau."
+
+Unresolved choice:
+It is not clear whether the ditau system is meant to be used for further analysis (e.g., for computing its centrality relative to the dijet system) or if it is only used to compute the ditau invariant mass.
+
+Why this may matter:
+If the ditau system is intended to be reused, it may need to be stored as a composite object for later calculations, which could affect how it is defined and used in the code.
+
+[CANDIDATE 5] Dijet system definition
+
+Original phrase:
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Unresolved choice:
+It is not clear whether the dijet system is meant to be used for further analysis (e.g., for computing its centrality relative to the ditau system) or if it is only used to compute the dijet invariant mass and delta eta.
+
+Why this may matter:
+If the dijet system is intended to be reused, it may need to be stored as a composite object for later calculations, which could affect how it is defined and used in the code.
+
+[CANDIDATE 6] B-tagged jet veto
+
+Original phrase:
+"Veto events with b-tagged jets"
+
+Unresolved choice:
+It is not clear whether the veto applies to all b-tagged jets in the event or only to b-tagged jets among the selected jets.
+
+Why this may matter:
+If the veto is applied to all b-tagged jets in the event, the jet selection and veto may be based on different criteria, which could affect the final event selection and the jet-based observables.
+
+[CANDIDATE 7] Cutflow counter increment
+
+Original phrase:
+"Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is not clear whether the cutflow counters are meant to count the number of events passing each cut in isolation or the cumulative number of events after each cut is applied.
+
+Why this may matter:
+If the counters are cumulative, the cutflow will show the number of events surviving up to each step, but if they are isolated, the cutflow will show the number of events passing each cut independently, which could affect the interpretation of the analysis.

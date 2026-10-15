@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading b-jet definition
+
+Original phrase:
+"Plot the pT of the leading b-jet"
+
+Why this is dangerous:
+The phrase does not specify whether the leading b-jet is defined before or after applying the b-tagging cuts and other selection criteria. This can lead to different implementations depending on whether the leading b-jet is selected from the raw jet collection or from the b-tagged jet collection.
+
+Question to user:
+Are the leading b-jet and subleading b-jet defined based on the raw jet collection or the b-tagged jet collection after applying the b-tagging cuts?
+
+Golden axe:
+The leading b-jet is defined from the b-tagged jet collection after applying the b-tagging cuts.
+
+Silver axe:
+The leading b-jet is defined from the raw jet collection before applying the b-tagging cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Hadronic W candidate construction
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Why this is dangerous:
+The phrase does not clarify whether the two leading non-b-tagged jets are selected from the raw jet collection or from the light jets collection after applying the non-b-tagged jet cuts. This can lead to different implementations depending on whether the jets are selected before or after the cuts.
+
+Question to user:
+Are the two leading non-b-tagged jets used to build the hadronic W candidate selected from the raw jet collection or from the light jets collection after applying the non-b-tagged jet cuts?
+
+Golden axe:
+The two leading non-b-tagged jets are selected from the light jets collection after applying the non-b-tagged jet cuts.
+
+Silver axe:
+The two leading non-b-tagged jets are selected from the raw jet collection before applying the non-b-tagged jet cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Hadronic top candidate construction
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading b-jet is defined before or after applying the b-tagging cuts and other selection criteria. This can lead to different implementations depending on whether the leading b-jet is selected from the raw jet collection or from the b-tagged jet collection.
+
+Question to user:
+Is the leading b-jet used to build the hadronic top candidate selected from the raw jet collection or from the b-tagged jet collection after applying the b-tagging cuts?
+
+Golden axe:
+The leading b-jet is selected from the b-tagged jet collection after applying the b-tagging cuts.
+
+Silver axe:
+The leading b-jet is selected from the raw jet collection before applying the b-tagging cuts.
+
+Recommended default:
+Golden axe

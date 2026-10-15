@@ -1,0 +1,73 @@
+[AMBIGUITY 1] Leading b-jet definition
+
+Original phrase:
+"Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R."
+
+Why this is dangerous:
+This phrase is ambiguous about whether "leading b-jet" refers to the b-jet with highest pT among selected b-jets, or the b-jet with smallest delta R to the selected lepton. These are different physical objects that would require different helper functions.
+
+Question to user:
+Are you defining the "leading b-jet" as (1) the highest-pT b-tagged jet, or (2) the b-tagged jet with smallest delta R to the selected lepton?
+
+Golden axe:
+The leading b-jet is the one with highest transverse momentum among selected b-tagged jets.
+
+Silver axe:
+The leading b-jet is the one with smallest angular separation (delta R) to the selected lepton.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Define the leading b-jet as the highest-pT b-tagged jet among selected b-jets"
+- Silver axe rewrite: "Define the leading b-jet as the b-tagged jet with smallest delta R to the selected lepton"
+
+
+[AMBIGUITY 2] Non-b-tagged jet selection
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Why this is dangerous:
+This phrase is ambiguous about whether "leading" refers to pT ranking among all jets (including b-tagged ones), or pT ranking only among non-b-tagged jets. The resulting jets would be different in these two interpretations.
+
+Question to user:
+Are the "leading non-b-tagged jets" determined by (1) pT ranking among all jets (including b-tagged ones), or (2) pT ranking only among non-b-tagged jets?
+
+Golden axe:
+Leading non-b-tagged jets are determined by pT ranking only among non-b-tagged jets.
+
+Silver axe:
+Leading non-b-tagged jets are determined by pT ranking among all jets, including b-tagged ones.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Build the hadronic W candidate from the two highest-pT non-b-tagged jets"
+- Silver axe rewrite: "Build the hadronic W candidate from the two jets with highest pT among all jets that are not b-tagged"
+
+
+[AMBIGUITY 3] Object collection for HT calculation
+
+Original phrase:
+"Plot the HT distribution (scalar sum of all jet pT)"
+
+Why this is dangerous:
+This phrase is ambiguous about which jet collection to use for HT - should it include all jets in the event, or only jets passing the 4-jet selection criteria?
+
+Question to user:
+Should the HT distribution be calculated using (1) all jets in the event, or (2) only jets that pass the 4-jet selection criteria?
+
+Golden axe:
+HT should be calculated using all jets in the event, regardless of selection criteria.
+
+Silver axe:
+HT should be calculated using only jets that pass the 4-jet selection criteria.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Plot the HT distribution (scalar sum of pT for all jets in the event)"
+- Silver axe rewrite: "Plot the HT distribution (scalar sum of pT for selected jets passing the 4-jet criteria)"

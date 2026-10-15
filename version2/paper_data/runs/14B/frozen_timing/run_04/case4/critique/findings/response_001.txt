@@ -1,0 +1,284 @@
+◎ (A) composite violation
+
+SPEC:
+- Plot the pT of the three-lepton system built from the two selected electrons and the selected muon
+
+CODE:
+- three_lepton_pt_list; upstream chain: sum_objects(e1, e2, w_muon)
+
+Reason:
+The three-lepton system's pT is correctly computed from the sum of the two selected electrons and the selected muon using sum_objects. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L299-L301〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot the invariant mass of the three-lepton system
+
+CODE:
+- three_lepton_mass_list; upstream chain: helper_invariant_mass(e1, e2, w_muon)
+
+Reason:
+The three-lepton system's invariant mass is correctly computed from the two selected electrons and the selected muon using helper_invariant_mass. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L302-L303〕
+
+◎ (A) composite violation
+
+SPEC:
+- Plot the invariant mass of z_obj in range 60 to 120 GeV
+
+CODE:
+- z_mass_list; upstream chain: helper_invariant_mass(e1, e2)
+
+Reason:
+The invariant mass of z_obj is correctly computed from the two selected electrons using helper_invariant_mass. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L294-L295〕
+
+◎ (A) composite violation
+
+SPEC:
+- Build z_obj from the two selected electrons using summed four-momentum.
+
+CODE:
+- z_obj = sum_objects(e1, e2)
+
+Reason:
+z_obj is correctly built from the two selected electrons using sum_objects. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L265-L266〕
+
+◎ (A) composite violation
+
+SPEC:
+- Require the two selected electrons to have opposite charge.
+
+CODE:
+- not opposite_sign(e1, e2)
+
+Reason:
+The check for opposite charge between the two selected electrons is correctly implemented using opposite_sign. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L259-L261〕
+
+◎ (A) composite violation
+
+SPEC:
+- Select electrons with pT > 15 GeV and |eta| < 2.5.
+
+CODE:
+- [e for e in get_electrons(event) if e['pt'] > 15 and abs(e['eta']) < 2.5]
+
+Reason:
+Electrons are correctly selected with pT > 15 GeV and |eta| < 2.5. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L242-L243〕
+
+◎ (A) composite violation
+
+SPEC:
+- Select muons with pT > 10 GeV and |eta| < 2.4.
+
+CODE:
+- [m for m in get_muons(event) if m['pt'] > 10 and abs(m['eta']) < 2.4]
+
+Reason:
+Muons are correctly selected with pT > 10 GeV and |eta| < 2.4. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L248-L249〕
+
+◎ (A) composite violation
+
+SPEC:
+- Require exactly 2 selected electrons and exactly 1 selected muon.
+
+CODE:
+- len(electrons) != 2 or len(muons) != 1
+
+Reason:
+The requirement for exactly 2 selected electrons and exactly 1 selected muon is correctly implemented. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L254-L255〕
+
+◎ (A) composite violation
+
+SPEC:
+- Define the selected muon as the W candidate lepton.
+
+CODE:
+- muons[0]
+
+Reason:
+The selected muon is correctly defined as the W candidate lepton. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L280-L281〕
+
+◎ (A) composite violation
+
+SPEC:
+- Require MET > 30 GeV.
+
+CODE:
+- met is None or met['pt'] < 30
+
+Reason:
+The requirement for MET > 30 GeV is correctly implemented. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L274-L276〕
+
+◎ (A) composite violation
+
+SPEC:
+- The W candidate muon must have pT > 20 GeV.
+
+CODE:
+- w_muon['pt'] < 20
+
+Reason:
+The requirement for the W candidate muon to have pT > 20 GeV is correctly implemented. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L281-L282〕
+
+◎ (A) composite violation
+
+SPEC:
+- Select transverse mass of W candidate muon + MET > 30 GeV.
+
+CODE:
+- w_trans_mass < 30
+
+Reason:
+The requirement for the transverse mass of the W candidate muon + MET to be > 30 GeV is correctly implemented. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L286-L288〕
+
+◎ (A) composite violation
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- cutflow; upstream chain: cutflow
+
+Reason:
+The cutflow summary is correctly printed after the event loop. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L384-L386〕
+
+◎ (A) composite violation
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The plots are correctly saved in png format. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L318-L382〕
+
+---
+
+◎ (A) composite violation
+
+SPEC:
+- Plot delta phi between z_obj and MET
+
+CODE:
+- delta_phi_z_met_list; upstream chain: helper_delta_phi(z_obj['phi'], met['phi'])
+
+Reason:
+The delta phi between z_obj and MET is correctly computed using helper_delta_phi. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L307-L308〕
+
+◎ (A) composite violation
+
+SPEC:
+- Plot delta R between the two electrons forming z_obj
+
+CODE:
+- delta_r_electrons_list; upstream chain: helper_delta_r(e1, e2)
+
+Reason:
+The delta R between the two electrons forming z_obj is correctly computed using helper_delta_r. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L309-L310〕
+
+◎ (A) composite violation
+
+SPEC:
+- Plot the pT of z_obj
+
+CODE:
+- z_pt_list; upstream chain: z_obj['pt']
+
+Reason:
+The pT of z_obj is correctly computed from the summed four-momentum of the two selected electrons. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L305-L306〕
+
+◎ (A) composite violation
+
+SPEC:
+- Plot the pT of the W candidate muon
+
+CODE:
+- w_muon_pt_list; upstream chain: w_muon['pt']
+
+Reason:
+The pT of the W candidate muon is correctly computed from the selected muon. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L306-L307〕
+
+◎ (A) composite violation
+
+SPEC:
+- Plot eta of the W candidate muon
+
+CODE:
+- w_muon_eta_list; upstream chain: w_muon['eta']
+
+Reason:
+The eta of the W candidate muon is correctly computed from the selected muon. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L311-L312〕
+
+◎ (A) composite violation
+
+SPEC:
+- Select invariant mass of z_obj between 76 and 106 GeV
+
+CODE:
+- not (76 < z_mass < 106); upstream chain: helper_invariant_mass(e1, e2)
+
+Reason:
+The invariant mass of z_obj is correctly selected to be between 76 and 106 GeV using helper_invariant_mass. This is consistent with the SPEC requirement.
+
+Evidence priority:
+〔L269-L270〕

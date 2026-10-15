@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Hadronic W candidate jet selection timing
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Why this matters:
+The phrase does not specify whether "non-b-tagged jets" refers to jets in the full event or only among jets that passed the earlier jet pT and eta cuts. This affects whether the leading jets are selected before or after the jet pT/eta cuts and b-tagging.
+
+Question to user:
+Should the hadronic W candidate be built from the two leading jets among all jets in the event (regardless of earlier cuts), or only from jets that passed the jet pT/eta cuts?
+
+Golden axe:
+Build from jets that passed the jet pT/eta cuts.
+
+Silver axe:
+Build from all jets in the event regardless of earlier jet cuts.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Lepton definition for plots
+
+Original phrase:
+"Plot the delta R between the leading lepton and the closest b-jet"
+
+Why this matters:
+The phrase "leading lepton" is ambiguous - it could refer to the lepton with highest pT among all selected leptons (which would be only one due to the "exactly one lepton" cut), or it could refer to the lepton in the W leptonic candidate.
+
+Question to user:
+Should the "leading lepton" in the delta R plot refer to the single selected lepton in the event, or to the lepton in the W leptonic candidate?
+
+Golden axe:
+Use the single selected lepton in the event.
+
+Silver axe:
+Use the lepton in the W leptonic candidate.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] B-jet ordering for plots
+
+Original phrase:
+"Plot the pT of the leading b-jet" and "Plot the pT of the subleading b-jet"
+
+Why this matters:
+The phrase does not specify whether the b-jet ordering is based on pT among all b-tagged jets in the event, or only among b-tagged jets that passed the jet pT/eta cuts.
+
+Question to user:
+Should the leading and subleading b-jets be ordered based on pT among all b-tagged jets in the event, or only among b-tagged jets that passed the jet pT/eta cuts?
+
+Golden axe:
+Order based on pT among b-tagged jets that passed jet cuts.
+
+Silver axe:
+Order based on pT among all b-tagged jets in the event.
+
+Recommended default:
+Golden axe

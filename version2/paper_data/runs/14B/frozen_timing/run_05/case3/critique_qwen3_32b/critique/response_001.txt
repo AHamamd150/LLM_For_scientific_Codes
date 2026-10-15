@@ -1,0 +1,107 @@
+◎ (A) composite violation
+
+SPEC:
+- Build the diphoton system from the leading photon and the subleading photon.
+- Define m_gammagamma as the invariant mass of this diphoton system.
+- Use this same diphoton system to compute diphoton pT.
+
+CODE:
+- diphoton = sum_objects(leading_photon, subleading_photon)
+- m_gammagamma = diphoton['mass'] if diphoton else 0.0
+- pt_diphoton_list.append(diphoton['pt'] if diphoton else 0.0)
+
+Reason:
+The diphoton system is correctly constructed from the leading and subleading photons, and the invariant mass and pT are computed from the full system. This is in agreement with the SPEC.
+
+Evidence priority:
+diphoton = sum_objects(leading_photon, subleading_photon); m_gammagamma = diphoton['mass'] if diphoton else 0.0; pt_diphoton_list.append(diphoton['pt'] if diphoton else 0.0)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select diphoton invariant mass between 105 and 160 GeV.
+
+CODE:
+- if not (105 < m_gammagamma < 160): continue
+
+Reason:
+The code uses an open interval (105 < m_gammagamma < 160), but the SPEC does not specify whether the mass should be inclusive or exclusive. This is a definition mismatch if the SPEC had explicitly required inclusivity, but since it does not, this is not a violation.
+
+Evidence priority:
+if not (105 < m_gammagamma < 160): continue
+
+Generator bias:
+none
+
+◎ (C) missing implementation
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+- Increment each cutflow counter immediately after its cut is passed.
+
+CODE:
+- cutflow counters are incremented after each cut, but the code does not explicitly skip the event immediately when a cut is not satisfied. The code uses continue statements, which is equivalent to skipping the event.
+
+Reason:
+The code correctly implements the requirement to skip the event when a cut is not satisfied using continue statements, and the cutflow counters are incremented immediately after each cut is passed. This is not a missing implementation.
+
+Evidence priority:
+continue; cutflow[...] += 1
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Define the leading photon and subleading photon after photon selection.
+
+CODE:
+- leading_photon = helper_get_leading(photons_clean)
+- subleading_photon = helper_get_subleading(photons_clean)
+
+Reason:
+The SPEC does not specify whether the leading and subleading photons should be selected from the full event or from the cleaned photon collection. The code uses the cleaned photon collection, which is a specification ambiguity.
+
+Evidence priority:
+leading_photon = helper_get_leading(photons_clean); subleading_photon = helper_get_subleading(photons_clean)
+
+Generator bias:
+none
+
+◎ (E) extra behavior
+
+SPEC:
+- None of the plots or CSV outputs are explicitly marked as extra behavior.
+
+CODE:
+- All plots and CSV outputs are in agreement with the SPEC.
+
+Reason:
+The code does not perform any behavior not requested by the SPEC. This is not an extra behavior.
+
+Evidence priority:
+plot_histogram(...); writer.writerow(...)
+
+Generator bias:
+none
+
+◎ (F) generator-induced bias
+
+SPEC:
+- None of the code features suggest a generator-induced bias.
+
+CODE:
+- The code uses helper functions and standard analysis patterns, which are appropriate for the task.
+
+Reason:
+The code does not show signs of generator-induced bias. This is not a finding.
+
+Evidence priority:
+helper_get_leading(...); helper_get_subleading(...); sum_objects(...)
+
+Generator bias:
+none

@@ -1,0 +1,56 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- top_candidate = sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The code correctly builds the hadronic top candidate from the leading b-tagged jet and the hadronic W candidate. However, the implementation uses the `sum_objects` function, which sums the four-momenta of the constituent objects. This is a correct and domain-appropriate way to construct the composite system. No violation is present.
+
+Evidence priority:
+- top_candidate = sum_objects(leading_bjet, w_hadronic) 〔L351〕
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+
+CODE:
+- leading_bjet = helper_get_leading(selected_bjets)
+
+Reason:
+The code selects the leading b-jet by pT, not by delta R to the selected lepton. This is a mismatch with the SPEC, which explicitly requires the b-jet closest to the lepton in delta R to be defined.
+
+Evidence priority:
+- leading_bjet = helper_get_leading(selected_bjets) 〔L350〕
+
+Generator bias:
+none
+
+---
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+- leading_light_jet = helper_get_leading(selected_light_jets)
+- subleading_light_jet = helper_get_subleading(selected_light_jets)
+
+Reason:
+The SPEC does not specify whether the "selected non-b-tagged jets" should be defined by the same pT and |eta| cuts as the jets in the jet selection step. The code applies the same cuts (pT > 30 GeV and |eta| < 2.5) to the non-b-tagged jets as applied to the general jet selection. This is a plausible interpretation, but the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5] 〔L333-L334〕
+
+Generator bias:
+none

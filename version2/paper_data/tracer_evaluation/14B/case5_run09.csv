@@ -1,0 +1,30 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+5,9,requirement,R1,Select taus with pT > 20 GeV and |eta| < 2.3,yes,yes,yes,no,Correctly identifies the tau filtering at lines 245-246 and get_taus dependency.
+5,9,requirement,R2,Select jets with pT > 30 GeV and |eta| < 4.7,yes,yes,yes,no,Correctly identifies the jet filtering at lines 263-264.
+5,9,requirement,R3,Require at least 2 taus,yes,yes,yes,no,Correctly identifies len(taus) < 2 at lines 247-248.
+5,9,requirement,R4,Define the leading tau and subleading tau from the selected taus,yes,yes,yes,no,Correctly identifies helper_get_leading and helper_get_subleading at lines 257-258.
+5,9,requirement,R5,Define ditau_obj from the summed four-momentum of the leading tau and subleading tau,partial,no,yes,yes,"The code has sum_objects(leading_tau, subleading_tau) at line 311 and invariant-mass summation through helper_invariant_mass at line 294, but no ditau_obj variable. The cited lines 291-292 are the b-jet cut, not a ditau sum."
+5,9,requirement,R6,Require at least 2 jets,yes,yes,yes,no,Correctly identifies the jet multiplicity check at lines 265-266.
+5,9,requirement,R7,Define the leading jet and subleading jet from the selected jets,yes,yes,yes,no,Correctly identifies lines 275-276.
+5,9,requirement,R8,Define dijet_obj from the summed momentum of the leading jet and subleading jet,partial,no,yes,yes,No dijet_obj variable is defined. The code computes dijet_mass via helper_invariant_mass at lines 277-277; sum_objects is only reached through that helper or explicitly at line 311.
+5,9,requirement,R9,Require opposite-sign tau pair,yes,yes,yes,no,Correctly identifies opposite_sign on the leading and subleading taus at lines 257-260.
+5,9,requirement,R10,Require m_jj > 400 GeV,yes,yes,yes,no,Correctly identifies helper_invariant_mass and the cut at lines 277-280.
+5,9,requirement,R11,Require |delta eta| between the two leading jets > 2.5,yes,yes,yes,no,Correctly identifies the computation and cut at lines 282-285.
+5,9,requirement,R12,Require ditau invariant mass between 60 and 150 GeV,yes,yes,yes,no,Correctly identifies lines 293-296 and the leading/subleading tau dependencies.
+5,9,requirement,R13,Veto events with b-tagged jets,yes,yes,no,yes,"The cut at lines 288-290 is correctly located, but n_bjets independently calls get_bjets(event); it does not depend on the selected jets collection as claimed."
+5,9,requirement,R14,Plot ditau invariant mass in the range 50 to 160 GeV,partial,yes,yes,no,"The plotted value and its source are identified at lines 294 and 300, but no histogram range 50-160 is implemented or traced; plot call is at line 328."
+5,9,requirement,R15,Plot dijet invariant mass in the range 200 to 2000 GeV,partial,yes,yes,no,"The plotted value is correctly identified, but no 200-2000 range is implemented or traced; plot call is at line 329."
+5,9,requirement,R16,Plot delta eta between the two leading jets,yes,yes,yes,no,Correctly identifies delta_eta_jj at lines 283-284 and its plot at line 330.
+5,9,requirement,R17,Plot pT of the leading tau,yes,yes,yes,no,Correctly identifies lines 303-304 and plot line 331.
+5,9,requirement,R18,Plot pT of the subleading tau,yes,yes,yes,no,Correctly identifies lines 304-305 and plot line 332.
+5,9,requirement,R19,Plot pT of the leading jet,yes,yes,yes,no,Correctly identifies lines 305-306 and plot line 333.
+5,9,requirement,R20,Plot pT of the subleading jet,yes,yes,yes,no,Correctly identifies lines 306-307 and plot line 334.
+5,9,requirement,R21,Plot delta R between the two taus,yes,yes,yes,no,Correctly identifies helper_delta_r at lines 307-308 and plot line 335.
+5,9,requirement,R22,Plot delta phi between the ditau system and the dijet system,yes,yes,yes,no,Correctly reflects the implemented expression at lines 309-310 and plot line 336.
+5,9,requirement,R23,Plot the centrality of the ditau system relative to the two jets,yes,yes,yes,no,Correctly identifies sum_objects and centrality_between_jets at lines 311-312 and plot line 337.
+5,9,requirement,R24,"Apply cuts sequentially, skip immediately when a cut fails, and increment each cutflow counter immediately after it passes",partial,no,uncertain,no,"The output only cites the cutflow dictionary at lines 220-231, not the sequential checks, continue statements, and counter increments distributed across lines 244-297."
+5,9,requirement,R25,"After the event loop, print one cutflow summary with the number of events after each selection step",yes,yes,yes,no,The cutflow dictionary is defined at lines 220-231 and printed after the loop at lines 314-316.
+5,9,requirement,R26,"Use simple validation histograms with plt.figure(), 40 bins, density=True, labels, savefig, and close",partial,yes,yes,no,"The tracer identifies savefig at lines 325-326 but does not trace the shared histogram implementation at lines 319-327, including figure creation, 40 bins, density, labels, and close."
+5,9,requirement,R27,Save the plots in png format,yes,yes,yes,no,Correctly identifies plt.savefig and the .png filenames at lines 325-337.
+5,9,extra_trace_claim,EXTRA1,"A named ditau_obj is computed as sum_objects(leading_tau, subleading_tau) at lines 291-292",,,,yes,Lines 291-292 contain the No b-jets cut. No variable named ditau_obj exists; the explicit tau sum appears at line 311 and is also implicit inside helper_invariant_mass at line 294.
+5,9,extra_trace_claim,EXTRA2,The b-jet veto dependency is jets -> get_bjets(event) -> n_bjets,,,,yes,"n_bjets(event, ...) calls get_bjets(event) directly at lines 134-137; it does not consume the selected jets collection."

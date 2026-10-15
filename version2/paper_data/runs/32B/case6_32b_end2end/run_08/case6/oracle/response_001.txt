@@ -1,0 +1,73 @@
+[AMBIGUITY 1] Leading and subleading b-jet definition
+
+Original phrase:
+"Plot the pT of the leading b-jet" and "Plot the pT of the subleading b-jet"
+
+Why this is dangerous:
+The selection requires at least 2 b-tagged jets, but the phrase "leading b-jet" could refer to the highest-pT b-jet among all jets in the event, or only among the selected b-tagged jets. This affects which jets are considered in the pT ranking.
+
+Question to user:
+Should the leading and subleading b-jets be defined based on all jets in the event, or only among the selected b-tagged jets?
+
+Golden axe:
+Leading and subleading b-jets are defined among the selected b-tagged jets.
+
+Silver axe:
+Leading and subleading b-jets are defined among all jets in the event, regardless of b-tagging.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Plot the pT of the leading b-jet among selected b-tagged jets"
+- Silver axe rewrite: "Plot the pT of the leading b-jet in the full jet collection"
+
+
+[AMBIGUITY 2] Hadronic W candidate construction
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Why this is dangerous:
+The phrase "leading selected non-b-tagged jets" could mean the two highest-pT jets in the full jet collection that are not b-tagged, or the two highest-pT jets among the selected jets (after all previous cuts) that are not b-tagged. This affects which jets are used to build the hadronic W.
+
+Question to user:
+Should the hadronic W be built from the two highest-pT jets in the full jet collection that are not b-tagged, or from the two highest-pT jets among the selected jets that are not b-tagged?
+
+Golden axe:
+Hadronic W is built from the two highest-pT jets among the selected jets that are not b-tagged.
+
+Silver axe:
+Hadronic W is built from the two highest-pT jets in the full jet collection that are not b-tagged.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Build the hadronic W candidate from the two leading jets among selected non-b-tagged jets"
+- Silver axe rewrite: "Build the hadronic W candidate from the two leading jets in the full collection that are not b-tagged"
+
+
+[AMBIGUITY 3] Delta R between lepton and b-jet
+
+Original phrase:
+"Plot delta R between the leading lepton and the closest selected b-jet"
+
+Why this is dangerous:
+The phrase "closest selected b-jet" could mean the b-jet with the smallest delta R to the lepton among all b-jets in the event, or among the selected b-jets after all previous cuts. This affects which b-jet is considered for the delta R calculation.
+
+Question to user:
+Should the closest b-jet be determined among all b-jets in the event, or only among the selected b-jets after all previous cuts?
+
+Golden axe:
+Closest b-jet is determined among the selected b-jets after all previous cuts.
+
+Silver axe:
+Closest b-jet is determined among all b-jets in the event, regardless of selection status.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Plot delta R between the leading lepton and the closest b-jet among selected b-jets"
+- Silver axe rewrite: "Plot delta R between the leading lepton and the closest b-jet in the full event"

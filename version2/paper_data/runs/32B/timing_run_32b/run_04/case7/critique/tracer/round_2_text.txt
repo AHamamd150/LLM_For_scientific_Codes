@@ -1,0 +1,91 @@
+
+
+* subleading jet (continued)
+  - computed/defined as: helper_get_subleading(jets)
+  - upstream chain: helper_get_subleading([j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7])
+  - collection definition: [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - structure: single-constituent
+
+* dijet_obj
+  - computed/defined as: sum_objects(jet1, jet2)
+  - upstream chain: sum_objects(helper_get_leading(jets), helper_get_subleading(jets))
+  - collection definition: helper_get_leading([j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]), helper_get_subleading(...)
+  - structure: composite-derived
+
+* opposite-sign tau pair
+  - computed/defined as: opposite_sign(tau1, tau2)
+  - upstream chain: opposite_sign(helper_get_leading(taus), helper_get_subleading(taus))
+  - collection definition: helper_get_leading([t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]), helper_get_subleading(...)
+  - structure: multi-input
+
+* m_jj
+  - computed/defined as: helper_invariant_mass(jet1, jet2)
+  - upstream chain: helper_invariant_mass(helper_get_leading(jets), helper_get_subleading(jets))
+  - collection definition: helper_get_leading([j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]), helper_get_subleading(...)
+  - structure: composite-derived
+
+* delta_eta_jj
+  - computed/defined as: abs(helper_delta_eta(jet1, jet2))
+  - upstream chain: abs(helper_delta_eta(helper_get_leading(jets), helper_get_subleading(jets)))
+  - collection definition: helper_get_leading([j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]), helper_get_subleading(...)
+  - structure: multi-input
+
+* m_tautau
+  - computed/defined as: helper_invariant_mass(tau1, tau2)
+  - upstream chain: helper_invariant_mass(helper_get_leading(taus), helper_get_subleading(taus))
+  - collection definition: helper_get_leading([t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]), helper_get_subleading(...)
+  - structure: composite-derived
+
+* b-tagged jets veto
+  - computed/defined as: not any(j['btag'] == 1.0 for j in jets)
+  - upstream chain: not any(j['btag'] == 1.0 for j in [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7])
+  - collection definition: [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - structure: single-constituent
+
+* pt_tau1
+  - computed/defined as: tau1['pt']
+  - upstream chain: helper_get_leading(taus)['pt']
+  - collection definition: [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]
+  - structure: single-constituent
+
+* pt_tau2
+  - computed/defined as: tau2['pt']
+  - upstream chain: helper_get_subleading(taus)['pt']
+  - collection definition: [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]
+  - structure: single-constituent
+
+* pt_jet1
+  - computed/defined as: jet1['pt']
+  - upstream chain: helper_get_leading(jets)['pt']
+  - collection definition: [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - structure: single-constituent
+
+* pt_jet2
+  - computed/defined as: jet2['pt']
+  - upstream chain: helper_get_subleading(jets)['pt']
+  - collection definition: [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - structure: single-constituent
+
+* delta_r_tautau
+  - computed/defined as: helper_delta_r(tau1, tau2)
+  - upstream chain: helper_delta_r(helper_get_leading(taus), helper_get_subleading(taus))
+  - collection definition: helper_get_leading([t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]), helper_get_subleading(...)
+  - structure: multi-input
+
+* delta_phi_tautau_dijet
+  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])
+  - upstream chain: helper_delta_phi(sum_objects(tau1, tau2)['phi'], sum_objects(jet1, jet2)['phi'])
+  - collection definition: sum_objects(helper_get_leading(taus), helper_get_subleading(taus)), sum_objects(helper_get_leading(jets), helper_get_subleading(jets))
+  - structure: multi-input
+
+* centrality
+  - computed/defined as: centrality_between_jets(ditau_obj, jet1, jet2)
+  - upstream chain: centrality_between_jets(sum_objects(tau1, tau2), helper_get_leading(jets), helper_get_subleading(jets))
+  - collection definition: sum_objects(helper_get_leading(taus), helper_get_subleading(taus)), helper_get_leading([j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]), helper_get_subleading(...)
+  - structure: multi-input
+
+* cutflow
+  - computed/defined as: cutflow with keys "initial", "2_taus", "2_jets", "opposite_sign", "m_jj > 400", "delta_eta_jj > 2.5", "m_tautau 60-150", "no_bjets"
+  - upstream chain: cutflow initialized with event counts at each selection step
+  - collection definition: all_events
+  - structure: multi-input

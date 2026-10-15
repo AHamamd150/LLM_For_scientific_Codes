@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] Definition of "selected taus" for leading and subleading
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this matters:
+The phrase "selected taus" could refer to the raw collection of taus that passed pT and |eta| cuts, or it could refer to a subset after additional cuts like opposite-sign requirement or invariant mass window. The leading and subleading definition depends on which collection is used.
+
+Question to user:
+Are the leading and subleading taus defined from the raw selected taus (after pT and |eta| cuts), or from a further subset (e.g., after opposite-sign or invariant mass cuts)?
+
+Golden axe:
+Leading and subleading taus are defined from the raw selected taus (after pT and |eta| cuts).
+
+Silver axe:
+Leading and subleading taus are defined from the subset of selected taus that also satisfy the opposite-sign and invariant mass cuts.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Definition of "selected jets" for leading and subleading
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Why this matters:
+The phrase "selected jets" could refer to the raw collection of jets that passed pT and |eta| cuts, or it could refer to the subset after b-tag veto. The leading and subleading jets for the dijet system may depend on this choice.
+
+Question to user:
+Are the leading and subleading jets defined from the raw selected jets (after pT and |eta| cuts), or from the subset after b-tag veto?
+
+Golden axe:
+Leading and subleading jets are defined from the raw selected jets (after pT and |eta| cuts).
+
+Silver axe:
+Leading and subleading jets are defined from the subset of selected jets that passed the b-tag veto.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Reuse of ditau_obj and dijet_obj in delta phi calculation
+
+Original phrase:
+"Plot delta phi between the ditau_obj and the dijet_obj"
+
+Why this matters:
+The ditau_obj and dijet_obj are defined as the sum of leading and subleading objects. It is unclear whether these objects are defined using the same selection criteria as those used in the delta phi calculation. For example, if the ditau_obj is defined before the invariant mass cut, but the delta phi is computed using a different set of taus, the result could differ.
+
+Question to user:
+Are the ditau_obj and dijet_obj used in the delta phi calculation the same as those defined earlier from the leading and subleading objects?
+
+Golden axe:
+Yes, the same ditau_obj and dijet_obj are used in the delta phi calculation as those defined from the leading and subleading objects.
+
+Silver axe:
+The ditau_obj and dijet_obj used in the delta phi calculation may be redefined or computed from a different set of objects.
+
+Recommended default:
+Golden axe

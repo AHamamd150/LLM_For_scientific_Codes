@@ -1,0 +1,15 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+4,7,requirement,R1,Select electrons with pT > 15 GeV and |eta| < 2.5.,yes,yes,yes,no,Correctly identifies the electron comprehension at lines 242-243 and get_electrons dependency.
+4,7,requirement,R2,Select muons with pT > 10 GeV and |eta| < 2.4.,yes,yes,yes,no,Correctly identifies the muon comprehension at lines 248-249 and get_muons dependency.
+4,7,requirement,R3,Require exactly 2 selected electrons and exactly 1 selected muon.,yes,yes,yes,no,Correctly identifies the length check at lines 254-255.
+4,7,requirement,R4,Require the two selected electrons to have opposite charge.,yes,yes,yes,no,"Correctly identifies opposite_sign(e1, e2) at lines 259-261, including e1 and e2 dependencies."
+4,7,requirement,R5,Build z_obj from the two selected electrons using summed four-momentum.,yes,yes,yes,no,"Correctly identifies sum_objects(e1, e2) at lines 264-266."
+4,7,requirement,R6,Select invariant mass of z_obj between 76 and 106 GeV.,yes,yes,yes,no,The tracer identifies the mass calculation and cut at lines 268-270; helper_invariant_mass depends on e1 and e2.
+4,7,requirement,R7,Define the selected muon as the W candidate lepton.,yes,yes,yes,no,Correctly identifies w_muon = muons[0] at line 280.
+4,7,requirement,R8,Require MET > 30 GeV.,yes,yes,yes,no,Correctly identifies MET retrieval and threshold check at lines 274-276.
+4,7,requirement,R9,Require the W candidate muon to have pT > 20 GeV.,yes,yes,yes,no,Correctly identifies the w_muon pT check at lines 280-283.
+4,7,requirement,R10,Require transverse mass of the W candidate muon plus MET to be greater than 30 GeV.,yes,yes,yes,no,Correctly identifies helper_transverse_mass and the cut at lines 285-289.
+4,7,requirement,R11,"Apply the cuts sequentially, skip immediately on failure, and increment each cutflow counter immediately after passing.",partial,uncertain,uncertain,no,The output traces individual cut expressions but does not explicitly trace sequential control flow or the immediate counter increments at lines 243-289.
+4,7,requirement,R12,"Plot the ten requested observables as simple validation histograms, including the specified Z-mass range and 40-bin density formatting.",partial,no,partial,no,"The tracer identifies the value lists and upstream calculations, but not the actual plt.hist calls, labels, ranges, filenames, or common formatting. For example, plotting is implemented at lines 314-382, while the cited locations are mostly list appends at lines 294-312."
+4,7,requirement,R13,"After the event loop, print one cutflow summary with the number of events after each selection step.",partial,no,partial,no,The claim cites cutflow initialization at lines 216-227 rather than the after-loop print at lines 384-386; it does not explicitly identify the print loop.
+4,7,requirement,R14,Save the plots in PNG format.,yes,yes,yes,no,Correctly identifies plt.savefig calls with .png filenames at lines 318-382.

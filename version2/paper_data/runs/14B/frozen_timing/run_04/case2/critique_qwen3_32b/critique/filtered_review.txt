@@ -1,0 +1,58 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- top_hadronic = sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The code builds the hadronic top candidate from the leading b-jet and the hadronic W candidate, which is correct. However, the hadronic W candidate is constructed from the two leading non-b-tagged jets, and the leading b-jet is selected from the b-tagged jets. The composite object is correctly formed from all required constituents.
+
+Evidence priority:
+- top_hadronic = sum_objects(leading_bjet, w_hadronic); 〔L333-L333〕
+
+Generator bias:
+none
+
+[KEPT 2] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- helper_get_subleading(selected_bjets)['pt']
+
+Reason:
+The specification does not specify whether the subleading b-jet should be selected from the full event or from the selected b-jets. The code uses the selected b-jets, which is a valid interpretation, but the specification is ambiguous.
+
+Evidence priority:
+- helper_get_subleading(selected_bjets)['pt']; 〔L343-L343〕
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+[DROPPED 1] drop: matched noise signal 'matches the spec'
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if w_mass < 40 or w_mass > 120: continue
+
+Reason:
+The code applies a cut on the hadronic W mass between 40 and 120 GeV, which matches the specification. However, the hadronic W is built from the two leading non-b-tagged jets, but the jets are selected from the full event (not from the selected jets). This is a mismatch because the jets used to build the hadronic W should be selected with the same pT and |eta| cuts as the jets in the jet selection step.
+
+Evidence priority:
+- selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]; 〔L318-L319〕
+
+Generator bias:
+none

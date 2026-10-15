@@ -1,0 +1,98 @@
+[CANDIDATE 1] z_obj definition and reuse
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum."
+
+Unresolved choice:
+It is unclear whether the z_obj is a temporary object used only for the invariant mass cut or if it is meant to be reused in later steps (e.g., for plotting the pT of z_obj or for delta phi between z_obj and MET).
+
+Why this may matter:
+If z_obj is only used for the invariant mass cut, it may be sufficient to compute the invariant mass directly without building a full composite object. If it is meant to be reused, the code must retain the full four-momentum information for later steps.
+
+[CANDIDATE 2] W candidate muon definition and reuse
+
+Original phrase:
+"Define the selected muon as the W candidate lepton."
+
+Unresolved choice:
+It is unclear whether this definition is only for the purpose of computing the transverse mass or if it is meant to be reused in other parts of the analysis (e.g., in the three-lepton system pT plot).
+
+Why this may matter:
+If the W candidate muon is only used for the transverse mass cut, it may be sufficient to compute it once. If it is reused in multiple plots, the code must ensure it is consistently defined and accessible in all relevant steps.
+
+[CANDIDATE 3] Three-lepton system definition
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Unresolved choice:
+It is unclear whether the three-lepton system is built from the same two electrons used to build z_obj and the same selected muon used as the W candidate, or if it refers to a different combination of electrons and muons.
+
+Why this may matter:
+If the three-lepton system is built from the same electrons and muon as z_obj and the W candidate, the code must ensure that the same objects are reused. If it refers to a different combination, the code may need to reselect or recombine the objects, which could lead to inconsistencies.
+
+[CANDIDATE 4] MET usage in transverse mass
+
+Original phrase:
+"Select transverse mass of W candidate muon + MET > 30 GeV."
+
+Unresolved choice:
+It is unclear whether the MET used in the transverse mass calculation is the raw MET or the MET after any potential corrections or vetoes.
+
+Why this may matter:
+If the MET is raw, the transverse mass is computed directly from the uncorrected MET. If the MET is corrected or vetted (e.g., against jets), the transverse mass calculation could be affected, and the MET must be explicitly defined or filtered accordingly.
+
+[CANDIDATE 5] Cutflow counter timing
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether the cutflow counters are incremented at the exact point of each cut or if any intermediate operations (e.g., object building or selection) might affect the timing of the increment.
+
+Why this may matter:
+If the cutflow counter is incremented immediately after the cut is passed, the code must ensure that no operations after the increment can affect the event processing. If intermediate operations are allowed, the cutflow may not accurately reflect the event progression.
+
+[CANDIDATE 6] Electron and muon selection consistency
+
+Original phrase:
+"Select electrons with pT > 15 GeV and |eta| < 2.5. Select muons with pT > 10 GeV and |eta| < 2.4."
+
+Unresolved choice:
+It is unclear whether these cuts are applied to the full event-level collections or to a previously filtered or selected subset of electrons and muons.
+
+Why this may matter:
+If the cuts are applied to the full collections, the code must select and filter the electrons and muons at this step. If they are applied to a previously filtered collection, the code must ensure that the same objects are reused consistently.
+
+[CANDIDATE 7] Electron charge requirement
+
+Original phrase:
+"Require the two selected electrons to have opposite charge."
+
+Unresolved choice:
+It is unclear whether this requirement is applied to the full event-level electron collection or to a previously selected or filtered subset of electrons.
+
+Why this may matter:
+If the requirement is applied to the full collection, the code must select and filter the electrons at this step. If it is applied to a previously selected subset, the code must ensure that the same objects are reused consistently.
+
+[CANDIDATE 8] MET requirement
+
+Original phrase:
+"Require MET > 30 GeV."
+
+Unresolved choice:
+It is unclear whether this MET requirement is applied to the raw MET or to a corrected or filtered version of the MET.
+
+Why this may matter:
+If the requirement is applied to the raw MET, the code must use the uncorrected MET value. If it is applied to a corrected or filtered MET, the code must ensure that the MET is properly defined and accessible at this step.
+
+[CANDIDATE 9] W candidate muon pT requirement
+
+Original phrase:
+"The W candidate muon must have pT > 20 GeV."
+
+Unresolved choice:
+It is unclear whether this pT requirement is applied to the raw muon or to a previously selected or filtered muon.
+
+Why this may matter:
+If the requirement is applied to the raw muon, the code must select and filter the muon at this step. If it is applied to a previously selected muon, the code must ensure that the same object is reused consistently.

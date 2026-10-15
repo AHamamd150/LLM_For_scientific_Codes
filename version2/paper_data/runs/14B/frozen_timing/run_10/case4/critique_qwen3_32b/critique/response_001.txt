@@ -1,0 +1,6 @@
+◎ (none)  
+SPEC: none  
+CODE: none  
+Reason: No semantic inconsistencies found.  
+Evidence priority: All definitions in the TRACER OUTPUT match the SPEC.  
+Generator bias: none

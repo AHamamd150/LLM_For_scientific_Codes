@@ -1,0 +1,91 @@
+[CANDIDATE 1] Lepton selection and usage
+
+Original phrase:
+"Require exactly one lepton (electron or muon)"
+
+Unresolved choice:
+It is unclear whether this refers to the total number of selected electrons and muons combined, or if it refers to a specific selection of one lepton after applying the pT and |eta| cuts.
+
+Why this may matter:
+Different interpretations could lead to different lepton selection logic—whether the analysis counts all electrons and muons and requires exactly one, or whether it selects one lepton from a combined collection.
+
+[CANDIDATE 2] Jet selection for hadronic W candidate
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Unresolved choice:
+It is unclear whether "leading" refers to the two highest-pT jets among all non-b-tagged jets in the event, or if it refers to the two highest-pT jets after applying the jet pT and |eta| cuts.
+
+Why this may matter:
+If the jet selection is applied before or after the cuts, the jet composition of the hadronic W candidate could change, affecting the invariant mass calculation and subsequent analysis steps.
+
+[CANDIDATE 3] b-jet selection for top candidate
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Unresolved choice:
+It is unclear whether "leading b-jet" refers to the highest-pT b-tagged jet in the event, or if it refers to the highest-pT b-jet after applying the jet pT and |eta| cuts.
+
+Why this may matter:
+The jet used for the top candidate could vary depending on whether the jet selection is applied before or after the cuts, potentially changing the reconstructed top mass and kinematics.
+
+[CANDIDATE 4] MET and transverse mass selection
+
+Original phrase:
+"Select MET > 20 GeV"
+"Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)"
+
+Unresolved choice:
+It is unclear whether the transverse mass is computed using the raw MET or the MET after any potential corrections or vetoes.
+
+Why this may matter:
+If the MET is modified by other cuts or corrections, the transverse mass calculation could be affected, leading to different W candidate selections.
+
+[CANDIDATE 5] Jet selection for b-tagged and non-b-tagged jets
+
+Original phrase:
+"Require at least 2 b-tagged jets"
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Unresolved choice:
+It is unclear whether the b-tagged and non-b-tagged jet selections are applied to the full jet collection or to the jets that have already passed the pT and |eta| cuts.
+
+Why this may matter:
+The jet composition for the hadronic W and top candidates could change depending on whether the jet selection is applied before or after the cuts, affecting the invariant mass and kinematic distributions.
+
+[CANDIDATE 6] Jet ordering for leading and subleading b-jets
+
+Original phrase:
+"Plot the pT of the leading b-jet"
+"Plot the pT of the subleading b-jet"
+
+Unresolved choice:
+It is unclear whether "leading" and "subleading" b-jets refer to the highest and second-highest pT b-tagged jets in the event, or if they refer to the highest and second-highest pT b-tagged jets after applying the jet pT and |eta| cuts.
+
+Why this may matter:
+The jet ordering could change depending on whether the jet selection is applied before or after the cuts, potentially affecting the pT distributions and the top candidate construction.
+
+[CANDIDATE 7] Jet selection for invariant mass plots
+
+Original phrase:
+"Plot the invariant mass of the two leading non-b-tagged jets (W hadronic candidate) in range 40 to 120 GeV"
+"Plot the invariant mass of leading b-jet + W hadronic candidate (top hadronic) in range 100 to 250 GeV"
+
+Unresolved choice:
+It is unclear whether the jets used in the invariant mass plots are the same as those used in the hadronic W and top candidate constructions, or if they are selected independently.
+
+Why this may matter:
+If the jet selection for the plots differs from the jet selection used in the candidate constructions, the invariant mass distributions could be inconsistent with the candidate definitions, leading to confusion or misinterpretation of the results.
+
+[CANDIDATE 8] Delta R between lepton and b-jet
+
+Original phrase:
+"Plot delta R between the leading lepton and the closest b-jet"
+
+Unresolved choice:
+It is unclear whether the "leading lepton" refers to the highest-pT lepton among all selected leptons, or if it refers to the single lepton that passed the "exactly one lepton" requirement.
+
+Why this may matter:
+If the lepton is already uniquely selected, the "leading" label may be redundant or misleading, and the delta R calculation could be affected if the jet selection is applied before or after the cuts.

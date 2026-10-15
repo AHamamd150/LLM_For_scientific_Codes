@@ -1,0 +1,71 @@
+[AMBIGUITY 1] Leading b-jet definition
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Why this is dangerous:
+This phrase is ambiguous about whether "leading b-jet" refers to the highest-pT b-jet among all jets in the event (before any selection), or the highest-pT b-jet among the selected b-jets (after cuts and b-tagging).
+
+Question to user:
+Should the "leading b-jet" be defined as the highest-pT b-jet in the full event (before any cuts), or among the selected b-jets (after b-tagging and pT/eta cuts)?
+
+Golden axe:
+Leading b-jet is the highest-pT b-jet among the selected b-jets (after b-tagging and pT/eta cuts).
+
+Silver axe:
+Leading b-jet is the highest-pT b-jet in the full event, regardless of selection status.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Build the hadronic top candidate from the leading selected b-jet and the hadronic W candidate."
+- Silver axe rewrite: "Build the hadronic top candidate from the leading b-jet in the event (regardless of selection) and the hadronic W candidate."
+
+[AMBIGUITY 2] Non-b-tagged jet selection
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Why this is dangerous:
+This phrase is ambiguous about whether "non-b-tagged jets" refers to jets that are explicitly not b-tagged (i.e., light jets), or simply jets that are not among the selected b-jets (which may include jets that are not b-tagged but also not selected due to pT/eta cuts).
+
+Question to user:
+Should "non-b-tagged jets" be interpreted as jets that are explicitly not b-tagged (regardless of selection status), or as jets that are not among the selected b-jets (i.e., light jets that passed pT/eta cuts)?
+
+Golden axe:
+"Non-b-tagged jets" refers to jets that are not b-tagged and passed pT/eta cuts (i.e., selected light jets).
+
+Silver axe:
+"Non-b-tagged jets" refers to any jets in the event that are not b-tagged, regardless of whether they passed pT/eta cuts.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+- Silver axe rewrite: "Build the hadronic W candidate from the two leading non-b-tagged jets in the event (regardless of selection status)."
+
+[AMBIGUITY 3] MET usage in transverse mass
+
+Original phrase:
+"Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)"
+
+Why this is dangerous:
+This phrase is ambiguous about whether the MET used in the transverse mass calculation is the raw MET from the event, or the MET after any potential MET corrections or MET-related selections.
+
+Question to user:
+Should the transverse mass be calculated using the raw MET from the event, or should it use a corrected MET value (if any MET corrections are applied in the analysis)?
+
+Golden axe:
+Use the raw MET as provided in the event without any corrections.
+
+Silver axe:
+Use a corrected MET value if MET corrections are applied in the analysis.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Select transverse mass of the lepton and raw MET between 30 and 150 GeV (W candidate)"
+- Silver axe rewrite: "Select transverse mass of the lepton and corrected MET between 30 and 150 GeV (W candidate)"

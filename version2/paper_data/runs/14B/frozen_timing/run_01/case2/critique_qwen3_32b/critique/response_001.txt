@@ -1,0 +1,322 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- top_candidate = sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The code correctly builds the hadronic top candidate from the leading b-jet and the hadronic W candidate. The composite object is constructed from both required constituents.
+
+Evidence priority:
+- top_candidate = sum_objects(leading_bjet, w_hadronic); 〔L351-L352〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- w_hadronic = sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+The code correctly builds the hadronic W candidate from the two leading non-b-tagged jets. The composite object is constructed from both required constituents.
+
+Evidence priority:
+- w_hadronic = sum_objects(leading_light_jet, subleading_light_jet); 〔L340-L341〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if w_hadronic_mass < 40 or w_hadronic_mass > 120: continue
+
+Reason:
+The code correctly implements the hadronic W mass selection. The condition matches the specification.
+
+Evidence priority:
+- if w_hadronic_mass < 40 or w_hadronic_mass > 120: continue; 〔L343-L344〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Select the transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- if mt < 30 or mt > 150: continue
+
+Reason:
+The code correctly implements the transverse mass selection. The condition matches the specification.
+
+Evidence priority:
+- if mt < 30 or mt > 150: continue; 〔L324-L325〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Require at least 2 b-tagged jets
+
+CODE:
+- selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The code applies pT and |eta| cuts to b-tagged jets, but the specification does not explicitly require these cuts. This is a specification ambiguity.
+
+Evidence priority:
+- selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]; 〔L310-L311〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- selected_jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The code applies pT and |eta| cuts to jets, but the specification does not explicitly require these cuts. This is a specification ambiguity.
+
+Evidence priority:
+- selected_jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]; 〔L303-L304〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- if len(selected_leptons) != 1: continue
+
+Reason:
+The code correctly implements the requirement for exactly one lepton.
+
+Evidence priority:
+- if len(selected_leptons) != 1: continue; 〔L297-L298〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- if met is None or met['pt'] < 20: continue
+
+Reason:
+The code correctly implements the MET selection.
+
+Evidence priority:
+- if met is None or met['pt'] < 20: continue; 〔L316-L318〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- top_candidate = sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The code correctly builds the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+Evidence priority:
+- top_candidate = sum_objects(leading_bjet, w_hadronic); 〔L351-L352〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of the two leading non-b-tagged jets (W hadronic candidate) in range 40 to 120 GeV
+
+CODE:
+- w_hadronic_mass_list.append(w_hadronic_mass)
+
+Reason:
+The code correctly plots the invariant mass of the two leading non-b-tagged jets.
+
+Evidence priority:
+- w_hadronic_mass_list.append(w_hadronic_mass); 〔L346-L347〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of leading b-jet + W hadronic candidate (top hadronic) in range 100 to 250 GeV
+
+CODE:
+- top_mass_list.append(top_mass)
+
+Reason:
+The code correctly plots the invariant mass of the leading b-jet and the hadronic W candidate.
+
+Evidence priority:
+- top_mass_list.append(top_mass); 〔L358-L359〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic candidate)
+
+CODE:
+- mt_list.append(mt)
+
+Reason:
+The code correctly plots the transverse mass of the lepton and MET.
+
+Evidence priority:
+- mt_list.append(mt); 〔L328-L329〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- met_list.append(met['pt'])
+
+Reason:
+The code correctly plots the MET distribution.
+
+Evidence priority:
+- met_list.append(met['pt']); 〔L329-L330〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- leading_bjet_pt_list.append(leading_bjet['pt'])
+
+Reason:
+The code correctly plots the pT of the leading b-jet.
+
+Evidence priority:
+- leading_bjet_pt_list.append(leading_bjet['pt']); 〔L375-L376〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- subleading_bjet_pt_list.append(subleading_bjet['pt'])
+
+Reason:
+The code correctly plots the pT of the subleading b-jet.
+
+Evidence priority:
+- subleading_bjet_pt_list.append(subleading_bjet['pt']); 〔L379-L381〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- ht_list.append(ht)
+
+Reason:
+The code correctly plots the HT distribution.
+
+Evidence priority:
+- ht_list.append(ht); 〔L368-L370〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- njet_list.append(len(selected_jets))
+
+Reason:
+The code correctly plots the number of jets per event.
+
+Evidence priority:
+- njet_list.append(len(selected_jets)); 〔L372-L373〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Plot delta R between the leading lepton and the closest b-jet
+
+CODE:
+- dr_lepton_bjet_list.append(min_dr)
+
+Reason:
+The code correctly plots the delta R between the leading lepton and the closest b-jet.
+
+Evidence priority:
+- dr_lepton_bjet_list.append(min_dr); 〔L360-L366〕
+
+Generator bias:
+none
+
+❓ (B) definition mismatch
+
+SPEC:
+- Plot eta of the leading b-jet
+
+CODE:
+- leading_bjet_eta_list.append(leading_bjet['eta'])
+
+Reason:
+The code correctly plots the eta of the leading b-jet.
+
+Evidence priority:
+- leading_bjet_eta_list.append(leading_bjet['eta']); 〔L385-L386〕
+
+Generator bias:
+none

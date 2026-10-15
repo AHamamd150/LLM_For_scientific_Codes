@@ -1,0 +1,111 @@
+[CANDIDATE 1] Lepton definition and selection
+
+Original phrase:
+"Require exactly one lepton (electron or muon)"
+
+Unresolved choice:
+It is unclear whether "exactly one lepton" refers to the combined electron+muon collection after applying the pT and |eta| cuts, or if it refers to the raw collections before any cuts.
+
+Why this may matter:
+If the count is applied before cuts, the selection could include events with multiple leptons that fail the pT/eta requirements, which may not be the intended behavior. If applied after cuts, the selection ensures only one lepton survives the cuts, which is more likely the intended behavior.
+
+[CANDIDATE 2] Jet selection and b-tagging
+
+Original phrase:
+"Require at least 4 jets with pT > 30 GeV and |eta| < 2.5"
+"Require at least 2 b-tagged jets"
+
+Unresolved choice:
+It is unclear whether the jet and b-tagged jet counts are applied to the full jet collection or to a subset of jets that have already passed earlier cuts (e.g., after lepton selection or MET requirements).
+
+Why this may matter:
+If the jet counts are applied to the full jet collection, it could include jets that are later vetoed or excluded in downstream steps (e.g., in the hadronic W candidate construction). If applied after earlier cuts, it ensures that the jet counts are consistent with the rest of the selection.
+
+[CANDIDATE 3] Hadronic W candidate construction
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Unresolved choice:
+It is unclear whether the "leading non-b-tagged jets" are selected from the full jet collection or from the jet collection after applying the pT and |eta| cuts.
+
+Why this may matter:
+If the jets are selected from the full jet collection, the hadronic W candidate may include jets that fail the pT/eta requirements. If selected after cuts, the hadronic W candidate is built from jets that are consistent with the rest of the selection.
+
+[CANDIDATE 4] Hadronic W mass selection
+
+Original phrase:
+"Select the hadronic W mass between 40 to 120GeV."
+
+Unresolved choice:
+It is unclear whether this cut is applied to the hadronic W candidate built from the two leading non-b-tagged jets, or if it refers to a different definition of the hadronic W mass (e.g., from a different jet pairing or a different jet selection).
+
+Why this may matter:
+If the hadronic W mass is computed from a different jet pairing or a different jet selection, the cut could be applied to a different object than intended, leading to incorrect event rejection or acceptance.
+
+[CANDIDATE 5] Hadronic top candidate construction
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Unresolved choice:
+It is unclear whether the "leading b-jet" is selected from the full b-jet collection or from the b-jet collection after applying the jet pT and |eta| cuts.
+
+Why this may matter:
+If the leading b-jet is selected from the full b-jet collection, it may include jets that fail the pT/eta requirements and are later excluded in the analysis. If selected after cuts, the hadronic top candidate is built from jets consistent with the rest of the selection.
+
+[CANDIDATE 6] MET and transverse mass selection
+
+Original phrase:
+"Select MET > 20 GeV"
+"Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)"
+
+Unresolved choice:
+It is unclear whether the MET and transverse mass are computed from the full event or from a subset of the event (e.g., after lepton selection or jet selection).
+
+Why this may matter:
+If the MET and transverse mass are computed from the full event, they may include contributions from objects that are later vetoed or excluded in the analysis. If computed after selection, they are consistent with the rest of the selection.
+
+[CANDIDATE 7] Plotting the hadronic W mass
+
+Original phrase:
+"Plot the invariant mass of the two leading non-b-tagged jets (W hadronic candidate) in range 40 to 120 GeV"
+
+Unresolved choice:
+It is unclear whether the "leading non-b-tagged jets" used in the plot are the same as those used to build the hadronic W candidate in the selection cuts.
+
+Why this may matter:
+If the jets used in the plot are different from those used in the selection, the plot may not reflect the actual hadronic W candidate used in the analysis, leading to confusion or misinterpretation.
+
+[CANDIDATE 8] Plotting the hadronic top mass
+
+Original phrase:
+"Plot the invariant mass of leading b-jet + W hadronic candidate (top hadronic) in range 100 to 250 GeV"
+
+Unresolved choice:
+It is unclear whether the "leading b-jet" and "W hadronic candidate" used in the plot are the same as those used to build the hadronic top candidate in the selection cuts.
+
+Why this may matter:
+If the objects used in the plot are different from those used in the selection, the plot may not reflect the actual hadronic top candidate used in the analysis, leading to confusion or misinterpretation.
+
+[CANDIDATE 9] Delta R between lepton and b-jet
+
+Original phrase:
+"Plot delta R between the leading lepton and the closest b-jet"
+
+Unresolved choice:
+It is unclear whether the "leading lepton" and "closest b-jet" are defined before or after the selection cuts (e.g., after MET or jet requirements).
+
+Why this may matter:
+If the lepton and b-jet are defined before cuts, the delta R could include objects that are later excluded in the analysis. If defined after cuts, the delta R is consistent with the rest of the selection.
+
+[CANDIDATE 10] HT distribution
+
+Original phrase:
+"Plot the HT distribution (scalar sum of all jet pT)"
+
+Unresolved choice:
+It is unclear whether the HT is computed from the full jet collection or from the jet collection after applying the pT and |eta| cuts.
+
+Why this may matter:
+If the HT is computed from the full jet collection, it may include jets that are later excluded in the analysis. If computed after cuts, the HT is consistent with the rest of the selection.

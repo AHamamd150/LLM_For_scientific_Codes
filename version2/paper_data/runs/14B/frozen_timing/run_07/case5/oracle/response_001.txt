@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading and subleading object definitions
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading and subleading taus are defined before or after applying the "opposite-sign tau pair" cut, which may affect which objects are considered in the selection.
+
+Question to user:
+Are the leading and subleading taus defined before or after the opposite-sign tau pair requirement is applied?
+
+Golden axe:
+Leading and subleading taus are defined after the opposite-sign tau pair requirement is applied.
+
+Silver axe:
+Leading and subleading taus are defined before the opposite-sign tau pair requirement is applied.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Dijet system definition
+
+Original phrase:
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading and subleading jets are defined before or after the "VBF topology" requirement of at least 2 jets, which may affect which jets are used in the dijet system.
+
+Question to user:
+Are the leading and subleading jets used to define the dijet system defined before or after the "at least 2 jets" requirement is applied?
+
+Golden axe:
+Leading and subleading jets are defined after the "at least 2 jets" requirement is applied.
+
+Silver axe:
+Leading and subleading jets are defined before the "at least 2 jets" requirement is applied.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Veto on b-tagged jets
+
+Original phrase:
+"Veto events with b-tagged jets"
+
+Why this is dangerous:
+The phrase does not clarify whether the veto applies to all b-tagged jets in the event or only to b-tagged jets that are selected after the jet cuts.
+
+Question to user:
+Does the veto on b-tagged jets apply to all b-tagged jets in the event or only to b-tagged jets that pass the jet selection cuts?
+
+Golden axe:
+The veto applies to all b-tagged jets in the event, regardless of whether they pass jet selection cuts.
+
+Silver axe:
+The veto applies only to b-tagged jets that pass the jet selection cuts.
+
+Recommended default:
+Golden axe

@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n◎ correct implementation\n\nSPEC:\nnone\n\nCODE:\nnone\n\nReason:\nThe code correctly implements all the selection cuts, plotting requirements, and output structure as specified in the SPEC. All quantities are computed using the appropriate helper functions and selections, and the cutflow is properly tracked and printed.\n\nEvidence priority:\nThe tracer output confirms that all SPEC items are implemented correctly with the appropriate upstream chains.\n\nGenerator bias:\nnone",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788623566,
+  "id": "chatcmpl-b5b8d776-d2cd-4bfa-9070-e7c369e7178c",
+  "model": "Qwen/Qwen3-14B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-7e17f8bc",
+  "usage": {
+    "completion_tokens": 86,
+    "prompt_tokens": 10838,
+    "prompt_tokens_details": null,
+    "total_tokens": 10924
+  }
+}

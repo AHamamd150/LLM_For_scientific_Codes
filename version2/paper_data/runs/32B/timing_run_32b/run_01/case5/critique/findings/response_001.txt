@@ -1,0 +1,107 @@
+◎ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+- Define dijet_obj from the summed momentum of the leading jet and subleading jet.
+
+CODE:
+- ditau_obj = sum_objects(lead_tau, sublead_tau)
+- dijet_obj = sum_objects(lead_jet, sublead_jet)
+
+Reason:
+The code correctly constructs the ditau_obj and dijet_obj from the four-momentum of the leading and subleading tau and jet, respectively. This matches the composite system-level definitions in the SPEC.
+
+Evidence priority:
+sum_objects(lead_tau, sublead_tau), sum_objects(lead_jet, sublead_jet)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require opposite-sign tau pair
+
+CODE:
+- if not opposite_sign(lead_tau, sublead_tau): continue
+
+Reason:
+The code correctly checks for opposite-sign tau pairs using the opposite_sign helper function, which matches the definition in the SPEC.
+
+Evidence priority:
+opposite_sign(lead_tau, sublead_tau)
+
+Generator bias:
+none
+
+◎ (C) missing implementation
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+There are no missing implementations in the code. All required definitions and behaviors from the SPEC are implemented.
+
+Evidence priority:
+All required definitions and behaviors are implemented.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+There are no specification ambiguities in the code. All required definitions and behaviors from the SPEC are implemented.
+
+Evidence priority:
+All required definitions and behaviors are implemented.
+
+Generator bias:
+none
+
+◎ (E) extra behavior
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+There is no extra behavior in the code. All implemented behavior is requested by the SPEC.
+
+Evidence priority:
+All implemented behavior is requested by the SPEC.
+
+Generator bias:
+none
+
+◎ (F) generator-induced bias
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+There is no evidence of generator-induced bias in the code. The code correctly implements the required behavior from the SPEC.
+
+Evidence priority:
+All required behavior is implemented correctly.
+
+Generator bias:
+none
+
+---
+
+None

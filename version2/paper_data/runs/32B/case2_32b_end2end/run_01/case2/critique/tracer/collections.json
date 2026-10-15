@@ -1,0 +1,27 @@
+{
+  "jets": {
+    "name": "jets",
+    "definition": "[j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5], bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]",
+    "used_by": [
+      "hadronic_W_candidate",
+      "HT",
+      "n_jets"
+    ]
+  },
+  "bjets": {
+    "name": "bjets",
+    "definition": "[b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5], light_jets_sorted = sort_by_pt([j for j in jets if j not in bjets])",
+    "used_by": [
+      "hadronic_top_candidate",
+      "leading_bjet",
+      "subleading_bjet"
+    ]
+  },
+  "bjets_sorted": {
+    "name": "bjets_sorted",
+    "definition": "sort_by_pt(bjets)",
+    "used_by": [
+      "leading_bjet_eta"
+    ]
+  }
+}

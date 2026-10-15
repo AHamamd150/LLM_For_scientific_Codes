@@ -1,0 +1,25 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+1,3,requirement,R1,Select electrons with pT > 25 GeV and |eta| < 2.5,yes,yes,yes,no,"Correctly identifies the electron selection at lines 288-295, including get_electrons(event)."
+1,3,requirement,R2,Select muons with pT > 20 GeV and |eta| < 2.4,yes,yes,yes,no,Correctly identifies the muon selection at lines 288-295.
+1,3,requirement,R3,Use selected electrons and selected muons to define selected leptons,yes,yes,yes,no,Correctly traces electrons and muons into the combined filtered leptons collection at lines 288-295.
+1,3,requirement,R4,Require exactly 1 selected lepton,yes,yes,yes,no,Correctly identifies len(leptons) != 1 followed by continue at lines 298-301.
+1,3,requirement,R5,Require at least 2 jets with pT > 30 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly traces the filtered jets collection and len(jets) < 2 rejection at lines 303-308.
+1,3,requirement,R6,Select MET > 30 GeV,yes,yes,yes,no,"The code accepts MET at least 30 GeV because it rejects only met['pt'] < 30 at lines 315-319. The tracer's shorthand says >30, but its cited source is correct."
+1,3,requirement,R7,Veto events with b-tagged jets,yes,yes,yes,no,"Correctly traces n_bjets(event, 30, 2.5) and the rejection at lines 310-313, including get_bjets as the dependency."
+1,3,requirement,R8,Select transverse mass of lepton plus MET between 40 and 120 GeV,yes,yes,yes,no,"Correctly identifies helper_transverse_mass(lepton, met) and the 40 < mt < 120 cut at lines 321-326."
+1,3,requirement,R9,Select invariant mass of the two leading jets between 60 and 100 GeV,yes,yes,yes,no,"Correctly traces leading/subleading jet construction, helper_invariant_mass, and the cut at lines 328-336."
+1,3,requirement,R10,Select delta R between the two leading jets less than 3.0,yes,yes,yes,no,Correctly identifies helper_delta_r and the dr >= 3.0 rejection at lines 338-342.
+1,3,requirement,R11,Apply the cuts sequentially and skip the event immediately when a cut is not satisfied,partial,yes,yes,no,"The cited cut locations show sequential continue-based rejection, but the tracer does not explicitly trace this cross-cut control-flow requirement. Also, the electron/muon cutflow counter is incremented for every event at line 296."
+1,3,requirement,R12,Plot transverse mass in the range 30 to 150 GeV,partial,no,yes,no,"The tracer identifies mt_list at lines 344-346, but not the actual histogram operation or range at lines 384-390."
+1,3,requirement,R13,Plot dijet invariant mass in the range 40 to 120 GeV,partial,no,yes,no,"The tracer identifies mjj_list at lines 346-347, but not the actual plt.hist call and range=(40, 120) at lines 392-397."
+1,3,requirement,R14,Plot the MET distribution,partial,no,yes,no,"The data list is traced at lines 347-349, but the plotting operation is at lines 399-404 and is not cited."
+1,3,requirement,R15,Plot the pT of the lepton,partial,no,yes,no,"The tracer identifies lepton_pt_list at lines 349-350, but not its plt.hist realization at lines 406-411."
+1,3,requirement,R16,Plot the pT of the leading jet,partial,no,yes,no,"The tracer identifies jet1_pt_list at lines 350-351, but not the histogram code at lines 413-418."
+1,3,requirement,R17,Plot the pT of the subleading jet,partial,no,yes,no,"The tracer identifies jet2_pt_list at lines 351-352, but not the histogram code at lines 420-425."
+1,3,requirement,R18,Plot delta R between the two leading jets,partial,no,yes,no,"The tracer identifies dr_list at lines 352-353, but not the histogram operation at lines 427-432."
+1,3,requirement,R19,Plot delta phi between the lepton and MET,partial,no,yes,no,"The tracer correctly traces the value construction at lines 353-355, but not the actual histogram at lines 434-439."
+1,3,requirement,R20,Plot the eta of the lepton,partial,no,yes,no,"The tracer identifies lepton_eta_list at lines 357-358, but not the plotting code at lines 441-446."
+1,3,requirement,R21,Plot delta phi between the lepton and the two-jet system,partial,no,yes,no,"The value and dependency are correctly traced at lines 360-366, but the histogram realization at lines 448-454 is not identified."
+1,3,requirement,R22,"After the event loop, print one cutflow summary with the number of events after each selection step",yes,yes,yes,no,Correctly identifies the cutflow dictionary and post-loop printing at lines 260-270 and 380-382.
+1,3,requirement,R23,Save the plots in PNG format,yes,yes,yes,no,Correctly identifies plt.savefig calls with .png filenames at lines 384-454.
+1,3,requirement,R24,"Save transverse mass, dijet mass, MET, lepton pT, delta R, and lepton-to-two-jet-system delta phi in a CSV file",yes,yes,yes,no,"Correctly traces all six CSV fields and their dependencies at lines 368-375, with file writing at lines 455-459."

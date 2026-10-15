@@ -1,0 +1,25 @@
+
+
+* ht_list
+  - computed/defined as: ht_list.append(ht)
+  - upstream chain: ht -> scalar_pt_sum(selected_jets)
+  - collection definition: selected_jets -> [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - structure: single-constituent
+
+* njet_list
+  - computed/defined as: njet_list.append(len(selected_jets))
+  - upstream chain: selected_jets -> [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: jets -> get_jets(event)
+  - structure: single-constituent
+
+* leading_bjet_eta_list
+  - computed/defined as: leading_bjet_eta_list.append(leading_bjet['eta'])
+  - upstream chain: leading_bjet -> selected_bjets_sorted[0]
+  - collection definition: selected_bjets_sorted -> sort_by_pt(selected_bjets)
+  - structure: single-constituent
+
+* cutflow
+  - computed/defined as: cutflow dictionary with keys and values updated at each selection step
+  - upstream chain: cutflow -> cutflow dictionary
+  - collection definition: cutflow dictionary initialized with keys and values
+  - structure: multi-input

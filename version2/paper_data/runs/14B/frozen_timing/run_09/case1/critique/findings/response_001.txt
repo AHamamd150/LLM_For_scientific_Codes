@@ -1,0 +1,225 @@
+◎ (A) composite violation
+
+SPEC:
+- Select delta phi between the lepton and the two-jet system
+
+CODE:
+- helper_delta_phi(lepton['phi'], jet_system['phi'])
+
+Reason:
+The SPEC refers to a system-level quantity (the two-jet system), but the implementation uses a composite object constructed from the two leading jets. This is not a violation because the jet_system is explicitly constructed from the two leading jets, and the delta phi is computed between the lepton and this composite object.
+
+Evidence priority:
+- jet_system is defined as sum_objects(jet1, jet2) 〔L365〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select transverse mass of lepton + MET between 40 and 120 GeV (W leptonic candidate)
+
+CODE:
+- helper_transverse_mass(lepton, met)
+
+Reason:
+The SPEC explicitly requires the transverse mass of the lepton + MET to be between 40 and 120 GeV. The code uses helper_transverse_mass(lepton, met), which is correct. However, the code uses a strict inequality (40 < mt < 120), whereas the SPEC uses inclusive bounds (between 40 and 120 GeV). This is a minor discrepancy but not a major issue as it is a boundary inclusivity issue.
+
+Evidence priority:
+- mt is computed as helper_transverse_mass(lepton, met) 〔L325-L329〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)
+
+CODE:
+- helper_invariant_mass(jet1, jet2)
+
+Reason:
+The SPEC explicitly requires the invariant mass of the two leading jets to be between 60 and 100 GeV. The code uses helper_invariant_mass(jet1, jet2), which is correct. However, the code uses a strict inequality (60 < mjj < 100), whereas the SPEC uses inclusive bounds (between 60 and 100 GeV). This is a minor discrepancy but not a major issue as it is a boundary inclusivity issue.
+
+Evidence priority:
+- mjj is computed as helper_invariant_mass(jet1, jet2) 〔L332-L339〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select delta R between the two leading jets < 3.0
+
+CODE:
+- helper_delta_r(jet1, jet2)
+
+Reason:
+The SPEC explicitly requires the delta R between the two leading jets to be less than 3.0. The code uses helper_delta_r(jet1, jet2), which is correct. However, the code uses a strict inequality (dr >= 3.0), whereas the SPEC uses a less than condition. This is a minor discrepancy but not a major issue as it is a boundary inclusivity issue.
+
+Evidence priority:
+- dr is computed as helper_delta_r(jet1, jet2) 〔L342-L345〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Veto events with b-tagged jets 
+
+CODE:
+- any(b['pt'] > 30 and abs(b['eta']) < 2.5 for b in bjets)
+
+Reason:
+The SPEC requires vetoing events with b-tagged jets, but the code only vetoes events with b-tagged jets that have pT > 30 GeV and |eta| < 2.5. This is a definition mismatch because the SPEC does not specify these additional cuts on the b-jets.
+
+Evidence priority:
+- bjets are checked with any(b['pt'] > 30 and abs(b['eta']) < 2.5 for b in bjets) 〔L314-L316〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Use selected electrons and selected muons to define selected leptons.
+
+CODE:
+- [l for l in electrons if ...] + [l for l in muons if ...]
+
+Reason:
+The SPEC does not specify whether the selected leptons should be a merged collection or a separate collection. The code uses a merged list of selected electrons and muons, which is a plausible interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+- leptons are defined as [l for l in electrons if ...] + [l for l in muons if ...] 〔L288-L296〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Require at least 2 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the jets should be selected from the event-level collection or a broader collection. The code uses the event-level collection, which is a plausible interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+- jets are defined as [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5] 〔L307-L309〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select MET > 30 GeV
+
+CODE:
+- met['pt'] > 30
+
+Reason:
+The SPEC does not specify whether the MET should be selected from the event-level collection or a broader collection. The code uses the event-level collection, which is a plausible interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+- met is defined as helper_get_met(event) 〔L320-L322〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select delta phi between the lepton and the two-jet system
+
+CODE:
+- helper_delta_phi(lepton['phi'], jet_system['phi'])
+
+Reason:
+The SPEC does not specify whether the two-jet system should be constructed from the two leading jets or a broader collection. The code uses the two leading jets, which is a plausible interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+- jet_system is defined as sum_objects(jet1, jet2) 〔L365〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select delta phi between the lepton and the two-jet system
+
+CODE:
+- helper_delta_phi(lepton['phi'], jet_system['phi'])
+
+Reason:
+The SPEC does not specify whether the two-jet system should be constructed from the two leading jets or a broader collection. The code uses the two leading jets, which is a plausible interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+- jet_system is defined as sum_objects(jet1, jet2) 〔L365〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select delta phi between the lepton and the two-jet system
+
+CODE:
+- helper_delta_phi(lepton['phi'], jet_system['phi'])
+
+Reason:
+The SPEC does not specify whether the two-jet system should be constructed from the two leading jets or a broader collection. The code uses the two leading jets, which is a plausible interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+- jet_system is defined as sum_objects(jet1, jet2) 〔L365〕
+
+---
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require exactly 1 selected lepton
+
+CODE:
+- len(leptons) == 1
+
+Reason:
+The SPEC requires exactly 1 selected lepton, and the code correctly checks for this condition. However, the code applies this check twice in a row (lines 297-298 and 301-304), which is redundant and could be considered a minor definition mismatch due to unnecessary repetition.
+
+Evidence priority:
+- len(leptons) == 1 is checked twice 〔L297-L298, L301-L304〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Use selected electrons and selected muons to define selected leptons.
+
+CODE:
+- [l for l in electrons if ...] + [l for l in muons if ...]
+
+Reason:
+The SPEC does not specify whether the selected leptons should be sorted or ordered in any particular way. The code does not sort the leptons, which is a plausible interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+- leptons are defined as [l for l in electrons if ...] + [l for l in muons if ...] 〔L288-L296〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Require at least 2 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the jets should be sorted by pT or any other criteria. The code does not sort the jets, which is a plausible interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+- jets are defined as [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5] 〔L307-L309〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select MET > 30 GeV
+
+CODE:
+- met['pt'] > 30
+
+Reason:
+The SPEC does not specify whether the MET should be computed from the event-level collection or a broader collection. The code uses the event-level collection, which is a plausible interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+- met is defined as helper_get_met(event) 〔L320-L322〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select delta phi between the lepton and the two-jet system
+
+CODE:
+- helper_delta_phi(lepton['phi'], jet_system['phi'])
+
+Reason:
+The SPEC does not specify whether the two-jet system should be constructed from the two leading jets or a broader collection. The code uses the two leading jets, which is a plausible interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+- jet_system is defined as sum_objects(jet1, jet2) 〔L365〕

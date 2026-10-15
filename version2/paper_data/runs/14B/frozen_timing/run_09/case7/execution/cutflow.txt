@@ -1,0 +1,11 @@
+Initial events: 30000
+Tau selection: 2752
+Jet selection: 1988
+At least 2 taus: 1988
+At least 2 jets: 1988
+Opposite-sign taus: 1920
+m_jj > 400 GeV: 978
+delta_eta_jj > 2.5: 946
+m_tt between 60-150 GeV: 843
+No b-jets in jets: 779
+Final selected events: 779

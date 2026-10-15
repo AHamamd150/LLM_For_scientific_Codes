@@ -1,0 +1,19 @@
+
+
+* Delta phi between lepton and two-jet system (continued)
+  - computed/defined as: helper_delta_phi(lepton['phi'], jet_system['phi'])
+  - upstream chain: lepton = leptons[0], jet_system = sum_objects(jet1, jet2)
+  - collection definition: lepton = [l for l in electrons if l['pt'] > 25 and abs(l['eta']) < 2.5] + [l for l in muons if l['pt'] > 20 and abs(l['eta']) < 2.4], jet1 = helper_get_leading(jets), jet2 = helper_get_subleading(jets)
+  - structure: composite-derived
+
+* Cutflow summary
+  - computed/defined as: cutflow
+  - upstream chain: cutflow = {"Initial": len(events), "Electron and muon selection": 0, "Exactly 1 lepton": 0, "At least 2 jets": 0, "No b-jets": 0, "MET > 30 GeV": 0, "Transverse mass 40-120 GeV": 0, "Dijet mass 60-100 GeV": 0, "Delta R < 3.0": 0, "Final": 0}
+  - collection definition: events = read_lhco(f)
+  - structure: multi-input
+
+* CSV data
+  - computed/defined as: csv_data
+  - upstream chain: csv_data = [[mt, mjj, met['pt'], lepton['pt'], dr, dphi_lepton_jets]]
+  - collection definition: mt = helper_transverse_mass(lepton, met), mjj = helper_invariant_mass(jet1, jet2), met = helper_get_met(event), lepton = leptons[0], dr = helper_delta_r(jet1, jet2), dphi_lepton_jets = helper_delta_phi(lepton['phi'], jet_system['phi'])
+  - structure: multi-input

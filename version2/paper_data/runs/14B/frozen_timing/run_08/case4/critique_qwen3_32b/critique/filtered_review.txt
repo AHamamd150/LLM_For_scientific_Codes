@@ -1,0 +1,79 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the pT of the three-lepton system built from the two selected electrons and the selected muon
+
+CODE:
+- three_lepton = sum_objects(e1, e2, w_muon)
+- three_lepton_pt_list.append(three_lepton['pt'])
+
+Reason:
+The code correctly constructs the three-lepton system from the two selected electrons and the selected muon using their summed four-momentum. However, the pT of the three-lepton system is stored as three_lepton['pt'], which is derived from the summed four-momentum. This is a correct implementation of the composite system pT.
+
+Evidence priority:
+three_lepton = sum_objects(e1, e2, w_muon); three_lepton_pt_list.append(three_lepton['pt'])
+
+Generator bias:
+none
+
+[KEPT 2] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of z_obj in range 60 to 120 GeV
+
+CODE:
+- z_mass_list.append(helper_invariant_mass(e1, e2))
+
+Reason:
+The SPEC does not specify whether the invariant mass of z_obj should be computed from the selected electrons or from a broader collection. The code computes it from the selected electrons, which is a valid interpretation, but the ambiguity remains.
+
+Evidence priority:
+z_mass_list.append(helper_invariant_mass(e1, e2))
+
+Generator bias:
+none
+
+[KEPT 3] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the three-lepton system built from the two selected electrons and the selected muon
+
+CODE:
+- three_lepton = sum_objects(e1, e2, w_muon)
+- three_lepton_pt_list.append(three_lepton['pt'])
+
+Reason:
+The SPEC does not specify whether the three-lepton system pT should be computed from the selected electrons and muon or from a broader collection. The code computes it from the selected electrons and muon, which is a valid interpretation, but the ambiguity remains.
+
+Evidence priority:
+three_lepton = sum_objects(e1, e2, w_muon); three_lepton_pt_list.append(three_lepton['pt'])
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+[DROPPED 1] drop: matched noise signal 'inclusive'
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of z_obj between 76 and 106 GeV
+
+CODE:
+- z_mass = helper_invariant_mass(e1, e2)
+- if not (76 < z_mass < 106): continue
+
+Reason:
+The code computes the invariant mass of z_obj as helper_invariant_mass(e1, e2), which is correct. However, the cut is applied as 76 < z_mass < 106, which is an open interval. The SPEC does not explicitly specify whether the cut should be inclusive or exclusive, but the code's implementation is a direct definition mismatch if the intended cut was inclusive (e.g., 76 ≤ z_mass ≤ 106).
+
+Evidence priority:
+z_mass = helper_invariant_mass(e1, e2); if not (76 < z_mass < 106): continue
+
+Generator bias:
+none

@@ -1,0 +1,76 @@
+[CANDIDATE 1] Photon selection and ordering
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection."
+
+Unresolved choice:
+It is unclear whether the leading and subleading photons are defined based on pT before or after the selection cuts (e.g., pT > 25 GeV, |eta| < 2.37, etc.).
+
+Why this may matter:
+If the leading and subleading photons are defined before applying the selection cuts, some photons might be excluded later, invalidating the ordering. The cuts must be applied first, and the ordering must be based on the selected photons to ensure consistency in the analysis.
+
+[CANDIDATE 2] Diphoton system definition
+
+Original phrase:
+"Build the diphoton system from the leading photon and the subleading photon."
+
+Unresolved choice:
+It is unclear whether the diphoton system is built from the same two photons used for all subsequent calculations (e.g., diphoton pT, cos(theta*), etc.).
+
+Why this may matter:
+If the diphoton system is not consistently defined and reused, different calculations might use different photon pairs, leading to inconsistent or incorrect results. The diphoton system must be a fixed pair of photons for all derived quantities.
+
+[CANDIDATE 3] Use of the same diphoton system
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT."
+
+Unresolved choice:
+It is unclear whether the diphoton system is reused consistently for all derived quantities (e.g., diphoton pT, cos(theta*), etc.) or if it is redefined for each calculation.
+
+Why this may matter:
+If the diphoton system is not consistently reused, the analysis may compute different values for the same system, leading to inconsistencies in the final results and plots.
+
+[CANDIDATE 4] Cutflow counter placement
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether the cutflow counters are incremented after each individual cut or after the entire set of cuts for a given step.
+
+Why this may matter:
+If the cutflow is not incremented immediately after each cut, the final cutflow may not accurately reflect the number of events passing each individual selection step, making it harder to debug or optimize the analysis.
+
+[CANDIDATE 5] Definition of diphoton pT
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT."
+
+Unresolved choice:
+It is unclear whether the diphoton pT is computed as the scalar sum of the two photon pTs or as the magnitude of the vector sum of the two photon pTs.
+
+Why this may matter:
+The scalar sum and vector sum can give different results, and the choice affects the interpretation of the diphoton system's transverse momentum. The diphoton pT must be defined unambiguously for accurate analysis.
+
+[CANDIDATE 6] Definition of leading and subleading photons
+
+Original phrase:
+"Leading photon pT > 35 GeV" and "Subleading photon pT > 25 GeV"
+
+Unresolved choice:
+It is unclear whether these pT thresholds are applied after the initial photon selection (pT > 25 GeV, |eta| < 2.37, etc.) or whether they are part of the initial selection.
+
+Why this may matter:
+If the leading and subleading pT thresholds are applied before the initial selection, the photon selection may not be consistent with the rest of the analysis. The thresholds must be applied after the initial selection to ensure the photons meet all criteria.
+
+[CANDIDATE 7] Use of the diphoton system for all plots and outputs
+
+Original phrase:
+"Plot the following as histograms" and "Save to CSV for MLP analysis"
+
+Unresolved choice:
+It is unclear whether all plots and outputs are based on the same diphoton system defined earlier or if different diphoton systems are used for different quantities.
+
+Why this may matter:
+If different diphoton systems are used for different plots or outputs, the analysis may produce inconsistent or misleading results. The diphoton system must be consistently defined and reused for all derived quantities.

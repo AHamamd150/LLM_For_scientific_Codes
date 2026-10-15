@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Selection of z_obj and W candidate lepton
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum."
+
+Why this is dangerous:
+The phrase "selected electrons" may refer to electrons that have passed all previous cuts, but it is unclear whether this refers to electrons selected in the current event after applying the cuts or electrons selected in a broader context (e.g., all electrons in the event before cuts). This ambiguity affects the definition of z_obj and the W candidate lepton.
+
+Question to user:
+Are the two selected electrons used to build z_obj the ones that have passed all previous cuts in the current event, or are they selected from the full uncut electron collection?
+
+Golden axe:
+The two selected electrons are those that have passed all previous cuts in the current event.
+
+Silver axe:
+The two selected electrons are chosen from the full uncut electron collection, without applying the cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Definition of W candidate lepton
+
+Original phrase:
+"Define the selected muon as the W candidate lepton."
+
+Why this is dangerous:
+The phrase "selected muon" may refer to a muon that has passed all previous cuts, but it is unclear whether this refers to the muon selected in the current event after applying the cuts or a muon selected from the full uncut muon collection. This ambiguity affects the definition of the W candidate lepton and the subsequent cuts on it.
+
+Question to user:
+Is the selected muon defined as the one that has passed all previous cuts in the current event, or is it selected from the full uncut muon collection?
+
+Golden axe:
+The selected muon is the one that has passed all previous cuts in the current event.
+
+Silver axe:
+The selected muon is chosen from the full uncut muon collection, without applying the cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Definition of three-lepton system
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon."
+
+Why this is dangerous:
+The phrase "three-lepton system" may refer to a reconstructed composite object built from the two selected electrons and the selected muon, or it may refer to a scalar quantity derived from these objects. This ambiguity affects the interpretation of the pT of the three-lepton system.
+
+Question to user:
+Is the three-lepton system a reconstructed composite object built from the two selected electrons and the selected muon, or is it a scalar quantity derived from these objects?
+
+Golden axe:
+The three-lepton system is a reconstructed composite object built from the two selected electrons and the selected muon.
+
+Silver axe:
+The three-lepton system refers to a scalar quantity derived from the two selected electrons and the selected muon.
+
+Recommended default:
+Golden axe

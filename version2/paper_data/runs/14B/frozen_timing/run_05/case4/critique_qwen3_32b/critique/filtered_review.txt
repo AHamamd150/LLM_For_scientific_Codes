@@ -1,0 +1,26 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build z_obj from the two selected electrons using summed four-momentum.
+- Plot the invariant mass of z_obj in range 60 to 120 GeV
+
+CODE:
+- z_mass = helper_invariant_mass(e1, e2)
+- z_mass_list.append(z_mass)
+
+Reason:
+The code computes the invariant mass of z_obj by directly using helper_invariant_mass(e1, e2), which calculates the invariant mass from the two electrons rather than from the z_obj composite object. This is a composite violation because the SPEC explicitly requires the invariant mass to be computed from the z_obj system, not from the individual electrons.
+
+Evidence priority:
+z_mass = helper_invariant_mass(e1, e2) 〔L268〕
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

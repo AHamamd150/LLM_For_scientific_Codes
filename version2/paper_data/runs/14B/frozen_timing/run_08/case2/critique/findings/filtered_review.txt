@@ -1,0 +1,336 @@
+===== RUN 1 =====
+
+---- KEPT ----
+(none)
+
+---- DROPPED ----
+[DROPPED 1] drop: matched noise signal 'matches the spec'
+⚠️ (B) definition mismatch
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+The code correctly constructs the hadronic W candidate from the two leading non-b-tagged jets using the sum_objects function. This matches the SPEC requirement.
+
+Evidence priority:
+〔L325-L326〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- helper_invariant_mass(w_hadronic)
+
+Reason:
+The code correctly computes the invariant mass of the hadronic W candidate using the helper_invariant_mass function. This matches the SPEC requirement.
+
+Evidence priority:
+〔L326-L328〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The code correctly constructs the hadronic top candidate from the leading b-jet and the hadronic W candidate using the sum_objects function. This matches the SPEC requirement.
+
+Evidence priority:
+〔L332-L333〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- Select the invariant mass of the leading b-jet + W hadronic candidate (top hadronic) in range 100 to 250 GeV
+
+CODE:
+- helper_invariant_mass(top_hadronic)
+
+Reason:
+The code correctly computes the invariant mass of the hadronic top candidate using the helper_invariant_mass function. This matches the SPEC requirement.
+
+Evidence priority:
+〔L345-L346〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- Plot delta R between the leading lepton and the closest b-jet
+
+CODE:
+- helper_delta_r(lepton, leading_bjet)
+
+Reason:
+The code correctly computes the delta R between the leading lepton and the leading b-jet using the helper_delta_r function. This matches the SPEC requirement.
+
+Evidence priority:
+〔L346-L347〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- helper_get_subleading(selected_bjets)['pt']
+
+Reason:
+The code correctly computes the pT of the subleading b-jet using the helper_get_subleading function. This matches the SPEC requirement.
+
+Evidence priority:
+〔L343-L344〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- njet_list; upstream chain: len(selected_jets) -> njet_list
+
+Reason:
+The code correctly computes the number of jets per event using the len function on the selected_jets list. This matches the SPEC requirement.
+
+Evidence priority:
+〔L348-L349〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- scalar_pt_sum(selected_jets)
+
+Reason:
+The code correctly computes the HT distribution using the scalar_pt_sum function on the selected_jets list. This matches the SPEC requirement.
+
+Evidence priority:
+〔L347-L348〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- cutflow; upstream chain: cutflow dictionary
+
+Reason:
+The code correctly implements the cutflow summary by maintaining a dictionary that is updated at each selection step. This matches the SPEC requirement.
+
+Evidence priority:
+〔L252-L261〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The code correctly saves the plots in png format using the plt.savefig function. This matches the SPEC requirement.
+
+Evidence priority:
+〔L356-L357, L363-L364, L370-L371, L377-L378, L384-L385, L391-L392, L398-L399, L405-L406, L412-L413, L419-L420〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+---
+
+[DROPPED 2] drop: matched noise signal 'matches the spec'
+⚠️ (B) definition mismatch
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- len(selected_leptons) != 1
+
+Reason:
+The code skips events where the number of selected leptons is not exactly one. This matches the SPEC requirement.
+
+Evidence priority:
+〔L285-L286〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- len(selected_jets) < 4
+
+Reason:
+The code skips events where the number of selected jets is less than 4. This matches the SPEC requirement.
+
+Evidence priority:
+〔L291-L292〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- Require at least 2 b-tagged jets
+
+CODE:
+- len(selected_bjets) < 2
+
+Reason:
+The code skips events where the number of selected b-jets is less than 2. This matches the SPEC requirement.
+
+Evidence priority:
+〔L298-L299〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- met['pt'] < 20
+
+Reason:
+The code skips events where the MET is less than 20 GeV. This matches the SPEC requirement.
+
+Evidence priority:
+〔L305-L306〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- mt < 30 or mt > 150
+
+Reason:
+The code skips events where the transverse mass is outside the range [30, 150] GeV. This matches the SPEC requirement.
+
+Evidence priority:
+〔L311-L313〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+The code correctly constructs the hadronic W candidate from the two leading non-b-tagged jets using the sum_objects function. This matches the SPEC requirement.
+
+Evidence priority:
+〔L325-L326〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_mass < 40 or w_mass > 120
+
+Reason:
+The code skips events where the hadronic W mass is outside the range [40, 120] GeV. This matches the SPEC requirement.
+
+Evidence priority:
+〔L326-L328〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The code correctly constructs the hadronic top candidate from the leading b-jet and the hadronic W candidate using the sum_objects function. This matches the SPEC requirement.
+
+Evidence priority:
+〔L332-L333〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+- Select the invariant mass of the leading b-jet + W hadronic candidate (top hadronic) in range 100 to 250 GeV
+
+CODE:
+- top_mass < 100 or top_mass > 250
+
+Reason:
+The code skips events where the invariant mass of the hadronic top candidate is outside the range [100, 250] GeV. This matches the SPEC requirement.
+
+Evidence priority:
+〔L334-L336〕
+
+Generator bias:
+none
+
+◎ (correct implementation)

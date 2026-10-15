@@ -1,0 +1,55 @@
+
+
+* leading_bjet_pt_list
+  - computed/defined as: leading_bjet_pt_list.append(leading_bjet['pt'])
+  - upstream chain: leading_bjet['pt'] -> leading_bjet_pt_list
+  - collection definition: None
+  - structure: single-constituent
+
+* subleading_bjet_pt_list
+  - computed/defined as: subleading_bjet_pt_list.append(subleading_bjet['pt'])
+  - upstream chain: subleading_bjet['pt'] -> subleading_bjet_pt_list
+  - collection definition: None
+  - structure: single-constituent
+
+* hadronic_w_mass_list
+  - computed/defined as: hadronic_w_mass_list.append(hadronic_w_mass)
+  - upstream chain: hadronic_w_mass -> hadronic_w_mass_list
+  - collection definition: None
+  - structure: single-constituent
+
+* hadronic_top_mass_list
+  - computed/defined as: hadronic_top_mass_list.append(hadronic_top_mass)
+  - upstream chain: hadronic_top_mass -> hadronic_top_mass_list
+  - collection definition: None
+  - structure: single-constituent
+
+* dr_lep_bjet_list
+  - computed/defined as: dr_lep_bjet_list.append(min_dr)
+  - upstream chain: min_dr -> dr_lep_bjet_list
+  - collection definition: None
+  - structure: single-constituent
+
+* ht_list
+  - computed/defined as: ht_list.append(scalar_pt_sum(selected_jets))
+  - upstream chain: selected_jets -> ht_list
+  - collection definition: None
+  - structure: single-constituent
+
+* njet_list
+  - computed/defined as: njet_list.append(len(selected_jets))
+  - upstream chain: selected_jets -> njet_list
+  - collection definition: None
+  - structure: single-constituent
+
+* leading_bjet_eta_list
+  - computed/defined as: leading_bjet_eta_list.append(leading_bjet['eta'])
+  - upstream chain: leading_bjet['eta'] -> leading_bjet_eta_list
+  - collection definition: None
+  - structure: single-constituent
+
+* cutflow
+  - computed/defined as: cutflow = { ... }, cutflow["Lepton Selection"] += 1, cutflow["Jet Selection"] += 1, cutflow["BJet Selection"] += 1, cutflow["Lepton-BJet DeltaR"] += 1, cutflow["MET Selection"] += 1, cutflow["Transverse Mass"] += 1, cutflow["Hadronic W Selection"] += 1, cutflow["Hadronic W Mass"] += 1, cutflow["Hadronic Top Selection"] += 1, cutflow["Hadronic Top Mass"] += 1
+  - upstream chain: None -> cutflow
+  - collection definition: None
+  - structure: composite-derived

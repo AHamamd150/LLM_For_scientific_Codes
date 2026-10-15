@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n  - computed/defined as: lepton['eta']\n  - upstream chain: lepton -> lepton_eta_list\n  - collection definition: None\n  - structure: single-constituent\n\n* dphi_lepton_jets_list\n  - computed/defined as: helper_delta_phi(lepton['phi'], jet_system['phi'])\n  - upstream chain: lepton, jet_system -> helper_delta_phi -> dphi_lepton_jets_list\n  - collection definition: lepton is selected from leptons, jet_system is sum_objects(jet1, jet2)\n  - structure: multi-input\n\n* csv_data\n  - computed/defined as: [mt, mjj, met['pt'], lepton['pt'], dr, dphi_lepton_jets]\n  - upstream chain: mt, mjj, met, lepton, dr, dphi_lepton_jets -> csv_data\n  - collection definition: None\n  - structure: multi-input",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788622585,
+  "id": "chatcmpl-80f5da6d-1dae-4b9c-8421-b4ff0eff5798",
+  "model": "Qwen/Qwen3-14B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-7e17f8bc",
+  "usage": {
+    "completion_tokens": 206,
+    "prompt_tokens": 11815,
+    "prompt_tokens_details": null,
+    "total_tokens": 12021
+  }
+}

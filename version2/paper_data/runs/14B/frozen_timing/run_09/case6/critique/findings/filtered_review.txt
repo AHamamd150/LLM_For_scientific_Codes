@@ -1,0 +1,294 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- hadronic_top = sum_objects(leading_bjet, hadronic_w)
+
+Reason:
+The hadronic top candidate is correctly built from the leading selected b-tagged jet and the hadronic W candidate. The code uses the required constituents to construct the composite object.
+
+Evidence priority:
+- The code uses the leading selected b-tagged jet and the hadronic W candidate to construct the hadronic top candidate. 〔L342-L345〕
+
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- hadronic_w = sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+The hadronic W candidate is correctly built from the two leading selected non-b-tagged jets. The code uses the required constituents to construct the composite object.
+
+Evidence priority:
+- The code uses the two leading selected non-b-tagged jets to construct the hadronic W candidate. 〔L326-L336〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code selects muons with |eta| < 2.5 instead of the required |eta| < 2.4.
+
+Evidence priority:
+- The code uses abs(l['eta']) < 2.5 for muon selection. 〔L279-L281〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- len(selected_leptons) == 1
+
+Reason:
+The code correctly requires exactly one lepton (electron or muon).
+
+Evidence priority:
+- The code checks len(selected_leptons) == 1. 〔L281〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Among these selected jets, require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- len(selected_jets) >= 4
+
+Reason:
+The code correctly requires at least 4 jets with pT > 30 GeV and |eta| < 2.5.
+
+Evidence priority:
+- The code checks len(selected_jets) >= 4. 〔L288-L290〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Among these selected jets, require at least 2 b-tagged jets.
+
+CODE:
+- len(selected_bjets) >= 2
+
+Reason:
+The code correctly requires at least 2 b-tagged jets.
+
+Evidence priority:
+- The code checks len(selected_bjets) >= 2. 〔L295-L297〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- met['pt'] > 20
+
+Reason:
+The code correctly selects MET > 20 GeV.
+
+Evidence priority:
+- The code checks met['pt'] > 20. 〔L315〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- mt = helper_transverse_mass(lep, met), if mt < 30 or mt > 150: continue
+
+Reason:
+The code correctly selects the transverse mass of the lepton and MET between 30 and 150 GeV.
+
+Evidence priority:
+- The code computes mt = helper_transverse_mass(lep, met) and checks if mt is between 30 and 150 GeV. 〔L320-L322〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- hadronic_w_mass = hadronic_w['mass'] if hadronic_w else 0.0, if hadronic_w_mass < 40 or hadronic_w_mass > 120: continue
+
+Reason:
+The code correctly selects the hadronic W mass between 40 to 120 GeV.
+
+Evidence priority:
+- The code computes hadronic_w_mass = hadronic_w['mass'] if hadronic_w else 0.0 and checks if hadronic_w_mass is between 40 and 120 GeV. 〔L337-L338〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV.
+
+CODE:
+- hadronic_top_mass = hadronic_top['mass'] if hadronic_top else 0.0, if hadronic_top_mass < 100 or hadronic_top_mass > 250: continue
+
+Reason:
+The code correctly selects the hadronic top mass between 100 to 250 GeV.
+
+Evidence priority:
+- The code computes hadronic_top_mass = hadronic_top['mass'] if hadronic_top else 0.0 and checks if hadronic_top_mass is between 100 and 250 GeV. 〔L347-L348〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+
+CODE:
+- for b in selected_bjets: dr = helper_delta_r(lep, b), if dr < min_dr: min_dr = dr, closest_bjet = b
+
+Reason:
+The code correctly defines the b-jet closest to the selected lepton in delta R.
+
+Evidence priority:
+- The code iterates over selected_bjets and finds the one with the smallest delta R to the selected lepton. 〔L304-L309〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- light_jets_sorted = sort_by_pt(selected_light_jets), leading_light_jet = light_jets_sorted[0], subleading_light_jet = light_jets_sorted[1], hadronic_w = sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+The code correctly builds the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+Evidence priority:
+- The code sorts selected_light_jets by pT and uses the two leading ones to build the hadronic W candidate. 〔L326-L336〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- bjets_sorted = sort_by_pt(selected_bjets), leading_bjet = bjets_sorted[0], hadronic_top = sum_objects(leading_bjet, hadronic_w)
+
+Reason:
+The code correctly builds the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+Evidence priority:
+- The code sorts selected_bjets by pT and uses the leading one along with the hadronic W candidate to build the hadronic top candidate. 〔L342-L345〕
+
+◎ (E) extra behavior
+
+SPEC:
+- none
+
+CODE:
+- helper_get_met(event)
+
+Reason:
+The code uses helper_get_met(event) to get the MET, which is not explicitly requested by the SPEC.
+
+Evidence priority:
+- The code uses helper_get_met(event) to get the MET. 〔L314〕
+
+◎ (F) generator-induced bias
+
+SPEC:
+- none
+
+CODE:
+- helper_get_met(event)
+
+Reason:
+The code uses a helper function to get the MET, which may be an example of generator-induced bias.
+
+Evidence priority:
+- The code uses a helper function to get the MET. 〔L314〕
+
+---
+
+[KEPT 2] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code selects muons with |eta| < 2.5 instead of the required |eta| < 2.4.
+
+Evidence priority:
+- The code uses abs(l['eta']) < 2.5 for muon selection. 〔L279-L281〕
+
+[KEPT 3] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- subleading_bjet_pt_list.append(subleading_bjet['pt'])
+
+Reason:
+The code uses the subleading b-jet from the sorted list of selected_bjets, which may not be the same as the subleading b-jet in the event.
+
+Evidence priority:
+- The code appends subleading_bjet['pt'] to the list. 〔L357〕
+
+[KEPT 4] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- njet_list.append(len(selected_jets))
+
+Reason:
+The code uses the number of selected jets (with pT > 30 GeV and |eta| < 2.5) instead of the total number of jets in the event.
+
+Evidence priority:
+- The code appends len(selected_jets) to the list. 〔L362〕
+
+[KEPT 5] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- ht_list.append(scalar_pt_sum(selected_jets))
+
+Reason:
+The code uses the scalar sum of selected jets (with pT > 30 GeV and |eta| < 2.5) instead of the scalar sum of all jets in the event.
+
+Evidence priority:
+- The code appends scalar_pt_sum(selected_jets) to the list. 〔L361〕
+
+[KEPT 6] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the eta of the leading b-jet
+
+CODE:
+- leading_bjet_eta_list.append(leading_bjet['eta'])
+
+Reason:
+The code uses the leading b-jet from the sorted list of selected_bjets, which may not be the same as the leading b-jet in the event.
+
+Evidence priority:
+- The code appends leading_bjet['eta'] to the list. 〔L363〕
+
+
+---- DROPPED ----
+(none)

@@ -1,0 +1,30 @@
+
+
+  - computed/defined as: scalar_pt_sum(selected_jets)
+  - upstream chain: selected_jets -> scalar_pt_sum(selected_jets) -> ht
+  - collection definition: N/A
+  - structure: single-constituent
+
+* njet
+  - computed/defined as: len(selected_jets)
+  - upstream chain: selected_jets -> len(selected_jets) -> njet
+  - collection definition: N/A
+  - structure: single-constituent
+
+* leading_bjet_pt
+  - computed/defined as: leading_bjet['pt']
+  - upstream chain: leading_bjet -> leading_bjet_pt
+  - collection definition: N/A
+  - structure: single-constituent
+
+* subleading_bjet_pt
+  - computed/defined as: subleading_bjet['pt'] if subleading_bjet else 0.0
+  - upstream chain: selected_bjets -> helper_get_subleading(selected_bjets) -> subleading_bjet -> subleading_bjet_pt
+  - collection definition: N/A
+  - structure: single-constituent
+
+* leading_bjet_eta
+  - computed/defined as: leading_bjet['eta']
+  - upstream chain: leading_bjet -> leading_bjet_eta
+  - collection definition: N/A
+  - structure: single-constituent

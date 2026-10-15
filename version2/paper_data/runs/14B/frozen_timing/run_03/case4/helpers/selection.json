@@ -1,0 +1,81 @@
+{
+  "selected_helpers": [
+    {
+      "name": "get_electrons",
+      "reason": ""
+    },
+    {
+      "name": "get_muons",
+      "reason": ""
+    },
+    {
+      "name": "opposite_sign",
+      "reason": ""
+    },
+    {
+      "name": "get_particle_mass",
+      "reason": "dependency of four_momentum"
+    },
+    {
+      "name": "four_momentum",
+      "reason": "dependency of sum_objects"
+    },
+    {
+      "name": "obj_from_four_momentum",
+      "reason": "dependency of sum_objects"
+    },
+    {
+      "name": "sum_objects",
+      "reason": ""
+    },
+    {
+      "name": "helper_invariant_mass",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_met",
+      "reason": ""
+    },
+    {
+      "name": "helper_delta_phi",
+      "reason": "dependency of helper_transverse_mass"
+    },
+    {
+      "name": "helper_transverse_mass",
+      "reason": ""
+    },
+    {
+      "name": "abs_eta",
+      "reason": ""
+    },
+    {
+      "name": "helper_delta_r",
+      "reason": ""
+    },
+    {
+      "name": "scalar_pt_sum",
+      "reason": ""
+    },
+    {
+      "name": "vector_pt_components",
+      "reason": ""
+    },
+    {
+      "name": "compute_phi",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_leading",
+      "reason": ""
+    },
+    {
+      "name": "n_electrons",
+      "reason": ""
+    },
+    {
+      "name": "n_muons",
+      "reason": ""
+    }
+  ],
+  "rejected_but_close": []
+}

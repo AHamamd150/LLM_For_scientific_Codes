@@ -1,0 +1,100 @@
+
+
+SECTION 1: SPEC BULLET ANALYSIS
+
+✅ * Select electrons with pT > 25 GeV and |eta| < 2.5; computed as: [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]; upstream chain: leptons -> selected_leptons; 〔L277-L278〕
+✅ * Select muons with pT > 25 GeV and |eta| < 2.4; computed as: [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]; upstream chain: leptons -> selected_leptons; 〔L277-L278〕
+✅ * Require exactly one lepton (electron or muon); computed as: len(selected_leptons) != 1; upstream chain: selected_leptons; 〔L279〕
+✅ * Require at least 4 jets with pT > 30 GeV and |eta| < 2.5; computed as: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]; upstream chain: jets -> selected_jets; 〔L284-L285〕
+✅ * Require at least 2 b-tagged jets; computed as: [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]; upstream chain: bjets -> selected_bjets; 〔L291-L292〕
+✅ * Select MET > 20 GeV; computed as: met['pt'] < 20; upstream chain: met; 〔L299〕
+✅ * Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate); computed as: mt < 30 or mt > 150; upstream chain: lepton -> met -> mt; 〔L305-L306〕
+✅ * Build the hadronic W candidate from the two leading non-b-tagged jets.; computed as: sum_objects(leading_light_jet, subleading_light_jet); upstream chain: light_jets -> selected_light_jets -> leading_light_jet, subleading_light_jet -> w_hadronic; 〔L311-L317〕
+✅ * Select the hadronic W mass between 40 to 120 GeV.; computed as: w_mass < 40 or w_mass > 120; upstream chain: w_hadronic -> w_mass; 〔L319〕
+✅ * Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.; computed as: sum_objects(leading_bjet, w_hadronic); upstream chain: selected_bjets -> leading_bjet, w_hadronic -> top_hadronic; 〔L324-L325〕
+✅ * Select the hadronic top mass between 100 to 250 GeV.; computed as: top_mass < 100 or top_mass > 250; upstream chain: top_hadronic -> top_mass; 〔L327〕
+
+✅ * Plot the following as histograms:
+1 Plot the transverse mass of lepton + MET (W leptonic candidate); computed as: mt_list; upstream chain: lepton -> met -> mt -> mt_list; 〔L332〕
+2 Plot the MET distribution; computed as: met_list; upstream chain: met -> met_list; 〔L333〕
+3 Plot the pT of the leading b-jet; computed as: leading_bjet_pt_list; upstream chain: selected_bjets -> leading_bjet -> leading_bjet_pt_list; 〔L334〕
+4 Plot the pT of the subleading b-jet; computed as: helper_get_subleading(selected_bjets)['pt']; upstream chain: selected_bjets -> subleading_bjet -> subleading_bjet_pt_list; 〔L335〕
+5 Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV; computed as: w_hadronic_mass_list; upstream chain: w_hadronic -> w_mass -> w_hadronic_mass_list; 〔L336〕
+6 Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV; computed as: top_hadronic_mass_list; upstream chain: top_hadronic -> top_mass -> top_hadronic_mass_list; 〔L337〕
+7 Plot delta R between the leading lepton and the closest b-jet; computed as: helper_delta_r(lepton, leading_bjet); upstream chain: lepton, leading_bjet -> dr_lepton_bjet_list; 〔L338〕
+8 Plot the HT distribution (scalar sum of all jet pT); computed as: scalar_pt_sum(selected_jets); upstream chain: selected_jets -> ht_list; 〔L339〕
+9 Plot the number of jets per event; computed as: len(selected_jets); upstream chain: selected_jets -> njet_list; 〔L340〕
+10 Plot eta of the leading b-jet; computed as: leading_bjet['eta']; upstream chain: selected_bjets -> leading_bjet -> leading_bjet_eta_list; 〔L341〕
+
+✅ * After the event loop, print one cutflow summary with the number of events after each selection step.; computed as: cutflow; upstream chain: cutflow; 〔L345-L347〕
+✅ * Save the plots in png format; computed as: plt.savefig(...); upstream chain: mt_list, met_list, leading_bjet_pt_list, subleading_bjet_pt_list, w_hadronic_mass_list, top_hadronic_mass_list, dr_lepton_bjet_list, ht_list, njet_list, leading_bjet_eta_list -> plots; 〔L350-L418〕
+
+SECTION 2: DEFINITION SUMMARY
+
+* [CHECK CAREFULLY] DEFINITION SUMMARY
+
+* selected_leptons
+  - computed/defined as: [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+  - upstream chain: leptons -> selected_leptons
+  - collection definition: l['pt'] > 25 and abs(l['eta']) < 2.5
+  - structure: single-constituent
+
+* selected_jets
+  - computed/defined as: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - upstream chain: jets -> selected_jets
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* selected_bjets
+  - computed/defined as: [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - upstream chain: bjets -> selected_bjets
+  - collection definition: b['pt'] > 30 and abs(b['eta']) < 2.5
+  - structure: single-constituent
+
+* selected_light_jets
+  - computed/defined as: [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - upstream chain: light_jets -> selected_light_jets
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* mt
+  - computed/defined as: helper_transverse_mass(lepton, met)
+  - upstream chain: lepton, met -> mt
+  - collection definition: N/A
+  - structure: multi-input
+
+* w_hadronic
+  - computed/defined as: sum_objects(leading_light_jet, subleading_light_jet)
+  - upstream chain: leading_light_jet, subleading_light_jet -> w_hadronic
+  - collection definition: N/A
+  - structure: composite-derived
+
+* top_hadronic
+  - computed/defined as: sum_objects(leading_bjet, w_hadronic)
+  - upstream chain: leading_bjet, w_hadronic -> top_hadronic
+  - collection definition: N/A
+  - structure: composite-derived
+
+* dr_lepton_bjet
+  - computed/defined as: helper_delta_r(lepton, leading_bjet)
+  - upstream chain: lepton, leading_bjet -> dr_lepton_bjet
+  - collection definition: N/A
+  - structure: multi-input
+
+* ht
+  - computed/defined as: scalar_pt_sum(selected_jets)
+  - upstream chain: selected_jets -> ht
+  - collection definition: N/A
+  - structure: single-constituent
+
+* njet
+  - computed/defined as: len(selected_jets)
+  - upstream chain: selected_jets -> njet
+  - collection definition: N/A
+  - structure: single-constituent
+
+* leading_bjet_eta
+  - computed/defined as: leading_bjet['eta']
+  - upstream chain: selected_bjets -> leading_bjet -> leading_bjet_eta
+  - collection definition: N/A
+  - structure: single-constituent

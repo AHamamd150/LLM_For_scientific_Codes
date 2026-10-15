@@ -1,0 +1,27 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+2,4,requirement,R1,Select electrons with pT > 25 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly identifies the electron filter and get_electrons dependency at L293-L294 and L176-L179.
+2,4,requirement,R2,Select muons with pT > 25 GeV and |eta| < 2.4,yes,yes,yes,no,Correctly identifies the muon filter and get_muons dependency at L294-L295 and L181-L184.
+2,4,requirement,R3,"Require exactly one lepton, electron or muon",yes,yes,yes,no,Correctly traces leptons = electrons + muons and the len(leptons) != 1 rejection at L295-L299.
+2,4,requirement,R4,Require at least 4 jets with pT > 30 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly traces the filtered jet collection and count cut at L304-L307.
+2,4,requirement,R5,Require at least 2 b-tagged jets,yes,yes,yes,no,"Correctly traces get_bjets, btag == 1, the kinematic filters, and the count cut at L310-L313."
+2,4,requirement,R6,Select MET > 20 GeV,yes,yes,yes,no,Correctly identifies helper_get_met and the MET threshold/rejection at L316-L319.
+2,4,requirement,R7,Select lepton-MET transverse mass between 30 and 150 GeV,yes,yes,yes,no,"Correctly traces helper_transverse_mass(lepton, met) and the range cut at L322-L325."
+2,4,requirement,R8,Build the hadronic W candidate from the two leading non-b-tagged jets,yes,yes,yes,no,"Correctly traces removal of b-jets, pT sorting, and sum_objects on the first two jets at L329-L334."
+2,4,requirement,R9,Select the hadronic W mass between 40 and 120 GeV,yes,yes,yes,no,Correctly identifies the W mass range check at L335-L338 and its composite dependency.
+2,4,requirement,R10,Build the hadronic top candidate from the leading b-jet and hadronic W candidate,yes,yes,yes,no,"Correctly traces b-jet sorting and sum_objects(bjets_sorted[0], w_hadronic) at L340-L345."
+2,4,requirement,R11,Apply cuts sequentially and skip the event immediately when a cut fails,partial,yes,yes,no,"The individual continue statements and ordering are present, e.g. L297-L347, but the tracer does not explicitly summarize this cross-cut control-flow requirement."
+2,4,requirement,R12,Plot the transverse mass of lepton plus MET,partial,yes,yes,no,"Correctly traces mt_values.append(mt) at L326, but does not point to the corresponding histogram call at L365-L369."
+2,4,requirement,R13,Plot the MET distribution,partial,yes,yes,no,"Correctly traces met_values.append(met['pt']) at L327, but not the specific histogram call at L372-L376."
+2,4,requirement,R14,Plot the pT of the leading b-jet,partial,yes,yes,no,"Correctly traces the value collection at L351-L352, but omits the specific histogram operation at L379-L383."
+2,4,requirement,R15,Plot the pT of the subleading b-jet,partial,yes,yes,no,"Correctly traces subleading_bjet_pt.append at L355-L357, but omits the specific histogram operation at L386-L390."
+2,4,requirement,R16,Plot the invariant mass of the two leading non-b-tagged jets in the 40-120 GeV range,partial,yes,yes,no,"Correctly traces the W mass collection at L338, but does not identify the histogram call at L393-L397."
+2,4,requirement,R17,Plot the invariant mass of leading b-jet plus hadronic W in the 100-250 GeV range,partial,yes,yes,no,"Correctly traces top_hadronic_mass.append at L348, but omits the specific histogram call at L400-L404."
+2,4,requirement,R18,Plot delta R between the leading lepton and the closest b-jet,partial,yes,no,yes,"The tracer identifies the delta-R calculation at L359, but the code uses the leading b-jet, not the closest b-jet. It also omits the histogram call at L407-L411."
+2,4,requirement,R19,Plot the HT distribution as the scalar sum of all jet pT,partial,yes,no,no,"The value expression is correctly located at L361, but the tracer incorrectly characterizes the dependency as the selected pT/eta-filtered jets rather than all event jets; the histogram call is at L414-L418."
+2,4,requirement,R20,Plot the number of jets per event,partial,yes,no,no,"The tracer correctly locates len(jets) at L362, but jets is the selected pT/eta-filtered collection rather than all event jets; it omits the histogram call at L421-L425."
+2,4,requirement,R21,Plot eta of the leading b-jet,partial,yes,yes,no,"Correctly traces leading_bjet_eta.append at L351-L353, but omits the specific histogram call at L428-L432."
+2,4,requirement,R22,"Use validation histograms with plt.figure, plt.hist(values, bins=40, density=True), labels, savefig, and close",partial,yes,na,no,"The tracer mentions plotting and savefig generally, but does not trace the repeated plt.figure/plt.hist/label/close structure or its exact lines L364-L433."
+2,4,requirement,R23,"After the event loop, print one cutflow summary with counts after each selection step",yes,yes,yes,no,Correctly identifies the cutflow print block at L435-L444 and the updates throughout the event loop.
+2,4,requirement,R24,Save the plots in PNG format,yes,yes,na,no,Correctly identifies .png savefig calls in L369-L433.
+2,4,extra_trace_claim,EXTRA1,The b-jet collection definitions use abs(j['eta']),,,,yes,"The definition summary repeatedly reports abs(j['eta']) for bjets, leading_bjet, subleading_bjet, and related objects, but the code uses abs(b['eta']) at L310 and L243."
+2,4,extra_trace_claim,EXTRA2,The delta-R plot is between the leading lepton and the closest b-jet,,,,yes,"The code computes helper_delta_r(lepton, leading_bjet) at L359; no closest-b-jet minimization is present."

@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] Diphoton system reuse in pT and mass
+
+Original phrase:
+"Build the diphoton system from the leading photon and the subleading photon. [...] Use this same diphoton system to compute diphoton pT."
+
+Why this matters:
+The phrase implies a diphoton system is built once and reused for both invariant mass and pT. However, it is not clear whether the diphoton pT is computed from the same system or if a new system is built for pT. This could lead to different results if, for example, the pT is computed from the same four-momentum sum as the mass or from a different method.
+
+Question to user:
+Are the diphoton pT and invariant mass computed from the same diphoton system (i.e., the same pair of photons and their four-momenta)?
+
+Golden axe:
+Compute both diphoton pT and invariant mass from the same diphoton system built from the leading and subleading photons.
+
+Silver axe:
+Compute diphoton invariant mass from the system, but compute diphoton pT using a different method or from a different system.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Leading and subleading photon definition timing
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection. [...] Leading photon pT > 35 GeV [...] Subleading photon pT > 25 GeV"
+
+Why this matters:
+It is not clear whether the leading and subleading photons are defined *after* the pT cuts (35 GeV and 25 GeV) or *before*. This affects which photons are considered for the roles of "leading" and "subleading" and may change the final selection.
+
+Question to user:
+Are the leading and subleading photons determined before or after applying the pT cuts of 35 GeV and 25 GeV?
+
+Golden axe:
+Define leading and subleading photons after applying the pT cuts.
+
+Silver axe:
+Define leading and subleading photons before applying the pT cuts.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Diphoton system reuse in plots and CSV
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT. [...] [PLOTS] Plot pT of the diphoton system [...] [CSV] Save [...] pT of diphoton system"
+
+Why this matters:
+It is not clear whether the diphoton system used for the pT in the plots and CSV is the same one used in the selection cuts. If a different system is used (e.g., with different photon selections or ordering), the plots and CSV may not reflect the actual selected system.
+
+Question to user:
+Is the diphoton system used in the plots and CSV the same one used in the selection cuts (i.e., the one built from the leading and subleading photons after all cuts)?
+
+Golden axe:
+Use the same diphoton system in plots and CSV as the one used in the selection cuts.
+
+Silver axe:
+Use a different diphoton system in plots and CSV, possibly with different photon selections or ordering.
+
+Recommended default:
+Golden axe

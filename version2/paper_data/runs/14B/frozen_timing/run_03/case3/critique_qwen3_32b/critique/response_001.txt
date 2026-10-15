@@ -1,0 +1,22 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Build the diphoton system from the leading photon and the subleading photon.
+- Define m_gammagamma as the invariant mass of this diphoton system.
+- Use this same diphoton system to compute diphoton pT.
+
+CODE:
+- diphoton = sum_objects(leading_photon, subleading_photon)
+- m_gammagamma = diphoton['mass'] if diphoton else 0.0
+- pt_diphoton_list.append(diphoton['pt'] if diphoton else 0.0)
+
+Reason:
+The code correctly builds the diphoton system from the leading and subleading photons and computes the invariant mass and pT from the full system. This is in line with the SPEC and does not constitute a composite violation.
+
+Evidence priority:
+- diphoton = sum_objects(leading_photon, subleading_photon) 〔L0292-L0293〕
+- m_gammagamma = diphoton['mass'] if diphoton else 0.0 〔L0293-L0294〕
+- pt_diphoton_list.append(diphoton['pt'] if diphoton else 0.0) 〔L0315〕
+
+Generator bias:
+none

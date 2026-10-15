@@ -1,0 +1,10 @@
+Initial: 30000
+Electron selection: 5676
+Muon selection: 1306
+Exactly 2 electrons and 1 muon: 1305
+Opposite sign electrons: 1305
+Z mass window: 1251
+MET > 30 GeV: 907
+W muon pT > 20 GeV: 789
+W transverse mass > 30 GeV: 722
+Final: 722

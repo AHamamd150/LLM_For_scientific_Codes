@@ -1,0 +1,19 @@
+{
+  "lepton": {
+    "name": "lepton",
+    "definition": "[l for l in electrons if l['pt'] > 25 and abs(l['eta']) < 2.5] + [l for l in muons if l['pt'] > 20 and abs(l['eta']) < 2.4], met = [o for o in event['objects'] if o['type'] == 6]",
+    "used_by": [
+      "Transverse mass of lepton + MET",
+      "Delta phi between lepton and MET",
+      "Delta phi between lepton and two-jet system (continued)"
+    ]
+  },
+  "jets": {
+    "name": "jets",
+    "definition": "[j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]",
+    "used_by": [
+      "Invariant mass of two leading jets",
+      "Delta R between two leading jets"
+    ]
+  }
+}

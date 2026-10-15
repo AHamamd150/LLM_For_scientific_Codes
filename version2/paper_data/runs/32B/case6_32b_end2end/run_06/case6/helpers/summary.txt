@@ -1,0 +1,31 @@
+# Selected helpers
+
+- get_electrons
+- get_muons
+- abs_eta
+- get_leptons: dependency of n_leptons
+- n_leptons
+- get_jets
+- get_bjets: dependency of n_bjets
+- n_bjets
+- helper_delta_phi: dependency of helper_delta_r
+- helper_delta_r
+- helper_get_met
+- helper_transverse_mass
+- get_light_jets
+- helper_get_leading
+- helper_get_subleading
+- get_particle_mass: dependency of four_momentum
+- four_momentum: dependency of sum_objects
+- obj_from_four_momentum: dependency of sum_objects
+- sum_objects: dependency of helper_invariant_mass
+- helper_invariant_mass
+- scalar_pt_sum
+- n_jets
+
+# Rejected but close
+
+- helper_delta_phi_met
+- pt_ratio
+- centrality_between_jets
+- cos_theta_star_collins_soper

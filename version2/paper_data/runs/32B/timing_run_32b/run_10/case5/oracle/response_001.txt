@@ -1,0 +1,75 @@
+[AMBIGUITY 1] "Define ditau_obj from the summed four-momentum of the leading tau and subleading tau"
+
+Original phrase:
+"Define ditau_obj from the summed four-momentum of the leading tau and subleading tau."
+
+Why this is dangerous:
+This phrase could be interpreted as either (1) creating a new composite object from the four-momenta of the two taus, or (2) simply using the two taus as a system for computing derived quantities like invariant mass or delta R without explicitly building a new object. The distinction affects whether helper functions like `sum_objects` or `obj_from_four_momentum` are used, and whether the ditau system is treated as a first-class object in later steps.
+
+Question to user:
+Do you want to create a new composite object from the leading and subleading tau four-momenta, or do you only need to compute derived quantities like invariant mass or delta R from the pair?
+
+Golden axe:
+Create a new composite object from the four-momenta of the leading and subleading tau.
+
+Silver axe:
+Use the two taus as a system for computing derived quantities without building a new object.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Define a new composite object (ditau_obj) by summing the four-momenta of the leading and subleading tau."
+- Silver axe rewrite: "Use the leading and subleading tau pair as a system for computing observables like invariant mass and delta R, without building a new object."
+
+---
+
+[AMBIGUITY 2] "Define dijet_obj from the summed momentum of the leading jet and subleading jet"
+
+Original phrase:
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Why this is dangerous:
+This phrase is ambiguous about whether the "summed momentum" refers to the four-momentum (E, px, py, pz) or only the three-momentum (px, py, pz). The distinction affects whether the composite object can be used to compute invariant mass or other four-vector-based quantities.
+
+Question to user:
+Do you want to define dijet_obj using the full four-momentum of the leading and subleading jets, or only their three-momentum?
+
+Golden axe:
+Define dijet_obj using the full four-momentum of the leading and subleading jets.
+
+Silver axe:
+Define dijet_obj using only the three-momentum of the leading and subleading jets.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Define a new composite object (dijet_obj) by summing the four-momenta of the leading and subleading jet."
+- Silver axe rewrite: "Define a new composite object (dijet_obj) by summing the three-momenta of the leading and subleading jet."
+
+---
+
+[AMBIGUITY 3] "Veto events with b-tagged jets"
+
+Original phrase:
+"Veto events with b-tagged jets"
+
+Why this is dangerous:
+This phrase is ambiguous about whether the veto applies to all b-tagged jets in the event (raw collection) or only to b-tagged jets that have passed earlier selection cuts (e.g., pT and |eta|). This affects whether the veto is applied early or late in the selection chain and whether the jet collection is filtered before or after the veto.
+
+Question to user:
+Should the veto on b-tagged jets be applied to all jets in the event, or only to jets that have passed the pT and |eta| cuts?
+
+Golden axe:
+Apply the veto to all jets in the event, regardless of earlier selection.
+
+Silver axe:
+Apply the veto only to jets that have passed the pT and |eta| cuts.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Veto events with any b-tagged jets in the full event."
+- Silver axe rewrite: "Veto events with b-tagged jets among the selected jets (after pT and |eta| cuts)."

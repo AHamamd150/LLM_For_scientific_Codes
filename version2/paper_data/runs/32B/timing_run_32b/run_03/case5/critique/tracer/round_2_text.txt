@@ -1,0 +1,48 @@
+
+
+computed/defined as: tau2['pt']  
+  - upstream chain: selected_taus -> helper_get_subleading(selected_taus) -> tau2['pt']  
+  - collection definition: selected_taus  
+  - structure: single-constituent  
+
+* pt_lead_jet  
+  - computed/defined as: jet1['pt']  
+  - upstream chain: selected_jets -> helper_get_leading(selected_jets) -> jet1['pt']  
+  - collection definition: selected_jets  
+  - structure: single-constituent  
+
+* pt_sublead_jet  
+  - computed/defined as: jet2['pt']  
+  - upstream chain: selected_jets -> helper_get_subleading(selected_jets) -> jet2['pt']  
+  - collection definition: selected_jets  
+  - structure: single-constituent  
+
+* delta_r_tautau  
+  - computed/defined as: helper_delta_r(tau1, tau2)  
+  - upstream chain: tau1, tau2 -> helper_delta_r(tau1, tau2)  
+  - collection definition: tau1, tau2  
+  - structure: multi-input  
+
+* delta_phi_tautau_dijet  
+  - computed/defined as: helper_delta_phi(ditau['phi'], dijet['phi'])  
+  - upstream chain: ditau, dijet -> helper_delta_phi(ditau['phi'], dijet['phi'])  
+  - collection definition: ditau, dijet  
+  - structure: multi-input  
+
+* centrality_tautau_jj  
+  - computed/defined as: centrality_between_jets(ditau, jet1, jet2)  
+  - upstream chain: ditau, jet1, jet2 -> centrality_between_jets(ditau, jet1, jet2)  
+  - collection definition: ditau, jet1, jet2  
+  - structure: multi-input  
+
+* cutflow  
+  - computed/defined as: cutflow dictionary with counters  
+  - upstream chain: cutflow initialization -> incrementing in event loop  
+  - collection definition: cutflow dictionary  
+  - structure: multi-input  
+
+* plots  
+  - computed/defined as: save_hist(...)  
+  - upstream chain: m_tautau, m_jj, delta_eta_jj, etc. -> save_hist(...)  
+  - collection definition: histogram values  
+  - structure: multi-input

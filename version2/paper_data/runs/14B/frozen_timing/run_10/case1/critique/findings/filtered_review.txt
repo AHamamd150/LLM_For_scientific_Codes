@@ -1,0 +1,1091 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+◎ (A) composite violation
+
+SPEC:
+- Select delta phi between the lepton and the two-jet system
+
+CODE:
+- helper_delta_phi(lepton['phi'], jet_system['phi'])
+
+Reason:
+The SPEC refers to a system-level quantity (delta phi between the lepton and the two-jet system), which requires using the two-jet system as a composite object. The code correctly constructs this composite object using sum_objects(jet1, jet2) and then computes the delta phi between the lepton and this composite object. This is not a composite violation.
+
+Evidence priority:
+- jet_system is defined as sum_objects(jet1, jet2) 〔L365〕
+- dphi_lepton_jets is computed as helper_delta_phi(lepton['phi'], jet_system['phi']) 〔L367〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select transverse mass of lepton + MET between 40 and 120 GeV (W leptonic candidate)
+
+CODE:
+- helper_transverse_mass(lepton, met)
+
+Reason:
+The SPEC explicitly requires the transverse mass of the lepton + MET to be between 40 and 120 GeV. The code uses helper_transverse_mass(lepton, met) to compute this quantity, which is correct. This is not a definition mismatch.
+
+Evidence priority:
+- mt is computed as helper_transverse_mass(lepton, met) 〔L327〕
+- mt is checked with if not (40 < mt < 120): 〔L328〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)
+
+CODE:
+- helper_invariant_mass(jet1, jet2)
+
+Reason:
+The SPEC explicitly requires the invariant mass of the two leading jets to be between 60 and 100 GeV. The code uses helper_invariant_mass(jet1, jet2) to compute this quantity, which is correct. This is not a definition mismatch.
+
+Evidence priority:
+- mjj is computed as helper_invariant_mass(jet1, jet2) 〔L337〕
+- mjj is checked with if not (60 < mjj < 100): 〔L338〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select delta R between the two leading jets < 3.0
+
+CODE:
+- helper_delta_r(jet1, jet2)
+
+Reason:
+The SPEC explicitly requires the delta R between the two leading jets to be less than 3.0. The code uses helper_delta_r(jet1, jet2) to compute this quantity, which is correct. This is not a definition mismatch.
+
+Evidence priority:
+- dr is computed as helper_delta_r(jet1, jet2) 〔L343〕
+- dr is checked with if dr >= 3.0: 〔L344〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Veto events with b-tagged jets 
+
+CODE:
+- any(b['pt'] > 30 and abs(b['eta']) < 2.5 for b in bjets)
+
+Reason:
+The SPEC requires vetoing events with b-tagged jets. The code correctly implements this by checking if any b-jet (with pt > 30 and |eta| < 2.5) is present in the event. This is not a definition mismatch.
+
+Evidence priority:
+- bjets is defined as [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1] 〔L188-L190〕
+- any(b['pt'] > 30 and abs(b['eta']) < 2.5 for b in bjets) is used to veto events 〔L315〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require exactly 1 selected lepton
+
+CODE:
+- len(leptons) == 1
+
+Reason:
+The SPEC requires exactly 1 selected lepton. The code correctly implements this by checking if len(leptons) == 1. This is not a definition mismatch.
+
+Evidence priority:
+- leptons is defined as [l for l in electrons if ...] + [l for l in muons if ...] 〔L288-L296〕
+- len(leptons) == 1 is used to require exactly 1 lepton 〔L297〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require at least 2 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The SPEC requires at least 2 jets with pT > 30 GeV and |eta| < 2.5. The code correctly implements this by filtering jets with these criteria and checking if the number of such jets is at least 2. This is not a definition mismatch.
+
+Evidence priority:
+- jets is defined as [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5] 〔L307-L309〕
+- len(jets) < 2 is used to require at least 2 jets 〔L309〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select MET > 30 GeV
+
+CODE:
+- met['pt'] > 30
+
+Reason:
+The SPEC requires MET > 30 GeV. The code correctly implements this by checking if met['pt'] > 30. This is not a definition mismatch.
+
+Evidence priority:
+- met is defined as helper_get_met(event) 〔L200-L205〕
+- met['pt'] > 30 is used to select MET > 30 GeV 〔L321〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+
+CODE:
+- [j for j in electrons if j['pt'] > 25 and abs(j['eta']) < 2.5]
+
+Reason:
+The SPEC requires selecting electrons with pT > 25 GeV and |eta| < 2.5. The code correctly implements this by filtering electrons with these criteria. This is not a definition mismatch.
+
+Evidence priority:
+- electrons is defined as [o for o in event['objects'] if o['type'] == 1] 〔L172-L174〕
+- [j for j in electrons if j['pt'] > 25 and abs(j['eta']) < 2.5] is used to select electrons 〔L291-L293〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 20 GeV and |eta| < 2.4
+
+CODE:
+- [j for j in muons if j['pt'] > 20 and abs(j['eta']) < 2.4]
+
+Reason:
+The SPEC requires selecting muons with pT > 20 GeV and |eta| < 2.4. The code correctly implements this by filtering muons with these criteria. This is not a definition mismatch.
+
+Evidence priority:
+- muons is defined as [o for o in event['objects'] if o['type'] == 2] 〔L176-L178〕
+- [j for j in muons if j['pt'] > 20 and abs(j['eta']) < 2.4] is used to select muons 〔L294-L296〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Use selected electrons and selected muons to define selected leptons.
+
+CODE:
+- [l for l in electrons if ...] + [l for l in muons if ...]
+
+Reason:
+The SPEC requires using selected electrons and selected muons to define selected leptons. The code correctly implements this by combining the selected electrons and selected muons into a single list of leptons. This is not a definition mismatch.
+
+Evidence priority:
+- electrons is defined as [o for o in event['objects'] if o['type'] == 1] 〔L172-L174〕
+- muons is defined as [o for o in event['objects'] if o['type'] == 2] 〔L176-L178〕
+- leptons is defined as [l for l in electrons if ...] + [l for l in muons if ...] 〔L288-L296〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+CODE:
+- The code applies the cuts sequentially and skips the event immediately when a cut is not satisfied.
+
+Reason:
+The SPEC requires applying the cuts sequentially and skipping the event immediately when a cut is not satisfied. The code correctly implements this by using continue statements to skip events when a cut is not satisfied. This is not a definition mismatch.
+
+Evidence priority:
+- The code uses continue statements to skip events when a cut is not satisfied 〔L298, L303, L310, L316, L322, L329, L339, L345〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the following as histograms:
+1 Plot the transverse mass of lepton + MET (W leptonic) in the range 30 to 150 GeV
+
+CODE:
+- plt.hist(mt_list, bins=40, range=(30, 150), density=True)
+
+Reason:
+The SPEC requires plotting the transverse mass of lepton + MET in the range 30 to 150 GeV. The code correctly implements this by plotting mt_list with the specified range. This is not a definition mismatch.
+
+Evidence priority:
+- mt_list is defined as the list of transverse masses 〔L349〕
+- plt.hist(mt_list, bins=40, range=(30, 150), density=True) is used to plot the transverse mass 〔L389-L393〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of the two leading jets (W hadronic) in the range 40 to 120 GeV
+
+CODE:
+- plt.hist(mjj_list, bins=40, range=(40, 120), density=True)
+
+Reason:
+The SPEC requires plotting the invariant mass of the two leading jets in the range 40 to 120 GeV. The code correctly implements this by plotting mjj_list with the specified range. This is not a definition mismatch.
+
+Evidence priority:
+- mjj_list is defined as the list of invariant masses 〔L350〕
+- plt.hist(mjj_list, bins=40, range=(40, 120), density=True) is used to plot the invariant mass 〔L396-L400〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- plt.hist(met_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The SPEC requires plotting the MET distribution. The code correctly implements this by plotting met_list. This is not a definition mismatch.
+
+Evidence priority:
+- met_list is defined as the list of MET values 〔L351〕
+- plt.hist(met_list, bins=40, range=(0, 200), density=True) is used to plot the MET distribution 〔L403-L407〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the lepton
+
+CODE:
+- plt.hist(lepton_pt_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The SPEC requires plotting the pT of the lepton. The code correctly implements this by plotting lepton_pt_list. This is not a definition mismatch.
+
+Evidence priority:
+- lepton_pt_list is defined as the list of lepton pT values 〔L352〕
+- plt.hist(lepton_pt_list, bins=40, range=(0, 200), density=True) is used to plot the lepton pT 〔L410-L414〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading jet
+
+CODE:
+- plt.hist(jet1_pt_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The SPEC requires plotting the pT of the leading jet. The code correctly implements this by plotting jet1_pt_list. This is not a definition mismatch.
+
+Evidence priority:
+- jet1_pt_list is defined as the list of leading jet pT values 〔L353〕
+- plt.hist(jet1_pt_list, bins=40, range=(0, 200), density=True) is used to plot the leading jet pT 〔L417-L421〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading jet
+
+CODE:
+- plt.hist(jet2_pt_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The SPEC requires plotting the pT of the subleading jet. The code correctly implements this by plotting jet2_pt_list. This is not a definition mismatch.
+
+Evidence priority:
+- jet2_pt_list is defined as the list of subleading jet pT values 〔L354〕
+- plt.hist(jet2_pt_list, bins=40, range=(0, 200), density=True) is used to plot the subleading jet pT 〔L424-L428〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta R between the two leading jets
+
+CODE:
+- plt.hist(dr_list, bins=40, range=(0, 5), density=True)
+
+Reason:
+The SPEC requires plotting delta R between the two leading jets. The code correctly implements this by plotting dr_list. This is not a definition mismatch.
+
+Evidence priority:
+- dr_list is defined as the list of delta R values 〔L355〕
+- plt.hist(dr_list, bins=40, range=(0, 5), density=True) is used to plot delta R 〔L431-L435〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the lepton and MET
+
+CODE:
+- plt.hist(dphi_list, bins=40, range=(-3.14, 3.14), density=True)
+
+Reason:
+The SPEC requires plotting delta phi between the lepton and MET. The code correctly implements this by plotting dphi_list. This is not a definition mismatch.
+
+Evidence priority:
+- dphi_list is defined as the list of delta phi values between the lepton and MET 〔L357-L359〕
+- plt.hist(dphi_list, bins=40, range=(-3.14, 3.14), density=True) is used to plot delta phi between the lepton and MET 〔L438-L442〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the eta of the lepton
+
+CODE:
+- plt.hist(lepton_eta_list, bins=40, range=(-2.5, 2.5), density=True)
+
+Reason:
+The SPEC requires plotting the eta of the lepton. The code correctly implements this by plotting lepton_eta_list. This is not a definition mismatch.
+
+Evidence priority:
+- lepton_eta_list is defined as the list of lepton eta values 〔L361〕
+- plt.hist(lepton_eta_list, bins=40, range=(-2.5, 2.5), density=True) is used to plot the lepton eta 〔L445-L449〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the lepton and the two-jet system
+
+CODE:
+- plt.hist(dphi_lepton_jets_list, bins=40, range=(-3.14, 3.14), density=True)
+
+Reason:
+The SPEC requires plotting delta phi between the lepton and the two-jet system. The code correctly implements this by plotting dphi_lepton_jets_list. This is not a definition mismatch.
+
+Evidence priority:
+- dphi_lepton_jets_list is defined as the list of delta phi values between the lepton and the two-jet system 〔L364-L370〕
+- plt.hist(dphi_lepton_jets_list, bins=40, range=(-3.14, 3.14), density=True) is used to plot delta phi between the lepton and the two-jet system 〔L452-L456〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- cutflow is printed after the event loop
+
+Reason:
+The SPEC requires printing a cutflow summary after the event loop. The code correctly implements this by printing cutflow after the event loop. This is not a definition mismatch.
+
+Evidence priority:
+- cutflow is defined as a dictionary with the number of events after each selection step 〔L260-L270〕
+- cutflow is printed after the event loop 〔L384-L386〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The SPEC requires saving the plots in png format. The code correctly implements this by using plt.savefig(...) to save the plots as png files. This is not a definition mismatch.
+
+Evidence priority:
+- plt.savefig(...) is used to save the plots as png files 〔L393, L400, L407, L414, L421, L428, L435, L442, L449, L456〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save the following in a CSV file for MLP analysis:
+1- Transverse mass of lepton + MET
+
+CODE:
+- mt is saved in the CSV file
+
+Reason:
+The SPEC requires saving the transverse mass of lepton + MET in the CSV file. The code correctly implements this by saving mt in the CSV file. This is not a definition mismatch.
+
+Evidence priority:
+- mt is defined as helper_transverse_mass(lepton, met) 〔L327〕
+- mt is saved in the CSV file 〔L373〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Dijet invariant mass
+
+CODE:
+- mjj is saved in the CSV file
+
+Reason:
+The SPEC requires saving the dijet invariant mass in the CSV file. The code correctly implements this by saving mjj in the CSV file. This is not a definition mismatch.
+
+Evidence priority:
+- mjj is defined as helper_invariant_mass(jet1, jet2) 〔L337〕
+- mjj is saved in the CSV file 〔L374〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- MET
+
+CODE:
+- met['pt'] is saved in the CSV file
+
+Reason:
+The SPEC requires saving MET in the CSV file. The code correctly implements this by saving met['pt'] in the CSV file. This is not a definition mismatch.
+
+Evidence priority:
+- met is defined as helper_get_met(event) 〔L200-L205〕
+- met['pt'] is saved in the CSV file 〔L375〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- pT of the lepton
+
+CODE:
+- lepton['pt'] is saved in the CSV file
+
+Reason:
+The SPEC requires saving the pT of the lepton in the CSV file. The code correctly implements this by saving lepton['pt'] in the CSV file. This is not a definition mismatch.
+
+Evidence priority:
+- lepton is defined as [l for l in electrons if ...] + [l for l in muons if ...] 〔L288-L296〕
+- lepton['pt'] is saved in the CSV file 〔L376〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Delta R between the two jets
+
+CODE:
+- dr is saved in the CSV file
+
+Reason:
+The SPEC requires saving delta R between the two jets in the CSV file. The code correctly implements this by saving dr in the CSV file. This is not a definition mismatch.
+
+Evidence priority:
+- dr is defined as helper_delta_r(jet1, jet2) 〔L343〕
+- dr is saved in the CSV file 〔L377〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Delta phi between the lepton and the two-jet system
+
+CODE:
+- dphi_lepton_jets is saved in the CSV file
+
+Reason:
+The SPEC requires saving delta phi between the lepton and the two-jet system in the CSV file. The code correctly implements this by saving dphi_lepton_jets in the CSV file. This is not a definition mismatch.
+
+Evidence priority:
+- dphi_lepton_jets is defined as helper_delta_phi(lepton['phi'], jet_system['phi']) 〔L367〕
+- dphi_lepton_jets is saved in the CSV file 〔L378〕
+
+Generator bias:
+none
+
+---
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select delta phi between the lepton and the two-jet system
+
+CODE:
+- helper_delta_phi(lepton['phi'], jet_system['phi'])
+
+Reason:
+The SPEC refers to a system-level quantity (delta phi between the lepton and the two-jet system), which requires using the two-jet system as a composite object. The code correctly constructs this composite object using sum_objects(jet1, jet2) and then computes the delta phi between the lepton and this composite object. This is not a composite violation.
+
+Evidence priority:
+- jet_system is defined as sum_objects(jet1, jet2) 〔L365〕
+- dphi_lepton_jets is computed as helper_delta_phi(lepton['phi'], jet_system['phi']) 〔L367〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select transverse mass of lepton + MET between 40 and 120 GeV (W leptonic candidate)
+
+CODE:
+- helper_transverse_mass(lepton, met)
+
+Reason:
+The SPEC explicitly requires the transverse mass of the lepton + MET to be between 40 and 120 GeV. The code uses helper_transverse_mass(lepton, met) to compute this quantity, which is correct. This is not a definition mismatch.
+
+Evidence priority:
+- mt is computed as helper_transverse_mass(lepton, met) 〔L327〕
+- mt is checked with if not (40 < mt < 120): 〔L328〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)
+
+CODE:
+- helper_invariant_mass(jet1, jet2)
+
+Reason:
+The SPEC explicitly requires the invariant mass of the two leading jets to be between 60 and 100 GeV. The code uses helper_invariant_mass(jet1, jet2) to compute this quantity, which is correct. This is not a definition mismatch.
+
+Evidence priority:
+- mjj is computed as helper_invariant_mass(jet1, jet2) 〔L337〕
+- mjj is checked with if not (60 < mjj < 100): 〔L338〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select delta R between the two leading jets < 3.0
+
+CODE:
+- helper_delta_r(jet1, jet2)
+
+Reason:
+The SPEC explicitly requires the delta R between the two leading jets to be less than 3.0. The code uses helper_delta_r(jet1, jet2) to compute this quantity, which is correct. This is not a definition mismatch.
+
+Evidence priority:
+- dr is computed as helper_delta_r(jet1, jet2) 〔L343〕
+- dr is checked with if dr >= 3.0: 〔L344〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Veto events with b-tagged jets 
+
+CODE:
+- any(b['pt'] > 30 and abs(b['eta']) < 2.5 for b in bjets)
+
+Reason:
+The SPEC requires vetoing events with b-tagged jets. The code correctly implements this by checking if any b-jet (with pt > 30 and |eta| < 2.5) is present in the event. This is not a definition mismatch.
+
+Evidence priority:
+- bjets is defined as [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1] 〔L188-L190〕
+- any(b['pt'] > 30 and abs(b['eta']) < 2.5 for b in bjets) is used to veto events 〔L315〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require exactly 1 selected lepton
+
+CODE:
+- len(leptons) == 1
+
+Reason:
+The SPEC requires exactly 1 selected lepton. The code correctly implements this by checking if len(leptons) == 1. This is not a definition mismatch.
+
+Evidence priority:
+- leptons is defined as [l for l in electrons if ...] + [l for l in muons if ...] 〔L288-L296〕
+- len(leptons) == 1 is used to require exactly 1 lepton 〔L297〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require at least 2 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The SPEC requires at least 2 jets with pT > 30 GeV and |eta| < 2.5. The code correctly implements this by filtering jets with these criteria and checking if the number of such jets is at least 2. This is not a definition mismatch.
+
+Evidence priority:
+- jets is defined as [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5] 〔L307-L309〕
+- len(jets) < 2 is used to require at least 2 jets 〔L309〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select MET > 30 GeV
+
+CODE:
+- met['pt'] > 30
+
+Reason:
+The SPEC requires MET > 30 GeV. The code correctly implements this by checking if met['pt'] > 30. This is not a definition mismatch.
+
+Evidence priority:
+- met is defined as helper_get_met(event) 〔L200-L205〕
+- met['pt'] > 30 is used to select MET > 30 GeV 〔L321〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+
+CODE:
+- [j for j in electrons if j['pt'] > 25 and abs(j['eta']) < 2.5]
+
+Reason:
+The SPEC requires selecting electrons with pT > 25 GeV and |eta| < 2.5. The code correctly implements this by filtering electrons with these criteria. This is not a definition mismatch.
+
+Evidence priority:
+- electrons is defined as [o for o in event['objects'] if o['type'] == 1] 〔L172-L174〕
+- [j for j in electrons if j['pt'] > 25 and abs(j['eta']) < 2.5] is used to select electrons 〔L291-L293〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 20 GeV and |eta| < 2.4
+
+CODE:
+- [j for j in muons if j['pt'] > 20 and abs(j['eta']) < 2.4]
+
+Reason:
+The SPEC requires selecting muons with pT > 20 GeV and |eta| < 2.4. The code correctly implements this by filtering muons with these criteria. This is not a definition mismatch.
+
+Evidence priority:
+- muons is defined as [o for o in event['objects'] if o['type'] == 2] 〔L176-L178〕
+- [j for j in muons if j['pt'] > 20 and abs(j['eta']) < 2.4] is used to select muons 〔L294-L296〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Use selected electrons and selected muons to define selected leptons.
+
+CODE:
+- [l for l in electrons if ...] + [l for l in muons if ...]
+
+Reason:
+The SPEC requires using selected electrons and selected muons to define selected leptons. The code correctly implements this by combining the selected electrons and selected muons into a single list of leptons. This is not a definition mismatch.
+
+Evidence priority:
+- electrons is defined as [o for o in event['objects'] if o['type'] == 1] 〔L172-L174〕
+- muons is defined as [o for o in event['objects'] if o['type'] == 2] 〔L176-L178〕
+- leptons is defined as [l for l in electrons if ...] + [l for l in muons if ...] 〔L288-L296〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+CODE:
+- The code applies the cuts sequentially and skips the event immediately when a cut is not satisfied.
+
+Reason:
+The SPEC requires applying the cuts sequentially and skipping the event immediately when a cut is not satisfied. The code correctly implements this by using continue statements to skip events when a cut is not satisfied. This is not a definition mismatch.
+
+Evidence priority:
+- The code uses continue statements to skip events when a cut is not satisfied 〔L298, L303, L310, L316, L322, L329, L339, L345〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the following as histograms:
+1 Plot the transverse mass of lepton + MET (W leptonic) in the range 30 to 150 GeV
+
+CODE:
+- plt.hist(mt_list, bins=40, range=(30, 150), density=True)
+
+Reason:
+The SPEC requires plotting the transverse mass of lepton + MET in the range 30 to 150 GeV. The code correctly implements this by plotting mt_list with the specified range. This is not a definition mismatch.
+
+Evidence priority:
+- mt_list is defined as the list of transverse masses 〔L349〕
+- plt.hist(mt_list, bins=40, range=(30, 150), density=True) is used to plot the transverse mass 〔L389-L393〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of the two leading jets (W hadronic) in the range 40 to 120 GeV
+
+CODE:
+- plt.hist(mjj_list, bins=40, range=(40, 120), density=True)
+
+Reason:
+The SPEC requires plotting the invariant mass of the two leading jets in the range 40 to 120 GeV. The code correctly implements this by plotting mjj_list with the specified range. This is not a definition mismatch.
+
+Evidence priority:
+- mjj_list is defined as the list of invariant masses 〔L350〕
+- plt.hist(mjj_list, bins=40, range=(40, 120), density=True) is used to plot the invariant mass 〔L396-L400〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- plt.hist(met_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The SPEC requires plotting the MET distribution. The code correctly implements this by plotting met_list. This is not a definition mismatch.
+
+Evidence priority:
+- met_list is defined as the list of MET values 〔L351〕
+- plt.hist(met_list, bins=40, range=(0, 200), density=True) is used to plot the MET distribution 〔L403-L407〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the lepton
+
+CODE:
+- plt.hist(lepton_pt_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The SPEC requires plotting the pT of the lepton. The code correctly implements this by plotting lepton_pt_list. This is not a definition mismatch.
+
+Evidence priority:
+- lepton_pt_list is defined as the list of lepton pT values 〔L352〕
+- plt.hist(lepton_pt_list, bins=40, range=(0, 200), density=True) is used to plot the lepton pT 〔L410-L414〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading jet
+
+CODE:
+- plt.hist(jet1_pt_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The SPEC requires plotting the pT of the leading jet. The code correctly implements this by plotting jet1_pt_list. This is not a definition mismatch.
+
+Evidence priority:
+- jet1_pt_list is defined as the list of leading jet pT values 〔L353〕
+- plt.hist(jet1_pt_list, bins=40, range=(0, 200), density=True) is used to plot the leading jet pT 〔L417-L421〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading jet
+
+CODE:
+- plt.hist(jet2_pt_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The SPEC requires plotting the pT of the subleading jet. The code correctly implements this by plotting jet2_pt_list. This is not a definition mismatch.
+
+Evidence priority:
+- jet2_pt_list is defined as the list of subleading jet pT values 〔L354〕
+- plt.hist(jet2_pt_list, bins=40, range=(0, 200), density=True) is used to plot the subleading jet pT 〔L424-L428〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta R between the two leading jets
+
+CODE:
+- plt.hist(dr_list, bins=40, range=(0, 5), density=True)
+
+Reason:
+The SPEC requires plotting delta R between the two leading jets. The code correctly implements this by plotting dr_list. This is not a definition mismatch.
+
+Evidence priority:
+- dr_list is defined as the list of delta R values 〔L355〕
+- plt.hist(dr_list, bins=40, range=(0, 5), density=True) is used to plot delta R 〔L431-L435〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the lepton and MET
+
+CODE:
+- plt.hist(dphi_list, bins=40, range=(-3.14, 3.14), density=True)
+
+Reason:
+The SPEC requires plotting delta phi between the lepton and MET. The code correctly implements this by plotting dphi_list. This is not a definition mismatch.
+
+Evidence priority:
+- dphi_list is defined as the list of delta phi values between the lepton and MET 〔L357-L359〕
+- plt.hist(dphi_list, bins=40, range=(-3.14, 3.14), density=True) is used to plot delta phi between the lepton and MET 〔L438-L442〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the eta of the lepton
+
+CODE:
+- plt.hist(lepton_eta_list, bins=40, range=(-2.5, 2.5), density=True)
+
+Reason:
+The SPEC requires plotting the eta of the lepton. The code correctly implements this by plotting lepton_eta_list. This is not a definition mismatch.
+
+Evidence priority:
+- lepton_eta_list is defined as the list of lepton eta values 〔L361〕
+- plt.hist(lepton_eta_list, bins=40, range=(-2.5, 2.5), density=True) is used to plot the lepton eta 〔L445-L449〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the lepton and the two-jet system
+
+CODE:
+- plt.hist(dphi_lepton_jets_list, bins=40, range=(-3.14, 3.14), density=True)
+
+Reason:
+The SPEC requires plotting delta phi between the lepton and the two-jet system. The code correctly implements this by plotting dphi_lepton_jets_list. This is not a definition mismatch.
+
+Evidence priority:
+- dphi_lepton_jets_list is defined as the list of delta phi values between the lepton and the two-jet system 〔L364-L370〕
+- plt.hist(dphi_lepton_jets_list, bins=40, range=(-3.14, 3.14), density=True) is used to plot delta phi between the lepton and the two-jet system 〔L452-L456〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- cutflow is printed after the event loop
+
+Reason:
+The SPEC requires printing a cutflow summary after the event loop. The code correctly implements this by printing cutflow after the event loop. This is not a definition mismatch.
+
+Evidence priority:
+- cutflow is defined as a dictionary with the number of events after each selection step 〔L260-L270〕
+- cutflow is printed after the event loop 〔L384-L386〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The SPEC requires saving the plots in png format. The code correctly implements this by using plt.savefig(...) to save the plots as png files. This is not a definition mismatch.
+
+Evidence priority:
+- plt.savefig(...) is used to save the plots as png files 〔L393, L400, L407, L414, L421, L428, L435, L442, L449, L456〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save the following in a CSV file for MLP analysis:
+1- Transverse mass of lepton + MET
+
+CODE:
+- mt is saved in the CSV file
+
+Reason:
+The SPEC requires saving the transverse mass of lepton + MET in the CSV file. The code correctly implements this by saving mt in the CSV file. This is not a definition mismatch.
+
+Evidence priority:
+- mt is defined as helper_transverse_mass(lepton, met) 〔L327〕
+- mt is saved in the CSV file 〔L373〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Dijet invariant mass
+
+CODE:
+- mjj is saved in the CSV file
+
+Reason:
+The SPEC requires saving the dijet invariant mass in the CSV file. The code correctly implements this by saving mjj in the CSV file. This is not a definition mismatch.
+
+Evidence priority:
+- mjj is defined as helper_invariant_mass(jet1, jet2) 〔L337〕
+- mjj is saved in the CSV file 〔L374〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- MET
+
+CODE:
+- met['pt'] is saved in the CSV file
+
+Reason:
+The SPEC requires saving MET in the CSV file. The code correctly implements this by saving met['pt'] in the CSV file. This is not a definition mismatch.
+
+Evidence priority:
+- met is defined as helper_get_met(event) 〔L200-L205〕
+- met['pt'] is saved in the CSV file 〔L375〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- pT of the lepton
+
+CODE:
+- lepton['pt'] is saved in the CSV file
+
+Reason:
+The SPEC requires saving the pT of the lepton in the CSV file. The code correctly implements this by saving lepton['pt'] in the CSV file. This is not a definition mismatch.
+
+Evidence priority:
+- lepton is defined as [l for l in electrons if ...] + [l for l in muons if ...] 〔L288-L296〕
+- lepton['pt'] is saved in the CSV file 〔L376〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Delta R between the two jets
+
+CODE:
+- dr is saved in the CSV file
+
+Reason:
+The SPEC requires saving delta R between the two jets in the CSV file. The code correctly implements this by saving dr in the CSV file. This is not a definition mismatch.
+
+Evidence priority:
+- dr is defined as helper_delta_r(jet1, jet2) 〔L343〕
+- dr is saved in the CSV file 〔L377〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Delta phi between the lepton and the two-jet system
+
+CODE:
+- dphi_lepton_jets is saved in the CSV file
+
+Reason:
+The SPEC requires saving delta phi between the lepton and the two-jet system in the CSV file. The code correctly implements this by saving dphi_lepton_jets in the CSV file. This is not a definition mismatch.
+
+Evidence priority:
+- dphi_lepton_jets is defined as helper_delta_phi(lepton['phi'], jet_system['phi']) 〔L367〕
+- dphi_lepton_jets is saved in the CSV file 〔L378〕
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

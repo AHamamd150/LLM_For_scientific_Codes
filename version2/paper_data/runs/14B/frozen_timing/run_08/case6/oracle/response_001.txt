@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading b-jet definition
+
+Original phrase:
+"Plot the pT of the leading b-jet"
+
+Why this is dangerous:
+The phrase "leading b-jet" could refer to the highest-pT b-tagged jet in the full event or the highest-pT b-tagged jet among those selected after the jet selection cuts.
+
+Question to user:
+Are the leading b-jet and subleading b-jet in the plots defined before or after the jet selection cuts?
+
+Golden axe:
+Leading b-jet is defined among the selected b-tagged jets after the jet selection cuts.
+
+Silver axe:
+Leading b-jet is defined among all b-tagged jets in the event, regardless of selection cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Hadronic W candidate definition
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Why this is dangerous:
+The phrase "selected non-b-tagged jets" could refer to jets that passed the jet selection cuts but were not b-tagged, or it could refer to all non-b-tagged jets in the event regardless of selection cuts.
+
+Question to user:
+Are the non-b-tagged jets used to build the hadronic W candidate required to have passed the jet selection cuts?
+
+Golden axe:
+Non-b-tagged jets used for the hadronic W candidate must have passed the jet selection cuts.
+
+Silver axe:
+Non-b-tagged jets used for the hadronic W candidate can be any non-b-tagged jets in the event, regardless of selection cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Hadronic top candidate definition
+
+Original phrase:
+"Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate."
+
+Why this is dangerous:
+The phrase "leading selected b-tagged jet" could refer to the highest-pT b-tagged jet among those selected after the jet selection cuts, or it could refer to the highest-pT b-tagged jet in the full event.
+
+Question to user:
+Is the leading b-tagged jet used in the hadronic top candidate defined before or after the jet selection cuts?
+
+Golden axe:
+Leading b-tagged jet is defined among the selected b-tagged jets after the jet selection cuts.
+
+Silver axe:
+Leading b-tagged jet is defined among all b-tagged jets in the event, regardless of selection cuts.
+
+Recommended default:
+Golden axe

@@ -1,0 +1,644 @@
+◎ (A) composite violation
+
+SPEC:
+- Build the diphoton system from the leading photon and the subleading photon.
+- Define m_gammagamma as the invariant mass of this diphoton system.
+- Use this same diphoton system to compute diphoton pT.
+
+CODE:
+- diphoton = sum_objects(leading_photon, subleading_photon)
+- m_gammagamma = diphoton['mass'] if diphoton else 0.0
+- pt_diphoton_list.append(diphoton['pt'] if diphoton else 0.0)
+
+Reason:
+The code correctly constructs the diphoton system from the leading and subleading photons and computes its invariant mass and pT. This is consistent with the SPEC.
+
+Evidence priority:
+〔L291-L293, L314〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select photons with pT > 25 GeV and |eta| < 2.37.
+
+CODE:
+- [p for p in photons if p['pt'] > 25 and abs(p['eta']) < 2.37]
+
+Reason:
+The code implements the pT and |eta| cuts as specified in the SPEC.
+
+Evidence priority:
+〔L262-L264〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Exclude photons in the crack region 1.37 < |eta| < 1.52.
+
+CODE:
+- [p for p in photons_selected if not (1.37 < abs(p['eta']) < 1.52)]
+
+Reason:
+The code implements the crack region exclusion as specified in the SPEC.
+
+Evidence priority:
+〔L268-L270〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require at least 2 photons
+
+CODE:
+- len(photons_clean) >= 2
+
+Reason:
+The code implements the requirement for at least 2 photons as specified in the SPEC.
+
+Evidence priority:
+〔L270〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Define the leading photon and subleading photon after photon selection.
+
+CODE:
+- leading_photon = helper_get_leading(photons_clean)
+- subleading_photon = helper_get_subleading(photons_clean)
+
+Reason:
+The code correctly defines the leading and subleading photons after the selection cuts.
+
+Evidence priority:
+〔L274-L276〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Leading photon pT > 35 GeV
+
+CODE:
+- if leading_photon['pt'] <= 35: continue
+
+Reason:
+The code implements the leading photon pT cut as specified in the SPEC.
+
+Evidence priority:
+〔L281-L283〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Subleading photon pT > 25 GeV
+
+CODE:
+- if subleading_photon['pt'] <= 25: continue
+
+Reason:
+The code implements the subleading photon pT cut as specified in the SPEC.
+
+Evidence priority:
+〔L286-L288〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select diphoton invariant mass between 105 and 160 GeV.
+
+CODE:
+- if not (105 < m_gammagamma < 160): continue
+
+Reason:
+The code implements the diphoton invariant mass cut as specified in the SPEC.
+
+Evidence priority:
+〔L294-L295〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select leading photon pT / m_gammagamma > 0.35.
+
+CODE:
+- if leading_photon['pt'] / m_gammagamma <= 0.35: continue
+
+Reason:
+The code implements the leading photon pT / m_gammagamma cut as specified in the SPEC.
+
+Evidence priority:
+〔L298-L300〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select subleading photon pT / m_gammagamma > 0.25.
+
+CODE:
+- if subleading_photon['pt'] / m_gammagamma <= 0.25: continue
+
+Reason:
+The code implements the subleading photon pT / m_gammagamma cut as specified in the SPEC.
+
+Evidence priority:
+〔L303-L305〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot diphoton invariant mass in the range 100 to 160 GeV
+
+CODE:
+- plot_histogram(m_gammagamma_list, 40, "m(gammagamma) [GeV]", "m_gammagamma.png")
+
+Reason:
+The code plots the diphoton invariant mass as specified in the SPEC.
+
+Evidence priority:
+〔L331〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot pT of the leading photon
+
+CODE:
+- plot_histogram(pt_leading_photon_list, 40, "pT (leading photon) [GeV]", "pt_leading_photon.png")
+
+Reason:
+The code plots the pT of the leading photon as specified in the SPEC.
+
+Evidence priority:
+〔L332〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot pT of the subleading photon
+
+CODE:
+- plot_histogram(pt_subleading_photon_list, 40, "pT (subleading photon) [GeV]", "pt_subleading_photon.png")
+
+Reason:
+The code plots the pT of the subleading photon as specified in the SPEC.
+
+Evidence priority:
+〔L333〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot pT of the diphoton system
+
+CODE:
+- plot_histogram(pt_diphoton_list, 40, "pT (diphoton) [GeV]", "pt_diphoton.png")
+
+Reason:
+The code plots the pT of the diphoton system as specified in the SPEC.
+
+Evidence priority:
+〔L334〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot eta of the leading photon
+
+CODE:
+- plot_histogram(eta_leading_photon_list, 40, "eta (leading photon)", "eta_leading_photon.png")
+
+Reason:
+The code plots the eta of the leading photon as specified in the SPEC.
+
+Evidence priority:
+〔L335〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot eta of the subleading photon
+
+CODE:
+- plot_histogram(eta_subleading_photon_list, 40, "eta (subleading photon)", "eta_subleading_photon.png")
+
+Reason:
+The code plots the eta of the subleading photon as specified in the SPEC.
+
+Evidence priority:
+〔L336〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta R between the two photons
+
+CODE:
+- plot_histogram(dr_photons_list, 40, "ΔR (photons)", "dr_photons.png")
+
+Reason:
+The code plots the delta R between the two photons as specified in the SPEC.
+
+Evidence priority:
+〔L337〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the two photons
+
+CODE:
+- plot_histogram(dphi_photons_list, 40, "Δφ (photons)", "dphi_photons.png")
+
+Reason:
+The code plots the delta phi between the two photons as specified in the SPEC.
+
+Evidence priority:
+〔L338〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the |cos(theta*)| of the diphoton system in Collins-Soper frame
+
+CODE:
+- plot_histogram(cos_theta_star_list, 40, "|cos(theta*)|", "cos_theta_star.png")
+
+Reason:
+The code plots the |cos(theta*)| of the diphoton system as specified in the SPEC.
+
+Evidence priority:
+〔L339〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- for key, value in cutflow.items(): print(f"{key}: {value}")
+
+Reason:
+The code prints the cutflow summary as specified in the SPEC.
+
+Evidence priority:
+〔L357-L358〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- save the figures in png format
+
+CODE:
+- plt.savefig(filename)
+
+Reason:
+The code saves the figures in PNG format as specified in the SPEC.
+
+Evidence priority:
+〔L329〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save to CSV for MLP analysis: 1- Diphoton invariant mass
+
+CODE:
+- m_gammagamma_list
+
+Reason:
+The code saves the diphoton invariant mass to CSV as specified in the SPEC.
+
+Evidence priority:
+〔L347〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save to CSV for MLP analysis: 2- Leading photon pT
+
+CODE:
+- pt_leading_photon_list
+
+Reason:
+The code saves the leading photon pT to CSV as specified in the SPEC.
+
+Evidence priority:
+〔L348〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save to CSV for MLP analysis: 3- Subleading photon pT
+
+CODE:
+- pt_subleading_photon_list
+
+Reason:
+The code saves the subleading photon pT to CSV as specified in the SPEC.
+
+Evidence priority:
+〔L349〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save to CSV for MLP analysis: 4- Delta R between photons
+
+CODE:
+- dr_photons_list
+
+Reason:
+The code saves the delta R between photons to CSV as specified in the SPEC.
+
+Evidence priority:
+〔L350〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save to CSV for MLP analysis: 5- pT of diphoton system
+
+CODE:
+- pt_diphoton_list
+
+Reason:
+The code saves the pT of the diphoton system to CSV as specified in the SPEC.
+
+Evidence priority:
+〔L351〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save to CSV for MLP analysis: 6- |cos(theta*)|
+
+CODE:
+- cos_theta_star_list
+
+Reason:
+The code saves the |cos(theta*)| to CSV as specified in the SPEC.
+
+Evidence priority:
+〔L352〕
+
+Generator bias:
+none
+
+---
+
+◎ (B) definition mismatch
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+- Increment each cutflow counter immediately after its cut is passed.
+
+CODE:
+- The cutflow counters are incremented after each cut is passed, and events are skipped when a cut is not satisfied.
+
+Reason:
+The code applies the cuts sequentially and increments the cutflow counters immediately after each cut is passed, as required by the SPEC.
+
+Evidence priority:
+〔L266, L272, L280, L284, L296, L301, L306, L309〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Use simple validation histograms.
+For each histogram: plt.figure(); plt.hist(values, bins=40, density=True); plt.xlabel(...); plt.ylabel("density"); plt.savefig(...); plt.close().
+
+CODE:
+- def plot_histogram(values, bins, xlabel, filename):
+    plt.figure()
+    plt.hist(values, bins=bins, density=True)
+    plt.xlabel(xlabel)
+    plt.ylabel("density")
+    plt.savefig(filename)
+    plt.close()
+
+Reason:
+The code implements the simple validation histograms as specified in the SPEC.
+
+Evidence priority:
+〔L323-L329〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Read LHCO files and process events.
+
+CODE:
+- def read_lhco(filename): ... and events = read_lhco(filename)
+
+Reason:
+The code reads LHCO files and processes events as required by the SPEC.
+
+Evidence priority:
+〔L146-L197, L233-L235〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Define the leading photon and subleading photon after photon selection.
+
+CODE:
+- leading_photon = helper_get_leading(photons_clean)
+- subleading_photon = helper_get_subleading(photons_clean)
+
+Reason:
+The code defines the leading and subleading photons after the photon selection as specified in the SPEC.
+
+Evidence priority:
+〔L274-L276〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Build the diphoton system from the leading photon and the subleading photon.
+
+CODE:
+- diphoton = sum_objects(leading_photon, subleading_photon)
+
+Reason:
+The code builds the diphoton system from the leading and subleading photons as specified in the SPEC.
+
+Evidence priority:
+〔L291〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Define m_gammagamma as the invariant mass of this diphoton system.
+
+CODE:
+- m_gammagamma = diphoton['mass'] if diphoton else 0.0
+
+Reason:
+The code defines m_gammagamma as the invariant mass of the diphoton system as specified in the SPEC.
+
+Evidence priority:
+〔L293〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Use this same diphoton system to compute diphoton pT.
+
+CODE:
+- pt_diphoton_list.append(diphoton['pt'] if diphoton else 0.0)
+
+Reason:
+The code uses the same diphoton system to compute the diphoton pT as specified in the SPEC.
+
+Evidence priority:
+〔L314〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select diphoton invariant mass between 105 and 160 GeV.
+
+CODE:
+- if not (105 < m_gammagamma < 160): continue
+
+Reason:
+The code selects events with diphoton invariant mass between 105 and 160 GeV as specified in the SPEC.
+
+Evidence priority:
+〔L294-L295〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select leading photon pT / m_gammagamma > 0.35.
+
+CODE:
+- if leading_photon['pt'] / m_gammagamma <= 0.35: continue
+
+Reason:
+The code selects events with leading photon pT / m_gammagamma > 0.35 as specified in the SPEC.
+
+Evidence priority:
+〔L298-L300〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select subleading photon pT / m_gammagamma > 0.25.
+
+CODE:
+- if subleading_photon['pt'] / m_gammagamma <= 0.25: continue
+
+Reason:
+The code selects events with subleading photon pT / m_gammagamma > 0.25 as specified in the SPEC.
+
+Evidence priority:
+〔L303-L305〕
+
+Generator bias:
+none

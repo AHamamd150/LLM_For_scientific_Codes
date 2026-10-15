@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* dijet_obj\n  - computed/defined as: sum_objects(jet1, jet2)\n  - upstream chain: sum_objects -> sum of four-momenta of particles\n  - collection definition: jet1 and jet2 from jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: composite-derived\n\n* opposite_sign\n  - computed/defined as: opposite_sign(tau1, tau2)\n  - upstream chain: opposite_sign -> obj1['charge'] * obj2['charge'] < 0\n  - collection definition: tau1 and tau2 from taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]\n  - structure: multi-input\n\n* m_jj\n  - computed/defined as: dijet_obj['mass']\n  - upstream chain: dijet_obj = sum_objects(jet1, jet2)\n  - collection definition: jet1 and jet2 from jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: composite-derived\n\n* delta_eta_jj\n  - computed/defined as: abs_delta_eta(jet1, jet2)\n  - upstream chain: abs_delta_eta -> abs(obj1['eta'] - obj2['eta'])\n  - collection definition: jet1 and jet2 from jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: multi-input\n\n* m_tautau\n  - computed/defined as: ditau_obj['mass']\n  - upstream chain: ditau_obj = sum_objects(tau1, tau2)\n  - collection definition: tau1 and tau2 from taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]\n  - structure: composite-derived\n\n* bjets\n  - computed/defined as: get_bjets(event)\n  - upstream chain: get_bjets(event) -> [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]\n  - collection definition: o['type'] == 4 and int(o['btag']) == 1\n  - structure: single-constituent\n\n* n_bjets\n  - computed/defined as: n_bjets(event, pt_cut=30, eta_cut=4.7)\n  - upstream chain: n_bjets -> sum(1 for b in bjets if b['pt'] > pt_cut and abs(b['eta']) < eta_cut)\n  - collection definition: bjets = [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]\n  - structure: multi-input\n\n* delta_r_tautau\n  - computed/defined as: helper_delta_r(tau1, tau2)\n  - upstream chain: helper_delta_r -> sqrt(deta^2 + dphi^2)\n  - collection definition: tau1 and tau2 from taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]\n  - structure: multi-input\n\n* delta_phi_tautau_dijet\n  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])\n  - upstream chain: helper_delta_phi -> normalized Δφ to [-π, π]\n  - collection definition: ditau_obj and dijet_obj from tau1, tau2, jet1, jet2\n  - structure: multi-input\n\n* centrality\n  - computed/defined as: centrality_between_jets(ditau_obj, jet1, jet2)\n  - upstream chain: centrality_between_jets -> |eta_obj - eta_center_jj| / |delta_eta_jj|\n  - collection definition: ditau_obj, jet1, and jet2 from tau1, tau2, jet1, jet2\n  - structure: multi-input",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1789522422,
+  "id": "chatcmpl-7f3776b2-56f6-4d76-977b-4e042ce80999",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 923,
+    "prompt_tokens": 10521,
+    "prompt_tokens_details": null,
+    "total_tokens": 11444
+  }
+}

@@ -1,0 +1,84 @@
+
+
+- computed/defined as: helper_delta_r(leading tau, subleading tau)
+  - upstream chain: leading tau, subleading tau -> selected taus
+  - collection definition: None
+  - structure: multi-input
+
+* delta_phi_tt_dijet
+  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])
+  - upstream chain: ditau_obj, dijet_obj -> leading tau, subleading tau, leading jet, subleading jet -> selected taus, selected jets
+  - collection definition: None
+  - structure: multi-input
+
+* centrality_tt_jj
+  - computed/defined as: centrality_between_jets(ditau_obj, leading jet, subleading jet)
+  - upstream chain: ditau_obj, leading jet, subleading jet -> leading tau, subleading tau, selected jets -> selected taus, selected jets
+  - collection definition: None
+  - structure: multi-input
+
+* cutflow
+  - computed/defined as: dictionary with counters for each selection step
+  - upstream chain: None
+  - collection definition: None
+  - structure: single-constituent
+
+* ditau_masses
+  - computed/defined as: list of m_tt values
+  - upstream chain: m_tt -> ditau_obj -> leading tau, subleading tau -> selected taus
+  - collection definition: None
+  - structure: single-constituent
+
+* dijet_masses
+  - computed/defined as: list of m_jj values
+  - upstream chain: m_jj -> dijet_obj -> leading jet, subleading jet -> selected jets
+  - collection definition: None
+  - structure: single-constituent
+
+* delta_eta_jj
+  - computed/defined as: list of delta_eta values
+  - upstream chain: helper_delta_eta(leading jet, subleading jet) -> leading jet, subleading jet -> selected jets
+  - collection definition: None
+  - structure: single-constituent
+
+* leading_tau_pt
+  - computed/defined as: list of leading_tau['pt'] values
+  - upstream chain: leading_tau['pt'] -> leading_tau -> selected taus
+  - collection definition: None
+  - structure: single-constituent
+
+* subleading_tau_pt
+  - computed/defined as: list of subleading_tau['pt'] values
+  - upstream chain: subleading_tau['pt'] -> subleading_tau -> selected taus
+  - collection definition: None
+  - structure: single-constituent
+
+* leading_jet_pt
+  - computed/defined as: list of leading_jet['pt'] values
+  - upstream chain: leading_jet['pt'] -> leading_jet -> selected jets
+  - collection definition: None
+  - structure: single-constituent
+
+* subleading_jet_pt
+  - computed/defined as: list of subleading_jet['pt'] values
+  - upstream chain: subleading_jet['pt'] -> subleading_jet -> selected jets
+  - collection definition: None
+  - structure: single-constituent
+
+* delta_r_tt
+  - computed/defined as: list of delta_r_tt values
+  - upstream chain: helper_delta_r(leading tau, subleading tau) -> leading tau, subleading tau -> selected taus
+  - collection definition: None
+  - structure: single-constituent
+
+* delta_phi_tt_dijet
+  - computed/defined as: list of delta_phi_tt_dijet values
+  - upstream chain: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi']) -> ditau_obj, dijet_obj -> leading tau, subleading tau, leading jet, subleading jet -> selected taus, selected jets
+  - collection definition: None
+  - structure: single-constituent
+
+* centrality_tt_jj
+  - computed/defined as: list of centrality_tt_jj values
+  - upstream chain: centrality_between_jets(ditau_obj, leading jet, subleading jet) -> ditau_obj, leading jet, subleading jet -> leading tau, subleading tau, selected jets -> selected taus, selected jets
+  - collection definition: None
+  - structure: single-constituent

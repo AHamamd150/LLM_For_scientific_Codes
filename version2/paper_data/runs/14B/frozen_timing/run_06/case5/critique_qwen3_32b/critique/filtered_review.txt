@@ -1,0 +1,132 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+
+CODE:
+- sum_objects(leading_tau, subleading_tau)
+
+Reason:
+The code correctly constructs the ditau system from the four-momentum of the leading and subleading tau, as required by the SPEC. This is not a violation.
+
+Evidence priority:
+- sum_objects(leading_tau, subleading_tau); upstream chain: sum_objects -> E, px, py, pz from four_momentum; 〔L259, L65-L87, L27-L36〕
+
+Generator bias:
+none
+
+[KEPT 2] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Define dijet_obj from the summed momentum of the leading jet and subleading jet.
+
+CODE:
+- sum_objects(leading_jet, subleading_jet)
+
+Reason:
+The code correctly constructs the dijet system from the four-momentum of the leading and subleading jet, as required by the SPEC. This is not a violation.
+
+Evidence priority:
+- sum_objects(leading_jet, subleading_jet); upstream chain: sum_objects -> E, px, py, pz from four_momentum; 〔L277, L65-L87, L27-L36〕
+
+Generator bias:
+none
+
+[KEPT 3] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the ditau system and the dijet system
+
+CODE:
+- helper_delta_phi(leading_tau['phi'] + subleading_tau['phi'], leading_jet['phi'] + subleading_jet['phi'])
+
+Reason:
+The code computes the delta phi between the sum of the individual phi angles of the taus and the sum of the individual phi angles of the jets, rather than the phi of the ditau system and the phi of the dijet system. This is a definition mismatch.
+
+Evidence priority:
+- helper_delta_phi(leading_tau['phi'] + subleading_tau['phi'], leading_jet['phi'] + subleading_jet['phi']); upstream chain: helper_delta_phi -> phi1 - phi2; 〔L310, L143-L149, L109-L113, L114-L120, L275, L276〕
+
+Generator bias:
+none
+
+[KEPT 4] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- centrality_between_jets(sum_objects(leading_tau, subleading_tau), leading_jet, subleading_jet)
+
+Reason:
+The code correctly computes the centrality of the ditau system relative to the two jets, as required by the SPEC. This is not a violation.
+
+Evidence priority:
+- centrality_between_jets(sum_objects(leading_tau, subleading_tau), leading_jet, subleading_jet); upstream chain: centrality_between_jets -> jet1["eta"], jet2["eta"], obj["eta"]; 〔L311, L143-L155, L65-L87, L27-L36, L109-L113, L114-L120, L275, L276〕
+
+Generator bias:
+none
+
+
+✅ (◎) correct implementation
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+CODE:
+- continue statements after each cut condition
+
+Reason:
+The code correctly implements the sequential cut application and skips events when a cut is not satisfied.
+
+Evidence priority:
+- continue statements after each cut condition; 〔L248, L252, L259, L266, L270, L279, L285, L290, L295〕
+
+Generator bias:
+none
+
+
+✅ (◎) correct implementation
+
+SPEC:
+- Increment each cutflow counter immediately after its cut is passed.
+
+CODE:
+- cutflow dictionary updated at each cut step
+
+Reason:
+The code correctly increments the cutflow counter immediately after each cut is passed.
+
+Evidence priority:
+- cutflow dictionary updated at each cut step; 〔L249, L254, L261, L267, L272, L280, L286, L291, L297〕
+
+Generator bias:
+none
+
+
+✅ (◎) correct implementation
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(filename)
+
+Reason:
+The code correctly saves the plots in png format.
+
+Evidence priority:
+- plt.savefig(filename); upstream chain: plot_hist -> plt.savefig; 〔L325, L318-L327, L328-L337〕
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

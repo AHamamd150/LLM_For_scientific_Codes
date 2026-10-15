@@ -1,0 +1,98 @@
+[CANDIDATE 1] Leading and subleading tau definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Unresolved choice:
+It is not clear whether the leading and subleading tau are defined based on pT of the selected taus, or if another property (e.g., decay mode, isolation, or other quality criteria) is used for ordering.
+
+Why this may matter:
+If the helper assumes pT ordering by default, but the user intended a different ordering, the resulting ditau_obj and subsequent cuts (like invariant mass or delta R) could be incorrect.
+
+[CANDIDATE 2] Leading and subleading jet definition
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Unresolved choice:
+It is not clear whether the leading and subleading jets are defined based on pT of the selected jets, or if another property (e.g., b-tagging status, jet mass, or other quality criteria) is used for ordering.
+
+Why this may matter:
+If the helper assumes pT ordering by default, but the user intended a different ordering (e.g., excluding b-jets), the resulting dijet_obj and subsequent cuts (like m_jj or delta eta) could be incorrect.
+
+[CANDIDATE 3] Definition of ditau_obj
+
+Original phrase:
+"Define ditau_obj from the summed four-momentum of the leading tau and subleading tau."
+
+Unresolved choice:
+It is not clear whether the ditau_obj is a composite object that is used for further analysis (e.g., for delta phi with dijet_obj), or if it is only used to compute the invariant mass.
+
+Why this may matter:
+If the ditau_obj is intended to be reused (e.g., for angular separation with dijet_obj), it must be explicitly defined and stored. If not, it may be re-computed later, leading to inefficiency or inconsistency.
+
+[CANDIDATE 4] Definition of dijet_obj
+
+Original phrase:
+"Define dijet_obj from the summed four-momentum of the leading jet and subleading jet."
+
+Unresolved choice:
+It is not clear whether the dijet_obj is a composite object that is used for further analysis (e.g., for delta phi with ditau_obj), or if it is only used to compute the invariant mass.
+
+Why this may matter:
+If the dijet_obj is intended to be reused (e.g., for angular separation with ditau_obj), it must be explicitly defined and stored. If not, it may be re-computed later, leading to inefficiency or inconsistency.
+
+[CANDIDATE 5] Veto on b-tagged jets
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Unresolved choice:
+It is not clear whether the veto applies to all selected jets (after pT and eta cuts), or whether it applies to a subset (e.g., only the leading and subleading jets used in the dijet_obj).
+
+Why this may matter:
+If the veto is intended to apply only to the jets used in the dijet system, but the code applies it to all selected jets, it could incorrectly reject events that would otherwise pass the VBF topology criteria.
+
+[CANDIDATE 6] Opposite-sign tau pair requirement
+
+Original phrase:
+"Require opposite-sign tau pair"
+
+Unresolved choice:
+It is not clear whether this requirement applies to the leading and subleading tau only, or to all possible tau pairs in the event (e.g., if more than two taus are present).
+
+Why this may matter:
+If the user intends to consider all possible OS pairs (e.g., for a resonance search), but the code only checks the leading and subleading pair, it could miss valid signal events.
+
+[CANDIDATE 7] Centrality of the ditau system relative to the two jets
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Unresolved choice:
+It is not clear whether the ditau system refers to the ditau_obj (summed four-momentum of leading and subleading tau), or to the individual taus.
+
+Why this may matter:
+The centrality calculation depends on the pseudorapidity of the object being compared to the jets. If the ditau system is intended to be a single composite object, it must be defined before centrality is computed. Otherwise, the calculation may be based on an incorrect reference point.
+
+[CANDIDATE 8] Cutflow counter increment
+
+Original phrase:
+"Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is not clear whether the cutflow includes only the final selected events or whether it includes intermediate steps (e.g., after selecting taus, after selecting jets, etc.).
+
+Why this may matter:
+If the cutflow is intended to track the number of events at each selection stage, the code must increment counters at the correct points. If not, the cutflow may misrepresent the efficiency of the selection.
+
+[CANDIDATE 9] Order of cuts
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied."
+
+Unresolved choice:
+It is not clear whether the order of the cuts is important (e.g., whether vetoing b-jets should happen before or after defining the dijet system).
+
+Why this may matter:
+If the order of cuts is not explicitly specified, the code may apply them in a different order than intended, potentially leading to incorrect event rejection or inclusion.

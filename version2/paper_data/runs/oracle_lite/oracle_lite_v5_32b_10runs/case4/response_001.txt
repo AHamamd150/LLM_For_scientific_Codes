@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] z_obj reuse in plots
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum."
+
+Why this matters:
+The z_obj is defined for selection purposes, but it's unclear whether the same z_obj is intended to be reused in all plots that reference it (e.g., invariant mass and pT), or if a new z_obj is to be computed independently for each plot. This could lead to inconsistent definitions of the z system across different observables.
+
+Question to user:
+Should the z_obj be defined once and reused in all plots that reference it, or should it be recomputed independently for each plot?
+
+Golden axe:
+Define z_obj once from the two selected electrons and reuse it in all plots.
+
+Silver axe:
+Recompute the z system independently for each plot that references it.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Three-lepton system definition
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Why this matters:
+It is not clear whether the three-lepton system should be built from the same z_obj and W candidate muon used in earlier steps, or if it should be a new combination using the same particles. This could lead to inconsistent definitions of the system's four-momentum.
+
+Question to user:
+Should the three-lepton system be built from the same z_obj and W candidate muon used in earlier steps, or should it be a new combination of the same particles?
+
+Golden axe:
+Build the three-lepton system from the same z_obj and W candidate muon.
+
+Silver axe:
+Build the three-lepton system as a new combination of the two selected electrons and the selected muon.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] MET reference in delta phi
+
+Original phrase:
+"Plot delta phi between z_obj and MET"
+
+Why this matters:
+The MET object is referenced without specifying whether it is the raw MET or the MET after any potential corrections or selections. This could lead to different interpretations of the MET object used in the delta phi calculation.
+
+Question to user:
+Should the MET used in the delta phi calculation be the raw MET or the MET after any corrections or selections?
+
+Golden axe:
+Use the raw MET object for the delta phi calculation.
+
+Silver axe:
+Use the MET object after any corrections or selections for the delta phi calculation.
+
+Recommended default:
+Golden axe

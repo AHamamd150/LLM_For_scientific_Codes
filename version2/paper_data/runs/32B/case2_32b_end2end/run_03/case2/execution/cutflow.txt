@@ -1,0 +1,9 @@
+Cutflow:
+Initial events: 50000
+Events with 1 lepton: 24220
+Events with ≥4 jets: 11805
+Events with ≥2 b-jets: 4976
+Events with MET > 20 GeV: 4482
+Events with 30 < MT < 150 GeV: 3806
+Events with 40 < M(W_hadronic) < 120 GeV: 1777
+Events with 100 < M(top_hadronic) < 250 GeV: 1205

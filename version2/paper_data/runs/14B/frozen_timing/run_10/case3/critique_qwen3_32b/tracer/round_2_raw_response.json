@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n- upstream chain: diphoton['pt']\n  - collection definition: transverse momentum of diphoton system\n  - structure: composite-derived\n\n* eta_leading_photon_list\n  - computed/defined as: [leading_photon['eta'] for each event passing all cuts]\n  - upstream chain: leading_photon['eta']\n  - collection definition: pseudorapidity of leading photon\n  - structure: single-constituent\n\n* eta_subleading_photon_list\n  - computed/defined as: [subleading_photon['eta'] for each event passing all cuts]\n  - upstream chain: subleading_photon['eta']\n  - collection definition: pseudorapidity of subleading photon\n  - structure: single-constituent\n\n* dr_photons_list\n  - computed/defined as: [helper_delta_r(leading_photon, subleading_photon) for each event passing all cuts]\n  - upstream chain: leading_photon, subleading_photon\n  - collection definition: delta R between photons\n  - structure: multi-input\n\n* dphi_photons_list\n  - computed/defined as: [helper_delta_phi(leading_photon['phi'], subleading_photon['phi']) for each event passing all cuts]\n  - upstream chain: leading_photon['phi'], subleading_photon['phi']\n  - collection definition: delta phi between photons\n  - structure: multi-input\n\n* cos_theta_star_list\n  - computed/defined as: [abs(cos_theta_star_collins_soper(leading_photon, subleading_photon)) for each event passing all cuts]\n  - upstream chain: leading_photon, subleading_photon\n  - collection definition: |cos(theta*)| in Collins-Soper frame\n  - structure: composite-derived",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788937011,
+  "id": "chatcmpl-9b52d069-5e38-4200-8738-62eea9a2f2be",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 381,
+    "prompt_tokens": 10562,
+    "prompt_tokens_details": null,
+    "total_tokens": 10943
+  }
+}

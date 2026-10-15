@@ -1,0 +1,60 @@
+[UNDERSPECIFICATION 1] Definition of "leading tau and subleading tau"
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this matters:
+The phrase does not specify whether the leading and subleading taus are defined based on pT, or if another property (e.g. charge or isolation) is used. This choice affects which taus are used in the ditau system and thus the invariant mass and other derived quantities.
+
+Question to user:
+Are the leading and subleading taus defined based on transverse momentum (pT), or is another property used for ordering?
+
+Golden axe:
+Leading and subleading taus are defined by pT.
+
+Silver axe:
+Leading and subleading taus are defined by another property, such as charge or isolation.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Scope of "selected jets" for veto
+
+Original phrase:
+"Veto events with b-tagged jets"
+
+Why this matters:
+It is unclear whether the veto applies to all jets in the event or only to the selected jets (those with pT > 30 GeV and |eta| < 4.7). This distinction can significantly affect the number of events that pass the veto.
+
+Question to user:
+Does the b-tagged jet veto apply to all jets in the event, or only to the selected jets (pT > 30 GeV, |eta| < 4.7)?
+
+Golden axe:
+The veto applies to all jets in the event.
+
+Silver axe:
+The veto applies only to the selected jets.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Reuse of ditau and dijet objects
+
+Original phrase:
+"Define ditau_obj from the summed four-momentum of the leading tau and subleading tau."
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Why this matters:
+It is unclear whether the defined ditau_obj and dijet_obj are meant to be used in subsequent analysis steps (e.g. for angular separation or further system building), or if they are only defined for the purpose of computing their invariant mass.
+
+Question to user:
+Are the ditau_obj and dijet_obj intended to be used in further analysis steps (e.g. for computing angular separation or building higher-level systems), or are they only defined for computing their invariant mass?
+
+Golden axe:
+The ditau_obj and dijet_obj are intended for further analysis.
+
+Silver axe:
+The ditau_obj and dijet_obj are only defined for computing their invariant mass.
+
+Recommended default:
+Golden axe

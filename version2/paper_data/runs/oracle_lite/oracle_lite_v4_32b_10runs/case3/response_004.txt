@@ -1,0 +1,65 @@
+[CANDIDATE 1] Photon selection and veto regions
+
+Original phrase:
+"Select photons with pT > 25 GeV and |eta| < 2.37. Exclude photons in the crack region 1.37 < |eta| < 1.52."
+
+Unresolved choice:
+It is unclear whether the crack region veto is applied in addition to the |eta| < 2.37 cut or if the crack veto is already implicitly included in that condition.
+
+Why this may matter:
+If the crack veto is a separate step, it could affect the order of operations and whether the crack veto is applied before or after the pT and |eta| cuts, potentially changing which photons are considered for further analysis.
+
+[CANDIDATE 2] Leading and subleading photon definitions
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection. Leading photon pT > 35 GeV. Subleading photon pT > 25 GeV."
+
+Unresolved choice:
+It is unclear whether the "leading photon pT > 35 GeV" and "subleading photon pT > 25 GeV" are additional cuts or part of the definition of leading and subleading photons.
+
+Why this may matter:
+If these are additional cuts, the event may be rejected even after defining the leading and subleading photons. If they are part of the definition, then the diphoton system may not be built in some events, which could affect the analysis flow and cutflow.
+
+[CANDIDATE 3] Diphoton system reuse
+
+Original phrase:
+"Build the diphoton system from the leading photon and the subleading photon. Define m_gammagamma as the invariant mass of this diphoton system. Use this same diphoton system to compute diphoton pT."
+
+Unresolved choice:
+It is unclear whether the diphoton system is a single, fixed object that is reused for all subsequent calculations or if it is a temporary object used only for computing m_gammagamma and diphoton pT.
+
+Why this may matter:
+If the diphoton system is not explicitly defined as a reusable object, it could lead to inconsistencies in later calculations that depend on this system, especially if the system needs to be referenced again for other observables or selections.
+
+[CANDIDATE 4] Cutflow counter timing
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether the cutflow counters are incremented for each cut individually or whether they are cumulative (e.g., whether the first counter counts all events, the second counts events passing the first cut, etc.).
+
+Why this may matter:
+The interpretation of the cutflow could change significantly depending on whether the counters are per-cut or cumulative, which would affect the final summary and the understanding of the selection efficiency.
+
+[CANDIDATE 5] Diphoton system in validation plots
+
+Original phrase:
+"Plot the following as histograms: 1 Plot diphoton invariant mass in the range 100 to 160 GeV"
+
+Unresolved choice:
+It is unclear whether the diphoton invariant mass in the validation plot refers to the same m_gammagamma defined earlier or if it is a different quantity (e.g., a pre-cut or post-cut version).
+
+Why this may matter:
+If the diphoton invariant mass in the plot is not the same as the one used for selection, the plot could show a different distribution than intended, potentially leading to misinterpretation of the data.
+
+[CANDIDATE 6] Diphoton system in CSV output
+
+Original phrase:
+"Save to CSV for MLP analysis: 1- Diphoton invariant mass"
+
+Unresolved choice:
+It is unclear whether the diphoton invariant mass in the CSV output refers to the same m_gammagamma defined earlier or if it is a different quantity (e.g., a pre-cut or post-cut version).
+
+Why this may matter:
+If the diphoton invariant mass in the CSV is not the same as the one used for selection, the machine learning analysis could be based on a different variable than intended, potentially leading to incorrect model training or predictions.

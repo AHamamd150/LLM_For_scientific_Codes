@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Selection of z_obj and W candidate lepton
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum. Define the selected muon as the W candidate lepton."
+
+Why this is dangerous:
+The phrase "selected muon" may refer to the first muon in the event (raw event-level object) or the only muon that passed the selection cuts. This ambiguity affects the definition of the W candidate lepton and could lead to different implementations of the selection logic.
+
+Question to user:
+Are you defining the W candidate lepton as the only muon that passed the selection cuts (i.e., pT > 10 GeV and |eta| < 2.4), or are you referring to the first muon in the event regardless of cuts?
+
+Golden axe:
+The W candidate lepton is the only muon that passed the selection cuts (pT > 10 GeV and |eta| < 2.4).
+
+Silver axe:
+The W candidate lepton is the first muon in the event, regardless of whether it passed the selection cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Definition of the three-lepton system
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Why this is dangerous:
+The phrase "three-lepton system" could be interpreted as a reconstructed composite object (summed four-momenta of the three leptons) or as a scalar quantity derived from the three leptons (e.g., scalar sum of pT). This ambiguity affects the implementation of the observable and the helper function used.
+
+Question to user:
+Are you referring to a reconstructed composite object formed by summing the four-momenta of the two selected electrons and the selected muon, or are you referring to a scalar quantity derived from the three leptons (e.g., scalar sum of pT)?
+
+Golden axe:
+The three-lepton system is a reconstructed composite object formed by summing the four-momenta of the two selected electrons and the selected muon.
+
+Silver axe:
+The three-lepton system refers to a scalar quantity derived from the three leptons, such as the scalar sum of their pT.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Definition of the transverse mass of the W candidate lepton + MET
+
+Original phrase:
+"Select transverse mass of W candidate lepton + MET > 30 GeV."
+
+Why this is dangerous:
+The phrase "transverse mass of W candidate lepton + MET" could be interpreted as the transverse mass computed from the W candidate lepton and the MET, or it could be interpreted as the transverse mass of the W candidate lepton plus the MET (as separate quantities). This ambiguity affects the implementation of the observable and the helper function used.
+
+Question to user:
+Are you referring to the transverse mass computed from the W candidate lepton and the MET, or are you referring to the transverse mass of the W candidate lepton plus the MET as separate quantities?
+
+Golden axe:
+The transverse mass is computed from the W candidate lepton and the MET.
+
+Silver axe:
+The transverse mass of the W candidate lepton is added to the MET value.
+
+Recommended default:
+Golden axe

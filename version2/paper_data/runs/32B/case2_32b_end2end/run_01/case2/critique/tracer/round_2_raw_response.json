@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* bjets\n  - computed/defined as: [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]\n  - upstream chain: get_bjets(event) -> event['objects'] with type == 4 and btag == 1\n  - collection definition: o['type'] == 4 and int(o['btag']) == 1\n  - structure: single-constituent\n\n* light_jets\n  - computed/defined as: [j for j in jets if j not in bjets]\n  - upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]; bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]\n  - collection definition: j not in bjets\n  - structure: single-constituent\n\n* MET\n  - computed/defined as: [o for o in event['objects'] if o['type'] == 6]\n  - upstream chain: helper_get_met(event) -> event['objects'] with type == 6\n  - collection definition: o['type'] == 6\n  - structure: single-constituent\n\n* transverse_mass\n  - computed/defined as: math.sqrt(2 * visible['pt'] * met['pt'] * (1 - math.cos(dphi)))\n  - upstream chain: helper_transverse_mass(lepton, met) -> lepton from electrons/muons, met from MET\n  - collection definition: lepton from [e for e in get_electrons(event) if e['pt'] > 25 and abs(e['eta']) < 2.5] or [m for m in get_muons(event) if m['pt'] > 25 and abs(m['eta']) < 2.4], met from [o for o in event['objects'] if o['type'] == 6]\n  - structure: multi-input\n\n* hadronic_W_candidate\n  - computed/defined as: sum_objects(light_jets_sorted[0], light_jets_sorted[1])\n  - upstream chain: light_jets_sorted = sort_by_pt([j for j in jets if j not in bjets])\n  - collection definition: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5], bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]\n  - structure: composite-derived\n\n* hadronic_top_candidate\n  - computed/defined as: sum_objects(bjets_sorted[0], w_hadronic)\n  - upstream chain: bjets_sorted = sort_by_pt(bjets), w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])\n  - collection definition: bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5], light_jets_sorted = sort_by_pt([j for j in jets if j not in bjets])\n  - structure: composite-derived\n\n* leading_bjet\n  - computed/defined as: bjets_sorted[0]\n  - upstream chain: bjets_sorted = sort_by_pt(bjets)\n  - collection definition: bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]\n  - structure: single-constituent\n\n* subleading_bjet\n  - computed/defined as: bjets_sorted[1]\n  - upstream chain: bjets_sorted = sort_by_pt(bjets)\n  - collection definition: bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]\n  - structure: single-constituent\n\n* delta_r_lepton_bjet\n  - computed/defined as: helper_delta_r(lepton, leading_bjet)\n  - upstream chain: lepton from [e for e in get_electrons(event) if e['pt'] > 25 and abs(e['eta']) < 2.5] or [m for m in get_muons(event) if m['pt'] > 25 and abs(m['eta']) < 2.4], leading_bjet = bjets_sorted[0]\n  - collection definition: lepton from electrons/muons, leading_bjet from bjets_sorted\n  - structure: multi-input\n\n* HT\n  - computed/defined as: scalar_pt_sum(jets)\n  - upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - collection definition: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - structure: single-constituent\n\n* n_jets\n  - computed/defined as: len(jets)\n  - upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - collection definition: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - structure: single-constituent\n\n* leading_bjet_eta\n  - computed/defined as: leading_bjet['eta']\n  - upstream chain: leading_bjet = bjets_sorted[0]\n  - collection definition: bjets_sorted = sort_by_pt(bjets)\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788839990,
+  "id": "chatcmpl-6173e24d-3497-43f9-acd9-45cb04ae6906",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 1280,
+    "prompt_tokens": 11386,
+    "prompt_tokens_details": null,
+    "total_tokens": 12666
+  }
+}

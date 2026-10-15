@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] z_obj reuse and definition
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum."
+
+Why this matters:
+The phrase does not clarify whether the z_obj is built once and reused for all subsequent operations (e.g., invariant mass, plots), or if it is a temporary object used only for the invariant mass cut. This affects the consistency and reusability of the object in downstream analysis steps.
+
+Question to user:
+Should the z_obj built from the two selected electrons be considered a persistent object for all subsequent analysis steps, or is it only used for the invariant mass cut?
+
+Golden axe:
+z_obj is built once and used consistently for all relevant calculations and plots.
+
+Silver axe:
+z_obj is only used to compute the invariant mass cut and is not retained for later steps.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] W candidate muon definition and consistency
+
+Original phrase:
+"Define the selected muon as the W candidate lepton."
+
+Why this matters:
+It is not clear whether this definition refers to the *only* selected muon (which is required by the cut "exactly 1 selected muon") or if there is a possibility of multiple muons and a selection is implied (e.g., leading muon). This affects how the W candidate is defined and used in transverse mass and plots.
+
+Question to user:
+Is the W candidate muon defined as the only selected muon (since the cut requires exactly one), or is there an implicit selection (e.g., leading muon) among multiple muons?
+
+Golden axe:
+The W candidate muon is the only selected muon, as required by the cut.
+
+Silver axe:
+The W candidate muon is selected from multiple muons, e.g., the leading one.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Three-lepton system definition
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Why this matters:
+It is not clear whether the three-lepton system is built from the *same* two electrons used to build z_obj or from any two electrons in the event. This could lead to different pT values if there are multiple electrons and the selection of which two to combine is ambiguous.
+
+Question to user:
+Should the three-lepton system be built using the same two electrons that form z_obj, or can it be built from any two electrons in the event along with the selected muon?
+
+Golden axe:
+The three-lepton system is built from the same two electrons used to form z_obj.
+
+Silver axe:
+The three-lepton system is built from any two electrons in the event, not necessarily the ones used for z_obj.
+
+Recommended default:
+Golden axe

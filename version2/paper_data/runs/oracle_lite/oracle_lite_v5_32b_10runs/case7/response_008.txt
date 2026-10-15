@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] Definition of "selected taus" for leading and subleading
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this matters:
+The phrase "selected taus" could refer to the raw collection of taus passing pT and |eta| cuts, or it could refer to a subset of those taus after additional cuts (e.g., opposite-sign requirement). The leading and subleading designation could be applied before or after such cuts, which affects the final object definitions.
+
+Question to user:
+Are the leading and subleading taus defined from the raw collection of taus passing pT and |eta| cuts, or from a subset of those taus that also satisfy the opposite-sign requirement?
+
+Golden axe:
+Leading and subleading taus are defined from the raw selected taus (pT and |eta| cuts only).
+
+Silver axe:
+Leading and subleading taus are defined from the subset of selected taus that also satisfy the opposite-sign requirement.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Definition of "selected jets" for leading and subleading
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Why this matters:
+The phrase "selected jets" could refer to the raw collection of jets passing pT and |eta| cuts, or it could refer to the subset of jets after the b-tag veto. The leading and subleading jet definitions could be applied before or after the veto, which affects the dijet system and the m_jj and delta_eta_jj selections.
+
+Question to user:
+Are the leading and subleading jets defined from the raw collection of jets passing pT and |eta| cuts, or from the subset of jets that also pass the b-tag veto?
+
+Golden axe:
+Leading and subleading jets are defined from the raw selected jets (pT and |eta| cuts only).
+
+Silver axe:
+Leading and subleading jets are defined from the subset of selected jets that also pass the b-tag veto.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Definition of "ditau_obj" for delta phi with dijet_obj
+
+Original phrase:
+"Define ditau_obj from the summed four-momentum of the leading tau and subleading tau."
+
+Why this matters:
+The phrase "summed four-momentum" implies a composite object, but the exact method of forming this object is not specified. The ditau_obj may be used in angular variables like delta phi with the dijet_obj, and the way it is constructed (e.g., whether it includes mass or not) could affect the result.
+
+Question to user:
+Should the ditau_obj be constructed as a full four-momentum sum (including mass) of the two taus, or as a massless four-vector (e.g., using only their pT and direction)?
+
+Golden axe:
+Ditau_obj is constructed from the full four-momentum of the two taus, including their mass.
+
+Silver axe:
+Ditau_obj is constructed as a massless four-vector using only the pT and direction of the two taus.
+
+Recommended default:
+Golden axe

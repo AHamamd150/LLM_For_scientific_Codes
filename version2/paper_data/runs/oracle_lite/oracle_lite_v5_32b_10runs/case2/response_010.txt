@@ -1,0 +1,56 @@
+[UNDERSPECIFICATION 1] Hadronic W candidate jet selection timing
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Why this matters:
+The phrase does not specify whether "non-b-tagged jets" refers to all jets in the event or only to jets that survive earlier cuts (like pT and |eta| cuts). This affects whether the selection of jets for the hadronic W candidate is based on the full jet collection or a filtered one.
+
+Question to user:
+Are the two leading non-b-tagged jets used to build the hadronic W candidate selected from all jets in the event, or only from jets that pass the pT > 30 GeV and |eta| < 2.5 cuts?
+
+Golden axe:
+Select jets from the full event-level jet collection, regardless of whether they pass earlier cuts.
+
+Silver axe:
+Select jets only from the subset of jets that have already passed the pT and |eta| cuts.
+
+Recommended default: Silver axe
+
+[UNDERSPECIFICATION 2] Leading b-jet definition
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Why this matters:
+The phrase does not clarify whether the "leading b-jet" is defined before or after the jet pT and |eta| cuts. This affects which b-jets are considered when building the top candidate.
+
+Question to user:
+Is the leading b-jet used in the hadronic top candidate defined from all b-tagged jets in the event, or only from those that pass the pT > 30 GeV and |eta| < 2.5 cuts?
+
+Golden axe:
+Leading b-jet is defined from all b-tagged jets in the event.
+
+Silver axe:
+Leading b-jet is defined from b-tagged jets that have already passed the jet pT and |eta| cuts.
+
+Recommended default: Silver axe
+
+[UNDERSPECIFICATION 3] Lepton for transverse mass
+
+Original phrase:
+"Select the transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)"
+
+Why this matters:
+The phrase does not specify whether the lepton used in the transverse mass calculation is the same as the one selected in the "exactly one lepton" cut. This is important because the transverse mass cut may be applied to a different lepton than the one used in the final selection.
+
+Question to user:
+Is the lepton used in the transverse mass calculation the same as the one selected in the "exactly one lepton" cut?
+
+Golden axe:
+Yes, the same lepton is used for both the selection and the transverse mass calculation.
+
+Silver axe:
+No, the transverse mass cut may be applied to a different lepton than the one used in the final selection.
+
+Recommended default: Golden axe

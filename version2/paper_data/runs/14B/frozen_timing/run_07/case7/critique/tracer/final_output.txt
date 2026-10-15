@@ -1,0 +1,155 @@
+SECTION 1: SPEC BULLET ANALYSIS
+
+✅ * Select taus with pT > 20 GeV and |eta| < 2.3; computed as: [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]; upstream chain: get_taus -> event['objects']; 〔L256-L257〕
+✅ * Select jets with pT > 30 GeV and |eta| < 4.7; computed as: [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]; upstream chain: get_jets -> event['objects']; 〔L262-L263〕
+✅ * Require at least 2 taus; computed as: len(taus) >= 2; upstream chain: taus; 〔L268-L270〕
+✅ * Define the leading tau and subleading tau from the selected taus.; computed as: helper_get_leading(taus), helper_get_subleading(taus); upstream chain: taus; 〔L273-L274〕
+✅ * Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.; computed as: sum_objects(leading_tau, subleading_tau); upstream chain: leading_tau, subleading_tau -> helper_get_leading, helper_get_subleading -> taus; 〔L277〕
+✅ * Require at least 2 jets (VBF topology); computed as: len(jets) >= 2; upstream chain: jets; 〔L280-L282〕
+✅ * Define the leading jet and subleading jet from the selected jets.; computed as: helper_get_leading(jets), helper_get_subleading(jets); upstream chain: jets; 〔L285-L286〕
+✅ * Define dijet_obj from the summed four-momentum of the leading jet and subleading jet.; computed as: sum_objects(leading_jet, subleading_jet); upstream chain: leading_jet, subleading_jet -> helper_get_leading, helper_get_subleading -> jets; 〔L289〕
+✅ * Require opposite-sign tau pair; computed as: opposite_sign(leading_tau, subleading_tau); upstream chain: leading_tau, subleading_tau -> helper_get_leading, helper_get_subleading -> taus; 〔L292〕
+✅ * Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV; computed as: helper_invariant_mass(leading_jet, subleading_jet) > 400; upstream chain: leading_jet, subleading_jet -> helper_get_leading, helper_get_subleading -> jets; 〔L297-L300〕
+✅ * Select |delta eta| between the two leading jets > 2.5; computed as: abs(helper_delta_eta(leading_jet, subleading_jet)) > 2.5; upstream chain: leading_jet, subleading_jet -> helper_get_leading, helper_get_subleading -> jets; 〔L303-L306〕
+✅ * Select ditau invariant mass between 60 and 150 GeV; computed as: 60 < helper_invariant_mass(leading_tau, subleading_tau) < 150; upstream chain: leading_tau, subleading_tau -> helper_get_leading, helper_get_subleading -> taus; 〔L309-L312〕
+✅ * Veto events with b-tagged jets among the selected jets; computed as: not any(int(j['btag']) == 1 for j in jets); upstream chain: jets; 〔L315-L317〕
+✅ * Plot the following as histograms:
+1 Plot the ditau invariant mass in the range 50 to 160 GeV; computed as: helper_invariant_mass(leading_tau, subleading_tau); upstream chain: leading_tau, subleading_tau -> helper_get_leading, helper_get_subleading -> taus; 〔L322〕
+2 Plot the dijet invariant mass (m_jj) in the range 400 to 2000 GeV; computed as: helper_invariant_mass(leading_jet, subleading_jet); upstream chain: leading_jet, subleading_jet -> helper_get_leading, helper_get_subleading -> jets; 〔L323〕
+3 Plot delta eta between the two leading jets; computed as: abs(helper_delta_eta(leading_jet, subleading_jet)); upstream chain: leading_jet, subleading_jet -> helper_get_leading, helper_get_subleading -> jets; 〔L324〕
+4 Plot the pT of the leading tau; computed as: leading_tau['pt']; upstream chain: leading_tau -> helper_get_leading -> taus; 〔L325〕
+5 Plot the pT of the subleading tau; computed as: subleading_tau['pt']; upstream chain: subleading_tau -> helper_get_subleading -> taus; 〔L326〕
+6 Plot the pT of the leading jet; computed as: leading_jet['pt']; upstream chain: leading_jet -> helper_get_leading -> jets; 〔L327〕
+7 Plot the pT of the subleading jet; computed as: subleading_jet['pt']; upstream chain: subleading_jet -> helper_get_subleading -> jets; 〔L328〕
+8 Plot delta R between the two taus; computed as: helper_delta_r(leading_tau, subleading_tau); upstream chain: leading_tau, subleading_tau -> helper_get_leading, helper_get_subleading -> taus; 〔L329〕
+9 Plot delta phi between the ditau_obj and the dijet_obj; computed as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi']); upstream chain: ditau_obj, dijet_obj -> sum_objects -> leading_tau, subleading_tau, leading_jet, subleading_jet; 〔L330〕
+10 Plot the centrality of the ditau system relative to the two jets; computed as: centrality_between_jets(ditau_obj, leading_jet, subleading_jet); upstream chain: ditau_obj, leading_jet, subleading_jet -> sum_objects, helper_get_leading, helper_get_subleading -> leading_tau, subleading_tau, jets; 〔L331〕
+✅ * After the event loop, print one cutflow summary with the number of events after each selection step.; computed as: cutflow dictionary with keys and values; upstream chain: cutflow; 〔L334-L335〕
+✅ * Save the plots in png format; computed as: plt.savefig(filename); upstream chain: plot_hist -> plt.savefig; 〔L344〕
+
+* [CHECK CAREFULLY] DEFINITION SUMMARY
+
+* taus
+  - computed/defined as: [o for o in event['objects'] if o['type'] == 3]
+  - upstream chain: event['objects']
+  - collection definition: o['type'] == 3
+  - structure: single-constituent
+
+* jets
+  - computed/defined as: [o for o in event['objects'] if o['type'] == 4]
+  - upstream chain: event['objects']
+  - collection definition: o['type'] == 4
+  - structure: single-constituent
+
+* selected taus
+  - computed/defined as: [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]
+  - upstream chain: get_taus -> event['objects']
+  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3
+  - structure: single-constituent
+
+* selected jets
+  - computed/defined as: [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - upstream chain: get_jets -> event['objects']
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7
+  - structure: single-constituent
+
+* leading tau
+  - computed/defined as: helper_get_leading(selected taus)
+  - upstream chain: selected taus
+  - collection definition: max(particles, key=lambda p: p['pt'])
+  - structure: single-constituent
+
+* subleading tau
+  - computed/defined as: helper_get_subleading(selected taus)
+  - upstream chain: selected taus
+  - collection definition: sorted(particles, key=lambda p: p['pt'], reverse=True)[1]
+  - structure: single-constituent
+
+* ditau_obj
+  - computed/defined as: sum_objects(leading tau, subleading tau)
+  - upstream chain: leading tau, subleading tau
+  - collection definition: sum of four-momenta
+  - structure: composite-derived
+
+* leading jet
+  - computed/defined as: helper_get_leading(selected jets)
+  - upstream chain: selected jets
+  - collection definition: max(particles, key=lambda p: p['pt'])
+  - structure: single-constituent
+
+* subleading jet
+  - computed/defined as: helper_get_subleading(selected jets)
+  - upstream chain: selected jets
+  - collection definition: sorted(particles, key=lambda p: p['pt'], reverse=True)[1]
+  - structure: single-constituent
+
+* dijet_obj
+  - computed/defined as: sum_objects(leading jet, subleading jet)
+  - upstream chain: leading jet, subleading jet
+  - collection definition: sum of four-momenta
+  - structure: composite-derived
+
+* ditau invariant mass
+  - computed/defined as: helper_invariant_mass(leading tau, subleading tau)
+  - upstream chain: leading tau, subleading tau
+  - collection definition: obj['mass'] from sum_objects
+  - structure: multi-input
+
+* dijet invariant mass
+  - computed/defined as: helper_invariant_mass(leading jet, subleading jet)
+  - upstream chain: leading jet, subleading jet
+  - collection definition: obj['mass'] from sum_objects
+  - structure: multi-input
+
+* delta eta between jets
+  - computed/defined as: abs(helper_delta_eta(leading jet, subleading jet))
+  - upstream chain: leading jet, subleading jet
+  - collection definition: obj1['eta'] - obj2['eta']
+  - structure: multi-input
+
+* leading tau pT
+  - computed/defined as: leading tau['pt']
+  - upstream chain: leading tau
+  - collection definition: p['pt']
+  - structure: single-constituent
+
+* subleading tau pT
+  - computed/defined as: subleading tau['pt']
+  - upstream chain: subleading tau
+  - collection definition: p['pt']
+  - structure: single-constituent
+
+* leading jet pT
+  - computed/defined as: leading jet['pt']
+  - upstream chain: leading jet
+  - collection definition: p['pt']
+  - structure: single-constituent
+
+* subleading jet pT
+  - computed/defined as: subleading jet['pt']
+  - upstream chain: subleading jet
+  - collection definition: p['pt']
+  - structure: single-constituent
+* delta R between taus
+  - computed/defined as: helper_delta_r(leading tau, subleading tau)
+  - upstream chain: leading tau, subleading tau
+  - collection definition: math.sqrt(deta^2 + dphi^2)
+  - structure: multi-input
+
+* delta phi between ditau_obj and dijet_obj
+  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])
+  - upstream chain: ditau_obj, dijet_obj
+  - collection definition: normalized Δφ calculation
+  - structure: multi-input
+
+* centrality of ditau system relative to jets
+  - computed/defined as: centrality_between_jets(ditau_obj, leading jet, subleading jet)
+  - upstream chain: ditau_obj, leading jet, subleading jet
+  - collection definition: |eta_obj - eta_center_jj| / |delta_eta_jj|
+  - structure: multi-input
+
+* cutflow
+  - computed/defined as: dictionary with keys and values tracking event counts
+  - upstream chain: cutflow
+  - collection definition: initial events, after each selection step
+  - structure: single-constituent

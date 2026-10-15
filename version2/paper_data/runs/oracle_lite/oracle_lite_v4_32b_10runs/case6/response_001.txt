@@ -1,0 +1,109 @@
+[CANDIDATE 1] Lepton selection and definition
+
+Original phrase:
+"Require exactly one lepton (electron or muon)"
+
+Unresolved choice:
+It is unclear whether the lepton is defined from the full event collection or from a previously selected/filted collection.
+
+Why this may matter:
+If the lepton is selected after applying pT and |eta| cuts, the "exactly one lepton" requirement would be applied to the pre-selected candidates. If the lepton is defined from the full event collection, the cuts might be applied after the selection, which could lead to different behavior in the code.
+
+[CANDIDATE 2] Jet selection and b-tagging order
+
+Original phrase:
+"Require at least 4 jets with pT > 30 GeV and |eta| < 2.5" followed by "require at least 2 b-tagged jets."
+
+Unresolved choice:
+It is unclear whether the b-tagging is applied to the full jet collection or only to the selected jets that passed the pT and |eta| cuts.
+
+Why this may matter:
+If b-tagging is applied to the full jet collection, the "at least 2 b-tagged jets" requirement may include jets that failed the pT or |eta| cuts. If b-tagging is applied after jet selection, the b-tagged jets are guaranteed to have passed the pT and |eta| cuts.
+
+[CANDIDATE 3] Closest b-jet to lepton
+
+Original phrase:
+"Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R."
+
+Unresolved choice:
+It is unclear whether the "selected lepton" refers to the lepton after all previous cuts or to the lepton before any jet selection or b-tagging.
+
+Why this may matter:
+If the lepton is defined before jet selection or b-tagging, the delta R calculation could include jets that are later rejected by other cuts. If the lepton is defined after jet selection and b-tagging, the delta R calculation is based on the final lepton and jet selections.
+
+[CANDIDATE 4] Hadronic W candidate construction
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Unresolved choice:
+It is unclear whether the "leading" jets are defined before or after the b-tagging selection.
+
+Why this may matter:
+If the leading jets are defined from the full jet collection, the non-b-tagged jets may not be the leading ones. If the leading jets are defined after b-tagging, the non-b-tagged jets are guaranteed to be the highest pT jets that passed all previous selections.
+
+[CANDIDATE 5] Hadronic top candidate construction
+
+Original phrase:
+"Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate."
+
+Unresolved choice:
+It is unclear whether the "leading selected b-tagged jet" refers to the jet after all previous selections or to the jet before the hadronic W candidate was built.
+
+Why this may matter:
+If the leading b-tagged jet is defined before the hadronic W candidate is built, the jet could be different from the one used in the top candidate. If the jet is defined after the hadronic W candidate is built, the jet is guaranteed to be consistent with the final selections.
+
+[CANDIDATE 6] Use of hadronic W and top candidates
+
+Original phrase:
+"Select the hadronic top mass between 100 to 250 GeV."
+
+Unresolved choice:
+It is unclear whether the hadronic top candidate is meant to be reused later in the analysis or if it is only used to compute the mass cut.
+
+Why this may matter:
+If the hadronic top candidate is meant to be reused, it should be stored as a named object. If it is only used for the mass cut, it may not need to be stored explicitly.
+
+[CANDIDATE 7] Leading and subleading b-jet definitions
+
+Original phrase:
+"Plot the pT of the leading b-jet" and "Plot the pT of the subleading b-jet"
+
+Unresolved choice:
+It is unclear whether the leading and subleading b-jets are defined before or after the jet and b-tagging selections.
+
+Why this may matter:
+If the leading and subleading b-jets are defined from the full jet collection, they may not have passed the pT and |eta| cuts or the b-tagging requirement. If they are defined after all selections, they are guaranteed to be valid for the analysis.
+
+[CANDIDATE 8] HT definition
+
+Original phrase:
+"Plot HT distribution (scalar sum of all jet pT)"
+
+Unresolved choice:
+It is unclear whether the HT is computed from the full jet collection or from the selected jets that passed the pT and |eta| cuts.
+
+Why this may matter:
+If HT is computed from the full jet collection, it includes jets that may be rejected by later cuts. If it is computed from the selected jets, it reflects only the jets used in the analysis.
+
+[CANDIDATE 9] MET and transverse mass
+
+Original phrase:
+"Select MET > 20 GeV" and "Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)"
+
+Unresolved choice:
+It is unclear whether the MET is used in the transverse mass calculation before or after the MET cut is applied.
+
+Why this may matter:
+If the transverse mass is calculated before the MET cut, the cut may reject events that would have passed the transverse mass requirement. If the transverse mass is calculated after the MET cut, it ensures that only valid MET values are used.
+
+[CANDIDATE 10] Cutflow summary
+
+Original phrase:
+"After the event loop, print one cutflow summary with the number of events after each selection step."
+
+Unresolved choice:
+It is unclear whether the cutflow summary includes only the final selected events or if it includes intermediate steps that may not be used in the final analysis.
+
+Why this may matter:
+If the cutflow includes intermediate steps, it provides more detailed information about the selection process. If it includes only the final selected events, it may miss important information about the efficiency of individual cuts.

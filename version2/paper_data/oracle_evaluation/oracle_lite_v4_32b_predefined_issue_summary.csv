@@ -1,0 +1,19 @@
+﻿case,predefined_issue,detections,runs,detection_fraction
+1,b-veto: selected vs event-level jets,9,10,9/10
+1,leading jets: selected vs full jet collection,10,10,10/10
+1,definition of the two-jet system,9,10,9/10
+2,hadronic W: selected vs full non-b jets,10,10,10/10
+2,hadronic top: selected vs full b jets,8,10,8/10
+2,>=2 b-jets: collection scope,5,10,5/10
+2,closest b-jet: collection scope,4,10,4/10
+2,jet collection entering HT,6,10,6/10
+2,jet collection entering the jet multiplicity,5,10,5/10
+5,opposite-sign tau pair / pairing order,7,10,7/10
+5,b-jet veto: collection scope,8,10,8/10
+5,"""summed momentum"" vs four-momentum",5,10,5/10
+5,definition of ditau centrality,1,10,1/10
+6,jet collection entering HT,9,10,9/10
+6,jet collection entering the jet multiplicity,6,10,6/10
+7,opposite-sign tau pair / pairing order,8,10,8/10
+7,"interpretation of ""summed momentum""",9,10,9/10
+7,definition of ditau centrality,1,10,1/10

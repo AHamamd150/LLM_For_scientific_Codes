@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Hadronic W candidate jet selection timing
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Why this matters:
+The phrase does not specify whether the "leading non-b-tagged jets" are determined before or after the "at least 2 b-tagged jets" cut. This affects which jets are considered for the hadronic W candidate.
+
+Question to user:
+Are the two leading non-b-tagged jets used for the hadronic W candidate selected before or after the requirement of at least 2 b-tagged jets?
+
+Golden axe:
+Select leading non-b-tagged jets after the b-jet count requirement.
+
+Silver axe:
+Select leading non-b-tagged jets before the b-jet count requirement.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Lepton definition for plots
+
+Original phrase:
+"Plot the delta R between the leading lepton and the closest b-jet"
+
+Why this matters:
+The phrase does not clarify whether "leading lepton" refers to the highest-pT lepton among all selected leptons (which is one due to the "exactly one lepton" cut), or whether it refers to a lepton from a specific source (e.g., from top decay).
+
+Question to user:
+Does "leading lepton" in the delta R plot refer to the single selected lepton in the event, or is it a specific lepton from a hypothesized decay chain?
+
+Golden axe:
+Use the single selected lepton in the event.
+
+Silver axe:
+Use a lepton from a specific decay hypothesis (e.g., from top decay).
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] B-jet definition for top candidate
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Why this matters:
+The phrase does not clarify whether the "leading b-jet" is selected from all b-tagged jets in the event or only from those remaining after the hadronic W candidate is built.
+
+Question to user:
+Is the leading b-jet for the top candidate selected before or after the hadronic W candidate is built?
+
+Golden axe:
+Select the leading b-jet before building the hadronic W candidate.
+
+Silver axe:
+Select the leading b-jet after building the hadronic W candidate.
+
+Recommended default:
+Golden axe

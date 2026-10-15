@@ -1,0 +1,25 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+2,1,requirement,R1,Select electrons with pT > 25 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly identifies the electron selection at lines 289 and 293.
+2,1,requirement,R2,Select muons with pT > 25 GeV and |eta| < 2.4,yes,yes,yes,no,Correctly identifies the muon selection at lines 290 and 294.
+2,1,requirement,R3,"Require exactly one lepton, electron or muon",yes,yes,yes,no,Correctly traces selected_electrons + selected_muons and the len != 1 rejection at lines 295-298.
+2,1,requirement,R4,Require at least 4 jets with pT > 30 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly traces selected_jets and the length cut at lines 302-305.
+2,1,requirement,R5,Require at least 2 b-tagged jets,yes,yes,yes,no,"Correctly traces get_bjets, the pT/eta-filtered selected_bjets, and the count cut at lines 309-313."
+2,1,requirement,R6,Select MET > 20 GeV,yes,yes,yes,no,Correctly identifies helper_get_met and the MET threshold rejection at lines 316-319.
+2,1,requirement,R7,Select transverse mass of the lepton and MET between 30 and 150 GeV,yes,yes,yes,no,"Correctly traces helper_transverse_mass(lepton, met) and the range cut at lines 322-326."
+2,1,requirement,R8,Build the hadronic W candidate from the two leading non-b-tagged jets,yes,yes,yes,no,"Correctly traces selected_light_jets, leading/subleading selection, and sum_objects at lines 332-340."
+2,1,requirement,R9,Select the hadronic W mass between 40 and 120 GeV,yes,yes,no,yes,"The cut location at lines 343-345 and the w_hadronic dependency are correct, but the tracer incorrectly attributes the mass computation to helper_invariant_mass; code uses w_hadronic['mass'] at line 341."
+2,1,requirement,R10,Build the hadronic top candidate from the leading b-jet and hadronic W candidate,yes,yes,yes,no,Correctly traces leading_bjet plus w_hadronic through sum_objects at lines 349-352.
+2,1,requirement,R11,Apply the cuts sequentially and skip the event immediately when a cut is not satisfied,partial,yes,yes,no,"The traced bullets identify individual cuts, but do not explicitly represent the sequential ordering and immediate continue behavior across the full selection chain, implemented at lines 286-356."
+2,1,requirement,R12,Plot the transverse mass of lepton plus MET,yes,yes,yes,no,Correctly traces mt through mt_list to plt.hist at lines 396-400.
+2,1,requirement,R13,Plot the MET distribution,yes,yes,yes,no,Correctly traces met['pt'] to met_list and the histogram at lines 403-407.
+2,1,requirement,R14,Plot the pT of the leading b-jet,yes,yes,yes,no,Correctly traces selected_bjets through leading_bjet to the histogram at lines 410-414.
+2,1,requirement,R15,Plot the pT of the subleading b-jet,yes,yes,yes,no,Correctly traces helper_get_subleading(selected_bjets) and the histogram at lines 417-421.
+2,1,requirement,R16,Plot the invariant mass of the two leading non-b-tagged jets in range 40 to 120 GeV,yes,yes,no,yes,"The histogram source at lines 424-428 is correct, but the tracer incorrectly claims helper_invariant_mass; the value comes from w_hadronic['mass'] at line 341."
+2,1,requirement,R17,Plot the invariant mass of leading b-jet plus hadronic W candidate in range 100 to 250 GeV,yes,yes,no,yes,"The histogram source at lines 431-435 is correct, but the tracer incorrectly claims helper_invariant_mass; code obtains top_mass from top_candidate['mass'] at line 352."
+2,1,requirement,R18,Plot delta R between the leading lepton and the closest b-jet,yes,yes,no,no,"The histogram location at lines 438-442 is correct, but the dependency chain omits the min_dr accumulation over selected_bjets at lines 360-366."
+2,1,requirement,R19,Plot the HT distribution as the scalar sum of all jet pT,yes,yes,yes,no,Correctly traces scalar_pt_sum(selected_jets) to the histogram at lines 368-369 and 445-449.
+2,1,requirement,R20,Plot the number of jets per event,yes,yes,yes,no,Correctly traces len(selected_jets) to njet_list and the histogram at lines 372-373 and 452-456.
+2,1,requirement,R21,Plot eta of the leading b-jet,yes,yes,yes,no,Correctly traces leading_bjet['eta'] to the histogram at lines 385-386 and 459-463.
+2,1,requirement,R22,"Use simple validation histograms with plt.figure, 40 bins, density normalization, labels, savefig, and close",yes,yes,yes,no,The tracer identifies the histogram calls and locations; the repeated plotting pattern is present throughout lines 396-463.
+2,1,requirement,R23,"After the event loop, print one cutflow summary with the number of events after each selection step",yes,yes,yes,no,Correctly traces the post-loop cutflow print at lines 390-393.
+2,1,requirement,R24,Save the plots in PNG format,yes,yes,na,no,"Correctly identifies savefig calls with .png filenames at lines 400, 407, 414, 421, 428, 435, 442, 449, 456, and 463."

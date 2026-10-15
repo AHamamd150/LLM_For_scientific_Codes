@@ -1,0 +1,28 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+1,10,requirement,R1,Select electrons with pT > 25 GeV and |eta| < 2.5,yes,no,yes,yes,"The selection is implemented at L291-L293 using a loop, not the claimed list comprehension; the cited location is otherwise relevant."
+1,10,requirement,R2,Select muons with pT > 20 GeV and |eta| < 2.4,yes,no,yes,yes,"The selection is implemented at L294-L296 using a loop, not the claimed list comprehension."
+1,10,requirement,R3,Use selected electrons and selected muons to define selected leptons,yes,yes,yes,yes,"The dependency from electrons and muons into leptons is correct at L288-L296, but the claimed list-comprehension expression is not present; the code uses append loops."
+1,10,requirement,R4,Require exactly 1 selected lepton,yes,yes,yes,no,"Implemented by len(leptons) != 1 followed by continue at L297-L298, and redundantly checked again at L301-L304."
+1,10,requirement,R5,Require at least 2 jets with pT > 30 GeV and |eta| < 2.5,yes,yes,yes,no,Jets are filtered at L307-L309 and the multiplicity requirement is applied there.
+1,10,requirement,R6,Select MET > 30 GeV,yes,yes,yes,yes,"MET is retrieved through helper_get_met at L320 and rejected when met['pt'] < 30 at L321; the tracer's strict > expression is not literally present, since pt == 30 is accepted."
+1,10,requirement,R7,Veto events with b-tagged jets,yes,yes,yes,no,"The b-jet dependency and veto are correctly traced at L314-L316, including the implemented pT and eta conditions."
+1,10,requirement,R8,Select transverse mass of lepton + MET between 40 and 120 GeV,yes,yes,yes,no,"helper_transverse_mass(lepton, met) and the cut are implemented at L325-L329."
+1,10,requirement,R9,Select invariant mass of the two leading jets between 60 and 100 GeV,yes,yes,yes,no,Leading and subleading filtered jets are obtained at L333-L337 and the mass cut is applied at L338-L340.
+1,10,requirement,R10,Select delta R between the two leading jets < 3.0,yes,yes,yes,no,"helper_delta_r(jet1, jet2) and the rejection condition are at L342-L346."
+1,10,requirement,R11,Plot transverse mass in the range 30 to 150 GeV,partial,yes,yes,no,"The tracer identifies mt_list at L349, but does not trace the actual histogram call and range at L389-L394."
+1,10,requirement,R12,Plot dijet invariant mass in the range 40 to 120 GeV,partial,yes,yes,no,"mjj_list is correctly identified at L350, but the histogram call and range at L396-L400 are omitted."
+1,10,requirement,R13,Plot the MET distribution,partial,yes,yes,no,"The data list is traced at L351, but the actual plot operation at L403-L407 is not identified."
+1,10,requirement,R14,Plot the pT of the lepton,partial,yes,yes,no,"lepton_pt_list is traced at L352, but the histogram operation at L410-L414 is omitted."
+1,10,requirement,R15,Plot the pT of the leading jet,partial,yes,yes,no,"jet1_pt_list is traced at L353, but the histogram operation at L417-L421 is omitted."
+1,10,requirement,R16,Plot the pT of the subleading jet,partial,yes,yes,no,"jet2_pt_list is traced at L354, but the histogram operation at L424-L428 is omitted."
+1,10,requirement,R17,Plot delta R between the two leading jets,partial,yes,yes,no,"dr_list is traced at L355, but the histogram operation at L431-L435 is omitted."
+1,10,requirement,R18,Plot delta phi between the lepton and MET,partial,yes,yes,no,"The computed quantity and list are traced at L357-L359, but the plot call at L438-L443 is omitted."
+1,10,requirement,R19,Plot the eta of the lepton,partial,yes,yes,no,"lepton_eta_list is traced at L361, but the histogram operation at L445-L449 is omitted."
+1,10,requirement,R20,Plot delta phi between the lepton and the two-jet system,partial,yes,yes,no,"The quantity and list are traced at L364-L370, but the histogram operation at L452-L457 is omitted."
+1,10,requirement,R21,Apply cuts sequentially and skip the event immediately when a cut fails,partial,yes,yes,no,"The tracer covers individual cuts and their continue statements, but does not explicitly trace the overall sequential control flow from L286-L346."
+1,10,requirement,R22,"After the event loop, print one cutflow summary with the number of events after each selection step",partial,no,yes,no,"The cutflow structure is cited at L260-L270, but printing after the loop occurs at L384-L386 and is not cited; the trace therefore does not fully support the claim."
+1,10,requirement,R23,Save the plots in PNG format,yes,yes,yes,no,The tracer identifies the plot save operations and filenames across L389-L457.
+1,10,requirement,R24,"Save transverse mass, dijet mass, MET, lepton pT, delta R, and lepton–two-jet-system delta phi in a CSV file",yes,yes,yes,no,All six values are traced to csv_data at L373-L379; the CSV file creation and header are at L459-L463.
+1,10,extra_trace_claim,EXTRA1,Electron and muon selections are computed as list comprehensions.,,,,yes,"The generated code uses explicit for loops with append at L291-L296, not list comprehensions."
+1,10,extra_trace_claim,EXTRA2,Selected lepton is computed as a concatenation of list comprehensions.,,,,yes,The code constructs leptons by appending in two loops at L290-L296; no such concatenation expression exists.
+1,10,extra_trace_claim,EXTRA3,MET selection is exactly met['pt'] > 30.,,,,yes,"The code rejects only met['pt'] < 30 at L321, so equality at 30 is accepted."

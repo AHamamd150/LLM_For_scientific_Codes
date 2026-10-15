@@ -1,0 +1,87 @@
+[CANDIDATE 1] Lepton selection and definition
+
+Original phrase:
+"Require exactly one lepton (electron or muon)"
+
+Unresolved choice:
+It is unclear whether this refers to the total number of electrons and muons combined, or whether it refers to a specific selection of one lepton after applying pT and |eta| cuts.
+
+Why this may matter:
+Different interpretations could lead to different lepton selection logic—whether to count raw leptons or apply cuts first, and whether to combine electrons and muons before or after selection.
+
+[CANDIDATE 2] Jet selection and b-tagging order
+
+Original phrase:
+"Among these selected jets, require at least 2 b-tagged jets."
+
+Unresolved choice:
+It is unclear whether the "selected jets" refers to the full jet collection after pT and |eta| cuts, or whether it refers to a subset of jets that may have been further filtered in a prior step.
+
+Why this may matter:
+If the jets are already filtered in a prior step (e.g., by vetoing jets overlapping with the lepton), the b-tagging requirement may be applied to a different jet collection than intended.
+
+[CANDIDATE 3] Closest b-jet to lepton
+
+Original phrase:
+"Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R."
+
+Unresolved choice:
+It is unclear whether the "selected b-tagged jets" refers to all b-tagged jets in the event (after pT and |eta| cuts), or whether it refers to a subset of jets that may have been further filtered in a prior step.
+
+Why this may matter:
+If the b-tagged jets have already been filtered (e.g., by removing jets overlapping with the lepton), the closest b-jet may not be available or may be incorrectly identified.
+
+[CANDIDATE 4] Hadronic W candidate construction
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Unresolved choice:
+It is unclear whether the "selected non-b-tagged jets" refers to the full jet collection after pT and |eta| cuts and b-tagging veto, or whether it refers to a subset of jets that may have been further filtered in a prior step.
+
+Why this may matter:
+If the jets have already been filtered (e.g., by removing jets overlapping with the lepton or b-jet), the leading jets may not be the same as intended for the hadronic W candidate.
+
+[CANDIDATE 5] Hadronic top candidate construction
+
+Original phrase:
+"Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate."
+
+Unresolved choice:
+It is unclear whether the "leading selected b-tagged jet" refers to the full b-tagged jet collection after pT and |eta| cuts, or whether it refers to a subset of jets that may have been further filtered in a prior step.
+
+Why this may matter:
+If the b-tagged jets have already been filtered (e.g., by removing jets overlapping with the lepton), the leading b-tagged jet may not be the same as intended for the hadronic top candidate.
+
+[CANDIDATE 6] Leading and subleading b-jet pT plots
+
+Original phrase:
+"Plot the pT of the leading b-jet" and "Plot the pT of the subleading b-jet"
+
+Unresolved choice:
+It is unclear whether the "leading" and "subleading" b-jets are defined before or after the b-tagging and jet selection cuts.
+
+Why this may matter:
+If the leading and subleading b-jets are defined before cuts, they may include jets that are later rejected by the analysis, leading to inconsistent or undefined values in the plots.
+
+[CANDIDATE 7] HT definition
+
+Original phrase:
+"Plot the HT distribution (scalar sum of all jet pT)"
+
+Unresolved choice:
+It is unclear whether "all jet pT" refers to the full jet collection in the event, or only to the selected jets that passed pT and |eta| cuts.
+
+Why this may matter:
+If HT is computed from all jets, it may include jets that are later rejected by the analysis, leading to a different interpretation of the scalar sum than intended.
+
+[CANDIDATE 8] Jet multiplicity
+
+Original phrase:
+"Require at least 4 jets with pT > 30 GeV and |eta| < 2.5"
+
+Unresolved choice:
+It is unclear whether this jet multiplicity requirement is applied to the full jet collection or to a subset of jets that may have been filtered in a prior step (e.g., by vetoing jets overlapping with the lepton).
+
+Why this may matter:
+If the jet multiplicity is applied to a filtered jet collection, the requirement may not reflect the actual jet content of the event, leading to incorrect event rejection or acceptance.

@@ -1,0 +1,17 @@
+﻿comparison,issue,setting,generation_errors,generation_runs,tracer_exposed,tracer_relevant_errors,critique_detected_strict,critique_relevant_errors,critique_partial,notes
+Case 2 -> Case 6,Closest b-jet replaced by leading b-jet,Case 2 / 14B,8,10,8,8,1,8,0,
+Case 2 -> Case 6,Closest b-jet replaced by leading b-jet,Case 6 / 14B,0,10,,,,,,No generation error; downstream detection N/A.
+Case 2 -> Case 6,Closest b-jet replaced by leading b-jet,Case 6 / 32B,0,10,,,,,,No generation error; downstream detection N/A.
+Case 2 -> Case 6,Muon eta threshold mismatch,Case 2 / 14B,0,10,,,,,,No mismatch in the frozen Case 2 / 14B runs.
+Case 2 -> Case 6,Muon eta threshold mismatch,Case 6 / 14B,10,10,10,10,9,10,0,
+Case 2 -> Case 6,Muon eta threshold mismatch,Case 6 / 32B,0,10,,,,,,No generation error; downstream detection N/A.
+Case 2 -> Case 6,Unrequested top-mass cut,Case 2 / 14B,9,10,0,9,0,9,0,"100-250 GeV was a plot range in Case 2, but was promoted to a selection cut."
+Case 2 -> Case 6,Unrequested top-mass cut,Case 6 / 14B,0,10,,,,,,Case 6 explicitly specifies the top-mass selection.
+Case 2 -> Case 6,"Unrequested DeltaR(l,b) < 0.5 cut",Case 6 / 14B,3,10,0,3,1,3,1,One critique detection was correct and one was partial.
+Case 2 -> Case 6,"Unrequested DeltaR(l,b) < 0.5 cut",Case 6 / 32B,0,10,,,,,,No generation error; downstream detection N/A.
+Case 5 -> Case 7,Incorrect ditau-dijet Delta phi,Case 5 / 14B,10,10,10,10,10,10,0,Strong positive benchmark for a semantic observable.
+Case 5 -> Case 7,Incorrect ditau-dijet Delta phi,"Same Case 5 / 14B code, 32B post-review",10,10,10,10,5,10,0,Same 14B-generated code; only the reviewer was scaled to 32B.
+Case 5 -> Case 7,Incorrect ditau-dijet Delta phi,Case 7 / 14B,1,10,1,1,0,1,0,
+Case 5 -> Case 7,Cutflow bookkeeping / ordering,Case 5 / 32B,5,10,0,5,,5,,Critique behavior was characterized as weak; no single strict detection count was fixed in the summary.
+Case 5 -> Case 7,Cutflow bookkeeping / ordering,Case 7 / 32B,10,10,10,10,0,10,0,Tracer exposed the actual execution order; Critique failed the global SPEC-vs-trace comparison.
+Case 5 -> Case 7,b-jet pre-filter instead of veto,Case 7 / 32B,2,10,2,2,0,2,0,Minor issue; Case 7 / 14B was rechecked and had 0/10 of this error.

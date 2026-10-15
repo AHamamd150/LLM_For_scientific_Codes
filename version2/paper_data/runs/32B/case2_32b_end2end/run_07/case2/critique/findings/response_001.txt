@@ -1,0 +1,154 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The code correctly builds the hadronic top candidate from the leading b-jet and the hadronic W candidate as required by the SPEC. This is not a violation.
+
+Evidence priority:
+- top_hadronic = sum_objects(bjets_sorted[0], w_hadronic); upstream chain: bjets_sorted = sort_by_pt(bjets), w_hadronic from previous step; 〔L383-L384〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Reason:
+The code correctly builds the hadronic W candidate from the two leading non-b-tagged jets as required by the SPEC. This is not a violation.
+
+Evidence priority:
+- w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1]); upstream chain: light_jets_sorted = sort_by_pt([j for j in jets if j not in bjets]); 〔L373-L374〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- if not (30 < mt < 150): continue
+
+Reason:
+The code correctly implements the transverse mass cut as specified in the SPEC. This is not a mismatch.
+
+Evidence priority:
+- if not (30 < mt < 150): continue; upstream chain: mt = helper_transverse_mass(lepton, met); 〔L362-L363〕
+
+Generator bias:
+none
+
+◎ (C) missing implementation
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+All required implementations from the SPEC are present in the code. There are no missing implementations.
+
+Evidence priority:
+- All required selections and plots are implemented as per the SPEC.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+The SPEC does not leave any design choices unconstrained that would lead to ambiguities in the implementation. All required selections and plots are clearly defined.
+
+Evidence priority:
+- All selections and plots are implemented as per the SPEC.
+
+Generator bias:
+none
+
+◎ (E) extra behavior
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+The code does not perform any behavior not requested by the SPEC. All implemented behavior is explicitly requested.
+
+Evidence priority:
+- All implemented behavior is explicitly requested by the SPEC.
+
+Generator bias:
+none
+
+◎ (F) generator-induced bias
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+There is no evidence of generator-induced bias in the implementation. The code correctly implements the requested behavior.
+
+Evidence priority:
+- All selections and plots are implemented as per the SPEC.
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- if met is None or met['pt'] < 20: continue
+
+Reason:
+The code skips events where MET is not present (met is None), which is not explicitly required by the SPEC. The SPEC only specifies a cut on MET > 20 GeV, but does not require handling of missing MET objects. This introduces an extra condition not specified in the requirement.
+
+Evidence priority:
+- if met is None or met['pt'] < 20: continue; upstream chain: helper_get_met(event) -> event['objects'] with type == 6; 〔L355-L357〕
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- light_jets = [j for j in jets if j not in bjets]
+
+Reason:
+The code constructs the non-b-tagged jets by excluding bjets from jets. However, the SPEC does not specify whether the jets collection used for this exclusion should be the full jet collection or the selected jet collection (pT > 30 GeV and |eta| < 2.5). The implementation uses the selected jet collection, which is a valid but unconstrained choice.
+
+Evidence priority:
+- light_jets = [j for j in jets if j not in bjets]; upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]; 〔L369-L370〕
+
+Generator bias:
+none

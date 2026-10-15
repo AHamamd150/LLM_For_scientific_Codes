@@ -1,0 +1,7 @@
+
+
+* Delta phi between lepton and two-jet system
+  - computed/defined as: helper_delta_phi(lepton['phi'], jet_system['phi'])
+  - upstream chain: lepton, jet1, jet2
+  - collection definition: lepton = [l for l in electrons if l['pt'] > 25 and abs(l['eta']) < 2.5] + [l for l in muons if l['pt'] > 20 and abs(l['eta']) < 2.4]; jet_system = sum_objects(jet1, jet2); jet1 = max([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5], key=lambda p: p['pt']); jet2 = sorted([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5], key=lambda p: p['pt'], reverse=True)[1]
+  - structure: composite-derived

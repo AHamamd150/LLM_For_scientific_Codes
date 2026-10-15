@@ -1,0 +1,19 @@
+﻿Predefined v4 issue,v5 occurrence,Genuine unresolved choice,Physics caution,Resolved by prompt,Invented alternative
+C1-b-veto: selected vs event-level jets,1,1,0,0,0
+C1-leading jets: selected vs full collection,10,10,0,0,0
+C1-two-jet system definition,9,4,2,0,3
+C2-hadronic W: selected vs full non-b jets,10,8,0,0,2
+C2-top: selected vs full b jets,8,7,0,0,1
+C2->=2 b-jets: collection scope,0,0,0,0,0
+C2-closest b-jet: collection scope,0,0,0,0,0
+C2-HT: jet collection,0,0,0,0,0
+C2-jet multiplicity: jet collection,0,0,0,0,0
+C5-OS tau pair / pairing order,5,0,0,5,0
+C5-b-veto scope,2,2,0,0,0
+"C5-""summed momentum"" vs four-momentum",1,1,0,0,0
+C5-centrality definition,0,0,0,0,0
+C6-HT: jet collection,0,0,0,0,0
+C6-jet multiplicity: jet collection,0,0,0,0,0
+C7-OS tau pair / pairing order,10,1,0,9,0
+"C7-""summed momentum"" meaning",0,0,0,0,0
+C7-centrality definition,1,1,0,0,0

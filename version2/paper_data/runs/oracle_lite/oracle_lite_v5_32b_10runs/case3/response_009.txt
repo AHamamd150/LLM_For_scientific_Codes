@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] Diphoton system reuse in pT and mass
+
+Original phrase:
+"Build the diphoton system from the leading photon and the subleading photon. [...] Use this same diphoton system to compute diphoton pT."
+
+Why this matters:
+The phrase implies that the diphoton system is defined once and reused for both invariant mass and pT. However, it is not explicitly stated whether the diphoton pT is computed from the same system used for the invariant mass selection, or if the system is redefined after the mass cut. This could affect whether the pT is computed on the same pre-cut or post-cut diphoton system.
+
+Question to user:
+Should the diphoton pT be computed from the same diphoton system used to compute the invariant mass (before the mass cut), or from the system defined after the mass cut?
+
+Golden axe:
+Compute the diphoton pT from the same diphoton system used for the invariant mass selection.
+
+Silver axe:
+Compute the diphoton pT from the diphoton system after the invariant mass cut.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Leading and subleading photon definition timing
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection. [...] Leading photon pT > 35 GeV [...] Subleading photon pT > 25 GeV"
+
+Why this matters:
+It is not clear whether the leading and subleading photons are defined after all photon cuts (including the crack veto and pT cuts), or whether the pT requirements for leading and subleading are applied after the initial selection. This affects the order of operations and may lead to different photon pairings.
+
+Question to user:
+Are the leading and subleading photons defined after all photon cuts (including crack veto and pT cuts), or are the leading/subleading pT requirements applied after the initial photon selection?
+
+Golden axe:
+Define leading and subleading photons after all photon cuts, including crack veto and pT cuts.
+
+Silver axe:
+Define leading and subleading photons based on the initial photon selection, then apply the leading/subleading pT requirements.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Diphoton system reuse in plots and CSV output
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT. [...] Plot the following as histograms: [...] 4 Plot pT of the diphoton system [...] 9 Plot the |cos(theta*)| of the diphoton system in Collins-Soper frame [...] Save to CSV for MLP analysis: [...] 5- pT of diphoton system [...] 6- |cos(theta*)|"
+
+Why this matters:
+It is not explicitly stated whether the diphoton system used for the plots and CSV output is the same one defined for the invariant mass and pT selection. This could lead to inconsistencies if the system is redefined or recomputed differently for different outputs.
+
+Question to user:
+Is the diphoton system used for the plots and CSV output the same one defined for the invariant mass and pT selection, or is it recomputed separately?
+
+Golden axe:
+Use the same diphoton system for all plots and CSV outputs as the one defined for the invariant mass and pT selection.
+
+Silver axe:
+Recompute the diphoton system for each plot and output independently.
+
+Recommended default:
+Golden axe

@@ -1,0 +1,64 @@
+{
+  "electrons": {
+    "name": "electrons",
+    "definition": "[o for o in event['objects'] if o['type'] == 1], muons = [o for o in event['objects'] if o['type'] == 2]",
+    "used_by": [
+      "Lepton selection (electrons and muons)"
+    ]
+  },
+  "jets": {
+    "name": "jets",
+    "definition": "[o for o in event['objects'] if o['type'] == 4]",
+    "used_by": [
+      "Jet selection",
+      "HT (scalar sum of jet pT)",
+      "Number of jets per event"
+    ]
+  },
+  "bjets": {
+    "name": "bjets",
+    "definition": "[o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]",
+    "used_by": [
+      "B-jet selection"
+    ]
+  },
+  "met": {
+    "name": "met",
+    "definition": "[o for o in event['objects'] if o['type'] == 6]",
+    "used_by": [
+      "MET selection"
+    ]
+  },
+  "lepton": {
+    "name": "lepton",
+    "definition": "[e for e in electrons if e['pt'] > 25 and abs(e['eta']) < 2.5] + [m for m in muons if m['pt'] > 25 and abs(m['eta']) < 2.4], met = [o for o in event['objects'] if o['type'] == 6]",
+    "used_by": [
+      "Transverse mass (lepton + MET)"
+    ]
+  },
+  "light_jets": {
+    "name": "light_jets",
+    "definition": "[o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 0]",
+    "used_by": [
+      "Hadronic W candidate",
+      "Hadronic W mass"
+    ]
+  },
+  "bjet1": {
+    "name": "bjet1",
+    "definition": "[b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5], w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])",
+    "used_by": [
+      "Hadronic top candidate",
+      "Hadronic top mass",
+      "Leading b-jet pT",
+      "Leading b-jet η"
+    ]
+  },
+  "bjet2": {
+    "name": "bjet2",
+    "definition": "[b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]",
+    "used_by": [
+      "Subleading b-jet pT"
+    ]
+  }
+}

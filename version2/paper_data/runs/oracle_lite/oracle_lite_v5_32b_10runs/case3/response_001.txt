@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Diphoton system reuse in pT computation
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT."
+
+Why this matters:
+The phrase implies that the diphoton system should be reused, but it is not clear whether the pT is computed from the same four-momentum used for the invariant mass, or if a new system is built for pT. This could lead to inconsistencies if the diphoton system is modified or redefined in between.
+
+Question to user:
+Should the diphoton pT be computed from the same diphoton system used to calculate the invariant mass, or is a new system to be built for this purpose?
+
+Golden axe:
+Compute the diphoton pT using the same four-momentum as the invariant mass.
+
+Silver axe:
+Build a new diphoton system specifically for computing the pT.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Leading and subleading photon definition
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection."
+
+Why this matters:
+It is not clear whether the leading and subleading photons are defined based on pT after all photon selection cuts, or if they are defined at an earlier stage (e.g., before the crack veto or before the pT thresholds for leading and subleading are applied). This affects which photons are used in the diphoton system.
+
+Question to user:
+Are the leading and subleading photons defined after all photon selection cuts (including crack veto and pT > 25 GeV), or is the definition based on a different stage in the selection?
+
+Golden axe:
+Leading and subleading photons are defined after all photon selection cuts.
+
+Silver axe:
+Leading and subleading photons are defined before the crack veto or pT thresholds.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Diphoton system consistency across cuts
+
+Original phrase:
+"Build the diphoton system from the leading photon and the subleading photon."
+
+Why this matters:
+It is not clear whether the diphoton system is fixed once built and used consistently for all subsequent cuts and plots, or if it is recomputed or redefined at any point (e.g., if additional cuts modify the photon selection). This could lead to inconsistencies in the analysis.
+
+Question to user:
+Is the diphoton system to be fixed once built and used for all subsequent cuts and plots, or is it allowed to change if the photon selection is modified later?
+
+Golden axe:
+The diphoton system is fixed once built and used consistently for all subsequent cuts and plots.
+
+Silver axe:
+The diphoton system may be recomputed or redefined if the photon selection is modified later.
+
+Recommended default:
+Golden axe

@@ -1,0 +1,88 @@
+[CANDIDATE 1] Lepton definition and selection
+
+Original phrase:
+"Require exactly one lepton (electron or muon)"
+
+Unresolved choice:
+Does "lepton" refer to the combined electron+muon collection after applying the pT and |eta| cuts, or is it a separate definition that may include additional criteria?
+
+Why this may matter:
+If the lepton count is based on a pre-cut collection, the actual number of available candidates may differ from the cuts applied earlier. This could affect the logic of the selection and the interpretation of the "exactly one lepton" requirement.
+
+[CANDIDATE 2] Jet selection and b-tagging
+
+Original phrase:
+"Require at least 4 jets with pT > 30 GeV and |eta| < 2.5"
+"Among these selected jets, require at least 2 b-tagged jets."
+
+Unresolved choice:
+Are the b-tagged jets required to be among the selected jets (i.e., after the pT and |eta| cuts), or is the b-tagging applied to all jets in the event?
+
+Why this may matter:
+If b-tagging is applied to the full jet collection, the selection of b-tagged jets may include jets that do not meet the pT and |eta| criteria, which could affect the definition of the "selected jets" and the subsequent analysis.
+
+[CANDIDATE 3] Closest b-jet to lepton
+
+Original phrase:
+"Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R."
+
+Unresolved choice:
+Is the "selected lepton" the one that passed the pT and |eta| cuts and is used in the analysis, or is it a different definition (e.g., a pre-cut lepton)?
+
+Why this may matter:
+If the lepton used for the delta R calculation is not the same as the one used in the analysis, the resulting b-jet association may not correspond to the intended physics object, affecting the definition of the hadronic top candidate.
+
+[CANDIDATE 4] Hadronic W candidate
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Unresolved choice:
+Are the "leading" jets defined based on the full jet collection or only among the non-b-tagged jets?
+
+Why this may matter:
+If "leading" is defined over the full jet collection, the non-b-tagged jets may not include the highest-pT jets, which could affect the invariant mass calculation and the subsequent top candidate.
+
+[CANDIDATE 5] Hadronic top candidate
+
+Original phrase:
+"Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate."
+
+Unresolved choice:
+Is the "leading selected b-tagged jet" defined before or after the selection of the hadronic W candidate?
+
+Why this may matter:
+If the b-tagged jet is selected independently of the hadronic W candidate, the resulting top candidate may not reflect the intended physics relationship between the b-jet and the W system.
+
+[CANDIDATE 6] Cutflow summary
+
+Original phrase:
+"After the event loop, print one cutflow summary with the number of events after each selection step."
+
+Unresolved choice:
+Does the cutflow summary include events that failed earlier cuts, or is it based only on the final selected events?
+
+Why this may matter:
+If the cutflow includes all events, it may not reflect the actual progression of the selection. If it is based only on the final selected events, it may not provide a complete picture of the selection efficiency.
+
+[CANDIDATE 7] HT distribution
+
+Original phrase:
+"Plot the HT distribution (scalar sum of all jet pT)"
+
+Unresolved choice:
+Does "all jet pT" refer to the full jet collection or only the selected jets?
+
+Why this may matter:
+If the HT is computed from the full jet collection, it may include jets that do not meet the pT and |eta| cuts, which could affect the interpretation of the scalar sum as a measure of event activity.
+
+[CANDIDATE 8] Number of jets per event
+
+Original phrase:
+"Plot the number of jets per event"
+
+Unresolved choice:
+Does this refer to the number of jets passing the pT and |eta| cuts, or is it the total number of jets in the event?
+
+Why this may matter:
+If the jet count is based on the full jet collection, it may not reflect the actual number of jets used in the analysis, which could affect the interpretation of the jet multiplicity in the context of the selection.

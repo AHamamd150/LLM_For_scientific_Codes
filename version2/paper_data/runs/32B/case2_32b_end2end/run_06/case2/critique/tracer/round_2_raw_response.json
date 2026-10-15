@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* Delta R between lepton and closest b-jet (continued)\n  - collection definition: lepton = [e for e in electrons if e['pt'] > 25 and abs(e['eta']) < 2.5] + [m for m in muons if m['pt'] > 25 and abs(m['eta']) < 2.4], bjet1 = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]\n  - structure: multi-input\n\n* HT (scalar sum of jet pT)\n  - computed/defined as: scalar_pt_sum(jets)\n  - upstream chain: jets (from jet selection)\n  - collection definition: jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - structure: single-constituent\n\n* Number of jets per event\n  - computed/defined as: len(jets)\n  - upstream chain: jets (from jet selection)\n  - collection definition: jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - structure: single-constituent\n\n* Leading b-jet pT\n  - computed/defined as: bjet1['pt']\n  - upstream chain: bjet1 (from bjet selection)\n  - collection definition: bjet1 = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]\n  - structure: single-constituent\n\n* Subleading b-jet pT\n  - computed/defined as: bjet2['pt']\n  - upstream chain: bjet2 (from bjet selection)\n  - collection definition: bjet2 = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]\n  - structure: single-constituent\n\n* Leading b-jet η\n  - computed/defined as: bjet1['eta']\n  - upstream chain: bjet1 (from bjet selection)\n  - collection definition: bjet1 = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788841315,
+  "id": "chatcmpl-b80cbb02-d61b-4ec0-9d29-3d9a24bae28a",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 519,
+    "prompt_tokens": 11217,
+    "prompt_tokens_details": null,
+    "total_tokens": 11736
+  }
+}

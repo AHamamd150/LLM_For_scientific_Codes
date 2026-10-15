@@ -1,0 +1,16 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the invariant mass of leading b-jet + W hadronic candidate (top hadronic) in range 100 to 250 GeV
+
+CODE:
+- helper_invariant_mass(bjet1, w_hadronic)
+
+Reason:
+The SPEC explicitly requests the invariant mass of the top hadronic candidate, which is a system-level object composed of the leading b-jet and the hadronic W candidate. However, the implementation computes the invariant mass only from the leading b-jet and the hadronic W candidate, but does not construct the full top hadronic system before computing the invariant mass. The `helper_invariant_mass` function computes the invariant mass of the two inputs, but the SPEC requires the invariant mass of the full top system. The correct approach would be to compute the invariant mass of the full system using `sum_objects(bjet1, w_hadronic)` and then extract the mass.
+
+Evidence priority:
+- top_mass is computed as helper_invariant_mass(bjet1, w_hadronic); upstream chain: bjet1, w_hadronic; 〔L356-L356〕
+
+Generator bias:
+none

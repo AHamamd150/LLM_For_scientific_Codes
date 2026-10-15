@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading and subleading object definitions
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading and subleading taus are defined before or after applying the "opposite-sign tau pair" requirement. This could affect which taus are considered for the ditau_obj and the invariant mass selection.
+
+Question to user:
+Are the leading and subleading taus defined before or after applying the opposite-sign requirement?
+
+Golden axe:
+Leading and subleading taus are defined after applying the opposite-sign requirement.
+
+Silver axe:
+Leading and subleading taus are defined before applying the opposite-sign requirement.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Veto on b-tagged jets
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Why this is dangerous:
+The phrase does not clarify whether the veto applies to all selected jets or only to a subset (e.g., the two leading jets). This could lead to different implementations of the veto logic.
+
+Question to user:
+Does the b-tagged jet veto apply to all selected jets or only to the two leading jets?
+
+Golden axe:
+The veto applies to all selected jets.
+
+Silver axe:
+The veto applies only to the two leading jets.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Centrality of the ditau system
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Why this is dangerous:
+The phrase does not clarify whether the centrality is computed relative to the two leading jets or any two jets in the event. This could lead to different implementations of the centrality calculation.
+
+Question to user:
+Is the centrality computed relative to the two leading jets or any two jets in the event?
+
+Golden axe:
+The centrality is computed relative to the two leading jets.
+
+Silver axe:
+The centrality is computed relative to any two jets in the event.
+
+Recommended default:
+Golden axe

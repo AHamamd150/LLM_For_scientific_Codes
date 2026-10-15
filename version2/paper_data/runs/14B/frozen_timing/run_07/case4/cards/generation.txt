@@ -1,0 +1,61 @@
+# Physics Process: p p > W Z, W > l nu, Z > l+ l-
+# ================================================
+
+[SELECTION_CUTS]
+- Select electrons with pT > 15 GeV and |eta| < 2.5.
+- Select muons with pT > 10 GeV and |eta| < 2.4.
+- Require exactly 2 selected electrons and exactly 1 selected muon.
+- Require the two selected electrons to have opposite charge.
+- Build z_obj from the two selected electrons using summed four-momentum.
+- Select invariant mass of z_obj between 76 and 106 GeV.
+- Define the selected muon as the W candidate lepton.
+- Require MET > 30 GeV.
+- The W candidate muon  must have pT > 20 GeV.
+- Select transverse mass of W candidate muon + MET > 30 GeV.
+
+Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+Increment each cutflow counter immediately after its cut is passed.
+
+[PLOTS_FOR_VALIDATION]
+- Plot the following as histograms:
+1 Plot the invariant mass of z_obj in range 60 to 120 GeV
+2 Plot the transverse mass of the W candidate lepton + MET
+3 Plot the MET distribution
+4 Plot the pT of the three-lepton system built from the two selected electrons and the selected muon
+5 Plot the pT of z_obj
+6 Plot the pT of the W candidate muon 
+7 Plot delta phi between z_obj and MET
+8 Plot the invariant mass of the three-lepton system
+9 Plot delta R between the two electrons forming z_obj
+10 Plot eta of the W candidate muon 
+
+Use simple validation histograms.
+For each histogram: plt.figure(); plt.hist(values, bins=40, density=True); plt.xlabel(...); plt.ylabel("density"); plt.savefig(...); plt.close().
+Use concrete short ASCII labels and filenames.
+
+
+[OUTPUT_STRUCTURE]
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+- Save the plots in png format
+
+[ADDITIONAL_HELPERS]
+- read_lhco
+- get_electrons
+- get_muons
+- opposite_sign
+- get_particle_mass
+- four_momentum
+- obj_from_four_momentum
+- sum_objects
+- helper_invariant_mass
+- helper_get_met
+- helper_delta_phi
+- helper_transverse_mass
+- abs_eta
+- helper_delta_r
+- scalar_pt_sum
+- vector_pt_components
+- compute_phi
+- helper_get_leading
+- n_electrons
+- n_muons

@@ -1,0 +1,142 @@
+{
+  "selected_helpers": [
+    {
+      "name": "get_taus",
+      "reason": ""
+    },
+    {
+      "name": "abs_eta",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_leading",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_subleading",
+      "reason": ""
+    },
+    {
+      "name": "get_particle_mass",
+      "reason": "dependency of four_momentum"
+    },
+    {
+      "name": "four_momentum",
+      "reason": "dependency of sum_objects"
+    },
+    {
+      "name": "obj_from_four_momentum",
+      "reason": "dependency of sum_objects"
+    },
+    {
+      "name": "sum_objects",
+      "reason": ""
+    },
+    {
+      "name": "helper_invariant_mass",
+      "reason": ""
+    },
+    {
+      "name": "get_jets",
+      "reason": ""
+    },
+    {
+      "name": "opposite_sign",
+      "reason": ""
+    },
+    {
+      "name": "abs_delta_eta",
+      "reason": ""
+    },
+    {
+      "name": "get_bjets",
+      "reason": ""
+    },
+    {
+      "name": "helper_delta_phi",
+      "reason": "dependency of helper_delta_r"
+    },
+    {
+      "name": "helper_delta_r",
+      "reason": ""
+    },
+    {
+      "name": "centrality_between_jets",
+      "reason": ""
+    }
+  ],
+  "rejected_but_close": [
+    {
+      "name": "helper_transverse_mass",
+      "reason": ""
+    },
+    {
+      "name": "get_leptons",
+      "reason": ""
+    },
+    {
+      "name": "get_electrons",
+      "reason": ""
+    },
+    {
+      "name": "get_muons",
+      "reason": ""
+    },
+    {
+      "name": "get_photons",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_met",
+      "reason": ""
+    },
+    {
+      "name": "scalar_pt_sum",
+      "reason": ""
+    },
+    {
+      "name": "vector_pt_sum",
+      "reason": ""
+    },
+    {
+      "name": "min_delta_r",
+      "reason": ""
+    },
+    {
+      "name": "max_delta_r",
+      "reason": ""
+    },
+    {
+      "name": "pt_ratio",
+      "reason": ""
+    },
+    {
+      "name": "n_electrons",
+      "reason": ""
+    },
+    {
+      "name": "n_muons",
+      "reason": ""
+    },
+    {
+      "name": "n_photons",
+      "reason": ""
+    },
+    {
+      "name": "n_leptons",
+      "reason": ""
+    },
+    {
+      "name": "total_charge",
+      "reason": ""
+    },
+    {
+      "name": "get_os_pairs",
+      "reason": ""
+    },
+    {
+      "name": "get_ss_pairs",
+      "reason": ""
+    }
+  ]
+}

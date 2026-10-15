@@ -1,0 +1,128 @@
+
+
+SECTION 1: SPEC BULLET ANALYSIS
+
+✅ * Select electrons with pT > 25 GeV and |eta| < 2.5; computed as: [e for e in get_electrons(event) if e['pt'] > 25 and abs(e['eta']) < 2.5]; upstream chain: get_electrons(event); 〔L294-L294〕
+✅ * Select muons with pT > 25 GeV and |eta| < 2.4; computed as: [m for m in get_muons(event) if m['pt'] > 25 and abs(m['eta']) < 2.4]; upstream chain: get_muons(event); 〔L295-L295〕
+✅ * Require exactly one lepton (electron or muon); computed as: if len(leptons) != 1: continue; upstream chain: electrons + muons; 〔L296-L299〕
+✅ * Require at least 4 jets with pT > 30 GeV and |eta| < 2.5; computed as: [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]; upstream chain: get_jets(event); 〔L305-L305〕
+✅ * Among these selected jets, require at least 2 b-tagged jets; computed as: [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]; upstream chain: get_bjets(event); 〔L311-L311〕
+✅ * Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R; computed as: min(bjets, key=lambda b: helper_delta_r(b, lepton)); upstream chain: helper_delta_r(b, lepton); 〔L317-L317〕
+✅ * Select MET > 20 GeV; computed as: if met is None or met['pt'] < 20: continue; upstream chain: helper_get_met(event); 〔L322-L322〕
+✅ * Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate); computed as: if not (30 < mt < 150): continue; upstream chain: helper_transverse_mass(lepton, met); 〔L329-L329〕
+✅ * Build the hadronic W candidate from the two leading selected non-b-tagged jets; computed as: sum_objects(light_jets_sorted[0], light_jets_sorted[1]); upstream chain: sort_by_pt(light_jets); 〔L339-L339〕
+✅ * Select the hadronic W mass between 40 to 120 GeV; computed as: if w_had is None or not (40 < w_had['mass'] < 120): continue; upstream chain: helper_invariant_mass(light_jets_sorted[0], light_jets_sorted[1]); 〔L341-L341〕
+✅ * Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate; computed as: sum_objects(bjets_sorted[0], w_had); upstream chain: sort_by_pt(bjets); 〔L347-L347〕
+✅ * Select the hadronic top mass between 100 to 250 GeV; computed as: if top_had is None or not (100 < top_had['mass'] < 250): continue; upstream chain: helper_invariant_mass(bjets_sorted[0], w_had); 〔L349-L349〕
+
+✅ * Plot the transverse mass of lepton + MET (W leptonic candidate); computed as: mt_values; upstream chain: helper_transverse_mass(lepton, met); 〔L328-L328〕
+✅ * Plot the MET distribution; computed as: met_values; upstream chain: helper_get_met(event); 〔L321-L321〕
+✅ * Plot the pT of the leading b-jet; computed as: bjet1_pt; upstream chain: bjets_sorted[0]['pt']; 〔L354-L354〕
+✅ * Plot the pT of the subleading b-jet; computed as: bjet2_pt; upstream chain: bjets_sorted[1]['pt']; 〔L355-L355〕
+✅ * Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV; computed as: w_had_mass; upstream chain: helper_invariant_mass(light_jets_sorted[0], light_jets_sorted[1]); 〔L340-L340〕
+✅ * Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV; computed as: top_had_mass; upstream chain: helper_invariant_mass(bjets_sorted[0], w_had); 〔L348-L348〕
+✅ * Plot delta R between the leading lepton and the closest selected b-jet; computed as: dr_lep_bjet; upstream chain: helper_delta_r(lepton, closest_bjet); 〔L318-L318〕
+✅ * Plot the HT distribution (scalar sum of all jet pT); computed as: ht_values; upstream chain: scalar_pt_sum(jets); 〔L357-L357〕
+✅ * Plot the number of jets per event; computed as: njets_values; upstream chain: len(jets); 〔L358-L358〕
+✅ * Plot eta of the leading b-jet; computed as: bjet1_eta; upstream chain: bjets_sorted[0]['eta']; 〔L356-L356〕
+
+✅ * Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied; computed as: continue; upstream chain: multiple conditions; 〔L299-L349〕
+
+✅ * After the event loop, print one cutflow summary with the number of events after each selection step; computed as: print("Cutflow:"); upstream chain: cutflow dictionary; 〔L431-L440〕
+✅ * Save the plots in png format; computed as: plt.savefig(...); upstream chain: plt.figure(); 〔L361-L429〕
+
+SECTION 2: DEFINITION SUMMARY
+
+* [CHECK CAREFULLY] DEFINITION SUMMARY
+
+* Selected electrons
+  - computed/defined as: [e for e in get_electrons(event) if e['pt'] > 25 and abs(e['eta']) < 2.5]
+  - upstream chain: get_electrons(event)
+  - collection definition: e['pt'] > 25 and abs(e['eta']) < 2.5
+  - structure: single-constituent
+
+* Selected muons
+  - computed/defined as: [m for m in get_muons(event) if m['pt'] > 25 and abs(m['eta']) < 2.4]
+  - upstream chain: get_muons(event)
+  - collection definition: m['pt'] > 25 and abs(m['eta']) < 2.4
+  - structure: single-constituent
+
+* Selected leptons
+  - computed/defined as: electrons + muons
+  - upstream chain: selected electrons and selected muons
+  - collection definition: electrons and muons with pT > 25 and |eta| < 2.5 or 2.4
+  - structure: multi-input
+
+* Selected jets
+  - computed/defined as: [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - upstream chain: get_jets(event)
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* Selected b-jets
+  - computed/defined as: [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - upstream chain: get_bjets(event)
+  - collection definition: b['pt'] > 30 and abs(b['eta']) < 2.5
+  - structure: single-constituent
+
+* Closest b-jet to lepton
+  - computed/defined as: min(bjets, key=lambda b: helper_delta_r(b, lepton))
+  - upstream chain: helper_delta_r(b, lepton)
+  - collection definition: bjets with b['pt'] > 30 and abs(b['eta']) < 2.5
+  - structure: single-constituent
+
+* MET
+  - computed/defined as: helper_get_met(event)
+  - upstream chain: for o in event['objects'] if o['type'] == 6
+  - collection definition: MET object with type == 6
+  - structure: single-constituent
+
+* Transverse mass of lepton + MET
+  - computed/defined as: helper_transverse_mass(lepton, met)
+  - upstream chain: helper_delta_phi(lepton['phi'], met['phi'])
+  - collection definition: lepton and MET
+  - structure: composite-derived
+
+* Hadronic W candidate
+  - computed/defined as: sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+  - upstream chain: sort_by_pt(light_jets)
+  - collection definition: two leading non-b-tagged jets
+  - structure: composite-derived
+
+* Hadronic W mass
+  - computed/defined as: helper_invariant_mass(light_jets_sorted[0], light_jets_sorted[1])
+  - upstream chain: sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+  - collection definition: two leading non-b-tagged jets
+  - structure: composite-derived
+
+* Hadronic top candidate
+  - computed/defined as: sum_objects(bjets_sorted[0], w_had)
+  - upstream chain: sort_by_pt(bjets)
+  - collection definition: leading b-jet and hadronic W candidate
+  - structure: composite-derived
+
+* Hadronic top mass
+  - computed/defined as: helper_invariant_mass(bjets_sorted[0], w_had)
+  - upstream chain: sum_objects(bjets_sorted[0], w_had)
+  - collection definition: leading b-jet and hadronic W candidate
+  - structure: composite-derived
+
+* Transverse mass values
+  - computed/defined as: mt_values
+  - upstream chain: helper_transverse_mass(lepton, met)
+  - collection definition: lepton and MET
+  - structure: composite-derived
+
+* MET values
+  - computed/defined as: met_values
+  - upstream chain: helper_get_met(event)
+  - collection definition: MET object with type == 6
+  - structure: single-constituent
+
+* Leading b-jet pT
+  - computed/defined as: bjet1_pt
+  - upstream chain: bjets_sorted[0]['pt']
+  - collection definition: bjets with b['pt'] > 30 and abs(b['eta']) < 2.5
+  - structure: single-constituent
+
+*

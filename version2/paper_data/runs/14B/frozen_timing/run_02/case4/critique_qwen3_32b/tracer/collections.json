@@ -1,0 +1,9 @@
+{
+  "w_muon": {
+    "name": "w_muon",
+    "definition": "muons[0], met = helper_get_met(event)",
+    "used_by": [
+      "w_trans_mass"
+    ]
+  }
+}

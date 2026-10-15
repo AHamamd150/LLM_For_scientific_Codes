@@ -1,0 +1,24 @@
+{
+  "selected_helpers": [
+    "helper_transverse_mass",
+    "helper_delta_r",
+    "helper_invariant_mass",
+    "helper_get_met",
+    "get_leptons",
+    "get_jets",
+    "get_bjets",
+    "get_light_jets",
+    "sort_by_pt",
+    "helper_get_leading",
+    "helper_get_subleading",
+    "scalar_pt_sum",
+    "n_jets",
+    "n_bjets",
+    "n_leptons",
+    "obj_from_four_momentum",
+    "sum_objects",
+    "four_momentum",
+    "get_particle_mass"
+  ],
+  "rejected_but_close": []
+}

@@ -1,0 +1,82 @@
+[CANDIDATE 1] Lepton definition and selection
+
+Original phrase:
+"Require exactly one lepton (electron or muon)"
+
+Unresolved choice:
+Does "exactly one lepton" refer to the combined collection of electrons and muons after applying their respective pT and |eta| cuts, or before applying any cuts?
+
+Why this may matter:
+If the lepton count is applied before cuts, the cuts on electrons and muons may later reduce the number of available leptons, potentially invalidating the "exactly one" requirement. This could change the event selection logic and the resulting cutflow.
+
+[CANDIDATE 2] Jet selection and b-tagging
+
+Original phrase:
+"Require at least 4 jets with pT > 30 GeV and |eta| < 2.5"
+"Require at least 2 b-tagged jets"
+
+Unresolved choice:
+Are the jet and b-tagged jet requirements applied to the full event-level jet collection, or to a subset of jets that may have been previously filtered or selected (e.g., non-b-tagged jets)?
+
+Why this may matter:
+If the jet and b-tagged jet requirements are applied to a filtered collection (e.g., only non-b-tagged jets), the cuts may not reflect the true jet multiplicity in the event, potentially leading to incorrect selections and misinterpretation of the jet content.
+
+[CANDIDATE 3] Jet ordering for hadronic W and top candidates
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Unresolved choice:
+Are the "leading" and "subleading" jets defined before or after the jet pT and |eta| cuts?
+
+Why this may matter:
+If jet ordering is applied before the cuts, some jets may be removed by the cuts, changing the identity of the leading and subleading jets. This could affect the construction of the hadronic W and top candidates and the resulting invariant mass calculations.
+
+[CANDIDATE 4] MET and transverse mass
+
+Original phrase:
+"Select MET > 20 GeV"
+"Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)"
+
+Unresolved choice:
+Is the MET used in the transverse mass calculation the raw MET from the event, or is it a corrected or recalculated MET based on the selected objects?
+
+Why this may matter:
+If the MET is not corrected for the selected objects, the transverse mass calculation may not accurately reflect the W candidate's properties, potentially leading to incorrect selections and misinterpretation of the W candidate's transverse mass.
+
+[CANDIDATE 5] Leading b-jet definition
+
+Original phrase:
+"Plot the pT of the leading b-jet"
+"Plot the pT of the subleading b-jet"
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Unresolved choice:
+Is the "leading b-jet" defined based on the full jet collection (including b-tagged and non-b-tagged jets), or is it defined only within the b-tagged jet collection?
+
+Why this may matter:
+If the leading b-jet is selected from the full jet collection, it may not be a b-tagged jet, which could invalidate the construction of the hadronic top candidate and the interpretation of the b-jet pT distributions.
+
+[CANDIDATE 6] Hadronic W and top candidate definitions
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Unresolved choice:
+Are the hadronic W and top candidates meant to be used only for the purpose of the transverse mass and invariant mass selections, or are they intended to be reused later in the analysis (e.g., for further kinematic studies or for building higher-level systems)?
+
+Why this may matter:
+If the hadronic W and top candidates are intended for later use, their construction must be consistent across all selection steps. If they are only used for the mass selections, their definition may not need to be preserved beyond those steps.
+
+[CANDIDATE 7] HT definition
+
+Original phrase:
+"Plot the HT distribution (scalar sum of all jet pT)"
+
+Unresolved choice:
+Does "all jet pT" refer to the full event-level jet collection, or to a subset of jets that have already passed some selection or filtering (e.g., pT > 30 GeV and |eta| < 2.5)?
+
+Why this may matter:
+If HT is computed from a filtered jet collection, it may not reflect the true scalar sum of all jet pT in the event, potentially leading to misinterpretation of the event's transverse activity.

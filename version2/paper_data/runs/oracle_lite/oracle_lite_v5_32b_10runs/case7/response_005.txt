@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Ambiguity in "selected jets" for b-tag veto
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Why this matters:
+The phrase "selected jets" could refer to jets that passed the pT and |eta| cuts, or to jets that passed all previous cuts including the jet multiplicity and dijet system definitions. This affects whether the veto applies to all jets passing basic cuts or only to the two jets used in the dijet system.
+
+Question to user:
+Should the b-tag veto apply to all jets that passed the pT and |eta| cuts, or only to the two jets used in the dijet system?
+
+Golden axe:
+Apply the veto to all jets that passed the pT and |eta| cuts.
+
+Silver axe:
+Apply the veto only to the two jets used in the dijet system.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Ambiguity in "leading tau" and "subleading tau" definition timing
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this matters:
+It is unclear whether the selection of leading and subleading taus happens before or after the "opposite-sign tau pair" cut. This affects whether the opposite-sign requirement is applied to all selected taus or only to the leading/subleading pair.
+
+Question to user:
+Should the leading and subleading tau be defined before or after the opposite-sign requirement is applied?
+
+Golden axe:
+Define leading and subleading tau before applying the opposite-sign requirement.
+
+Silver axe:
+Apply the opposite-sign requirement first, then define leading and subleading tau from the remaining pair.
+
+Recommended default:
+Silver axe
+
+[UNDERSPECIFICATION 3] Ambiguity in "centrality of the ditau system relative to the two jets"
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Why this matters:
+The phrase "relative to the two jets" could refer to the two selected jets (after pT and |eta| cuts), or to the two leading jets (after jet multiplicity and dijet system definition). This affects which jets are used in the centrality calculation.
+
+Question to user:
+Should the centrality be calculated relative to all selected jets or only to the two leading jets used in the dijet system?
+
+Golden axe:
+Use the two leading jets used in the dijet system.
+
+Silver axe:
+Use all selected jets that passed the pT and |eta| cuts.
+
+Recommended default:
+Golden axe

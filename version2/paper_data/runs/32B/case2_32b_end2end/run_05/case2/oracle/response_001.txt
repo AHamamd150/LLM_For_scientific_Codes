@@ -1,0 +1,71 @@
+[AMBIGUITY 1] Leading b-jet definition
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Why this is dangerous:
+This phrase is ambiguous about whether "leading b-jet" refers to the highest-pT b-jet among all jets in the event, or the highest-pT b-jet among selected b-jets after all previous cuts.
+
+Question to user:
+Are you defining "leading b-jet" as the highest-pT b-jet in the full event, or only among the selected b-jets that passed the b-tagging and pT/eta cuts?
+
+Golden axe:
+Leading b-jet is the highest-pT b-jet among selected b-jets after all cuts.
+
+Silver axe:
+Leading b-jet is the highest-pT b-jet in the full event, regardless of selection status.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Build the hadronic top candidate from the leading selected b-jet and the hadronic W candidate."
+- Silver axe rewrite: "Build the hadronic top candidate from the leading b-jet in the event and the hadronic W candidate."
+
+[AMBIGUITY 2] Non-b-tagged jet selection
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Why this is dangerous:
+This phrase is ambiguous about whether "non-b-tagged jets" refers to jets that failed b-tagging (i.e., light jets), or simply jets that are not the leading b-jet.
+
+Question to user:
+Are you defining "non-b-tagged jets" as jets that failed b-tagging criteria, or as jets that are not selected as b-jets?
+
+Golden axe:
+Non-b-tagged jets are jets that failed b-tagging criteria (i.e., light jets).
+
+Silver axe:
+Non-b-tagged jets are jets that are not selected as b-jets, regardless of their b-tagging status.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Build the hadronic W candidate from the two leading light jets."
+- Silver axe rewrite: "Build the hadronic W candidate from the two leading jets that are not selected as b-jets."
+
+[AMBIGUITY 3] Delta R calculation scope
+
+Original phrase:
+"Plot delta R between the leading lepton and the closest b-jet"
+
+Why this is dangerous:
+This phrase is ambiguous about whether "delta R" should be calculated between the lepton and all b-jets in the event, or only between the lepton and the selected b-jets that passed previous cuts.
+
+Question to user:
+Should the delta R be calculated between the leading lepton and all b-jets in the event, or only between the lepton and the selected b-jets?
+
+Golden axe:
+Delta R is calculated between the leading lepton and all selected b-jets after cuts.
+
+Silver axe:
+Delta R is calculated between the leading lepton and all b-jets in the event, regardless of selection status.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Plot delta R between the leading lepton and the closest selected b-jet"
+- Silver axe rewrite: "Plot delta R between the leading lepton and the closest b-jet in the event"

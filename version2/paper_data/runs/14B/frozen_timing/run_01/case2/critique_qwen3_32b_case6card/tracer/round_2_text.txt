@@ -1,0 +1,42 @@
+
+
+['mass']  
+  - upstream chain: sum_objects(leading_bjet, w_hadronic) -> top_candidate -> top_mass  
+  - collection definition: mass of top_candidate  
+  - structure: single-constituent  
+
+* min_dr  
+  - computed/defined as: helper_delta_r(lepton, bjet)  
+  - upstream chain: selected_leptons[0] -> lepton, selected_bjets -> bjet -> min_dr  
+  - collection definition: minimum delta R between lepton and any bjet in selected_bjets  
+  - structure: composite-derived  
+
+* ht  
+  - computed/defined as: scalar_pt_sum(selected_jets)  
+  - upstream chain: selected_jets -> ht  
+  - collection definition: scalar sum of pT of selected_jets  
+  - structure: composite-derived  
+
+* njet  
+  - computed/defined as: len(selected_jets)  
+  - upstream chain: selected_jets -> njet  
+  - collection definition: number of jets in selected_jets  
+  - structure: single-constituent  
+
+* leading_bjet_pt  
+  - computed/defined as: leading_bjet['pt']  
+  - upstream chain: selected_bjets -> leading_bjet -> leading_bjet_pt  
+  - collection definition: pT of leading bjet in selected_bjets  
+  - structure: single-constituent  
+
+* subleading_bjet_pt  
+  - computed/defined as: subleading_bjet['pt']  
+  - upstream chain: selected_bjets -> subleading_bjet -> subleading_bjet_pt  
+  - collection definition: pT of subleading bjet in selected_bjets  
+  - structure: single-constituent  
+
+* leading_bjet_eta  
+  - computed/defined as: leading_bjet['eta']  
+  - upstream chain: selected_bjets -> leading_bjet -> leading_bjet_eta  
+  - collection definition: eta of leading bjet in selected_bjets  
+  - structure: single-constituent

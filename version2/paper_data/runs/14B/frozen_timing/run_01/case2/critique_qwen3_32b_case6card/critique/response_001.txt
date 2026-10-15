@@ -1,0 +1,16 @@
+⚠️ (B) definition mismatch
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The code applies pT and |eta| cuts to the light jets before selecting the leading and subleading jets. The SPEC does not specify whether the "selected non-b-tagged jets" should be filtered by pT and |eta| or not. However, the code explicitly applies these cuts, which may not be required by the SPEC.
+
+Evidence priority:
+selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Generator bias:
+none

@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* cutflow\n  - computed/defined as: dictionary with counts for each selection step\n  - upstream chain: events -> cutflow\n  - collection definition: N/A\n  - structure: composite-derived",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788627102,
+  "id": "chatcmpl-c2f89e4c-2f2d-47bb-a583-6b1ed47004e0",
+  "model": "Qwen/Qwen3-14B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-7e17f8bc",
+  "usage": {
+    "completion_tokens": 48,
+    "prompt_tokens": 10390,
+    "prompt_tokens_details": null,
+    "total_tokens": 10438
+  }
+}

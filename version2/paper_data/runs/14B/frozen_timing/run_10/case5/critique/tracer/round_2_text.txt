@@ -1,0 +1,7 @@
+
+
+* cutflow
+  - computed/defined as: dictionary with counts for each selection step
+  - upstream chain: events -> cutflow
+  - collection definition: N/A
+  - structure: composite-derived

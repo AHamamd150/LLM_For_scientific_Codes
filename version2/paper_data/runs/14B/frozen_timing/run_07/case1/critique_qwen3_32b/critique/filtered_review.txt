@@ -1,0 +1,62 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+- Select muons with pT > 20 GeV and |eta| < 2.4
+
+CODE:
+- l['pt'] > 25 and abs(l['eta']) < 2.5 and l['type'] == 1
+- l['pt'] > 20 and abs(l['eta']) < 2.4 and l['type'] == 2
+
+Reason:
+The code applies the lepton type check (l['type'] == 1 or 2) as part of the selection condition, which is not explicitly required by the SPEC. The SPEC only specifies pT and |eta| cuts for electrons and muons, not that the type must be explicitly checked in the selection.
+
+Evidence priority:
+L291-L295
+
+Generator bias:
+none
+
+[KEPT 2] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Use selected electrons and selected muons to define selected leptons.
+
+CODE:
+- leptons = [l for l in electrons + muons if pt and eta cuts]
+
+Reason:
+The SPEC does not specify whether the selected leptons should be a merged collection of electrons and muons or a separate collection. The code merges them into a single list, which is a valid interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+L290-L296
+
+Generator bias:
+none
+
+[KEPT 3] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Select delta phi between the lepton and the two-jet system
+
+CODE:
+- dphi_lepton_jets = helper_delta_phi(lepton['phi'], jet_system['phi'])
+
+Reason:
+The SPEC does not specify whether the two-jet system should be defined as the vector sum of the two leading jets or as a separate reconstructed object. The code uses the vector sum, which is a valid interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+L448-L452
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

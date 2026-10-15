@@ -1,0 +1,78 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The code builds the hadronic top candidate from the leading b-jet and the hadronic W candidate, which is correct. However, the SPEC explicitly requires the hadronic top candidate to be built from the leading b-jet and the hadronic W candidate. The code correctly implements this, but the implementation is not a violation. This is a correct implementation.
+
+Evidence priority:
+- sum_objects(bjets_sorted[0], w_hadronic); upstream chain: bjets_sorted = sort_by_pt(bjets)
+
+Generator bias:
+none
+
+---
+
+[KEPT 2] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- light_jets = [j for j in jets if j not in bjets]
+
+Reason:
+The SPEC does not specify whether the jets used to build the hadronic W candidate should be selected from the full jet collection or a filtered one. The code uses the filtered jet collection (jets with pT > 30 and |eta| < 2.5), which is a valid interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+- light_jets = [j for j in jets if j not in bjets]; upstream chain: jets
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+[DROPPED 1] drop: matched noise signal 'inclusive'
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if not (40 < w_hadronic['mass'] < 120): continue
+
+Reason:
+The code uses an open interval (40 < mass < 120), but the SPEC explicitly states "between 40 to 120 GeV", which could be interpreted as inclusive. The implementation does not match the potentially inclusive definition in the SPEC.
+
+Evidence priority:
+- if not (40 < w_hadronic['mass'] < 120): continue; upstream chain: helper_invariant_mass(light_jets_sorted[0], light_jets_sorted[1])
+
+Generator bias:
+none
+
+[DROPPED 2] drop: matched noise signal 'inclusive'
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if not (40 < w_hadronic['mass'] < 120): continue
+
+Reason:
+The code uses an open interval (40 < mass < 120), but the SPEC explicitly states "between 40 to 120 GeV", which could be interpreted as inclusive. The implementation does not match the potentially inclusive definition in the SPEC.
+
+Evidence priority:
+- if not (40 < w_hadronic['mass'] < 120): continue; upstream chain: helper_invariant_mass(light_jets_sorted[0], light_jets_sorted[1])
+
+Generator bias:
+none

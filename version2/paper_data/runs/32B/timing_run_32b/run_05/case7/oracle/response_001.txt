@@ -1,0 +1,71 @@
+[AMBIGUITY 1] Definition of leading and subleading objects
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this is dangerous:
+This can be interpreted as either (1) the highest and second-highest pT taus in the full event, or (2) the highest and second-highest pT taus after applying the pT and eta cuts. The difference affects the actual objects used in the analysis.
+
+Question to user:
+Should the leading and subleading taus be defined based on the raw event-level collection or only among the selected taus that pass the pT and |eta| cuts?
+
+Golden axe:
+Leading and subleading taus are defined among the selected taus that pass the pT and |eta| cuts.
+
+Silver axe:
+Leading and subleading taus are defined from the full event-level tau collection before any cuts are applied.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Define the leading tau and subleading tau from the selected taus that pass the pT and |eta| cuts."
+- Silver axe rewrite: "Define the leading tau and subleading tau from all taus in the event, regardless of whether they pass the pT and |eta| cuts."
+
+[AMBIGUITY 2] Definition of ditau_obj
+
+Original phrase:
+"Define ditau_obj from the summed four-momentum of the leading tau and subleading tau."
+
+Why this is dangerous:
+This phrase could be interpreted as either (1) a reconstructed composite object with four-momentum attributes, or (2) just the scalar invariant mass of the pair. The difference affects how this object is used in subsequent calculations like delta phi.
+
+Question to user:
+Should ditau_obj be a full reconstructed composite object with four-momentum attributes, or is it sufficient to compute only the invariant mass of the pair?
+
+Golden axe:
+ditau_obj is a reconstructed composite object with four-momentum attributes.
+
+Silver axe:
+ditau_obj is only the scalar invariant mass of the pair.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Define ditau_obj as a reconstructed composite object from the four-momentum sum of the leading and subleading taus."
+- Silver axe rewrite: "Compute the invariant mass of the leading and subleading tau pair as ditau_obj."
+
+[AMBIGUITY 3] Scope of b-tag veto
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Why this is dangerous:
+This could be interpreted as either (1) vetoing events with any b-tagged jet in the selected jet collection, or (2) vetoing events with more than one b-tagged jet in the selected jet collection. The difference affects the final event selection.
+
+Question to user:
+Should the b-tag veto apply to any b-tagged jet in the selected jets, or only to events with more than one b-tagged jet?
+
+Golden axe:
+Veto events with any b-tagged jet among the selected jets.
+
+Silver axe:
+Veto events with more than one b-tagged jet among the selected jets.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Veto events if any of the selected jets is b-tagged."
+- Silver axe rewrite: "Veto events with more than one b-tagged jet among the selected jets."

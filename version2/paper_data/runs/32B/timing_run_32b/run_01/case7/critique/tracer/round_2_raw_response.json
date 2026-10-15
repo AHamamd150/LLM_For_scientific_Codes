@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* m_tautau\n  - computed/defined as: helper_invariant_mass(lead_tau, sublead_tau)\n  - upstream chain: helper_get_leading(taus), helper_get_subleading(taus) -> helper_invariant_mass(lead_tau, sublead_tau)\n  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3\n  - structure: composite-derived\n\n* lead jet\n  - computed/defined as: helper_get_leading(jets)\n  - upstream chain: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7 and j['btag'] == 0.0] -> helper_get_leading(jets)\n  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7 and j['btag'] == 0.0\n  - structure: single-constituent\n\n* sublead jet\n  - computed/defined as: helper_get_subleading(jets)\n  - upstream chain: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7 and j['btag'] == 0.0] -> helper_get_subleading(jets)\n  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7 and j['btag'] == 0.0\n  - structure: single-constituent\n\n* dijet_obj\n  - computed/defined as: sum_objects(lead_jet, sublead_jet)\n  - upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> sum_objects(lead_jet, sublead_jet)\n  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7 and j['btag'] == 0.0\n  - structure: composite-derived\n\n* m_jj\n  - computed/defined as: helper_invariant_mass(lead_jet, sublead_jet)\n  - upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> helper_invariant_mass(lead_jet, sublead_jet)\n  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7 and j['btag'] == 0.0\n  - structure: composite-derived\n\n* delta_eta_jj\n  - computed/defined as: helper_delta_eta(lead_jet, sublead_jet)\n  - upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> helper_delta_eta(lead_jet, sublead_jet)\n  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7 and j['btag'] == 0.0\n  - structure: multi-input\n\n* delta_r_tautau\n  - computed/defined as: helper_delta_r(lead_tau, sublead_tau)\n  - upstream chain: helper_get_leading(taus), helper_get_subleading(taus) -> helper_delta_r(lead_tau, sublead_tau)\n  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3\n  - structure: multi-input\n\n* delta_phi_tautau_dijet\n  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])\n  - upstream chain: sum_objects(lead_tau, sublead_tau), sum_objects(lead_jet, sublead_jet) -> helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])\n  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3, j['pt'] > 30 and abs(j['eta']) < 4.7 and j['btag'] == 0.0\n  - structure: multi-input\n\n* centrality\n  - computed/defined as: centrality_between_jets(ditau_obj, lead_jet, sublead_jet)\n  - upstream chain: sum_objects(lead_tau, sublead_tau), helper_get_leading(jets), helper_get_subleading(jets) -> centrality_between_jets(ditau_obj, lead_jet, sublead_jet)\n  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3, j['pt'] > 30 and abs(j['eta']) < 4.7 and j['btag'] == 0.0\n  - structure: multi-input",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1789518791,
+  "id": "chatcmpl-4730e22f-a2d7-4627-a879-f964160ad67a",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 980,
+    "prompt_tokens": 10716,
+    "prompt_tokens_details": null,
+    "total_tokens": 11696
+  }
+}

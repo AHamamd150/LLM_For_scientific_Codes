@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Definition of "selected taus" for leading and subleading
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this matters:
+The phrase "selected taus" could refer to the raw collection of taus that passed pT and |eta| cuts, or it could refer to a subset further filtered by the opposite-sign requirement. The leading and subleading definitions may differ depending on whether the opposite-sign cut is applied before or after selecting the leading and subleading taus.
+
+Question to user:
+Should the leading and subleading taus be defined from all taus that passed the pT and |eta| cuts, or only from those that also form an opposite-sign pair?
+
+Golden axe:
+Leading and subleading taus are defined from all selected taus (pT and |eta| cuts only).
+
+Silver axe:
+Leading and subleading taus are defined only from those that form an opposite-sign pair.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Scope of "selected jets" for b-tag veto
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Why this matters:
+The phrase "selected jets" could refer to the raw collection of jets that passed pT and |eta| cuts, or it could refer to the leading and subleading jets used in the dijet system. The b-tag veto may or may not apply to all selected jets in the event.
+
+Question to user:
+Should the b-tag veto apply to all jets that passed the pT and |eta| cuts, or only to the leading and subleading jets used in the dijet system?
+
+Golden axe:
+The veto applies to all jets that passed the pT and |eta| cuts.
+
+Silver axe:
+The veto applies only to the leading and subleading jets used in the dijet system.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Reuse of ditau_obj and dijet_obj in delta phi calculation
+
+Original phrase:
+"Plot delta phi between the ditau_obj and the dijet_obj"
+
+Why this matters:
+The ditau_obj and dijet_obj are defined as four-momentum sums of the leading and subleading objects. It is unclear whether these composite objects should be recomputed for this specific delta phi calculation or if they should be reused from earlier definitions.
+
+Question to user:
+Should the ditau_obj and dijet_obj used for the delta phi plot be the same as those defined for the invariant mass and selection cuts, or should they be recomputed specifically for this delta phi calculation?
+
+Golden axe:
+Use the same ditau_obj and dijet_obj defined earlier for consistency.
+
+Silver axe:
+Recompute the ditau_obj and dijet_obj specifically for the delta phi calculation.
+
+Recommended default:
+Golden axe

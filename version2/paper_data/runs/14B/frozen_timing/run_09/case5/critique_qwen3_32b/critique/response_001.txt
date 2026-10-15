@@ -1,0 +1,19 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+- Define dijet_obj from the summed momentum of the leading jet and subleading jet.
+
+CODE:
+- Ditau system: sum_objects(leading_tau, subleading_tau)
+- Dijet system: sum_objects(leading_jet, subleading_jet)
+
+Reason:
+The code correctly constructs the ditau and dijet systems by summing the four-momentum of the leading and subleading objects. This matches the requirement in the SPEC to define these systems from the summed four-momentum of the required constituents.
+
+Evidence priority:
+- Ditau system: sum_objects(leading_tau, subleading_tau); upstream chain: sum_objects -> E, px, py, pz from four_momentum; 〔L259, L65-L87, L27-L36〕
+- Dijet system: sum_objects(leading_jet, subleading_jet); upstream chain: sum_objects -> E, px, py, pz from four_momentum; 〔L277, L65-L87, L27-L36〕
+
+Generator bias:
+none

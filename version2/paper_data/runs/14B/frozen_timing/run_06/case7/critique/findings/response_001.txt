@@ -1,0 +1,10 @@
+◎ correct implementation
+
+SPEC:
+none
+
+CODE:
+none
+
+Reason:
+The code correctly implements all the selection cuts, definitions, and plotting requirements specified in the SPEC. All traced definitions align with the intended behavior, and no semantic inconsistencies, missing implementations, or extra behavior are present. The code adheres to the LHCO domain rules, including proper construction of composite objects and correct use of selected collections.

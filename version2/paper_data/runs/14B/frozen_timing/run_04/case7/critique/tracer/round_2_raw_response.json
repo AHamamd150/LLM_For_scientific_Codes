@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n- computed/defined as: centrality_between_jets(ditau_obj, leading_jet, subleading_jet)\n  - upstream chain: ditau_obj, leading_jet, subleading_jet -> centrality_between_jets(ditau_obj, leading_jet, subleading_jet)\n  - collection definition: None\n  - structure: multi-input\n\n* ditau_mass_list\n  - computed/defined as: m_tt\n  - upstream chain: m_tt -> ditau_mass_list.append(m_tt)\n  - collection definition: None\n  - structure: single-constituent\n\n* dijet_mass_list\n  - computed/defined as: m_jj\n  - upstream chain: m_jj -> dijet_mass_list.append(m_jj)\n  - collection definition: None\n  - structure: single-constituent\n\n* delta_eta_jj_list\n  - computed/defined as: delta_eta_jj\n  - upstream chain: delta_eta_jj -> delta_eta_jj_list.append(delta_eta_jj)\n  - collection definition: None\n  - structure: single-constituent\n\n* leading_tau_pt_list\n  - computed/defined as: leading_tau['pt']\n  - upstream chain: leading_tau -> leading_tau['pt'] -> leading_tau_pt_list.append(leading_tau['pt'])\n  - collection definition: None\n  - structure: single-constituent\n\n* subleading_tau_pt_list\n  - computed/defined as: subleading_tau['pt']\n  - upstream chain: subleading_tau -> subleading_tau['pt'] -> subleading_tau_pt_list.append(subleading_tau['pt'])\n  - collection definition: None\n  - structure: single-constituent\n\n* leading_jet_pt_list\n  - computed/defined as: leading_jet['pt']\n  - upstream chain: leading_jet -> leading_jet['pt'] -> leading_jet_pt_list.append(leading_jet['pt'])\n  - collection definition: None\n  - structure: single-constituent\n\n* subleading_jet_pt_list\n  - computed/defined as: subleading_jet['pt']\n  - upstream chain: subleading_jet -> subleading_jet['pt'] -> subleading_jet_pt_list.append(subleading_jet['pt'])\n  - collection definition: None\n  - structure: single-constituent\n\n* delta_r_tt_list\n  - computed/defined as: helper_delta_r(leading_tau, subleading_tau)\n  - upstream chain: leading_tau, subleading_tau -> helper_delta_r(leading_tau, subleading_tau) -> delta_r_tt_list.append(...)\n  - collection definition: None\n  - structure: multi-input\n\n* delta_phi_tt_jj_list\n  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])\n  - upstream chain: ditau_obj['phi'], dijet_obj['phi'] -> helper_delta_phi(ditau_obj['phi'], dijet_obj['phi']) -> delta_phi_tt_jj_list.append(...)\n  - collection definition: None\n  - structure: multi-input\n\n* centrality_tt_jj_list\n  - computed/defined as: centrality_between_jets(ditau_obj, leading_jet, subleading_jet)\n  - upstream chain: ditau_obj, leading_jet, subleading_jet -> centrality_between_jets(ditau_obj, leading_jet, subleading_jet) -> centrality_tt_jj_list.append(...)\n  - collection definition: None\n  - structure: multi-input\n\n* cutflow\n  - computed/defined as: cutflow dictionary with counters\n  - upstream chain: cutflow -> for key, value in cutflow.items() -> print(...)\n  - collection definition: None\n  - structure: composite-derived",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1789041275,
+  "id": "chatcmpl-8506ddd9-5ce5-4f70-bf6c-25f711573aab",
+  "model": "Qwen/Qwen3-14B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-7e17f8bc",
+  "usage": {
+    "completion_tokens": 777,
+    "prompt_tokens": 11049,
+    "prompt_tokens_details": null,
+    "total_tokens": 11826
+  }
+}

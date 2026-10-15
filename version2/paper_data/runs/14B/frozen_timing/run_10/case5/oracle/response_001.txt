@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading and subleading object definitions
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading and subleading taus are defined before or after applying the "opposite-sign tau pair" requirement. This can affect which taus are considered for the ditau system and the invariant mass selection.
+
+Question to user:
+Are the leading and subleading taus defined before or after applying the opposite-sign requirement?
+
+Golden axe:
+Leading and subleading taus are defined after applying the opposite-sign requirement.
+
+Silver axe:
+Leading and subleading taus are defined before applying the opposite-sign requirement.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Veto on b-tagged jets
+
+Original phrase:
+"Veto events with b-tagged jets"
+
+Why this is dangerous:
+The phrase does not clarify whether the veto applies to all b-tagged jets in the event or only to b-tagged jets that pass the jet selection cuts (pT > 30 GeV and |eta| < 4.7). This can affect the interpretation of the veto and the event selection.
+
+Question to user:
+Does the b-tagged jet veto apply to all b-tagged jets in the event or only to those that pass the jet selection cuts?
+
+Golden axe:
+The veto applies to all b-tagged jets in the event, regardless of whether they pass the jet selection cuts.
+
+Silver axe:
+The veto applies only to b-tagged jets that pass the jet selection cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Dijet system definition
+
+Original phrase:
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading and subleading jets are defined before or after the "require at least 2 jets (VBF topology)" cut. This can affect which jets are used to construct the dijet system and the invariant mass selection.
+
+Question to user:
+Are the leading and subleading jets defined before or after applying the "require at least 2 jets (VBF topology)" cut?
+
+Golden axe:
+Leading and subleading jets are defined after applying the "require at least 2 jets (VBF topology)" cut.
+
+Silver axe:
+Leading and subleading jets are defined before applying the "require at least 2 jets (VBF topology)" cut.
+
+Recommended default:
+Golden axe

@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n- computed/defined as: hadronic_w_mass\n  - upstream chain: hadronic_w_mass -> hadronic_w_mass_list\n  - collection definition: hadronic_w_mass\n  - structure: single-constituent\n\n* hadronic_top_mass_list\n  - computed/defined as: hadronic_top_mass\n  - upstream chain: hadronic_top_mass -> hadronic_top_mass_list\n  - collection definition: hadronic_top_mass\n  - structure: single-constituent\n\n* dr_lep_bjet_list\n  - computed/defined as: dr_lep_bjet\n  - upstream chain: dr_lep_bjet -> dr_lep_bjet_list\n  - collection definition: dr_lep_bjet\n  - structure: single-constituent\n\n* ht_list\n  - computed/defined as: scalar_pt_sum(selected_jets)\n  - upstream chain: selected_jets -> ht_list\n  - collection definition: selected_jets\n  - structure: single-constituent\n\n* njet_list\n  - computed/defined as: len(selected_jets)\n  - upstream chain: selected_jets -> njet_list\n  - collection definition: selected_jets\n  - structure: single-constituent\n\n* leading_bjet_eta_list\n  - computed/defined as: leading_bjet['eta']\n  - upstream chain: leading_bjet -> leading_bjet_eta_list\n  - collection definition: leading_bjet\n  - structure: single-constituent\n\n* cutflow\n  - computed/defined as: cutflow\n  - upstream chain: cutflow\n  - collection definition: cutflow\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1789041835,
+  "id": "chatcmpl-5431ac83-86b7-47ec-92cc-990d863b29fc",
+  "model": "Qwen/Qwen3-14B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-7e17f8bc",
+  "usage": {
+    "completion_tokens": 358,
+    "prompt_tokens": 11391,
+    "prompt_tokens_details": null,
+    "total_tokens": 11749
+  }
+}

@@ -1,0 +1,54 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The code builds the hadronic top candidate from only the leading b-tagged jet and the hadronic W candidate. However, the SPEC explicitly refers to a "hadronic top candidate" which is a system-level object that should be constructed from all required constituents of the top decay. In the physics process, the top quark decays into a W boson and a b quark. The implementation correctly includes the W candidate, but the b-jet is only the leading one. The SPEC does not specify that only the leading b-jet should be used, and using a single constituent as a proxy for the full system is a composite violation.
+
+Evidence priority:
+- sum_objects(bjets_sorted[0], w_hadronic); 〔L0350-L0352〕
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- light_jets = [j for j in jets if j not in bjets]
+- light_jets_sorted = sorted(light_jets, key=lambda j: j['pt'], reverse=True)
+- sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Reason:
+The code constructs the hadronic W candidate from the two leading non-b-tagged jets, but the jets are selected from the full jet collection without applying the pT > 30 GeV and |eta| < 2.5 cuts. The SPEC explicitly requires that the hadronic W candidate be built from the selected jets (i.e., those passing the jet cuts). The code uses the unfiltered jet collection, which is a definition mismatch.
+
+Evidence priority:
+- light_jets = [j for j in jets if j not in bjets]; 〔L0338-L0340〕
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- bjet2_pt.append(bjets_sorted[1]['pt'] if len(bjets_sorted) > 1 else 0.0)
+
+Reason:
+The SPEC does not specify whether the subleading b-jet pT should be computed from the selected b-jets or from a broader collection. The code uses the selected b-jets, but the choice of using the subleading jet is not explicitly constrained by the SPEC. This is a specification ambiguity.
+
+Evidence priority:
+- bjet2_pt.append(bjets_sorted[1]['pt'] if len(bjets_sorted) > 1 else 0.0); 〔L0359-L0360〕
+
+Generator bias:
+none

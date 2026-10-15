@@ -1,0 +1,71 @@
+[AMBIGUITY 1] Leading and subleading objects in selected collections
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this is dangerous:
+This phrase is ambiguous about whether the leading and subleading objects are defined before or after the full selection is applied. If the selection includes cuts on the tau properties, the definition of "leading" and "subleading" could change depending on whether the ordering is done before or after all cuts.
+
+Question to user:
+Are the leading and subleading taus defined based on the raw tau collection before any cuts, or based on the selected tau collection after all cuts?
+
+Golden axe:
+Leading and subleading taus are defined from the selected taus after all cuts.
+
+Silver axe:
+Leading and subleading taus are defined from the raw tau collection before any cuts.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Define the leading tau and subleading tau from the selected taus after all cuts."
+- Silver axe rewrite: "Define the leading tau and subleading tau from the raw tau collection before any cuts."
+
+[AMBIGUITY 2] Definition of ditau system
+
+Original phrase:
+"Define ditau_obj from the summed four-momentum of the leading tau and subleading tau."
+
+Why this is dangerous:
+This phrase is ambiguous about whether "ditau_obj" refers to a reconstructed composite object (with all properties derived from the sum of the two taus) or just a scalar quantity derived from the two taus. This affects how the object is used in subsequent calculations like delta phi with other systems.
+
+Question to user:
+Is "ditau_obj" intended to be a full reconstructed composite object with all derived properties, or just a placeholder for the summed four-momentum used in specific calculations?
+
+Golden axe:
+"ditau_obj" is a reconstructed composite object with all derived properties.
+
+Silver axe:
+"ditau_obj" is only a placeholder for the summed four-momentum used in specific calculations.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Define a reconstructed ditau system (ditau_obj) from the summed four-momentum of the leading and subleading tau."
+- Silver axe rewrite: "Define a summed four-momentum object (ditau_obj) from the leading and subleading tau for specific calculations."
+
+[AMBIGUITY 3] Jet veto scope
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Why this is dangerous:
+This phrase is ambiguous about whether the veto applies to all jets in the event or only to the selected jets that have passed the earlier pT and eta cuts. This affects the jet collection used in the veto and could lead to different event rejection rates.
+
+Question to user:
+Should the b-tag veto be applied to all jets in the event, or only to the jets that have already passed the pT and eta selection cuts?
+
+Golden axe:
+The veto applies only to the selected jets that have passed the pT and eta cuts.
+
+Silver axe:
+The veto applies to all jets in the event regardless of earlier selection.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Veto events with b-tagged jets among the selected jets that passed pT and eta cuts."
+- Silver axe rewrite: "Veto events with any b-tagged jets in the full event jet collection."

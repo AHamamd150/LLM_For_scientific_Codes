@@ -1,0 +1,78 @@
+[CANDIDATE 1] Leading and subleading tau definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Unresolved choice:
+It is unclear whether the leading and subleading tau are defined based on pT before or after the selection cuts (pT > 20 GeV and |eta| < 2.3).
+
+Why this may matter:
+If the selection cuts are applied first, the leading and subleading are based on the selected taus. If not, the leading and subleading could be based on the full event-level tau collection before cuts, which may include lower pT or out-of-eta taus that are later rejected.
+
+[CANDIDATE 2] Leading and subleading jet definition
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Unresolved choice:
+It is unclear whether the leading and subleading jets are defined based on pT before or after the selection cuts (pT > 30 GeV and |eta| < 4.7).
+
+Why this may matter:
+If the selection cuts are applied first, the leading and subleading are based on the selected jets. If not, the leading and subleading could be based on the full event-level jet collection before cuts, which may include lower pT or out-of-eta jets that are later rejected.
+
+[CANDIDATE 3] Opposite-sign tau pair
+
+Original phrase:
+"Require opposite-sign tau pair"
+
+Unresolved choice:
+It is unclear whether this refers to the pair of selected taus (i.e., the leading and subleading tau) or to any pair of taus in the event.
+
+Why this may matter:
+If it refers to the selected pair, the requirement is straightforward. If it refers to any pair in the event, the analysis may need to generate and evaluate multiple combinations, which could change the logic and efficiency of the cut.
+
+[CANDIDATE 4] Dijet invariant mass and delta eta
+
+Original phrase:
+"Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV"
+"Select |delta eta| between the two leading jets > 2.5"
+
+Unresolved choice:
+It is unclear whether "leading and subleading jets" and "two leading jets" refer to the same jets defined earlier in the selection (i.e., from the selected jets) or to the two highest pT jets in the full event.
+
+Why this may matter:
+If the jets are redefined for these cuts, the selection may be inconsistent with earlier definitions, leading to different jet pairings and potentially different physics interpretations.
+
+[CANDIDATE 5] Dijet_obj and ditau_obj
+
+Original phrase:
+"Define ditau_obj from the summed four-momentum of the leading tau and subleading tau."
+"Define dijet_obj from the summed four-momentum of the leading jet and subleading jet."
+
+Unresolved choice:
+It is unclear whether the leading and subleading tau and jet are the same as those defined earlier in the selection or if these are redefined for the purpose of building the composite objects.
+
+Why this may matter:
+If the leading and subleading are redefined, the ditau_obj and dijet_obj may not correspond to the same objects used in earlier cuts, potentially leading to inconsistencies in the analysis logic.
+
+[CANDIDATE 6] Delta phi between ditau_obj and dijet_obj
+
+Original phrase:
+"Plot delta phi between the ditau_obj and the dijet_obj"
+
+Unresolved choice:
+It is unclear whether the ditau_obj and dijet_obj are the same as those defined earlier in the selection or if they are redefined for the purpose of this plot.
+
+Why this may matter:
+If the ditau_obj and dijet_obj are redefined, the delta phi could be computed between different combinations of objects than those used in earlier steps, leading to potentially different physics insights.
+
+[CANDIDATE 7] Centrality of the ditau system relative to the two jets
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Unresolved choice:
+It is unclear whether the "two jets" refer to the leading and subleading jets defined earlier in the selection or to the two jets used in the dijet_obj.
+
+Why this may matter:
+If the two jets are redefined, the centrality calculation could be based on a different jet pair, potentially leading to different distributions and interpretations of the ditau system's position in the dijet system.

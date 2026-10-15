@@ -1,0 +1,65 @@
+[CANDIDATE 1] z_obj definition and reuse
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum."
+
+Unresolved choice:
+It is not clear whether the z_obj is a temporary object used only for the invariant mass cut, or if it is meant to be reused in later steps such as the three-lepton system pT plot.
+
+Why this may matter:
+If z_obj is only used for the invariant mass cut, it may not need to be stored for later use. However, if it is needed for the three-lepton system pT plot, it must be preserved and correctly defined as a composite object.
+
+[CANDIDATE 2] W candidate lepton definition and reuse
+
+Original phrase:
+"Define the selected muon as the W candidate lepton."
+
+Unresolved choice:
+It is not clear whether this definition is only for the purpose of the transverse mass calculation or if it is meant to be used in other parts of the analysis, such as the three-lepton system pT plot.
+
+Why this may matter:
+If the W candidate lepton is only used for the transverse mass calculation, it may not need to be tracked separately. However, if it is part of the three-lepton system, it must be preserved and consistently referenced.
+
+[CANDIDATE 3] Three-lepton system definition
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Unresolved choice:
+It is not clear whether the three-lepton system is built after all selection cuts or whether it is built from the selected objects at the time of selection.
+
+Why this may matter:
+If the three-lepton system is built after all cuts, it may include additional constraints or corrections. If it is built at the time of selection, it may not reflect the final state of the event.
+
+[CANDIDATE 4] MET usage in transverse mass
+
+Original phrase:
+"Select transverse mass of W candidate muon + MET > 30 GeV."
+
+Unresolved choice:
+It is not clear whether the MET used in the transverse mass calculation is the raw MET or if it has been corrected or recalculated in any way during the analysis.
+
+Why this may matter:
+If the MET is raw, the transverse mass may not reflect the true kinematic state of the event. If it has been corrected, the transverse mass calculation must use the corrected value.
+
+[CANDIDATE 5] Cutflow counter timing
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is not clear whether the cutflow counter is incremented for each individual cut or for the cumulative result of all cuts up to that point.
+
+Why this may matter:
+If the counter is incremented for each individual cut, the cutflow will show the number of events passing each step. If it is cumulative, the cutflow may not accurately reflect the progression of the event selection.
+
+[CANDIDATE 6] Delta phi between z_obj and MET
+
+Original phrase:
+"Plot delta phi between z_obj and MET"
+
+Unresolved choice:
+It is not clear whether the delta phi is calculated using the raw MET or the MET after any corrections or recalculations.
+
+Why this may matter:
+If the MET is corrected, the delta phi may reflect a different kinematic relationship than if it is calculated using the raw MET.

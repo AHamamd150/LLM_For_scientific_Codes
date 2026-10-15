@@ -1,0 +1,87 @@
+[CANDIDATE 1] Lepton selection and definition
+
+Original phrase:
+"Require exactly one lepton (electron or muon)"
+
+Unresolved choice:
+It is unclear whether this refers to the total number of selected electrons and muons combined, or whether it refers to a specific selection of one lepton after applying the pT and |eta| cuts.
+
+Why this may matter:
+If the requirement is applied before or after the pT and |eta| cuts, it could lead to different lepton selections and affect subsequent cuts and plots that depend on the selected lepton.
+
+[CANDIDATE 2] Jet selection and b-tagging sequence
+
+Original phrase:
+"Among these selected jets, require at least 2 b-tagged jets."
+
+Unresolved choice:
+It is unclear whether the "selected jets" refer to the jets that passed the pT and |eta| cuts, or if they refer to a different selection that may include additional criteria.
+
+Why this may matter:
+The definition of "selected jets" affects how b-tagged jets are counted and used in later steps, such as identifying the b-jet closest to the lepton.
+
+[CANDIDATE 3] Definition of "selected b-tagged jets"
+
+Original phrase:
+"Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R."
+
+Unresolved choice:
+It is unclear whether the "selected b-tagged jets" refer to the jets that passed the pT, |eta|, and b-tagging cuts, or if they refer to a different selection that may include additional criteria.
+
+Why this may matter:
+The definition of "selected b-tagged jets" affects which jets are considered in the delta R calculation and may influence the identification of the b-jet closest to the lepton.
+
+[CANDIDATE 4] Definition of "selected non-b-tagged jets"
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Unresolved choice:
+It is unclear whether the "selected non-b-tagged jets" refer to the jets that passed the pT and |eta| cuts but were not b-tagged, or if they refer to a different selection that may include additional criteria.
+
+Why this may matter:
+The definition of "selected non-b-tagged jets" affects which jets are used to build the hadronic W candidate and may influence the invariant mass calculation.
+
+[CANDIDATE 5] Definition of "selected b-tagged jet" for hadronic top candidate
+
+Original phrase:
+"Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate."
+
+Unresolved choice:
+It is unclear whether the "leading selected b-tagged jet" refers to the jet with the highest pT among the jets that passed the pT, |eta|, and b-tagging cuts, or if it refers to a different selection that may include additional criteria.
+
+Why this may matter:
+The definition of "leading selected b-tagged jet" affects which jet is used to build the hadronic top candidate and may influence the invariant mass calculation.
+
+[CANDIDATE 6] Use of "selected jets" in HT calculation
+
+Original phrase:
+"Plot the HT distribution (scalar sum of all jet pT)"
+
+Unresolved choice:
+It is unclear whether the "all jet pT" refers to the pT of all jets in the event or only the pT of the jets that passed the pT and |eta| cuts.
+
+Why this may matter:
+The definition of "all jet pT" affects the HT calculation and may influence the interpretation of the scalar sum of transverse momenta.
+
+[CANDIDATE 7] Use of "selected b-jet" in delta R plot
+
+Original phrase:
+"Plot delta R between the leading lepton and the closest selected b-jet"
+
+Unresolved choice:
+It is unclear whether the "selected b-jet" refers to the jets that passed the pT, |eta|, and b-tagging cuts, or if it refers to a different selection that may include additional criteria.
+
+Why this may matter:
+The definition of "selected b-jet" affects which jet is used in the delta R calculation and may influence the interpretation of the angular separation.
+
+[CANDIDATE 8] Use of "selected jets" in jet multiplicity plot
+
+Original phrase:
+"Plot the number of jets per event"
+
+Unresolved choice:
+It is unclear whether the "number of jets" refers to all jets in the event or only the jets that passed the pT and |eta| cuts.
+
+Why this may matter:
+The definition of "number of jets" affects the jet multiplicity calculation and may influence the interpretation of the jet count per event.

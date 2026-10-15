@@ -1,0 +1,64 @@
+[UNDERSPECIFICATION 1] Diphoton system reuse in pT and mass
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT."
+
+Why this matters:
+The phrase implies that the diphoton system defined by the leading and subleading photons should be reused for computing diphoton pT. However, it is not explicitly stated whether the diphoton system is a fixed object (e.g., stored as a composite object) or if the pT is computed on-the-fly using the same pair of photons. This can lead to different implementations, especially if later steps modify the photon collection.
+
+Question to user:
+Should the diphoton system be stored as a fixed composite object for all subsequent calculations, or should the diphoton pT be computed dynamically using the same pair of photons each time?
+
+Golden axe:
+Store the diphoton system as a fixed composite object for all subsequent calculations.
+
+Silver axe:
+Compute the diphoton pT dynamically using the same pair of photons each time.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Leading and subleading photon definition
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection."
+
+Why this matters:
+The phrase does not specify whether the leading and subleading photons are determined based on the full photon collection or a filtered one. Since the selection includes pT and eta cuts, it is unclear whether the leading and subleading photons are defined from the full event-level photon collection or from the already selected and filtered photons.
+
+Question to user:
+Should the leading and subleading photons be defined from the full event-level photon collection, or from the already selected and filtered photons?
+
+Golden axe:
+Define leading and subleading photons from the already selected and filtered photons.
+
+Silver axe:
+Define leading and subleading photons from the full event-level photon collection.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Diphoton pT ratio normalization
+
+Original phrase:
+"Select leading photon pT / m_gammagamma > 0.35."
+"Select subleading photon pT / m_gammagamma > 0.25."
+
+Why this matters:
+The phrase does not clarify whether the diphoton invariant mass `m_gammagamma` is computed before or after applying the pT cuts on the leading and subleading photons. This could affect the denominator in the ratio and thus the cut efficiency.
+
+Question to user:
+Should the diphoton invariant mass used in the pT ratio cuts be computed before or after applying the pT cuts on the leading and subleading photons?
+
+Golden axe:
+Compute the diphoton invariant mass before applying the pT ratio cuts.
+
+Silver axe:
+Compute the diphoton invariant mass after applying the pT cuts.
+
+Recommended default:
+Golden axe

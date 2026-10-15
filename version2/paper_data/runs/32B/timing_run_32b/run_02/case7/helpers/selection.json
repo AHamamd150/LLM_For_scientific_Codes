@@ -1,0 +1,90 @@
+{
+  "selected_helpers": [
+    {
+      "name": "get_taus",
+      "reason": ""
+    },
+    {
+      "name": "abs_eta",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_leading",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_subleading",
+      "reason": ""
+    },
+    {
+      "name": "get_particle_mass",
+      "reason": "dependency of four_momentum"
+    },
+    {
+      "name": "four_momentum",
+      "reason": "dependency of sum_objects"
+    },
+    {
+      "name": "obj_from_four_momentum",
+      "reason": "dependency of sum_objects"
+    },
+    {
+      "name": "sum_objects",
+      "reason": ""
+    },
+    {
+      "name": "helper_invariant_mass",
+      "reason": ""
+    },
+    {
+      "name": "get_jets",
+      "reason": ""
+    },
+    {
+      "name": "n_jets",
+      "reason": ""
+    },
+    {
+      "name": "opposite_sign",
+      "reason": ""
+    },
+    {
+      "name": "helper_delta_eta",
+      "reason": ""
+    },
+    {
+      "name": "helper_delta_phi",
+      "reason": ""
+    },
+    {
+      "name": "centrality_between_jets",
+      "reason": ""
+    }
+  ],
+  "rejected_but_close": [
+    {
+      "name": "helper_transverse_mass",
+      "reason": ""
+    },
+    {
+      "name": "get_bjets",
+      "reason": ""
+    },
+    {
+      "name": "get_light_jets",
+      "reason": ""
+    },
+    {
+      "name": "min_delta_r",
+      "reason": ""
+    },
+    {
+      "name": "max_delta_r",
+      "reason": ""
+    },
+    {
+      "name": "pt_ratio",
+      "reason": ""
+    }
+  ]
+}

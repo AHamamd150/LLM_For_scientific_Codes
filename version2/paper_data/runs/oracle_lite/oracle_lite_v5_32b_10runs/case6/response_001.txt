@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Definition of "selected b-tagged jets" for delta R computation
+
+Original phrase:
+"Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R."
+
+Why this matters:
+This step depends on whether "selected b-tagged jets" refers to the full set of jets that passed the b-tagging and pT/eta cuts, or only those that survived all prior selection steps (including jet multiplicity and b-tag multiplicity cuts).
+
+Question to user:
+Are we computing the delta R between the lepton and b-jets before or after the jet and b-tag multiplicity requirements?
+
+Golden axe:
+Use the b-tagged jets that passed the jet pT/eta and b-tagging cuts, but before applying the jet multiplicity and b-tag multiplicity cuts.
+
+Silver axe:
+Use only the b-tagged jets that survived all prior selection steps, including jet and b-tag multiplicity requirements.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Definition of "leading selected non-b-tagged jets" for hadronic W candidate
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Why this matters:
+This depends on whether "selected non-b-tagged jets" refers to jets that passed the jet pT/eta cuts and are not b-tagged, or whether it refers to jets that survived all prior selection steps (including jet multiplicity and b-tag multiplicity cuts).
+
+Question to user:
+Are the two leading non-b-tagged jets chosen before or after applying the jet and b-tag multiplicity cuts?
+
+Golden axe:
+Use the two leading jets that passed the jet pT/eta cuts and are not b-tagged, regardless of whether they survive the jet multiplicity and b-tag multiplicity cuts.
+
+Silver axe:
+Use the two leading non-b-tagged jets that survived all prior selection steps, including jet and b-tag multiplicity requirements.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Definition of "hadronic top candidate" for mass selection
+
+Original phrase:
+"Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate."
+
+Why this matters:
+This depends on whether the "leading selected b-tagged jet" refers to the b-jet that passed the jet pT/eta and b-tagging cuts, or whether it refers to the b-jet that survived all prior selection steps (including jet multiplicity and b-tag multiplicity cuts).
+
+Question to user:
+Is the leading b-tagged jet used in the hadronic top candidate chosen before or after applying the jet and b-tag multiplicity cuts?
+
+Golden axe:
+Use the leading b-tagged jet that passed the jet pT/eta and b-tagging cuts, regardless of whether it survives the jet multiplicity and b-tag multiplicity cuts.
+
+Silver axe:
+Use the leading b-tagged jet that survived all prior selection steps, including jet and b-tag multiplicity requirements.
+
+Recommended default:
+Golden axe

@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n◎ correct implementation\n\nSPEC:\nnone\n\nCODE:\nnone\n\nReason:\nThe code correctly implements all the selection cuts, cutflow counters, and plotting requirements as specified in the SPEC. All quantities are computed using the appropriate helpers and definitions, and the code adheres to the LHCO domain rules.\n\nEvidence priority:\nAll traced definitions match the SPEC requirements.\n\nGenerator bias:\nnone",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788623842,
+  "id": "chatcmpl-382fa5cc-251b-4f7a-824c-cd620b544bcc",
+  "model": "Qwen/Qwen3-14B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-7e17f8bc",
+  "usage": {
+    "completion_tokens": 79,
+    "prompt_tokens": 9483,
+    "prompt_tokens_details": null,
+    "total_tokens": 9562
+  }
+}

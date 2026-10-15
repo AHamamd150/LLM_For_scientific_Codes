@@ -1,0 +1,99 @@
+
+
+* [CHECK CAREFULLY] DEFINITION SUMMARY
+
+* taus
+  - computed/defined as: [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]
+  - upstream chain: get_taus -> event['objects']
+  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3
+  - structure: single-constituent
+
+* jets
+  - computed/defined as: [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - upstream chain: get_jets -> event['objects']
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7
+  - structure: single-constituent
+
+* leading_tau
+  - computed/defined as: helper_get_leading(taus)
+  - upstream chain: taus
+  - collection definition: taus
+  - structure: single-constituent
+
+* subleading_tau
+  - computed/defined as: helper_get_subleading(taus)
+  - upstream chain: taus
+  - collection definition: taus
+  - structure: single-constituent
+
+* leading_jet
+  - computed/defined as: helper_get_leading(jets)
+  - upstream chain: jets
+  - collection definition: jets
+  - structure: single-constituent
+
+* subleading_jet
+  - computed/defined as: helper_get_subleading(jets)
+  - upstream chain: jets
+  - collection definition: jets
+  - structure: single-constituent
+
+* ditau_mass
+  - computed/defined as: helper_invariant_mass(leading_tau, subleading_tau)
+  - upstream chain: leading_tau, subleading_tau -> helper_get_leading, helper_get_subleading -> taus
+  - collection definition: taus
+  - structure: multi-input
+
+* dijet_mass
+  - computed/defined as: helper_invariant_mass(leading_jet, subleading_jet)
+  - upstream chain: leading_jet, subleading_jet -> helper_get_leading, helper_get_subleading -> jets
+  - collection definition: jets
+  - structure: multi-input
+
+* delta_eta_jj
+  - computed/defined as: helper_delta_eta(leading_jet, subleading_jet)
+  - upstream chain: leading_jet, subleading_jet -> helper_get_leading, helper_get_subleading -> jets
+  - collection definition: jets
+  - structure: multi-input
+
+* leading_tau_pt
+  - computed/defined as: leading_tau['pt']
+  - upstream chain: leading_tau -> helper_get_leading -> taus
+  - collection definition: taus
+  - structure: single-constituent
+
+* subleading_tau_pt
+  - computed/defined as: subleading_tau['pt']
+  - upstream chain: subleading_tau -> helper_get_subleading -> taus
+  - collection definition: taus
+  - structure: single-constituent
+
+* leading_jet_pt
+  - computed/defined as: leading_jet['pt']
+  - upstream chain: leading_jet -> helper_get_leading -> jets
+  - collection definition: jets
+  - structure: single-constituent
+
+* subleading_jet_pt
+  - computed/defined as: subleading_jet['pt']
+  - upstream chain: subleading_jet -> helper_get_subleading -> jets
+  - collection definition: jets
+  - structure: single-constituent
+
+* delta_r_tt
+  - computed/defined as: helper_delta_r(leading_tau, subleading_tau)
+  - upstream chain: leading_tau, subleading_tau -> helper_get_leading, helper_get_subleading -> taus
+  - collection definition: taus
+  - structure: multi-input
+
+* delta_phi_tt_dijet
+  - computed/defined as: helper_delta_phi(leading_tau['phi'], leading_jet['phi'])
+  - upstream chain: leading_tau -> helper_get_leading -> taus, leading_jet -> helper_get_leading -> jets
+  - collection definition: taus, jets
+  - structure: multi-input
+
+* centrality_tt
+  - computed/defined as: centrality_between_jets(sum_objects(leading_tau, subleading_tau), leading_jet, subleading_jet)
+  - upstream chain: leading_tau, subleading_tau -> helper_get_leading, helper_get_subleading -> taus, leading_jet, subleading_jet -> helper_get_leading, helper_get_subleading -> jets
+  - collection definition: taus, jets
+  - structure: multi-input

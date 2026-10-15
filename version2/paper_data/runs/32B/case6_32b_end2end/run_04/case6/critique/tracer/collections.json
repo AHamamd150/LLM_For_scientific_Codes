@@ -1,0 +1,9 @@
+{
+  "light_jets": {
+    "name": "light_jets",
+    "definition": "[j for j in jets if j not in bjets]",
+    "used_by": [
+      "Hadronic W candidate"
+    ]
+  }
+}

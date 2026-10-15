@@ -1,0 +1,174 @@
+{
+  "selected_helpers": [
+    {
+      "name": "get_electrons",
+      "reason": ""
+    },
+    {
+      "name": "get_muons",
+      "reason": ""
+    },
+    {
+      "name": "abs_eta",
+      "reason": ""
+    },
+    {
+      "name": "get_leptons",
+      "reason": "dependency of n_leptons"
+    },
+    {
+      "name": "n_leptons",
+      "reason": ""
+    },
+    {
+      "name": "get_jets",
+      "reason": ""
+    },
+    {
+      "name": "get_bjets",
+      "reason": "dependency of n_bjets"
+    },
+    {
+      "name": "n_bjets",
+      "reason": ""
+    },
+    {
+      "name": "helper_delta_phi",
+      "reason": "dependency of helper_delta_r"
+    },
+    {
+      "name": "helper_delta_r",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_met",
+      "reason": ""
+    },
+    {
+      "name": "helper_transverse_mass",
+      "reason": ""
+    },
+    {
+      "name": "sort_by_pt",
+      "reason": ""
+    },
+    {
+      "name": "get_light_jets",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_leading",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_subleading",
+      "reason": ""
+    },
+    {
+      "name": "get_particle_mass",
+      "reason": "dependency of four_momentum"
+    },
+    {
+      "name": "four_momentum",
+      "reason": "dependency of sum_objects"
+    },
+    {
+      "name": "obj_from_four_momentum",
+      "reason": "dependency of sum_objects"
+    },
+    {
+      "name": "sum_objects",
+      "reason": ""
+    },
+    {
+      "name": "helper_invariant_mass",
+      "reason": ""
+    },
+    {
+      "name": "scalar_pt_sum",
+      "reason": ""
+    },
+    {
+      "name": "n_jets",
+      "reason": ""
+    }
+  ],
+  "rejected_but_close": [
+    {
+      "name": "helper_delta_eta",
+      "reason": ""
+    },
+    {
+      "name": "abs_delta_eta",
+      "reason": ""
+    },
+    {
+      "name": "transverse_energy",
+      "reason": ""
+    },
+    {
+      "name": "vector_pt_sum",
+      "reason": ""
+    },
+    {
+      "name": "vector_pt_components",
+      "reason": ""
+    },
+    {
+      "name": "compute_phi",
+      "reason": ""
+    },
+    {
+      "name": "min_delta_r",
+      "reason": ""
+    },
+    {
+      "name": "max_delta_r",
+      "reason": ""
+    },
+    {
+      "name": "helper_delta_phi_met",
+      "reason": ""
+    },
+    {
+      "name": "cos_theta_star_collins_soper",
+      "reason": ""
+    },
+    {
+      "name": "centrality_between_jets",
+      "reason": ""
+    },
+    {
+      "name": "pt_ratio",
+      "reason": ""
+    },
+    {
+      "name": "n_taus",
+      "reason": ""
+    },
+    {
+      "name": "n_photons",
+      "reason": ""
+    },
+    {
+      "name": "opposite_sign",
+      "reason": ""
+    },
+    {
+      "name": "same_sign",
+      "reason": ""
+    },
+    {
+      "name": "total_charge",
+      "reason": ""
+    },
+    {
+      "name": "get_os_pairs",
+      "reason": ""
+    },
+    {
+      "name": "get_ss_pairs",
+      "reason": ""
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+Cutflow:
+Initial events: 30000
+Events with 2 taus: 2752
+Events with opposite-sign taus: 2622
+Events with 2 jets: 1685
+Events with m(jj) > 400 GeV: 801
+Events with |delta eta(jj)| > 2.5: 779
+Events with m(tau tau) in [60, 150] GeV: 2283
+Events with no b-jets: 1535

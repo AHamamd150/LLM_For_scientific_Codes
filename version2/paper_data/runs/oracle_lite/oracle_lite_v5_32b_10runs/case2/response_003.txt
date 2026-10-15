@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Hadronic W candidate jet selection timing
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Why this matters:
+The phrase does not specify whether "non-b-tagged jets" refers to all jets in the event or only to a subset of jets that have already passed earlier selection criteria (e.g., pT > 30 GeV, |eta| < 2.5). This affects which jets are considered for building the hadronic W candidate.
+
+Question to user:
+Should the two leading non-b-tagged jets used to build the hadronic W candidate be selected from all jets in the event, or only from jets that have already passed the pT and eta cuts?
+
+Golden axe:
+Use jets that have already passed the pT and eta cuts.
+
+Silver axe:
+Use all jets in the event, regardless of whether they passed earlier cuts.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Lepton definition for plots
+
+Original phrase:
+"Plot the delta R between the leading lepton and the closest b-jet"
+
+Why this matters:
+The phrase does not clarify whether "leading lepton" refers to the lepton from the W leptonic decay (i.e., the single lepton in the event) or whether it refers to the highest-pT lepton among all leptons in the event (which in this case should be the same object). This could become ambiguous in extended analysis scenarios.
+
+Question to user:
+Does "leading lepton" in the delta R plot refer to the single lepton in the event (as required by the selection), or is it a general reference to the highest-pT lepton?
+
+Golden axe:
+It refers to the single lepton in the event.
+
+Silver axe:
+It refers to the highest-pT lepton among all leptons in the event.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] B-jet definition for top candidate
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Why this matters:
+The phrase does not specify whether the "leading b-jet" is selected from all b-tagged jets in the event or only from a subset that has passed earlier cuts (e.g., pT > 30 GeV, |eta| < 2.5). This affects which b-jet is used in the top candidate construction.
+
+Question to user:
+Should the leading b-jet used in the hadronic top candidate be selected from all b-tagged jets in the event, or only from those that have passed the pT and eta cuts?
+
+Golden axe:
+Use b-jets that have passed the pT and eta cuts.
+
+Silver axe:
+Use all b-tagged jets in the event, regardless of whether they passed earlier cuts.
+
+Recommended default:
+Golden axe

@@ -1,0 +1,56 @@
+
+
+SECTION 1: SPEC BULLET ANALYSIS
+
+✅ * Select taus with pT > 20 GeV and |eta| < 2.3; computed as: [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]; upstream chain: get_taus(event) -> [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]; 〔L278-L279〕
+✅ * Select jets with pT > 30 GeV and |eta| < 4.7; computed as: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]; upstream chain: get_jets(event) -> [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]; 〔L303-L304〕
+✅ * Require at least 2 taus; computed as: len(taus) >= 2; upstream chain: [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3] -> len(taus) >= 2; 〔L279-L280〕
+✅ * Define the leading tau and subleading tau from the selected taus.; computed as: helper_get_leading(taus), helper_get_subleading(taus); upstream chain: [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3] -> helper_get_leading(taus), helper_get_subleading(taus); 〔L284-L285〕
+✅ * Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.; computed as: sum_objects(tau1, tau2); upstream chain: helper_get_leading(taus), helper_get_subleading(taus) -> sum_objects(tau1, tau2); 〔L295-L296〕
+✅ * Require at least 2 jets (VBF topology); computed as: len(jets) >= 2; upstream chain: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7] -> len(jets) >= 2; 〔L304-L305〕
+✅ * Define the leading jet and subleading jet from the selected jets.; computed as: helper_get_leading(jets), helper_get_subleading(jets); upstream chain: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7] -> helper_get_leading(jets), helper_get_subleading(jets); 〔L309-L310〕
+✅ * Define dijet_obj from the summed momentum of the leading jet and subleading jet.; computed as: sum_objects(jet1, jet2); upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> sum_objects(jet1, jet2); 〔L315-L316〕
+✅ * Require opposite-sign tau pair; computed as: opposite_sign(tau1, tau2); upstream chain: helper_get_leading(taus), helper_get_subleading(taus) -> opposite_sign(tau1, tau2); 〔L290-L291〕
+✅ * Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV; computed as: helper_invariant_mass(jet1, jet2) > 400; upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> helper_invariant_mass(jet1, jet2) > 400; 〔L317-L318〕
+✅ * Select |delta eta| between the two leading jets > 2.5; computed as: abs_delta_eta(jet1, jet2) > 2.5; upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> abs_delta_eta(jet1, jet2) > 2.5; 〔L323-L324〕
+✅ * Select ditau invariant mass between 60 and 150 GeV; computed as: 60 < helper_invariant_mass(tau1, tau2) < 150; upstream chain: helper_get_leading(taus), helper_get_subleading(taus) -> helper_invariant_mass(tau1, tau2) < 150; 〔L297-L298〕
+✅ * Veto events with b-tagged jets; computed as: n_bjets(event, pt_cut=30, eta_cut=4.7) > 0; upstream chain: get_bjets(event) -> n_bjets(event, pt_cut=30, eta_cut=4.7) > 0; 〔L329-L330〕
+✅ * Plot the ditau invariant mass in the range 50 to 160 GeV; computed as: m_tautau_hist.append(helper_invariant_mass(tau1, tau2)); upstream chain: helper_get_leading(taus), helper_get_subleading(taus) -> helper_invariant_mass(tau1, tau2) -> m_tautau_hist.append(helper_invariant_mass(tau1, tau2)); 〔L333-L334〕
+✅ * Plot the dijet invariant mass (m_jj) in the range 200 to 2000 GeV; computed as: m_jj_hist.append(helper_invariant_mass(jet1, jet2)); upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> helper_invariant_mass(jet1, jet2) -> m_jj_hist.append(helper_invariant_mass(jet1, jet2)); 〔L335-L336〕
+✅ * Plot delta eta between the two leading jets; computed as: delta_eta_jj_hist.append(abs_delta_eta(jet1, jet2)); upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> abs_delta_eta(jet1, jet2) -> delta_eta_jj_hist.append(abs_delta_eta(jet1, jet2)); 〔L336-L337〕
+✅ * Plot the pT of the leading tau; computed as: pt_tau1_hist.append(tau1['pt']); upstream chain: helper_get_leading(taus) -> pt_tau1_hist.append(tau1['pt']); 〔L337-L338〕
+✅ * Plot the pT of the subleading tau; computed as: pt_tau2_hist.append(tau2['pt']); upstream chain: helper_get_subleading(taus) -> pt_tau2_hist.append(tau2['pt']); 〔L338-L339〕
+✅ * Plot the pT of the leading jet; computed as: pt_jet1_hist.append(jet1['pt']); upstream chain: helper_get_leading(jets) -> pt_jet1_hist.append(jet1['pt']); 〔L339-L340〕
+✅ * Plot the pT of the subleading jet; computed as: pt_jet2_hist.append(jet2['pt']); upstream chain: helper_get_subleading(jets) -> pt_jet2_hist.append(jet2['pt']); 〔L340-L341〕
+✅ * Plot delta R between the two taus; computed as: delta_r_tautau_hist.append(helper_delta_r(tau1, tau2)); upstream chain: helper_get_leading(taus), helper_get_subleading(taus) -> helper_delta_r(tau1, tau2) -> delta_r_tautau_hist.append(helper_delta_r(tau1, tau2)); 〔L341-L342〕
+✅ * Plot delta phi between the ditau system and the dijet system; computed as: delta_phi_tautau_dijet_hist.append(helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])); upstream chain: sum_objects(tau1, tau2), sum_objects(jet1, jet2) -> helper_delta_phi(ditau_obj['phi'], dijet_obj['phi']) -> delta_phi_tautau_dijet_hist.append(helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])); 〔L342-L343〕
+✅ * Plot the centrality of the ditau system relative to the two jets; computed as: centrality_hist.append(centrality_between_jets(ditau_obj, jet1, jet2)); upstream chain: sum_objects(tau1, tau2), helper_get_leading(jets), helper_get_subleading(jets) -> centrality_between_jets(ditau_obj, jet1, jet2) -> centrality_hist.append(centrality_between_jets(ditau_obj, jet1, jet2)); 〔L343-L344〕
+✅ * After the event loop, print one cutflow summary with the number of events after each selection step.; computed as: print("Cutflow:"); for key, value in cutflow.items(): print(f"{key}: {value}"); upstream chain: cutflow dictionary -> print("Cutflow:"); for key, value in cutflow.items(): print(f"{key}: {value}"); 〔L416-L418〕
+✅ * Save the plots in png format; computed as: plt.savefig("filename.png"); upstream chain: plt.figure(); plt.hist(...); plt.xlabel(...); plt.ylabel(...); plt.savefig("filename.png"); 〔L345-L413〕
+
+SECTION 2: DEFINITION SUMMARY
+
+* [CHECK CAREFULLY] DEFINITION SUMMARY
+
+* taus
+  - computed/defined as: [o for o in event['objects'] if o['type'] == 3]
+  - upstream chain: event['objects'] -> [o for o in event['objects'] if o['type'] == 3]
+  - collection definition: o['type'] == 3
+  - structure: single-constituent
+
+* jets
+  - computed/defined as: [o for o in event['objects'] if o['type'] == 4]
+  - upstream chain: event['objects'] -> [o for o in event['objects'] if o['type'] == 4]
+  - collection definition: o['type'] == 4
+  - structure: single-constituent
+
+* bjets
+  - computed/defined as: [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]
+  - upstream chain: event['objects'] -> [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]
+  - collection definition: o['type'] == 4 and int(o['btag']) == 1
+  - structure: single-constituent
+
+* selected taus
+  - computed/defined as: [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]
+  - upstream chain: [o for o in event['objects'] if o['type'] == 3] -> [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]
+  - collection definition: t['pt'] > 20 and abs(t['eta'])

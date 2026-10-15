@@ -1,0 +1,129 @@
+[CANDIDATE 1] Lepton definition and selection
+
+Original phrase:
+"Select electrons with pT > 25 GeV and |eta| < 2.5
+Select muons with pT > 20 GeV and |eta| < 2.4
+Use selected electrons and selected muons to define selected leptons."
+
+Unresolved choice:
+It is unclear whether the lepton pT and eta cuts are applied to all electrons and muons in the event or only to a pre-defined collection.
+
+Why this may matter:
+If the cuts are applied to the full event-level collections, the selection is straightforward. If the cuts are meant to be applied to a pre-defined collection (e.g., already selected or filtered), the implementation would differ materially.
+
+[CANDIDATE 2] Lepton multiplicity requirement
+
+Original phrase:
+"Require exactly 1 selected lepton"
+
+Unresolved choice:
+It is unclear whether this refers to the total number of selected electrons and muons combined or whether it implies a specific lepton flavor (e.g., only electrons or only muons).
+
+Why this may matter:
+If the requirement is for a specific lepton flavor, the implementation would need to count only that flavor. If it is for any lepton (e or mu), the code must combine both collections.
+
+[CANDIDATE 3] Jet selection and veto
+
+Original phrase:
+"Require at least 2 jets with pT > 30 GeV and |eta| < 2.5
+Veto events with b-tagged jets"
+
+Unresolved choice:
+It is unclear whether the jet pT and eta cuts are applied to all jets in the event or only to a pre-defined collection (e.g., already selected jets). Also, it is unclear whether the b-tagged jet veto is applied to all jets or only to selected jets.
+
+Why this may matter:
+If the cuts are applied to the full jet collection, the selection is straightforward. If they are applied to a pre-defined collection, the implementation would differ. The b-tagged jet veto could also be applied to all jets or only to selected jets, which would affect the veto logic.
+
+[CANDIDATE 4] MET selection
+
+Original phrase:
+"Select MET > 30 GeV"
+
+Unresolved choice:
+It is unclear whether this refers to the transverse magnitude of the MET vector or to a specific MET component or derived quantity.
+
+Why this may matter:
+If the cut is on the MET magnitude, it is straightforward. If it refers to a specific MET component or derived quantity (e.g., MET in a specific direction), the implementation would differ.
+
+[CANDIDATE 5] W leptonic candidate definition
+
+Original phrase:
+"Select transverse mass of lepton + MET between 40 and 120 GeV (W leptonic candidate)"
+
+Unresolved choice:
+It is unclear whether the transverse mass is computed using the selected lepton and the selected MET or using all lepton and MET candidates in the event.
+
+Why this may matter:
+If the transverse mass is computed using the selected lepton and MET, the implementation is straightforward. If it is computed using all lepton and MET candidates, additional selection or filtering logic would be required.
+
+[CANDIDATE 6] W hadronic candidate definition
+
+Original phrase:
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+
+Unresolved choice:
+It is unclear whether the "leading jets" refer to the two highest-pT jets in the full event or in a pre-defined jet collection (e.g., selected jets).
+
+Why this may matter:
+If the leading jets are selected from the full event, the implementation is straightforward. If they are selected from a pre-defined collection, the implementation would differ.
+
+[CANDIDATE 7] Delta R between leading jets
+
+Original phrase:
+"Select delta R between the two leading jets < 3.0"
+
+Unresolved choice:
+It is unclear whether the "leading jets" refer to the two highest-pT jets in the full event or in a pre-defined jet collection (e.g., selected jets).
+
+Why this may matter:
+If the leading jets are selected from the full event, the implementation is straightforward. If they are selected from a pre-defined collection, the implementation would differ.
+
+[CANDIDATE 8] Delta phi between lepton and MET
+
+Original phrase:
+"Plot delta phi between the lepton and MET"
+
+Unresolved choice:
+It is unclear whether the lepton refers to the selected lepton or to any lepton in the event.
+
+Why this may matter:
+If the lepton is the selected one, the implementation is straightforward. If it refers to any lepton, additional selection or filtering logic would be required.
+
+[CANDIDATE 9] Delta phi between lepton and two-jet system
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+
+Unresolved choice:
+It is unclear whether the two-jet system refers to the two leading jets in the full event or in a pre-defined jet collection (e.g., selected jets).
+
+Why this may matter:
+If the two-jet system is selected from the full event, the implementation is straightforward. If it is selected from a pre-defined collection, the implementation would differ.
+
+[CANDIDATE 10] Delta phi between lepton and two-jet system
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+
+Unresolved choice:
+It is unclear whether the lepton refers to the selected lepton or to any lepton in the event.
+
+Why this may matter:
+If the lepton is the selected one, the implementation is straightforward. If it refers to any lepton, additional selection or filtering logic would be required.
+
+[CANDIDATE 11] Output CSV for MLP analysis
+
+Original phrase:
+"Save the following in a CSV file for MLP analysis:
+1- Transverse mass of lepton + MET
+2- Dijet invariant mass
+3- MET
+4- pT of the lepton
+5- Delta R between the two jets
+6- Delta phi between lepton and the two-jet system"
+
+Unresolved choice:
+It is unclear whether these quantities refer to the selected lepton and jets or to any lepton and jets in the event.
+
+Why this may matter:
+If the quantities are based on selected objects, the implementation is straightforward. If they are based on any objects, additional selection or filtering logic would be required.

@@ -1,0 +1,32 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+5,3,requirement,R1,Select taus with pT > 20 GeV and |eta| < 2.3,yes,yes,yes,no,Correctly identifies the tau selection at lines 245-246 and its get_taus dependency.
+5,3,requirement,R2,Select jets with pT > 30 GeV and |eta| < 4.7,yes,yes,yes,no,Correctly identifies the jet selection at lines 263-264.
+5,3,requirement,R3,Require at least 2 taus,yes,yes,yes,no,Correctly identifies len(taus) < 2 at lines 247-248.
+5,3,requirement,R4,Define the leading tau and subleading tau from the selected taus,yes,yes,yes,no,Correctly traces helper_get_leading and helper_get_subleading at lines 257-258.
+5,3,requirement,R5,Define ditau_obj from the summed four-momentum of the leading and subleading taus,partial,no,yes,yes,"The cited lines 291-292 are the b-jet cut, not a ditau sum. A ditau composite is formed with sum_objects at line 311, while ditau_mass uses helper_invariant_mass at line 294."
+5,3,requirement,R6,Require at least 2 jets,yes,yes,yes,no,Correctly identifies the len(jets) check at lines 265-266.
+5,3,requirement,R7,Define the leading jet and subleading jet from the selected jets,yes,yes,yes,no,Correctly traces the helper calls at lines 275-276.
+5,3,requirement,R8,Define dijet_obj from the summed momentum of the leading and subleading jets,partial,no,partial,yes,"Lines 277-278 call helper_invariant_mass, not sum_objects directly and do not define dijet_obj. helper_invariant_mass internally calls sum_objects at line 91, but the tracer attributes an explicit summed-object definition to the wrong code."
+5,3,requirement,R9,Require an opposite-sign tau pair,yes,yes,yes,no,Correctly identifies opposite_sign on the leading and subleading taus at lines 257-260.
+5,3,requirement,R10,Select leading/subleading jet invariant mass greater than 400 GeV,yes,yes,yes,no,Correctly traces helper_invariant_mass and the cut at lines 277-280.
+5,3,requirement,R11,Select absolute delta eta between the two leading jets greater than 2.5,yes,yes,yes,no,Correctly identifies the calculation and cut at lines 282-285.
+5,3,requirement,R12,Select ditau invariant mass between 60 and 150 GeV,yes,yes,yes,no,Correctly traces the mass calculation and range cut at lines 293-297.
+5,3,requirement,R13,Veto events with b-tagged jets,yes,yes,no,yes,"The veto is correctly located at lines 288-291, but n_bjets(event, ...) obtains b-jets directly from event via get_bjets; it does not depend on the selected jets collection as claimed."
+5,3,requirement,R14,Plot ditau invariant mass in the range 50 to 160 GeV,partial,yes,yes,no,"The plotted value is correctly traced to ditau_mass at lines 300 and 328, but no histogram range of 50-160 is supplied; plot_hist only uses bins=40 at lines 319-325."
+5,3,requirement,R15,Plot dijet invariant mass in the range 200 to 2000 GeV,partial,yes,yes,no,"The plotted value and call are correctly located at lines 301 and 329, but the requested range is not implemented."
+5,3,requirement,R16,Plot delta eta between the two leading jets,yes,yes,yes,no,Correctly traces delta_eta_jj and its histogram call at lines 302 and 330.
+5,3,requirement,R17,Plot pT of the leading tau,yes,yes,yes,no,Correctly traced to lines 303 and 331.
+5,3,requirement,R18,Plot pT of the subleading tau,yes,yes,yes,no,Correctly traced to lines 304 and 332.
+5,3,requirement,R19,Plot pT of the leading jet,yes,yes,yes,no,Correctly traced to lines 305 and 333.
+5,3,requirement,R20,Plot pT of the subleading jet,yes,yes,yes,no,Correctly traced to lines 306 and 334.
+5,3,requirement,R21,Plot delta R between the two taus,yes,yes,yes,no,Correctly traces helper_delta_r at lines 307-308 and the histogram at line 335.
+5,3,requirement,R22,Plot delta phi between the ditau system and dijet system,yes,yes,no,yes,"The source is correctly located at lines 309 and 336, but the tracer describes the operation as ditau/dijet system delta phi without noting that the code sums raw tau and jet phi values rather than using composite-system phi."
+5,3,requirement,R23,Plot centrality of the ditau system relative to the two jets,yes,yes,yes,no,Correctly traces sum_objects and centrality_between_jets at lines 311-312 and the plot at line 337.
+5,3,requirement,R24,"Use simple validation histograms with the specified figure, 40 bins, density, labels, filenames, and close operations",partial,yes,na,no,"The tracer identifies the histogram operations only generally. The shared helper implements figure, bins=40, density=True, xlabel, ylabel, savefig, and close at lines 319-326, but the requested ranges are absent."
+5,3,requirement,R25,"Apply cuts sequentially, skip immediately on failure, and increment each cutflow counter immediately after passing",partial,yes,yes,no,The tracer identifies the cutflow dictionary but does not trace the sequential control flow or immediate counter increments. Those are implemented across lines 244-297.
+5,3,requirement,R26,"After the event loop, print one cutflow summary with counts after each selection step",yes,yes,yes,no,Correctly identifies the cutflow dictionary and post-loop printing at lines 314-316.
+5,3,requirement,R27,Save the plots in PNG format,yes,yes,yes,no,Correctly traces plt.savefig at lines 325-326 and the .png filenames at lines 328-337.
+5,3,extra_trace_claim,EXTRA1,The b-jet veto has dependency chain jets -> get_bjets(event) -> n_bjets,,,,yes,n_bjets receives event and independently calls get_bjets(event) at lines 134-137; it does not consume the selected jets collection.
+5,3,extra_trace_claim,EXTRA2,ditau_obj is computed at lines 291-292,,,,yes,Lines 291-292 increment the No b-jets counter. The ditau composite is formed at line 311.
+5,3,extra_trace_claim,EXTRA3,dijet_obj is explicitly computed as sum_objects at lines 277-278,,,,yes,"Lines 277-278 call helper_invariant_mass. sum_objects is only reached internally through helper_invariant_mass at line 91, and no dijet_obj variable is defined."
+5,3,extra_trace_claim,EXTRA4,The histogram requirements including requested ranges are fully implemented,,,,yes,"The tracer marks the range-specific histogram requirements as complete, but plot_hist has no range argument and calls only plt.hist(data, bins=40, density=True) at lines 319-322."

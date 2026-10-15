@@ -1,0 +1,21 @@
+{
+  "selected_helpers": [
+    "get_electrons",
+    "get_muons",
+    "opposite_sign",
+    "sum_objects",
+    "helper_invariant_mass",
+    "helper_get_met",
+    "helper_transverse_mass",
+    "abs_eta",
+    "helper_delta_phi",
+    "helper_delta_r",
+    "obj_from_four_momentum",
+    "helper_get_leading",
+    "scalar_pt_sum",
+    "vector_pt_components",
+    "compute_phi",
+    "helper_delta_phi_met"
+  ],
+  "rejected_but_close": []
+}

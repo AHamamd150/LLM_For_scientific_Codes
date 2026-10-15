@@ -1,0 +1,125 @@
+◎ (A) composite violation
+
+SPEC:
+- Build the diphoton system from the leading photon and the subleading photon.
+- Define m_gammagamma as the invariant mass of this diphoton system.
+- Use this same diphoton system to compute diphoton pT.
+
+CODE:
+- diphoton = sum_objects(leading_photon, subleading_photon)
+- m_gammagamma = diphoton['mass'] if diphoton else 0.0
+- pt_diphoton_list.append(diphoton['pt'] if diphoton else 0.0)
+
+Reason:
+The code correctly constructs the diphoton system from the leading and subleading photons and computes the invariant mass and pT from the full system. No composite violation is present.
+
+Evidence priority:
+diphoton = sum_objects(leading_photon, subleading_photon)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select photons with pT > 25 GeV and |eta| < 2.37.
+- Exclude photons in the crack region 1.37 < |eta| < 1.52.
+
+CODE:
+- photons_selected = [p for p in photons if p['pt'] > 25 and abs(p['eta']) < 2.37]
+- photons_clean = [p for p in photons_selected if not (1.37 < abs(p['eta']) < 1.52)]
+
+Reason:
+The code correctly implements the pT and |eta| cuts and excludes the crack region as specified.
+
+Evidence priority:
+photons_selected = [p for p in photons if p['pt'] > 25 and abs(p['eta']) < 2.37]
+photons_clean = [p for p in photons_selected if not (1.37 < abs(p['eta']) < 1.52)]
+
+Generator bias:
+none
+
+◎ (C) missing implementation
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+- Increment each cutflow counter immediately after its cut is passed.
+
+CODE:
+- cutflow["Photon selection"] += 1
+- cutflow["At least 2 photons"] += 1
+- cutflow["Leading photon pT > 35 GeV"] += 1
+- cutflow["Subleading photon pT > 25 GeV"] += 1
+- cutflow["Diphoton mass 105-160 GeV"] += 1
+- cutflow["Leading photon pT / m_gammagamma > 0.35"] += 1
+- cutflow["Subleading photon pT / m_gammagamma > 0.25"] += 1
+- cutflow["Final selection"] += 1
+
+Reason:
+The code correctly implements the cutflow and increments the counters after each cut is passed.
+
+Evidence priority:
+cutflow["Photon selection"] += 1
+cutflow["At least 2 photons"] += 1
+cutflow["Leading photon pT > 35 GeV"] += 1
+cutflow["Subleading photon pT > 25 GeV"] += 1
+cutflow["Diphoton mass 105-160 GeV"] += 1
+cutflow["Leading photon pT / m_gammagamma > 0.35"] += 1
+cutflow["Subleading photon pT / m_gammagamma > 0.25"] += 1
+cutflow["Final selection"] += 1
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Define the leading photon and subleading photon after photon selection.
+
+CODE:
+- leading_photon = helper_get_leading(photons_clean)
+- subleading_photon = helper_get_subleading(photons_clean)
+
+Reason:
+The code defines the leading and subleading photons based on pT, which is a valid interpretation. However, the SPEC does not explicitly specify whether the selection should be based on pT or another property, making this a specification ambiguity.
+
+Evidence priority:
+leading_photon = helper_get_leading(photons_clean)
+subleading_photon = helper_get_subleading(photons_clean)
+
+Generator bias:
+none
+
+◎ (E) extra behavior
+
+SPEC:
+- None
+
+CODE:
+- None
+
+Reason:
+No extra behavior is present in the code.
+
+Evidence priority:
+None
+
+Generator bias:
+none
+
+◎ (F) generator-induced bias
+
+SPEC:
+- None
+
+CODE:
+- None
+
+Reason:
+No generator-induced bias is evident in the code.
+
+Evidence priority:
+None
+
+Generator bias:
+none

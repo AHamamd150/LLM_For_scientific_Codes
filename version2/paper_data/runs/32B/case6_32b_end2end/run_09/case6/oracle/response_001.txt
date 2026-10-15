@@ -1,0 +1,73 @@
+[AMBIGUITY 1] Leading and subleading b-jet definition
+
+Original phrase:
+"Plot the pT of the leading b-jet" and "Plot the pT of the subleading b-jet"
+
+Why this is dangerous:
+The phrase "leading b-jet" and "subleading b-jet" could be interpreted as the highest and second-highest pT b-jets in the full jet collection (including non-b-tagged jets), or as the highest and second-highest pT b-jets only among the selected b-tagged jets.
+
+Question to user:
+Should the leading and subleading b-jets be determined from all jets in the event (including non-b-tagged jets), or only from the selected b-tagged jets?
+
+Golden axe:
+Leading and subleading b-jets are the highest and second-highest pT b-tagged jets among the selected b-tagged jets.
+
+Silver axe:
+Leading and subleading b-jets are the highest and second-highest pT b-tagged jets in the full jet collection, regardless of selection.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Plot the pT of the leading b-jet among the selected b-tagged jets" and "Plot the pT of the subleading b-jet among the selected b-tagged jets"
+- Silver axe rewrite: "Plot the pT of the leading b-jet in the full jet collection" and "Plot the pT of the subleading b-jet in the full jet collection"
+
+
+[AMBIGUITY 2] Hadronic W candidate definition
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Why this is dangerous:
+The phrase "leading selected non-b-tagged jets" could be interpreted as the two highest-pT jets in the full jet collection that are not b-tagged, or as the two highest-pT jets in the selected jet collection (after pT and eta cuts) that are not b-tagged.
+
+Question to user:
+Should the hadronic W candidate be built from the two highest-pT non-b-tagged jets in the full jet collection, or from the two highest-pT non-b-tagged jets in the selected jet collection?
+
+Golden axe:
+The hadronic W candidate is built from the two highest-pT non-b-tagged jets in the selected jet collection.
+
+Silver axe:
+The hadronic W candidate is built from the two highest-pT non-b-tagged jets in the full jet collection.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Build the hadronic W candidate from the two leading jets in the selected non-b-tagged jet collection"
+- Silver axe rewrite: "Build the hadronic W candidate from the two leading non-b-tagged jets in the full jet collection"
+
+
+[AMBIGUITY 3] Hadronic top candidate definition
+
+Original phrase:
+"Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate."
+
+Why this is dangerous:
+The phrase "leading selected b-tagged jet" could be interpreted as the highest-pT b-tagged jet in the full jet collection, or as the highest-pT b-tagged jet in the selected jet collection.
+
+Question to user:
+Should the hadronic top candidate be built from the leading b-tagged jet in the full jet collection, or from the leading b-tagged jet in the selected jet collection?
+
+Golden axe:
+The hadronic top candidate is built from the leading b-tagged jet in the selected jet collection.
+
+Silver axe:
+The hadronic top candidate is built from the leading b-tagged jet in the full jet collection.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Build the hadronic top candidate from the leading b-tagged jet in the selected jet collection and the hadronic W candidate"
+- Silver axe rewrite: "Build the hadronic top candidate from the leading b-tagged jet in the full jet collection and the hadronic W candidate"

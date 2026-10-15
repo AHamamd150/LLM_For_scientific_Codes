@@ -1,0 +1,72 @@
+
+
+computed/defined as: sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+  - upstream chain: light_jets_sorted = sorted(light_jets, key=lambda j: j['pt'], reverse=True); light_jets = [j for j in jets if j not in bjets]
+  - collection definition: jets with type == 4 and btag == 0
+  - structure: composite-derived
+
+* Hadronic top candidate
+  - computed/defined as: sum_objects(bjets_sorted[0], w_hadronic)
+  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True); w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+  - collection definition: bjets with type == 4 and btag == 1
+  - structure: composite-derived
+
+* Transverse mass values
+  - computed/defined as: mt_values = [helper_transverse_mass(lepton, met) for events]
+  - upstream chain: helper_transverse_mass -> helper_delta_phi -> math.sqrt(2 * pt1 * pt2 * (1 - cos(dphi)))
+  - collection definition: lepton and MET objects
+  - structure: composite-derived
+
+* MET values
+  - computed/defined as: met_values = [met['pt'] for events]
+  - upstream chain: helper_get_met(event) -> [o for o in event['objects'] if o['type'] == 6]
+  - collection definition: event['objects'] with type == 6
+  - structure: single-constituent
+
+* Leading b-jet pT
+  - computed/defined as: bjet1_pt = [bjets_sorted[0]['pt'] for events]
+  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)
+  - collection definition: bjets with type == 4 and btag == 1
+  - structure: single-constituent
+
+* Subleading b-jet pT
+  - computed/defined as: bjet2_pt = [bjets_sorted[1]['pt'] if len(bjets_sorted) > 1 else 0.0 for events]
+  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)
+  - collection definition: bjets with type == 4 and btag == 1
+  - structure: single-constituent
+
+* Hadronic W mass
+  - computed/defined as: w_hadronic_mass = [w_hadronic['mass'] for events]
+  - upstream chain: w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+  - collection definition: light_jets with type == 4 and btag == 0
+  - structure: composite-derived
+
+* Hadronic top mass
+  - computed/defined as: top_hadronic_mass = [top_hadronic['mass'] for events]
+  - upstream chain: top_hadronic = sum_objects(bjets_sorted[0], w_hadronic)
+  - collection definition: bjets with type == 4 and btag == 1
+  - structure: composite-derived
+
+* Delta R between lepton and closest b-jet
+  - computed/defined as: dr_lepton_bjet = [helper_delta_r(lepton, closest_bjet) for events]
+  - upstream chain: helper_delta_r -> helper_delta_phi -> math.sqrt(deta^2 + dphi^2)
+  - collection definition: lepton and bjet objects
+  - structure: composite-derived
+
+* HT (scalar sum of jet pT)
+  - computed/defined as: ht_values = [scalar_pt_sum(jets) for events]
+  - upstream chain: scalar_pt_sum(jets) -> sum(p['pt'] for p in jets)
+  - collection definition: jets with type == 4
+  - structure: composite-derived
+
+* Number of jets per event
+  - computed/defined as: njets_values = [len(jets) for events]
+  - upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: jets with type == 4
+  - structure: single-constituent
+
+* Leading b-jet eta
+  - computed/defined as: bjet1_eta = [bjets_sorted[0]['eta'] for events]
+  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)
+  - collection definition: bjets with type == 4 and btag == 1
+  - structure: single-constituent

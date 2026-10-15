@@ -1,0 +1,98 @@
+[CANDIDATE 1] Photon selection and crack exclusion
+
+Original phrase:
+"Select photons with pT > 25 GeV and |eta| < 2.37. Exclude photons in the crack region 1.37 < |eta| < 1.52."
+
+Unresolved choice:
+It is unclear whether the crack region exclusion is applied as a separate condition or is implicitly included in the |eta| < 2.37 cut.
+
+Why this may matter:
+If the crack region is excluded as a separate condition, the code must explicitly veto photons in that range. If it is part of the |eta| cut, the implementation may differ in how the condition is structured, potentially affecting performance or clarity.
+
+[CANDIDATE 2] Leading and subleading photon definition
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection. Leading photon pT > 35 GeV. Subleading photon pT > 25 GeV."
+
+Unresolved choice:
+It is unclear whether the "leading" and "subleading" photons are defined after all photon cuts (including the crack veto) or only after the initial pT and |eta| cuts.
+
+Why this may matter:
+If the crack veto is applied before or after the leading/subleading definition, it could change which photons are considered for the pT requirements, potentially altering the event selection.
+
+[CANDIDATE 3] Diphoton system reuse
+
+Original phrase:
+"Build the diphoton system from the leading photon and the subleading photon. Define m_gammagamma as the invariant mass of this diphoton system. Use this same diphoton system to compute diphoton pT."
+
+Unresolved choice:
+It is unclear whether the diphoton system is stored as a named object for reuse in all subsequent calculations or if it is recomputed each time it is needed.
+
+Why this may matter:
+If the diphoton system is not explicitly stored, it may be recomputed multiple times, leading to inefficiency or potential inconsistencies if the system is modified in between uses.
+
+[CANDIDATE 4] Cutflow counter placement
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether the cutflow counter is incremented before or after the cut is applied, and whether the cut is applied to the same event-level collection or a modified one.
+
+Why this may matter:
+The order of cut application and counter incrementing can affect the interpretation of the cutflow, especially if later cuts depend on earlier selections.
+
+[CANDIDATE 5] Delta R between photons
+
+Original phrase:
+"Plot delta R between the two photons"
+
+Unresolved choice:
+It is unclear whether this refers to the delta R between the leading and subleading photons or between all pairs of photons in the event.
+
+Why this may matter:
+If the event contains more than two photons, the phrase could be interpreted as the minimum delta R among all pairs or specifically between the selected diphoton pair.
+
+[CANDIDATE 6] Diphoton system for pT
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT."
+
+Unresolved choice:
+It is unclear whether "diphoton pT" refers to the vector sum of the transverse momenta of the two photons or the scalar sum.
+
+Why this may matter:
+The vector sum and scalar sum are different quantities and would require different helper functions for computation.
+
+[CANDIDATE 7] Cut order and event skipping
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied."
+
+Unresolved choice:
+It is unclear whether "skip the event immediately" means to stop processing the event entirely or to continue processing for other purposes (e.g., for background estimation or validation histograms).
+
+Why this may matter:
+If the event is skipped entirely, it may not be included in validation plots or other secondary analyses, which could affect the completeness of the analysis.
+
+[CANDIDATE 8] Cutflow summary
+
+Original phrase:
+"After the event loop, print one cutflow summary with the number of events after each selection step."
+
+Unresolved choice:
+It is unclear whether the cutflow summary includes only the final selected events or also intermediate steps that may have been modified by vetoing or filtering.
+
+Why this may matter:
+If the cutflow includes intermediate steps, it may be necessary to track events at each stage, which could affect the data structure and memory usage.
+
+[CANDIDATE 9] Collins-Soper frame for cos(theta*)
+
+Original phrase:
+"Plot the |cos(theta*)| of the diphoton system in Collins-Soper frame"
+
+Unresolved choice:
+It is unclear whether the diphoton system used for the Collins-Soper frame calculation is the same as the one used for the invariant mass and pT, or if it is recomputed.
+
+Why this may matter:
+If the diphoton system is not consistently defined, the Collins-Soper frame calculation could be based on a different pair of photons, leading to inconsistencies in the analysis.

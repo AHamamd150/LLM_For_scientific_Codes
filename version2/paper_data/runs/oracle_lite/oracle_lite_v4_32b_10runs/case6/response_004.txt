@@ -1,0 +1,98 @@
+[CANDIDATE 1] Lepton definition for "exactly one lepton"
+
+Original phrase:
+"Require exactly one lepton (electron or muon)"
+
+Unresolved choice:
+It is unclear whether the lepton is defined from the raw collections (before any cuts) or from the already selected electrons and muons (after pT and |eta| cuts).
+
+Why this may matter:
+If the lepton count is based on uncut collections, it may include electrons or muons that later fail the pT or |eta| cuts, leading to inconsistent definitions of the final lepton. This could affect the selection logic and the interpretation of the cutflow.
+
+[CANDIDATE 2] Jet definition for "at least 4 jets"
+
+Original phrase:
+"Require at least 4 jets with pT > 30 GeV and |eta| < 2.5"
+
+Unresolved choice:
+It is unclear whether the jet count is based on the full jet collection or a previously defined subset (e.g., non-b-tagged jets or light jets).
+
+Why this may matter:
+If the jet count is applied to the full jet collection, it may include b-tagged jets that are later excluded in subsequent steps. This could lead to inconsistent jet definitions in the analysis and affect the selection efficiency.
+
+[CANDIDATE 3] Jet definition for "at least 2 b-tagged jets"
+
+Original phrase:
+"Among these selected jets, require at least 2 b-tagged jets."
+
+Unresolved choice:
+It is unclear whether the b-tagged jet count is applied to the full jet collection or only to the already selected jets (after pT and |eta| cuts).
+
+Why this may matter:
+If the b-tagged jet count is applied to the full jet collection, it may include jets that later fail the pT or |eta| cuts, leading to inconsistent definitions of the selected b-tagged jets and affecting the selection logic.
+
+[CANDIDATE 4] Jet definition for "selected b-tagged jets"
+
+Original phrase:
+"Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R."
+
+Unresolved choice:
+It is unclear whether the "selected b-tagged jets" are defined before or after the jet pT and |eta| cuts.
+
+Why this may matter:
+If the b-tagged jet selection is applied before the jet pT and |eta| cuts, the closest b-jet to the lepton may not satisfy the jet selection criteria, leading to incorrect object associations and affecting the analysis.
+
+[CANDIDATE 5] Jet definition for "non-b-tagged jets"
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Unresolved choice:
+It is unclear whether the "non-b-tagged jets" are defined from the full jet collection or from the already selected jets (after pT and |eta| cuts).
+
+Why this may matter:
+If the non-b-tagged jets are defined from the full jet collection, they may include jets that later fail the pT or |eta| cuts, leading to inconsistent definitions of the hadronic W candidate and affecting the analysis.
+
+[CANDIDATE 6] Jet definition for "leading selected b-tagged jet"
+
+Original phrase:
+"Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate."
+
+Unresolved choice:
+It is unclear whether the "leading selected b-tagged jet" is defined before or after the jet pT and |eta| cuts.
+
+Why this may matter:
+If the leading b-tagged jet is defined before the jet pT and |eta| cuts, it may not satisfy the jet selection criteria, leading to incorrect object associations and affecting the analysis.
+
+[CANDIDATE 7] Jet definition for "leading and subleading b-jets"
+
+Original phrase:
+"Plot the pT of the leading b-jet" and "Plot the pT of the subleading b-jet"
+
+Unresolved choice:
+It is unclear whether the "leading" and "subleading" b-jets are defined before or after the jet pT and |eta| cuts.
+
+Why this may matter:
+If the leading and subleading b-jets are defined before the jet pT and |eta| cuts, they may not satisfy the jet selection criteria, leading to incorrect object definitions and affecting the plots.
+
+[CANDIDATE 8] Jet definition for "selected jets" in HT
+
+Original phrase:
+"Plot the HT distribution (scalar sum of all jet pT)"
+
+Unresolved choice:
+It is unclear whether the "all jet pT" refers to the full jet collection or to the selected jets (after pT and |eta| cuts).
+
+Why this may matter:
+If the HT is computed from the full jet collection, it may include jets that later fail the pT and |eta| cuts, leading to inconsistent definitions of the HT and affecting the plot interpretation.
+
+[CANDIDATE 9] Jet definition for "number of jets per event"
+
+Original phrase:
+"Plot the number of jets per event"
+
+Unresolved choice:
+It is unclear whether the jet count is based on the full jet collection or on the selected jets (after pT and |eta| cuts).
+
+Why this may matter:
+If the jet count is based on the full jet collection, it may include jets that later fail the pT and |eta| cuts, leading to inconsistent definitions of the jet multiplicity and affecting the plot interpretation.

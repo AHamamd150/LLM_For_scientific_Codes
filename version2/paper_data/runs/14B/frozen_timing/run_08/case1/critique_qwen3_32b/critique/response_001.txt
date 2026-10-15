@@ -1,0 +1,307 @@
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+- Select muons with pT > 20 GeV and |eta| < 2.4
+
+CODE:
+- electrons = [l for l in electrons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+- muons = [l for l in muons if l['pt'] > 20 and abs(l['eta']) < 2.4]
+
+Reason:
+The code applies the pT and |eta| cuts to the full electron and muon collections, but the SPEC explicitly requires these cuts to define the selected leptons. The code correctly implements the cuts, but the implementation is not clearly labeled as "selected" in the code structure, which could lead to confusion about the scope of the selection.
+
+Evidence priority:
+L289-L293, L294-L296
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Use selected electrons and selected muons to define selected leptons.
+
+CODE:
+- leptons = [l for l in electrons if l['pt'] > 25 and abs(l['eta']) < 2.5] + [l for l in muons if l['pt'] > 20 and abs(l['eta']) < 2.4]
+
+Reason:
+The SPEC does not specify whether the selected leptons should be a merged collection or if the code should use a separate selection process. The code merges the selected electrons and muons into a single list, which is a valid interpretation, but the SPEC is ambiguous on this point.
+
+Evidence priority:
+L290-L297
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Require exactly 1 selected lepton
+
+CODE:
+- if len(leptons) != 1: continue
+
+Reason:
+The code correctly implements the requirement for exactly one selected lepton, but the cutflow label "Electron and muon selection" is misleading, as it includes both the lepton count and the jet selection. This could lead to confusion in the cutflow summary.
+
+Evidence priority:
+L297-L299, L301-L304
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Require at least 2 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the jet selection should be applied to all jets or only to a subset (e.g., light jets). The code applies the cuts to all jets, which is a valid interpretation, but the SPEC is ambiguous on this point.
+
+Evidence priority:
+L307-L310
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Veto events with b-tagged jets
+
+CODE:
+- if any(b['pt'] > 30 and abs(b['eta']) < 2.5 for b in bjets): continue
+
+Reason:
+The code applies the pT and |eta| cuts to b-tagged jets before vetoing the event, but the SPEC does not specify these cuts for the b-jet veto. This introduces an additional constraint not mentioned in the SPEC.
+
+Evidence priority:
+L314-L316
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select transverse mass of lepton + MET between 40 and 120 GeV (W leptonic candidate)
+
+CODE:
+- if not (40 < mt < 120): continue
+
+Reason:
+The code uses an open interval (40 < mt < 120), but the SPEC does not specify whether the bounds are inclusive or exclusive. This could lead to a mismatch if the intended behavior was to include the boundaries.
+
+Evidence priority:
+L326-L330
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)
+
+CODE:
+- if not (60 < mjj < 100): continue
+
+Reason:
+The code uses an open interval (60 < mjj < 100), but the SPEC does not specify whether the bounds are inclusive or exclusive. This could lead to a mismatch if the intended behavior was to include the boundaries.
+
+Evidence priority:
+L337-L340
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select delta R between the two leading jets < 3.0
+
+CODE:
+- if dr >= 3.0: continue
+
+Reason:
+The code uses a strict inequality (dr >= 3.0), but the SPEC does not specify whether the bound is inclusive or exclusive. This could lead to a mismatch if the intended behavior was to include the boundary.
+
+Evidence priority:
+L343-L345
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic) in the range 30 to 150 GeV
+
+CODE:
+- plt.hist(mt_list, bins=40, range=(30, 150), density=True)
+
+Reason:
+The code uses a fixed range of (30, 150) for the histogram, but the SPEC does not specify whether the bounds are inclusive or exclusive. This could lead to a mismatch if the intended behavior was to include the boundaries.
+
+Evidence priority:
+L390-L394
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of the two leading jets (W hadronic) in the range 40 to 120 GeV
+
+CODE:
+- plt.hist(mjj_list, bins=40, range=(40, 120), density=True)
+
+Reason:
+The code uses a fixed range of (40, 120) for the histogram, but the SPEC does not specify whether the bounds are inclusive or exclusive. This could lead to a mismatch if the intended behavior was to include the boundaries.
+
+Evidence priority:
+L396-L400
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- plt.hist(met_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The code uses a fixed range of (0, 200) for the MET histogram, but the SPEC does not specify the range. This introduces an additional constraint not mentioned in the SPEC.
+
+Evidence priority:
+L403-L407
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the lepton
+
+CODE:
+- plt.hist(lepton_pt_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The code uses a fixed range of (0, 200) for the lepton pT histogram, but the SPEC does not specify the range. This introduces an additional constraint not mentioned in the SPEC.
+
+Evidence priority:
+L410-L414
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading jet
+
+CODE:
+- plt.hist(jet1_pt_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The code uses a fixed range of (0, 200) for the leading jet pT histogram, but the SPEC does not specify the range. This introduces an additional constraint not mentioned in the SPEC.
+
+Evidence priority:
+L417-L421
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading jet
+
+CODE:
+- plt.hist(jet2_pt_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The code uses a fixed range of (0, 200) for the subleading jet pT histogram, but the SPEC does not specify the range. This introduces an additional constraint not mentioned in the SPEC.
+
+Evidence priority:
+L424-L428
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot delta R between the two leading jets
+
+CODE:
+- plt.hist(dr_list, bins=40, range=(0, 5), density=True)
+
+Reason:
+The code uses a fixed range of (0, 5) for the delta R histogram, but the SPEC does not specify the range. This introduces an additional constraint not mentioned in the SPEC.
+
+Evidence priority:
+L431-L435
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the lepton and MET
+
+CODE:
+- plt.hist(dphi_list, bins=40, range=(-3.14, 3.14), density=True)
+
+Reason:
+The code uses a fixed range of (-3.14, 3.14) for the delta phi histogram, but the SPEC does not specify the range. This introduces an additional constraint not mentioned in the SPEC.
+
+Evidence priority:
+L438-L442
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the eta of the lepton
+
+CODE:
+- plt.hist(lepton_eta_list, bins=40, range=(-2.5, 2.5), density=True)
+
+Reason:
+The code uses a fixed range of (-2.5, 2.5) for the lepton eta histogram, but the SPEC does not specify the range. This introduces an additional constraint not mentioned in the SPEC.
+
+Evidence priority:
+L445-L449
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the lepton and the two-jet system
+
+CODE:
+- plt.hist(dphi_lepton_jets_list, bins=40, range=(-3.14, 3.14), density=True)
+
+Reason:
+The code uses a fixed range of (-3.14, 3.14) for the delta phi histogram, but the SPEC does not specify the range. This introduces an additional constraint not mentioned in the SPEC.
+
+Evidence priority:
+L452-L456
+
+Generator bias:
+none

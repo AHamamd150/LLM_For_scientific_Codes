@@ -1,0 +1,61 @@
+{
+  "selected_helpers": [
+    {
+      "name": "get_photons",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_leading",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_subleading",
+      "reason": ""
+    },
+    {
+      "name": "get_particle_mass",
+      "reason": "dependency of four_momentum"
+    },
+    {
+      "name": "four_momentum",
+      "reason": "dependency of sum_objects"
+    },
+    {
+      "name": "obj_from_four_momentum",
+      "reason": "dependency of sum_objects"
+    },
+    {
+      "name": "sum_objects",
+      "reason": "dependency of helper_invariant_mass"
+    },
+    {
+      "name": "helper_invariant_mass",
+      "reason": ""
+    },
+    {
+      "name": "helper_delta_phi",
+      "reason": "dependency of helper_delta_r"
+    },
+    {
+      "name": "helper_delta_r",
+      "reason": ""
+    },
+    {
+      "name": "cos_theta_star_collins_soper",
+      "reason": ""
+    },
+    {
+      "name": "pt_ratio",
+      "reason": ""
+    },
+    {
+      "name": "n_photons",
+      "reason": ""
+    },
+    {
+      "name": "abs_eta",
+      "reason": ""
+    }
+  ],
+  "rejected_but_close": []
+}

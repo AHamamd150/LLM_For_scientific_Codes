@@ -1,0 +1,61 @@
+
+
+* Subleading jet
+  - computed/defined as: helper_get_subleading(jets)
+  - upstream chain: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7] -> helper_get_subleading(jets)
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7
+  - structure: single-constituent
+
+* Dijet object
+  - computed/defined as: sum_objects(jet1, jet2)
+  - upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> sum_objects(jet1, jet2)
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7
+  - structure: composite-derived
+
+* Opposite-sign tau pair
+  - computed/defined as: opposite_sign(tau1, tau2)
+  - upstream chain: helper_get_leading(taus), helper_get_subleading(taus) -> opposite_sign(tau1, tau2)
+  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3
+  - structure: multi-input
+
+* Dijet invariant mass (m_jj)
+  - computed/defined as: helper_invariant_mass(jet1, jet2)
+  - upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> helper_invariant_mass(jet1, jet2)
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7
+  - structure: composite-derived
+
+* Delta eta between jets
+  - computed/defined as: abs(helper_delta_eta(jet1, jet2))
+  - upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> helper_delta_eta(jet1, jet2)
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7
+  - structure: multi-input
+
+* Ditau invariant mass
+  - computed/defined as: helper_invariant_mass(tau1, tau2)
+  - upstream chain: helper_get_leading(taus), helper_get_subleading(taus) -> helper_invariant_mass(tau1, tau2)
+  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3
+  - structure: composite-derived
+
+* B-tagged jet veto
+  - computed/defined as: any(j['btag'] == 1.0 for j in jets)
+  - upstream chain: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7] -> any(j['btag'] == 1.0 for j in jets)
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7
+  - structure: single-constituent
+
+* Delta R between taus
+  - computed/defined as: helper_delta_r(tau1, tau2)
+  - upstream chain: helper_get_leading(taus), helper_get_subleading(taus) -> helper_delta_r(tau1, tau2)
+  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3
+  - structure: multi-input
+
+* Delta phi between ditau and dijet
+  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])
+  - upstream chain: sum_objects(tau1, tau2), sum_objects(jet1, jet2) -> helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])
+  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3, j['pt'] > 30 and abs(j['eta']) < 4.7
+  - structure: multi-input
+
+* Centrality of ditau system relative to jets
+  - computed/defined as: centrality_between_jets(ditau_obj, jet1, jet2)
+  - upstream chain: sum_objects(tau1, tau2), helper_get_leading(jets), helper_get_subleading(jets) -> centrality_between_jets(ditau_obj, jet1, jet2)
+  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3, j['pt'] > 30 and abs(j['eta']) < 4.7
+  - structure: multi-input

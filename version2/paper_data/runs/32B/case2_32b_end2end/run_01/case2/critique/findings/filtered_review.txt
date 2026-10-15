@@ -1,0 +1,293 @@
+===== RUN 1 =====
+
+---- KEPT ----
+(none)
+
+---- DROPPED ----
+[DROPPED 1] drop: matched noise signal 'matches the spec'
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The code builds the hadronic top candidate by summing the four-momenta of the leading b-jet and the hadronic W candidate. This is correct and matches the SPEC.
+
+Evidence priority:
+- sum_objects(bjets_sorted[0], w_hadronic); 〔L344, L341-L342, L215-L222, L310-L311〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Reason:
+The code builds the hadronic W candidate by summing the four-momenta of the two leading non-b-tagged jets. This is correct and matches the SPEC.
+
+Evidence priority:
+- sum_objects(light_jets_sorted[0], light_jets_sorted[1]); 〔L334, L330-L333, L215-L222, L304-L305, L310-L311〕
+
+Generator bias:
+none
+
+[DROPPED 2] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if not (40 < w_hadronic['mass'] < 120): continue
+
+Reason:
+The code uses an open interval (40 < mass < 120), but the SPEC does not explicitly specify whether the bounds are inclusive or exclusive. This is a specification ambiguity.
+
+Evidence priority:
+- if not (40 < w_hadronic['mass'] < 120): continue; 〔L335-L336, L334, L93-L96〕
+
+Generator bias:
+none
+
+[DROPPED 3] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Select the transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- if not (30 < mt < 150): continue
+
+Reason:
+The code uses an open interval (30 < mt < 150), but the SPEC does not explicitly specify whether the bounds are inclusive or exclusive. This is a specification ambiguity.
+
+Evidence priority:
+- if not (30 < mt < 150): continue; 〔L322-L324, L116-L120〕
+
+Generator bias:
+none
+
+[DROPPED 4] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- if met is None or met['pt'] < 20: continue
+
+Reason:
+The code uses a strict inequality (met['pt'] < 20), but the SPEC does not explicitly specify whether the bound is inclusive or exclusive. This is a specification ambiguity.
+
+Evidence priority:
+- if met is None or met['pt'] < 20: continue; 〔L316-L318, L201-L206〕
+
+Generator bias:
+none
+
+[DROPPED 5] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- if len(jets) < 4: continue
+
+Reason:
+The code uses a strict inequality (len(jets) < 4), but the SPEC does not explicitly specify whether the bound is inclusive or exclusive. This is a specification ambiguity.
+
+Evidence priority:
+- if len(jets) < 4: continue; 〔L305, L186-L188〕
+
+Generator bias:
+none
+
+[DROPPED 6] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Require at least 2 b-tagged jets
+
+CODE:
+- if len(bjets) < 2: continue
+
+Reason:
+The code uses a strict inequality (len(bjets) < 2), but the SPEC does not explicitly specify whether the bound is inclusive or exclusive. This is a specification ambiguity.
+
+Evidence priority:
+- if len(bjets) < 2: continue; 〔L311, L191-L193〕
+
+Generator bias:
+none
+
+[DROPPED 7] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- if len(leptons) != 1: continue
+
+Reason:
+The code uses a strict equality (len(leptons) != 1), but the SPEC does not explicitly specify whether the bound is inclusive or exclusive. This is a specification ambiguity.
+
+Evidence priority:
+- if len(leptons) != 1: continue; 〔L297-L299, L293-L295〕
+
+Generator bias:
+none
+
+---
+
+[DROPPED 8] drop: matched noise signal 'matches the spec'
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The code correctly builds the hadronic top candidate by summing the four-momenta of the leading b-jet and the hadronic W candidate. This matches the SPEC.
+
+Evidence priority:
+- sum_objects(bjets_sorted[0], w_hadronic); 〔L344, L341-L342, L215-L222, L310-L311〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Reason:
+The code correctly builds the hadronic W candidate by summing the four-momenta of the two leading non-b-tagged jets. This matches the SPEC.
+
+Evidence priority:
+- sum_objects(light_jets_sorted[0], light_jets_sorted[1]); 〔L334, L330-L333, L215-L222, L304-L305, L310-L311〕
+
+Generator bias:
+none
+
+[DROPPED 9] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if not (40 < w_hadronic['mass'] < 120): continue
+
+Reason:
+The code uses an open interval (40 < mass < 120), but the SPEC does not explicitly specify whether the bounds are inclusive or exclusive. This is a specification ambiguity.
+
+Evidence priority:
+- if not (40 < w_hadronic['mass'] < 120): continue; 〔L335-L336, L334, L93-L96〕
+
+Generator bias:
+none
+
+[DROPPED 10] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Select the transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- if not (30 < mt < 150): continue
+
+Reason:
+The code uses an open interval (30 < mt < 150), but the SPEC does not explicitly specify whether the bounds are inclusive or exclusive. This is a specification ambiguity.
+
+Evidence priority:
+- if not (30 < mt < 150): continue; 〔L322-L324, L116-L120〕
+
+Generator bias:
+none
+
+[DROPPED 11] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- if met is None or met['pt'] < 20: continue
+
+Reason:
+The code uses a strict inequality (met['pt'] < 20), but the SPEC does not explicitly specify whether the bound is inclusive or exclusive. This is a specification ambiguity.
+
+Evidence priority:
+- if met is None or met['pt'] < 20: continue; 〔L316-L318, L201-L206〕
+
+Generator bias:
+none
+
+[DROPPED 12] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- if len(jets) < 4: continue
+
+Reason:
+The code uses a strict inequality (len(jets) < 4), but the SPEC does not explicitly specify whether the bound is inclusive or exclusive. This is a specification ambiguity.
+
+Evidence priority:
+- if len(jets) < 4: continue; 〔L305, L186-L188〕
+
+Generator bias:
+none
+
+[DROPPED 13] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Require at least 2 b-tagged jets
+
+CODE:
+- if len(bjets) < 2: continue
+
+Reason:
+The code uses a strict inequality (len(bjets) < 2), but the SPEC does not explicitly specify whether the bound is inclusive or exclusive. This is a specification ambiguity.
+
+Evidence priority:
+- if len(bjets) < 2: continue; 〔L311, L191-L193〕
+
+Generator bias:
+none
+
+[DROPPED 14] drop: matched noise signal 'inclusive'
+❓ (D) definition mismatch
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- if len(leptons) != 1: continue
+
+Reason:
+The code uses a strict equality (len(leptons) != 1), but the SPEC does not explicitly specify whether the bound is inclusive or exclusive. This is a specification ambiguity.
+
+Evidence priority:
+- if len(leptons) != 1: continue; 〔L297-L299, L293-L295〕
+
+Generator bias:
+none

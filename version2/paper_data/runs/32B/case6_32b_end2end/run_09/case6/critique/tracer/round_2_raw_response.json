@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* Hadronic top candidate\n  - computed/defined as: sum_objects(bjets_sorted[0], w_hadronic)\n  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True); w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])\n  - collection definition: bjets with type == 4 and btag == 1\n  - structure: composite-derived\n\n* Hadronic top mass\n  - computed/defined as: helper_invariant_mass(bjets_sorted[0], w_hadronic)\n  - upstream chain: helper_invariant_mass(bjets_sorted[0], w_hadronic) -> sum_objects -> obj_from_four_momentum -> math.sqrt(E^2 - p^2)\n  - collection definition: bjets with type == 4 and btag == 1\n  - structure: composite-derived\n\n* Delta R between lepton and closest b-jet\n  - computed/defined as: helper_delta_r(b, lepton)\n  - upstream chain: helper_delta_r(b, lepton) -> helper_delta_phi(phi1, phi2) -> math.sqrt(deta^2 + dphi^2)\n  - collection definition: b from selected bjets, lepton from selected leptons\n  - structure: composite-derived\n\n* HT (scalar sum of jet pT)\n  - computed/defined as: scalar_pt_sum(jets)\n  - upstream chain: scalar_pt_sum(jets) -> sum(p['pt'] for p in particles)\n  - collection definition: jets with type == 4\n  - structure: single-constituent\n\n* Number of jets per event\n  - computed/defined as: len(jets)\n  - upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - collection definition: jets with type == 4\n  - structure: single-constituent\n\n* Leading b-jet pT\n  - computed/defined as: bjets_sorted[0]['pt']\n  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)\n  - collection definition: bjets with type == 4 and btag == 1\n  - structure: single-constituent\n\n* Subleading b-jet pT\n  - computed/defined as: bjets_sorted[1]['pt']\n  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)\n  - collection definition: bjets with type == 4 and btag == 1\n  - structure: single-constituent\n\n* Leading b-jet eta\n  - computed/defined as: bjets_sorted[0]['eta']\n  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)\n  - collection definition: bjets with type == 4 and btag == 1\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788871465,
+  "id": "chatcmpl-966fd3f9-1ade-4e43-a5ff-fafccbb82199",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 656,
+    "prompt_tokens": 11006,
+    "prompt_tokens_details": null,
+    "total_tokens": 11662
+  }
+}

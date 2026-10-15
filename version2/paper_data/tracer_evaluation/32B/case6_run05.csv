@@ -1,0 +1,30 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+6,5,requirement,R1,Select electrons with pT > 25 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly identifies the electron filter and get_electrons dependency at lines 298-299.
+6,5,requirement,R2,Select muons with pT > 25 GeV and |eta| < 2.4,yes,yes,yes,no,Correctly identifies the muon filter and get_muons dependency at lines 299-300.
+6,5,requirement,R3,Require exactly one lepton,yes,yes,yes,no,Correctly traces leptons = electrons + muons and the len(leptons) != 1 veto at lines 301-303.
+6,5,requirement,R4,Require at least 4 selected jets with pT > 30 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly identifies the selected-jet filter and multiplicity cut at lines 309-311.
+6,5,requirement,R5,Require at least 2 b-tagged selected jets,yes,yes,yes,no,Correctly traces bjets filtering and the len(bjets) < 2 veto at lines 315-317.
+6,5,requirement,R6,Define the selected b-jet closest to the selected lepton in delta R,yes,yes,yes,no,"Correctly identifies min(bjets, key=...) and helper_delta_r at lines 320-322."
+6,5,requirement,R7,Select MET > 20 GeV,yes,yes,yes,no,Correctly traces helper_get_met and the MET threshold/veto at lines 324-328.
+6,5,requirement,R8,Select lepton-MET transverse mass between 30 and 150 GeV,yes,yes,yes,no,Correctly identifies helper_transverse_mass and the cut at lines 331-335.
+6,5,requirement,R9,Build the hadronic W from the two leading selected non-b-tagged jets,yes,yes,yes,no,The construction and sorting are correctly traced to lines 338-344; the actual code uses sorted directly.
+6,5,requirement,R10,Select hadronic W mass between 40 and 120 GeV,yes,yes,no,yes,"The cut at lines 345-347 is correctly located, but the claimed helper_get_leading/helper_get_subleading dependency is unsupported; the code uses light_jets_sorted from sorted at lines 343-344."
+6,5,requirement,R11,Build the hadronic top from the leading selected b-tagged jet and hadronic W,yes,yes,yes,no,Correctly traces bjets sorting and sum_objects at lines 350-352.
+6,5,requirement,R12,Select hadronic top mass between 100 and 250 GeV,yes,yes,no,yes,"The cut at lines 353-355 is correctly located, but the claimed helper_get_leading dependency is unsupported; the code uses bjets_sorted from sorted at line 351."
+6,5,requirement,R13,Apply cuts sequentially and skip events immediately when a cut fails,partial,yes,yes,no,"The traced cut locations collectively show sequential continue statements, but the tracer does not explicitly summarize this requirement as a separate traced element."
+6,5,requirement,R14,Plot the transverse mass of lepton plus MET,yes,yes,yes,no,Correctly traces mt_values and its histogram call at lines 332-336 and 374.
+6,5,requirement,R15,Plot the MET distribution,yes,yes,yes,no,Correctly traces met_values and the histogram call at lines 329 and 375.
+6,5,requirement,R16,Plot pT of the leading b-jet,yes,yes,yes,no,Correctly traces bjet1_pt from bjets_sorted[0] at lines 359 and 376.
+6,5,requirement,R17,Plot pT of the subleading b-jet,yes,yes,yes,no,Correctly traces bjet2_pt from bjets_sorted[1] at lines 360 and 377.
+6,5,requirement,R18,Plot invariant mass of the hadronic W candidate in range 40 to 120 GeV,yes,yes,no,yes,"The value and histogram call are correct at lines 348 and 378, but the claimed helper_get_leading/helper_get_subleading dependency is not used."
+6,5,requirement,R19,Plot invariant mass of the hadronic top candidate in range 100 to 250 GeV,yes,yes,yes,no,Correctly traces top_hadronic_mass and its histogram call at lines 355-356 and 379.
+6,5,requirement,R20,Plot delta R between the leading lepton and closest selected b-jet,yes,yes,yes,no,Correctly traces dr_lepton_bjet and helper_delta_r at lines 320-322 and 380.
+6,5,requirement,R21,Plot the HT distribution as the scalar sum of all jet pT,yes,yes,yes,no,Correctly traces scalar_pt_sum(jets) at line 362 and the histogram at line 381.
+6,5,requirement,R22,Plot the number of jets per event,yes,yes,yes,no,Correctly traces len(jets) at line 363 and the histogram at line 382.
+6,5,requirement,R23,Plot eta of the leading b-jet,yes,yes,yes,no,Correctly traces bjet1_eta from bjets_sorted[0] at lines 361 and 383.
+6,5,requirement,R24,"Use simple validation histograms with plt.figure, 40 bins, density normalization, labels, PNG saving, and close",partial,yes,yes,no,The tracer identifies histogram calls but does not explicitly cover the shared save_hist implementation at lines 366-372 or all formatting requirements.
+6,5,requirement,R25,"After the event loop, print one cutflow summary with the number of events after each selection step",no,na,na,no,The tracer output does not trace the cutflow dictionary or print statements at lines 273-283 and 385-394.
+6,5,requirement,R26,Save the plots in PNG format,partial,yes,yes,no,"The plot claims include .png filenames, but the output-format requirement is not separately identified; PNG saving is implemented at lines 371 and 374-383."
+6,5,extra_trace_claim,EXTRA1,The hadronic W mass depends on helper_get_leading(light_jets) and helper_get_subleading(light_jets).,,,,yes,Those helpers are not used for the W candidate; the code sorts light_jets directly at lines 343-344.
+6,5,extra_trace_claim,EXTRA2,The hadronic top mass depends on helper_get_leading(bjets).,,,,yes,"The code uses bjets_sorted = sorted(bjets, ...) and bjets_sorted[0] at lines 351-352, not helper_get_leading."
+6,5,extra_trace_claim,EXTRA3,The W-mass plot depends on helper_get_leading(light_jets) and helper_get_subleading(light_jets).,,,,yes,"The plotted values originate from w_hadronic_mass, whose candidate uses direct sorting at lines 343-348."

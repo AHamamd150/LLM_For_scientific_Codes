@@ -1,0 +1,28 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+2,5,requirement,R1,Select electrons with pT > 25 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly identifies the electron selection at lines 335-337 and get_electrons dependency.
+2,5,requirement,R2,Select muons with pT > 25 GeV and |eta| < 2.4,yes,yes,yes,no,Correctly identifies the muon selection at lines 336-337 and get_muons dependency.
+2,5,requirement,R3,Require exactly one lepton,yes,yes,yes,no,Correctly traces leptons = electrons + muons and the len(leptons) != 1 veto at lines 337-341.
+2,5,requirement,R4,Require at least 4 jets with pT > 30 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly traces the filtered jet collection and len(jets) < 4 veto at lines 346-349.
+2,5,requirement,R5,Require at least 2 b-tagged jets,yes,yes,yes,no,Correctly traces bjets filtering and the count requirement at lines 352-355.
+2,5,requirement,R6,Select MET > 20 GeV,yes,yes,yes,no,Correctly identifies helper_get_met and the MET threshold veto at lines 358-361.
+2,5,requirement,R7,Select transverse mass of the lepton and MET between 30 and 150 GeV,yes,yes,yes,no,"Correctly traces helper_transverse_mass(lepton, met) and the 30 < mt < 150 cut at lines 364-367."
+2,5,requirement,R8,Build the hadronic W candidate from the two leading non-b-tagged jets,yes,yes,yes,no,"Correctly traces light_jets, sort_by_pt, and sum_objects at lines 371-377."
+2,5,requirement,R9,Select the hadronic W mass between 40 and 120 GeV,yes,yes,yes,yes,"The cut location at lines 378-379 is correct, but the tracer incorrectly attributes helper_invariant_mass; the code directly uses w_hadronic['mass']."
+2,5,requirement,R10,Build the hadronic top candidate from the leading b-jet and hadronic W candidate,yes,yes,yes,no,Correctly traces the leading b-jet selection and sum_objects at lines 383-390.
+2,5,requirement,R11,Plot the transverse mass of lepton plus MET,yes,yes,yes,no,mt is appended at lines 364-368 and plotted at line 428.
+2,5,requirement,R12,Plot the MET distribution,yes,yes,yes,no,met_values is populated at line 369 and plotted at line 429.
+2,5,requirement,R13,Plot the pT of the leading b-jet,yes,yes,yes,no,"The actual implementation uses sort_by_pt(bjets)[0] through lines 384 and 388, then appends at line 396 and plots at line 430."
+2,5,requirement,R14,Plot the pT of the subleading b-jet,yes,yes,yes,no,The actual implementation uses bjets_sorted[1] at lines 397-400 and plots at line 431.
+2,5,requirement,R15,Plot the invariant mass of the two leading non-b-tagged jets in the 40-120 GeV range,yes,yes,yes,yes,"The mass collection and plot locations are correct at lines 377-381 and 432, but helper_invariant_mass is not used; the code uses w_hadronic['mass']."
+2,5,requirement,R16,Plot the invariant mass of leading b-jet plus hadronic W in the 100-250 GeV range,yes,yes,yes,yes,"The mass collection and plot locations are correct at lines 389-393 and 433, but helper_invariant_mass is not used; the code uses top_hadronic['mass']."
+2,5,requirement,R17,Plot delta R between the leading lepton and closest b-jet,yes,yes,yes,no,"Correctly traces the loop over bjets, helper_delta_r, minimum selection, and plot at lines 402-408 and 434."
+2,5,requirement,R18,Plot the HT distribution as the scalar sum of all jet pT,yes,yes,yes,no,Correctly traces scalar_pt_sum(jets) at line 411 and the plot at line 435.
+2,5,requirement,R19,Plot the number of jets per event,yes,yes,yes,no,Correctly traces len(jets) at line 414 and the plot at line 436.
+2,5,requirement,R20,Plot eta of the leading b-jet,yes,yes,yes,no,The actual leading b-jet comes from bjets_sorted at lines 384 and 388; eta is appended at line 417 and plotted at line 437.
+2,5,requirement,R21,"Use the specified simple histogram form with 40 bins, density normalization, labels, and concrete filenames",partial,yes,yes,no,"The tracer identifies the plot calls but does not explicitly trace bins=40, density=True, xlabel/ylabel, or the concrete labels and filenames at lines 420-437."
+2,5,requirement,R22,"After the event loop, print one cutflow summary with event counts after each selection step",yes,yes,yes,no,Correctly identifies the post-loop cutflow printout and cutflow dictionary at lines 439-448.
+2,5,requirement,R23,Save the plots in PNG format,yes,yes,yes,no,Correctly traces save_hist and plt.savefig calls with .png filenames at lines 420-437.
+2,5,extra_trace_claim,EXTRA1,The W hadronic mass is computed through helper_invariant_mass,,,,yes,The generated code constructs w_hadronic with sum_objects and accesses w_hadronic['mass'] at lines 377-379; helper_invariant_mass is never called.
+2,5,extra_trace_claim,EXTRA2,The top hadronic mass is computed through helper_invariant_mass,,,,yes,The generated code constructs top_hadronic with sum_objects and accesses top_hadronic['mass'] at lines 389-390; helper_invariant_mass is never called.
+2,5,extra_trace_claim,EXTRA3,leading_bjet is computed with helper_get_leading(bjets),,,,yes,The code sorts bjets with sort_by_pt and selects bjets_sorted[0] at lines 384 and 388; helper_get_leading is not called.
+2,5,extra_trace_claim,EXTRA4,subleading_bjet is computed with helper_get_subleading(bjets),,,,yes,The code sorts bjets and selects bjets_sorted[1] at lines 397-398; helper_get_subleading is not called.

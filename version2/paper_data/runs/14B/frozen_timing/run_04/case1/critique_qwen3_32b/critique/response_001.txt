@@ -1,0 +1,56 @@
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+- Select muons with pT > 20 GeV and |eta| < 2.4
+
+CODE:
+- For electrons: l['pt'] > 25 and abs(l['eta']) < 2.5 and l['type'] == 1
+- For muons: l['pt'] > 20 and abs(l['eta']) < 2.4 and l['type'] == 2
+
+Reason:
+The code includes an unnecessary condition `l['type'] == 1` for electrons and `l['type'] == 2` for muons in the selection criteria. The SPEC only specifies pT and |eta| cuts, not type checks, since the input collections (electrons and muons) are already type-specific.
+
+Evidence priority:
+L291-L296
+
+Generator bias:
+The code may have been generated with a pattern that assumes type checks are always needed, even when the input collection is already type-specific.
+
+---
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Use selected electrons and selected muons to define selected leptons.
+
+CODE:
+- leptons = [l for l in electrons + muons if pt and eta cuts]
+
+Reason:
+The SPEC does not specify whether the lepton collection should be defined from the selected electrons and muons (i.e., after applying pT and |eta| cuts) or from the full electron and muon collections. The code uses the selected electrons and muons, but this is not explicitly required by the SPEC.
+
+Evidence priority:
+L290-L296
+
+Generator bias:
+none
+
+---
+
+⚠️ (A) composite violation
+
+SPEC:
+- Select delta phi between the lepton and the two-jet system
+
+CODE:
+- dphi_lepton_jets = helper_delta_phi(lepton['phi'], jet_system['phi']), where jet_system = sum_objects(jet1, jet2)
+
+Reason:
+The SPEC refers to the two-jet system as a composite object, and the delta phi should be computed between the lepton and the system. However, the code computes the phi of the two-jet system using `sum_objects`, which sums the four-momenta of the two jets. This is correct, but the code uses only the phi of the system, not the full system object. While not strictly incorrect, it is a composite violation in the sense that the system is not fully represented in the calculation.
+
+Evidence priority:
+L361-L365
+
+Generator bias:
+none

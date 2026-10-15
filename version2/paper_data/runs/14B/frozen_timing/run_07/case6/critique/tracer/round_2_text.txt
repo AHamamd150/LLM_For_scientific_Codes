@@ -1,0 +1,42 @@
+
+
+- computed/defined as: hadronic_w_mass
+  - upstream chain: hadronic_w_mass -> hadronic_w_mass_list
+  - collection definition: hadronic_w_mass
+  - structure: single-constituent
+
+* hadronic_top_mass_list
+  - computed/defined as: hadronic_top_mass
+  - upstream chain: hadronic_top_mass -> hadronic_top_mass_list
+  - collection definition: hadronic_top_mass
+  - structure: single-constituent
+
+* dr_lep_bjet_list
+  - computed/defined as: dr_lep_bjet
+  - upstream chain: dr_lep_bjet -> dr_lep_bjet_list
+  - collection definition: dr_lep_bjet
+  - structure: single-constituent
+
+* ht_list
+  - computed/defined as: scalar_pt_sum(selected_jets)
+  - upstream chain: selected_jets -> ht_list
+  - collection definition: selected_jets
+  - structure: single-constituent
+
+* njet_list
+  - computed/defined as: len(selected_jets)
+  - upstream chain: selected_jets -> njet_list
+  - collection definition: selected_jets
+  - structure: single-constituent
+
+* leading_bjet_eta_list
+  - computed/defined as: leading_bjet['eta']
+  - upstream chain: leading_bjet -> leading_bjet_eta_list
+  - collection definition: leading_bjet
+  - structure: single-constituent
+
+* cutflow
+  - computed/defined as: cutflow
+  - upstream chain: cutflow
+  - collection definition: cutflow
+  - structure: single-constituent

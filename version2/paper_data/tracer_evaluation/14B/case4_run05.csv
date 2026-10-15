@@ -1,0 +1,25 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+4,5,requirement,R1,Select electrons with pT > 15 GeV and |eta| < 2.5.,yes,yes,yes,no,Correctly identifies the electron selection at lines 242-243 and its get_electrons dependency.
+4,5,requirement,R2,Select muons with pT > 10 GeV and |eta| < 2.4.,yes,yes,yes,no,Correctly identifies the muon selection at lines 248-249 and its get_muons dependency.
+4,5,requirement,R3,Require exactly 2 selected electrons and exactly 1 selected muon.,yes,yes,yes,no,Correctly identifies the length check at lines 254-255.
+4,5,requirement,R4,Require the two selected electrons to have opposite charge.,yes,yes,yes,no,Correctly identifies the opposite_sign check at lines 259-261 and the e1/e2 dependencies.
+4,5,requirement,R5,Build z_obj from the two selected electrons using summed four-momentum.,yes,yes,yes,no,"Correctly identifies sum_objects(e1, e2) at lines 264-266."
+4,5,requirement,R6,Select invariant mass of z_obj between 76 and 106 GeV.,yes,yes,yes,no,Correctly identifies z_mass from helper_invariant_mass and the 76 < z_mass < 106 check at lines 268-270.
+4,5,requirement,R7,Define the selected muon as the W candidate lepton.,yes,yes,yes,no,Correctly identifies w_muon = muons[0] at line 280.
+4,5,requirement,R8,Require MET > 30 GeV.,yes,yes,yes,no,Correctly identifies MET retrieval and the threshold check at lines 274-276.
+4,5,requirement,R9,Require the W candidate muon to have pT > 20 GeV.,yes,yes,yes,no,Correctly identifies the w_muon pT check at lines 280-282.
+4,5,requirement,R10,Require transverse mass of the W candidate muon plus MET to exceed 30 GeV.,yes,yes,yes,no,Correctly identifies helper_transverse_mass and the threshold check at lines 285-288.
+4,5,requirement,R11,Plot the invariant mass of z_obj in the range 60 to 120 GeV.,partial,yes,yes,no,"The tracer identifies z_mass_list and its invariant-mass dependency at lines 294-295, but does not identify the actual histogram call and range=(60, 120) at lines 314-315."
+4,5,requirement,R12,Plot the transverse mass of the W candidate lepton plus MET.,partial,yes,yes,no,"It identifies w_trans_mass_list and helper_transverse_mass, but not the actual plt.hist operation at lines 321-325."
+4,5,requirement,R13,Plot the MET distribution.,partial,yes,yes,no,"It identifies met_list and helper_get_met, but not the histogram call at lines 328-332."
+4,5,requirement,R14,Plot the pT of the three-lepton system built from the two selected electrons and selected muon.,partial,yes,yes,no,"It identifies three_lepton_pt_list and sum_objects at lines 299-301, but not the plt.hist call at lines 335-339."
+4,5,requirement,R15,Plot the pT of z_obj.,partial,yes,yes,no,"It identifies z_pt_list and z_obj at lines 305-306, but not the histogram call at lines 342-346."
+4,5,requirement,R16,Plot the pT of the W candidate muon.,partial,yes,yes,no,"It identifies w_muon_pt_list and w_muon at lines 306-307, but not the histogram call at lines 349-353."
+4,5,requirement,R17,Plot delta phi between z_obj and MET.,partial,yes,yes,no,"It identifies delta_phi_z_met_list and helper_delta_phi at lines 307-308, but not the histogram call and range at lines 356-360."
+4,5,requirement,R18,Plot the invariant mass of the three-lepton system.,partial,yes,yes,no,"It identifies three_lepton_mass_list and helper_invariant_mass at lines 302-303, but not the histogram call at lines 363-367."
+4,5,requirement,R19,Plot delta R between the two electrons forming z_obj.,partial,yes,yes,no,"It identifies delta_r_electrons_list and helper_delta_r at lines 309-310, but not the histogram call at lines 370-374."
+4,5,requirement,R20,Plot eta of the W candidate muon.,partial,yes,yes,no,"It identifies w_muon_eta_list and w_muon at lines 311-312, but not the histogram call at lines 377-381."
+4,5,requirement,R21,"Use simple validation histograms with plt.figure, plt.hist(values, bins=40, density=True), labels, savefig, and close for each histogram.",partial,yes,uncertain,no,"The tracer mentions plot data and savefig, but omits the repeated plt.figure, plt.hist, xlabel, ylabel, and close operations, which occur throughout lines 313-382."
+4,5,requirement,R22,"Apply cuts sequentially, skip immediately when a cut fails, and increment each cutflow counter immediately after it passes.",no,na,na,no,"The tracer lists individual cut expressions but does not trace the sequential control flow, continue statements, or placement of counter increments at lines 243-289."
+4,5,requirement,R23,"After the event loop, print one cutflow summary with the number of events after each selection step.",partial,yes,yes,no,"It identifies the cutflow dictionary at lines 216-227, but not the actual post-loop print loop at lines 384-386."
+4,5,requirement,R24,Save the plots in PNG format.,partial,no,na,no,"The tracer identifies savefig generally, but cites several incorrect line numbers and omits the three_lepton_mass save at line 367; the actual PNG filenames are at lines 318, 325, 332, 339, 346, 353, 360, 367, 374, and 381."

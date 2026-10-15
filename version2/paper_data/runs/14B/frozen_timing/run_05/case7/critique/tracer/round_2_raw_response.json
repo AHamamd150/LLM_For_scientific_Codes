@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* delta R between taus\n  - computed/defined as: helper_delta_r(leading tau, subleading tau)\n  - upstream chain: leading tau, subleading tau\n  - collection definition: math.sqrt(deta^2 + dphi^2)\n  - structure: multi-input\n\n* delta phi between ditau_obj and dijet_obj\n  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])\n  - upstream chain: ditau_obj, dijet_obj\n  - collection definition: normalized Δφ calculation\n  - structure: multi-input\n\n* centrality of ditau system relative to jets\n  - computed/defined as: centrality_between_jets(ditau_obj, leading jet, subleading jet)\n  - upstream chain: ditau_obj, leading jet, subleading jet\n  - collection definition: |eta_obj - eta_center_jj| / |delta_eta_jj|\n  - structure: multi-input\n\n* cutflow\n  - computed/defined as: dictionary with keys and values tracking event counts\n  - upstream chain: cutflow\n  - collection definition: initial events, after each selection step\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1789041539,
+  "id": "chatcmpl-104feb75-160a-4b8d-a0d2-c34718ac8684",
+  "model": "Qwen/Qwen3-14B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-7e17f8bc",
+  "usage": {
+    "completion_tokens": 260,
+    "prompt_tokens": 10564,
+    "prompt_tokens_details": null,
+    "total_tokens": 10824
+  }
+}

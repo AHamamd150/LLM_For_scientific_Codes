@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* ht\n  - computed/defined as: scalar_pt_sum(selected_jets)\n  - upstream chain: selected_jets -> ht\n  - collection definition: None\n  - structure: single-constituent\n\n* njet_list\n  - computed/defined as: len(selected_jets)\n  - upstream chain: selected_jets -> njet_list\n  - collection definition: None\n  - structure: single-constituent\n\n* leading_bjet_pt_list\n  - computed/defined as: leading_bjet['pt']\n  - upstream chain: leading_bjet -> leading_bjet_pt_list\n  - collection definition: None\n  - structure: single-constituent\n\n* subleading_bjet_pt_list\n  - computed/defined as: subleading_bjet['pt']\n  - upstream chain: subleading_bjet -> subleading_bjet_pt_list\n  - collection definition: None\n  - structure: single-constituent\n\n* leading_bjet_eta_list\n  - computed/defined as: leading_bjet['eta']\n  - upstream chain: leading_bjet -> leading_bjet_eta_list\n  - collection definition: None\n  - structure: single-constituent\n\n* dr_lep_bjet_list\n  - computed/defined as: min_dr\n  - upstream chain: lep, closest_bjet -> min_dr -> dr_lep_bjet_list\n  - collection definition: None\n  - structure: single-constituent\n\n* met_list\n  - computed/defined as: met['pt']\n  - upstream chain: met -> met_list\n  - collection definition: None\n  - structure: single-constituent\n\n* mt_list\n  - computed/defined as: mt\n  - upstream chain: mt -> mt_list\n  - collection definition: None\n  - structure: single-constituent\n\n* hadronic_w_mass_list\n  - computed/defined as: hadronic_w_mass\n  - upstream chain: hadronic_w_mass -> hadronic_w_mass_list\n  - collection definition: None\n  - structure: single-constituent\n\n* hadronic_top_mass_list\n  - computed/defined as: hadronic_top_mass\n  - upstream chain: hadronic_top_mass -> hadronic_top_mass_list\n  - collection definition: None\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1789042101,
+  "id": "chatcmpl-1e60858d-929c-49c0-87ff-bc6aa807d42e",
+  "model": "Qwen/Qwen3-14B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-7e17f8bc",
+  "usage": {
+    "completion_tokens": 499,
+    "prompt_tokens": 11439,
+    "prompt_tokens_details": null,
+    "total_tokens": 11938
+  }
+}

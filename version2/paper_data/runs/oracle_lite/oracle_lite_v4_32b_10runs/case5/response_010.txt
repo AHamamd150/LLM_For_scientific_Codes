@@ -1,0 +1,109 @@
+[CANDIDATE 1] Leading and subleading tau definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Unresolved choice:
+It is unclear whether the leading and subleading tau are defined based on pT of the selected taus, or if another property (e.g., decay mode, isolation) is used.
+
+Why this may matter:
+If the helper code assumes pT ordering by default, but the user intended a different ordering, the resulting ditau system and subsequent cuts (like invariant mass) may be incorrect.
+
+[CANDIDATE 2] Leading and subleading jet definition
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Unresolved choice:
+It is unclear whether the leading and subleading jets are defined based on pT of the selected jets, or if another property (e.g., b-tagging, jet mass) is used.
+
+Why this may matter:
+If the helper code assumes pT ordering by default, but the user intended a different ordering, the resulting dijet system and subsequent cuts (like m_jj and delta eta) may be incorrect.
+
+[CANDIDATE 3] Opposite-sign tau pair
+
+Original phrase:
+"Require opposite-sign tau pair"
+
+Unresolved choice:
+It is unclear whether this refers to the leading and subleading tau pair specifically, or any pair of taus in the event.
+
+Why this may matter:
+If the code assumes the leading and subleading pair, but the user intended to consider all OS pairs, the selection may miss valid events or incorrectly reject some.
+
+[CANDIDATE 4] Veto on b-tagged jets
+
+Original phrase:
+"Veto events with b-tagged jets"
+
+Unresolved choice:
+It is unclear whether the veto applies to all b-tagged jets in the event, or only to b-tagged jets in the selected jet collection.
+
+Why this may matter:
+If the veto is intended to apply only to selected jets, but the code applies it to all jets in the event, the veto may be too strict or too lenient, affecting the final event yield.
+
+[CANDIDATE 5] Dijet invariant mass
+
+Original phrase:
+"Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV"
+
+Unresolved choice:
+It is unclear whether the invariant mass is computed from the four-momenta of the selected jets or from the full jet collection.
+
+Why this may matter:
+If the code computes m_jj from the full jet collection instead of the selected jets, the cut may not reflect the intended VBF topology.
+
+[CANDIDATE 6] Delta eta between the two leading jets
+
+Original phrase:
+"Select |delta eta| between the two leading jets > 2.5"
+
+Unresolved choice:
+It is unclear whether the "leading jets" refer to the selected jets or to the two jets with the highest pT in the full event.
+
+Why this may matter:
+If the code uses the full event jets instead of the selected ones, the delta eta cut may not reflect the intended VBF topology.
+
+[CANDIDATE 7] Dijet system definition
+
+Original phrase:
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Unresolved choice:
+It is unclear whether the "summed momentum" refers to the four-momentum or only the three-momentum (i.e., is energy included or not).
+
+Why this may matter:
+If the code sums only the three-momentum, the invariant mass computed from the dijet system will be incorrect.
+
+[CANDIDATE 8] Dijet system for delta phi
+
+Original phrase:
+"Plot delta phi between the ditau system and the dijet system"
+
+Unresolved choice:
+It is unclear whether the "dijet system" refers to the same dijet_obj defined earlier or to a different combination of jets.
+
+Why this may matter:
+If the code uses a different dijet system for the delta phi plot, the angular correlation between the ditau and dijet systems will be incorrect.
+
+[CANDIDATE 9] Centrality of the ditau system
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Unresolved choice:
+It is unclear whether the "two jets" refer to the leading and subleading jets defined earlier or to any two jets in the event.
+
+Why this may matter:
+If the code uses a different pair of jets for centrality, the plot may not reflect the intended VBF topology or the ditau-jet correlation.
+
+[CANDIDATE 10] Ditau invariant mass
+
+Original phrase:
+"Select ditau invariant mass between 60 and 150 GeV"
+
+Unresolved choice:
+It is unclear whether this refers to the invariant mass of the leading and subleading tau pair specifically, or to any pair of taus in the event.
+
+Why this may matter:
+If the code assumes the leading and subleading pair, but the user intended to consider all valid tau pairs, the invariant mass selection may miss valid events or incorrectly reject some.

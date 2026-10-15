@@ -1,0 +1,145 @@
+SECTION 1: SPEC BULLET ANALYSIS
+
+✅ * Select taus with pT > 20 GeV and |eta| < 2.3; computed as: [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]; upstream chain: get_taus(event) -> [t for t in ...]; 〔L256-L257〕
+✅ * Select jets with pT > 30 GeV and |eta| < 4.7; computed as: [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]; upstream chain: get_jets(event) -> [j for j in ...]; 〔L262-L263〕
+✅ * Require at least 2 taus; computed as: len(taus) >= 2; upstream chain: taus; 〔L257-L258〕
+✅ * Define the leading tau and subleading tau from the selected taus.; computed as: helper_get_leading(taus), helper_get_subleading(taus); upstream chain: taus -> helper_get_leading, helper_get_subleading; 〔L278-L279〕
+✅ * Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.; computed as: sum_objects(leading_tau, subleading_tau); upstream chain: leading_tau, subleading_tau -> sum_objects; 〔L300〕
+✅ * Require at least 2 jets (VBF topology); computed as: len(jets) >= 2; upstream chain: jets; 〔L264-L265〕
+✅ * Define the leading jet and subleading jet from the selected jets.; computed as: helper_get_leading(jets), helper_get_subleading(jets); upstream chain: jets -> helper_get_leading, helper_get_subleading; 〔L285-L286〕
+✅ * Define dijet_obj from the summed four-momentum of the leading jet and subleading jet.; computed as: sum_objects(leading_jet, subleading_jet); upstream chain: leading_jet, subleading_jet -> sum_objects; 〔L287〕
+✅ * Require opposite-sign tau pair; computed as: opposite_sign(leading_tau, subleading_tau); upstream chain: leading_tau, subleading_tau -> opposite_sign; 〔L280-L281〕
+✅ * Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV; computed as: dijet_obj['mass'] > 400; upstream chain: dijet_obj -> dijet_obj['mass']; 〔L288-L290〕
+✅ * Select |delta eta| between the two leading jets > 2.5; computed as: abs(helper_delta_eta(leading_jet, subleading_jet)) > 2.5; upstream chain: leading_jet, subleading_jet -> helper_delta_eta -> abs(...); 〔L294-L296〕
+✅ * Select ditau invariant mass between 60 and 150 GeV; computed as: 60 < m_tt < 150; upstream chain: m_tt; 〔L302〕
+✅ * Veto events with b-tagged jets among the selected jets; computed as: n_bjets(event, pt_cut=30, eta_cut=4.7) == 0; upstream chain: jets -> n_bjets(event, ...); 〔L306-L308〕
+
+✅ * Plot the following as histograms:
+1 Plot the ditau invariant mass in the range 50 to 160 GeV; computed as: ditau_masses; upstream chain: m_tt -> ditau_masses; 〔L331-L335〕
+✅ 2 Plot the dijet invariant mass (m_jj) in the range 400 to 2000 GeV; computed as: dijet_masses; upstream chain: m_jj -> dijet_masses; 〔L338-L342〕
+✅ 3 Plot delta eta between the two leading jets; computed as: delta_eta_jj; upstream chain: abs(helper_delta_eta(...)) -> delta_eta_jj; 〔L345-L349〕
+✅ 4 Plot the pT of the leading tau; computed as: leading_tau_pt; upstream chain: leading_tau['pt'] -> leading_tau_pt; 〔L353-L357〕
+✅ 5 Plot the pT of the subleading tau; computed as: subleading_tau_pt; upstream chain: subleading_tau['pt'] -> subleading_tau_pt; 〔L359-L363〕
+✅ 6 Plot the pT of the leading jet; computed as: leading_jet_pt; upstream chain: leading_jet['pt'] -> leading_jet_pt; 〔L366-L370〕
+✅ 7 Plot the pT of the subleading jet; computed as: subleading_jet_pt; upstream chain: subleading_jet['pt'] -> subleading_jet_pt; 〔L372-L376〕
+✅ 8 Plot delta R between the two taus; computed as: delta_r_tt; upstream chain: helper_delta_r(leading_tau, subleading_tau) -> delta_r_tt; 〔L379-L383〕
+✅ 9 Plot delta phi between the ditau_obj and the dijet_obj; computed as: delta_phi_tt_dijet; upstream chain: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi']) -> delta_phi_tt_dijet; 〔L386-L390〕
+✅ 10 Plot the centrality of the ditau system relative to the two jets; computed as: centrality_tt_jj; upstream chain: centrality_between_jets(ditau_obj, leading_jet, subleading_jet) -> centrality_tt_jj; 〔L394-L398〕
+
+✅ * After the event loop, print one cutflow summary with the number of events after each selection step.; computed as: cutflow dictionary; upstream chain: cutflow; 〔L327-L328〕
+✅ * Save the plots in png format; computed as: plt.savefig(...); upstream chain: plt.savefig; 〔L335, L342, L349, L357, L363, L370, L376, L383, L390, L398〕
+
+SECTION 2: DEFINITION SUMMARY
+
+* [CHECK CAREFULLY] DEFINITION SUMMARY
+
+* taus
+  - computed/defined as: [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]
+  - upstream chain: get_taus(event) -> [t for t in ...]
+  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3
+  - structure: single-constituent
+
+* jets
+  - computed/defined as: [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - upstream chain: get_jets(event) -> [j for j in ...]
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7
+  - structure: single-constituent
+
+* leading_tau
+  - computed/defined as: helper_get_leading(taus)
+  - upstream chain: taus -> helper_get_leading
+  - collection definition: None
+  - structure: single-constituent
+
+* subleading_tau
+  - computed/defined as: helper_get_subleading(taus)
+  - upstream chain: taus -> helper_get_subleading
+  - collection definition: None
+  - structure: single-constituent
+
+* ditau_obj
+  - computed/defined as: sum_objects(leading_tau, subleading_tau)
+  - upstream chain: leading_tau, subleading_tau -> sum_objects
+  - collection definition: None
+  - structure: composite-derived
+
+* leading_jet
+  - computed/defined as: helper_get_leading(jets)
+  - upstream chain: jets -> helper_get_leading
+  - collection definition: None
+  - structure: single-constituent
+
+* subleading_jet
+  - computed/defined as: helper_get_subleading(jets)
+  - upstream chain: jets -> helper_get_subleading
+  - collection definition: None
+  - structure: single-constituent
+
+* dijet_obj
+  - computed/defined as: sum_objects(leading_jet, subleading_jet)
+  - upstream chain: leading_jet, subleading_jet -> sum_objects
+  - collection definition: None
+  - structure: composite-derived
+
+* m_tt
+  - computed/defined as: ditau_obj['mass']
+  - upstream chain: ditau_obj -> ditau_obj['mass']
+  - collection definition: None
+  - structure: single-constituent
+
+* m_jj
+  - computed/defined as: dijet_obj['mass']
+  - upstream chain: dijet_obj -> dijet_obj['mass']
+  - collection definition: None
+  - structure: single-constituent
+
+* delta_eta_jj
+  - computed/defined as: abs(helper_delta_eta(leading_jet, subleading_jet))
+  - upstream chain: leading_jet, subleading_jet -> helper_delta_eta -> abs(...)
+  - collection definition: None
+  - structure: multi-input
+
+* leading_tau_pt
+  - computed/defined as: leading_tau['pt']
+  - upstream chain: leading_tau -> leading_tau['pt']
+  - collection definition: None
+  - structure: single-constituent
+
+* subleading_tau_pt
+  - computed/defined as: subleading_tau['pt']
+  - upstream chain: subleading_tau -> subleading_tau['pt']
+  - collection definition: None
+  - structure: single-constituent
+
+* leading_jet_pt
+  - computed/defined as: leading_jet['pt']
+  - upstream chain: leading_jet -> leading_jet['pt']
+  - collection definition: None
+  - structure: single-constituent
+
+* subleading_jet_pt
+  - computed/defined as: subleading_jet['pt']
+  - upstream chain: subleading_jet -> subleading_jet['pt']
+  - collection definition: None
+  - structure: single-constituent
+
+* delta_r_tt
+  - computed/defined as: helper_delta_r(leading_tau, subleading_tau)
+  - upstream chain: leading_tau, subleading_tau -> helper_delta_r
+  - collection definition: None
+  - structure: multi-input
+
+* delta_phi_tt_dijet
+  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])
+  - upstream chain: ditau_obj, dijet_obj -> helper_delta_phi
+  - collection definition: None
+  - structure: multi-input
+
+* centrality_tt_jj
+  - computed/defined as: centrality_between_jets(ditau_obj, leading_jet, subleading_jet)
+  - upstream chain: ditau_obj, leading_jet, subleading_jet -> centrality_between_jets
+  - collection definition: None
+  - structure: multi-input
+* cutflow
+- collection definition: None
+  - structure: single-constituent

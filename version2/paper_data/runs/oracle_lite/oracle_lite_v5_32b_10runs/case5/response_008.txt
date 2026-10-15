@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Dijet invariant mass selection refers to uncut or cut jets
+
+Original phrase:
+"Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV"
+
+Why this matters:
+This phrase does not specify whether the jets used to compute m_jj are the raw jets in the event or the jets that have already passed the pT > 30 GeV and |eta| < 4.7 cuts. Using uncut jets could include low-pT or out-of-eta jets in the dijet mass calculation, which would lead to a different distribution than using only selected jets.
+
+Question to user:
+Should the dijet invariant mass be computed from the jets that have already passed the pT and eta cuts, or from the full jet collection in the event?
+
+Golden axe:
+Use jets that have passed the pT and eta cuts.
+
+Silver axe:
+Use all jets in the event, regardless of whether they pass the pT and eta cuts.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Dijet delta eta refers to uncut or cut jets
+
+Original phrase:
+"Select |delta eta| between the two leading jets > 2.5"
+
+Why this matters:
+This phrase does not clarify whether the jets used to compute the delta eta are the raw jets in the event or the jets that have already passed the pT and eta cuts. Using uncut jets could include low-pT or out-of-eta jets in the delta eta calculation, which would lead to a different distribution than using only selected jets.
+
+Question to user:
+Should the delta eta between the two leading jets be computed from the jets that have already passed the pT and eta cuts, or from the full jet collection in the event?
+
+Golden axe:
+Use jets that have passed the pT and eta cuts.
+
+Silver axe:
+Use all jets in the event, regardless of whether they pass the pT and eta cuts.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Dijet system is built from uncut or cut jets
+
+Original phrase:
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Why this matters:
+This phrase does not clarify whether the jets used to build the dijet system are the raw jets in the event or the jets that have already passed the pT and eta cuts. Using uncut jets could include low-pT or out-of-eta jets in the dijet system, which would lead to a different system than using only selected jets.
+
+Question to user:
+Should the dijet system be built from the jets that have already passed the pT and eta cuts, or from the full jet collection in the event?
+
+Golden axe:
+Use jets that have passed the pT and eta cuts.
+
+Silver axe:
+Use all jets in the event, regardless of whether they pass the pT and eta cuts.
+
+Recommended default:
+Golden axe

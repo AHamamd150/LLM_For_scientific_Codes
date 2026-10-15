@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* Subleading b-jet pT\n  - computed/defined as: bjet2_pt\n  - upstream chain: bjets_sorted[1]['pt']\n  - collection definition: bjets_sorted (sorted by pt)\n  - structure: single-constituent\n\n* Hadronic W mass values\n  - computed/defined as: w_hadronic_mass\n  - upstream chain: sum_objects(light_jets_sorted[0], light_jets_sorted[1])\n  - collection definition: light_jets_sorted (sorted by pt)\n  - structure: composite-derived\n\n* Hadronic top mass values\n  - computed/defined as: top_hadronic_mass\n  - upstream chain: sum_objects(bjets_sorted[0], w_hadronic)\n  - collection definition: bjets_sorted (sorted by pt), w_hadronic (from hadronic W candidate)\n  - structure: composite-derived\n\n* Delta R between lepton and closest b-jet\n  - computed/defined as: dr_lepton_bjet\n  - upstream chain: helper_delta_r(lepton, closest_bjet)\n  - collection definition: lepton (from selected leptons), closest_bjet (from bjets)\n  - structure: multi-input\n\n* HT values\n  - computed/defined as: ht_values\n  - upstream chain: scalar_pt_sum(jets)\n  - collection definition: jets (filtered by j['pt'] > 30 and abs(j['eta']) < 2.5)\n  - structure: single-constituent\n\n* Number of jets per event\n  - computed/defined as: njets_values\n  - upstream chain: len(jets)\n  - collection definition: jets (filtered by j['pt'] > 30 and abs(j['eta']) < 2.5)\n  - structure: single-constituent\n\n* Leading b-jet eta\n  - computed/defined as: bjet1_eta\n  - upstream chain: bjets_sorted[0]['eta']\n  - collection definition: bjets_sorted (sorted by pt)\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788870204,
+  "id": "chatcmpl-8bab90c9-ccf9-4ce9-9626-30812e1eb060",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 445,
+    "prompt_tokens": 10980,
+    "prompt_tokens_details": null,
+    "total_tokens": 11425
+  }
+}

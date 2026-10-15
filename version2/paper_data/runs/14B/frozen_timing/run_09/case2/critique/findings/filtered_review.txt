@@ -1,0 +1,768 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The code correctly constructs the hadronic top candidate by combining the leading b-jet and the hadronic W candidate using the sum_objects function. This is consistent with the requirement to build the hadronic top candidate from the required constituents.
+
+Evidence priority:
+〔L349-L351〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- len(selected_leptons) != 1
+
+Reason:
+The code checks for len(selected_leptons) != 1, which skips events with exactly one lepton. This is the opposite of what the SPEC requires. The code should check for len(selected_leptons) == 1.
+
+Evidence priority:
+〔L295-L297〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The code correctly applies the pT and |eta| cuts to jets. However, it does not explicitly check that the number of jets is at least 4. This check is performed later in the code, but the definition of selected_jets does not reflect the requirement to have at least 4 jets.
+
+Evidence priority:
+〔L302-L304〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require at least 2 b-tagged jets
+
+CODE:
+- [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The code correctly applies the pT and |eta| cuts to b-jets. However, it does not explicitly check that the number of b-jets is at least 2. This check is performed later in the code, but the definition of selected_bjets does not reflect the requirement to have at least 2 b-jets.
+
+Evidence priority:
+〔L309-L311〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- met['pt'] < 20
+
+Reason:
+The code checks for met['pt'] < 20, which skips events with MET > 20 GeV. This is the opposite of what the SPEC requires. The code should check for met['pt'] > 20.
+
+Evidence priority:
+〔L316-L318〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_hadronic_mass < 40 or w_hadronic_mass > 120
+
+Reason:
+The code checks for w_hadronic_mass < 40 or w_hadronic_mass > 120, which skips events with W hadronic mass in the range 40 to 120 GeV. This is the opposite of what the SPEC requires. The code should check for w_hadronic_mass >= 40 and w_hadronic_mass <= 120.
+
+Evidence priority:
+〔L342-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 4
+
+
+---- DROPPED ----
+(none)

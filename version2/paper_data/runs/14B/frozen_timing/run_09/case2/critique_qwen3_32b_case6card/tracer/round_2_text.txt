@@ -1,0 +1,43 @@
+
+
+* top_candidate
+  - computed/defined as: sum_objects(leading_bjet, w_hadronic)
+  - upstream chain: leading_bjet = helper_get_leading(selected_bjets), w_hadronic = sum_objects(leading_light_jet, subleading_light_jet)
+  - collection definition: selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5], selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - structure: composite-derived
+
+* dr_lepton_bjet
+  - computed/defined as: helper_delta_r(lepton, leading_bjet)
+  - upstream chain: lepton = selected_leptons[0], leading_bjet = helper_get_leading(selected_bjets)
+  - collection definition: selected_leptons = selected_electrons + selected_muons, selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - structure: composite-derived
+
+* ht
+  - computed/defined as: scalar_pt_sum(selected_jets)
+  - upstream chain: selected_jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* njet
+  - computed/defined as: len(selected_jets)
+  - upstream chain: selected_jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* leading_bjet_pt
+  - computed/defined as: leading_bjet['pt']
+  - upstream chain: leading_bjet = helper_get_leading(selected_bjets)
+  - collection definition: selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - structure: single-constituent
+
+* subleading_bjet_pt
+  - computed/defined as: helper_get_subleading(selected_bjets)['pt']
+  - upstream chain: selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - collection definition: b['pt'] > 30 and abs(b['eta']) < 2.5
+  - structure: single-constituent
+
+* leading_bjet_eta
+  - computed/defined as: leading_bjet['eta']
+  - upstream chain: leading_bjet = helper_get_leading(selected_bjets)
+  - collection definition: selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - structure: single-constituent

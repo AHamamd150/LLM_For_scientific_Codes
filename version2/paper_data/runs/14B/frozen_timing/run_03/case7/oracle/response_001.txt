@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading and subleading object definitions
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading and subleading taus are defined before or after applying the "opposite-sign tau pair" requirement. This could affect which taus are considered for the ditau_obj and subsequent cuts.
+
+Question to user:
+Are the leading and subleading taus defined before or after applying the opposite-sign requirement?
+
+Golden axe:
+Leading and subleading taus are defined after applying the opposite-sign requirement.
+
+Silver axe:
+Leading and subleading taus are defined before applying the opposite-sign requirement.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Veto scope for b-tagged jets
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Why this is dangerous:
+The phrase does not clarify whether the veto applies to all b-tagged jets in the event or only to the selected jets. This could affect the interpretation of the veto and its implementation.
+
+Question to user:
+Does the b-tagged jet veto apply to all b-tagged jets in the event or only to the selected jets?
+
+Golden axe:
+The veto applies to all b-tagged jets in the event.
+
+Silver axe:
+The veto applies only to the selected jets.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Centrality of the ditau system
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Why this is dangerous:
+The phrase does not clarify whether the centrality is computed relative to the two selected jets or all jets in the event. This could affect the calculation and interpretation of the centrality.
+
+Question to user:
+Is the centrality computed relative to the two selected jets or all jets in the event?
+
+Golden axe:
+The centrality is computed relative to the two selected jets.
+
+Silver axe:
+The centrality is computed relative to all jets in the event.
+
+Recommended default:
+Golden axe

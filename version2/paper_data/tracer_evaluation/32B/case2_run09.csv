@@ -1,0 +1,23 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+2,9,requirement,R1,Select electrons with pT > 25 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly identified at lines 295-297 via get_electrons(event).
+2,9,requirement,R2,Select muons with pT > 25 GeV and |eta| < 2.4,yes,yes,yes,no,Correctly identified at lines 296-297 via get_muons(event).
+2,9,requirement,R3,Require exactly one lepton,yes,yes,yes,no,The len(leptons) != 1 rejection is correctly cited at lines 299-300.
+2,9,requirement,R4,Require at least 4 jets with pT > 30 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly traced to the selected jets and count at lines 306-309.
+2,9,requirement,R5,Require at least 2 b-tagged jets,yes,yes,yes,no,"Correctly traced to get_bjets, kinematic filtering, and len(bjets) < 2 at lines 312-315."
+2,9,requirement,R6,Select MET > 20 GeV,yes,yes,yes,no,Correctly traced to helper_get_met and the MET cut at lines 318-321.
+2,9,requirement,R7,Select transverse mass of the lepton and MET between 30 and 150 GeV,yes,yes,yes,no,Correctly traced to helper_transverse_mass and the cut at lines 324-327.
+2,9,requirement,R8,Build the hadronic W candidate from the two leading non-b-tagged jets,yes,yes,yes,no,The tracer correctly identifies sorting and summing the two leading light jets at lines 331-337.
+2,9,requirement,R9,Select the hadronic W mass between 40 and 120 GeV,yes,yes,no,yes,"The cut location at lines 337-339 is correct, but the tracer claims helper_invariant_mass at lines 337-339; the code uses w_hadronic['mass'] from sum_objects at line 336. helper_invariant_mass is not called."
+2,9,requirement,R10,Build the hadronic top candidate from the leading b-jet and the hadronic W candidate,yes,yes,no,yes,"The actual construction is correctly shown at line 346, but the claimed upstream helper_invariant_mass dependency is unsupported; the code uses sum_objects directly."
+2,9,requirement,R11,Plot the transverse mass of lepton plus MET,yes,yes,yes,no,mt_values are filled from helper_transverse_mass at lines 324-328 and plotted at lines 366-371.
+2,9,requirement,R12,Plot the MET distribution,yes,yes,yes,no,MET values are appended at lines 329-330 and plotted at lines 373-378.
+2,9,requirement,R13,Plot the pT of the leading b-jet,yes,yes,yes,no,"Correctly traced to bjets_sorted[0] and its pT at lines 352-354, with plotting at lines 380-385."
+2,9,requirement,R14,Plot the pT of the subleading b-jet,yes,yes,yes,no,Correctly traced to bjets_sorted[1] at lines 356-358 and plotting at lines 387-392.
+2,9,requirement,R15,Plot the invariant mass of the two leading non-b-tagged jets in the range 40 to 120 GeV,yes,yes,no,yes,"The mass list and plot are present at lines 336-340 and 394-399, but the claimed helper_invariant_mass dependency is not used; the mass comes from w_hadronic['mass']."
+2,9,requirement,R16,Plot the invariant mass of the leading b-jet plus the hadronic W candidate in the range 100 to 250 GeV,partial,no,no,yes,"The top candidate and mass cut are present at lines 346-349, but top_hadronic_mass is never appended before being plotted at lines 401-406. The claimed helper_invariant_mass dependency is also unsupported."
+2,9,requirement,R17,Plot delta R between the leading lepton and the closest b-jet,partial,no,no,yes,"The tracer claims the closest b-jet, but code uses leading_bjet at lines 352 and 360; no closest-b-jet minimization is present."
+2,9,requirement,R18,Plot the HT distribution as the scalar sum of all jet pT,yes,yes,yes,no,Correctly traced to scalar_pt_sum(jets) at line 362 and the plot at lines 415-420.
+2,9,requirement,R19,Plot the number of jets per event,yes,yes,yes,no,Correctly traced to len(jets) at line 363 and the plot at lines 422-427.
+2,9,requirement,R20,Plot eta of the leading b-jet,yes,yes,yes,no,Correctly traced to leading_bjet['eta'] at lines 354-355 and the plot at lines 429-434.
+2,9,requirement,R21,"After the event loop, print one cutflow summary with the number of events after each selection step",yes,yes,yes,no,The tracer correctly identifies the post-loop cutflow output and cutflow dictionary at lines 271-279 and 436-445.
+2,9,requirement,R22,Save the plots in PNG format,yes,yes,na,no,Correctly traced to plt.savefig calls with .png filenames at lines 370-434.

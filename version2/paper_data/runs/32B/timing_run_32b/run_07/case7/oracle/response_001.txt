@@ -1,0 +1,72 @@
+[AMBIGUITY 1] Leading and subleading objects defined before or after cuts
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this is dangerous:
+The phrase "selected taus" implies that the cuts have already been applied, but it is unclear whether the selection includes all cuts or only the pT and eta cuts. This can lead to different interpretations of when the "leading" and "subleading" labels are assigned, which affects subsequent cuts and plots.
+
+Question to user:
+Are the "leading" and "subleading" taus defined after all cuts (including the opposite-sign and invariant mass cuts), or only after the pT and eta cuts?
+
+Golden axe:
+Leading and subleading taus are defined after the pT and eta cuts, but before other selection steps.
+
+Silver axe:
+Leading and subleading taus are defined after all selection steps, including the opposite-sign and invariant mass cuts.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Define the leading tau and subleading tau from the taus passing pT and eta cuts."
+- Silver axe rewrite: "Define the leading tau and subleading tau from the selected taus after all cuts are applied."
+
+[AMBIGUITY 2] Definition of ditau_obj and dijet_obj
+
+Original phrase:
+"Define ditau_obj from the summed four-momentum of the leading tau and subleading tau."
+"Define dijet_obj from the summed four-momentum of the leading jet and subleading jet."
+
+Why this is dangerous:
+It is unclear whether these composite objects are used only for computing observables (like invariant mass or delta phi), or whether they are used as actual objects in subsequent cuts or selections. This affects whether the helper functions for building and using composite objects are needed.
+
+Question to user:
+Are the ditau_obj and dijet_obj used only for computing observables (like invariant mass and delta phi), or are they used as actual composite objects in further selections or cuts?
+
+Golden axe:
+The ditau_obj and dijet_obj are used only for computing observables and not for further selections.
+
+Silver axe:
+The ditau_obj and dijet_obj are treated as real composite objects and may be used in further selections or cuts.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Compute the invariant mass of the leading and subleading tau pair."
+- Silver axe rewrite: "Define a composite ditau_obj from the leading and subleading tau for use in further selections."
+
+[AMBIGUITY 3] Veto on b-tagged jets applies to selected or all jets
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Why this is dangerous:
+It is ambiguous whether the veto is applied to the full jet collection or only to the jets that have already passed the pT and eta cuts. This affects the interpretation of "selected jets" and could lead to different jet collections being used in the veto.
+
+Question to user:
+Does the veto on b-tagged jets apply to all jets in the event, or only to the jets that have already passed the pT and eta cuts?
+
+Golden axe:
+The veto applies to the jets that have passed the pT and eta cuts.
+
+Silver axe:
+The veto applies to all jets in the event, regardless of whether they pass the pT and eta cuts.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Veto events with b-tagged jets among the jets passing pT and eta cuts."
+- Silver axe rewrite: "Veto events with any b-tagged jets in the event, regardless of jet pT or eta."

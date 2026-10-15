@@ -1,0 +1,124 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The hadronic top candidate is built from the leading b-tagged jet and the hadronic W candidate, which is correct. However, the code uses the `sum_objects` function, which combines the four-momenta of the two inputs. This is correct for computing the invariant mass of the system. No violation here.
+
+Evidence priority:
+- helper_invariant_mass(bjets_sorted[0], w_hadronic)
+
+Generator bias:
+none
+
+---
+
+[KEPT 2] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Reason:
+The hadronic W candidate is built from the two leading non-b-tagged jets, which is correct. The code uses `sum_objects`, which correctly combines the four-momenta of the two jets. This is appropriate for computing the invariant mass of the system. No violation here.
+
+Evidence priority:
+- helper_invariant_mass(light_jets_sorted[0], light_jets_sorted[1])
+
+Generator bias:
+none
+
+---
+
+[KEPT 3] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if not (40 < w_hadronic['mass'] < 120): continue
+
+Reason:
+The code uses the invariant mass of the two leading non-b-tagged jets to compute the hadronic W mass. However, the SPEC does not specify whether the jets used in the W mass calculation should be from the selected jets (pT > 30 GeV, |eta| < 2.5) or from a broader collection. The code uses the selected jets, which is a valid interpretation, but the SPEC is ambiguous on this point.
+
+Evidence priority:
+- helper_invariant_mass(light_jets_sorted[0], light_jets_sorted[1])
+
+Generator bias:
+none
+
+---
+
+[KEPT 4] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV.
+
+CODE:
+- if not (100 < top_hadronic['mass'] < 250): continue
+
+Reason:
+The code uses the invariant mass of the leading b-tagged jet and the hadronic W candidate to compute the hadronic top mass. However, the SPEC does not specify whether the b-jet used in the top mass calculation should be from the selected b-jets (pT > 30 GeV, |eta| < 2.5) or from a broader collection. The code uses the selected b-jets, which is a valid interpretation, but the SPEC is ambiguous on this point.
+
+Evidence priority:
+- helper_invariant_mass(bjets_sorted[0], w_hadronic)
+
+Generator bias:
+none
+
+---
+
+[KEPT 5] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- scalar_pt_sum(jets)
+
+Reason:
+The code computes the HT as the scalar sum of the pT of the selected jets (pT > 30 GeV, |eta| < 2.5). However, the SPEC does not specify whether the HT should be computed from the selected jets or from all jets in the event. The code uses the selected jets, which is a valid interpretation, but the SPEC is ambiguous on this point.
+
+Evidence priority:
+- scalar_pt_sum(jets)
+
+Generator bias:
+none
+
+---
+
+[KEPT 6] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- len(jets)
+
+Reason:
+The code computes the number of jets as the number of selected jets (pT > 30 GeV, |eta| < 2.5). However, the SPEC does not specify whether the jet count should be based on the selected jets or on all jets in the event. The code uses the selected jets, which is a valid interpretation, but the SPEC is ambiguous on this point.
+
+Evidence priority:
+- len(jets)
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

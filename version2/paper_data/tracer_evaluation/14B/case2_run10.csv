@@ -1,0 +1,25 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+2,10,requirement,R1,Select electrons with pT > 25 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly identifies the electron filter at lines 289-293 and its input collection.
+2,10,requirement,R2,Select muons with pT > 25 GeV and |eta| < 2.4,yes,yes,yes,no,Correctly identifies the muon filter at lines 290 and 294.
+2,10,requirement,R3,"Require exactly one lepton, electron or muon",yes,yes,yes,no,Correctly traces selected_electrons and selected_muons into selected_leptons and the length check at lines 295-297.
+2,10,requirement,R4,Require at least 4 jets with pT > 30 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly identifies selected_jets and the multiplicity check at lines 302-305.
+2,10,requirement,R5,Require at least 2 b-tagged jets,yes,yes,yes,no,Correctly traces bjets through the pT/eta-filtered selected_bjets and the count check at lines 309-313.
+2,10,requirement,R6,Select MET > 20 GeV,yes,yes,yes,no,Correctly identifies helper_get_met and the MET threshold check at lines 315-319.
+2,10,requirement,R7,Select transverse mass of the lepton and MET between 30 and 150 GeV,yes,yes,yes,no,"Correctly traces helper_transverse_mass(lepton, met) and the range check at lines 321-326."
+2,10,requirement,R8,Build the hadronic W candidate from the two leading non-b-tagged jets,yes,yes,yes,no,"Correctly traces non-b-tagged jets, pT/eta filtering, leading/subleading selection, and sum_objects at lines 331-340."
+2,10,requirement,R9,Select the hadronic W mass between 40 and 120 GeV,yes,yes,no,yes,"The mass range source at lines 341-345 is correct, but the tracer claims an upstream helper_invariant_mass dependency; the code directly reads w_hadronic['mass'] and does not call helper_invariant_mass there."
+2,10,requirement,R10,Build the hadronic top candidate from the leading b-jet and hadronic W candidate,yes,yes,yes,no,Correctly traces leading_bjet and w_hadronic into sum_objects at lines 349-352.
+2,10,requirement,R11,Apply the cuts sequentially and skip the event immediately when a cut is not satisfied,partial,yes,yes,no,"The listed cut sources follow the implemented order, and the code uses continue statements at each selection step, but the tracer does not explicitly document the sequential early-skip control flow."
+2,10,requirement,R12,Plot the transverse mass of lepton plus MET as a histogram,no,na,na,no,The tracer defines mt but does not trace its histogram construction at lines 380-386.
+2,10,requirement,R13,Plot the MET distribution as a histogram,no,na,na,no,The tracer defines met but does not trace the MET histogram at lines 388-393.
+2,10,requirement,R14,Plot the pT of the leading b-jet as a histogram,no,na,na,no,The tracer defines leading_bjet_pt but omits the histogram at lines 395-400.
+2,10,requirement,R15,Plot the pT of the subleading b-jet as a histogram,no,na,na,no,The tracer defines subleading_bjet_pt but omits the histogram at lines 402-407.
+2,10,requirement,R16,Plot the invariant mass of the two leading non-b-tagged jets in the range 40 to 120 GeV,no,na,na,no,The tracer defines w_hadronic_mass but omits the histogram source at lines 409-414 and does not trace any plotting-range argument.
+2,10,requirement,R17,Plot the invariant mass of leading b-jet plus hadronic W in the range 100 to 250 GeV,no,na,na,no,The tracer defines top_mass but omits the histogram source at lines 415-420 and does not trace any plotting-range argument.
+2,10,requirement,R18,Plot delta R between the leading lepton and closest b-jet,no,na,na,no,The tracer defines dr_lepton_bjet but does not trace the histogram at lines 423-427.
+2,10,requirement,R19,Plot the HT distribution,no,na,na,no,The tracer defines ht but omits the histogram construction at lines 429-434.
+2,10,requirement,R20,Plot the number of jets per event,no,na,na,no,The tracer defines njet_list but omits the histogram at lines 437-442.
+2,10,requirement,R21,Plot eta of the leading b-jet,no,na,na,no,The tracer defines leading_bjet_eta but omits the histogram at lines 444-449.
+2,10,requirement,R22,"Use the specified simple validation histogram format with 40 density-normalized bins, labels, save, and close",no,na,na,no,"No plotting-format or histogram source claims are made in the tracer output, despite the implementations at lines 381-449."
+2,10,requirement,R23,"After the event loop, print one cutflow summary with the number of events after each selection step",no,na,na,no,"The tracer does not trace the cutflow initialization, updates, or print loop at lines 262-273 and 375-378."
+2,10,requirement,R24,Save the plots in PNG format,no,na,na,no,"The tracer omits the PNG save operations at lines 385, 392, 399, 406, 413, 420, 427, 434, 441, and 448."

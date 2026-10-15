@@ -1,0 +1,7 @@
+{
+  "card": "/Users/nojiri/resubmission/test_runs/examples/cases/user_input_6.txt",
+  "code": "/Users/nojiri/resubmission/test_runs/frozen_timing/run_09/case2/execution/generated_analysis.py",
+  "tracer_model": "Qwen/Qwen3-32B",
+  "critique_model": "Qwen/Qwen3-32B",
+  "n_runs": 1
+}

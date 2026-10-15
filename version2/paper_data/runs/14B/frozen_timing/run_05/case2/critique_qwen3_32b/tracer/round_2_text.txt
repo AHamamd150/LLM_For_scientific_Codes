@@ -1,0 +1,7 @@
+
+
+* leading_bjet_eta
+  - computed/defined as: leading_bjet['eta']
+  - upstream chain: helper_get_leading(selected_bjets) -> leading_bjet
+  - collection definition: N/A
+  - structure: single-constituent

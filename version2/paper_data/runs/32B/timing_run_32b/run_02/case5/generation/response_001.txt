@@ -1,0 +1,385 @@
+```python
+#!/usr/bin/env python3
+import sys
+import math
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+def get_particle_mass(obj):
+    """Return appropriate mass based on particle type."""
+    if 'type' not in obj:
+        return obj.get('mass', obj.get('jmass', 0.0))
+
+    ptype = obj['type']
+    if ptype == 0:    # photon
+        return 0.0
+    elif ptype == 1:  # electron
+        return 0.0
+    elif ptype == 2:  # muon
+        return 0.0
+    elif ptype == 3:  # tau
+        return 1.777
+    elif ptype == 4:  # jet
+        return obj['jmass']
+    else:
+        return obj.get('mass', 0.0)
+
+
+def four_momentum(obj):
+    """Return (E, px, py, pz) from an object dict."""
+    pt  = obj['pt']
+    eta = obj['eta']
+    phi = obj['phi']
+    m   = get_particle_mass(obj)
+
+    px = pt * math.cos(phi)
+    py = pt * math.sin(phi)
+    pz = pt * math.sinh(eta)
+    E  = math.sqrt(px**2 + py**2 + pz**2 + m**2)
+    return E, px, py, pz
+
+
+def obj_from_four_momentum(E, px, py, pz):
+    """
+    Reconstruct a composite object dict from four-momentum (E, px, py, pz).
+    Returns a dict with pt, eta, phi, and mass.
+    """
+    pt = math.sqrt(px**2 + py**2)
+    phi = math.atan2(py, px)
+
+    if pt > 0.0:
+        eta = math.asinh(pz / pt)
+    elif pz != 0.0:
+        eta = math.copysign(float("inf"), pz)
+    else:
+        eta = 0.0
+
+    p2 = px**2 + py**2 + pz**2
+    m2 = E**2 - p2
+    mass = math.sqrt(m2) if m2 > 0.0 else 0.0
+
+    return {
+        "pt": pt,
+        "eta": eta,
+        "phi": phi,
+        "mass": mass
+    }
+
+
+def sum_objects(*args):
+    """Return composite object from any combination of particles/lists."""
+    particles = []
+    for arg in args:
+        if arg is None:
+            continue
+        if isinstance(arg, dict):
+            particles.append(arg)
+        elif isinstance(arg, list):
+            particles.extend(p for p in arg if p is not None)
+
+    if not particles:
+        return None
+
+    E_tot, px_tot, py_tot, pz_tot = 0.0, 0.0, 0.0, 0.0
+    for p in particles:
+        E, px, py, pz = four_momentum(p)
+        E_tot += E
+        px_tot += px
+        py_tot += py
+        pz_tot += pz
+
+    return obj_from_four_momentum(E_tot, px_tot, py_tot, pz_tot)
+
+
+def helper_invariant_mass(*args):
+    """Return invariant mass from any combination of particles/lists."""
+    obj = sum_objects(*args)
+    return obj['mass'] if obj is not None else 0.0
+
+
+def helper_delta_phi(phi1, phi2):
+    """Compute Δφ normalized to [-π, π]."""
+    dphi = phi1 - phi2
+    while dphi > math.pi:
+        dphi -= 2 * math.pi
+    while dphi < -math.pi:
+        dphi += 2 * math.pi
+    return dphi
+
+
+def helper_delta_r(obj1, obj2):
+    """Compute ΔR between two objects."""
+    deta = obj1['eta'] - obj2['eta']
+    dphi = helper_delta_phi(obj1['phi'], obj2['phi'])
+    return math.sqrt(deta**2 + dphi**2)
+
+
+def abs_delta_eta(obj1, obj2):
+    """Compute |Δη| between two objects."""
+    return abs(obj1['eta'] - obj2['eta'])
+
+
+def get_taus(event):
+    """Return all taus."""
+    return [o for o in event['objects'] if o['type'] == 3]
+
+
+def get_jets(event):
+    """Return all jets."""
+    return [o for o in event['objects'] if o['type'] == 4]
+
+
+def get_bjets(event):
+    """Return all b-tagged jets."""
+    return [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]
+
+
+def opposite_sign(obj1, obj2):
+    """Check if two objects have opposite charge."""
+    return obj1['charge'] * obj2['charge'] < 0
+
+
+def helper_get_leading(particles):
+    """Return leading (highest pT) particle or None."""
+    if not particles:
+        return None
+    return max(particles, key=lambda p: p['pt'])
+
+
+def helper_get_subleading(particles):
+    """Return subleading (second highest pT) particle or None."""
+    if len(particles) < 2:
+        return None
+    sorted_p = sorted(particles, key=lambda p: p['pt'], reverse=True)
+    return sorted_p[1]
+
+
+def n_bjets(event, pt_cut=0.0, eta_cut=float('inf')):
+    """Count b-jets passing pT and |η| cuts."""
+    bjets = get_bjets(event)
+    return sum(1 for b in bjets if b['pt'] > pt_cut and abs(b['eta']) < eta_cut)
+
+
+def read_lhco(filename):
+    """Parse LHCO file and return list of events."""
+    events = []
+    current = None
+
+    with open(filename) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+
+            parts = line.split()
+            if not parts:
+                continue
+
+            # New event header (index = 0)
+            if parts[0] == '0':
+                if len(parts) < 2:
+                    continue
+                try:
+                    event_id = int(parts[1])
+                except ValueError:
+                    continue
+                if current is not None:
+                    events.append(current)
+                current = {'id': event_id, 'objects': []}
+
+            # Object line
+            elif current is not None:
+                if len(parts) < 7:
+                    continue
+                try:
+                    obj = {
+                        'type':   int(parts[1]),
+                        'eta':    float(parts[2]),
+                        'phi':    float(parts[3]),
+                        'pt':     float(parts[4]),
+                        'jmass':  float(parts[5]),
+                        'ntrk':   float(parts[6]),
+                        'btag':   float(parts[7]) if len(parts) > 7 else 0.0,
+                        'had_em': float(parts[8]) if len(parts) > 8 else 0.0
+                    }
+                except ValueError:
+                    continue
+
+                obj['charge'] = 1 if obj['ntrk'] > 0 else (-1 if obj['ntrk'] < 0 else 0)
+                current['objects'].append(obj)
+
+    if current is not None:
+        events.append(current)
+
+    return events
+
+
+def centrality_between_jets(obj, jet1, jet2):
+    """
+    Compute eta centrality of obj relative to two jets.
+
+    centrality = |eta_obj - eta_center_jj| / |delta_eta_jj|
+    Smaller values mean obj is closer to the midpoint between the two jets.
+    """
+    eta_gap = abs(jet1["eta"] - jet2["eta"])
+    if eta_gap <= 0.0:
+        return 0.0
+
+    eta_center = 0.5 * (jet1["eta"] + jet2["eta"])
+    return abs(obj["eta"] - eta_center) / eta_gap
+
+
+def main():
+    import sys
+    import os
+
+    if len(sys.argv) < 2:
+        print("Usage: {} <lhco_file1> [lhco_file2 ...]".format(sys.argv[0]))
+        sys.exit(1)
+
+    all_events = []
+    for filename in sys.argv[1:]:
+        if not os.path.exists(filename):
+            print(f"File not found: {filename}")
+            continue
+        all_events.extend(read_lhco(filename))
+
+    cutflow = {
+        "initial": len(all_events),
+        "2 taus": 0,
+        "tau pT/eta cuts": 0,
+        "2 jets": 0,
+        "jet pT/eta cuts": 0,
+        "opposite-sign taus": 0,
+        "m_jj > 400 GeV": 0,
+        "delta_eta_jj > 2.5": 0,
+        "m_tautau 60-150 GeV": 0,
+        "no b-jets": 0
+    }
+
+    # Histogram data
+    m_tautau = []
+    m_jj = []
+    delta_eta_jj = []
+    pt_lead_tau = []
+    pt_sublead_tau = []
+    pt_lead_jet = []
+    pt_sublead_jet = []
+    delta_r_tautau = []
+    delta_phi_tautau_dijet = []
+    centrality_tautau_jj = []
+
+    for event in all_events:
+        # Initial cut: at least 2 taus
+        taus = get_taus(event)
+        if len(taus) < 2:
+            continue
+        cutflow["2 taus"] += 1
+
+        # Apply tau pT and |eta| cuts
+        selected_taus = [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]
+        if len(selected_taus) < 2:
+            continue
+        cutflow["tau pT/eta cuts"] += 1
+
+        # Get leading and subleading tau
+        lead_tau = helper_get_leading(selected_taus)
+        sublead_tau = helper_get_subleading(selected_taus)
+        if lead_tau is None or sublead_tau is None:
+            continue
+
+        # Initial cut: at least 2 jets
+        jets = get_jets(event)
+        if len(jets) < 2:
+            continue
+        cutflow["2 jets"] += 1
+
+        # Apply jet pT and |eta| cuts
+        selected_jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]
+        if len(selected_jets) < 2:
+            continue
+        cutflow["jet pT/eta cuts"] += 1
+
+        # Get leading and subleading jet
+        lead_jet = helper_get_leading(selected_jets)
+        sublead_jet = helper_get_subleading(selected_jets)
+        if lead_jet is None or sublead_jet is None:
+            continue
+
+        # Require opposite-sign tau pair
+        if not opposite_sign(lead_tau, sublead_tau):
+            continue
+        cutflow["opposite-sign taus"] += 1
+
+        # Compute dijet invariant mass
+        dijet_obj = sum_objects(lead_jet, sublead_jet)
+        if dijet_obj is None:
+            continue
+        m_jj_val = dijet_obj['mass']
+        if m_jj_val < 400:
+            continue
+        cutflow["m_jj > 400 GeV"] += 1
+
+        # Compute delta eta between leading jets
+        delta_eta_jj_val = abs_delta_eta(lead_jet, sublead_jet)
+        if delta_eta_jj_val < 2.5:
+            continue
+        cutflow["delta_eta_jj > 2.5"] += 1
+
+        # Compute ditau invariant mass
+        ditau_obj = sum_objects(lead_tau, sublead_tau)
+        if ditau_obj is None:
+            continue
+        m_tautau_val = ditau_obj['mass']
+        if not (60 < m_tautau_val < 150):
+            continue
+        cutflow["m_tautau 60-150 GeV"] += 1
+
+        # Veto events with b-tagged jets
+        if n_bjets(event, pt_cut=30, eta_cut=4.7) > 0:
+            continue
+        cutflow["no b-jets"] += 1
+
+        # Fill histograms
+        m_tautau.append(m_tautau_val)
+        m_jj.append(m_jj_val)
+        delta_eta_jj.append(delta_eta_jj_val)
+        pt_lead_tau.append(lead_tau['pt'])
+        pt_sublead_tau.append(sublead_tau['pt'])
+        pt_lead_jet.append(lead_jet['pt'])
+        pt_sublead_jet.append(sublead_jet['pt'])
+        delta_r_tautau.append(helper_delta_r(lead_tau, sublead_tau))
+        delta_phi_tautau_dijet.append(helper_delta_phi(ditau_obj['phi'], dijet_obj['phi']))
+        centrality_tautau_jj.append(centrality_between_jets(ditau_obj, lead_jet, sublead_jet))
+
+    # Save histograms
+    def save_hist(data, bins, title, xlabel, filename):
+        plt.figure()
+        plt.hist(data, bins=bins, density=True)
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel("density")
+        plt.savefig(filename)
+        plt.close()
+
+    save_hist(m_tautau, 40, "Ditau invariant mass", "m_ττ [GeV]", "m_tautau.png")
+    save_hist(m_jj, 40, "Dijet invariant mass", "m_jj [GeV]", "m_jj.png")
+    save_hist(delta_eta_jj, 40, "Delta eta between jets", "|Δη|", "delta_eta_jj.png")
+    save_hist(pt_lead_tau, 40, "Leading tau pT", "pT [GeV]", "pt_lead_tau.png")
+    save_hist(pt_sublead_tau, 40, "Subleading tau pT", "pT [GeV]", "pt_sublead_tau.png")
+    save_hist(pt_lead_jet, 40, "Leading jet pT", "pT [GeV]", "pt_lead_jet.png")
+    save_hist(pt_sublead_jet, 40, "Subleading jet pT", "pT [GeV]", "pt_sublead_jet.png")
+    save_hist(delta_r_tautau, 40, "Delta R between taus", "ΔR", "delta_r_tautau.png")
+    save_hist(delta_phi_tautau_dijet, 40, "Delta phi between ditau and dijet", "Δφ", "delta_phi_tautau_dijet.png")
+    save_hist(centrality_tautau_jj, 40, "Centrality of ditau relative to jets", "Centrality", "centrality_tautau_jj.png")
+
+    # Print cutflow
+    print("Cutflow:")
+    for key, value in cutflow.items():
+        print(f"{key}: {value}")
+
+
+if __name__ == "__main__":
+    main()
+```

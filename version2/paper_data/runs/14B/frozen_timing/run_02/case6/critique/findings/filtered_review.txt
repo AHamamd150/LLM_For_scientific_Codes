@@ -1,0 +1,758 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- hadronic_top = sum_objects(leading_bjet, hadronic_w)
+
+Reason:
+The hadronic top candidate is built from the leading b-jet and the hadronic W candidate, which is correct. The code uses the required constituents (leading b-jet and hadronic W) to construct the hadronic top candidate.
+
+Evidence priority:
+- The hadronic top candidate is constructed from the leading b-jet and the hadronic W candidate, as defined in the code.
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- hadronic_w = sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+The hadronic W candidate is built from the two leading non-b-tagged jets, which is correct. The code uses the required constituents (leading and subleading non-b-tagged jets) to construct the hadronic W candidate.
+
+Evidence priority:
+- The hadronic W candidate is constructed from the two leading non-b-tagged jets, as defined in the code.
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code selects muons with |eta| < 2.5 instead of the required |eta| < 2.4.
+
+Evidence priority:
+- The code uses abs(l['eta']) < 2.5 for muon selection, which is a mismatch with the SPEC.
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+
+CODE:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code correctly selects electrons with pT > 25 GeV and |eta| < 2.5.
+
+Evidence priority:
+- The code uses the correct selection criteria for electrons.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+
+CODE:
+- closest_bjet = None, for b in selected_bjets: dr = helper_delta_r(lep, b), if dr < min_dr: min_dr = dr, closest_bjet = b
+
+Reason:
+The code uses the selected_bjets collection to find the closest b-jet to the selected lepton. The SPEC does not specify whether the selected_bjets collection should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the selected_bjets collection to find the closest b-jet to the selected lepton.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The code uses the light_jets collection to select non-b-tagged jets. The SPEC does not specify whether the selected_light_jets collection should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the light_jets collection to select non-b-tagged jets.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Among these selected jets, require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- selected_jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The code uses the jets collection to select jets. The SPEC does not specify whether the selected_jets collection should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the jets collection to select jets.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- selected_jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The code uses the jets collection to select jets. The SPEC does not specify whether the selected_jets collection should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the jets collection to select jets.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+
+CODE:
+- selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The code uses the bjets collection to select b-tagged jets. The SPEC does not specify whether the selected_bjets collection should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the bjets collection to select b-tagged jets.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Require at least 2 b-tagged jets.
+
+CODE:
+- selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The code uses the bjets collection to select b-tagged jets. The SPEC does not specify whether the selected_bjets collection should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the bjets collection to select b-tagged jets.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select exactly one lepton (electron or muon)
+
+CODE:
+- selected_leptons = [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code uses the leptons collection to select leptons. The SPEC does not specify whether the selected_leptons collection should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the leptons collection to select leptons.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- met = helper_get_met(event)
+
+Reason:
+The code uses the helper_get_met function to select MET. The SPEC does not specify whether the helper_get_met function should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the helper_get_met function to select MET.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- mt = helper_transverse_mass(lep, met)
+
+Reason:
+The code uses the helper_transverse_mass function to compute the transverse mass. The SPEC does not specify whether the helper_transverse_mass function should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the helper_transverse_mass function to compute the transverse mass.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV
+
+CODE:
+- hadronic_w_mass = hadronic_w['mass'] if hadronic_w else 0.0
+
+Reason:
+The code uses the hadronic_w object to compute the hadronic W mass. The SPEC does not specify whether the hadronic_w object should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the hadronic_w object to compute the hadronic W mass.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV
+
+CODE:
+- hadronic_top_mass = hadronic_top['mass'] if hadronic_top else 0.0
+
+Reason:
+The code uses the hadronic_top object to compute the hadronic top mass. The SPEC does not specify whether the hadronic_top object should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the hadronic_top object to compute the hadronic top mass.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- leading_bjet_pt_list.append(leading_bjet['pt'])
+
+Reason:
+The code uses the leading_bjet object to compute the pT of the leading b-jet. The SPEC does not specify whether the leading_bjet object should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the leading_bjet object to compute the pT of the leading b-jet.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- subleading_bjet_pt_list.append(subleading_bjet['pt'])
+
+Reason:
+The code uses the subleading_bjet object to compute the pT of the subleading b-jet. The SPEC does not specify whether the subleading_bjet object should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the subleading_bjet object to compute the pT of the subleading b-jet.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV
+
+CODE:
+- hadronic_w_mass_list.append(hadronic_w_mass)
+
+Reason:
+The code uses the hadronic_w_mass object to compute the invariant mass of the W hadronic candidate. The SPEC does not specify whether the hadronic_w_mass object should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the hadronic_w_mass object to compute the invariant mass of the W hadronic candidate.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV
+
+CODE:
+- hadronic_top_mass_list.append(hadronic_top_mass)
+
+Reason:
+The code uses the hadronic_top_mass object to compute the invariant mass of the hadronic top candidate. The SPEC does not specify whether the hadronic_top_mass object should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the hadronic_top_mass object to compute the invariant mass of the hadronic top candidate.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot delta R between the leading lepton and the closest selected b-jet
+
+CODE:
+- dr_lep_bjet_list.append(min_dr)
+
+Reason:
+The code uses the min_dr object to compute the delta R between the leading lepton and the closest selected b-jet. The SPEC does not specify whether the min_dr object should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the min_dr object to compute the delta R between the leading lepton and the closest selected b-jet.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- ht_list.append(scalar_pt_sum(selected_jets))
+
+Reason:
+The code uses the scalar_pt_sum function to compute the HT distribution. The SPEC does not specify whether the scalar_pt_sum function should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the scalar_pt_sum function to compute the HT distribution.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- njet_list.append(len(selected_jets))
+
+Reason:
+The code uses the selected_jets collection to compute the number of jets per event. The SPEC does not specify whether the selected_jets collection should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the selected_jets collection to compute the number of jets per event.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot eta of the leading b-jet
+
+CODE:
+- leading_bjet_eta_list.append(leading_bjet['eta'])
+
+Reason:
+The code uses the leading_bjet object to compute the eta of the leading b-jet. The SPEC does not specify whether the leading_bjet object should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the leading_bjet object to compute the eta of the leading b-jet.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step
+
+CODE:
+- cutflow = { ... }, cutflow["Lepton Selection"] += 1, cutflow["Jet Selection"] += 1, cutflow["BJet Selection"] += 1, cutflow["Lepton-BJet DeltaR"] += 1, cutflow["MET Selection"] += 1, cutflow["Transverse Mass"] += 1, cutflow["Hadronic W Selection"] += 1, cutflow["Hadronic W Mass"] += 1, cutflow["Hadronic Top Selection"] += 1, cutflow["Hadronic Top Mass"] += 1
+
+Reason:
+The code uses the cutflow dictionary to print the cutflow summary. The SPEC does not specify whether the cutflow dictionary should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the cutflow dictionary to print the cutflow summary.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The code uses the plt.savefig function to save the plots in png format. The SPEC does not specify whether the plt.savefig function should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the plt.savefig function to save the plots in png format.
+
+Generator bias:
+none
+
+---
+
+[KEPT 2] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code selects muons with |eta| < 2.5 instead of the required |eta| < 2.4.
+
+Evidence priority:
+- The code uses abs(l['eta']) < 2.5 for muon selection, which is a mismatch with the SPEC.
+
+Generator bias:
+none
+
+[KEPT 3] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+
+CODE:
+- selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The code uses the bjets collection to select b-tagged jets. The SPEC does not specify whether the selected_bjets collection should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the bjets collection to select b-tagged jets.
+
+Generator bias:
+none
+
+[KEPT 4] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Require at least 2 b-tagged jets.
+
+CODE:
+- selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The code uses the bjets collection to select b-tagged jets. The SPEC does not specify whether the selected_bjets collection should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the bjets collection to select b-tagged jets.
+
+Generator bias:
+none
+
+[KEPT 5] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Select exactly one lepton (electron or muon)
+
+CODE:
+- selected_leptons = [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code uses the leptons collection to select leptons. The SPEC does not specify whether the selected_leptons collection should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the leptons collection to select leptons.
+
+Generator bias:
+none
+
+[KEPT 6] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- met = helper_get_met(event)
+
+Reason:
+The code uses the helper_get_met function to select MET. The SPEC does not specify whether the helper_get_met function should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the helper_get_met function to select MET.
+
+Generator bias:
+none
+
+[KEPT 7] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- mt = helper_transverse_mass(lep, met)
+
+Reason:
+The code uses the helper_transverse_mass function to compute the transverse mass. The SPEC does not specify whether the helper_transverse_mass function should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the helper_transverse_mass function to compute the transverse mass.
+
+Generator bias:
+none
+
+[KEPT 8] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV
+
+CODE:
+- hadronic_w_mass = hadronic_w['mass'] if hadronic_w else 0.0
+
+Reason:
+The code uses the hadronic_w object to compute the hadronic W mass. The SPEC does not specify whether the hadronic_w object should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the hadronic_w object to compute the hadronic W mass.
+
+Generator bias:
+none
+
+[KEPT 9] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV
+
+CODE:
+- hadronic_top_mass = hadronic_top['mass'] if hadronic_top else 0.0
+
+Reason:
+The code uses the hadronic_top object to compute the hadronic top mass. The SPEC does not specify whether the hadronic_top object should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the hadronic_top object to compute the hadronic top mass.
+
+Generator bias:
+none
+
+[KEPT 10] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- leading_bjet_pt_list.append(leading_bjet['pt'])
+
+Reason:
+The code uses the leading_bjet object to compute the pT of the leading b-jet. The SPEC does not specify whether the leading_bjet object should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the leading_bjet object to compute the pT of the leading b-jet.
+
+Generator bias:
+none
+
+[KEPT 11] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- subleading_bjet_pt_list.append(subleading_bjet['pt'])
+
+Reason:
+The code uses the subleading_bjet object to compute the pT of the subleading b-jet. The SPEC does not specify whether the subleading_bjet object should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the subleading_bjet object to compute the pT of the subleading b-jet.
+
+Generator bias:
+none
+
+[KEPT 12] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV
+
+CODE:
+- hadronic_w_mass_list.append(hadronic_w_mass)
+
+Reason:
+The code uses the hadronic_w_mass object to compute the invariant mass of the W hadronic candidate. The SPEC does not specify whether the hadronic_w_mass object should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the hadronic_w_mass object to compute the invariant mass of the W hadronic candidate.
+
+Generator bias:
+none
+
+[KEPT 13] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV
+
+CODE:
+- hadronic_top_mass_list.append(hadronic_top_mass)
+
+Reason:
+The code uses the hadronic_top_mass object to compute the invariant mass of the hadronic top candidate. The SPEC does not specify whether the hadronic_top_mass object should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the hadronic_top_mass object to compute the invariant mass of the hadronic top candidate.
+
+Generator bias:
+none
+
+[KEPT 14] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot delta R between the leading lepton and the closest selected b-jet
+
+CODE:
+- dr_lep_bjet_list.append(min_dr)
+
+Reason:
+The code uses the min_dr object to compute the delta R between the leading lepton and the closest selected b-jet. The SPEC does not specify whether the min_dr object should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the min_dr object to compute the delta R between the leading lepton and the closest selected b-jet.
+
+Generator bias:
+none
+
+[KEPT 15] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- ht_list.append(scalar_pt_sum(selected_jets))
+
+Reason:
+The code uses the scalar_pt_sum function to compute the HT distribution. The SPEC does not specify whether the scalar_pt_sum function should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the scalar_pt_sum function to compute the HT distribution.
+
+Generator bias:
+none
+
+[KEPT 16] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- njet_list.append(len(selected_jets))
+
+Reason:
+The code uses the selected_jets collection to compute the number of jets per event. The SPEC does not specify whether the selected_jets collection should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the selected_jets collection to compute the number of jets per event.
+
+Generator bias:
+none
+
+[KEPT 17] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot eta of the leading b-jet
+
+CODE:
+- leading_bjet_eta_list.append(leading_bjet['eta'])
+
+Reason:
+The code uses the leading_bjet object to compute the eta of the leading b-jet. The SPEC does not specify whether the leading_bjet object should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the leading_bjet object to compute the eta of the leading b-jet.
+
+Generator bias:
+none
+
+[KEPT 18] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step
+
+CODE:
+- cutflow = { ... }, cutflow["Lepton Selection"] += 1, cutflow["Jet Selection"] += 1, cutflow["BJet Selection"] += 1, cutflow["Lepton-BJet DeltaR"] += 1, cutflow["MET Selection"] += 1, cutflow["Transverse Mass"] += 1, cutflow["Hadronic W Selection"] += 1, cutflow["Hadronic W Mass"] += 1, cutflow["Hadronic Top Selection"] += 1, cutflow["Hadronic Top Mass"] += 1
+
+Reason:
+The code uses the cutflow dictionary to print the cutflow summary. The SPEC does not specify whether the cutflow dictionary should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the cutflow dictionary to print the cutflow summary.
+
+Generator bias:
+none
+
+[KEPT 19] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The code uses the plt.savefig function to save the plots in png format. The SPEC does not specify whether the plt.savefig function should be used or if a broader collection should be considered.
+
+Evidence priority:
+- The code uses the plt.savefig function to save the plots in png format.
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

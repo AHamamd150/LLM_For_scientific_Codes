@@ -1,0 +1,61 @@
+
+
+* ht
+  - computed/defined as: scalar_pt_sum(selected_jets)
+  - upstream chain: selected_jets -> ht
+  - collection definition: None
+  - structure: single-constituent
+
+* njet_list
+  - computed/defined as: len(selected_jets)
+  - upstream chain: selected_jets -> njet_list
+  - collection definition: None
+  - structure: single-constituent
+
+* leading_bjet_pt_list
+  - computed/defined as: leading_bjet['pt']
+  - upstream chain: leading_bjet -> leading_bjet_pt_list
+  - collection definition: None
+  - structure: single-constituent
+
+* subleading_bjet_pt_list
+  - computed/defined as: subleading_bjet['pt']
+  - upstream chain: subleading_bjet -> subleading_bjet_pt_list
+  - collection definition: None
+  - structure: single-constituent
+
+* leading_bjet_eta_list
+  - computed/defined as: leading_bjet['eta']
+  - upstream chain: leading_bjet -> leading_bjet_eta_list
+  - collection definition: None
+  - structure: single-constituent
+
+* dr_lep_bjet_list
+  - computed/defined as: min_dr
+  - upstream chain: lep, closest_bjet -> min_dr -> dr_lep_bjet_list
+  - collection definition: None
+  - structure: single-constituent
+
+* met_list
+  - computed/defined as: met['pt']
+  - upstream chain: met -> met_list
+  - collection definition: None
+  - structure: single-constituent
+
+* mt_list
+  - computed/defined as: mt
+  - upstream chain: mt -> mt_list
+  - collection definition: None
+  - structure: single-constituent
+
+* hadronic_w_mass_list
+  - computed/defined as: hadronic_w_mass
+  - upstream chain: hadronic_w_mass -> hadronic_w_mass_list
+  - collection definition: None
+  - structure: single-constituent
+
+* hadronic_top_mass_list
+  - computed/defined as: hadronic_top_mass
+  - upstream chain: hadronic_top_mass -> hadronic_top_mass_list
+  - collection definition: None
+  - structure: single-constituent

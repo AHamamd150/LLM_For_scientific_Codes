@@ -1,0 +1,23 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+2,1,requirement,R1,Select electrons with pT > 25 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly identifies the electron selection at L293 and the electron collection definition at L176-L178.
+2,1,requirement,R2,Select muons with pT > 25 GeV and |eta| < 2.4,yes,yes,yes,no,Correctly identifies the muon selection at L294 and get_muons at L181-L183.
+2,1,requirement,R3,"Require exactly one lepton, electron or muon",yes,yes,yes,no,Correctly traces leptons = electrons + muons and the exact-one check at L295-L299.
+2,1,requirement,R4,Require at least 4 jets with pT > 30 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly traces the filtered jet collection and len(jets) < 4 rejection at L304-L307.
+2,1,requirement,R5,Require at least 2 b-tagged jets,yes,yes,yes,no,Correctly traces b-tagged jet definition and the at-least-two requirement at L310-L313.
+2,1,requirement,R6,Select MET > 20 GeV,yes,yes,yes,no,Correctly identifies helper_get_met and the MET threshold check at L316-L319.
+2,1,requirement,R7,Select transverse mass of the lepton and MET between 30 and 150 GeV,yes,yes,yes,no,Correctly traces helper_transverse_mass at L322 and the 30 < mt < 150 check at L323-L325.
+2,1,requirement,R8,Build the hadronic W candidate from the two leading non-b-tagged jets,yes,yes,yes,no,"Correctly traces non-b-tagged jet construction, pT sorting, and summation at L330-L334."
+2,1,requirement,R9,Select the hadronic W mass between 40 and 120 GeV,yes,yes,yes,no,Correctly identifies the W mass check at L335-L338 and its composite dependency at L334.
+2,1,requirement,R10,Build the hadronic top candidate from the leading b-jet and the hadronic W candidate,yes,yes,yes,no,Correctly traces b-jet sorting and top construction at L341-L344.
+2,1,requirement,R11,Plot the transverse mass of lepton plus MET,yes,yes,yes,no,Correctly traces mt accumulation at L326 and histogram creation at L365-L370.
+2,1,requirement,R12,Plot the MET distribution,yes,yes,yes,no,Correctly traces met['pt'] accumulation at L327 and histogram creation at L372-L377.
+2,1,requirement,R13,Plot the pT of the leading b-jet,yes,yes,yes,no,Correctly traces the leading b-jet and its pT histogram at L351-L353 and L379-L384.
+2,1,requirement,R14,Plot the pT of the subleading b-jet,yes,yes,yes,no,Correctly traces bjets_sorted[1] at L355-L357 and the histogram at L386-L391.
+2,1,requirement,R15,Plot the invariant mass of the two leading non-b-tagged jets in the 40 to 120 GeV range,yes,yes,yes,no,Correctly traces W mass accumulation and histogram at L334-L338 and L393-L398; the range is imposed by the preceding selection.
+2,1,requirement,R16,Plot the invariant mass of the leading b-jet plus hadronic W candidate in the 100 to 250 GeV range,yes,yes,yes,no,"Correctly traces top mass construction, selection, accumulation, and histogram at L344-L348 and L400-L405."
+2,1,requirement,R17,Plot delta R between the leading lepton and the closest b-jet,partial,no,no,yes,"The tracer correctly locates the delta-R histogram and helper call at L407-L411 and L359, but the code uses only leading_bjet, not the closest b-jet; no closest-b-jet minimization is traced."
+2,1,requirement,R18,Plot the HT distribution as the scalar sum of all jet pT,yes,yes,yes,no,Correctly traces scalar_pt_sum(jets) at L361 and the histogram at L414-L419.
+2,1,requirement,R19,Plot the number of jets per event,yes,yes,yes,no,Correctly traces len(jets) at L362 and the histogram at L421-L426.
+2,1,requirement,R20,Plot eta of the leading b-jet,yes,yes,yes,no,Correctly traces leading_bjet['eta'] at L353 and the histogram at L428-L433.
+2,1,requirement,R21,"After the event loop, print one cutflow summary with the number of events after each selection step",yes,yes,yes,no,Correctly identifies the post-loop cutflow printing at L435-L444 and the counters updated at the selection stages.
+2,1,requirement,R22,Save the plots in PNG format,yes,yes,na,no,Correctly identifies .png filenames passed to plt.savefig throughout L369-L433.

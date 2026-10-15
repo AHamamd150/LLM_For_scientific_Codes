@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading and subleading object definitions
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading and subleading taus are defined before or after applying the "opposite-sign tau pair" requirement. This affects which taus are considered for the ditau system and the invariant mass selection.
+
+Question to user:
+Are the leading and subleading taus defined before or after applying the opposite-sign requirement?
+
+Golden axe:
+Leading and subleading taus are defined after applying the opposite-sign requirement.
+
+Silver axe:
+Leading and subleading taus are defined before applying the opposite-sign requirement.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Jet veto scope
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Why this is dangerous:
+The phrase does not clarify whether the veto applies to all jets in the event or only to the selected jets used in the dijet system. This affects which jets are considered for the VBF topology and the dijet invariant mass selection.
+
+Question to user:
+Does the b-tagged jet veto apply to all jets in the event or only to the selected jets used in the dijet system?
+
+Golden axe:
+The veto applies to all jets in the event.
+
+Silver axe:
+The veto applies only to the selected jets used in the dijet system.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Centrality definition
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Why this is dangerous:
+The phrase does not clarify whether the centrality is computed using the eta of the ditau system or the eta of the individual taus. This affects the interpretation of the centrality in the context of the VBF topology.
+
+Question to user:
+Is the centrality computed using the eta of the ditau system or the eta of the individual taus?
+
+Golden axe:
+The centrality is computed using the eta of the ditau system.
+
+Silver axe:
+The centrality is computed using the eta of the individual taus.
+
+Recommended default:
+Golden axe

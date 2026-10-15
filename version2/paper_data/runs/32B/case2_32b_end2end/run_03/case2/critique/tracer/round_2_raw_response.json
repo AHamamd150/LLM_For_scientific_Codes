@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\nbjets_sorted[1] -> subleading_bjet['pt']\n  - collection definition: subleading_bjet\n  - structure: single-constituent\n\n* leading_bjet_eta\n  - computed/defined as: leading_bjet['eta']\n  - upstream chain: leading_bjet = bjets_sorted[0] -> leading_bjet['eta']\n  - collection definition: leading_bjet\n  - structure: single-constituent\n\n* met_values\n  - computed/defined as: met['pt']\n  - upstream chain: helper_get_met(event) -> met['pt']\n  - collection definition: met\n  - structure: single-constituent\n\n* cutflow\n  - computed/defined as: dictionary with counters for each selection step\n  - upstream chain: cutflow dictionary -> print statements\n  - collection definition: cutflow dictionary\n  - structure: multi-input",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788840539,
+  "id": "chatcmpl-c6548bdb-f747-4b49-9f32-2f98c0ebb78f",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 192,
+    "prompt_tokens": 11487,
+    "prompt_tokens_details": null,
+    "total_tokens": 11679
+  }
+}

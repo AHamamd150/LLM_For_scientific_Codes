@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] Definition of "selected b-tagged jets" for delta R computation
+
+Original phrase:
+"Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R."
+
+Why this matters:
+This phrase is ambiguous about whether "selected b-tagged jets" refers to the jets that passed the earlier cuts (pT > 30 GeV, |eta| < 2.5, and b-tagged) or to a further subset of jets that may have been modified by later cuts (e.g., after the hadronic W candidate is built). This affects which jets are considered in the delta R calculation.
+
+Question to user:
+Are the "selected b-tagged jets" for the delta R computation the ones that passed the initial jet and b-tagging cuts, or a subset that may have been further filtered in later steps?
+
+Golden axe:
+Use the b-tagged jets that passed the initial jet and b-tagging cuts.
+
+Silver axe:
+Use only the b-tagged jets that remain after all prior cuts, including the hadronic W candidate selection.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Definition of "leading" and "subleading" b-jets
+
+Original phrase:
+"Plot the pT of the leading b-jet" and "Plot the pT of the subleading b-jet"
+
+Why this matters:
+The phrase does not clarify whether the leading and subleading b-jets are defined based on the full jet collection, the selected jets, or the selected b-tagged jets. This affects which jets are considered and how they are ordered.
+
+Question to user:
+Are the leading and subleading b-jets determined from the full jet collection, the selected jets, or only the selected b-tagged jets?
+
+Golden axe:
+Leading and subleading b-jets are defined from the selected b-tagged jets.
+
+Silver axe:
+Leading and subleading b-jets are defined from the full jet collection, with b-tagging applied after ordering.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Definition of "selected non-b-tagged jets" for the hadronic W candidate
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Why this matters:
+It is unclear whether "selected non-b-tagged jets" refers to jets that passed the initial jet cuts (pT > 30 GeV, |eta| < 2.5) and are not b-tagged, or whether it refers to a subset that may have been further filtered by later cuts (e.g., after the b-jet delta R requirement). This affects which jets are used to build the hadronic W candidate.
+
+Question to user:
+Are the "selected non-b-tagged jets" for the hadronic W candidate the ones that passed the initial jet cuts and are not b-tagged, or a subset that may have been further filtered in later steps?
+
+Golden axe:
+Use the non-b-tagged jets that passed the initial jet cuts.
+
+Silver axe:
+Use non-b-tagged jets that remain after all prior cuts, including the b-jet delta R requirement.
+
+Recommended default:
+Golden axe

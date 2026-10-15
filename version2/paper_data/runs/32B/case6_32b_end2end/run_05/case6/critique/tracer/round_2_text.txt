@@ -1,0 +1,48 @@
+
+
+: bjets_sorted[0]['pt']
+  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)
+  - collection definition: bjets (filtered by b['pt'] > 30 and abs(b['eta']) < 2.5)
+  - structure: single-constituent
+
+* Subleading b-jet pT
+  - computed/defined as: bjet2_pt
+  - upstream chain: bjets_sorted[1]['pt']
+  - collection definition: bjets (filtered by b['pt'] > 30 and abs(b['eta']) < 2.5)
+  - structure: single-constituent
+
+* Hadronic W mass values
+  - computed/defined as: w_hadronic_mass
+  - upstream chain: sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+  - collection definition: light_jets_sorted (sorted by pt)
+  - structure: composite-derived
+
+* Hadronic top mass values
+  - computed/defined as: top_hadronic_mass
+  - upstream chain: sum_objects(bjets_sorted[0], w_hadronic)
+  - collection definition: bjets_sorted (sorted by pt), w_hadronic (from hadronic W candidate)
+  - structure: composite-derived
+
+* Delta R between lepton and closest b-jet
+  - computed/defined as: dr_lepton_bjet
+  - upstream chain: helper_delta_r(lepton, closest_bjet)
+  - collection definition: lepton (from selected leptons), closest_bjet (from bjets)
+  - structure: multi-input
+
+* HT values
+  - computed/defined as: ht_values
+  - upstream chain: scalar_pt_sum(jets)
+  - collection definition: jets (filtered by j['pt'] > 30 and abs(j['eta']) < 2.5)
+  - structure: single-constituent
+
+* Number of jets per event
+  - computed/defined as: njets_values
+  - upstream chain: len(jets)
+  - collection definition: jets (filtered by j['pt'] > 30 and abs(j['eta']) < 2.5)
+  - structure: single-constituent
+
+* Leading b-jet eta
+  - computed/defined as: bjet1_eta
+  - upstream chain: bjets_sorted[0]['eta']
+  - collection definition: bjets (filtered by b['pt'] > 30 and abs(b['eta']) < 2.5)
+  - structure: single-constituent

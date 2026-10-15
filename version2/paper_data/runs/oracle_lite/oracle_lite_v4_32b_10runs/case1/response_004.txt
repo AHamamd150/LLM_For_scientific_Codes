@@ -1,0 +1,87 @@
+[CANDIDATE 1] Lepton definition and selection
+
+Original phrase:
+"Use selected electrons and selected muons to define selected leptons."
+
+Unresolved choice:
+Does "selected leptons" refer to the combined collection of selected electrons and muons, or is it a new object type that requires additional processing or filtering?
+
+Why this may matter:
+If "selected leptons" is treated as a new object type, it may require a specific helper to combine or define it. If it's simply the union of selected electrons and muons, the helper usage will differ.
+
+[CANDIDATE 2] Jet selection for dijet invariant mass
+
+Original phrase:
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+
+Unresolved choice:
+Are the "two leading jets" selected from all jets in the event, or only from the jets that passed the "at least 2 jets with pT > 30 GeV and |eta| < 2.5" cut?
+
+Why this may matter:
+If the jets are selected after the pT and eta cuts, the invariant mass will be computed from a filtered jet collection. If they are selected from the full jet collection, the result may differ.
+
+[CANDIDATE 3] Jet veto for b-tagged jets
+
+Original phrase:
+"Veto events with b-tagged jets"
+
+Unresolved choice:
+Does this veto apply to all jets in the event, or only to the jets that passed the "at least 2 jets with pT > 30 GeV and |eta| < 2.5" cut?
+
+Why this may matter:
+If the veto applies to all jets, it may reject events with a b-tagged jet even if it's not among the selected jets. If it applies only to selected jets, the veto is more targeted.
+
+[CANDIDATE 4] Delta R between leading jets
+
+Original phrase:
+"Select delta R between the two leading jets < 3.0"
+
+Unresolved choice:
+Are the "two leading jets" defined before or after the "at least 2 jets with pT > 30 GeV and |eta| < 2.5" cut?
+
+Why this may matter:
+If the jets are defined before the cut, the delta R is computed from the full jet collection. If they are defined after the cut, the delta R is computed from the selected jets.
+
+[CANDIDATE 5] Delta phi between lepton and two-jet system
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+
+Unresolved choice:
+Is the "two-jet system" defined as the two leading jets in the full event, or only among the jets that passed the "at least 2 jets with pT > 30 GeV and |eta| < 2.5" cut?
+
+Why this may matter:
+If the two-jet system is defined from the full jet collection, the delta phi may include jets that were not selected in the analysis. If it's defined from the selected jets, the result will be more consistent with the event selection.
+
+[CANDIDATE 6] Reuse of W hadronic candidate
+
+Original phrase:
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+
+Unresolved choice:
+Is the "W hadronic candidate" intended to be reused in later steps or only used to compute the invariant mass for the selection cut?
+
+Why this may matter:
+If the candidate is intended to be reused, it may need to be stored as a named object for later analysis. If it's only used for the selection, it may not need to be preserved.
+
+[CANDIDATE 7] Reuse of W leptonic candidate
+
+Original phrase:
+"Select transverse mass of lepton + MET between 40 and 120 GeV (W leptonic candidate)"
+
+Unresolved choice:
+Is the "W leptonic candidate" intended to be reused in later steps or only used to compute the transverse mass for the selection cut?
+
+Why this may matter:
+If the candidate is intended to be reused, it may need to be stored as a named object for later analysis. If it's only used for the selection, it may not need to be preserved.
+
+[CANDIDATE 8] Delta phi between lepton and MET
+
+Original phrase:
+"Plot delta phi between the lepton and MET"
+
+Unresolved choice:
+Is the "lepton" in this phrase referring to the selected lepton from the "Require exactly 1 selected lepton" cut, or is it referring to all leptons in the event?
+
+Why this may matter:
+If it refers to the selected lepton, the delta phi will be computed from a single object. If it refers to all leptons, the result may include multiple values per event.

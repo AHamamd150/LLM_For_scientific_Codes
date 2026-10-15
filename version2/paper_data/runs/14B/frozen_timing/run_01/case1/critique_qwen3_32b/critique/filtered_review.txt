@@ -1,0 +1,124 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select MET > 30 GeV
+
+CODE:
+- met['pt'] < 30
+
+Reason:
+The code uses `met['pt'] < 30` as a condition to skip the event, which is logically equivalent to `met['pt'] > 30` as a selection. However, the code uses a negated condition (`continue` if not satisfied), which is a mismatch in the direct expression of the requirement. The implementation is functionally correct, but the code-level expression does not match the explicit wording of the SPEC.
+
+Evidence priority:
+L320-L322
+
+Generator bias:
+none
+
+---
+
+[KEPT 2] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select delta R between the two leading jets < 3.0
+
+CODE:
+- dr >= 3.0
+
+Reason:
+The code uses a negated condition (`continue` if `dr >= 3.0`), which is logically equivalent to `dr < 3.0` as a selection. However, the code-level expression does not match the explicit wording of the SPEC. This is a definition mismatch in the direct expression of the requirement.
+
+Evidence priority:
+L343-L345
+
+Generator bias:
+none
+
+---
+
+[KEPT 3] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Select delta phi between the lepton and the two-jet system
+
+CODE:
+- dphi_lepton_jets = helper_delta_phi(lepton['phi'], jet_system['phi'])
+
+Reason:
+The SPEC does not specify whether the two-jet system should be constructed from selected jets or from all jets in the event. The code uses selected jets (after pT and |eta| cuts), but this is not explicitly required by the SPEC. This is a specification ambiguity.
+
+Evidence priority:
+L365-L370
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+[DROPPED 1] drop: matched noise signal 'inclusive'
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+- Select muons with pT > 20 GeV and |eta| < 2.4
+
+CODE:
+- l['pt'] > 25 and abs(l['eta']) < 2.5
+- l['pt'] > 20 and abs(l['eta']) < 2.4
+
+Reason:
+The code uses inclusive cuts for pT and |eta|, but the SPEC does not specify whether the cuts are inclusive or exclusive. However, the code uses strict inequality (e.g., `> 25`, `< 2.5`), which may not match the intended behavior if the SPEC requires inclusive cuts (e.g., `>= 25`, `<= 2.5`). This is a definition mismatch if the SPEC implicitly requires inclusive cuts.
+
+Evidence priority:
+L292-L293, L294-L296
+
+Generator bias:
+none
+
+---
+
+[DROPPED 2] drop: matched noise signal 'inclusive'
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select transverse mass of lepton + MET between 40 and 120 GeV
+
+CODE:
+- 40 < mt < 120
+
+Reason:
+The code uses strict inequality (`40 < mt < 120`), but the SPEC does not specify whether the bounds are inclusive or exclusive. This is a definition mismatch if the SPEC implicitly requires inclusive bounds (e.g., `40 <= mt <= 120`).
+
+Evidence priority:
+L328-L330
+
+Generator bias:
+none
+
+---
+
+[DROPPED 3] drop: matched noise signal 'inclusive'
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the two leading jets between 60 and 100 GeV
+
+CODE:
+- 60 < mjj < 100
+
+Reason:
+The code uses strict inequality (`60 < mjj < 100`), but the SPEC does not specify whether the bounds are inclusive or exclusive. This is a definition mismatch if the SPEC implicitly requires inclusive bounds (e.g., `60 <= mjj <= 100`).
+
+Evidence priority:
+L338-L340
+
+Generator bias:
+none
+
+---

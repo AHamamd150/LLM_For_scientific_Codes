@@ -1,0 +1,289 @@
+USER_INPUT:
+<<<BEGIN_USER_INPUT
+# Physics Process: p p > t t~, t > b W+, W+ > l+ nu, t~ > b~ W-, W- > j j
+# ========================================================================
+
+[SELECTION_CUTS]
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+- Select muons with pT > 25 GeV and |eta| < 2.4
+- Require exactly one lepton (electron or muon)
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+- Among these selected jets, require at least 2 b-tagged jets.
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+- Select MET > 20 GeV
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+- Select the hadronic W mass between 40 to 120 GeV.
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+- Select the hadronic top mass between 100 to 250 GeV.
+
+Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+[PLOTS_FOR_VALIDATION]
+- Plot the following as histograms:
+1 Plot the transverse mass of lepton + MET (W leptonic candidate)
+2 Plot the MET distribution
+3 Plot the pT of the leading b-jet
+4 Plot the pT of the subleading b-jet
+5 Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV
+6 Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV
+7 Plot delta R between the leading lepton and the closest selected  b-jet
+8 Plot the HT distribution (scalar sum of all jet pT)
+9 Plot the number of jets per event
+10 Plot eta of the leading b-jet
+
+
+Use simple validation histograms.
+For each histogram: plt.figure(); plt.hist(values, bins=40, density=True); plt.xlabel(...); plt.ylabel("density"); plt.savefig(...); plt.close().
+Use concrete short ASCII labels and filenames.
+
+[OUTPUT_STRUCTURE]
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+- Save the plots in png format
+
+
+END_USER_INPUT>>>
+
+HELPER_REGISTRY:
+<<<BEGIN_HELPER_REGISTRY
+- name: four_momentum
+  section: parser_core
+  summary: Convert an object dict into (E, px, py, pz).
+  keywords: four momentum, px, py, pz, energy, invariant mass
+  aliases: 4-momentum, lorentz components
+- name: sum_objects
+  section: parser_core
+  summary: Combine particles or particle lists into one composite object by summing four-momenta.
+  keywords: sum objects, composite system, combine particles, system
+  aliases: combine objects, build composite system, candidate from constituents
+- name: helper_invariant_mass
+  section: parser_core
+  summary: Compute invariant mass from one or more objects or lists of objects.
+  keywords: invariant mass, mass, dijet mass, dilepton mass, visible mass
+  aliases: mjj, mll, visible invariant mass, candidate mass
+- name: helper_delta_r
+  section: parser_core
+  summary: Compute delta R between two objects.
+  keywords: delta r, dr, angular separation
+  aliases: ΔR, cone distance, angular distance
+- name: helper_transverse_mass
+  section: parser_core
+  summary: Compute transverse mass
+  keywords: transverse mass, mt, w leptonic
+  aliases: MT, mT, leptonic W transverse mass
+- name: get_particle_mass
+  section: parser_core
+  summary: Return particle mass using LHCO type convention or embedded mass fields.
+  keywords: mass, particle mass, jet mass, lhco type
+  aliases: mass lookup, object mass
+- name: obj_from_four_momentum
+  section: parser_core
+  summary: Build a composite object dict from (E, px, py, pz).
+  keywords: composite object, four momentum, reconstruct object, system
+  aliases: build system object, composite candidate
+- name: helper_delta_phi
+  section: parser_core
+  summary: Compute azimuthal angle difference normalized to [-pi, pi].
+  keywords: delta phi, dphi, azimuthal angle
+  aliases: Δφ, delta-phi, phi separation
+- name: read_lhco
+  section: parser_core
+  summary: Parse an LHCO file into a list of events with reconstructed objects.
+  keywords: lhco, parser, read file, events
+  aliases: input parser, event reader
+- name: get_leptons
+  section: selection
+  summary: Return all electrons and muons in an event without applying any cuts.
+  keywords: raw lepton collection, combined electron and muon collection, uncut electrons and muons, electron+muon collection
+  aliases: l, electron+muon, charged light leptons
+- name: get_electrons
+  section: selection
+  summary: Return all electrons in an event. Use when electron-specific cuts differ from muon cuts.
+  keywords: electrons, electron, electron cuts
+  aliases: e, electron channel, electron-specific selection
+- name: get_muons
+  section: selection
+  summary: Return all muons in an event. Use when muon-specific cuts differ from electron cuts.
+  keywords: muons, muon, muon cuts
+  aliases: mu, muon channel, muon-specific selection
+- name: get_taus
+  section: selection
+  summary: Return all taus in an event.
+  keywords: taus, tau
+  aliases: τ, tau leptons, hadronic tau
+- name: get_jets
+  section: selection
+  summary: Return all jets in an event.
+  keywords: jets, jet, leading jet, subleading jet
+  aliases: j, hadronic objects, jet collection
+- name: get_bjets
+  section: selection
+  summary: Return all b-tagged jets in an event.
+  keywords: b-tagged jets, b jets, b-jet veto, bjet
+  aliases: b jets, b-tagged collection, heavy-flavor jets
+- name: get_light_jets
+  section: selection
+  summary: Return all non-b-tagged jets in an event.
+  keywords: light jets, non-b-tagged jets
+  aliases: light-flavor jets, non-b jets
+- name: get_photons
+  section: selection
+  summary: Return all photons in an event.
+  keywords: photons, photon
+  aliases: gamma, γ, diphoton inputs
+- name: helper_get_met
+  section: selection
+  summary: Return the LHCO MET object; Necessary in using MET
+  keywords: MET, MET direction, MET pt, missing transverse energy
+  aliases: MET, missing ET
+- name: helper_get_leading
+  section: selection
+  summary: Return the highest-pT object from a particle list.
+  keywords: leading, highest pt, leading object
+  aliases: leading object, highest-pT object
+- name: helper_get_subleading
+  section: selection
+  summary: Return the second-highest-pT object from a particle list.
+  keywords: subleading, second highest pt, subleading object
+  aliases: second-leading object, second-highest-pT object
+- name: sort_by_pt
+  section: selection
+  summary: Return a particle list sorted by descending pT.
+  keywords: sort by pt, leading jets, subleading jet, ordering
+  aliases: pt ordering, rank by pt, sorted objects
+- name: helper_delta_eta
+  section: eta_rapidity
+  summary: Compute delta eta between two objects.
+  keywords: delta eta, deta, eta difference
+  aliases: Δη, eta separation
+- name: abs_delta_eta
+  section: eta_rapidity
+  summary: Compute absolute delta eta between two objects.
+  keywords: absolute delta eta, abs delta eta, |deta|
+  aliases: abs Δη, |Δη|
+- name: rapidity
+  section: eta_rapidity
+  summary: Compute true rapidity from the four-momentum of an object.
+  keywords: rapidity, true rapidity, y
+  aliases: y, lorentz rapidity
+- name: abs_eta
+  section: eta_rapidity
+  summary: Return absolute pseudorapidity of an object.
+  keywords: absolute eta, |eta|
+  aliases: abs eta, |η|
+- name: transverse_energy
+  section: transverse
+  summary: Compute transverse energy ET = E / cosh(eta).
+  keywords: transverse energy, et
+  aliases: ET, E_T
+- name: scalar_pt_sum
+  section: transverse
+  summary: Compute scalar sum of pT over a particle list; use only for HT/ST-like scalar activity, not for the pT of a composite object.
+  keywords: scalar pt sum, sum of transverse momenta, HT, ST, scalar activity, scalar sum pT
+  aliases: scalar HT-like sum, ST, H_T-like scalar sum
+- name: vector_pt_sum
+  section: transverse
+  summary: Compute magnitude of the vector pT sum over a particle list.
+  keywords: vector pt sum, missing momentum, recoil
+  aliases: vector recoil, transverse recoil magnitude
+- name: vector_pt_components
+  section: transverse
+  summary: Return total px and py from a particle list.
+  keywords: px total, py total, vector pt components
+  aliases: transverse momentum components, sum px py
+- name: compute_phi
+  section: angular
+  summary: Compute phi from momentum components of an object.
+  keywords: phi, azimuthal angle
+  aliases: azimuth, φ
+- name: min_delta_r
+  section: angular
+  summary: Compute the minimum delta R among all pairs in the same particle list.
+  keywords: minimum delta R among all pairs in the same particle list, minimum pairwise delta R in the same particle list, min pairwise delta R in one particle list, minimum delta R within a particle list
+  aliases: min ΔR
+- name: max_delta_r
+  section: angular
+  summary: Compute the maximum delta R among all pairs in the same particle list.
+  keywords: maximum delta R among all pairs in the same particle list, maximum pairwise delta R in the same particle list, max pairwise delta R in one particle list, maximum delta R within a particle list
+  aliases: max ΔR
+- name: helper_delta_phi_met
+  section: angular
+  summary: Compute delta phi between an object and MET in an event.
+  keywords: delta phi met, object met, dphi met
+  aliases: Δφ(object, MET), object-MET angular separation
+- name: cos_theta_star_collins_soper
+  section: angular
+  summary: Compute signed cos(theta*) in the Collins-Soper frame for a two-object system.
+  keywords: cos theta star in Collins-Soper frame, cos theta star Collins-Soper, cos(theta*) of the diphoton system in Collins-Soper frame, Collins-Soper frame angle, two-object Collins-Soper angle, diphoton Collins-Soper cos theta, H to gamma gamma cos theta star
+  aliases: cos(theta*), cos theta star, cos_theta_star, cos_theta_star_collins_soper, Collins-Soper theta star, diphoton Collins-Soper angle
+- name: centrality_between_jets
+  section: angular
+  summary: Compute eta centrality of an object relative to two jets as |eta_obj - eta_center_jj| / |delta_eta_jj|.
+  keywords: centrality of system relative to two jets, eta centrality between jets, VBF centrality, object centrality in dijet eta gap
+  aliases: centrality, eta centrality, VBF centrality
+- name: pt_ratio
+  section: mt_ratios
+  summary: Compute pT ratio of two objects.
+  keywords: pt ratio, momentum ratio
+  aliases: transverse momentum ratio, pT balance
+- name: n_jets
+  section: multiplicity
+  summary: Count jets passing pT and eta cuts.
+  keywords: number of jets, jet multiplicity, at least 2 jets
+  aliases: Njets, jet count
+- name: n_bjets
+  section: multiplicity
+  summary: Count b-jets passing pT and eta cuts.
+  keywords: number of b jets, bjet multiplicity, b-tag veto
+  aliases: Nbjets, b-jet count
+- name: n_electrons
+  section: multiplicity
+  summary: Count electrons passing pT and eta cuts.
+  keywords: number of electrons, electron multiplicity
+  aliases: Nelectrons, electron count
+- name: n_muons
+  section: multiplicity
+  summary: Count muons passing pT and eta cuts.
+  keywords: number of muons, muon multiplicity
+  aliases: Nmuons, muon count
+- name: n_taus
+  section: multiplicity
+  summary: Count taus passing pT and eta cuts.
+  keywords: number of taus, tau multiplicity
+  aliases: Ntaus, tau count
+- name: n_photons
+  section: multiplicity
+  summary: Count photons passing pT and eta cuts.
+  keywords: number of photons, photon multiplicity
+  aliases: Nphotons, photon count
+- name: n_leptons
+  section: multiplicity
+  summary: Count electrons and muons passing the same pT and eta cuts.
+  keywords: common lepton cut, same cut for electrons and muons, combined lepton multiplicity, count merged leptons
+  aliases: Nleptons, lepton count
+- name: opposite_sign
+  section: charge
+  summary: Check whether two charged objects have opposite sign.
+  keywords: opposite sign, os pair
+  aliases: OS, opposite-charge pair
+- name: same_sign
+  section: charge
+  summary: Check whether two charged objects have the same sign.
+  keywords: same sign, ss pair
+  aliases: SS, same-charge pair
+- name: total_charge
+  section: charge
+  summary: Compute total charge of a particle list.
+  keywords: total charge, charge sum
+  aliases: net charge, sum of charges
+- name: get_os_pairs
+  section: charge
+  summary: Return all opposite-sign pairs from a particle list.
+  keywords: os pairs, opposite-sign pairs
+  aliases: OS pairs, opposite-charge combinations
+- name: get_ss_pairs
+  section: charge
+  summary: Return all same-sign pairs from a particle list.
+  keywords: ss pairs, same-sign pairs
+  aliases: SS pairs, same-charge combinations
+END_HELPER_REGISTRY>>>

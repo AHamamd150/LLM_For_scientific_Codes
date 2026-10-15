@@ -1,0 +1,107 @@
+◎ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+- Define dijet_obj from the summed four-momentum of the leading jet and subleading jet.
+
+CODE:
+- ditau_obj = sum_objects(tau1, tau2)
+- dijet_obj = sum_objects(jet1, jet2)
+
+Reason:
+The code correctly constructs the ditau_obj and dijet_obj from the summed four-momentum of the leading and subleading tau and jet, respectively. This matches the composite system-level definition in the SPEC.
+
+Evidence priority:
+- sum_objects(tau1, tau2) and sum_objects(jet1, jet2) are used to construct the ditau and dijet objects.
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require opposite-sign tau pair
+
+CODE:
+- if not opposite_sign(tau1, tau2): continue
+
+Reason:
+The code correctly checks for opposite-sign tau pairs using the opposite_sign helper function, which is consistent with the SPEC.
+
+Evidence priority:
+- opposite_sign(tau1, tau2) is used to enforce the opposite-sign requirement.
+
+Generator bias:
+none
+
+◎ (C) missing implementation
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+All required items from the SPEC are implemented.
+
+Evidence priority:
+- All selections, definitions, and plots are implemented as per the SPEC.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+The SPEC is fully constrained and the implementation matches it.
+
+Evidence priority:
+- All selections and definitions are implemented as per the SPEC.
+
+Generator bias:
+none
+
+◎ (E) extra behavior
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+No extra behavior is present in the code.
+
+Evidence priority:
+- All selections, definitions, and plots are implemented as per the SPEC.
+
+Generator bias:
+none
+
+◎ (F) generator-induced bias
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+No evidence of generator-induced bias is present.
+
+Evidence priority:
+- All selections, definitions, and plots are implemented as per the SPEC.
+
+Generator bias:
+none
+
+---
+
+None

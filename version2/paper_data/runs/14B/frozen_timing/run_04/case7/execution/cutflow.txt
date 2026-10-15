@@ -1,0 +1,11 @@
+Initial events: 30000
+After tau selection: 2752
+After jet selection: 1988
+After 2 taus: 1988
+After 2 jets: 1988
+After opposite-sign taus: 1920
+After m_jj > 400 GeV: 978
+After |delta eta| > 2.5: 946
+After m_tt in [60, 150] GeV: 843
+After b-jet veto: 779
+Final selected events: 779

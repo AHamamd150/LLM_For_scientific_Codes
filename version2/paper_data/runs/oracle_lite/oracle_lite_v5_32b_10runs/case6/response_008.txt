@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Definition of "selected b-tagged jets" for delta R computation
+
+Original phrase:
+"Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R."
+
+Why this matters:
+This phrase is ambiguous about whether "selected b-tagged jets" refers to all jets that are both b-tagged and pass the jet pT/eta cuts, or only those that survive all previous selection steps (including the lepton+jets multiplicity and MET cuts). The delta R computation could yield different results depending on which collection is used.
+
+Question to user:
+Are the "selected b-tagged jets" for the delta R computation defined before or after the MET and W mass cuts?
+
+Golden axe:
+Use all b-tagged jets that pass the jet pT/eta cuts and the b-tagging requirement.
+
+Silver axe:
+Use only b-tagged jets that survive all previous selection steps including the MET and W mass cuts.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Definition of "leading" and "subleading" b-jets
+
+Original phrase:
+"Plot the pT of the leading b-jet" and "Plot the pT of the subleading b-jet"
+
+Why this matters:
+The phrase does not specify whether the leading and subleading b-jets are defined before or after the delta R selection ("b-jet closest to the selected lepton"). This affects which jets are considered in the ordering.
+
+Question to user:
+Are the leading and subleading b-jets defined before or after selecting the b-jet closest to the lepton in delta R?
+
+Golden axe:
+Define leading and subleading b-jets among all selected b-tagged jets before applying the delta R selection.
+
+Silver axe:
+Define leading and subleading b-jets only among the b-tagged jets that are not the one closest to the lepton.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Definition of "selected non-b-tagged jets" for hadronic W
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Why this matters:
+The phrase is ambiguous about whether "selected non-b-tagged jets" refers to jets that pass the jet pT/eta cuts but are not b-tagged, or only those that survive all previous selection steps (including the lepton+jets multiplicity and MET cuts). This affects which jets are available for building the hadronic W.
+
+Question to user:
+Are the "selected non-b-tagged jets" for the hadronic W defined before or after the MET and W mass cuts?
+
+Golden axe:
+Use all non-b-tagged jets that pass the jet pT/eta cuts.
+
+Silver axe:
+Use only non-b-tagged jets that survive all previous selection steps including the MET and W mass cuts.
+
+Recommended default:
+Golden axe

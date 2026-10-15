@@ -1,0 +1,110 @@
+[CANDIDATE 1] Leading and subleading tau definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Unresolved choice:
+It is not specified whether the selection of leading and subleading taus is based on pT, or another property such as transverse momentum or energy.
+
+Why this may matter:
+If the helper function for selecting leading and subleading objects is used, the default may be pT, but the user could have intended a different ordering. This choice affects the definition of the ditau system and subsequent cuts like invariant mass and delta R.
+
+[CANDIDATE 2] Leading and subleading jet definition
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Unresolved choice:
+It is not specified whether the selection of leading and subleading jets is based on pT, or another property such as transverse energy or scalar sum.
+
+Why this may matter:
+Different ordering criteria can lead to different jet pairings, which affects the dijet invariant mass, delta eta, and centrality calculations. This could change the interpretation of the VBF topology.
+
+[CANDIDATE 3] Dijet invariant mass cut
+
+Original phrase:
+"Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV"
+
+Unresolved choice:
+It is not specified whether the invariant mass is computed from the four-momentum of the jets or from their transverse momenta (e.g., transverse mass).
+
+Why this may matter:
+Using transverse mass instead of invariant mass would change the physical meaning of the cut and could lead to different event selections, especially in cases where jet longitudinal components are large.
+
+[CANDIDATE 4] Dijet delta eta cut
+
+Original phrase:
+"Select |delta eta| between the two leading jets > 2.5"
+
+Unresolved choice:
+It is not specified whether the jets used for this cut are the same as those used to compute the dijet invariant mass or whether they are the raw unfiltered jets.
+
+Why this may matter:
+If the jets used for the delta eta cut differ from those used for the invariant mass, the VBF topology requirement may not be consistently applied, leading to inconsistent event selections.
+
+[CANDIDATE 5] Dijet centrality
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Unresolved choice:
+It is not specified whether the "two jets" refers to the selected jets or the leading and subleading jets used in the dijet system.
+
+Why this may matter:
+Using all selected jets versus only the leading and subleading jets can lead to different centrality values, affecting the interpretation of the ditau system's position in the dijet eta gap.
+
+[CANDIDATE 6] Delta phi between ditau_obj and dijet_obj
+
+Original phrase:
+"Plot delta phi between the ditau_obj and the dijet_obj"
+
+Unresolved choice:
+It is not specified whether the ditau_obj and dijet_obj are defined using the same selection criteria for their constituent particles (e.g., pT and eta cuts) across all steps.
+
+Why this may matter:
+If the constituent particles used to define the ditau_obj and dijet_obj differ (e.g., due to different ordering or filtering steps), the delta phi could be computed from inconsistent four-momenta, leading to misleading plots.
+
+[CANDIDATE 7] Veto on b-tagged jets
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Unresolved choice:
+It is not specified whether the veto applies to all selected jets or only to the leading and subleading jets used in the dijet system.
+
+Why this may matter:
+If the veto is applied only to the leading and subleading jets, events with b-tagged jets in other selected jets may still pass, potentially affecting the signal purity.
+
+[CANDIDATE 8] Opposite-sign tau pair
+
+Original phrase:
+"Require opposite-sign tau pair"
+
+Unresolved choice:
+It is not specified whether the opposite-sign requirement applies to the leading and subleading tau pair specifically or to any pair of selected taus.
+
+Why this may matter:
+If the requirement applies to any pair of selected taus, the analysis may include multiple OS pairs, which could affect the event count and the definition of the ditau system.
+
+[CANDIDATE 9] Ditau invariant mass cut
+
+Original phrase:
+"Select ditau invariant mass between 60 and 150 GeV"
+
+Unresolved choice:
+It is not specified whether the ditau invariant mass is computed from the four-momentum of the selected taus or from a subset (e.g., only leading and subleading).
+
+Why this may matter:
+If the invariant mass is computed from all selected taus, the cut may include combinations other than the leading and subleading pair, which could affect the signal modeling and background estimation.
+
+[CANDIDATE 10] Ditau system for delta R and centrality
+
+Original phrase:
+"Plot delta R between the two taus"
+"Plot the centrality of the ditau system relative to the two jets"
+
+Unresolved choice:
+It is not specified whether the "two taus" used for these plots are the same as the ones used to define the ditau_obj.
+
+Why this may matter:
+If the delta R and centrality are computed from a different pair of taus than the ones used to define the ditau system, the plots may not reflect the same physical objects, leading to inconsistent analysis results.

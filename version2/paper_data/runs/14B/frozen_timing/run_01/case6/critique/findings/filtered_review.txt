@@ -1,0 +1,240 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- hadronic_top = sum_objects(leading_bjet, hadronic_w)
+
+Reason:
+The hadronic top candidate is built from the leading selected b-tagged jet and the hadronic W candidate, which is correct. The code uses the sum_objects function to combine these two constituents, which is appropriate for constructing a composite object.
+
+Evidence priority:
+- hadronic_top = sum_objects(leading_bjet, hadronic_w); 〔L345〕
+
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- hadronic_w = sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+The hadronic W candidate is built from the two leading selected non-b-tagged jets, which is correct. The code uses the sum_objects function to combine these two constituents, which is appropriate for constructing a composite object.
+
+Evidence priority:
+- hadronic_w = sum_objects(leading_light_jet, subleading_light_jet); 〔L335〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code applies a |eta| < 2.5 cut to muons, but the SPEC requires |eta| < 2.4 for muons. This is a mismatch in the definition of the selection criteria for muons.
+
+Evidence priority:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]; 〔L279-L281〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+
+CODE:
+- selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the selected b-tagged jets should be taken from the broader event-level collection or a filtered collection. The code uses a filtered collection (selected_bjets) for this purpose, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]; 〔L295-L297〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the selected non-b-tagged jets should be taken from the broader event-level collection or a filtered collection. The code uses a filtered collection (selected_light_jets) for this purpose, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]; 〔L327-L328〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- selected_jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the selected jets should be taken from the broader event-level collection or a filtered collection. The code uses a filtered collection (selected_jets) for this purpose, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- selected_jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]; 〔L288-L290〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- selected_leptons = [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the selected leptons should be taken from the broader event-level collection or a filtered collection. The code uses a filtered collection (selected_leptons) for this purpose, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- selected_leptons = [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]; 〔L279-L281〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Among these selected jets, require at least 2 b-tagged jets.
+
+CODE:
+- selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the selected b-tagged jets should be taken from the broader event-level collection or a filtered collection. The code uses a filtered collection (selected_bjets) for this purpose, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]; 〔L295-L297〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+
+CODE:
+- selected_leptons = [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the selected electrons should be taken from the broader event-level collection or a filtered collection. The code uses a filtered collection (selected_leptons) for this purpose, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- selected_leptons = [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]; 〔L279-L281〕
+
+---
+
+[KEPT 2] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code applies a |eta| < 2.5 cut to muons, but the SPEC requires |eta| < 2.4 for muons. This is a mismatch in the definition of the selection criteria for muons.
+
+Evidence priority:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]; 〔L279-L281〕
+
+[KEPT 3] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+
+CODE:
+- selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the selected b-tagged jets should be taken from the broader event-level collection or a filtered collection. The code uses a filtered collection (selected_bjets) for this purpose, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]; 〔L295-L297〕
+
+[KEPT 4] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the selected non-b-tagged jets should be taken from the broader event-level collection or a filtered collection. The code uses a filtered collection (selected_light_jets) for this purpose, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]; 〔L327-L328〕
+
+[KEPT 5] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- selected_jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the selected jets should be taken from the broader event-level collection or a filtered collection. The code uses a filtered collection (selected_jets) for this purpose, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- selected_jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]; 〔L288-L290〕
+
+[KEPT 6] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- selected_leptons = [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the selected leptons should be taken from the broader event-level collection or a filtered collection. The code uses a filtered collection (selected_leptons) for this purpose, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- selected_leptons = [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]; 〔L279-L281〕
+
+[KEPT 7] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Among these selected jets, require at least 2 b-tagged jets.
+
+CODE:
+- selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the selected b-tagged jets should be taken from the broader event-level collection or a filtered collection. The code uses a filtered collection (selected_bjets) for this purpose, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]; 〔L295-L297〕
+
+[KEPT 8] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+
+CODE:
+- selected_leptons = [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the selected electrons should be taken from the broader event-level collection or a filtered collection. The code uses a filtered collection (selected_leptons) for this purpose, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- selected_leptons = [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]; 〔L279-L281〕
+
+
+---- DROPPED ----
+(none)

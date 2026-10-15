@@ -1,0 +1,4 @@
+
+
+- collection definition: leading_bjet['eta']
+  - structure: single-constituent

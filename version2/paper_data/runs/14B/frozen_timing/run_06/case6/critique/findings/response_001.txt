@@ -1,0 +1,456 @@
+⚠️ (B) definition mismatch
+
+SPEC:
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+
+CODE:
+- closest_bjet = min(selected_bjets, key=lambda b: helper_delta_r(lep, b))
+
+Reason:
+The code correctly identifies the closest b-jet to the selected lepton using delta R. This matches the SPEC.
+
+Evidence priority:
+〔L301〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- light_jets = get_light_jets(event)
+- selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+- light_jets_sorted = sort_by_pt(selected_light_jets)
+- leading_light_jet = light_jets_sorted[0]
+- subleading_light_jet = light_jets_sorted[1]
+- hadronic_w = sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+The code correctly builds the hadronic W candidate from the two leading selected non-b-tagged jets. This matches the SPEC.
+
+Evidence priority:
+〔L320-L331〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- leading_bjet = helper_get_leading(selected_bjets)
+- hadronic_top = sum_objects(leading_bjet, hadronic_w)
+
+Reason:
+The code correctly builds the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate. This matches the SPEC.
+
+Evidence priority:
+〔L337-L339〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- hadronic_w_mass = hadronic_w['mass'] if hadronic_w else 0.0
+- if hadronic_w_mass < 40 or hadronic_w_mass > 120:
+    continue
+
+Reason:
+The code correctly selects the hadronic W mass between 40 to 120 GeV. This matches the SPEC.
+
+Evidence priority:
+〔L332-L334〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV.
+
+CODE:
+- hadronic_top_mass = hadronic_top['mass'] if hadronic_top else 0.0
+- if hadronic_top_mass < 100 or hadronic_top_mass > 250:
+    continue
+
+Reason:
+The code correctly selects the hadronic top mass between 100 to 250 GeV. This matches the SPEC.
+
+Evidence priority:
+〔L340-L342〕
+
+◎ correct implementations
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+
+CODE:
+- selected_leptons = [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code correctly selects electrons with pT > 25 GeV and |eta| < 2.5. This matches the SPEC.
+
+Evidence priority:
+〔L280-L281〕
+
+◎ correct implementations
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- selected_leptons = [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code selects muons with pT > 25 GeV and |eta| < 2.5, but the SPEC requires |eta| < 2.4 for muons. This is a mismatch.
+
+Evidence priority:
+〔L280-L281〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- selected_leptons = [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code selects muons with |eta| < 2.5, but the SPEC requires |eta| < 2.4 for muons. This is a mismatch.
+
+Evidence priority:
+〔L280-L281〕
+
+◎ correct implementations
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- if len(selected_leptons) != 1:
+    continue
+
+Reason:
+The code correctly requires exactly one lepton. This matches the SPEC.
+
+Evidence priority:
+〔L281〕
+
+◎ correct implementations
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- selected_jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+- if len(selected_jets) < 4:
+    continue
+
+Reason:
+The code correctly requires at least 4 jets with pT > 30 GeV and |eta| < 2.5. This matches the SPEC.
+
+Evidence priority:
+〔L288-L290〕
+
+◎ correct implementations
+
+SPEC:
+- Among these selected jets, require at least 2 b-tagged jets.
+
+CODE:
+- selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+- if len(selected_bjets) < 2:
+    continue
+
+Reason:
+The code correctly requires at least 2 b-tagged jets. This matches the SPEC.
+
+Evidence priority:
+〔L295-L297〕
+
+◎ correct implementations
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- met = helper_get_met(event)
+- if met is None or met['pt'] < 20:
+    continue
+
+Reason:
+The code correctly selects MET > 20 GeV. This matches the SPEC.
+
+Evidence priority:
+〔L310〕
+
+◎ correct implementations
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- mt = helper_transverse_mass(lep, met)
+- if mt < 30 or mt > 150:
+    continue
+
+Reason:
+The code correctly selects the transverse mass of the lepton and MET between 30 and 150 GeV. This matches the SPEC.
+
+Evidence priority:
+〔L315-L317〕
+
+◎ correct implementations
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic candidate)
+
+CODE:
+- mt_list.append(mt)
+
+Reason:
+The code correctly plots the transverse mass of lepton + MET. This matches the SPEC.
+
+Evidence priority:
+〔L345〕
+
+◎ correct implementations
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- met_list.append(met['pt'])
+
+Reason:
+The code correctly plots the MET distribution. This matches the SPEC.
+
+Evidence priority:
+〔L346〕
+
+◎ correct implementations
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- leading_bjet_pt_list.append(leading_bjet['pt'])
+
+Reason:
+The code correctly plots the pT of the leading b-jet. This matches the SPEC.
+
+Evidence priority:
+〔L347〕
+
+◎ correct implementations
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- subleading_bjet_pt_list.append(helper_get_subleading(selected_bjets)['pt'])
+
+Reason:
+The code correctly plots the pT of the subleading b-jet. This matches the SPEC.
+
+Evidence priority:
+〔L348〕
+
+◎ correct implementations
+
+SPEC:
+- Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV
+
+CODE:
+- hadronic_w_mass_list.append(hadronic_w_mass)
+
+Reason:
+The code correctly plots the invariant mass of the W hadronic candidate. This matches the SPEC.
+
+Evidence priority:
+〔L349〕
+
+◎ correct implementations
+
+SPEC:
+- Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV
+
+CODE:
+- hadronic_top_mass_list.append(hadronic_top_mass)
+
+Reason:
+The code correctly plots the invariant mass of the hadronic top candidate. This matches the SPEC.
+
+Evidence priority:
+〔L350〕
+
+◎ correct implementations
+
+SPEC:
+- Plot delta R between the leading lepton and the closest selected b-jet
+
+CODE:
+- dr_lep_bjet_list.append(dr_lep_bjet)
+
+Reason:
+The code correctly plots the delta R between the leading lepton and the closest selected b-jet. This matches the SPEC.
+
+Evidence priority:
+〔L351〕
+
+◎ correct implementations
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- ht_list.append(scalar_pt_sum(selected_jets))
+
+Reason:
+The code correctly plots the HT distribution. This matches the SPEC.
+
+Evidence priority:
+〔L352〕
+
+◎ correct implementations
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- njet_list.append(len(selected_jets))
+
+Reason:
+The code correctly plots the number of jets per event. This matches the SPEC.
+
+Evidence priority:
+〔L353〕
+
+◎ correct implementations
+
+SPEC:
+- Plot eta of the leading b-jet
+
+CODE:
+- leading_bjet_eta_list.append(leading_bjet['eta'])
+
+Reason:
+The code correctly plots the eta of the leading b-jet. This matches the SPEC.
+
+Evidence priority:
+〔L354〕
+
+◎ correct implementations
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- for key, value in cutflow.items():
+    print(f"{key}: {value}")
+
+Reason:
+The code correctly prints the cutflow summary. This matches the SPEC.
+
+Evidence priority:
+〔L359-L361〕
+
+◎ correct implementations
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The code correctly saves the plots in png format. This matches the SPEC.
+
+Evidence priority:
+〔L363-L431〕
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- selected_leptons = [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code selects muons with |eta| < 2.5, but the SPEC requires |eta| < 2.4 for muons. This is a mismatch.
+
+Evidence priority:
+〔L280-L281〕
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+
+CODE:
+- closest_bjet = min(selected_bjets, key=lambda b: helper_delta_r(lep, b))
+
+Reason:
+The code uses the selected_bjets collection, which is filtered to jets with pT > 30 GeV and |eta| < 2.5. The SPEC does not explicitly specify whether the closest b-jet should be selected from this filtered collection or from the broader bjets collection. This is a specification ambiguity.
+
+Evidence priority:
+〔L301〕
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- light_jets = get_light_jets(event)
+- selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The code uses the selected_light_jets collection, which is filtered to jets with pT > 30 GeV and |eta| < 2.5. The SPEC does not explicitly specify whether the hadronic W candidate should be built from this filtered collection or from the broader light_jets collection. This is a specification ambiguity.
+
+Evidence priority:
+〔L322-L323〕
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- subleading_bjet_pt_list.append(helper_get_subleading(selected_bjets)['pt'])
+
+Reason:
+The code uses the selected_bjets collection, which is filtered to jets with pT > 30 GeV and |eta| < 2.5. The SPEC does not explicitly specify whether the subleading b-jet should be selected from this filtered collection or from the broader bjets collection. This is a specification ambiguity.
+
+Evidence priority:
+〔L348〕
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- leading_bjet_pt_list.append(leading_bjet['pt'])
+
+Reason:
+The code uses the selected_bjets collection, which is filtered to jets with pT > 30 GeV and |eta| < 2.5. The SPEC does not explicitly specify whether the leading b-jet should be selected from this filtered collection or from the broader bjets collection. This is a specification ambiguity.
+
+Evidence priority:
+〔L347〕
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot eta of the leading b-jet
+
+CODE:
+- leading_bjet_eta_list.append(leading_bjet['eta'])
+
+Reason:
+The code uses the selected_bjets collection, which is filtered to jets with pT > 30 GeV and |eta| < 2.5. The SPEC does not explicitly specify whether the leading b-jet should be selected from this filtered collection or from the broader bjets collection. This is a specification ambiguity.
+
+Evidence priority:
+〔L354〕

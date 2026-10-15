@@ -1,0 +1,19 @@
+# Selected helpers
+
+- get_photons
+- helper_get_leading
+- helper_get_subleading
+- get_particle_mass: dependency of four_momentum
+- four_momentum: dependency of sum_objects
+- obj_from_four_momentum: dependency of sum_objects
+- sum_objects: dependency of helper_invariant_mass
+- helper_invariant_mass
+- helper_delta_phi: dependency of helper_delta_r
+- helper_delta_r
+- cos_theta_star_collins_soper
+- pt_ratio
+- n_photons
+- abs_eta
+
+# Rejected but close
+

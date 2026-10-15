@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Hadronic W candidate jet selection timing
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Why this matters:
+The phrase "non-b-tagged jets" could refer to jets that are not in the b-tagged collection, but it's unclear whether this refers to the full jet collection or only the jets that survive earlier cuts. Since the leading jets are used to build the W candidate, it's important to know whether the jets are selected before or after the "at least 2 b-tagged jets" cut.
+
+Question to user:
+Are the two leading non-b-tagged jets used to build the hadronic W candidate selected from the full jet collection, or only from jets that have passed all earlier selection cuts?
+
+Golden axe:
+Select jets from the full jet collection, excluding b-tagged jets, and take the two leading ones by pT.
+
+Silver axe:
+Select jets from the jet collection after all previous cuts have been applied, then exclude b-tagged jets and take the two leading ones by pT.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Lepton definition for validation plots
+
+Original phrase:
+"Plot the following as histograms: 1 Plot the transverse mass of lepton + MET (W leptonic candidate)... 7 Plot delta R between the leading lepton and the closest b-jet"
+
+Why this matters:
+The phrase "leading lepton" refers to a specific object, but it's unclear whether this refers to the single lepton that survives the "exactly one lepton" cut, or if it's a general term for the highest-pT lepton in the event (which would be the same in this case but could differ in other contexts).
+
+Question to user:
+Does "leading lepton" in the validation plots refer to the single lepton that survives the "exactly one lepton" cut, or is it a general term for the highest-pT lepton in the event?
+
+Golden axe:
+"Leading lepton" refers to the single lepton that survives the "exactly one lepton" cut.
+
+Silver axe:
+"Leading lepton" refers to the highest-pT lepton in the event, regardless of the "exactly one lepton" cut.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] B-jet definition for top candidate construction
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Why this matters:
+The phrase "leading b-jet" could refer to the highest-pT b-jet in the full event or only among the b-jets that survive the "at least 2 b-tagged jets" cut. Since this jet is used to build the top candidate, the selection timing is important.
+
+Question to user:
+Is the "leading b-jet" used to build the hadronic top candidate selected from the full b-jet collection, or only from the b-jets that survive the "at least 2 b-tagged jets" cut?
+
+Golden axe:
+Select the leading b-jet from the full b-jet collection.
+
+Silver axe:
+Select the leading b-jet from the b-jet collection after the "at least 2 b-tagged jets" cut has been applied.
+
+Recommended default:
+Golden axe

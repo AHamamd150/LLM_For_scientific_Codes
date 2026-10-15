@@ -1,0 +1,61 @@
+[UNDERSPECIFICATION 1] Definition of "selected taus" and "selected jets" for leading/subleading
+
+Original phrase:
+- Define the leading tau and subleading tau from the selected taus.
+- Define the leading jet and subleading jet from the selected jets.
+
+Why this matters:
+The phrase "selected taus" and "selected jets" refers to objects that have passed earlier cuts (pT and |eta|). However, it is not clear whether "selected" here refers to the raw collection after pT/eta cuts, or whether it includes any prior cuts (e.g., opposite-sign requirement, b-veto, etc.). This affects whether the leading/subleading objects are defined before or after all cuts.
+
+Question to user:
+Are the "selected taus" and "selected jets" used to define leading/subleading objects the raw collections after pT/eta cuts, or do they include all prior selection cuts (e.g., opposite-sign, b-veto, etc.)?
+
+Golden axe:
+Leading/subleading are defined from the raw pT/eta selected collections, before other cuts.
+
+Silver axe:
+Leading/subleading are defined after all prior cuts, including opposite-sign and b-veto.
+
+Recommended default: Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Definition of "selected jets" for b-tag veto
+
+Original phrase:
+- Veto events with b-tagged jets among the selected jets
+
+Why this matters:
+The phrase "selected jets" is used again here, but it is not clear whether it refers to the full jet collection after pT/eta cuts, or only to the jets that have already passed the "at least 2 jets" requirement. This affects whether the veto is applied to all jets in the event or only to the jets that are part of the dijet system.
+
+Question to user:
+Does the "b-tagged jets among the selected jets" veto apply to all jets that passed the pT/eta cuts, or only to the jets that are part of the dijet system (i.e., the two leading jets)?
+
+Golden axe:
+The veto applies to all jets that passed the pT/eta cuts.
+
+Silver axe:
+The veto applies only to the two leading jets used in the dijet system.
+
+Recommended default: Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Definition of "ditau system" for centrality plot
+
+Original phrase:
+- Plot the centrality of the ditau system relative to the two jets
+
+Why this matters:
+The phrase "ditau system" is used in the context of a centrality calculation, which requires a well-defined object. However, it is not clear whether this refers to the ditau_obj (the summed four-momentum of leading and subleading taus), or to the center of mass of the two taus. This affects the calculation of the centrality.
+
+Question to user:
+Does the "ditau system" in the centrality plot refer to the ditau_obj (summed four-momentum of leading and subleading taus), or to the center of mass of the two taus?
+
+Golden axe:
+The ditau system refers to the ditau_obj.
+
+Silver axe:
+The ditau system refers to the center of mass of the two taus.
+
+Recommended default: Golden axe

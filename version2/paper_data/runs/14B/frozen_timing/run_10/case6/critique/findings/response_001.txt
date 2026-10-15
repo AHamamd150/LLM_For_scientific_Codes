@@ -1,0 +1,224 @@
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(leading_bjet, hadronic_w)
+
+Reason:
+The hadronic top candidate is a composite/system-level object that should be constructed from the leading b-tagged jet and the hadronic W candidate. However, the code uses the `sum_objects` helper, which combines the four-momenta of the constituent objects. This is a valid approach as long as the invariant mass of the composite object is computed correctly. However, the code does not explicitly construct a composite object with properties like `pt`, `eta`, `phi`, and `mass` as defined in the `obj_from_four_momentum` function. Instead, it directly uses the `mass` property of the summed object, which is a single constituent property. This could be considered a composite violation if the code were using a single constituent as a proxy for the composite object. However, since the code correctly computes the invariant mass of the composite object from its constituents, this is not a composite violation.
+
+Evidence priority:
+- The code uses `sum_objects(leading_bjet, hadronic_w)` to build the hadronic top candidate, and the invariant mass is computed from the summed object. 〔L345-L354〕
+
+Generator bias:
+- none
+
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+Similar to the hadronic top candidate, the hadronic W candidate is a composite/system-level object that should be constructed from the two leading non-b-tagged jets. The code uses the `sum_objects` helper to combine the four-momenta of the jets, and the invariant mass is computed from the summed object. This is a valid approach as long as the invariant mass of the composite object is computed correctly. However, the code does not explicitly construct a composite object with properties like `pt`, `eta`, `phi`, and `mass` as defined in the `obj_from_four_momentum` function. Instead, it directly uses the `mass` property of the summed object, which is a single constituent property. This could be considered a composite violation if the code were using a single constituent as a proxy for the composite object. However, since the code correctly computes the invariant mass of the composite object from its constituents, this is not a composite violation.
+
+Evidence priority:
+- The code uses `sum_objects(leading_light_jet, subleading_light_jet)` to build the hadronic W candidate, and the invariant mass is computed from the summed object. 〔L328-L339〕
+
+Generator bias:
+- none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code applies a |eta| < 2.5 cut to both electrons and muons, but the SPEC specifies a |eta| < 2.4 cut for muons. This is a definition mismatch.
+
+Evidence priority:
+- The code uses `abs(l['eta']) < 2.5` for both electrons and muons. 〔L279-L281〕
+
+Generator bias:
+- none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+
+CODE:
+- for b in selected_bjets: dr = helper_delta_r(lep, b)
+
+Reason:
+The SPEC does not specify whether the selected b-tagged jets should be taken from the selected jets or from the broader event-level jets. The code uses the selected b-tagged jets, which are already filtered by pT and |eta|. This is a specification ambiguity, as the SPEC does not explicitly constrain whether the definition must be computed from a filtered collection or from the broader input collection.
+
+Evidence priority:
+- The code uses `selected_bjets` which are filtered by pT and |eta|. 〔L304-L309〕
+
+Generator bias:
+- none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- light_jets = get_light_jets(event)
+- selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the non-b-tagged jets should be taken from the selected jets or from the broader event-level jets. The code uses the selected non-b-tagged jets, which are already filtered by pT and |eta|. This is a specification ambiguity, as the SPEC does not explicitly constrain whether the definition must be computed from a filtered collection or from the broader input collection.
+
+Evidence priority:
+- The code uses `selected_light_jets` which are filtered by pT and |eta|. 〔L328-L339〕
+
+Generator bias:
+- none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- selected_bjets = get_bjets(event)
+- selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the selected b-tagged jets should be taken from the selected jets or from the broader event-level jets. The code uses the selected b-tagged jets, which are already filtered by pT and |eta|. This is a specification ambiguity, as the SPEC does not explicitly constrain whether the definition must be computed from a filtered collection or from the broader input collection.
+
+Evidence priority:
+- The code uses `selected_bjets` which are filtered by pT and |eta|. 〔L345-L354〕
+
+Generator bias:
+- none
+
+---
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+
+CODE:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code applies a |eta| < 2.5 cut to both electrons and muons, but the SPEC specifies a |eta| < 2.5 cut for electrons. This is not a definition mismatch, as the code correctly implements the cut for electrons. However, the code does not distinguish between electrons and muons in the |eta| cut, which could be considered a specification ambiguity if the SPEC had not explicitly constrained the |eta| cut for electrons.
+
+Evidence priority:
+- The code uses `abs(l['eta']) < 2.5` for both electrons and muons. 〔L279-L281〕
+
+Generator bias:
+- none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the jets should be taken from the selected jets or from the broader event-level jets. The code uses the selected jets, which are already filtered by pT and |eta|. This is a specification ambiguity, as the SPEC does not explicitly constrain whether the definition must be computed from a filtered collection or from the broader input collection.
+
+Evidence priority:
+- The code uses `jets` which are not explicitly filtered by pT and |eta| in the upstream chain. 〔L288-L290〕
+
+Generator bias:
+- none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Among these selected jets, require at least 2 b-tagged jets.
+
+CODE:
+- [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the b-tagged jets should be taken from the selected jets or from the broader event-level jets. The code uses the selected b-tagged jets, which are already filtered by pT and |eta|. This is a specification ambiguity, as the SPEC does not explicitly constrain whether the definition must be computed from a filtered collection or from the broader input collection.
+
+Evidence priority:
+- The code uses `bjets` which are not explicitly filtered by pT and |eta| in the upstream chain. 〔L295-L297〕
+
+Generator bias:
+- none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- helper_get_met(event)
+
+Reason:
+The SPEC does not specify whether the MET should be taken from the selected jets or from the broader event-level MET. The code uses the event-level MET, which is not explicitly filtered by any cuts. This is a specification ambiguity, as the SPEC does not explicitly constrain whether the definition must be computed from a filtered collection or from the broader input collection.
+
+Evidence priority:
+- The code uses `helper_get_met(event)` which returns the MET from the event. 〔L315〕
+
+Generator bias:
+- none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- helper_transverse_mass(lep, met)
+
+Reason:
+The SPEC does not specify whether the lepton and MET should be taken from the selected leptons or from the broader event-level leptons and MET. The code uses the selected lepton and event-level MET, which are not explicitly filtered by any cuts. This is a specification ambiguity, as the SPEC does not explicitly constrain whether the definition must be computed from a filtered collection or from the broader input collection.
+
+Evidence priority:
+- The code uses `selected_leptons` and `helper_get_met(event)`. 〔L322〕
+
+Generator bias:
+- none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- helper_invariant_mass(leading_light_jet, subleading_light_jet)
+
+Reason:
+The SPEC does not specify whether the hadronic W mass should be computed from the selected non-b-tagged jets or from the broader event-level jets. The code uses the selected non-b-tagged jets, which are already filtered by pT and |eta|. This is a specification ambiguity, as the SPEC does not explicitly constrain whether the definition must be computed from a filtered collection or from the broader input collection.
+
+Evidence priority:
+- The code uses `selected_light_jets` which are filtered by pT and |eta|. 〔L339〕
+
+Generator bias:
+- none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV.
+
+CODE:
+- helper_invariant_mass(leading_bjet, hadronic_w)
+
+Reason:
+The SPEC does not specify whether the hadronic top mass should be computed from the selected b-tagged jets or from the broader event-level jets. The code uses the selected b-tagged jets, which are already filtered by pT and |eta|. This is a specification ambiguity, as the SPEC does not explicitly constrain whether the definition must be computed from a filtered collection or from the broader input collection.
+
+Evidence priority:
+- The code uses `selected_bjets` which are filtered by pT and |eta|. 〔L354〕
+
+Generator bias:
+- none

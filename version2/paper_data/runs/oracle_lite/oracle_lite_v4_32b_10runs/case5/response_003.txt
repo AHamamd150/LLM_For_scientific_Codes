@@ -1,0 +1,87 @@
+[CANDIDATE 1] Leading and subleading tau definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Unresolved choice:
+It is unclear whether the leading and subleading tau are defined based on pT before or after the selection cuts (pT > 20 GeV and |eta| < 2.3).
+
+Why this may matter:
+If the selection cuts are applied first, the leading and subleading are based on the selected taus. If the definition is based on the full event-level collection, the selection may remove the actual leading or subleading tau, changing the analysis outcome.
+
+[CANDIDATE 2] Leading and subleading jet definition
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Unresolved choice:
+It is unclear whether the leading and subleading jets are defined based on pT before or after the selection cuts (pT > 30 GeV and |eta| < 4.7).
+
+Why this may matter:
+If the selection cuts are applied first, the leading and subleading jets are based on the selected jets. If the definition is based on the full event-level collection, the selection may remove the actual leading or subleading jet, changing the analysis outcome.
+
+[CANDIDATE 3] Dijet invariant mass definition
+
+Original phrase:
+"Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV"
+
+Unresolved choice:
+It is unclear whether the invariant mass is computed from the four-momentum of the selected jets or from the full event-level jets.
+
+Why this may matter:
+If the invariant mass is computed from the full event-level jets, the selection may include jets that are later removed by the jet selection cuts, leading to inconsistent or incorrect m_jj values.
+
+[CANDIDATE 4] Dijet delta eta definition
+
+Original phrase:
+"Select |delta eta| between the two leading jets > 2.5"
+
+Unresolved choice:
+It is unclear whether the "two leading jets" refers to the two highest-pT jets in the full event-level collection or in the selected jet collection.
+
+Why this may matter:
+If the delta eta is computed from the full event-level jets, the selection may include jets that are later removed by the jet selection cuts, leading to inconsistent or incorrect delta eta values.
+
+[CANDIDATE 5] Dijet system definition
+
+Original phrase:
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Unresolved choice:
+It is unclear whether the "leading jet" and "subleading jet" refer to the full event-level jets or the selected jets.
+
+Why this may matter:
+If the jets are selected first, the dijet_obj is based on the selected jets. If the jets are defined from the full event-level collection, the selection may remove the actual leading or subleading jet, changing the dijet system definition.
+
+[CANDIDATE 6] Dijet system reuse
+
+Original phrase:
+"Plot delta phi between the ditau system and the dijet system"
+
+Unresolved choice:
+It is unclear whether the "dijet system" is meant to be reused from the earlier definition or if it is redefined for this specific plot.
+
+Why this may matter:
+If the dijet system is redefined for this plot, it may lead to inconsistencies in the analysis, especially if the definition is not the same as the one used in the selection cuts.
+
+[CANDIDATE 7] Dijet system centrality
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Unresolved choice:
+It is unclear whether the "two jets" refers to the selected jets or the full event-level jets.
+
+Why this may matter:
+If the centrality is computed relative to the full event-level jets, the selection may include jets that are later removed by the jet selection cuts, leading to inconsistent or incorrect centrality values.
+
+[CANDIDATE 8] Dijet system centrality reuse
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Unresolved choice:
+It is unclear whether the "dijet system" is meant to be reused from the earlier definition or if it is redefined for this specific plot.
+
+Why this may matter:
+If the dijet system is redefined for this plot, it may lead to inconsistencies in the analysis, especially if the definition is not the same as the one used in the selection cuts.

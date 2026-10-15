@@ -1,0 +1,71 @@
+[AMBIGUITY 1] Leading b-jet definition
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Why this is dangerous:
+The phrase "leading b-jet" could refer to the highest-pT b-jet among all jets in the event, or it could refer to the highest-pT among only the selected b-jets after all previous cuts. This distinction affects the object selection logic and may lead to different helper function sequences.
+
+Question to user:
+Should the "leading b-jet" be determined from all b-tagged jets in the event, or only from those that passed all previous selection criteria?
+
+Golden axe:
+The leading b-jet is the highest-pT b-tagged jet among those that passed all previous selection criteria.
+
+Silver axe:
+The leading b-jet is the highest-pT b-tagged jet in the full event, regardless of whether it passed earlier cuts.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Build the hadronic top candidate from the leading b-jet among the selected b-jets and the hadronic W candidate."
+- Silver axe rewrite: "Build the hadronic top candidate from the leading b-jet in the full event and the hadronic W candidate."
+
+[AMBIGUITY 2] Non-b-tagged jet selection
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Why this is dangerous:
+The phrase "non-b-tagged jets" could refer to jets that are explicitly not b-tagged, or it could refer to jets that are not among the selected b-jets. This distinction affects whether we apply jet selection cuts before or after the b-tagging veto.
+
+Question to user:
+Should the "non-b-tagged jets" be selected from the full jet collection (after applying jet cuts), or from the jets that are not in the selected b-jet collection?
+
+Golden axe:
+The non-b-tagged jets are selected from the full jet collection after applying jet cuts, excluding any b-tagged jets.
+
+Silver axe:
+The non-b-tagged jets are the jets that are not in the selected b-jet collection, regardless of whether they passed jet cuts.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Build the hadronic W candidate from the two leading jets (after jet cuts) that are not b-tagged."
+- Silver axe rewrite: "Build the hadronic W candidate from the two leading jets that are not in the selected b-jet collection."
+
+[AMBIGUITY 3] Lepton collection for multiplicity
+
+Original phrase:
+"Require exactly one lepton (electron or muon)"
+
+Why this is dangerous:
+The phrase "lepton" could refer to the combined electron and muon collection with a common set of cuts, or it could refer to a merged collection where electron and muon cuts differ. This affects whether we use a helper that applies the same cuts to both lepton types.
+
+Question to user:
+Should the lepton multiplicity be computed from a merged electron+muon collection with identical cuts, or from separate collections with possibly different cuts?
+
+Golden axe:
+The lepton multiplicity is computed from a merged electron+muon collection with identical pT and |eta| cuts.
+
+Silver axe:
+The lepton multiplicity is computed from separate electron and muon collections, each with their own cuts.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Require exactly one lepton (electron or muon) with identical pT and |eta| cuts."
+- Silver axe rewrite: "Require exactly one lepton (electron or muon), with pT and |eta| cuts applied separately to each lepton type."

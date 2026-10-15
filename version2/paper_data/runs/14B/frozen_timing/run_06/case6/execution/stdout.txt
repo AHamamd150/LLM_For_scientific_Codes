@@ -1,0 +1,11 @@
+Initial: 50000
+Lepton Selection: 24220
+Jet Selection: 11805
+BJet Selection: 4976
+Lepton-BJet DeltaR: 0
+MET Selection: 0
+Transverse Mass: 0
+Hadronic W Selection: 0
+Hadronic W Mass: 0
+Hadronic Top Selection: 0
+Hadronic Top Mass: 0

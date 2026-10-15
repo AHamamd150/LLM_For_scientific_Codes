@@ -1,0 +1,496 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+
+CODE:
+- ditau_obj = sum_objects(tau1, tau2)
+
+Reason:
+The code correctly constructs the ditau_obj from the four-momentum of the leading and subleading tau. This is a correct implementation of the composite system.
+
+Evidence priority:
+- ditau_obj = sum_objects(tau1, tau2); upstream chain: sum_objects -> obj_from_four_momentum(E_tot, px_tot, py_tot, pz_tot)
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Define dijet_obj from the summed momentum of the leading jet and subleading jet.
+
+CODE:
+- dijet_obj = sum_objects(jet1, jet2)
+
+Reason:
+The code correctly constructs the dijet_obj from the four-momentum of the leading and subleading jet. This is a correct implementation of the composite system.
+
+Evidence priority:
+- dijet_obj = sum_objects(jet1, jet2); upstream chain: sum_objects -> obj_from_four_momentum(E_tot, px_tot, py_tot, pz_tot)
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot the ditau invariant mass in the range 50 to 160 GeV
+
+CODE:
+- ditau_obj['mass']
+
+Reason:
+The code correctly computes the ditau invariant mass from the composite ditau_obj. This is a correct implementation of the composite system.
+
+Evidence priority:
+- ditau_obj['mass']; upstream chain: ditau_obj = sum_objects(tau1, tau2)
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot the dijet invariant mass (m_jj) in the range 200 to 2000 GeV
+
+CODE:
+- dijet_obj['mass']
+
+Reason:
+The code correctly computes the dijet invariant mass from the composite dijet_obj. This is a correct implementation of the composite system.
+
+Evidence priority:
+- dijet_obj['mass']; upstream chain: dijet_obj = sum_objects(jet1, jet2)
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot delta phi between the ditau system and the dijet system
+
+CODE:
+- helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])
+
+Reason:
+The code correctly computes the delta phi between the ditau system and the dijet system. This is a correct implementation of the composite system.
+
+Evidence priority:
+- helper_delta_phi(ditau_obj['phi'], dijet_obj['phi']); upstream chain: ditau_obj = sum_objects(tau1, tau2), dijet_obj = sum_objects(jet1, jet2)
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- centrality_between_jets(ditau_obj, jet1, jet2)
+
+Reason:
+The code correctly computes the centrality of the ditau system relative to the two jets. This is a correct implementation of the composite system.
+
+Evidence priority:
+- centrality_between_jets(ditau_obj, jet1, jet2); upstream chain: ditau_obj = sum_objects(tau1, tau2), jet1 = helper_get_leading(jets), jet2 = helper_get_subleading(jets)
+
+Generator bias:
+none
+
+◎ (D) definition mismatch
+
+SPEC:
+- Require at least 2 taus
+
+CODE:
+- if len(taus) < 2: continue
+
+Reason:
+The code correctly implements the requirement to have at least 2 taus.
+
+Evidence priority:
+- if len(taus) < 2: continue
+
+Generator bias:
+none
+
+◎ (D) definition mismatch
+
+SPEC:
+- Require at least 2 jets (VBF topology)
+
+CODE:
+- if len(jets) < 2: continue
+
+Reason:
+The code correctly implements the requirement to have at least 2 jets.
+
+Evidence priority:
+- if len(jets) < 2: continue
+
+Generator bias:
+none
+
+◎ (D) definition mismatch
+
+SPEC:
+- Require opposite-sign tau pair
+
+CODE:
+- if not opposite_sign(tau1, tau2): continue
+
+Reason:
+The code correctly implements the requirement for opposite-sign tau pair.
+
+Evidence priority:
+- if not opposite_sign(tau1, tau2): continue
+
+Generator bias:
+none
+
+◎ (D) definition mismatch
+
+SPEC:
+- Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV
+
+CODE:
+- if dijet_obj is None or dijet_obj['mass'] < 400: continue
+
+Reason:
+The code correctly implements the requirement for m_jj > 400 GeV.
+
+Evidence priority:
+- if dijet_obj is None or dijet_obj['mass'] < 400: continue
+
+Generator bias:
+none
+
+◎ (D) definition mismatch
+
+SPEC:
+- Select |delta eta| between the two leading jets > 2.5
+
+CODE:
+- if abs_delta_eta(jet1, jet2) < 2.5: continue
+
+Reason:
+The code correctly implements the requirement for |delta eta| > 2.5.
+
+Evidence priority:
+- if abs_delta_eta(jet1, jet2) < 2.5: continue
+
+Generator bias:
+none
+
+◎ (D) definition mismatch
+
+SPEC:
+- Select ditau invariant mass between 60 and 150 GeV
+
+CODE:
+- if ditau_obj is None or not (60 < ditau_obj['mass'] < 150): continue
+
+Reason:
+The code correctly implements the requirement for ditau invariant mass between 60 and 150 GeV.
+
+Evidence priority:
+- if ditau_obj is None or not (60 < ditau_obj['mass'] < 150): continue
+
+Generator bias:
+none
+
+◎ (D) definition mismatch
+
+SPEC:
+- Veto events with b-tagged jets
+
+CODE:
+- if get_bjets(event): continue
+
+Reason:
+The code correctly implements the veto for events with b-tagged jets.
+
+Evidence priority:
+- if get_bjets(event): continue
+
+Generator bias:
+none
+
+◎ (D) definition mismatch
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+CODE:
+- continue statements after each cut
+
+Reason:
+The code correctly implements the requirement to apply cuts sequentially and skip events when a cut is not satisfied.
+
+Evidence priority:
+- continue statements after each cut
+
+Generator bias:
+none
+
+◎ (D) definition mismatch
+
+SPEC:
+- Increment each cutflow counter immediately after its cut is passed.
+
+CODE:
+- cutflow counters incremented after each cut
+
+Reason:
+The code correctly implements the requirement to increment cutflow counters after each cut is passed.
+
+Evidence priority:
+- cutflow counters incremented after each cut
+
+Generator bias:
+none
+
+◎ (D) definition mismatch
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- print("Cutflow:"); for key, value in cutflow.items(): print(f"{key}: {value}")
+
+Reason:
+The code correctly implements the requirement to print a cutflow summary after the event loop.
+
+Evidence priority:
+- print("Cutflow:"); for key, value in cutflow.items(): print(f"{key}: {value}")
+
+Generator bias:
+none
+
+◎ (D) definition mismatch
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig("filename.png")
+
+Reason:
+The code correctly implements the requirement to save plots in png format.
+
+Evidence priority:
+- plt.savefig("filename.png")
+
+Generator bias:
+none
+
+[KEPT 2] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Define the leading tau and subleading tau from the selected taus.
+
+CODE:
+- helper_get_leading(taus), helper_get_subleading(taus)
+
+Reason:
+The code correctly defines the leading and subleading tau from the selected taus. The implementation uses the helper functions to get the leading and subleading particles based on pT.
+
+Evidence priority:
+- helper_get_leading(taus), helper_get_subleading(taus)
+
+Generator bias:
+none
+
+[KEPT 3] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Define the leading jet and subleading jet from the selected jets.
+
+CODE:
+- helper_get_leading(jets), helper_get_subleading(jets)
+
+Reason:
+The code correctly defines the leading and subleading jet from the selected jets. The implementation uses the helper functions to get the leading and subleading particles based on pT.
+
+Evidence priority:
+- helper_get_leading(jets), helper_get_subleading(jets)
+
+Generator bias:
+none
+
+---
+
+[KEPT 4] keep: no obvious noise signal
+⚠️ (C) missing implementation
+
+SPEC:
+- Require opposite-sign tau pair
+
+CODE:
+- if not opposite_sign(tau1, tau2): continue
+
+Reason:
+The code correctly implements the requirement for opposite-sign tau pair. This is not a missing implementation.
+
+Evidence priority:
+- if not opposite_sign(tau1, tau2): continue
+
+Generator bias:
+none
+
+[KEPT 5] keep: no obvious noise signal
+⚠️ (C) missing implementation
+
+SPEC:
+- Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV
+
+CODE:
+- if dijet_obj is None or dijet_obj['mass'] < 400: continue
+
+Reason:
+The code correctly implements the requirement for m_jj > 400 GeV. This is not a missing implementation.
+
+Evidence priority:
+- if dijet_obj is None or dijet_obj['mass'] < 400: continue
+
+Generator bias:
+none
+
+[KEPT 6] keep: no obvious noise signal
+⚠️ (C) missing implementation
+
+SPEC:
+- Select |delta eta| between the two leading jets > 2.5
+
+CODE:
+- if abs_delta_eta(jet1, jet2) < 2.5: continue
+
+Reason:
+The code correctly implements the requirement for |delta eta| > 2.5. This is not a missing implementation.
+
+Evidence priority:
+- if abs_delta_eta(jet1, jet2) < 2.5: continue
+
+Generator bias:
+none
+
+[KEPT 7] keep: no obvious noise signal
+⚠️ (C) missing implementation
+
+SPEC:
+- Select ditau invariant mass between 60 and 150 GeV
+
+CODE:
+- if ditau_obj is None or not (60 < ditau_obj['mass'] < 150): continue
+
+Reason:
+The code correctly implements the requirement for ditau invariant mass between 60 and 150 GeV. This is not a missing implementation.
+
+Evidence priority:
+- if ditau_obj is None or not (60 < ditau_obj['mass'] < 150): continue
+
+Generator bias:
+none
+
+[KEPT 8] keep: no obvious noise signal
+⚠️ (C) missing implementation
+
+SPEC:
+- Veto events with b-tagged jets
+
+CODE:
+- if get_bjets(event): continue
+
+Reason:
+The code correctly implements the veto for events with b-tagged jets. This is not a missing implementation.
+
+Evidence priority:
+- if get_bjets(event): continue
+
+Generator bias:
+none
+
+[KEPT 9] keep: no obvious noise signal
+⚠️ (C) missing implementation
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+CODE:
+- continue statements after each cut
+
+Reason:
+The code correctly implements the requirement to apply cuts sequentially and skip events when a cut is not satisfied. This is not a missing implementation.
+
+Evidence priority:
+- continue statements after each cut
+
+Generator bias:
+none
+
+[KEPT 10] keep: no obvious noise signal
+⚠️ (C) missing implementation
+
+SPEC:
+- Increment each cutflow counter immediately after its cut is passed.
+
+CODE:
+- cutflow counters incremented after each cut
+
+Reason:
+The code correctly implements the requirement to increment cutflow counters after each cut is passed. This is not a missing implementation.
+
+Evidence priority:
+- cutflow counters incremented after each cut
+
+Generator bias:
+none
+
+[KEPT 11] keep: no obvious noise signal
+⚠️ (C) missing implementation
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- print("Cutflow:"); for key, value in cutflow.items(): print(f"{key}: {value}")
+
+Reason:
+The code correctly implements the requirement to print a cutflow summary after the event loop. This is not a missing implementation.
+
+Evidence priority:
+- print("Cutflow:"); for key, value in cutflow.items(): print(f"{key}: {value}")
+
+Generator bias:
+none
+
+[KEPT 12] keep: no obvious noise signal
+⚠️ (C) missing implementation
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig("filename.png")
+
+Reason:
+The code correctly implements the requirement to save plots in png format. This is not a missing implementation.
+
+Evidence priority:
+- plt.savefig("filename.png")
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

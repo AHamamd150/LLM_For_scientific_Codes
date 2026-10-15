@@ -1,0 +1,62 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjets_sorted[0], w_had)
+
+Reason:
+The hadronic top candidate is a system-level object that should be constructed from the leading b-tagged jet and the hadronic W candidate. However, the code uses the `sum_objects` function, which simply adds the four-momenta of the two inputs. This is correct in principle, but the code does not explicitly verify that the hadronic W candidate is built from the correct non-b-tagged jets. The implementation assumes that the hadronic W candidate is already correctly constructed, which is correct, but the composite system is not explicitly validated as a system-level object. The code computes the invariant mass from the constituent objects, which is correct, but the composite violation is in the assumption that the hadronic W is already correctly formed.
+
+Evidence priority:
+- helper_invariant_mass(bjets_sorted[0], w_had)
+
+Generator bias:
+none
+
+---
+
+[KEPT 2] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Reason:
+The hadronic W candidate is a system-level object that should be constructed from the two leading non-b-tagged jets. While the code correctly identifies the two leading non-b-tagged jets and combines them using `sum_objects`, it does not explicitly validate that the resulting object is a proper hadronic W candidate. The code computes the invariant mass from the constituent jets, which is correct, but the composite violation is in the assumption that the jet pair forms a valid W candidate without explicit validation of the jet properties or their combination.
+
+Evidence priority:
+- helper_invariant_mass(light_jets_sorted[0], light_jets_sorted[1])
+
+Generator bias:
+none
+
+[KEPT 3] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjets_sorted[0], w_had)
+
+Reason:
+The hadronic top candidate is a system-level object that should be constructed from the leading b-tagged jet and the hadronic W candidate. While the code correctly combines the two constituents using `sum_objects`, it does not explicitly validate that the resulting object is a proper hadronic top candidate. The code computes the invariant mass from the constituent objects, which is correct, but the composite violation is in the assumption that the jet and W candidate form a valid top candidate without explicit validation of the system-level properties.
+
+Evidence priority:
+- helper_invariant_mass(bjets_sorted[0], w_had)
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

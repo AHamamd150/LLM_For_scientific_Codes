@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] Ambiguity in "selected jets" for b-tag veto
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Why this matters:
+The phrase "selected jets" is not explicitly defined in the input. It could refer to jets that passed the pT and |eta| cuts (30 GeV and 4.7), or it could refer to a further subset (e.g., jets used in the dijet system). The b-tag veto could thus apply to all jets in the event, only the jets used in the dijet system, or a different subset.
+
+Question to user:
+Do you want the b-tag veto to apply to all jets that passed the pT and |eta| cuts, or only to the jets used in the dijet system (i.e., the leading and subleading jets)?
+
+Golden axe:
+Apply the veto to all jets that passed the pT and |eta| cuts.
+
+Silver axe:
+Apply the veto only to the leading and subleading jets used in the dijet system.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Ambiguity in "selected taus" for ditau system
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this matters:
+The phrase "selected taus" is not explicitly defined. It could refer to all taus passing the pT and |eta| cuts (20 GeV and 2.3), or it could refer to a subset after applying the opposite-sign requirement. The definition of the leading and subleading tau could thus vary depending on when the selection is applied.
+
+Question to user:
+Should the leading and subleading tau be defined from all taus passing the pT and |eta| cuts, or only from the subset of taus that are opposite in sign?
+
+Golden axe:
+Define leading and subleading tau from all taus passing the pT and |eta| cuts.
+
+Silver axe:
+Define leading and subleading tau only from the opposite-sign pair.
+
+Recommended default:
+Silver axe
+
+---
+
+[UNDERSPECIFICATION 3] Ambiguity in "centrality of the ditau system relative to the two jets"
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Why this matters:
+The phrase "ditau system" is not explicitly defined. It could refer to the summed four-momentum of the two taus (as previously defined as ditau_obj), or it could refer to the position of the ditau system in the detector (e.g., using the average or weighted average of the taus' pseudorapidities). The centrality calculation depends on the definition of the system's position.
+
+Question to user:
+Do you want the centrality to be calculated using the pseudorapidity of the ditau system as the average of the two taus, or using the pseudorapidity derived from the summed four-momentum of the two taus?
+
+Golden axe:
+Use the average pseudorapidity of the two taus.
+
+Silver axe:
+Use the pseudorapidity derived from the summed four-momentum of the two taus.
+
+Recommended default:
+Golden axe

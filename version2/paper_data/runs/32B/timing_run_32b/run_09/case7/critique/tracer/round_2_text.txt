@@ -1,0 +1,49 @@
+
+
+* delta_eta_jj_val
+  - computed/defined as: abs(helper_delta_eta(lead_jet, sublead_jet))
+  - upstream chain: lead_jet, sublead_jet -> helper_delta_eta(lead_jet, sublead_jet) -> abs(helper_delta_eta(lead_jet, sublead_jet))
+  - collection definition: lead_jet, sublead_jet
+  - structure: composite-derived
+
+* pt_lead_tau
+  - computed/defined as: lead_tau['pt']
+  - upstream chain: lead_tau -> lead_tau['pt']
+  - collection definition: lead_tau
+  - structure: single-constituent
+
+* pt_sublead_tau
+  - computed/defined as: sublead_tau['pt']
+  - upstream chain: sublead_tau -> sublead_tau['pt']
+  - collection definition: sublead_tau
+  - structure: single-constituent
+
+* pt_lead_jet
+  - computed/defined as: lead_jet['pt']
+  - upstream chain: lead_jet -> lead_jet['pt']
+  - collection definition: lead_jet
+  - structure: single-constituent
+
+* pt_sublead_jet
+  - computed/defined as: sublead_jet['pt']
+  - upstream chain: sublead_jet -> sublead_jet['pt']
+  - collection definition: sublead_jet
+  - structure: single-constituent
+
+* delta_r_taus
+  - computed/defined as: helper_delta_r(lead_tau, sublead_tau)
+  - upstream chain: lead_tau, sublead_tau -> helper_delta_r(lead_tau, sublead_tau)
+  - collection definition: lead_tau, sublead_tau
+  - structure: composite-derived
+
+* delta_phi_tautau_dijet
+  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])
+  - upstream chain: ditau_obj, dijet_obj -> helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])
+  - collection definition: ditau_obj, dijet_obj
+  - structure: composite-derived
+
+* centrality
+  - computed/defined as: centrality_between_jets(ditau_obj, lead_jet, sublead_jet)
+  - upstream chain: ditau_obj, lead_jet, sublead_jet -> centrality_between_jets(ditau_obj, lead_jet, sublead_jet)
+  - collection definition: ditau_obj, lead_jet, sublead_jet
+  - structure: composite-derived

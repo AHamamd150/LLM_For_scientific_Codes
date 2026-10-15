@@ -1,0 +1,383 @@
+#!/usr/bin/env python3
+import sys
+import math
+import matplotlib.pyplot as plt
+import numpy as np
+
+# =================================================================================
+# LHCO PARSER AND HELPER FUNCTIONS
+# =================================================================================
+
+def get_particle_mass(obj):
+    """Return appropriate mass based on particle type."""
+    if 'type' not in obj:
+        return obj.get('mass', obj.get('jmass', 0.0))
+
+    ptype = obj['type']
+    if ptype == 0:    # photon
+        return 0.0
+    elif ptype == 1:  # electron
+        return 0.0
+    elif ptype == 2:  # muon
+        return 0.0
+    elif ptype == 3:  # tau
+        return 1.777
+    elif ptype == 4:  # jet
+        return obj['jmass']
+    else:
+        return obj.get('mass', 0.0)
+
+
+def four_momentum(obj):
+    """Return (E, px, py, pz) from an object dict."""
+    pt  = obj['pt']
+    eta = obj['eta']
+    phi = obj['phi']
+    m   = get_particle_mass(obj)
+
+    px = pt * math.cos(phi)
+    py = pt * math.sin(phi)
+    pz = pt * math.sinh(eta)
+    E  = math.sqrt(px**2 + py**2 + pz**2 + m**2)
+    return E, px, py, pz
+
+
+def obj_from_four_momentum(E, px, py, pz):
+    """
+    Reconstruct a composite object dict from four-momentum (E, px, py, pz).
+    Returns a dict with pt, eta, phi, and mass.
+    """
+    pt = math.sqrt(px**2 + py**2)
+    phi = math.atan2(py, px)
+
+    if pt > 0.0:
+        eta = math.asinh(pz / pt)
+    elif pz != 0.0:
+        eta = math.copysign(float("inf"), pz)
+    else:
+        eta = 0.0
+
+    p2 = px**2 + py**2 + pz**2
+    m2 = E**2 - p2
+    mass = math.sqrt(m2) if m2 > 0.0 else 0.0
+
+    return {
+        "pt": pt,
+        "eta": eta,
+        "phi": phi,
+        "mass": mass
+    }
+
+
+def sum_objects(*args):
+    """Return composite object from any combination of particles/lists."""
+    particles = []
+    for arg in args:
+        if arg is None:
+            continue
+        if isinstance(arg, dict):
+            particles.append(arg)
+        elif isinstance(arg, list):
+            particles.extend(p for p in arg if p is not None)
+
+    if not particles:
+        return None
+
+    E_tot, px_tot, py_tot, pz_tot = 0.0, 0.0, 0.0, 0.0
+    for p in particles:
+        E, px, py, pz = four_momentum(p)
+        E_tot += E
+        px_tot += px
+        py_tot += py
+        pz_tot += pz
+
+    return obj_from_four_momentum(E_tot, px_tot, py_tot, pz_tot)
+
+
+def helper_invariant_mass(*args):
+    """Return invariant mass from any combination of particles/lists."""
+    obj = sum_objects(*args)
+    return obj['mass'] if obj is not None else 0.0
+
+
+def helper_delta_phi(phi1, phi2):
+    """Compute Δφ normalized to [-π, π]."""
+    dphi = phi1 - phi2
+    while dphi > math.pi:
+        dphi -= 2 * math.pi
+    while dphi < -math.pi:
+        dphi += 2 * math.pi
+    return dphi
+
+
+def helper_delta_r(obj1, obj2):
+    """Compute ΔR between two objects."""
+    deta = obj1['eta'] - obj2['eta']
+    dphi = helper_delta_phi(obj1['phi'], obj2['phi'])
+    return math.sqrt(deta**2 + dphi**2)
+
+
+def helper_transverse_mass(visible, met):
+    """Compute transverse mass of visible particle + MET."""
+    dphi = helper_delta_phi(visible['phi'], met['phi'])
+    return math.sqrt(2 * visible['pt'] * met['pt'] * (1 - math.cos(dphi)))
+
+
+def read_lhco(filename):
+    """Parse LHCO file and return list of events."""
+    events = []
+    current = None
+
+    with open(filename) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+
+            parts = line.split()
+            if not parts:
+                continue
+
+            # New event header (index = 0)
+            if parts[0] == '0':
+                if len(parts) < 2:
+                    continue
+                try:
+                    event_id = int(parts[1])
+                except ValueError:
+                    continue
+                if current is not None:
+                    events.append(current)
+                current = {'id': event_id, 'objects': []}
+
+            # Object line
+            elif current is not None:
+                if len(parts) < 7:
+                    continue
+                try:
+                    obj = {
+                        'type':   int(parts[1]),
+                        'eta':    float(parts[2]),
+                        'phi':    float(parts[3]),
+                        'pt':     float(parts[4]),
+                        'jmass':  float(parts[5]),
+                        'ntrk':   float(parts[6]),
+                        'btag':   float(parts[7]) if len(parts) > 7 else 0.0,
+                        'had_em': float(parts[8]) if len(parts) > 8 else 0.0
+                    }
+                except ValueError:
+                    continue
+
+                obj['charge'] = 1 if obj['ntrk'] > 0 else (-1 if obj['ntrk'] < 0 else 0)
+                current['objects'].append(obj)
+
+    if current is not None:
+        events.append(current)
+
+    return events
+
+
+# =================================================================================
+# SELECTION HELPERS
+# =================================================================================
+
+def get_electrons(event):
+    """Return all electrons."""
+    return [o for o in event['objects'] if o['type'] == 1]
+
+def get_muons(event):
+    """Return all muons."""
+    return [o for o in event['objects'] if o['type'] == 2]
+
+def get_jets(event):
+    """Return all jets."""
+    return [o for o in event['objects'] if o['type'] == 4]
+
+def get_bjets(event):
+    """Return all b-tagged jets."""
+    return [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]
+
+def get_light_jets(event):
+    """Return all non-b-tagged jets."""
+    return [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 0]
+
+def get_leptons(event):
+    """Return all electrons and muons."""
+    return [o for o in event['objects'] if o['type'] in (1, 2)]
+
+def helper_get_met(event):
+    """Return MET object or None."""
+    for o in event['objects']:
+        if o['type'] == 6:
+            return o
+    return None
+
+def helper_get_leading(particles):
+    """Return leading (highest pT) particle or None."""
+    if not particles:
+        return None
+    return max(particles, key=lambda p: p['pt'])
+
+def helper_get_subleading(particles):
+    """Return subleading (second highest pT) particle or None."""
+    if len(particles) < 2:
+        return None
+    sorted_p = sorted(particles, key=lambda p: p['pt'], reverse=True)
+    return sorted_p[1]
+
+def sort_by_pt(particles):
+    """Return particles sorted by pT (descending)."""
+    return sorted(particles, key=lambda p: p['pt'], reverse=True)
+
+def scalar_pt_sum(particles):
+    """Compute scalar sum of pT for a list of particles."""
+    return sum(p['pt'] for p in particles)
+
+def n_jets(event, pt_cut=0.0, eta_cut=float('inf')):
+    """Count jets passing pT and |η| cuts."""
+    jets = get_jets(event)
+    return sum(1 for j in jets if j['pt'] > pt_cut and abs(j['eta']) < eta_cut)
+
+def n_bjets(event, pt_cut=0.0, eta_cut=float('inf')):
+    """Count b-jets passing pT and |η| cuts."""
+    bjets = get_bjets(event)
+    return sum(1 for b in bjets if b['pt'] > pt_cut and abs(b['eta']) < eta_cut)
+
+def n_leptons(event, pt_cut=0.0, eta_cut=float('inf')):
+    """Count leptons passing pT and |η| cuts."""
+    leptons = get_leptons(event)
+    return sum(1 for l in leptons if l['pt'] > pt_cut and abs(l['eta']) < eta_cut)
+
+
+# =================================================================================
+# MAIN ANALYSIS
+# =================================================================================
+
+def main():
+    import sys
+    import os
+
+    if len(sys.argv) < 2:
+        print("Usage: python3 script.py <lhco_file1> [lhco_file2 ...]")
+        sys.exit(1)
+
+    all_events = []
+    for filename in sys.argv[1:]:
+        if not os.path.exists(filename):
+            print(f"File not found: {filename}")
+            continue
+        all_events.extend(read_lhco(filename))
+
+    cutflow = {
+        "initial": len(all_events),
+    }
+
+    # Initialize histograms
+    h_mt = []
+    h_met = []
+    h_bjet1_pt = []
+    h_bjet2_pt = []
+    h_w_hadronic_mass = []
+    h_top_hadronic_mass = []
+    h_dr_lepton_bjet = []
+    h_ht = []
+    h_njets = []
+    h_bjet1_eta = []
+
+    # Event loop
+    for event in all_events:
+        # Initial cutflow
+        cutflow["initial"] += 1
+
+        # 1. Select electrons and muons
+        electrons = [e for e in get_electrons(event) if e['pt'] > 25 and abs(e['eta']) < 2.5]
+        muons = [m for m in get_muons(event) if m['pt'] > 25 and abs(m['eta']) < 2.4]
+        leptons = electrons + muons
+
+        if not (1 <= len(leptons) <= 1):
+            continue
+        cutflow["1 lepton"] = cutflow.get("1 lepton", 0) + 1
+
+        # 2. Require at least 4 jets
+        jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+        if len(jets) < 4:
+            continue
+        cutflow["4 jets"] = cutflow.get("4 jets", 0) + 1
+
+        # 3. Require at least 2 b-jets
+        bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]
+        if len(bjets) < 2:
+            continue
+        cutflow["2 b-jets"] = cutflow.get("2 b-jets", 0) + 1
+
+        # 4. MET > 20 GeV
+        met = helper_get_met(event)
+        if met is None or met['pt'] < 20:
+            continue
+        cutflow["MET > 20"] = cutflow.get("MET > 20", 0) + 1
+
+        # 5. Transverse mass of lepton + MET between 30 and 150 GeV
+        mt = helper_transverse_mass(leptons[0], met)
+        if not (30 < mt < 150):
+            continue
+        cutflow["MT 30-150"] = cutflow.get("MT 30-150", 0) + 1
+        h_mt.append(mt)
+
+        # 6. Build hadronic W from two leading non-b-tagged jets
+        light_jets = [j for j in jets if j not in bjets]
+        if len(light_jets) < 2:
+            continue
+        light_jets_sorted = sort_by_pt(light_jets)
+        w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+        if w_hadronic is None or not (40 < w_hadronic['mass'] < 120):
+            continue
+        cutflow["W hadronic 40-120"] = cutflow.get("W hadronic 40-120", 0) + 1
+        h_w_hadronic_mass.append(w_hadronic['mass'])
+
+        # 7. Build hadronic top from leading b-jet and hadronic W
+        bjets_sorted = sort_by_pt(bjets)
+        if len(bjets_sorted) < 1:
+            continue
+        top_hadronic = sum_objects(bjets_sorted[0], w_hadronic)
+        if top_hadronic is None or not (100 < top_hadronic['mass'] < 250):
+            continue
+        cutflow["Top hadronic 100-250"] = cutflow.get("Top hadronic 100-250", 0) + 1
+        h_top_hadronic_mass.append(top_hadronic['mass'])
+
+        # Fill histograms
+        h_met.append(met['pt'])
+        h_bjet1_pt.append(bjets_sorted[0]['pt'])
+        if len(bjets_sorted) >= 2:
+            h_bjet2_pt.append(bjets_sorted[1]['pt'])
+        h_dr_lepton_bjet.append(helper_delta_r(leptons[0], bjets_sorted[0]))
+        h_ht.append(scalar_pt_sum(jets))
+        h_njets.append(len(jets))
+        h_bjet1_eta.append(bjets_sorted[0]['eta'])
+
+    # Save histograms
+    def save_hist(values, filename, xlabel):
+        plt.figure()
+        plt.hist(values, bins=40, density=True)
+        plt.xlabel(xlabel)
+        plt.ylabel("density")
+        plt.savefig(filename)
+        plt.close()
+
+    save_hist(h_mt, "mt.png", "Transverse Mass (GeV)")
+    save_hist(h_met, "met.png", "MET (GeV)")
+    save_hist(h_bjet1_pt, "bjet1_pt.png", "Leading b-jet pT (GeV)")
+    save_hist(h_bjet2_pt, "bjet2_pt.png", "Subleading b-jet pT (GeV)")
+    save_hist(h_w_hadronic_mass, "w_hadronic_mass.png", "Hadronic W mass (GeV)")
+    save_hist(h_top_hadronic_mass, "top_hadronic_mass.png", "Hadronic top mass (GeV)")
+    save_hist(h_dr_lepton_bjet, "dr_lepton_bjet.png", "ΔR(lepton, b-jet)")
+    save_hist(h_ht, "ht.png", "HT (GeV)")
+    save_hist(h_njets, "njets.png", "Number of jets")
+    save_hist(h_bjet1_eta, "bjet1_eta.png", "Leading b-jet η")
+
+    # Print cutflow
+    print("\nCutflow:")
+    for key in cutflow:
+        print(f"{key}: {cutflow[key]}")
+
+if __name__ == "__main__":
+    main()

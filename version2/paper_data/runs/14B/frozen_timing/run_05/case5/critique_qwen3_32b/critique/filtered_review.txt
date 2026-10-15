@@ -1,0 +1,78 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+
+CODE:
+- sum_objects(leading_tau, subleading_tau)
+
+Reason:
+The code correctly constructs the ditau system from the four-momentum of the leading and subleading tau. This is a valid composite system construction.
+
+Evidence priority:
+- sum_objects(leading_tau, subleading_tau) 〔L259, L65-L87, L27-L36〕
+
+Generator bias:
+none
+
+[KEPT 2] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Define dijet_obj from the summed momentum of the leading jet and subleading jet.
+
+CODE:
+- sum_objects(leading_jet, subleading_jet)
+
+Reason:
+The code correctly constructs the dijet system from the four-momentum of the leading and subleading jet. This is a valid composite system construction.
+
+Evidence priority:
+- sum_objects(leading_jet, subleading_jet) 〔L277, L65-L87, L27-L36〕
+
+Generator bias:
+none
+
+[KEPT 3] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the ditau system and the dijet system
+
+CODE:
+- helper_delta_phi(leading_tau['phi'] + subleading_tau['phi'], leading_jet['phi'] + subleading_jet['phi'])
+
+Reason:
+The code computes Δφ between the sum of individual phi angles rather than between the actual ditau and dijet systems. This is a definition mismatch - the phi of the composite systems should be used, not the sum of individual phi angles.
+
+Evidence priority:
+- helper_delta_phi(leading_tau['phi'] + subleading_tau['phi'], leading_jet['phi'] + subleading_jet['phi']) 〔L310, L143-L149, L109-L113, L114-L120, L275, L276〕
+
+Generator bias:
+none
+
+[KEPT 4] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- centrality_between_jets(sum_objects(leading_tau, subleading_tau), leading_jet, subleading_jet)
+
+Reason:
+The code correctly uses the ditau system for centrality calculation. However, the implementation of centrality_between_jets uses the phi of individual jets rather than the phi of the dijet system. The SPEC asks for centrality relative to the two jets, but the implementation uses jet positions rather than the dijet system.
+
+Evidence priority:
+- centrality_between_jets(sum_objects(leading_tau, subleading_tau), leading_jet, subleading_jet) 〔L311, L143-L155, L65-L87, L27-L36, L109-L113, L114-L120, L275, L276〕
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

@@ -1,0 +1,7 @@
+Case,Runs,Req. items,Runs with >=1 issue,Hallucination,Dependency error,Source error,Coverage miss
+1,10,247,0,0,0,0,0
+2,10,238,4,8,1,0,10
+3,10,311,1,0,0,1,0
+4,10,238,0,0,0,0,0
+5,10,269,10,20,0,0,0
+Total,50,1303,15,28,1,1,10

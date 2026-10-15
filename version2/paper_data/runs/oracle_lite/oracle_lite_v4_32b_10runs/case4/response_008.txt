@@ -1,0 +1,98 @@
+[CANDIDATE 1] z_obj definition and reuse
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum."
+
+Unresolved choice:
+It is unclear whether the z_obj is a temporary object used only for the invariant mass cut, or if it is meant to be reused in later steps (e.g., for plotting the pT of z_obj or for delta phi with MET).
+
+Why this may matter:
+If z_obj is only used for the invariant mass cut, it may not be stored for later use. If it is intended to be reused, the code must ensure that the same z_obj is consistently defined and accessible for all relevant plots and calculations.
+
+[CANDIDATE 2] W candidate muon definition and reuse
+
+Original phrase:
+"Define the selected muon as the W candidate lepton."
+
+Unresolved choice:
+It is unclear whether this definition is a label for the muon (e.g., for plotting purposes) or if it implies a specific object that must be passed to helper functions for further calculations (e.g., transverse mass or delta phi with MET).
+
+Why this may matter:
+If the W candidate muon is only a label, it may not be explicitly tracked or passed to helper functions. If it is a specific object, the code must ensure that the correct muon is consistently used in all relevant calculations.
+
+[CANDIDATE 3] Three-lepton system definition
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Unresolved choice:
+It is unclear whether the three-lepton system is a temporary object used only for this plot, or if it is meant to be reused in other plots (e.g., invariant mass of the three-lepton system).
+
+Why this may matter:
+If the three-lepton system is only used for one plot, it may not be stored for later use. If it is intended to be reused, the code must ensure that the same system is consistently defined and accessible for all relevant plots and calculations.
+
+[CANDIDATE 4] Selection order and event skipping
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied."
+
+Unresolved choice:
+It is unclear whether the phrase "skip the event immediately" refers to skipping the rest of the cuts and plots for that event, or if it refers only to skipping the subsequent cuts but still processing the plots for earlier steps.
+
+Why this may matter:
+If the event is skipped entirely after a failed cut, no further processing or plotting will occur for that event. If only the subsequent cuts are skipped, the event may still contribute to earlier plots and cutflow counters.
+
+[CANDIDATE 5] Cutflow counter incrementing
+
+Original phrase:
+"Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether "its cut" refers to the cut immediately preceding the counter in the list, or if the phrase implies a mapping between the cutflow counters and the cuts that must be explicitly defined.
+
+Why this may matter:
+If the mapping between cuts and counters is not clear, the code may miscount the number of events passing each cut, leading to incorrect cutflow summaries.
+
+[CANDIDATE 6] MET and transverse mass calculation
+
+Original phrase:
+"Select transverse mass of W candidate muon + MET > 30 GeV."
+
+Unresolved choice:
+It is unclear whether the transverse mass is computed using the W candidate muon and the raw MET, or if the MET is modified in any way (e.g., corrected or calibrated) before the calculation.
+
+Why this may matter:
+If the MET is used as-is, the transverse mass may not reflect the true physics. If the MET is modified, the code must ensure that the correct MET is used for the calculation.
+
+[CANDIDATE 7] Delta phi between z_obj and MET
+
+Original phrase:
+"Plot delta phi between z_obj and MET"
+
+Unresolved choice:
+It is unclear whether the MET used in this calculation is the raw MET or the MET after any potential corrections or selections.
+
+Why this may matter:
+If the MET is modified in a previous step (e.g., by a cut on MET > 30 GeV), the delta phi may be computed using a different MET than the one used in the transverse mass calculation.
+
+[CANDIDATE 8] Three-lepton system invariant mass
+
+Original phrase:
+"Plot the invariant mass of the three-lepton system"
+
+Unresolved choice:
+It is unclear whether the three-lepton system is built from the same selected electrons and muon used to build z_obj and the W candidate muon, or if it is a separate combination.
+
+Why this may matter:
+If the three-lepton system is built from a different combination of particles, the invariant mass may not correspond to the same physics as the z_obj and W candidate muon.
+
+[CANDIDATE 9] Delta R between the two electrons forming z_obj
+
+Original phrase:
+"Plot delta R between the two electrons forming z_obj"
+
+Unresolved choice:
+It is unclear whether the two electrons used in this calculation are the same ones used to build z_obj, or if they are a different pair of electrons.
+
+Why this may matter:
+If the two electrons are not the same as those used to build z_obj, the delta R may not correspond to the same physics as the z_obj invariant mass.

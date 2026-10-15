@@ -1,0 +1,19 @@
+{
+  "selected_helpers": [
+    "get_taus",
+    "get_jets",
+    "helper_delta_eta",
+    "helper_invariant_mass",
+    "sum_objects",
+    "obj_from_four_momentum",
+    "helper_get_leading",
+    "helper_get_subleading",
+    "opposite_sign",
+    "n_jets",
+    "n_bjets",
+    "helper_delta_r",
+    "helper_delta_phi",
+    "centrality_between_jets"
+  ],
+  "rejected_but_close": []
+}

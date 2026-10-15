@@ -1,0 +1,109 @@
+[CANDIDATE 1] Leading and subleading tau definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Unresolved choice:
+It is unclear whether the leading and subleading tau are defined based on pT of the selected taus, or if there is a specific ordering criterion.
+
+Why this may matter:
+Different ordering criteria (e.g., pT, charge, or other properties) could lead to different pairs being selected as leading and subleading, which would affect the ditau system and subsequent cuts like invariant mass and opposite-sign requirement.
+
+[CANDIDATE 2] Leading and subleading jet definition
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Unresolved choice:
+It is not specified whether the leading and subleading jets are defined based on pT or another property.
+
+Why this may matter:
+The choice of ordering criterion could impact the dijet system and the calculation of m_jj, delta eta, and other observables related to the dijet system.
+
+[CANDIDATE 3] Opposite-sign tau pair requirement
+
+Original phrase:
+"Require opposite-sign tau pair"
+
+Unresolved choice:
+It is unclear whether this requirement applies to the leading and subleading tau pair specifically or to any pair of selected taus.
+
+Why this may matter:
+If it applies to any pair, the analysis may need to consider multiple combinations, while if it applies only to the leading and subleading pair, the implementation is more straightforward.
+
+[CANDIDATE 4] Dijet invariant mass requirement
+
+Original phrase:
+"Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV"
+
+Unresolved choice:
+It is not clear whether the invariant mass is computed from the four-momenta of the selected jets or from the full jet collection.
+
+Why this may matter:
+Using only the selected jets may exclude some jets that could contribute to the invariant mass, potentially affecting the VBF topology requirement.
+
+[CANDIDATE 5] Delta eta between leading jets
+
+Original phrase:
+"Select |delta eta| between the two leading jets > 2.5"
+
+Unresolved choice:
+It is not specified whether the "two leading jets" refers to the two highest-pT jets in the event or the two selected jets.
+
+Why this may matter:
+If the two leading jets are defined differently than the selected jets, the delta eta requirement could be applied to a different jet pair, affecting the VBF topology.
+
+[CANDIDATE 6] Dijet system definition
+
+Original phrase:
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Unresolved choice:
+It is not clear whether the dijet system is defined from the selected jets or from the full jet collection.
+
+Why this may matter:
+Using only the selected jets may exclude some jets that could contribute to the dijet system, potentially affecting the delta phi and centrality calculations.
+
+[CANDIDATE 7] Dijet system for delta phi
+
+Original phrase:
+"Plot delta phi between the ditau system and the dijet system"
+
+Unresolved choice:
+It is not clear whether the dijet system used for the delta phi calculation is the same as the one defined earlier or if it is redefined for this purpose.
+
+Why this may matter:
+If the dijet system is redefined, the delta phi calculation could be based on a different jet pair, leading to inconsistent results.
+
+[CANDIDATE 8] Dijet system for centrality
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Unresolved choice:
+It is not clear whether the "two jets" refers to the leading and subleading jets defined earlier or to another jet pair.
+
+Why this may matter:
+If the jets used for centrality are different from the ones used for the dijet system, the centrality calculation could be based on a different jet configuration, leading to inconsistent results.
+
+[CANDIDATE 9] B-tagged jet veto
+
+Original phrase:
+"Veto events with b-tagged jets"
+
+Unresolved choice:
+It is not clear whether the veto applies to all b-tagged jets in the event or only to b-tagged jets in the selected jet collection.
+
+Why this may matter:
+If the veto is applied to all b-tagged jets, it may be more restrictive than if it is applied only to selected jets, potentially affecting the signal efficiency and background rejection.
+
+[CANDIDATE 10] Cutflow counter timing
+
+Original phrase:
+"Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is not clear whether the cutflow counters are incremented for all events that pass the cut or only for events that survive all previous cuts.
+
+Why this may matter:
+If the counters are incremented for all events that pass the cut regardless of previous cuts, the cutflow may not accurately reflect the cumulative effect of the selection criteria.

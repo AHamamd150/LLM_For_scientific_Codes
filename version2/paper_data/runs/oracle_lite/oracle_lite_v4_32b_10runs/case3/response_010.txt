@@ -1,0 +1,65 @@
+[CANDIDATE 1] Photon selection vs. full event collection
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection."
+
+Unresolved choice:
+It is unclear whether "photon selection" refers to the full set of photon cuts (pT > 25 GeV, |eta| < 2.37, and crack veto) or only the pT and eta cuts.
+
+Why this may matter:
+If the leading and subleading photons are defined before the crack veto or before the pT cuts, the final diphoton system could include photons that later fail the full selection, leading to incorrect or inconsistent results.
+
+[CANDIDATE 2] Diphoton system reuse
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT."
+
+Unresolved choice:
+It is unclear whether "this same diphoton system" refers to the exact same pair of photons used to compute the invariant mass, or if the diphoton system could be redefined (e.g., by a different ordering or selection) for the pT computation.
+
+Why this may matter:
+If the diphoton system is redefined for pT, the pT and invariant mass could be computed from different photon pairs, leading to inconsistent kinematic variables and potentially invalid cuts.
+
+[CANDIDATE 3] Cutflow counter timing
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether the cutflow counter should be incremented before or after the cut is applied to the diphoton system, or whether the counter should be incremented per event or per diphoton system.
+
+Why this may matter:
+If the diphoton system is not yet defined at the time of the counter increment, the cutflow may misrepresent the number of events passing each step, especially if multiple diphoton systems are possible.
+
+[CANDIDATE 4] Delta R and Delta Phi computation
+
+Original phrase:
+"Plot delta R between the two photons" and "Plot delta phi between the two photons"
+
+Unresolved choice:
+It is unclear whether these quantities are computed from the full event-level photons or from the selected and ordered leading/subleading photons used in the diphoton system.
+
+Why this may matter:
+If the delta R and delta phi are computed from unselected photons, they may not correspond to the kinematics of the diphoton system used in the analysis, leading to misleading plots.
+
+[CANDIDATE 5] Collins-Soper frame definition
+
+Original phrase:
+"Plot the |cos(theta*)| of the diphoton system in Collins-Soper frame"
+
+Unresolved choice:
+It is unclear whether the Collins-Soper frame is computed using the diphoton system as defined in the analysis (after all cuts), or whether it uses an external reference (e.g., MET or jets) that may not be part of the current analysis.
+
+Why this may matter:
+The Collins-Soper frame is typically defined using the diphoton system and the beam direction, but if jets or MET are involved, the frame could change, affecting the interpretation of the angle.
+
+[CANDIDATE 6] Cut ordering and diphoton system definition
+
+Original phrase:
+"Select leading photon pT / m_gammagamma > 0.35." and "Select subleading photon pT / m_gammagamma > 0.25."
+
+Unresolved choice:
+It is unclear whether the invariant mass m_gammagamma used in these cuts is computed before or after the leading/subleading pT cuts are applied.
+
+Why this may matter:
+If the invariant mass is computed before the pT cuts, the ratios may not reflect the final diphoton system, potentially leading to incorrect selections and misinterpretation of the kinematic constraints.

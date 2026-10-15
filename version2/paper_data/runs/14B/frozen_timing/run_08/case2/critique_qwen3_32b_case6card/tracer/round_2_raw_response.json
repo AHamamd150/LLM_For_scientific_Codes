@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* leading_bjet['eta']\n  - collection definition: leading_bjet['eta']\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788971508,
+  "id": "chatcmpl-638668aa-7bd6-4ed7-85f1-ccae93241192",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 32,
+    "prompt_tokens": 11144,
+    "prompt_tokens_details": null,
+    "total_tokens": 11176
+  }
+}

@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading b-jet definition
+
+Original phrase:
+"Plot the pT of the leading b-jet"
+
+Why this is dangerous:
+The phrase "leading b-jet" could refer to the highest-pT b-tagged jet among all b-tagged jets in the event, or it could refer to the highest-pT b-tagged jet among the jets selected for the analysis (which may have additional cuts applied).
+
+Question to user:
+Are the b-jets used in this plot selected with the same cuts as the jets used in the event selection (pT > 30 GeV and |eta| < 2.5), or are they the raw b-tagged jets from the event without any cuts?
+
+Golden axe:
+The leading b-jet is the highest-pT b-tagged jet among all b-tagged jets in the event, after applying the same jet selection cuts as in the event selection.
+
+Silver axe:
+The leading b-jet is the highest-pT b-tagged jet among all b-tagged jets in the event, without applying any jet selection cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Hadronic W candidate construction
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Why this is dangerous:
+The phrase "two leading non-b-tagged jets" could refer to the two highest-pT non-b-tagged jets among all jets in the event, or it could refer to the two highest-pT non-b-tagged jets among the jets selected for the analysis (which may have additional cuts applied).
+
+Question to user:
+Are the non-b-tagged jets used to build the hadronic W candidate selected with the same cuts as the jets used in the event selection (pT > 30 GeV and |eta| < 2.5), or are they the raw non-b-tagged jets from the event without any cuts?
+
+Golden axe:
+The two leading non-b-tagged jets are the two highest-pT non-b-tagged jets among all non-b-tagged jets in the event, after applying the same jet selection cuts as in the event selection.
+
+Silver axe:
+The two leading non-b-tagged jets are the two highest-pT non-b-tagged jets among all non-b-tagged jets in the event, without applying any jet selection cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Hadronic top candidate construction
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Why this is dangerous:
+The phrase "leading b-jet" could refer to the highest-pT b-tagged jet among all b-tagged jets in the event, or it could refer to the highest-pT b-tagged jet among the jets selected for the analysis (which may have additional cuts applied). Additionally, the hadronic W candidate may be a composite object or a scalar quantity, which affects how it is combined with the b-jet.
+
+Question to user:
+Is the leading b-jet used in this construction selected with the same cuts as the jets used in the event selection (pT > 30 GeV and |eta| < 2.5), or is it the raw b-tagged jet from the event without any cuts? Also, is the hadronic W candidate treated as a composite object (with four-momentum) or as a scalar quantity (such as invariant mass)?
+
+Golden axe:
+The leading b-jet is the highest-pT b-tagged jet among all b-tagged jets in the event, after applying the same jet selection cuts as in the event selection. The hadronic W candidate is treated as a composite object with four-momentum.
+
+Silver axe:
+The leading b-jet is the highest-pT b-tagged jet among all b-tagged jets in the event, without applying any jet selection cuts. The hadronic W candidate is treated as a scalar quantity (such as invariant mass).
+
+Recommended default:
+Golden axe

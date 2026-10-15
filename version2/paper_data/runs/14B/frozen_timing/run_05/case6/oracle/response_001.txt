@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading b-jet definition
+
+Original phrase:
+"Plot the pT of the leading b-jet"
+
+Why this is dangerous:
+The phrase does not clarify whether "leading b-jet" refers to the highest-pT b-tagged jet among all selected jets, or the highest-pT b-tagged jet among the jets selected after all cuts.
+
+Question to user:
+Are the "leading b-jet" and "subleading b-jet" plots based on the highest-pT b-tagged jets among all selected jets, or among the jets selected after all cuts?
+
+Golden axe:
+The leading b-jet refers to the highest-pT b-tagged jet among the jets selected after all cuts.
+
+Silver axe:
+The leading b-jet refers to the highest-pT b-tagged jet among all jets in the event, regardless of selection cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Hadronic W candidate definition
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Why this is dangerous:
+The phrase does not clarify whether "selected non-b-tagged jets" refers to jets that passed all selection cuts, or jets that are non-b-tagged but may have failed other cuts.
+
+Question to user:
+Are the "two leading selected non-b-tagged jets" the two highest-pT non-b-tagged jets among the jets that passed all selection cuts, or among all jets in the event that are non-b-tagged?
+
+Golden axe:
+The two leading selected non-b-tagged jets refer to the two highest-pT non-b-tagged jets among the jets that passed all selection cuts.
+
+Silver axe:
+The two leading selected non-b-tagged jets refer to the two highest-pT non-b-tagged jets among all jets in the event, regardless of selection cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Hadronic top candidate definition
+
+Original phrase:
+"Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate."
+
+Why this is dangerous:
+The phrase does not clarify whether "leading selected b-tagged jet" refers to the highest-pT b-tagged jet among all selected jets, or among the jets selected after all cuts.
+
+Question to user:
+Is the "leading selected b-tagged jet" the highest-pT b-tagged jet among all selected jets, or among the jets selected after all cuts?
+
+Golden axe:
+The leading selected b-tagged jet refers to the highest-pT b-tagged jet among the jets selected after all cuts.
+
+Silver axe:
+The leading selected b-tagged jet refers to the highest-pT b-tagged jet among all selected jets, regardless of subsequent cuts.
+
+Recommended default:
+Golden axe

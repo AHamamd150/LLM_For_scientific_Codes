@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Leading jets definition in dijet invariant mass cut
+
+Original phrase:
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+
+Why this matters:
+The phrase "leading jets" could refer to the two highest-pT jets in the full event or in the selected jet collection. This choice affects which jets are used for the invariant mass calculation and thus the event selection.
+
+Question to user:
+Are the "leading jets" for the dijet invariant mass cut selected from all jets in the event or only from the jets passing the pT > 30 GeV and |eta| < 2.5 selection?
+
+Golden axe:
+Leading jets are selected from the jets passing the pT > 30 GeV and |eta| < 2.5 selection.
+
+Silver axe:
+Leading jets are selected from all jets in the event, regardless of whether they pass the pT and |eta| cuts.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Delta phi between lepton and two-jet system
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+
+Why this matters:
+The phrase "two-jet system" could refer to the dijet system used in the W hadronic candidate selection (i.e., the two leading jets in the selected jet collection), or it could refer to the full dijet system in the event. This choice affects the angular correlation being measured.
+
+Question to user:
+Is the "two-jet system" for the delta phi calculation the same as the one used in the W hadronic candidate selection (i.e., the two leading jets in the selected jet collection)?
+
+Golden axe:
+The two-jet system is the same as the one used in the W hadronic candidate selection.
+
+Silver axe:
+The two-jet system is the full dijet system in the event, regardless of selection criteria.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Lepton definition in transverse mass calculation
+
+Original phrase:
+"Select transverse mass of lepton + MET between 40 and 120 GeV (W leptonic candidate)"
+
+Why this matters:
+The phrase "lepton" could refer to the selected lepton (i.e., the one passing the pT and |eta| cuts and satisfying the "exactly 1 selected lepton" requirement), or it could refer to the raw lepton before selection. This choice affects the transverse mass calculation and thus the event selection.
+
+Question to user:
+Is the "lepton" in the transverse mass calculation the same as the one used in the "exactly 1 selected lepton" requirement?
+
+Golden axe:
+The lepton is the same as the one used in the "exactly 1 selected lepton" requirement.
+
+Silver axe:
+The lepton is the raw lepton before selection.
+
+Recommended default:
+Golden axe

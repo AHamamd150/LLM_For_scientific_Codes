@@ -1,0 +1,546 @@
+===== RUN 1 =====
+
+---- KEPT ----
+(none)
+
+---- DROPPED ----
+[DROPPED 1] drop: matched noise signal 'matches the spec'
+◎ (A) composite violation
+SPEC:
+- Select delta phi between the lepton and the two-jet system
+
+CODE:
+- dphi_lepton_jets = helper_delta_phi(lepton['phi'], jet_system['phi'])
+
+Reason:
+The SPEC refers to the delta phi between the lepton and the two-jet system, which is a system-level quantity. The code correctly computes this by constructing the two-jet system using sum_objects(jet1, jet2) and then computing the delta phi between the lepton and this composite jet system. This is not a composite violation as the system-level quantity is properly constructed from its constituents.
+
+Evidence priority:
+〔L365-L370〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)
+
+CODE:
+- mjj = helper_invariant_mass(jet1, jet2)
+
+Reason:
+The SPEC explicitly requires the invariant mass of the two leading jets. The code uses helper_invariant_mass(jet1, jet2), which correctly computes the invariant mass of the two jets. This matches the SPEC.
+
+Evidence priority:
+〔L337-L339〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Select transverse mass of lepton + MET between 40 and 120 GeV (W leptonic candidate)
+
+CODE:
+- mt = helper_transverse_mass(lepton, met)
+
+Reason:
+The SPEC explicitly requires the transverse mass of the lepton and MET. The code uses helper_transverse_mass(lepton, met), which correctly computes this quantity. This matches the SPEC.
+
+Evidence priority:
+〔L326-L329〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Require exactly 1 selected lepton
+
+CODE:
+- if len(leptons) != 1: continue
+
+Reason:
+The SPEC explicitly requires exactly 1 selected lepton. The code checks this condition with if len(leptons) != 1: continue, which matches the SPEC.
+
+Evidence priority:
+〔L297-L298〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Require at least 2 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+- if len(jets) < 2: continue
+
+Reason:
+The SPEC explicitly requires at least 2 jets with pT > 30 GeV and |eta| < 2.5. The code filters the jets with these criteria and checks if there are at least 2 jets, which matches the SPEC.
+
+Evidence priority:
+〔L307-L310〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Select MET > 30 GeV
+
+CODE:
+- if met is None or met['pt'] < 30: continue
+
+Reason:
+The SPEC explicitly requires MET > 30 GeV. The code checks this condition with if met is None or met['pt'] < 30: continue, which matches the SPEC.
+
+Evidence priority:
+〔L320-L322〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Veto events with b-tagged jets 
+
+CODE:
+- if any(b['pt'] > 30 and abs(b['eta']) < 2.5 for b in bjets): continue
+
+Reason:
+The SPEC explicitly requires vetoing events with b-tagged jets. The code checks this condition with if any(b['pt'] > 30 and abs(b['eta']) < 2.5 for b in bjets): continue, which matches the SPEC.
+
+Evidence priority:
+〔L314-L316〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Select delta R between the two leading jets < 3.0
+
+CODE:
+- if dr >= 3.0: continue
+
+Reason:
+The SPEC explicitly requires delta R between the two leading jets to be < 3.0. The code checks this condition with if dr >= 3.0: continue, which matches the SPEC.
+
+Evidence priority:
+〔L342-L345〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Plot the following as histograms:
+1 Plot the transverse mass of lepton + MET (W leptonic) in the range 30 to 150 GeV
+
+CODE:
+- plt.hist(mt_list, bins=40, range=(30, 150), density=True)
+
+Reason:
+The SPEC explicitly requires plotting the transverse mass of lepton + MET in the range 30 to 150 GeV. The code uses plt.hist(mt_list, bins=40, range=(30, 150), density=True), which matches the SPEC.
+
+Evidence priority:
+〔L389-L393〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Plot the invariant mass of the two leading jets (W hadronic) in the range 40 to 120 GeV
+
+CODE:
+- plt.hist(mjj_list, bins=40, range=(40, 120), density=True)
+
+Reason:
+The SPEC explicitly requires plotting the invariant mass of the two leading jets in the range 40 to 120 GeV. The code uses plt.hist(mjj_list, bins=40, range=(40, 120), density=True), which matches the SPEC.
+
+Evidence priority:
+〔L396-L400〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- plt.hist(met_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The SPEC explicitly requires plotting the MET distribution. The code uses plt.hist(met_list, bins=40, range=(0, 200), density=True), which matches the SPEC.
+
+Evidence priority:
+〔L403-L407〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Plot the pT of the lepton
+
+CODE:
+- plt.hist(lepton_pt_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The SPEC explicitly requires plotting the pT of the lepton. The code uses plt.hist(lepton_pt_list, bins=40, range=(0, 200), density=True), which matches the SPEC.
+
+Evidence priority:
+〔L410-L414〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Plot the pT of the leading jet
+
+CODE:
+- plt.hist(jet1_pt_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The SPEC explicitly requires plotting the pT of the leading jet. The code uses plt.hist(jet1_pt_list, bins=40, range=(0, 200), density=True), which matches the SPEC.
+
+Evidence priority:
+〔L417-L421〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Plot the pT of the subleading jet
+
+CODE:
+- plt.hist(jet2_pt_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The SPEC explicitly requires plotting the pT of the subleading jet. The code uses plt.hist(jet2_pt_list, bins=40, range=(0, 200), density=True), which matches the SPEC.
+
+Evidence priority:
+〔L424-L428〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Plot delta R between the two leading jets
+
+CODE:
+- plt.hist(dr_list, bins=40, range=(0, 5), density=True)
+
+Reason:
+The SPEC explicitly requires plotting delta R between the two leading jets. The code uses plt.hist(dr_list, bins=40, range=(0, 5), density=True), which matches the SPEC.
+
+Evidence priority:
+〔L431-L435〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Plot delta phi between the lepton and MET
+
+CODE:
+- plt.hist(dphi_list, bins=40, range=(-3.14, 3.14), density=True)
+
+Reason:
+The SPEC explicitly requires plotting delta phi between the lepton and MET. The code uses plt.hist(dphi_list, bins=40, range=(-3.14, 3.14), density=True), which matches the SPEC.
+
+Evidence priority:
+〔L438-L442〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Plot the eta of the lepton
+
+CODE:
+- plt.hist(lepton_eta_list, bins=40, range=(-2.5, 2.5), density=True)
+
+Reason:
+The SPEC explicitly requires plotting the eta of the lepton. The code uses plt.hist(lepton_eta_list, bins=40, range=(-2.5, 2.5), density=True), which matches the SPEC.
+
+Evidence priority:
+〔L445-L449〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Plot delta phi between the lepton and the two-jet system
+
+CODE:
+- plt.hist(dphi_lepton_jets_list, bins=40, range=(-3.14, 3.14), density=True)
+
+Reason:
+The SPEC explicitly requires plotting delta phi between the lepton and the two-jet system. The code uses plt.hist(dphi_lepton_jets_list, bins=40, range=(-3.14, 3.14), density=True), which matches the SPEC.
+
+Evidence priority:
+〔L452-L456〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- for key, value in cutflow.items(): print(f"{key}: {value}")
+
+Reason:
+The SPEC explicitly requires printing a cutflow summary after the event loop. The code uses for key, value in cutflow.items(): print(f"{key}: {value}"), which matches the SPEC.
+
+Evidence priority:
+〔L384-L386〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The SPEC explicitly requires saving the plots in png format. The code uses plt.savefig(...), which matches the SPEC.
+
+Evidence priority:
+〔L393, L400, L407, L414, L421, L428, L435, L442, L449, L456〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Save the following in a CSV file for MLP analysis:
+1- Transverse mass of lepton + MET
+
+CODE:
+- mt
+
+Reason:
+The SPEC explicitly requires saving the transverse mass of lepton + MET in a CSV file. The code saves mt, which matches the SPEC.
+
+Evidence priority:
+〔L373-L374〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Dijet invariant mass
+
+CODE:
+- mjj
+
+Reason:
+The SPEC explicitly requires saving the dijet invariant mass in a CSV file. The code saves mjj, which matches the SPEC.
+
+Evidence priority:
+〔L373-L375〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- MET
+
+CODE:
+- met['pt']
+
+Reason:
+The SPEC explicitly requires saving MET in a CSV file. The code saves met['pt'], which matches the SPEC.
+
+Evidence priority:
+〔L373-L376〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- pT of the lepton
+
+CODE:
+- lepton['pt']
+
+Reason:
+The SPEC explicitly requires saving the pT of the lepton in a CSV file. The code saves lepton['pt'], which matches the SPEC.
+
+Evidence priority:
+〔L373-L377〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Delta R between the two jets
+
+CODE:
+- dr
+
+Reason:
+The SPEC explicitly requires saving the delta R between the two jets in a CSV file. The code saves dr, which matches the SPEC.
+
+Evidence priority:
+〔L373-L378〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+SPEC:
+- Delta phi between the lepton and the two-jet system
+
+CODE:
+- dphi_lepton_jets
+
+Reason:
+The SPEC explicitly requires saving the delta phi between the lepton and the two-jet system in a CSV file. The code saves dphi_lepton_jets, which matches the SPEC.
+
+Evidence priority:
+〔L373-L379〕
+
+Generator bias:
+none
+
+---
+
+◎ (B) definition mismatch  
+SPEC:  
+- Select electrons with pT > 25 GeV and |eta| < 2.5  
+
+CODE:  
+- [j for j in electrons if j['pt'] > 25 and abs(j['eta']) < 2.5]  
+
+Reason:  
+The SPEC explicitly requires selecting electrons with pT > 25 GeV and |eta| < 2.5. The code implements this with [j for j in electrons if j['pt'] > 25 and abs(j['eta']) < 2.5], which matches the SPEC.  
+
+Evidence priority:  
+〔L288-L293〕  
+
+Generator bias:  
+none  
+
+◎ (B) definition mismatch  
+SPEC:  
+- Select muons with pT > 20 GeV and |eta| < 2.4  
+
+CODE:  
+- [j for j in muons if j['pt'] > 20 and abs(j['eta']) < 2.4]  
+
+Reason:  
+The SPEC explicitly requires selecting muons with pT > 20 GeV and |eta| < 2.4. The code implements this with [j for j in muons if j['pt'] > 20 and abs(j['eta']) < 2.4], which matches the SPEC.  
+
+Evidence priority:  
+〔L294-L296〕  
+
+Generator bias:  
+none  
+
+◎ (B) definition mismatch  
+SPEC:  
+- Use selected electrons and selected muons to define selected leptons.  
+
+CODE:  
+- [l for l in electrons if ...] + [l for l in muons if ...]  
+
+Reason:  
+The SPEC explicitly requires defining selected leptons as the combination of selected electrons and selected muons. The code implements this with [l for l in electrons if ...] + [l for l in muons if ...], which matches the SPEC.  
+
+Evidence priority:  
+〔L288-L296〕  
+
+Generator bias:  
+none  
+
+◎ (B) definition mismatch  
+SPEC:  
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.  
+
+CODE:  
+- if len(leptons) != 1: continue  
+- if len(jets) < 2: continue  
+- if any(b['pt'] > 30 and abs(b['eta']) < 2.5 for b in bjets): continue  
+- if met is None or met['pt'] < 30: continue  
+- if not (40 < mt < 120): continue  
+- if not (60 < mjj < 100): continue  
+- if dr >= 3.0: continue  
+
+Reason:  
+The SPEC explicitly requires applying the cuts sequentially and skipping the event immediately when a cut is not satisfied. The code implements this with a series of continue statements, which matches the SPEC.  
+
+Evidence priority:  
+〔L297-L298, L310, L316, L322, L329, L339, L345〕  
+
+Generator bias:  
+none  
+
+◎ (B) definition mismatch  
+SPEC:  
+- Use simple validation histograms.  
+
+CODE:  
+- plt.figure(); plt.hist(values, bins=40, density=True); plt.xlabel(...); plt.ylabel("density"); plt.savefig(...); plt.close()  
+
+Reason:  
+The SPEC explicitly requires using simple validation histograms. The code implements this with plt.figure(); plt.hist(values, bins=40, density=True); plt.xlabel(...); plt.ylabel("density"); plt.savefig(...); plt.close(), which matches the SPEC.  
+
+Evidence priority:  
+〔L389-L393, L396-L400, L403-L407, L410-L414, L417-L421, L424-L428, L431-L435, L438-L442, L445-L449, L452-L456〕  
+
+Generator bias:  
+none  
+
+◎ (B) definition mismatch  
+SPEC:  
+- For each histogram: plt.figure(); plt.hist(values, bins=40, density=True); plt.xlabel(...); plt.ylabel("density"); plt.savefig(...); plt.close().  
+
+CODE:  
+- plt.figure(); plt.hist(values, bins=40, density=True); plt.xlabel(...); plt.ylabel("density"); plt.savefig(...); plt.close()  
+
+Reason:  
+The SPEC explicitly requires using the specified histogram format for each plot. The code implements this with plt.figure(); plt.hist(values, bins=40, density=True); plt.xlabel(...); plt.ylabel("density"); plt.savefig(...); plt.close(), which matches the SPEC.  
+
+Evidence priority:  
+〔L389-L393, L396-L400, L403-L407, L410-L414, L417-L421, L424-L428, L431-L435, L438-L442, L445-L449, L452-L456〕  
+
+Generator bias:  
+none  
+
+◎ (B) definition mismatch  
+SPEC:  
+- Use concrete short ASCII labels and filenames.  
+
+CODE:  
+- plt.xlabel("Transverse mass (GeV)"), plt.xlabel("Dijet mass (GeV)"), etc.  
+- Filenames: "mt_hist.png", "mjj_hist.png", etc.  
+
+Reason:  
+The SPEC explicitly requires using concrete short ASCII labels and filenames. The code implements this with appropriate labels and filenames, which matches the SPEC.  
+
+Evidence priority:  
+〔L391, L398, L405, L412, L419, L426, L433, L440, L447, L454〕  
+
+Generator bias:  
+none

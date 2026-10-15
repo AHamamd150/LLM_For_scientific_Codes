@@ -1,0 +1,356 @@
+```python
+#!/usr/bin/env python3
+import sys
+import math
+import numpy as np
+import matplotlib.pyplot as plt
+
+def get_particle_mass(obj):
+    """Return appropriate mass based on particle type."""
+    if 'type' not in obj:
+        return obj.get('mass', obj.get('jmass', 0.0))
+
+    ptype = obj['type']
+    if ptype == 0:    # photon
+        return 0.0
+    elif ptype == 1:  # electron
+        return 0.0
+    elif ptype == 2:  # muon
+        return 0.0
+    elif ptype == 3:  # tau
+        return 1.777
+    elif ptype == 4:  # jet
+        return obj['jmass']
+    else:
+        return obj.get('mass', 0.0)
+
+def four_momentum(obj):
+    """Return (E, px, py, pz) from an object dict."""
+    pt  = obj['pt']
+    eta = obj['eta']
+    phi = obj['phi']
+    m   = get_particle_mass(obj)
+
+    px = pt * math.cos(phi)
+    py = pt * math.sin(phi)
+    pz = pt * math.sinh(eta)
+    E  = math.sqrt(px**2 + py**2 + pz**2 + m**2)
+    return E, px, py, pz
+
+def obj_from_four_momentum(E, px, py, pz):
+    """
+    Reconstruct a composite object dict from four-momentum (E, px, py, pz).
+    Returns a dict with pt, eta, phi, and mass.
+    """
+    pt = math.sqrt(px**2 + py**2)
+    phi = math.atan2(py, px)
+
+    if pt > 0.0:
+        eta = math.asinh(pz / pt)
+    elif pz != 0.0:
+        eta = math.copysign(float("inf"), pz)
+    else:
+        eta = 0.0
+
+    p2 = px**2 + py**2 + pz**2
+    m2 = E**2 - p2
+    mass = math.sqrt(m2) if m2 > 0.0 else 0.0
+
+    return {
+        "pt": pt,
+        "eta": eta,
+        "phi": phi,
+        "mass": mass
+    }
+
+def sum_objects(*args):
+    """Return composite object from any combination of particles/lists."""
+    particles = []
+    for arg in args:
+        if arg is None:
+            continue
+        if isinstance(arg, dict):
+            particles.append(arg)
+        elif isinstance(arg, list):
+            particles.extend(p for p in arg if p is not None)
+
+    if not particles:
+        return None
+
+    E_tot, px_tot, py_tot, pz_tot = 0.0, 0.0, 0.0, 0.0
+    for p in particles:
+        E, px, py, pz = four_momentum(p)
+        E_tot += E
+        px_tot += px
+        py_tot += py
+        pz_tot += pz
+
+    return obj_from_four_momentum(E_tot, px_tot, py_tot, pz_tot)
+
+def helper_invariant_mass(*args):
+    """Return invariant mass from any combination of particles/lists."""
+    obj = sum_objects(*args)
+    return obj['mass'] if obj is not None else 0.0
+
+def helper_delta_phi(phi1, phi2):
+    """Compute Δφ normalized to [-π, π]."""
+    dphi = phi1 - phi2
+    while dphi > math.pi:
+        dphi -= 2 * math.pi
+    while dphi < -math.pi:
+        dphi += 2 * math.pi
+    return dphi
+
+def helper_delta_r(obj1, obj2):
+    """Compute ΔR between two objects."""
+    deta = obj1['eta'] - obj2['eta']
+    dphi = helper_delta_phi(obj1['phi'], obj2['phi'])
+    return math.sqrt(deta**2 + dphi**2)
+
+def helper_transverse_mass(visible, met):
+    """Compute transverse mass of visible particle + MET."""
+    dphi = helper_delta_phi(visible['phi'], met['phi'])
+    return math.sqrt(2 * visible['pt'] * met['pt'] * (1 - math.cos(dphi)))
+
+def read_lhco(filename):
+    """Parse LHCO file and return list of events."""
+    events = []
+    current = None
+
+    with open(filename) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+
+            parts = line.split()
+            if not parts:
+                continue
+
+            # New event header (index = 0)
+            if parts[0] == '0':
+                if len(parts) < 2:
+                    continue
+                try:
+                    event_id = int(parts[1])
+                except ValueError:
+                    continue
+                if current is not None:
+                    events.append(current)
+                current = {'id': event_id, 'objects': []}
+
+            # Object line
+            elif current is not None:
+                if len(parts) < 7:
+                    continue
+                try:
+                    obj = {
+                        'type':   int(parts[1]),
+                        'eta':    float(parts[2]),
+                        'phi':    float(parts[3]),
+                        'pt':     float(parts[4]),
+                        'jmass':  float(parts[5]),
+                        'ntrk':   float(parts[6]),
+                        'btag':   float(parts[7]) if len(parts) > 7 else 0.0,
+                        'had_em': float(parts[8]) if len(parts) > 8 else 0.0
+                    }
+                except ValueError:
+                    continue
+
+                obj['charge'] = 1 if obj['ntrk'] > 0 else (-1 if obj['ntrk'] < 0 else 0)
+                current['objects'].append(obj)
+
+    if current is not None:
+        events.append(current)
+
+    return events
+
+def get_electrons(event):
+    """Return all electrons."""
+    return [o for o in event['objects'] if o['type'] == 1]
+
+def get_muons(event):
+    """Return all muons."""
+    return [o for o in event['objects'] if o['type'] == 2]
+
+def opposite_sign(obj1, obj2):
+    """Check if two objects have opposite charge."""
+    return obj1['charge'] * obj2['charge'] < 0
+
+def helper_get_met(event):
+    """Return MET object or None."""
+    for o in event['objects']:
+        if o['type'] == 6:
+            return o
+    return None
+
+def abs_eta(obj):
+    """Return |η| of a particle."""
+    return abs(obj['eta'])
+
+def helper_delta_phi_met(obj, event):
+    """Compute Δφ between object and MET."""
+    met = helper_get_met(event)
+    if not met:
+        return 0.0
+    return helper_delta_phi(obj['phi'], met['phi'])
+
+def compute_phi(obj):
+    """Compute azimuthal angle phi from momentum components."""
+    _, px, py, _ = four_momentum(obj)
+    return math.atan2(py, px)
+
+def vector_pt_components(particles):
+    """Return (px_total, py_total) for vector pT sum."""
+    px_tot = sum(p['pt'] * math.cos(p['phi']) for p in particles)
+    py_tot = sum(p['pt'] * math.sin(p['phi']) for p in particles)
+    return px_tot, py_tot
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="LHCO analysis script")
+    parser.add_argument("files", nargs="+", help="LHCO file(s) to process")
+    args = parser.parse_args()
+
+    # Read all LHCO files
+    events = []
+    for filename in args.files:
+        events.extend(read_lhco(filename))
+
+    # Initialize cutflow counters
+    cutflow = {
+        "Initial": len(events),
+        "Electron selection": 0,
+        "Muon selection": 0,
+        "Exactly 2 electrons and 1 muon": 0,
+        "Opposite sign electrons": 0,
+        "Z mass window": 0,
+        "MET > 30 GeV": 0,
+        "W muon pT > 20 GeV": 0,
+        "W transverse mass > 30 GeV": 0,
+        "Final": 0
+    }
+
+    # Histograms
+    z_masses = []
+    w_trans_masses = []
+    met_values = []
+    three_lepton_pt = []
+    z_pt = []
+    w_muon_pt = []
+    delta_phi_z_met = []
+    three_lepton_mass = []
+    delta_r_electrons = []
+    w_muon_eta = []
+
+    for event in events:
+        # Step 1: Select electrons with pT > 15 GeV and |eta| < 2.5
+        electrons = [e for e in get_electrons(event) if e['pt'] > 15 and abs(e['eta']) < 2.5]
+        if len(electrons) < 2:
+            continue
+        cutflow["Electron selection"] += 1
+
+        # Step 2: Select muons with pT > 10 GeV and |eta| < 2.4
+        muons = [m for m in get_muons(event) if m['pt'] > 10 and abs(m['eta']) < 2.4]
+        if len(muons) < 1:
+            continue
+        cutflow["Muon selection"] += 1
+
+        # Step 3: Require exactly 2 selected electrons and exactly 1 selected muon
+        if len(electrons) != 2 or len(muons) != 1:
+            continue
+        cutflow["Exactly 2 electrons and 1 muon"] += 1
+
+        # Step 4: Require the two selected electrons to have opposite charge
+        e1, e2 = electrons
+        if not opposite_sign(e1, e2):
+            continue
+        cutflow["Opposite sign electrons"] += 1
+
+        # Step 5: Build z_obj from the two selected electrons
+        z_obj = sum_objects(e1, e2)
+        if z_obj is None:
+            continue
+        z_mass = helper_invariant_mass(e1, e2)
+        if not (76 < z_mass < 106):
+            continue
+        cutflow["Z mass window"] += 1
+
+        # Step 6: Select MET > 30 GeV
+        met = helper_get_met(event)
+        if met is None or met['pt'] < 30:
+            continue
+        cutflow["MET > 30 GeV"] += 1
+
+        # Step 7: W candidate muon pT > 20 GeV
+        w_muon = muons[0]
+        if w_muon['pt'] < 20:
+            continue
+        cutflow["W muon pT > 20 GeV"] += 1
+
+        # Step 8: Select transverse mass of W candidate muon + MET > 30 GeV
+        w_trans_mass = helper_transverse_mass(w_muon, met)
+        if w_trans_mass < 30:
+            continue
+        cutflow["W transverse mass > 30 GeV"] += 1
+
+        # Collect data for plots
+        cutflow["Final"] += 1
+
+        # Invariant mass of z_obj
+        z_masses.append(z_mass)
+
+        # Transverse mass of W candidate + MET
+        w_trans_masses.append(w_trans_mass)
+
+        # MET distribution
+        met_values.append(met['pt'])
+
+        # Three-lepton system (e1, e2, w_muon)
+        three_lepton = sum_objects(e1, e2, w_muon)
+        if three_lepton is not None:
+            three_lepton_pt.append(three_lepton['pt'])
+            three_lepton_mass.append(helper_invariant_mass(e1, e2, w_muon))
+
+        # Z object pT
+        z_pt.append(z_obj['pt'])
+
+        # W muon pT
+        w_muon_pt.append(w_muon['pt'])
+
+        # Delta phi between z_obj and MET
+        delta_phi_z_met.append(helper_delta_phi(z_obj['phi'], met['phi']))
+
+        # Delta R between the two electrons
+        delta_r_electrons.append(helper_delta_r(e1, e2))
+
+        # W muon eta
+        w_muon_eta.append(w_muon['eta'])
+
+    # Print cutflow
+    for key, value in cutflow.items():
+        print(f"{key}: {value}")
+
+    # Plotting
+    def plot_histogram(values, label, filename):
+        plt.figure()
+        plt.hist(values, bins=40, density=True)
+        plt.xlabel(label)
+        plt.ylabel("density")
+        plt.savefig(filename)
+        plt.close()
+
+    plot_histogram(z_masses, "Z mass (GeV)", "z_mass.png")
+    plot_histogram(w_trans_masses, "W transverse mass (GeV)", "w_trans_mass.png")
+    plot_histogram(met_values, "MET (GeV)", "met.png")
+    plot_histogram(three_lepton_pt, "3-lepton pT (GeV)", "three_lepton_pt.png")
+    plot_histogram(z_pt, "Z pT (GeV)", "z_pt.png")
+    plot_histogram(w_muon_pt, "W muon pT (GeV)", "w_muon_pt.png")
+    plot_histogram(delta_phi_z_met, "Delta phi (z, MET)", "delta_phi_z_met.png")
+    plot_histogram(three_lepton_mass, "3-lepton mass (GeV)", "three_lepton_mass.png")
+    plot_histogram(delta_r_electrons, "Delta R (e1, e2)", "delta_r_electrons.png")
+    plot_histogram(w_muon_eta, "W muon eta", "w_muon_eta.png")
+
+if __name__ == "__main__":
+    main()
+```

@@ -1,0 +1,73 @@
+
+
+* bjets
+  - computed/defined as: [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]
+  - upstream chain: get_bjets(event) -> event['objects'] with type == 4 and btag == 1
+  - collection definition: o['type'] == 4 and int(o['btag']) == 1
+  - structure: single-constituent
+
+* light_jets
+  - computed/defined as: [j for j in jets if j not in bjets]
+  - upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]; bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - collection definition: j not in bjets
+  - structure: single-constituent
+
+* MET
+  - computed/defined as: [o for o in event['objects'] if o['type'] == 6]
+  - upstream chain: helper_get_met(event) -> event['objects'] with type == 6
+  - collection definition: o['type'] == 6
+  - structure: single-constituent
+
+* transverse_mass
+  - computed/defined as: math.sqrt(2 * visible['pt'] * met['pt'] * (1 - math.cos(dphi)))
+  - upstream chain: helper_transverse_mass(lepton, met) -> lepton from electrons/muons, met from MET
+  - collection definition: lepton from [e for e in get_electrons(event) if e['pt'] > 25 and abs(e['eta']) < 2.5] or [m for m in get_muons(event) if m['pt'] > 25 and abs(m['eta']) < 2.4], met from [o for o in event['objects'] if o['type'] == 6]
+  - structure: multi-input
+
+* hadronic_W_candidate
+  - computed/defined as: sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+  - upstream chain: light_jets_sorted = sort_by_pt([j for j in jets if j not in bjets])
+  - collection definition: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5], bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - structure: composite-derived
+
+* hadronic_top_candidate
+  - computed/defined as: sum_objects(bjets_sorted[0], w_hadronic)
+  - upstream chain: bjets_sorted = sort_by_pt(bjets), w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+  - collection definition: bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5], light_jets_sorted = sort_by_pt([j for j in jets if j not in bjets])
+  - structure: composite-derived
+
+* leading_bjet
+  - computed/defined as: bjets_sorted[0]
+  - upstream chain: bjets_sorted = sort_by_pt(bjets)
+  - collection definition: bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - structure: single-constituent
+
+* subleading_bjet
+  - computed/defined as: bjets_sorted[1]
+  - upstream chain: bjets_sorted = sort_by_pt(bjets)
+  - collection definition: bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - structure: single-constituent
+
+* delta_r_lepton_bjet
+  - computed/defined as: helper_delta_r(lepton, leading_bjet)
+  - upstream chain: lepton from [e for e in get_electrons(event) if e['pt'] > 25 and abs(e['eta']) < 2.5] or [m for m in get_muons(event) if m['pt'] > 25 and abs(m['eta']) < 2.4], leading_bjet = bjets_sorted[0]
+  - collection definition: lepton from electrons/muons, leading_bjet from bjets_sorted
+  - structure: multi-input
+
+* HT
+  - computed/defined as: scalar_pt_sum(jets)
+  - upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - structure: single-constituent
+
+* n_jets
+  - computed/defined as: len(jets)
+  - upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - structure: single-constituent
+
+* leading_bjet_eta
+  - computed/defined as: leading_bjet['eta']
+  - upstream chain: leading_bjet = bjets_sorted[0]
+  - collection definition: bjets_sorted = sort_by_pt(bjets)
+  - structure: single-constituent

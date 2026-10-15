@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n: bjets_sorted[0]['eta']\n  - upstream chain: bjets_sorted = sort_by_pt(bjets)\n  - collection definition: highest pT b-jet\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788840288,
+  "id": "chatcmpl-b291b67d-718c-4b5c-8cda-bfb4c8f7b344",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 50,
+    "prompt_tokens": 10804,
+    "prompt_tokens_details": null,
+    "total_tokens": 10854
+  }
+}

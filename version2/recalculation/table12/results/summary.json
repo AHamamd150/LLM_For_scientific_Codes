@@ -1,0 +1,14 @@
+{
+  "input_csv_files": 50,
+  "runs": 50,
+  "requirement_rows": 1303,
+  "extra_claim_rows": 27,
+  "high_rows": 240,
+  "high_requirement_rows": 216,
+  "high_extra_claim_rows": 24,
+  "high_affected_runs": 45,
+  "reference_review_rows_used": 161,
+  "reference_worksheet_found": true,
+  "human_adjudication_completed": 0,
+  "screening_method": "6-run worksheet priority where available; otherwise conservative raw-flag screening; no code inspection or E1-E5 application on the remaining rows"
+}

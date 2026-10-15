@@ -1,0 +1,87 @@
+[CANDIDATE 1] Lepton selection and usage
+
+Original phrase:
+"Require exactly one lepton (electron or muon)"
+
+Unresolved choice:
+It is unclear whether this refers to the lepton being selected before or after the pT and |eta| cuts, and whether this lepton is the same object used in later steps like the transverse mass calculation.
+
+Why this may matter:
+If the lepton is selected after the pT and |eta| cuts, the helper function must be used to filter the lepton collection. If the lepton is selected before, the cuts may be applied in a different order, affecting the event selection and the definition of the lepton used in subsequent steps.
+
+[CANDIDATE 2] Jet selection and b-tagging order
+
+Original phrase:
+"Among these selected jets, require at least 2 b-tagged jets."
+
+Unresolved choice:
+It is unclear whether the "selected jets" refer to the jets that passed the pT and |eta| cuts, or if they refer to a different jet collection (e.g., uncut jets or jets from a different selection step).
+
+Why this may matter:
+If the jets are selected before b-tagging, the b-tagging is applied to a subset of the full jet collection. If the jets are selected after b-tagging, the b-tagging may be part of the jet selection criteria, which could affect the order of operations and the final jet collection used in the analysis.
+
+[CANDIDATE 3] Closest b-jet to lepton
+
+Original phrase:
+"Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R."
+
+Unresolved choice:
+It is unclear whether the "selected b-tagged jets" refer to the jets that passed the b-tagging and jet pT/eta cuts, or if they refer to a different collection (e.g., uncut b-tagged jets or jets from a different selection step).
+
+Why this may matter:
+If the b-tagged jets are selected before the delta R calculation, the closest b-jet is defined from a subset of the full jet collection. If the b-tagged jets are selected after the delta R calculation, the jet selection may be based on proximity to the lepton, which could affect the final jet collection used in the analysis.
+
+[CANDIDATE 4] Hadronic W candidate construction
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Unresolved choice:
+It is unclear whether the "leading" non-b-tagged jets are defined before or after the jet pT and |eta| cuts, and whether they are selected from the full jet collection or a subset (e.g., jets not used in the b-jet selection).
+
+Why this may matter:
+If the leading jets are defined before the jet cuts, the hadronic W candidate may be built from jets that do not satisfy the jet selection criteria. If the leading jets are defined after the jet cuts, the hadronic W candidate is built from jets that satisfy the jet selection criteria, which could affect the final hadronic W candidate used in the analysis.
+
+[CANDIDATE 5] Hadronic top candidate construction
+
+Original phrase:
+"Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate."
+
+Unresolved choice:
+It is unclear whether the "leading selected b-tagged jet" is defined before or after the jet pT and |eta| cuts, and whether it is selected from the full jet collection or a subset (e.g., jets not used in the hadronic W candidate construction).
+
+Why this may matter:
+If the leading b-tagged jet is defined before the jet cuts, the hadronic top candidate may be built from a jet that does not satisfy the jet selection criteria. If the leading b-tagged jet is defined after the jet cuts, the hadronic top candidate is built from a jet that satisfies the jet selection criteria, which could affect the final hadronic top candidate used in the analysis.
+
+[CANDIDATE 6] Transverse mass calculation
+
+Original phrase:
+"Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)"
+
+Unresolved choice:
+It is unclear whether the lepton used in the transverse mass calculation is the same lepton used in the earlier selection steps, and whether the MET is the same MET used in the MET cut.
+
+Why this may matter:
+If the lepton or MET used in the transverse mass calculation is different from the one used in the earlier selection steps, the transverse mass calculation may be based on different objects, which could affect the final W candidate used in the analysis.
+
+[CANDIDATE 7] Hadronic W mass selection
+
+Original phrase:
+"Select the hadronic W mass between 40 to 120 GeV."
+
+Unresolved choice:
+It is unclear whether the hadronic W mass is computed from the hadronic W candidate built from the two leading non-b-tagged jets, or if it is computed from a different hadronic W candidate.
+
+Why this may matter:
+If the hadronic W mass is computed from a different hadronic W candidate, the mass selection may be based on a different object, which could affect the final hadronic W candidate used in the analysis.
+
+[CANDIDATE 8] Hadronic top mass selection
+
+Original phrase:
+"Select the hadronic top mass between 100 to 250 GeV."
+
+Unresolved choice:
+It is unclear whether the hadronic top mass is computed from the hadronic top candidate built from the leading b-tagged jet and the hadronic W candidate, or if it is computed from a different hadronic top candidate.
+
+Why this may matter:
+If the hadronic top mass is computed from a different hadronic top candidate, the mass selection may be based on a different object, which could affect the final hadronic top candidate used in the analysis.

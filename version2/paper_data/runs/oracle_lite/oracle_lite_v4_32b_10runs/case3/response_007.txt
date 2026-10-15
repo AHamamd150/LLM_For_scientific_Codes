@@ -1,0 +1,65 @@
+[CANDIDATE 1] Photon selection and veto regions
+
+Original phrase:
+"Select photons with pT > 25 GeV and |eta| < 2.37. Exclude photons in the crack region 1.37 < |eta| < 1.52."
+
+Unresolved choice:
+It is unclear whether the crack region veto is applied in addition to the |eta| < 2.37 cut or if the crack veto is already implicitly included in that condition.
+
+Why this may matter:
+If the crack veto is redundant with the |eta| < 2.37 cut, it would have no effect. If it is meant to remove a subset of the allowed |eta| range, the implementation must ensure the veto is applied correctly after the initial selection.
+
+[CANDIDATE 2] Leading and subleading photon definition
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection. Leading photon pT > 35 GeV. Subleading photon pT > 25 GeV."
+
+Unresolved choice:
+It is unclear whether the "leading" and "subleading" photons are defined from the full photon collection or from the selected photon collection (i.e., after the pT and |eta| cuts and crack veto).
+
+Why this may matter:
+If the leading and subleading photons are defined before applying the crack veto or pT cuts, the resulting diphoton system may not satisfy the final pT requirements. The order of operations (selection vs. ranking) could affect which photons are used in the diphoton system.
+
+[CANDIDATE 3] Diphoton system reuse
+
+Original phrase:
+"Build the diphoton system from the leading photon and the subleading photon. Define m_gammagamma as the invariant mass of this diphoton system. Use this same diphoton system to compute diphoton pT."
+
+Unresolved choice:
+It is unclear whether the diphoton system is fixed once and used for all subsequent calculations (e.g., invariant mass, pT, and all plots and selections), or if the diphoton system could be redefined later in the analysis.
+
+Why this may matter:
+If the diphoton system is redefined later (e.g., after additional cuts), the values for m_gammagamma and diphoton pT could change, leading to inconsistencies in the analysis and plots.
+
+[CANDIDATE 4] Cut order and diphoton system
+
+Original phrase:
+"Select diphoton invariant mass between 105 and 160 GeV. Select leading photon pT / m_gammagamma > 0.35. Select subleading photon pT / m_gammagamma > 0.25."
+
+Unresolved choice:
+It is unclear whether the diphoton invariant mass cut is applied before or after the pT/m_gammagamma cuts.
+
+Why this may matter:
+The order of cuts can affect the number of events passing each step and the values of m_gammagamma used in the pT/m_gammagamma ratios. Applying the invariant mass cut first ensures the denominator is within the desired range for the ratios.
+
+[CANDIDATE 5] Cutflow counter placement
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether the cutflow counter is incremented for each cut individually (i.e., one counter per cut), or if a single counter is updated cumulatively after each cut is passed.
+
+Why this may matter:
+If the cutflow is implemented as a single counter, it would not be possible to distinguish how many events passed each individual cut. The analysis would lose the ability to debug or optimize the selection steps.
+
+[CANDIDATE 6] Diphoton system in plots
+
+Original phrase:
+"Plot the following as histograms: 1 Plot diphoton invariant mass in the range 100 to 160 GeV [...] 4 Plot pT of the diphoton system [...] 9 Plot the |cos(theta*)| of the diphoton system in Collins-Soper frame"
+
+Unresolved choice:
+It is unclear whether the diphoton system used in the plots is the same as the one defined for the invariant mass cut and pT calculation.
+
+Why this may matter:
+If the diphoton system is redefined for the plots (e.g., using different photons or a different ordering), the plots would not correspond to the same system used in the selection, leading to inconsistencies in the analysis.

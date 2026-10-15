@@ -1,0 +1,78 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The code constructs the hadronic top candidate from the leading b-jet and the hadronic W candidate, which is correct. However, the SPEC explicitly requires the hadronic top candidate to be built from the leading b-jet and the hadronic W candidate. The code correctly implements this, but the implementation is not a violation. This finding is a placeholder to indicate that the code is correct.
+
+Evidence priority:
+- sum_objects(bjets_sorted[0], w_hadronic); upstream chain: helper_invariant_mass(bjets_sorted[0], w_hadronic)
+
+Generator bias:
+none
+
+---
+
+[KEPT 2] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- light_jets = [j for j in jets if j not in bjets]
+
+Reason:
+The code constructs the light_jets collection by excluding bjets from jets, but this method may not reliably identify non-b-tagged jets due to object identity comparison (j not in bjets). This is a definition mismatch because the SPEC requires selecting non-b-tagged jets, which should be done by checking the b-tag status directly, not by exclusion.
+
+Evidence priority:
+- light_jets = [j for j in jets if j not in bjets]; upstream chain: jets, bjets
+
+Generator bias:
+none
+
+[KEPT 3] keep: no obvious noise signal
+❓ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- bjets_sorted = sort_by_pt(bjets)
+
+Reason:
+The SPEC does not specify whether the leading b-jet should be selected from all jets or only from the selected b-jets. The code uses the selected b-jets collection, which is a valid interpretation, but the ambiguity exists in the SPEC.
+
+Evidence priority:
+- bjets_sorted = sort_by_pt(bjets); upstream chain: bjets
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+[DROPPED 1] drop: matched noise signal 'inclusive'
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if not (40 < w_hadronic['mass'] < 120): continue
+
+Reason:
+The code uses an exclusive range (40 < mass < 120), but the SPEC does not explicitly specify whether the range is inclusive or exclusive. However, in physics analysis, such mass windows are typically inclusive. The code's use of an exclusive range may lead to a definition mismatch if the intended behavior was inclusive.
+
+Evidence priority:
+- if not (40 < w_hadronic['mass'] < 120): continue; upstream chain: helper_invariant_mass(light_jets_sorted[0], light_jets_sorted[1])
+
+Generator bias:
+none

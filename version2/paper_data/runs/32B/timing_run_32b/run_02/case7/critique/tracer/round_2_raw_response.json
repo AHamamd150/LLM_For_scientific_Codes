@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* Subleading jet\n  - computed/defined as: helper_get_subleading(jets)\n  - upstream chain: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7] -> helper_get_subleading(jets)\n  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7\n  - structure: single-constituent\n\n* Dijet object\n  - computed/defined as: sum_objects(jet1, jet2)\n  - upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> sum_objects(jet1, jet2)\n  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7\n  - structure: composite-derived\n\n* Opposite-sign tau pair\n  - computed/defined as: opposite_sign(tau1, tau2)\n  - upstream chain: helper_get_leading(taus), helper_get_subleading(taus) -> opposite_sign(tau1, tau2)\n  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3\n  - structure: multi-input\n\n* Dijet invariant mass (m_jj)\n  - computed/defined as: helper_invariant_mass(jet1, jet2)\n  - upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> helper_invariant_mass(jet1, jet2)\n  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7\n  - structure: composite-derived\n\n* Delta eta between jets\n  - computed/defined as: abs(helper_delta_eta(jet1, jet2))\n  - upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> helper_delta_eta(jet1, jet2)\n  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7\n  - structure: multi-input\n\n* Ditau invariant mass\n  - computed/defined as: helper_invariant_mass(tau1, tau2)\n  - upstream chain: helper_get_leading(taus), helper_get_subleading(taus) -> helper_invariant_mass(tau1, tau2)\n  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3\n  - structure: composite-derived\n\n* B-tagged jet veto\n  - computed/defined as: any(j['btag'] == 1.0 for j in jets)\n  - upstream chain: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7] -> any(j['btag'] == 1.0 for j in jets)\n  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7\n  - structure: single-constituent\n\n* Delta R between taus\n  - computed/defined as: helper_delta_r(tau1, tau2)\n  - upstream chain: helper_get_leading(taus), helper_get_subleading(taus) -> helper_delta_r(tau1, tau2)\n  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3\n  - structure: multi-input\n\n* Delta phi between ditau and dijet\n  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])\n  - upstream chain: sum_objects(tau1, tau2), sum_objects(jet1, jet2) -> helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])\n  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3, j['pt'] > 30 and abs(j['eta']) < 4.7\n  - structure: multi-input\n\n* Centrality of ditau system relative to jets\n  - computed/defined as: centrality_between_jets(ditau_obj, jet1, jet2)\n  - upstream chain: sum_objects(tau1, tau2), helper_get_leading(jets), helper_get_subleading(jets) -> centrality_between_jets(ditau_obj, jet1, jet2)\n  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3, j['pt'] > 30 and abs(j['eta']) < 4.7\n  - structure: multi-input",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1789519355,
+  "id": "chatcmpl-c542840a-b70f-4339-b4a1-0a6e9f972c90",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 987,
+    "prompt_tokens": 10999,
+    "prompt_tokens_details": null,
+    "total_tokens": 11986
+  }
+}

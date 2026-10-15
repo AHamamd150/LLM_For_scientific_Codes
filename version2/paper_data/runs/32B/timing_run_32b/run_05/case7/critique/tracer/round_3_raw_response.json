@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* [CHECK CAREFULLY] DEFINITION SUMMARY\n\n* Selected taus\n  - computed/defined as: [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]\n  - upstream chain: get_taus(event) -> [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]\n  - collection definition: [o for o in event['objects'] if o['type'] == 3]\n  - structure: filtered\n\n* Selected jets\n  - computed/defined as: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - upstream chain: get_jets(event) -> [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - collection definition: [o for o in event['objects'] if o['type'] == 4]\n  - structure: filtered\n\n* Leading tau\n  - computed/defined as: helper_get_leading(taus)\n  - upstream chain: [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3] -> helper_get_leading(taus)\n  - collection definition: [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]\n  - structure: single-constituent\n\n* Subleading tau\n  - computed/defined as: helper_get_subleading(taus)\n  - upstream chain: [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3] -> helper_get_subleading(taus)\n  - collection definition: [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]\n  - structure: single-constituent\n\n* Ditau object\n  - computed/defined as: sum_objects(tau1, tau2)\n  - upstream chain: helper_get_leading(taus), helper_get_subleading(taus) -> sum_objects(tau1, tau2)\n  - collection definition: [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]\n  - structure: composite-derived\n\n* Leading jet\n  - computed/defined as: helper_get_leading(jets)\n  - upstream chain: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7] -> helper_get_leading(jets)\n  - collection definition: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: single-constituent\n\n* Subleading jet\n  - computed/defined as: helper_get_subleading(jets)\n  - upstream chain: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7] -> helper_get_subleading(jets)\n  - collection definition: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: single-constituent\n\n* Dijet object\n  - computed/defined as: sum_objects(jet1, jet2)\n  - upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> sum_objects(jet1, jet2)\n  - collection definition: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: composite-derived\n\n* Ditau invariant mass\n  - computed/defined as: helper_invariant_mass(tau1, tau2)\n  - upstream chain: helper_get_leading(taus), helper_get_subleading(taus) -> helper_invariant_mass(tau1, tau2)\n  - collection definition: [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]\n  - structure: composite-derived\n\n* Dijet invariant mass\n  - computed/defined as: helper_invariant_mass(jet1, jet2)\n  - upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> helper_invariant_mass(jet1, jet2)\n  - collection definition: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: composite-derived\n\n* Delta eta between jets\n  - computed/defined as: helper_delta_eta(jet1, jet2)\n  - upstream chain: helper_get_leading(jets), helper_get_subleading(jets) -> helper_delta_eta(jet1, jet2)\n  - collection definition: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: composite-derived\n\n* Delta R between taus\n  - computed/defined as: helper_delta_r(tau1, tau2)\n  - upstream chain: helper_get_leading(taus), helper_get_subleading(taus) -> helper_delta_r(tau1, tau2)\n  - collection definition: [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]\n  - structure: composite-derived\n\n* Delta phi between ditau and dijet\n  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])\n  - upstream chain: sum_objects(tau1, tau2), sum_objects(jet1, jet2) -> helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])\n  - collection definition: [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3], [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: composite-derived\n\n* Centrality of ditau system relative to jets\n  - computed/defined as: centrality_between_jets(ditau_obj, jet1, jet2)\n  - upstream chain: sum_objects(tau1, tau2), helper_get_leading(jets), helper_get_subleading(jets) -> centrality_between_jets(ditau_obj, jet1, jet2)\n  - collection definition: [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3], [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: composite-derived",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1789520536,
+  "id": "chatcmpl-4f4972ac-4191-443d-8bee-37622e82b789",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 1477,
+    "prompt_tokens": 11689,
+    "prompt_tokens_details": null,
+    "total_tokens": 13166
+  }
+}

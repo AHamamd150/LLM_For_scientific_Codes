@@ -1,0 +1,10 @@
+{
+  "jet1": {
+    "name": "jet1",
+    "definition": "helper_get_leading(jets), jet2 = helper_get_subleading(jets)",
+    "used_by": [
+      "Invariant mass of two leading jets",
+      "Delta R between two leading jets"
+    ]
+  }
+}

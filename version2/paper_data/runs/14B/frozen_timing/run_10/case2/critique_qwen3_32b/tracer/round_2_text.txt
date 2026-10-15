@@ -1,0 +1,35 @@
+
+
+jet
+  - collection definition: lepton from selected_leptons, leading_bjet from selected_bjets
+  - structure: multi-input
+
+* ht
+  - computed/defined as: scalar_pt_sum(selected_jets)
+  - upstream chain: selected_jets -> [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* njet_list
+  - computed/defined as: len(selected_jets)
+  - upstream chain: selected_jets -> [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* leading_bjet_pt
+  - computed/defined as: leading_bjet['pt']
+  - upstream chain: leading_bjet -> helper_get_leading(selected_bjets)
+  - collection definition: selected_bjets -> [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - structure: single-constituent
+
+* subleading_bjet_pt
+  - computed/defined as: helper_get_subleading(selected_bjets)['pt']
+  - upstream chain: selected_bjets -> [b for b in bjets if b['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: b['pt'] > 30 and abs(b['eta']) < 2.5
+  - structure: single-constituent
+
+* leading_bjet_eta
+  - computed/defined as: leading_bjet['eta']
+  - upstream chain: leading_bjet -> helper_get_leading(selected_bjets)
+  - collection definition: selected_bjets -> [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - structure: single-constituent

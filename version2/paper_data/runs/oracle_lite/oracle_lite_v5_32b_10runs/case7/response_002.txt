@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Definition of "selected taus" for ditau_obj
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this matters:
+The phrase "selected taus" could refer to the full list of taus passing pT and eta cuts, or to a subset after applying the opposite-sign requirement. The ditau_obj is defined based on these selected taus, so the timing of the opposite-sign requirement affects which taus are used.
+
+Question to user:
+Should the leading and subleading taus be selected from all taus passing pT/eta cuts, or only from the subset that also satisfies the opposite-sign requirement?
+
+Golden axe:
+Leading and subleading taus are selected from all taus passing pT/eta cuts, before applying the opposite-sign requirement.
+
+Silver axe:
+Leading and subleading taus are selected only from the subset of taus that also satisfy the opposite-sign requirement.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Jet selection for b-tag veto
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Why this matters:
+The phrase "selected jets" could refer to the full list of jets passing pT and eta cuts, or to the subset of jets that are the leading and subleading jets used to define the dijet_obj. This affects whether the veto applies to all jets or only to the two leading jets.
+
+Question to user:
+Should the b-tag veto apply to all jets passing pT/eta cuts, or only to the two leading jets used in the dijet_obj?
+
+Golden axe:
+The b-tag veto applies to all jets passing pT/eta cuts.
+
+Silver axe:
+The b-tag veto applies only to the two leading jets used to define the dijet_obj.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Centrality definition for ditau system
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Why this matters:
+The phrase "ditau system" could refer to the ditau_obj (summed four-momentum of the two taus), or to the individual tau objects. The centrality is computed relative to the two jets, and the choice of reference object affects the physical meaning of the observable.
+
+Question to user:
+Should the centrality be computed for the ditau_obj (summed four-momentum of the two taus), or for each individual tau relative to the two jets?
+
+Golden axe:
+Centrality is computed for the ditau_obj (summed four-momentum of the two taus) relative to the two jets.
+
+Silver axe:
+Centrality is computed separately for each tau relative to the two jets.
+
+Recommended default:
+Golden axe

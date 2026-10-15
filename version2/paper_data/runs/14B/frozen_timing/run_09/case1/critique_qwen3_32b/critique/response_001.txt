@@ -1,0 +1,307 @@
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+- Select muons with pT > 20 GeV and |eta| < 2.4
+
+CODE:
+- l['pt'] > 25 and abs(l['eta']) < 2.5
+- l['pt'] > 20 and abs(l['eta']) < 2.4
+
+Reason:
+The code uses exclusive comparisons (>, <) for pT and |eta| cuts, but the SPEC does not explicitly specify whether the boundaries are inclusive or exclusive. This is a definition mismatch because the SPEC could be interpreted to allow inclusive boundaries (≥, ≤), but the code uses strict exclusions.
+
+Evidence priority:
+L292-L293, L294-L296
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Use selected electrons and selected muons to define selected leptons.
+
+CODE:
+- leptons = [l for l in electrons if l['pt'] > 25 and abs(l['eta']) < 2.5] + [l for l in muons if l['pt'] > 20 and abs(l['eta']) < 2.4]
+
+Reason:
+The SPEC does not specify whether the lepton collection should be sorted or ordered in any way. The code simply concatenates the selected electrons and muons, but the order is not constrained by the SPEC. This is a specification ambiguity.
+
+Evidence priority:
+L290-L297
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Require exactly 1 selected lepton
+
+CODE:
+- if len(leptons) != 1: continue
+
+Reason:
+The SPEC does not specify whether the lepton should be an electron or a muon. The code allows either, but the ambiguity is whether the physics process requires a specific lepton flavor. This is a specification ambiguity.
+
+Evidence priority:
+L297-L299
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Require at least 2 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the jet collection should be sorted or whether the two leading jets should be used for downstream quantities. The code uses the full collection, but the ambiguity is whether the jets should be ordered by pT. This is a specification ambiguity.
+
+Evidence priority:
+L307-L310
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Veto events with b-tagged jets
+
+CODE:
+- if any(b['pt'] > 30 and abs(b['eta']) < 2.5 for b in bjets): continue
+
+Reason:
+The SPEC does not specify whether the b-jet veto applies to all b-tagged jets or only those passing the same pT and |eta| cuts as the selected jets. The code applies the cuts, but the ambiguity is whether the veto should be applied to all b-tagged jets regardless of their pT or |eta|. This is a specification ambiguity.
+
+Evidence priority:
+L314-L316
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Select transverse mass of lepton + MET between 40 and 120 GeV (W leptonic candidate)
+
+CODE:
+- if not (40 < mt < 120): continue
+
+Reason:
+The SPEC does not specify whether the transverse mass boundaries are inclusive or exclusive. The code uses strict exclusions, but the ambiguity is whether the boundaries should be inclusive (≥, ≤). This is a specification ambiguity.
+
+Evidence priority:
+L326-L330
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)
+
+CODE:
+- if not (60 < mjj < 100): continue
+
+Reason:
+The SPEC does not specify whether the invariant mass boundaries are inclusive or exclusive. The code uses strict exclusions, but the ambiguity is whether the boundaries should be inclusive (≥, ≤). This is a specification ambiguity.
+
+Evidence priority:
+L337-L340
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Select delta R between the two leading jets < 3.0
+
+CODE:
+- if dr >= 3.0: continue
+
+Reason:
+The SPEC does not specify whether the delta R boundary is inclusive or exclusive. The code uses strict exclusion, but the ambiguity is whether the boundary should be inclusive (≤). This is a specification ambiguity.
+
+Evidence priority:
+L343-L345
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic) in the range 30 to 150 GeV
+
+CODE:
+- plt.hist(mt_list, bins=40, range=(30, 150), density=True)
+
+Reason:
+The SPEC does not specify whether the histogram range is inclusive or exclusive. The code uses the range (30, 150), but the ambiguity is whether the boundaries should be inclusive (≥, ≤). This is a specification ambiguity.
+
+Evidence priority:
+L390-L394
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the two leading jets (W hadronic) in the range 40 to 120 GeV
+
+CODE:
+- plt.hist(mjj_list, bins=40, range=(40, 120), density=True)
+
+Reason:
+The SPEC does not specify whether the histogram range is inclusive or exclusive. The code uses the range (40, 120), but the ambiguity is whether the boundaries should be inclusive (≥, ≤). This is a specification ambiguity.
+
+Evidence priority:
+L396-L400
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- plt.hist(met_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The SPEC does not specify the range for the MET distribution. The code uses (0, 200), but the ambiguity is whether the range should be different. This is a specification ambiguity.
+
+Evidence priority:
+L403-L407
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the lepton
+
+CODE:
+- plt.hist(lepton_pt_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The SPEC does not specify the range for the lepton pT distribution. The code uses (0, 200), but the ambiguity is whether the range should be different. This is a specification ambiguity.
+
+Evidence priority:
+L410-L414
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the leading jet
+
+CODE:
+- plt.hist(jet1_pt_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The SPEC does not specify the range for the leading jet pT distribution. The code uses (0, 200), but the ambiguity is whether the range should be different. This is a specification ambiguity.
+
+Evidence priority:
+L417-L421
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading jet
+
+CODE:
+- plt.hist(jet2_pt_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The SPEC does not specify the range for the subleading jet pT distribution. The code uses (0, 200), but the ambiguity is whether the range should be different. This is a specification ambiguity.
+
+Evidence priority:
+L424-L428
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot delta R between the two leading jets
+
+CODE:
+- plt.hist(dr_list, bins=40, range=(0, 5), density=True)
+
+Reason:
+The SPEC does not specify the range for the delta R distribution. The code uses (0, 5), but the ambiguity is whether the range should be different. This is a specification ambiguity.
+
+Evidence priority:
+L431-L435
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot delta phi between the lepton and MET
+
+CODE:
+- plt.hist(dphi_list, bins=40, range=(-3.14, 3.14), density=True)
+
+Reason:
+The SPEC does not specify the range for the delta phi distribution. The code uses (-3.14, 3.14), but the ambiguity is whether the range should be different. This is a specification ambiguity.
+
+Evidence priority:
+L438-L442
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the eta of the lepton
+
+CODE:
+- plt.hist(lepton_eta_list, bins=40, range=(-2.5, 2.5), density=True)
+
+Reason:
+The SPEC does not specify the range for the lepton eta distribution. The code uses (-2.5, 2.5), but the ambiguity is whether the range should be different. This is a specification ambiguity.
+
+Evidence priority:
+L445-L449
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot delta phi between the lepton and the two-jet system
+
+CODE:
+- plt.hist(dphi_lepton_jets_list, bins=40, range=(-3.14, 3.14), density=True)
+
+Reason:
+The SPEC does not specify the range for the delta phi distribution. The code uses (-3.14, 3.14), but the ambiguity is whether the range should be different. This is a specification ambiguity.
+
+Evidence priority:
+L452-L456
+
+Generator bias:
+none

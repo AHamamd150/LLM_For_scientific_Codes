@@ -1,0 +1,27 @@
+# Selected helpers
+
+- helper_delta_phi: dependency of helper_transverse_mass
+- helper_transverse_mass
+- get_particle_mass: dependency of four_momentum
+- four_momentum: dependency of sum_objects
+- obj_from_four_momentum: dependency of sum_objects
+- sum_objects: dependency of helper_invariant_mass
+- helper_invariant_mass
+- helper_delta_r
+- helper_get_met
+- get_leptons
+- get_jets
+- get_bjets
+- helper_get_leading
+- helper_get_subleading
+- n_jets
+- n_bjets
+- n_leptons
+- sort_by_pt
+- compute_phi
+- transverse_energy
+- vector_pt_components
+- abs_eta
+
+# Rejected but close
+

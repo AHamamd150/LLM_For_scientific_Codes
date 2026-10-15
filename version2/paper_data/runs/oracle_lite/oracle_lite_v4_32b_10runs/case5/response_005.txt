@@ -1,0 +1,109 @@
+[CANDIDATE 1] Leading and subleading tau definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Unresolved choice:
+It is unclear whether the leading and subleading tau are defined based on pT of the selected taus, or if some other ordering criterion is intended.
+
+Why this may matter:
+If the helper assumes pT ordering by default, the code may be correct. But if the user intended a different ordering (e.g., based on isolation or decay mode), the code would be incorrect.
+
+[CANDIDATE 2] Leading and subleading jet definition
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Unresolved choice:
+It is unclear whether the leading and subleading jet are defined based on pT of the selected jets, or if some other ordering criterion is intended.
+
+Why this may matter:
+If the helper assumes pT ordering by default, the code may be correct. But if the user intended a different ordering (e.g., based on b-tagging or jet mass), the code would be incorrect.
+
+[CANDIDATE 3] Dijet system definition
+
+Original phrase:
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Unresolved choice:
+It is unclear whether the dijet_obj is meant to be a composite object with full four-momentum information, or if it is only used to compute specific quantities like invariant mass or delta eta.
+
+Why this may matter:
+If the dijet_obj is only used to compute m_jj and delta eta, it may not need to be stored as a full object. If it is intended for later use (e.g., for angular correlations with other systems), it must be defined as a proper composite object.
+
+[CANDIDATE 4] Ditau system definition
+
+Original phrase:
+"Define ditau_obj from the summed four-momentum of the leading tau and subleading tau."
+
+Unresolved choice:
+It is unclear whether the ditau_obj is meant to be a composite object with full four-momentum information, or if it is only used to compute specific quantities like invariant mass.
+
+Why this may matter:
+If the ditau_obj is only used to compute m_ττ, it may not need to be stored as a full object. If it is intended for later use (e.g., for angular correlations with the dijet system), it must be defined as a proper composite object.
+
+[CANDIDATE 5] Delta phi between ditau and dijet systems
+
+Original phrase:
+"Plot delta phi between the ditau system and the dijet system"
+
+Unresolved choice:
+It is unclear whether the delta phi is computed between the ditau system and the dijet system as a whole, or between specific components of the systems (e.g., between the ditau and the leading jet).
+
+Why this may matter:
+The interpretation affects which helper function is used and how the delta phi is computed, which could significantly change the meaning of the observable.
+
+[CANDIDATE 6] Centrality of ditau system relative to jets
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Unresolved choice:
+It is unclear whether the centrality is computed using the ditau system's pseudorapidity or rapidity, and whether it is computed relative to the dijet system's pseudorapidity or rapidity.
+
+Why this may matter:
+The choice of rapidity vs. pseudorapidity and the reference frame (ditau system or dijet system) could significantly change the centrality value and its physical interpretation.
+
+[CANDIDATE 7] Veto on b-tagged jets
+
+Original phrase:
+"Veto events with b-tagged jets"
+
+Unresolved choice:
+It is unclear whether the veto applies to any b-tagged jet in the event (regardless of pT or eta), or only to b-tagged jets that pass the jet selection criteria.
+
+Why this may matter:
+If the veto is applied to all b-tagged jets in the event, it could be more stringent than if it is applied only to selected jets. This affects the event selection and the final sample.
+
+[CANDIDATE 8] Opposite-sign tau pair requirement
+
+Original phrase:
+"Require opposite-sign tau pair"
+
+Unresolved choice:
+It is unclear whether this requirement applies to the leading and subleading tau pair specifically, or to any opposite-sign tau pair in the event.
+
+Why this may matter:
+If the requirement is applied to any opposite-sign pair, it could allow for multiple valid combinations in events with more than two taus. If it is applied only to the leading and subleading pair, it is more restrictive.
+
+[CANDIDATE 9] Ditau invariant mass requirement
+
+Original phrase:
+"Select ditau invariant mass between 60 and 150 GeV"
+
+Unresolved choice:
+It is unclear whether this cut is applied to the leading and subleading tau pair specifically, or to any ditau pair in the event.
+
+Why this may matter:
+If the cut is applied to any ditau pair, it could allow for multiple valid combinations in events with more than two taus. If it is applied only to the leading and subleading pair, it is more restrictive.
+
+[CANDIDATE 10] Delta R between the two taus
+
+Original phrase:
+"Plot delta R between the two taus"
+
+Unresolved choice:
+It is unclear whether this refers to the leading and subleading tau pair specifically, or to any pair of taus in the event.
+
+Why this may matter:
+If it refers to any pair of taus, the observable could include multiple combinations in events with more than two taus. If it refers only to the leading and subleading pair, it is more specific.

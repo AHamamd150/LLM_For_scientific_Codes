@@ -1,0 +1,109 @@
+[CANDIDATE 1] Leading and subleading tau definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Unresolved choice:
+It is not specified whether the selection of leading and subleading taus is based on pT, or another property such as transverse mass or decay mode.
+
+Why this may matter:
+The choice of ordering criterion (e.g., pT vs. other properties) will affect which taus are used in the ditau system and thus influence the invariant mass and other derived quantities.
+
+[CANDIDATE 2] Leading and subleading jet definition
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Unresolved choice:
+It is not specified whether the selection of leading and subleading jets is based on pT, or another property such as transverse energy or jet mass.
+
+Why this may matter:
+The choice of ordering criterion will affect which jets are used in the dijet system and thus influence the invariant mass, delta eta, and other derived quantities.
+
+[CANDIDATE 3] Dijet invariant mass cut
+
+Original phrase:
+"Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV"
+
+Unresolved choice:
+It is not specified whether the invariant mass is computed from the four-momentum of the jets or from their transverse momenta.
+
+Why this may matter:
+Using transverse mass instead of invariant mass would change the physical meaning of the cut and could affect the selection efficiency and signal acceptance.
+
+[CANDIDATE 4] Dijet delta eta cut
+
+Original phrase:
+"Select |delta eta| between the two leading jets > 2.5"
+
+Unresolved choice:
+It is not specified whether the delta eta is computed from the pseudorapidity (eta) or from the rapidity (y) of the jets.
+
+Why this may matter:
+Pseudorapidity and rapidity are different quantities, and using one instead of the other could change the physical meaning of the cut and affect the selection efficiency.
+
+[CANDIDATE 5] Dijet system definition
+
+Original phrase:
+"Define dijet_obj from the summed four-momentum of the leading jet and subleading jet."
+
+Unresolved choice:
+It is not specified whether the dijet_obj is intended to be used in further analysis (e.g., for angular correlations with the ditau system) or if it is only used to compute the invariant mass and delta eta.
+
+Why this may matter:
+If the dijet_obj is intended for further analysis, it must be stored or passed to subsequent steps. If it is only used for the invariant mass and delta eta, it may not need to be explicitly defined.
+
+[CANDIDATE 6] Dijet system reuse
+
+Original phrase:
+"Plot delta phi between the ditau_obj and the dijet_obj"
+
+Unresolved choice:
+It is not specified whether the ditau_obj and dijet_obj are to be reused in other plots or analysis steps, or if they are only used for this specific delta phi plot.
+
+Why this may matter:
+If the ditau_obj and dijet_obj are to be reused, they must be defined in a way that allows them to be accessed later. If they are only used for this plot, they may not need to be explicitly stored.
+
+[CANDIDATE 7] Dijet system centrality
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Unresolved choice:
+It is not specified whether the centrality is computed using the ditau system's pseudorapidity or rapidity, and whether the jets used for centrality are the same as those used in the dijet system.
+
+Why this may matter:
+The choice of pseudorapidity vs. rapidity and the choice of jets could affect the centrality calculation and the interpretation of the plot.
+
+[CANDIDATE 8] Tau pair selection
+
+Original phrase:
+"Require opposite-sign tau pair"
+
+Unresolved choice:
+It is not specified whether the opposite-sign requirement is applied to all possible pairs of selected taus or only to the leading and subleading taus.
+
+Why this may matter:
+If the requirement is applied to all possible pairs, it could lead to multiple valid combinations, whereas if it is applied only to the leading and subleading taus, it would be a single pair.
+
+[CANDIDATE 9] B-jet veto
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Unresolved choice:
+It is not specified whether the veto is applied to all b-tagged jets or only to a specific number of b-tagged jets (e.g., at least one).
+
+Why this may matter:
+The veto could be too strict if applied to all b-tagged jets, or too lenient if applied to a specific number, affecting the signal and background acceptance.
+
+[CANDIDATE 10] Cutflow increment
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is not specified whether the cutflow counters are to be incremented for all events or only for events that pass all previous cuts.
+
+Why this may matter:
+If the counters are incremented for all events, the cutflow will not reflect the cumulative effect of the cuts. If they are incremented only for events that pass all previous cuts, the cutflow will be more informative but may require additional bookkeeping.

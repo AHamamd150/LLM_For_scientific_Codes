@@ -1,0 +1,98 @@
+[CANDIDATE 1] z_obj definition and reuse
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum."
+
+Unresolved choice:
+It is unclear whether the z_obj is a temporary object for the purpose of the invariant mass cut or if it is meant to be reused in later steps (e.g., for plotting or further system definitions).
+
+Why this may matter:
+If z_obj is only used for the invariant mass cut, it may not need to be stored or referenced beyond that step. However, if it is reused (e.g., in the three-lepton system or for plotting), then it must be defined and preserved in a way that allows later access.
+
+[CANDIDATE 2] W candidate lepton definition and reuse
+
+Original phrase:
+"Define the selected muon as the W candidate lepton."
+
+Unresolved choice:
+It is unclear whether this definition is meant to be a label for the muon (e.g., for clarity in code) or if it implies a specific object that must be preserved for later use (e.g., in the three-lepton system or transverse mass calculation).
+
+Why this may matter:
+If the W candidate lepton is only used in the transverse mass calculation, it may not need to be tracked separately. However, if it is part of a larger system (e.g., the three-lepton system), then it must be preserved and accessible for further processing.
+
+[CANDIDATE 3] Three-lepton system definition
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Unresolved choice:
+It is unclear whether the three-lepton system is built at the same time as the z_obj or after the W candidate is defined, and whether it is built from the original selected electrons or from the z_obj and the W candidate.
+
+Why this may matter:
+If the three-lepton system is built from the original selected electrons and the W candidate, it may differ from a system built from the z_obj and the W candidate, especially if the z_obj is a composite object. The timing of the system construction could also affect how the pT is calculated.
+
+[CANDIDATE 4] MET in transverse mass
+
+Original phrase:
+"Select transverse mass of W candidate muon + MET > 30 GeV."
+
+Unresolved choice:
+It is unclear whether the transverse mass is calculated using the raw MET or the MET after any potential corrections or vetoes.
+
+Why this may matter:
+If the MET is modified by other cuts or corrections (e.g., jet veto or MET filtering), using the raw MET could lead to inconsistent or incorrect transverse mass values.
+
+[CANDIDATE 5] MET in delta phi
+
+Original phrase:
+"Plot delta phi between z_obj and MET"
+
+Unresolved choice:
+It is unclear whether the MET used in this delta phi calculation is the same as the one used in the transverse mass calculation or the raw MET.
+
+Why this may matter:
+If the MET is modified in one context (e.g., by a cut or correction) but not in another, the delta phi could be inconsistent with the transverse mass or other MET-dependent quantities.
+
+[CANDIDATE 6] Cutflow counter timing
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether the cutflow counter for the invariant mass of z_obj includes events where the z_obj is not yet defined (e.g., if the two electrons are not yet selected or the invariant mass is not yet computed).
+
+Why this may matter:
+If the cutflow counter is incremented before the z_obj is defined, the invariant mass cut may not be applied correctly, leading to incorrect event counts in the cutflow.
+
+[CANDIDATE 7] Electron charge requirement
+
+Original phrase:
+"Require the two selected electrons to have opposite charge."
+
+Unresolved choice:
+It is unclear whether this requirement applies to the raw electrons before any cuts or to the selected electrons after the pT and |eta| cuts.
+
+Why this may matter:
+If the charge requirement is applied before the pT and |eta| cuts, it could lead to different electron selections than if it is applied after those cuts. This could affect the final event counts and the z_obj definition.
+
+[CANDIDATE 8] W candidate muon pT requirement
+
+Original phrase:
+"The W candidate muon must have pT > 20 GeV."
+
+Unresolved choice:
+It is unclear whether this pT requirement is applied before or after the MET and transverse mass cuts.
+
+Why this may matter:
+If the pT requirement is applied before the MET and transverse mass cuts, it could lead to different event selections than if it is applied after those cuts. This could affect the final event counts and the transverse mass calculation.
+
+[CANDIDATE 9] MET requirement
+
+Original phrase:
+"Require MET > 30 GeV."
+
+Unresolved choice:
+It is unclear whether this MET requirement is applied before or after the W candidate muon pT requirement.
+
+Why this may matter:
+If the MET requirement is applied before the W candidate muon pT requirement, it could lead to different event selections than if it is applied after that requirement. This could affect the final event counts and the transverse mass calculation.

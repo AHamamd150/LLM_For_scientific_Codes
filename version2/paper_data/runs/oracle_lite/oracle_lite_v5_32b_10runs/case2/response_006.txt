@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Hadronic W candidate jet selection timing
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Why this matters:
+The phrase does not specify whether "leading non-b-tagged jets" refers to the two highest-pT jets among all non-b-tagged jets in the event, or among non-b-tagged jets that have already passed the jet pT and eta cuts. This affects which jets are used for the hadronic W candidate and could change the invariant mass distribution.
+
+Question to user:
+Are the two leading non-b-tagged jets used for the hadronic W candidate selected from all non-b-tagged jets in the event, or only from those that have passed the jet pT and eta cuts?
+
+Golden axe:
+Select the two leading non-b-tagged jets from all non-b-tagged jets in the event.
+
+Silver axe:
+Select the two leading non-b-tagged jets from non-b-tagged jets that have passed the jet pT and eta cuts.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Leading b-jet definition timing
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Why this matters:
+The phrase does not clarify whether the "leading b-jet" is defined before or after the jet pT and eta cuts. This affects which b-jet is used for the hadronic top candidate and could influence the invariant mass distribution.
+
+Question to user:
+Is the leading b-jet used for the hadronic top candidate selected from all b-tagged jets in the event, or only from those that have passed the jet pT and eta cuts?
+
+Golden axe:
+Select the leading b-jet from all b-tagged jets in the event.
+
+Silver axe:
+Select the leading b-jet from b-tagged jets that have passed the jet pT and eta cuts.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Lepton definition for validation plots
+
+Original phrase:
+"Plot the following as histograms: 1 Plot the transverse mass of lepton + MET (W leptonic candidate) [...] 7 Plot delta R between the leading lepton and the closest b-jet"
+
+Why this matters:
+The phrase does not clarify whether "lepton" refers to the single lepton that passed the selection (exactly one lepton), or if it refers to the highest-pT lepton among all selected electrons and muons. This affects which lepton is used in the validation plots.
+
+Question to user:
+Does "leading lepton" in the validation plots refer to the single lepton that passed the selection (exactly one lepton), or is it the highest-pT lepton among all selected electrons and muons?
+
+Golden axe:
+Use the single lepton that passed the selection (exactly one lepton) for all plots involving the "leading lepton".
+
+Silver axe:
+Use the highest-pT lepton among all selected electrons and muons for the "leading lepton" in the validation plots.
+
+Recommended default:
+Golden axe

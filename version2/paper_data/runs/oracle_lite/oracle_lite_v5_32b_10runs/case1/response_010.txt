@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] Lepton collection definition for "selected leptons"
+
+Original phrase:
+"Use selected electrons and selected muons to define selected leptons."
+
+Why this matters:
+The phrase implies combining selected electrons and muons into a single lepton collection, but it is unclear whether this is a simple concatenation or if there are additional constraints (e.g. ordering, exclusivity, or pT requirements). This affects how "exactly 1 selected lepton" is interpreted—whether it counts any single lepton from the combined list, or if there is a priority or ordering between electrons and muons.
+
+Question to user:
+Should "selected leptons" be a simple concatenation of selected electrons and muons, or is there an ordering or preference (e.g., highest pT lepton)?
+
+Golden axe:
+Combine selected electrons and muons into a single list, and select the one with highest pT.
+
+Silver axe:
+Treat electrons and muons as separate, and "exactly 1 selected lepton" means one from either channel, without preference.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Jet selection for "two leading jets" in the W hadronic candidate
+
+Original phrase:
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+
+Why this matters:
+The phrase refers to "leading jets" but does not specify whether these are the leading jets in the full event or only among jets that pass the "at least 2 jets with pT > 30 GeV and |eta| < 2.5" cut. This affects which jets are used for the invariant mass calculation and the W hadronic candidate definition.
+
+Question to user:
+Are the "two leading jets" for the W hadronic candidate selected from the full jet collection, or only from the jets that pass the pT and eta cuts?
+
+Golden axe:
+Leading jets are selected from the jets passing the pT and eta cuts.
+
+Silver axe:
+Leading jets are selected from the full jet collection, regardless of cuts.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Delta phi between lepton and two-jet system
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+
+Why this matters:
+The phrase refers to the "two-jet system" but does not clarify whether this is the system of the two leading jets (as in the W hadronic candidate), or a different two-jet combination (e.g. all pairs, or a specific pair based on some selection). This affects the definition of the delta phi observable.
+
+Question to user:
+Is the "two-jet system" for the delta phi calculation the same as the one used in the W hadronic candidate (i.e., the two leading jets), or is it a different combination?
+
+Golden axe:
+Use the two leading jets (from the W hadronic candidate) to define the two-jet system.
+
+Silver axe:
+Use all possible two-jet combinations and select one based on a different criterion (e.g. closest in phi to the lepton).
+
+Recommended default:
+Golden axe

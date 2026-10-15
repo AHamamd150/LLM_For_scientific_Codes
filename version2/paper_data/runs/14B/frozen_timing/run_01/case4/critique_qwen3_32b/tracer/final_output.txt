@@ -1,0 +1,118 @@
+SECTION 1: SPEC BULLET ANALYSIS
+
+✅ * Select electrons with pT > 15 GeV and |eta| < 2.5; computed as: [e for e in get_electrons(event) if e['pt'] > 15 and abs(e['eta']) < 2.5]; upstream chain: get_electrons(event) -> [e for e in ...]; 〔L242-L244〕
+✅ * Select muons with pT > 10 GeV and |eta| < 2.4; computed as: [m for m in get_muons(event) if m['pt'] > 10 and abs(m['eta']) < 2.4]; upstream chain: get_muons(event) -> [m for m in ...]; 〔L247-L249〕
+✅ * Require exactly 2 selected electrons and exactly 1 selected muon; computed as: if len(electrons) != 2 or len(muons) != 1; upstream chain: electrons, muons; 〔L253-L255〕
+✅ * Require the two selected electrons to have opposite charge; computed as: if not opposite_sign(e1, e2); upstream chain: e1, e2 from electrons; 〔L258-L261〕
+✅ * Build z_obj from the two selected electrons using summed four-momentum; computed as: sum_objects(e1, e2); upstream chain: e1, e2 from electrons; 〔L264-L265〕
+✅ * Select invariant mass of z_obj between 76 and 106 GeV; computed as: if not (76 < z_mass < 106); upstream chain: z_mass = helper_invariant_mass(e1, e2); 〔L268-L270〕
+✅ * Define the selected muon as the W candidate lepton; computed as: w_muon = muons[0]; upstream chain: muons; 〔L280〕
+✅ * Require MET > 30 GeV; computed as: if met is None or met['pt'] < 30; upstream chain: helper_get_met(event); 〔L274-L275〕
+✅ * The W candidate muon must have pT > 20 GeV; computed as: if w_muon['pt'] < 20; upstream chain: w_muon; 〔L280-L281〕
+✅ * Select transverse mass of W candidate muon + MET > 30 GeV; computed as: if w_trans_mass < 30; upstream chain: helper_transverse_mass(w_muon, met); 〔L286-L287〕
+✅ * Plot the invariant mass of z_obj in range 60 to 120 GeV; computed as: plt.hist(z_mass_list, bins=40, range=(60, 120), density=True); upstream chain: z_mass_list; 〔L293-L294, L1560-L1562〕
+✅ * Plot the transverse mass of the W candidate lepton + MET; computed as: plt.hist(w_trans_mass_list, bins=40, density=True); upstream chain: w_trans_mass_list; 〔L295-L296, L1563-L1565〕
+✅ * Plot the MET distribution; computed as: plt.hist(met_list, bins=40, density=True); upstream chain: met_list; 〔L296-L297, L1566-L1568〕
+✅ * Plot the pT of the three-lepton system built from the two selected electrons and the selected muon; computed as: plt.hist(three_lepton_pt_list, bins=40, density=True); upstream chain: three_lepton_pt_list; 〔L298-L300, L1569-L1571〕
+✅ * Plot the pT of z_obj; computed as: plt.hist(z_pt_list, bins=40, density=True); upstream chain: z_pt_list; 〔L304-L305, L1572-L1574〕
+✅ * Plot the pT of the W candidate muon; computed as: plt.hist(w_muon_pt_list, bins=40, density=True); upstream chain: w_muon_pt_list; 〔L305-L306, L1575-L1577〕
+✅ * Plot delta phi between z_obj and MET; computed as: plt.hist(delta_phi_z_met_list, bins=40, range=(-3.14, 3.14), density=True); upstream chain: delta_phi_z_met_list; 〔L307-L308, L1578-L1580〕
+✅ * Plot the invariant mass of the three-lepton system; computed as: plt.hist(three_lepton_mass_list, bins=40, density=True); upstream chain: three_lepton_mass_list; 〔L302-L303, L1581-L1583〕
+✅ * Plot delta R between the two electrons forming z_obj; computed as: plt.hist(delta_r_electrons_list, bins=40, density=True); upstream chain: delta_r_electrons_list; 〔L309-L310, L1584-L1586〕
+✅ * Plot eta of the W candidate muon; computed as: plt.hist(w_muon_eta_list, bins=40, density=True); upstream chain: w_muon_eta_list; 〔L310-L311, L1587-L1589〕
+✅ * After the event loop, print one cutflow summary with the number of events after each selection step; computed as: for key, value in cutflow.items(): print(f"{key}: {value}"); upstream chain: cutflow; 〔L384-L386〕
+✅ * Save the plots in png format; computed as: plt.savefig("filename.png"); upstream chain: plt.figure() -> plt.hist(...) -> plt.savefig(...); 〔L1560-L1562, L1563-L1565, L1566-L1568, L1569-L1571, L1572-L1574, L1575-L1577, L1578-L1580, L1581-L1583, L1584-L1586, L1587-L1589〕
+
+SECTION 2: DEFINITION SUMMARY
+
+* [CHECK CAREFULLY] DEFINITION SUMMARY
+
+* electrons
+  - computed/defined as: [e for e in get_electrons(event) if e['pt'] > 15 and abs(e['eta']) < 2.5]
+  - upstream chain: get_electrons(event) -> [e for e in ...]
+  - collection definition: e['pt'] > 15 and abs(e['eta']) < 2.5
+  - structure: single-constituent
+
+* muons
+  - computed/defined as: [m for m in get_muons(event) if m['pt'] > 10 and abs(m['eta']) < 2.4]
+  - upstream chain: get_muons(event) -> [m for m in ...]
+  - collection definition: m['pt'] > 10 and abs(m['eta']) < 2.4
+  - structure: single-constituent
+
+* z_obj
+  - computed/defined as: sum_objects(e1, e2)
+  - upstream chain: e1, e2 from electrons
+  - collection definition: e1, e2 from electrons
+  - structure: composite-derived
+
+* z_mass
+  - computed/defined as: helper_invariant_mass(e1, e2)
+  - upstream chain: e1, e2 from electrons
+  - collection definition: e1, e2 from electrons
+  - structure: composite-derived
+
+* w_muon
+  - computed/defined as: muons[0]
+  - upstream chain: muons
+  - collection definition: muons
+  - structure: single-constituent
+
+* met
+  - computed/defined as: helper_get_met(event)
+  - upstream chain: event['objects']
+  - collection definition: o['type'] == 6
+  - structure: single-constituent
+
+* w_trans_mass
+  - computed/defined as: helper_transverse_mass(w_muon, met)
+  - upstream chain: w_muon, met
+  - collection definition: w_muon, met
+  - structure: composite-derived
+
+* three_lepton
+  - computed/defined as: sum_objects(e1, e2, w_muon)
+  - upstream chain: e1, e2 from electrons, w_muon
+  - collection definition: e1, e2 from electrons, w_muon
+  - structure: composite-derived
+
+* three_lepton_pt
+  - computed/defined as: three_lepton['pt']
+  - upstream chain: three_lepton
+  - collection definition: three_lepton
+  - structure: single-constituent
+
+* three_lepton_mass
+  - computed/defined as: helper_invariant_mass(e1, e2, w_muon)
+  - upstream chain: e1, e2 from electrons, w_muon
+  - collection definition: e1, e2 from electrons, w_muon
+  - structure: composite-derived
+
+* z_pt
+  - computed/defined as: z_obj['pt']
+  - upstream chain: z_obj
+  - collection definition: z_obj
+  - structure: single-constituent
+
+* w_muon_pt
+  - computed/defined as: w_muon['pt']
+  - upstream chain: w_muon
+  - collection definition: w_muon
+  - structure: single-constituent
+
+* delta_phi_z_met
+  - computed/defined as: helper_delta_phi(z_obj['phi'], met['phi'])
+  - upstream chain: z_obj, met
+  - collection definition: z_obj, met
+  - structure: composite-derived
+
+* delta_r_electrons
+  - computed/defined as: helper_delta_r(e1, e2)
+  - upstream chain: e1, e2 from electrons
+  - collection definition: e1, e2 from electrons
+  - structure: composite-derived
+
+* w_muon_eta
+  - computed/defined as: w_muon['eta']
+  - upstream chain: w_muon
+  - collection definition: w_muon
+  - structure: single-constituent

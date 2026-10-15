@@ -1,0 +1,71 @@
+[AMBIGUITY 1] Leading b-jet definition
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Why this is dangerous:
+The phrase "leading b-jet" could refer to the highest-pT b-jet in the full event or only among the selected b-jets. This affects which jet is used in the top candidate construction and validation plots.
+
+Question to user:
+Should the "leading b-jet" be defined as the highest-pT b-jet in the full event, or only among the selected b-jets that passed all previous cuts?
+
+Golden axe:
+The leading b-jet is the highest-pT b-jet among the selected b-jets that passed all previous cuts.
+
+Silver axe:
+The leading b-jet is the highest-pT b-jet in the full event, regardless of whether it passed earlier cuts.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Build the hadronic top candidate from the leading selected b-jet and the hadronic W candidate."
+- Silver axe rewrite: "Build the hadronic top candidate from the leading b-jet in the event and the hadronic W candidate."
+
+[AMBIGUITY 2] Non-b-tagged jet selection
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Why this is dangerous:
+"Non-b-tagged jets" could refer to jets that are explicitly not b-tagged, or to jets that are b-tagged but excluded from this specific construction. This affects jet selection consistency across different object combinations.
+
+Question to user:
+Should "non-b-tagged jets" be interpreted as jets that are not b-tagged at all, or as jets that are b-tagged but excluded for this specific hadronic W construction?
+
+Golden axe:
+"Non-b-tagged jets" refers to jets that are not b-tagged at all.
+
+Silver axe:
+"Non-b-tagged jets" refers to jets that are b-tagged but being used in a different context here.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Build the hadronic W candidate from the two leading jets that are not b-tagged."
+- Silver axe rewrite: "Build the hadronic W candidate from the two leading jets, excluding b-tagged jets for this purpose."
+
+[AMBIGUITY 3] Lepton definition for validation
+
+Original phrase:
+"Plot delta R between the leading lepton and the closest b-jet"
+
+Why this is dangerous:
+The phrase "leading lepton" could refer to the highest-pT lepton among all selected leptons, or the single lepton that passed the "exactly one lepton" requirement. This affects the jet-lepton association and validation plots.
+
+Question to user:
+Should "leading lepton" refer to the single lepton that passed the "exactly one lepton" requirement, or to the highest-pT lepton among all selected leptons?
+
+Golden axe:
+"Leading lepton" refers to the single lepton that passed the "exactly one lepton" requirement.
+
+Silver axe:
+"Leading lepton" refers to the highest-pT lepton among all selected leptons, even if there are multiple.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Plot delta R between the single selected lepton and the closest b-jet"
+- Silver axe rewrite: "Plot delta R between the leading lepton (highest pT) and the closest b-jet"

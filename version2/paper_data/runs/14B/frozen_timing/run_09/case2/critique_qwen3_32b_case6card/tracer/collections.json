@@ -1,0 +1,25 @@
+{
+  "selected_light_jets": {
+    "name": "selected_light_jets",
+    "definition": "[j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]",
+    "used_by": [
+      "w_hadronic"
+    ]
+  },
+  "selected_bjets": {
+    "name": "selected_bjets",
+    "definition": "[b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5], selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]",
+    "used_by": [
+      "top_candidate",
+      "leading_bjet_pt",
+      "leading_bjet_eta"
+    ]
+  },
+  "selected_leptons": {
+    "name": "selected_leptons",
+    "definition": "selected_electrons + selected_muons, selected_bjets = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]",
+    "used_by": [
+      "dr_lepton_bjet"
+    ]
+  }
+}

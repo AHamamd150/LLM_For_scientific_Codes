@@ -1,0 +1,141 @@
+SECTION 1: SPEC BULLET ANALYSIS
+
+✅ * Select electrons with pT > 25 GeV and |eta| < 2.5; computed as: [e for e in electrons if e['pt'] > 25 and abs(e['eta']) < 2.5]; upstream chain: selected_electrons; 〔L293-L294〕
+✅ * Select muons with pT > 25 GeV and |eta| < 2.4; computed as: [m for m in muons if m['pt'] > 25 and abs(m['eta']) < 2.4]; upstream chain: selected_muons; 〔L294-L295〕
+✅ * Require exactly one lepton (electron or muon); computed as: if len(selected_leptons) != 1: continue; upstream chain: selected_leptons; 〔L297-L298〕
+✅ * Require at least 4 jets with pT > 30 GeV and |eta| < 2.5; computed as: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]; upstream chain: selected_jets; 〔L303-L304〕
+✅ * Require at least 2 b-tagged jets; computed as: [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]; upstream chain: selected_bjets; 〔L310-L311〕
+✅ * Select MET > 20 GeV; computed as: if met is None or met['pt'] < 20: continue; upstream chain: met; 〔L316-L318〕
+✅ * Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate); computed as: if mt < 30 or mt > 150: continue; upstream chain: helper_transverse_mass(lepton, met); 〔L324-L325〕
+✅ * Build the hadronic W candidate from the two leading non-b-tagged jets; computed as: sum_objects(leading_light_jet, subleading_light_jet); upstream chain: selected_light_jets; 〔L340-L341〕
+✅ * Select the hadronic W mass between 40 to 120GeV; computed as: if w_hadronic_mass < 40 or w_hadronic_mass > 120: continue; upstream chain: w_hadronic_mass; 〔L343-L344〕
+✅ * Build the hadronic top candidate from the leading b-jet and the hadronic W candidate; computed as: sum_objects(leading_bjet, w_hadronic); upstream chain: leading_bjet, w_hadronic; 〔L351-L352〕
+
+✅ * Plot the transverse mass of lepton + MET (W leptonic candidate); computed as: mt_list; upstream chain: helper_transverse_mass(lepton, met); 〔L328-L329〕
+✅ * Plot the MET distribution; computed as: met_list; upstream chain: met['pt']; 〔L329-L330〕
+✅ * Plot the pT of the leading b-jet; computed as: leading_bjet_pt_list; upstream chain: leading_bjet['pt']; 〔L369-L370〕
+✅ * Plot the pT of the subleading b-jet; computed as: subleading_bjet_pt_list; upstream chain: helper_get_subleading(selected_bjets)['pt']; 〔L370-L371〕
+✅ * Plot the invariant mass of the two leading non-b-tagged jets (W hadronic candidate) in range 40 to 120 GeV; computed as: w_hadronic_mass_list; upstream chain: sum_objects(leading_light_jet, subleading_light_jet); 〔L347-L348〕
+✅ * Plot the invariant mass of leading b-jet + W hadronic candidate (top hadronic) in range 100 to 250 GeV; computed as: top_mass_list; upstream chain: sum_objects(leading_bjet, w_hadronic); 〔L358-L359〕
+✅ * Plot delta R between the leading lepton and the closest b-jet; computed as: dr_lepton_bjet_list; upstream chain: helper_delta_r(lepton, leading_bjet); 〔L361-L362〕
+✅ * Plot the HT distribution (scalar sum of all jet pT); computed as: ht_list; upstream chain: scalar_pt_sum(selected_jets); 〔L364-L365〕
+✅ * Plot the number of jets per event; computed as: njet_list; upstream chain: len(selected_jets); 〔L367-L368〕
+✅ * Plot eta of the leading b-jet; computed as: leading_bjet_eta_list; upstream chain: leading_bjet['eta']; 〔L371-L372〕
+
+✅ * After the event loop, print one cutflow summary with the number of events after each selection step; computed as: print("Cutflow:"); for key, value in cutflow.items(): print(f"{key}: {value}"); upstream chain: cutflow; 〔L375-L378〕
+✅ * Save the plots in png format; computed as: plt.savefig("mt_hist.png"), plt.savefig("met_hist.png"), etc.; upstream chain: plt.figure(), plt.hist(), plt.xlabel(), plt.ylabel(), plt.savefig(), plt.close(); 〔L380-L449〕
+
+SECTION 2: DEFINITION SUMMARY
+
+* [CHECK CAREFULLY] DEFINITION SUMMARY
+
+* selected_electrons
+  - computed/defined as: [e for e in electrons if e['pt'] > 25 and abs(e['eta']) < 2.5]
+  - upstream chain: electrons -> get_electrons(event)
+  - collection definition: e['pt'] > 25 and abs(e['eta']) < 2.5
+  - structure: single-constituent
+
+* selected_muons
+  - computed/defined as: [m for m in muons if m['pt'] > 25 and abs(m['eta']) < 2.4]
+  - upstream chain: muons -> get_muons(event)
+  - collection definition: m['pt'] > 25 and abs(m['eta']) < 2.4
+  - structure: single-constituent
+
+* selected_leptons
+  - computed/defined as: selected_electrons + selected_muons
+  - upstream chain: selected_electrons, selected_muons
+  - collection definition: e['pt'] > 25 and abs(e['eta']) < 2.5 for electrons; m['pt'] > 25 and abs(m['eta']) < 2.4 for muons
+  - structure: multi-input
+
+* selected_jets
+  - computed/defined as: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - upstream chain: jets -> get_jets(event)
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* selected_bjets
+  - computed/defined as: [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - upstream chain: bjets -> get_bjets(event)
+  - collection definition: b['pt'] > 30 and abs(b['eta']) < 2.5
+  - structure: single-constituent
+
+* met
+  - computed/defined as: helper_get_met(event)
+  - upstream chain: event['objects']
+  - collection definition: o['type'] == 6
+  - structure: single-constituent
+
+* mt
+  - computed/defined as: helper_transverse_mass(lepton, met)
+  - upstream chain: lepton -> selected_leptons[0], met
+  - collection definition: lepton from selected_leptons, met from helper_get_met(event)
+  - structure: multi-input
+
+* selected_light_jets
+  - computed/defined as: [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - upstream chain: light_jets -> get_light_jets(event)
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* w_hadronic
+  - computed/defined as: sum_objects(leading_light_jet, subleading_light_jet)
+  - upstream chain: leading_light_jet -> helper_get_leading(selected_light_jets), subleading_light_jet -> helper_get_subleading(selected_light_jets)
+  - collection definition: selected_light_jets -> [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - structure: composite-derived
+
+* w_hadronic_mass
+  - computed/defined as: w_hadronic['mass']
+  - upstream chain: w_hadronic -> sum_objects(leading_light_jet, subleading_light_jet)
+  - collection definition: selected_light_jets -> [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - structure: composite-derived
+
+* leading_bjet
+  - computed/defined as: helper_get_leading(selected_bjets)
+  - upstream chain: selected_bjets -> [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - collection definition: b['pt'] > 30 and abs(b['eta']) < 2.5
+  - structure: single-constituent
+
+* top_candidate
+  - computed/defined as: sum_objects(leading_bjet, w_hadronic)
+  - upstream chain: leading_bjet -> helper_get_leading(selected_bjets), w_hadronic -> sum_objects(leading_light_jet, subleading_light_jet)
+  - collection definition: selected_bjets -> [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5], selected_light_jets -> [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - structure: composite-derived
+
+* top_mass
+  - computed/defined as: top_candidate['mass']
+  - upstream chain: top_candidate -> sum_objects(leading_bjet, w_hadronic)
+  - collection definition: selected_bjets -> [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5], selected_light_jets -> [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - structure: composite-derived
+jet
+  - collection definition: lepton from selected_leptons, leading_bjet from selected_bjets
+  - structure: multi-input
+
+* ht
+  - computed/defined as: scalar_pt_sum(selected_jets)
+  - upstream chain: selected_jets -> [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* njet_list
+  - computed/defined as: len(selected_jets)
+  - upstream chain: selected_jets -> [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* leading_bjet_pt
+  - computed/defined as: leading_bjet['pt']
+  - upstream chain: leading_bjet -> helper_get_leading(selected_bjets)
+  - collection definition: selected_bjets -> [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - structure: single-constituent
+
+* subleading_bjet_pt
+  - computed/defined as: helper_get_subleading(selected_bjets)['pt']
+  - upstream chain: selected_bjets -> [b for b in bjets if b['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: b['pt'] > 30 and abs(b['eta']) < 2.5
+  - structure: single-constituent
+
+* leading_bjet_eta
+  - computed/defined as: leading_bjet['eta']
+  - upstream chain: leading_bjet -> helper_get_leading(selected_bjets)
+  - collection definition: selected_bjets -> [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - structure: single-constituent

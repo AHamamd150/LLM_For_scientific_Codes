@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] Definition of "selected jets" for b-tag veto
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Why this matters:
+The phrase "selected jets" could refer to the jet collection after all jet cuts (pT > 30 GeV and |eta| < 4.7), or it could refer to a subset of jets after additional selection (e.g., after requiring at least 2 jets for VBF topology). The b-tag veto could apply to all jets in the event or only to the jets used in the dijet system.
+
+Question to user:
+Should the b-tag veto apply to all jets in the event that pass the basic jet cuts (pT > 30 GeV and |eta| < 4.7), or only to the jets used in the dijet system (i.e., the leading and subleading jets)?
+
+Golden axe:
+Apply the veto to all jets that pass the basic jet cuts.
+
+Silver axe:
+Apply the veto only to the leading and subleading jets used in the dijet system.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Definition of "selected taus" for opposite-sign requirement
+
+Original phrase:
+"Require opposite-sign tau pair"
+
+Why this matters:
+The phrase "tau pair" could refer to any pair of selected taus (after pT and eta cuts), or specifically to the pair defined as the leading and subleading taus. The opposite-sign requirement could be applied to all possible pairs or only to the specific pair used in the ditau system.
+
+Question to user:
+Should the opposite-sign requirement apply to all possible pairs of selected taus, or only to the pair defined as the leading and subleading taus?
+
+Golden axe:
+Apply the requirement only to the leading and subleading taus.
+
+Silver axe:
+Apply the requirement to all possible pairs of selected taus.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Definition of "selected taus" for ditau invariant mass
+
+Original phrase:
+"Select ditau invariant mass between 60 and 150 GeV"
+
+Why this matters:
+The phrase "selected taus" could refer to the full list of taus passing the basic cuts (pT > 20 GeV and |eta| < 2.3), or specifically to the pair defined as the leading and subleading taus. The invariant mass cut could be applied to all possible pairs or only to the specific pair used in the ditau system.
+
+Question to user:
+Should the ditau invariant mass cut apply to all possible pairs of selected taus, or only to the pair defined as the leading and subleading taus?
+
+Golden axe:
+Apply the cut only to the leading and subleading taus.
+
+Silver axe:
+Apply the cut to all possible pairs of selected taus.
+
+Recommended default:
+Golden axe

@@ -1,0 +1,156 @@
+⚠️ (B) definition mismatch
+
+SPEC:
+Plot delta R between the leading lepton and the closest b-jet
+
+CODE:
+helper_delta_r(lepton, bjet) -> min_dr -> dr_lepton_bjet_list; 〔L362-L368〕
+
+Reason:
+The code computes the delta R between the leading lepton and each b-jet, then takes the minimum. However, the SPEC requires the delta R between the leading lepton and the closest b-jet, which is correctly implemented. No mismatch detected.
+
+Evidence priority:
+〔L362-L368〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+sum_objects(jet1, jet2); upstream chain: light_jets -> selected_light_jets -> sorted_light_jets -> jet1, jet2; 〔L332-L342〕
+
+Reason:
+The code correctly builds the hadronic W candidate by summing the four-momenta of the two leading non-b-tagged jets.
+
+Evidence priority:
+〔L332-L342〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+sum_objects(bjet1, w_hadronic); upstream chain: selected_bjets -> sorted_bjets -> bjet1, bjet2; 〔L351-L356〕
+
+Reason:
+The code correctly builds the hadronic top candidate by summing the four-momenta of the leading b-jet and the hadronic W candidate.
+
+Evidence priority:
+〔L351-L356〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+SPEC:
+Plot the invariant mass of leading b-jet + W hadronic candidate (top hadronic) in range 100 to 250 GeV
+
+CODE:
+helper_invariant_mass(bjet1, w_hadronic) -> top_mass -> top_mass_list; 〔L356-L357〕
+
+Reason:
+The code correctly computes the invariant mass of the leading b-jet and the hadronic W candidate, and stores it in top_mass_list for plotting.
+
+Evidence priority:
+〔L356-L357〕
+
+Generator bias:
+none
+
+◎ (correct implementation)
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+Plot the invariant mass of leading b-jet + W hadronic candidate (top hadronic) in range 100 to 250 GeV
+
+CODE:
+helper_invariant_mass(bjet1, w_hadronic) -> top_mass -> top_mass_list; 〔L356-L357〕
+
+Reason:
+The code computes the invariant mass of the leading b-jet and the hadronic W candidate, but does not apply the required selection cut of 100 to 250 GeV. The SPEC explicitly requests this range, but the code does not enforce it.
+
+Evidence priority:
+〔L356-L357〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+sum_objects(jet1, jet2); upstream chain: light_jets -> selected_light_jets -> sorted_light_jets -> jet1, jet2; 〔L332-L342〕
+
+Reason:
+The code builds the hadronic W candidate by summing the four-momenta of the two leading non-b-tagged jets, which is correct. However, the code uses the helper_invariant_mass(jet1, jet2) to compute the W mass, which is a composite quantity derived from the two jets, not from the hadronic W candidate itself. This is a mismatch, as the invariant mass should be computed from the hadronic W candidate object.
+
+Evidence priority:
+〔L344-L346〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+sum_objects(bjet1, w_hadronic); upstream chain: selected_bjets -> sorted_bjets -> bjet1, bjet2; 〔L351-L356〕
+
+Reason:
+The code builds the hadronic top candidate by summing the four-momenta of the leading b-jet and the hadronic W candidate, which is correct. However, the code uses the helper_invariant_mass(bjet1, w_hadronic) to compute the top mass, which is a composite quantity derived from the b-jet and the hadronic W candidate, not from the hadronic top candidate itself. This is a mismatch, as the invariant mass should be computed from the hadronic top candidate object.
+
+Evidence priority:
+〔L356-L357〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+helper_invariant_mass(jet1, jet2) -> w_mass -> w_mass < 40 or w_mass > 120; 〔L344-L346〕
+
+Reason:
+The code computes the hadronic W mass using helper_invariant_mass(jet1, jet2), which is derived from the two leading non-b-tagged jets, not from the hadronic W candidate object itself. This is a mismatch, as the invariant mass should be computed from the hadronic W candidate object.
+
+Evidence priority:
+〔L344-L346〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+Plot the invariant mass of the two leading non-b-tagged jets (W hadronic candidate) in range 40 to 120 GeV
+
+CODE:
+helper_invariant_mass(jet1, jet2) -> w_mass -> w_hadronic_mass_list; 〔L344-L349〕
+
+Reason:
+The code computes the invariant mass of the two leading non-b-tagged jets, which is correct. However, the code does not apply the required selection cut of 40 to 120 GeV. The SPEC explicitly requests this range, but the code does not enforce it.
+
+Evidence priority:
+〔L344-L349〕
+
+Generator bias:
+none

@@ -1,0 +1,49 @@
+
+
+* Hadronic top candidate
+  - computed/defined as: sum_objects(bjets_sorted[0], w_hadronic)
+  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True); w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+  - collection definition: bjets with type == 4 and btag == 1
+  - structure: composite-derived
+
+* Hadronic top mass
+  - computed/defined as: helper_invariant_mass(bjets_sorted[0], w_hadronic)
+  - upstream chain: helper_invariant_mass(bjets_sorted[0], w_hadronic) -> sum_objects -> obj_from_four_momentum -> math.sqrt(E^2 - p^2)
+  - collection definition: bjets with type == 4 and btag == 1
+  - structure: composite-derived
+
+* Delta R between lepton and closest b-jet
+  - computed/defined as: helper_delta_r(b, lepton)
+  - upstream chain: helper_delta_r(b, lepton) -> helper_delta_phi(phi1, phi2) -> math.sqrt(deta^2 + dphi^2)
+  - collection definition: b from selected bjets, lepton from selected leptons
+  - structure: composite-derived
+
+* HT (scalar sum of jet pT)
+  - computed/defined as: scalar_pt_sum(jets)
+  - upstream chain: scalar_pt_sum(jets) -> sum(p['pt'] for p in particles)
+  - collection definition: jets with type == 4
+  - structure: single-constituent
+
+* Number of jets per event
+  - computed/defined as: len(jets)
+  - upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: jets with type == 4
+  - structure: single-constituent
+
+* Leading b-jet pT
+  - computed/defined as: bjets_sorted[0]['pt']
+  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)
+  - collection definition: bjets with type == 4 and btag == 1
+  - structure: single-constituent
+
+* Subleading b-jet pT
+  - computed/defined as: bjets_sorted[1]['pt']
+  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)
+  - collection definition: bjets with type == 4 and btag == 1
+  - structure: single-constituent
+
+* Leading b-jet eta
+  - computed/defined as: bjets_sorted[0]['eta']
+  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)
+  - collection definition: bjets with type == 4 and btag == 1
+  - structure: single-constituent

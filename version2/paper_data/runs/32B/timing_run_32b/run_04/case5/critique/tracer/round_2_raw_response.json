@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n- collection definition: lead_tau and sublead_tau from taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]\n  - structure: composite-derived\n\n* lead_jet\n  - computed/defined as: helper_get_leading(jets)\n  - upstream chain: helper_get_leading -> max(particles, key=lambda p: p['pt'])\n  - collection definition: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: single-constituent\n\n* sublead_jet\n  - computed/defined as: helper_get_subleading(jets)\n  - upstream chain: helper_get_subleading -> sorted(particles, key=lambda p: p['pt'], reverse=True)[1]\n  - collection definition: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: single-constituent\n\n* dijet_obj\n  - computed/defined as: sum_objects(lead_jet, sublead_jet)\n  - upstream chain: sum_objects -> obj_from_four_momentum(E_tot, px_tot, py_tot, pz_tot)\n  - collection definition: lead_jet and sublead_jet from jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: composite-derived\n\n* m_jj\n  - computed/defined as: helper_invariant_mass(lead_jet, sublead_jet)\n  - upstream chain: helper_invariant_mass -> sum_objects(lead_jet, sublead_jet) -> obj_from_four_momentum(E_tot, px_tot, py_tot, pz_tot)\n  - collection definition: lead_jet and sublead_jet from jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: composite-derived\n\n* delta_eta_jj\n  - computed/defined as: abs_delta_eta(lead_jet, sublead_jet)\n  - upstream chain: abs_delta_eta -> abs(obj1['eta'] - obj2['eta'])\n  - collection definition: lead_jet and sublead_jet from jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: composite-derived\n\n* m_tautau\n  - computed/defined as: helper_invariant_mass(lead_tau, sublead_tau)\n  - upstream chain: helper_invariant_mass -> sum_objects(lead_tau, sublead_tau) -> obj_from_four_momentum(E_tot, px_tot, py_tot, pz_tot)\n  - collection definition: lead_tau and sublead_tau from taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]\n  - structure: composite-derived\n\n* delta_r_tautau\n  - computed/defined as: helper_delta_r(lead_tau, sublead_tau)\n  - upstream chain: helper_delta_r -> math.sqrt(deta^2 + dphi^2)\n  - collection definition: lead_tau and sublead_tau from taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]\n  - structure: composite-derived\n\n* delta_phi_tautau_dijet\n  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])\n  - upstream chain: helper_delta_phi -> phi1 - phi2 normalized to [-π, π]\n  - collection definition: ditau_obj and dijet_obj from lead_tau, sublead_tau, lead_jet, sublead_jet\n  - structure: composite-derived\n\n* centrality_tautau\n  - computed/defined as: centrality_between_jets(ditau_obj, lead_jet, sublead_jet)\n  - upstream chain: centrality_between_jets -> min(dphi1, dphi2) / max(dphi1, dphi2)\n  - collection definition: ditau_obj, lead_jet, and sublead_jet from lead_tau, sublead_tau, lead_jet, sublead_jet\n  - structure: composite-derived\n\n* bjets\n  - computed/defined as: [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]\n  - upstream chain: get_bjets(event) -> [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]\n  - collection definition: o['type'] == 4 and int(o['btag']) == 1\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1789519970,
+  "id": "chatcmpl-6c93e6f2-7f9b-4d34-848e-54e6197a6d3d",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 1061,
+    "prompt_tokens": 10810,
+    "prompt_tokens_details": null,
+    "total_tokens": 11871
+  }
+}

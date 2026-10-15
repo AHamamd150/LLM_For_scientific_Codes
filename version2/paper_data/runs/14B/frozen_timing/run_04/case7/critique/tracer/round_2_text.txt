@@ -1,0 +1,72 @@
+
+
+- computed/defined as: centrality_between_jets(ditau_obj, leading_jet, subleading_jet)
+  - upstream chain: ditau_obj, leading_jet, subleading_jet -> centrality_between_jets(ditau_obj, leading_jet, subleading_jet)
+  - collection definition: None
+  - structure: multi-input
+
+* ditau_mass_list
+  - computed/defined as: m_tt
+  - upstream chain: m_tt -> ditau_mass_list.append(m_tt)
+  - collection definition: None
+  - structure: single-constituent
+
+* dijet_mass_list
+  - computed/defined as: m_jj
+  - upstream chain: m_jj -> dijet_mass_list.append(m_jj)
+  - collection definition: None
+  - structure: single-constituent
+
+* delta_eta_jj_list
+  - computed/defined as: delta_eta_jj
+  - upstream chain: delta_eta_jj -> delta_eta_jj_list.append(delta_eta_jj)
+  - collection definition: None
+  - structure: single-constituent
+
+* leading_tau_pt_list
+  - computed/defined as: leading_tau['pt']
+  - upstream chain: leading_tau -> leading_tau['pt'] -> leading_tau_pt_list.append(leading_tau['pt'])
+  - collection definition: None
+  - structure: single-constituent
+
+* subleading_tau_pt_list
+  - computed/defined as: subleading_tau['pt']
+  - upstream chain: subleading_tau -> subleading_tau['pt'] -> subleading_tau_pt_list.append(subleading_tau['pt'])
+  - collection definition: None
+  - structure: single-constituent
+
+* leading_jet_pt_list
+  - computed/defined as: leading_jet['pt']
+  - upstream chain: leading_jet -> leading_jet['pt'] -> leading_jet_pt_list.append(leading_jet['pt'])
+  - collection definition: None
+  - structure: single-constituent
+
+* subleading_jet_pt_list
+  - computed/defined as: subleading_jet['pt']
+  - upstream chain: subleading_jet -> subleading_jet['pt'] -> subleading_jet_pt_list.append(subleading_jet['pt'])
+  - collection definition: None
+  - structure: single-constituent
+
+* delta_r_tt_list
+  - computed/defined as: helper_delta_r(leading_tau, subleading_tau)
+  - upstream chain: leading_tau, subleading_tau -> helper_delta_r(leading_tau, subleading_tau) -> delta_r_tt_list.append(...)
+  - collection definition: None
+  - structure: multi-input
+
+* delta_phi_tt_jj_list
+  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])
+  - upstream chain: ditau_obj['phi'], dijet_obj['phi'] -> helper_delta_phi(ditau_obj['phi'], dijet_obj['phi']) -> delta_phi_tt_jj_list.append(...)
+  - collection definition: None
+  - structure: multi-input
+
+* centrality_tt_jj_list
+  - computed/defined as: centrality_between_jets(ditau_obj, leading_jet, subleading_jet)
+  - upstream chain: ditau_obj, leading_jet, subleading_jet -> centrality_between_jets(ditau_obj, leading_jet, subleading_jet) -> centrality_tt_jj_list.append(...)
+  - collection definition: None
+  - structure: multi-input
+
+* cutflow
+  - computed/defined as: cutflow dictionary with counters
+  - upstream chain: cutflow -> for key, value in cutflow.items() -> print(...)
+  - collection definition: None
+  - structure: composite-derived

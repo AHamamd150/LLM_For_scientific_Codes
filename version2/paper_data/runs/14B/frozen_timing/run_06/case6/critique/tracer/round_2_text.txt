@@ -1,0 +1,47 @@
+
+
+  - upstream chain: helper_get_subleading(selected_bjets) -> subleading_bjet_pt_list
+  - collection definition: None
+  - structure: single-constituent
+
+* hadronic_w_mass_list
+  - computed/defined as: hadronic_w_mass_list.append(hadronic_w_mass)
+  - upstream chain: hadronic_w_mass -> hadronic_w_mass_list
+  - collection definition: None
+  - structure: single-constituent
+
+* hadronic_top_mass_list
+  - computed/defined as: hadronic_top_mass_list.append(hadronic_top_mass)
+  - upstream chain: hadronic_top_mass -> hadronic_top_mass_list
+  - collection definition: None
+  - structure: single-constituent
+
+* dr_lep_bjet_list
+  - computed/defined as: dr_lep_bjet_list.append(dr_lep_bjet)
+  - upstream chain: dr_lep_bjet -> dr_lep_bjet_list
+  - collection definition: None
+  - structure: single-constituent
+
+* ht_list
+  - computed/defined as: ht_list.append(scalar_pt_sum(selected_jets))
+  - upstream chain: selected_jets -> scalar_pt_sum(selected_jets) -> ht_list
+  - collection definition: None
+  - structure: single-constituent
+
+* njet_list
+  - computed/defined as: njet_list.append(len(selected_jets))
+  - upstream chain: selected_jets -> len(selected_jets) -> njet_list
+  - collection definition: None
+  - structure: single-constituent
+
+* leading_bjet_eta_list
+  - computed/defined as: leading_bjet_eta_list.append(leading_bjet['eta'])
+  - upstream chain: leading_bjet['eta'] -> leading_bjet_eta_list
+  - collection definition: None
+  - structure: single-constituent
+
+* cutflow
+  - computed/defined as: cutflow = { ... }
+  - upstream chain: None
+  - collection definition: None
+  - structure: single-constituent

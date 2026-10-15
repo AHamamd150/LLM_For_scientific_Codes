@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Ambiguity in "leading tau and subleading tau" definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this matters:
+The phrase does not specify whether the leading and subleading taus are determined before or after the "opposite-sign tau pair" cut. This affects which pair of taus is used to build the ditau system.
+
+Question to user:
+Are the leading and subleading taus defined before or after requiring the tau pair to be opposite-sign?
+
+Golden axe:
+Leading and subleading are defined from the selected taus before the opposite-sign requirement.
+
+Silver axe:
+Leading and subleading are defined from the selected taus after the opposite-sign requirement is applied.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Ambiguity in "leading jet and subleading jet" definition
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Why this matters:
+The phrase does not clarify whether the leading and subleading jets are defined before or after the "VBF topology" cuts (m_jj > 400 GeV and |delta eta| > 2.5). This affects which jets are used to build the dijet system.
+
+Question to user:
+Are the leading and subleading jets defined before or after the VBF topology cuts?
+
+Golden axe:
+Leading and subleading jets are defined from the selected jets before applying the VBF topology cuts.
+
+Silver axe:
+Leading and subleading jets are defined from the selected jets after the VBF topology cuts are applied.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Ambiguity in "centrality of the ditau system relative to the two jets"
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Why this matters:
+The phrase does not clarify whether the "two jets" refers to the leading and subleading jets defined before or after the VBF topology cuts. This affects the reference jets used to compute the centrality.
+
+Question to user:
+Does the centrality calculation use the leading and subleading jets defined before or after the VBF topology cuts?
+
+Golden axe:
+The two jets used for centrality are the leading and subleading jets defined before the VBF cuts.
+
+Silver axe:
+The two jets used for centrality are the leading and subleading jets defined after the VBF cuts.
+
+Recommended default:
+Golden axe

@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Dijet invariant mass selection scope
+
+Original phrase:
+"Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV"
+
+Why this matters:
+The phrase does not specify whether this cut applies to the selected jets (after pT and eta cuts) or to all jets in the event. This affects which jets are considered in the dijet system.
+
+Question to user:
+Should the m_jj > 400 GeV cut be computed from the selected jets (after pT and eta cuts) or from all jets in the event?
+
+Golden axe:
+Compute m_jj from the selected jets (after pT and eta cuts).
+
+Silver axe:
+Compute m_jj from all jets in the event, regardless of selection.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Delta eta between leading jets
+
+Original phrase:
+"Select |delta eta| between the two leading jets > 2.5"
+
+Why this matters:
+The phrase does not clarify whether the "leading jets" refer to the selected jets (after pT and eta cuts) or the two jets with the highest pT in the full event. This affects the jet selection criteria.
+
+Question to user:
+Should the |delta eta| > 2.5 cut be computed between the two leading jets from the selected jets or from all jets in the event?
+
+Golden axe:
+Compute |delta eta| between the two leading jets from the selected jets.
+
+Silver axe:
+Compute |delta eta| between the two leading jets in the full event.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Dijet system definition
+
+Original phrase:
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Why this matters:
+The phrase does not specify whether the "leading jet" and "subleading jet" refer to the selected jets or to the two jets with the highest pT in the full event. This affects the definition of the dijet system used in subsequent calculations.
+
+Question to user:
+Should the dijet_obj be defined from the leading and subleading jets among the selected jets, or from the two highest-pT jets in the full event?
+
+Golden axe:
+Define dijet_obj from the leading and subleading jets among the selected jets.
+
+Silver axe:
+Define dijet_obj from the two highest-pT jets in the full event.
+
+Recommended default:
+Golden axe

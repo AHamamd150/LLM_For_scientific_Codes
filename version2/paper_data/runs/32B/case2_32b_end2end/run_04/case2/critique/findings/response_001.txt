@@ -1,0 +1,187 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- top_hadronic = sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The code builds the hadronic top candidate from the leading b-jet and the hadronic W candidate, which is correct. However, the SPEC explicitly refers to a "hadronic top candidate" as a system-level object, and the code correctly constructs it from the required constituents. This is not a violation.
+
+Evidence priority:
+- top_hadronic = sum_objects(bjets_sorted[0], w_hadronic); upstream chain: bjets_sorted = sort_by_pt(bjets), w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if not (40 < w_hadronic['mass'] < 120): continue
+
+Reason:
+The code uses an open interval (40 < mass < 120), but the SPEC says "between 40 to 120 GeV", which could be interpreted as inclusive. The mismatch is minor, but since the SPEC does not explicitly distinguish between inclusive and exclusive, this is a definition mismatch.
+
+Evidence priority:
+- w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1]); if not (40 < w_hadronic['mass'] < 120): continue
+
+Generator bias:
+none
+
+---
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- light_jets = [j for j in jets if j not in bjets]; light_jets_sorted = sort_by_pt(light_jets); w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Reason:
+The SPEC does not specify whether the jets used to build the hadronic W candidate should be selected (e.g., pT > 30 GeV) or use the full event-level jet collection. The code uses the selected jets (pT > 30 GeV), which is a valid interpretation, but the choice is not constrained by the SPEC.
+
+Evidence priority:
+- jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]; light_jets = [j for j in jets if j not in bjets]
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- if not (30 < mt < 150): continue
+
+Reason:
+The code uses an open interval (30 < mt < 150), but the SPEC says "between 30 and 150 GeV", which could be interpreted as inclusive. The mismatch is minor, but since the SPEC does not explicitly distinguish between inclusive and exclusive, this is a definition mismatch.
+
+Evidence priority:
+- mt = helper_transverse_mass(lepton, met); if not (30 < mt < 150): continue
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- if met is None or met['pt'] < 20: continue
+
+Reason:
+The code uses a strict inequality (met['pt'] < 20), but the SPEC says "MET > 20 GeV", which could be interpreted as inclusive. The mismatch is minor, but since the SPEC does not explicitly distinguish between inclusive and exclusive, this is a definition mismatch.
+
+Evidence priority:
+- met = helper_get_met(event); if met is None or met['pt'] < 20: continue
+
+Generator bias:
+none
+
+---
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- n_jets_values.append(len(jets))
+
+Reason:
+The SPEC does not specify whether the number of jets should be computed from the selected jets (pT > 30 GeV) or the full event-level jet collection. The code uses the selected jets, which is a valid interpretation, but the choice is not constrained by the SPEC.
+
+Evidence priority:
+- jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]; n_jets_values.append(len(jets))
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- if len(jets) < 4: continue
+
+Reason:
+The code uses a strict inequality (len(jets) < 4), but the SPEC says "at least 4 jets", which could be interpreted as inclusive. The mismatch is minor, but since the SPEC does not explicitly distinguish between inclusive and exclusive, this is a definition mismatch.
+
+Evidence priority:
+- jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]; if len(jets) < 4: continue
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Require at least 2 b-tagged jets
+
+CODE:
+- if len(bjets) < 2: continue
+
+Reason:
+The code uses a strict inequality (len(bjets) < 2), but the SPEC says "at least 2 b-tagged jets", which could be interpreted as inclusive. The mismatch is minor, but since the SPEC does not explicitly distinguish between inclusive and exclusive, this is a definition mismatch.
+
+Evidence priority:
+- bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]; if len(bjets) < 2: continue
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+
+CODE:
+- [e for e in get_electrons(event) if e['pt'] > 25 and abs(e['eta']) < 2.5]
+
+Reason:
+The code uses a strict inequality (e['pt'] > 25), but the SPEC says "pT > 25 GeV", which could be interpreted as inclusive. The mismatch is minor, but since the SPEC does not explicitly distinguish between inclusive and exclusive, this is a definition mismatch.
+
+Evidence priority:
+- electrons = [e for e in get_electrons(event) if e['pt'] > 25 and abs(e['eta']) < 2.5]
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- [m for m in get_muons(event) if m['pt'] > 25 and abs(m['eta']) < 2.4]
+
+Reason:
+The code uses a strict inequality (m['pt'] > 25), but the SPEC says "pT > 25 GeV", which could be interpreted as inclusive. The mismatch is minor, but since the SPEC does not explicitly distinguish between inclusive and exclusive, this is a definition mismatch.
+
+Evidence priority:
+- muons = [m for m in get_muons(event) if m['pt'] > 25 and abs(m['eta']) < 2.4]
+
+Generator bias:
+none

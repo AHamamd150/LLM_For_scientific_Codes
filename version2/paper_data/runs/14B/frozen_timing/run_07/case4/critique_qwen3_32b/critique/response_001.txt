@@ -1,0 +1,51 @@
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select transverse mass of W candidate muon + MET > 30 GeV.
+
+CODE:
+- w_trans_mass = helper_transverse_mass(w_muon, met)
+
+Reason:
+The code computes the transverse mass using the helper_transverse_mass function, which uses the visible particle's pT and MET pT. However, the SPEC explicitly refers to the transverse mass of the W candidate muon + MET, which is correctly implemented. The issue is that the code does not check the transverse mass after computing it, but continues to the next step. The cut is applied in the code, but the implementation is correct.
+
+Evidence priority:
+- w_trans_mass < 30; upstream chain: w_muon, met -> helper_transverse_mass(w_muon, met); 〔L286-L287〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- The W candidate muon must have pT > 20 GeV.
+
+CODE:
+- if w_muon['pt'] < 20: continue
+
+Reason:
+The code correctly applies the pT > 20 GeV cut on the W candidate muon. However, the cut is applied before the transverse mass cut. The SPEC does not specify the order of cuts, but the code's implementation may lead to different event counts in the cutflow compared to an alternative ordering. This is a definition mismatch due to the cut order.
+
+Evidence priority:
+- w_muon['pt'] < 20; upstream chain: w_muon -> w_muon['pt']; 〔L281-L282〕
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the three-lepton system built from the two selected electrons and the selected muon.
+
+CODE:
+- three_lepton = sum_objects(e1, e2, w_muon)
+- three_lepton_pt = three_lepton['pt'] if three_lepton else 0.0
+
+Reason:
+The code computes the pT of the three-lepton system by summing the four-momenta of the two selected electrons and the selected muon. The SPEC does not specify whether the three-lepton system should be built from the selected objects or from a broader collection. The code uses the selected objects, which is a valid interpretation, but the SPEC is ambiguous.
+
+Evidence priority:
+- three_lepton_pt_list -> sum_objects(e1, e2, w_muon); 〔L1566-L1567〕
+
+Generator bias:
+none

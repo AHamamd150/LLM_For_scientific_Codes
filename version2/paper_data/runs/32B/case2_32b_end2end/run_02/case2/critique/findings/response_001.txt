@@ -1,0 +1,208 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The code correctly builds the hadronic top candidate from the leading b-jet and the hadronic W candidate as required by the SPEC. This is not a violation.
+
+Evidence priority:
+- sum_objects(bjets_sorted[0], w_hadronic); upstream chain: bjets_sorted = sort_by_pt(bjets)
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if not (40 < w_hadronic['mass'] < 120): continue
+
+Reason:
+The code uses an open interval (40 < mass < 120), but the SPEC says "between 40 to 120 GeV", which is ambiguous about inclusivity. However, in high-energy physics, such ranges are typically inclusive. The code excludes the boundary values, which may not match the intended behavior.
+
+Evidence priority:
+- w_hadronic['mass'] < 40 or w_hadronic['mass'] > 120; upstream chain: sum_objects -> w_hadronic['mass']
+
+Generator bias:
+none
+
+---
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- light_jets = [j for j in jets if j not in bjets]
+- light_jets_sorted = sort_by_pt(light_jets)
+- w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Reason:
+The code uses the jets collection after pT and η cuts to select non-b-tagged jets. The SPEC does not specify whether the jets used to build the hadronic W should be from the full jet collection or the selected jet collection (after pT and η cuts). The code uses the selected jet collection, which is a valid interpretation but introduces ambiguity.
+
+Evidence priority:
+- jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]; light_jets = [j for j in jets if j not in bjets]
+
+Generator bias:
+none
+
+---
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- h_bjet2_pt.append(bjets_sorted[1]['pt'])
+
+Reason:
+The code uses the selected b-jet collection (after pT and η cuts) to determine the subleading b-jet. The SPEC does not specify whether the b-jet pT should be taken from the full b-jet collection or the selected one. The code uses the selected collection, which is a valid but ambiguous choice.
+
+Evidence priority:
+- bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]; bjets_sorted = sort_by_pt(bjets)
+
+Generator bias:
+none
+
+---
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- h_ht.append(scalar_pt_sum(jets))
+
+Reason:
+The code uses the selected jet collection (after pT and η cuts) to compute HT. The SPEC says "scalar sum of all jet pT", which is ambiguous about whether "all" refers to the full jet collection or the selected one. The code uses the selected collection, which is a valid but ambiguous choice.
+
+Evidence priority:
+- jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]; scalar_pt_sum(jets)
+
+Generator bias:
+none
+
+---
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- h_njets.append(len(jets))
+
+Reason:
+The code uses the selected jet collection (after pT and η cuts) to count the number of jets. The SPEC does not specify whether the jet count should be from the full jet collection or the selected one. The code uses the selected collection, which is a valid but ambiguous choice.
+
+Evidence priority:
+- jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]; len(jets)
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- if not (30 < mt < 150): continue
+
+Reason:
+The code uses an open interval (30 < mt < 150), but the SPEC says "between 30 and 150 GeV", which is ambiguous about inclusivity. In high-energy physics, such ranges are typically inclusive. The code excludes the boundary values, which may not match the intended behavior.
+
+Evidence priority:
+- mt = helper_transverse_mass(leptons[0], met); if not (30 < mt < 150): continue
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- if met is None or met['pt'] < 20: continue
+
+Reason:
+The code excludes events where MET is exactly 20 GeV, using a strict inequality. The SPEC says "MET > 20 GeV", which is unambiguous, and the implementation is correct.
+
+Evidence priority:
+- met = helper_get_met(event); if met is None or met['pt'] < 20: continue
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- if not (1 <= len(leptons) <= 1): continue
+
+Reason:
+The code correctly enforces the requirement of exactly one lepton by checking that the length is between 1 and 1 inclusive.
+
+Evidence priority:
+- leptons = electrons + muons; if not (1 <= len(leptons) <= 1): continue
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- if len(jets) < 4: continue
+
+Reason:
+The code correctly enforces the requirement of at least 4 jets after applying the pT and η cuts.
+
+Evidence priority:
+- jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]; if len(jets) < 4: continue
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Require at least 2 b-tagged jets
+
+CODE:
+- if len(bjets) < 2: continue
+
+Reason:
+The code correctly enforces the requirement of at least 2 b-tagged jets after applying the pT and η cuts.
+
+Evidence priority:
+- bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]; if len(bjets) < 2: continue
+
+Generator bias:
+none

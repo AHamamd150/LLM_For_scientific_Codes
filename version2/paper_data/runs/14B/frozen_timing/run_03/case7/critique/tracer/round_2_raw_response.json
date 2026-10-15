@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* delta_r_tt\n  - computed/defined as: helper_delta_r(leading_tau, subleading_tau)\n  - upstream chain: leading_tau, subleading_tau -> helper_delta_r(leading_tau, subleading_tau)\n  - collection definition: leading_tau, subleading_tau\n  - structure: multi-input\n\n* delta_phi_tt_dijet\n  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])\n  - upstream chain: ditau_obj, dijet_obj -> helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])\n  - collection definition: ditau_obj, dijet_obj\n  - structure: multi-input\n\n* centrality_tt_jj\n  - computed/defined as: centrality_between_jets(ditau_obj, leading_jet, subleading_jet)\n  - upstream chain: ditau_obj, leading_jet, subleading_jet -> centrality_between_jets(ditau_obj, leading_jet, subleading_jet)\n  - collection definition: ditau_obj, leading_jet, subleading_jet\n  - structure: multi-input",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1789041084,
+  "id": "chatcmpl-90893b10-576d-467c-9efa-dc192be16235",
+  "model": "Qwen/Qwen3-14B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-7e17f8bc",
+  "usage": {
+    "completion_tokens": 236,
+    "prompt_tokens": 10558,
+    "prompt_tokens_details": null,
+    "total_tokens": 10794
+  }
+}

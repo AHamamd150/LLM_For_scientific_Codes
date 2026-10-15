@@ -1,0 +1,28 @@
+ M make_case6_tracer_critique_bundle_32B.sh
+ M make_tracer_critique_bundle.sh
+ M make_tracer_eval_bundles.sh
+ M run_all_timed.sh
+?? data/signal_7.lhco
+?? frozen_timing/run_01/case6/
+?? frozen_timing/run_01/case7/
+?? frozen_timing/run_02/case6/
+?? frozen_timing/run_02/case7/
+?? frozen_timing/run_03/case6/
+?? frozen_timing/run_03/case7/
+?? frozen_timing/run_04/case6/
+?? frozen_timing/run_04/case7/
+?? frozen_timing/run_05/case6/
+?? frozen_timing/run_05/case7/
+?? frozen_timing/run_06/case6/
+?? frozen_timing/run_06/case7/
+?? frozen_timing/run_07/case6/
+?? frozen_timing/run_07/case7/
+?? frozen_timing/run_08/case6/
+?? frozen_timing/run_08/case7/
+?? frozen_timing/run_09/case6/
+?? frozen_timing/run_09/case7/
+?? frozen_timing/run_10/case6/
+?? frozen_timing/run_10/case7/
+?? frozen_timing/timing_cases6_7.tsv
+?? run_timed_32B.sh
+?? timing_run_32b/

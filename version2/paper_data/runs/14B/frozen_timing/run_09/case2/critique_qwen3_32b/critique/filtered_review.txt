@@ -1,0 +1,24 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV
+
+CODE:
+- if w_hadronic_mass < 40 or w_hadronic_mass > 120: continue
+
+Reason:
+The code uses the invariant mass of the two leading non-b-tagged jets as the hadronic W mass. However, the SPEC explicitly requires the hadronic W mass to be between 40 and 120 GeV. The implementation correctly computes the invariant mass of the two leading non-b-tagged jets, but the cut is applied after the jets are selected with pT > 30 GeV and |eta| < 2.5. The SPEC does not specify whether the jets used for the hadronic W mass should be selected or event-level jets, but the code uses the selected jets. This is a definition mismatch because the jet selection criteria are not explicitly constrained in the SPEC.
+
+Evidence priority:
+- w_hadronic_mass is computed as sum_objects(leading_light_jet, subleading_light_jet), where selected_light_jets are defined with pT > 30 and |eta| < 2.5
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

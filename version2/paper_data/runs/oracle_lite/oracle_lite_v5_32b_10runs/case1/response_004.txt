@@ -1,0 +1,66 @@
+[UNDERSPECIFICATION 1] Lepton collection for delta phi with two-jet system
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+
+Why this matters:
+The phrase "the lepton" implies a single object, but it is not clear whether this refers to the selected lepton (after all cuts) or a specific lepton from the initial selection (e.g., highest-pT lepton among the selected ones). Similarly, "the two-jet system" is not clearly defined — does it refer to the two leading jets in the full jet collection or in the light-jet collection (after b-veto)?
+
+Question to user:
+Do you want to compute the delta phi between the selected lepton (the one that passes the "exactly 1 selected lepton" requirement) and the two leading jets in the full jet collection or in the light-jet collection (after b-veto)?
+
+Golden axe:
+Use the selected lepton and the two leading jets in the light-jet collection.
+
+Silver axe:
+Use the selected lepton and the two leading jets in the full jet collection.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Jet collection for dijet invariant mass and delta R
+
+Original phrase:
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+"Select delta R between the two leading jets < 3.0"
+
+Why this matters:
+The phrase "two leading jets" is not explicitly defined in terms of which jet collection is used. Are these the two leading jets in the full jet collection, or in the light-jet collection (after b-veto)? This affects the jet selection and the resulting invariant mass and delta R values.
+
+Question to user:
+Should the two leading jets for the dijet invariant mass and delta R be selected from the full jet collection or from the light-jet collection (after b-veto)?
+
+Golden axe:
+Use the two leading jets from the light-jet collection.
+
+Silver axe:
+Use the two leading jets from the full jet collection.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Definition of "the lepton" in plots and outputs
+
+Original phrase:
+"Plot the pT of the lepton"
+"Save the following in a CSV file for MLP analysis: 1- Transverse mass of lepton + MET"
+"Plot delta phi between the lepton and the two-jet system"
+
+Why this matters:
+The term "the lepton" appears multiple times and is not explicitly defined. It is not clear whether this refers to the selected lepton (the one that passes the "exactly 1 selected lepton" requirement) or to a specific lepton (e.g., the highest-pT lepton among the selected ones). This could lead to different results if multiple leptons are selected but only one is used in the final plots and outputs.
+
+Question to user:
+Which lepton should be used in the plots and CSV outputs — the selected lepton (the one that satisfies the "exactly 1 selected lepton" requirement), or the highest-pT lepton among the selected ones?
+
+Golden axe:
+Use the selected lepton (the one that satisfies the "exactly 1 selected lepton" requirement).
+
+Silver axe:
+Use the highest-pT lepton among the selected ones.
+
+Recommended default:
+Golden axe

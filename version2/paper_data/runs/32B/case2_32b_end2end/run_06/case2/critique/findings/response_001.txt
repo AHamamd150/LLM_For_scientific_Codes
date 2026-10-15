@@ -1,0 +1,69 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjet1, w_hadronic)
+
+Reason:
+The code constructs the hadronic top candidate by summing the four-momenta of the leading b-jet and the hadronic W candidate. However, the SPEC explicitly requires the hadronic top to be built from the leading b-jet and the hadronic W candidate, which is correctly implemented. The issue is that the code uses `sum_objects` which combines the four-momenta, but the `helper_invariant_mass` is not used to compute the invariant mass of the full system. The code computes the invariant mass of the top candidate using `helper_invariant_mass(bjet1, w_hadronic)`, which is correct, but the composite object is not explicitly constructed and stored. This is a minor violation of the composite construction requirement.
+
+Evidence priority:
+- sum_objects(bjet1, w_hadronic); helper_invariant_mass(bjet1, w_hadronic) -> top_mass; 〔L0357-L0361〕
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- light_jets = get_light_jets(event); light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The code applies pT and |eta| cuts to the non-b-tagged jets before selecting the leading two. However, the SPEC does not explicitly require these jets to pass pT and |eta| cuts before being used to build the hadronic W candidate. The implementation assumes that the same jet selection criteria apply to non-b-tagged jets as to other jet collections, which is not explicitly constrained by the SPEC.
+
+Evidence priority:
+- light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]; 〔L0336-L0337〕
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- bjet2 = bjets_sorted[1]; bjet2_pt.append(bjet2['pt'])
+
+Reason:
+The SPEC does not specify whether the subleading b-jet should be selected from the full b-jet collection or from the collection after pT and |eta| cuts. The code uses the b-jet collection after cuts, which is a valid interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+- bjet2 = bjets_sorted[1]; 〔L0369-L0370〕
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- ht = scalar_pt_sum(jets)
+
+Reason:
+The SPEC does not specify whether the HT should be computed from the full jet collection or the jet collection after pT and |eta| cuts. The code uses the jet collection after cuts, which is a valid interpretation but not explicitly required by the SPEC.
+
+Evidence priority:
+- ht = scalar_pt_sum(jets); 〔L0377-L0378〕
+
+Generator bias:
+none

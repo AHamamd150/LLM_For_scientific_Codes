@@ -1,0 +1,132 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The code constructs the hadronic top candidate from the leading b-jet and the hadronic W candidate, which is correct. However, the hadronic W candidate is built from the two leading non-b-tagged jets, and the leading b-jet is used as a constituent. The code correctly combines all required constituents to form the hadronic top candidate. This is not a violation.
+
+Evidence priority:
+- sum_objects(bjets_sorted[0], w_hadronic); upstream chain: bjets_sorted = sort_by_pt(bjets), w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if not (40 < w_hadronic['mass'] < 120): continue
+
+Reason:
+The code uses an exclusive range (40 < mass < 120), but the SPEC does not explicitly specify whether the range is inclusive or exclusive. This is a definition mismatch if the intended behavior was to include the boundaries (40 ≤ mass ≤ 120).
+
+Evidence priority:
+- if not (40 < w_hadronic['mass'] < 120): continue; upstream chain: w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Generator bias:
+none
+
+---
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- light_jets = [j for j in jets if j not in bjets]
+- light_jets_sorted = sort_by_pt(light_jets)
+- w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Reason:
+The code uses the jets collection after pT and |eta| cuts to select non-b-tagged jets. The SPEC does not specify whether the hadronic W candidate should be built from the full jet collection or the selected jet collection. The code uses the selected jet collection, which is a valid interpretation but introduces an ambiguity.
+
+Evidence priority:
+- light_jets = [j for j in jets if j not in bjets]; upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- if not (30 < mt < 150): continue
+
+Reason:
+The code uses an exclusive range (30 < mt < 150), but the SPEC does not explicitly specify whether the range is inclusive or exclusive. This is a definition mismatch if the intended behavior was to include the boundaries (30 ≤ mt ≤ 150).
+
+Evidence priority:
+- if not (30 < mt < 150): continue; upstream chain: mt = helper_transverse_mass(lepton, met)
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- if met is None or met['pt'] < 20: continue
+
+Reason:
+The code uses a strict greater-than condition (met['pt'] < 20), which is correct for "MET > 20 GeV". However, the code also skips the event if MET is None, which is not explicitly mentioned in the SPEC. This introduces a definition mismatch if the intended behavior was to allow events with missing MET.
+
+Evidence priority:
+- if met is None or met['pt'] < 20: continue; upstream chain: helper_get_met(event)
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Require at least 2 b-tagged jets
+
+CODE:
+- if len(bjets) < 2: continue
+
+Reason:
+The code uses a strict "less than" condition (len(bjets) < 2), which skips events with fewer than 2 b-tagged jets. However, the SPEC says "at least 2 b-tagged jets," which is inclusive of exactly 2. The code is correct in this case, but the phrasing in the SPEC could be interpreted as requiring more than 2, which is not the case. No mismatch exists, but the wording in the SPEC is ambiguous.
+
+Evidence priority:
+- if len(bjets) < 2: continue; upstream chain: bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Generator bias:
+none
+
+---
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- njets_values.append(len(jets))
+
+Reason:
+The code plots the number of jets per event using the selected jet collection (after pT and |eta| cuts). The SPEC does not specify whether the jet count should be based on the full jet collection or the selected jet collection. The code uses the selected jet collection, which is a valid interpretation but introduces an ambiguity.
+
+Evidence priority:
+- njets_values.append(len(jets)); upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Generator bias:
+none

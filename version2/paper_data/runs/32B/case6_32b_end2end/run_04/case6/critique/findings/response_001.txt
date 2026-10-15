@@ -1,0 +1,205 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The code builds the hadronic top candidate from only the leading b-tagged jet and the hadronic W candidate, but the SPEC explicitly refers to a system-level object (the hadronic top candidate) that should be constructed from all required constituents. The implementation correctly uses the required constituents, so this is not a violation.
+
+Evidence priority:
+- sum_objects(leading_bjet, w_hadronic) -> top_hadronic['mass']
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- sum_objects(leading_light, subleading_light)
+
+Reason:
+The code correctly builds the hadronic W candidate from the two leading non-b-tagged jets, as required by the SPEC. This is not a violation.
+
+Evidence priority:
+- helper_get_leading(light_jets) -> helper_get_subleading(light_jets) -> sum_objects(leading_light, subleading_light)
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if w_hadronic is None or not (40 < w_hadronic['mass'] < 120): continue
+
+Reason:
+The code uses an exclusive range (40 < mass < 120), but the SPEC does not explicitly specify whether the range is inclusive or exclusive. This is a definition mismatch if the SPEC intended an inclusive range.
+
+Evidence priority:
+- sum_objects(leading_light, subleading_light) -> w_hadronic['mass']
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV.
+
+CODE:
+- if top_hadronic is None or not (100 < top_hadronic['mass'] < 250): continue
+
+Reason:
+The code uses an exclusive range (100 < mass < 250), but the SPEC does not explicitly specify whether the range is inclusive or exclusive. This is a definition mismatch if the SPEC intended an inclusive range.
+
+Evidence priority:
+- sum_objects(leading_bjet, w_hadronic) -> top_hadronic['mass']
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- scalar_pt_sum(jets)
+
+Reason:
+The SPEC does not specify whether the HT should be computed from all jets in the event or only from the selected jets. The code uses the selected jets, which is a valid interpretation, but the choice is not constrained by the SPEC.
+
+Evidence priority:
+- sum(p['pt'] for p in jets)
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- len(jets)
+
+Reason:
+The SPEC does not specify whether the jet count should be from all jets in the event or only from the selected jets. The code uses the selected jets, which is a valid interpretation, but the choice is not constrained by the SPEC.
+
+Evidence priority:
+- [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- leading_bjet['pt']
+
+Reason:
+The SPEC does not specify whether the leading b-jet should be selected from all b-jets in the event or only from the selected b-jets. The code uses the selected b-jets, which is a valid interpretation, but the choice is not constrained by the SPEC.
+
+Evidence priority:
+- helper_get_leading(bjets) -> leading_bjet['pt']
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- helper_get_subleading(bjets)['pt']
+
+Reason:
+The SPEC does not specify whether the subleading b-jet should be selected from all b-jets in the event or only from the selected b-jets. The code uses the selected b-jets, which is a valid interpretation, but the choice is not constrained by the SPEC.
+
+Evidence priority:
+- helper_get_subleading(bjets) -> ['pt']
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the eta of the leading b-jet
+
+CODE:
+- leading_bjet['eta']
+
+Reason:
+The SPEC does not specify whether the leading b-jet should be selected from all b-jets in the event or only from the selected b-jets. The code uses the selected b-jets, which is a valid interpretation, but the choice is not constrained by the SPEC.
+
+Evidence priority:
+- helper_get_leading(bjets) -> leading_bjet['eta']
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- if not (30 < mt < 150): continue
+
+Reason:
+The code uses an exclusive range (30 < mt < 150), but the SPEC does not explicitly specify whether the range is inclusive or exclusive. This is a definition mismatch if the SPEC intended an inclusive range.
+
+Evidence priority:
+- helper_transverse_mass(selected_lepton, met) -> mt
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- if met is None or met['pt'] < 20: continue
+
+Reason:
+The code uses a strict greater-than condition (met['pt'] < 20), but the SPEC explicitly states "MET > 20 GeV". This is a definition mismatch.
+
+Evidence priority:
+- helper_get_met(event) -> met['pt']
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the delta R between the leading lepton and the closest selected b-jet
+
+CODE:
+- helper_delta_r(selected_lepton, closest_bjet)
+
+Reason:
+The SPEC does not specify whether the lepton should be selected from all leptons in the event or only from the selected lepton. The code uses the selected lepton, which is a valid interpretation, but the choice is not constrained by the SPEC.
+
+Evidence priority:
+- helper_delta_r(selected_lepton, closest_bjet)
+
+Generator bias:
+none

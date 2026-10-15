@@ -1,0 +1,25 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+2,8,requirement,R1,Select electrons with pT > 25 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly identifies the electron filter and get_electrons dependency at lines 298-299 and 176-179.
+2,8,requirement,R2,Select muons with pT > 25 GeV and |eta| < 2.4,yes,yes,yes,no,Correctly identifies the muon filter and get_muons dependency at lines 299-300 and 181-184.
+2,8,requirement,R3,Require exactly one lepton (electron or muon),yes,yes,yes,no,Correctly traces leptons = electrons + muons and the len(leptons) != 1 rejection at lines 300-302.
+2,8,requirement,R4,Require at least 4 jets with pT > 30 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly traces the selected-jet filter and multiplicity check at lines 309-312.
+2,8,requirement,R5,Require at least 2 b-tagged jets,yes,yes,yes,no,"Correctly traces get_bjets, the pT/eta filtering, and len(bjets) < 2 check at lines 315-318."
+2,8,requirement,R6,Select MET > 20 GeV,yes,yes,yes,no,Correctly identifies helper_get_met and the MET threshold rejection at lines 321-324.
+2,8,requirement,R7,Select transverse mass of the lepton and MET between 30 and 150 GeV,yes,yes,yes,no,"Correctly traces helper_transverse_mass(lepton, met) and the 30 < mt < 150 check at lines 327-329."
+2,8,requirement,R8,Build the hadronic W candidate from the two leading non-b-tagged jets,yes,yes,yes,no,"Correctly traces light-jet construction, pT sorting, and sum_objects of the first two jets at lines 334-339."
+2,8,requirement,R9,Select the hadronic W mass between 40 and 120 GeV,yes,yes,yes,no,Correctly identifies the w_hadronic mass window and rejection at lines 340-343.
+2,8,requirement,R10,Build the hadronic top candidate from the leading b-jet and the hadronic W candidate,yes,yes,yes,no,"Correctly traces bjet sorting and sum_objects(bjets_sorted[0], w_hadronic) at lines 345-350."
+2,8,requirement,R11,Plot the transverse mass of lepton plus MET,yes,yes,yes,no,Correctly traces mt_values.append(mt) and the histogram at lines 331 and 372-377.
+2,8,requirement,R12,Plot the MET distribution,yes,yes,yes,no,Correctly traces met_values.append(met['pt']) and the histogram at lines 332 and 379-384.
+2,8,requirement,R13,Plot the pT of the leading b-jet,yes,yes,yes,no,Correctly traces leading_bjet_pt.append(leading_bjet['pt']) and the histogram at lines 356-360 and 386-391.
+2,8,requirement,R14,Plot the pT of the subleading b-jet,yes,yes,yes,no,Correctly traces the subleading b-jet selection and histogram at lines 357 and 393-398.
+2,8,requirement,R15,Plot the invariant mass of the two leading non-b-tagged jets in the 40 to 120 GeV range,yes,yes,yes,no,Correctly traces w_hadronic_mass and its histogram at lines 343 and 400-405; the plotted values follow the preceding 40-120 GeV selection.
+2,8,requirement,R16,Plot the invariant mass of the leading b-jet plus hadronic W candidate in the 100 to 250 GeV range,yes,yes,yes,no,Correctly traces top_hadronic_mass and its histogram at lines 349-353 and 407-412; the plotted values follow the preceding 100-250 GeV selection.
+2,8,requirement,R17,Plot delta R between the leading lepton and the closest b-jet,partial,yes,no,yes,"The histogram and helper_delta_r call are correctly located at lines 364-365 and 414-419, but code computes delta R to leading_bjet, not the closest b-jet."
+2,8,requirement,R18,Plot the HT distribution as the scalar sum of all jet pT,yes,yes,yes,no,"Correctly traces scalar_pt_sum(jets), storage, and histogram at lines 367-368 and 421-426."
+2,8,requirement,R19,Plot the number of jets per event,yes,yes,yes,no,"Correctly traces len(jets), storage, and histogram at lines 369 and 428-433."
+2,8,requirement,R20,Plot eta of the leading b-jet,yes,yes,yes,no,Correctly traces leading_bjet['eta'] and its histogram at lines 359-360 and 435-440.
+2,8,requirement,R21,"Use simple validation histograms with 40 bins, density normalization, labels, PNG filenames, and close each plot",partial,yes,yes,no,"The tracer identifies histogram calls and PNG saves, but does not explicitly trace all required plt.figure, xlabel, ylabel, and plt.close operations for each histogram; these occur throughout lines 372-440."
+2,8,requirement,R22,"After the event loop, print one cutflow summary with the number of events after each selection step",yes,yes,yes,no,Correctly traces the post-loop cutflow prints and cutflow counters at lines 442-451.
+2,8,requirement,R23,Save the plots in PNG format,yes,yes,na,no,Correctly identifies the .png save paths at lines 376-440.
+2,8,extra_trace_claim,EXTRA1,A definition-summary entry ending with '< 2.5]' and labeled as composite-derived,,,,yes,This malformed fragment does not correspond to a complete defined object or supported code relation; it appears between the Delta R entry and Number of jets entry.

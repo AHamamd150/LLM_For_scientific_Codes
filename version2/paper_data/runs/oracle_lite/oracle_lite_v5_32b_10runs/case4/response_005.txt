@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] z_obj reuse and definition
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum."
+
+Why this matters:
+The phrase "selected electrons" could refer to the raw pre-cut electrons or the post-cut electrons. Since the z_obj is used later in the invariant mass cut and plots, its definition must be consistent with the cuts applied to the electrons.
+
+Question to user:
+Are the two electrons used to build z_obj the ones that have already passed the pT and |eta| cuts and the opposite charge requirement, or are they selected before any cuts?
+
+Golden axe:
+z_obj is built from electrons after all cuts and requirements are applied.
+
+Silver axe:
+z_obj is built from electrons before the opposite charge requirement is applied, but after pT and |eta| cuts.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] W candidate muon definition
+
+Original phrase:
+"Define the selected muon as the W candidate lepton."
+
+Why this matters:
+The phrase "selected muon" could refer to the only muon that passed the pT and |eta| cuts, or it could imply a further selection (e.g., leading muon in pT). Since the W candidate is used in the transverse mass calculation and in plots, its definition must be unambiguous.
+
+Question to user:
+Is the W candidate muon simply the only muon that passed the pT and |eta| cuts, or is it the leading muon in pT among all muons in the event?
+
+Golden axe:
+The W candidate muon is the only muon that passed the pT and |eta| cuts.
+
+Silver axe:
+The W candidate muon is the leading muon in pT among all muons in the event, even if there are multiple muons.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Three-lepton system definition
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Why this matters:
+The phrase "built from" could imply a simple sum of four-momenta, but it is not clear whether any additional selection or ordering is applied to the muon or electrons before building the system. This affects the value of the pT and the interpretation of the plot.
+
+Question to user:
+Is the three-lepton system built from the two electrons used to form z_obj and the only selected muon, or is there a specific ordering or selection applied to the muon before building the system?
+
+Golden axe:
+The three-lepton system is built from the two electrons used to form z_obj and the only selected muon.
+
+Silver axe:
+The three-lepton system is built from the two electrons used to form z_obj and the leading muon in pT.
+
+Recommended default:
+Golden axe

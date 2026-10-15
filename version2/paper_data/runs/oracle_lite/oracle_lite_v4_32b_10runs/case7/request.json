@@ -1,0 +1,13 @@
+{
+  "profile": "oracle-lite-v4",
+  "card": "/Users/nojiri/resubmission/test_runs/examples/cases/user_input_7.txt",
+  "registry": "lhco_domain.registry:HELPER_REGISTRY",
+  "codegen_system_prompt": null,
+  "model": "Qwen/Qwen3-32B",
+  "system_prompt": "bundled oracle-lite-v4",
+  "oracle_context": null,
+  "oracle_output_contract": "none",
+  "runs": 10,
+  "max_tokens": 1800,
+  "temperature": 0.2
+}

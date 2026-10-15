@@ -1,0 +1,98 @@
+[CANDIDATE 1] Lepton collection consistency
+
+Original phrase:
+"Require exactly one lepton (electron or muon)"
+
+Unresolved choice:
+Does "lepton" refer to the raw collection of electrons and muons, or to those already passing the pT and |eta| cuts?
+
+Why this may matter:
+If the lepton count is applied before or after the pT/eta cuts, it could significantly change the event selection. The helper_get_leptons function returns uncut leptons, while the cuts on electrons and muons may have already been applied.
+
+[CANDIDATE 2] Jet collection consistency
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Unresolved choice:
+Are these jets selected before or after the "at least 4 jets" and "at least 2 b-tagged jets" cuts?
+
+Why this may matter:
+If the jet selection for the hadronic W candidate is applied before or after the other jet-related cuts, it could change which jets are available for building the W candidate, affecting the invariant mass calculation.
+
+[CANDIDATE 3] B-jet collection consistency
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Unresolved choice:
+Is the "leading b-jet" selected from all b-tagged jets in the event or only from a subset that may have been further filtered?
+
+Why this may matter:
+If the b-jet selection for the top candidate is applied before or after additional cuts, it could change which b-jet is used for the top candidate, affecting the invariant mass calculation.
+
+[CANDIDATE 4] MET usage consistency
+
+Original phrase:
+"Select MET > 20 GeV"
+
+Unresolved choice:
+Is this MET the raw MET from the event or the MET after any jet corrections or recalculations?
+
+Why this may matter:
+If the MET is used in different ways (raw vs. corrected) for different parts of the analysis, it could lead to inconsistent transverse mass calculations and event selections.
+
+[CANDIDATE 5] Leading and subleading jet definitions
+
+Original phrase:
+"Plot the pT of the leading b-jet" and "Plot the pT of the subleading b-jet"
+
+Unresolved choice:
+Are these definitions based on all b-jets in the event or only those passing specific cuts?
+
+Why this may matter:
+If the leading and subleading b-jets are defined before or after additional cuts, it could change which jets are considered leading/subleading, affecting the plotted distributions.
+
+[CANDIDATE 6] W hadronic candidate usage
+
+Original phrase:
+"Plot the invariant mass of the two leading non-b-tagged jets (W hadronic candidate) in range 40 to 120 GeV"
+
+Unresolved choice:
+Is this W hadronic candidate the same one used in the selection cuts or a different one?
+
+Why this may matter:
+If the W hadronic candidate used for plotting differs from the one used in selection, it could lead to inconsistencies in the analysis and misinterpretation of the results.
+
+[CANDIDATE 7] Top hadronic candidate usage
+
+Original phrase:
+"Plot the invariant mass of leading b-jet + W hadronic candidate (top hadronic) in range 100 to 250 GeV"
+
+Unresolved choice:
+Is this top hadronic candidate the same one used in the selection or a different one?
+
+Why this may matter:
+If the top hadronic candidate used for plotting differs from the one used in selection, it could lead to inconsistencies in the analysis and misinterpretation of the results.
+
+[CANDIDATE 8] Jet pT and |eta| cuts application
+
+Original phrase:
+"Require at least 4 jets with pT > 30 GeV and |eta| < 2.5"
+
+Unresolved choice:
+Are these cuts applied to all jets in the event or only to a specific subset?
+
+Why this may matter:
+If the jet cuts are applied differently in different parts of the analysis, it could lead to inconsistent jet selections and affect the event counts and derived quantities.
+
+[CANDIDATE 9] B-tagged jet cuts application
+
+Original phrase:
+"Require at least 2 b-tagged jets"
+
+Unresolved choice:
+Are these cuts applied to all jets in the event or only to a specific subset?
+
+Why this may matter:
+If the b-tagged jet cuts are applied differently in different parts of the analysis, it could lead to inconsistent jet selections and affect the event counts and derived quantities.

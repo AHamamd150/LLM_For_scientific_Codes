@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n◎ (none)  \nAll traced definitions match the SPEC. No semantic inconsistencies, missing implementations, or ambiguities are found. The implementation correctly constructs all required composite quantities and applies the selection cuts as specified.",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788937165,
+  "id": "chatcmpl-bcb576c9-0594-41ca-90dd-f364ead5ac01",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 46,
+    "prompt_tokens": 9736,
+    "prompt_tokens_details": null,
+    "total_tokens": 9782
+  }
+}

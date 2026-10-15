@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading and subleading photon definition
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading and subleading photons are defined before or after applying all subsequent cuts (e.g., pT > 35 GeV for leading, pT > 25 GeV for subleading).
+
+Question to user:
+Are the leading and subleading photons defined based on the raw photon collection (before applying the pT cuts for leading and subleading photons), or based on the photon collection after applying all photon selection cuts?
+
+Golden axe:
+Leading and subleading photons are defined based on the photon collection after applying all photon selection cuts.
+
+Silver axe:
+Leading and subleading photons are defined based on the raw photon collection before applying any cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Diphoton system definition
+
+Original phrase:
+"Build the diphoton system from the leading photon and the subleading photon."
+
+Why this is dangerous:
+The phrase does not clarify whether the diphoton system is a composite object with four-momentum properties or just a scalar quantity derived from the two photons.
+
+Question to user:
+Is the diphoton system a reconstructed composite object with four-momentum properties (e.g., for computing pT of the system), or is it only a scalar quantity derived from the two photons?
+
+Golden axe:
+The diphoton system is a reconstructed composite object with four-momentum properties.
+
+Silver axe:
+The diphoton system is only a scalar quantity derived from the two photons.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Validation histograms timing
+
+Original phrase:
+"Plot the following as histograms [...] Use simple validation histograms."
+
+Why this is dangerous:
+The phrase does not clarify whether the validation histograms are filled after the full event selection is applied or as soon as the observable becomes available during the event processing.
+
+Question to user:
+Are the validation histograms filled after the full event selection is applied, or are they filled as soon as the observable becomes available during the event processing?
+
+Golden axe:
+Validation histograms are filled after the full event selection is applied.
+
+Silver axe:
+Validation histograms are filled as soon as the observable becomes available during the event processing.
+
+Recommended default:
+Golden axe

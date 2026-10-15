@@ -1,0 +1,115 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+◎ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau. 
+- Define dijet_obj from the summed four-momentum of the leading jet and subleading jet.
+
+CODE:
+- ditau_obj = sum_objects(tau1, tau2)
+- dijet_obj = sum_objects(jet1, jet2)
+
+Reason:
+The code correctly constructs the ditau_obj and dijet_obj from the summed four-momentum of the leading and subleading tau and jet, respectively. This matches the composite system-level definition in the SPEC.
+
+Evidence priority:
+- ditau_obj = sum_objects(tau1, tau2); dijet_obj = sum_objects(jet1, jet2)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require opposite-sign tau pair
+
+CODE:
+- if not opposite_sign(tau1, tau2): continue
+
+Reason:
+The code correctly implements the requirement to select only opposite-sign tau pairs by using the opposite_sign helper function on the leading and subleading tau objects.
+
+Evidence priority:
+- opposite_sign(tau1, tau2)
+
+Generator bias:
+none
+
+◎ (C) missing implementation
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+All required items from the SPEC are implemented.
+
+Evidence priority:
+- All required items from the SPEC are implemented.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+The SPEC does not leave any underconstrained regions that would require interpretation.
+
+Evidence priority:
+- All required items from the SPEC are implemented.
+
+Generator bias:
+none
+
+◎ (E) extra behavior
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+The code does not perform any behavior not requested by the SPEC.
+
+Evidence priority:
+- All required items from the SPEC are implemented.
+
+Generator bias:
+none
+
+◎ (F) generator-induced bias
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+The code does not show any signs of generator-induced bias.
+
+Evidence priority:
+- All required items from the SPEC are implemented.
+
+Generator bias:
+none
+
+---
+
+None
+
+
+---- DROPPED ----
+(none)

@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* delta R between taus\n  - computed/defined as: helper_delta_r(helper_get_leading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]), helper_get_subleading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]))\n  - upstream chain: [o for o in event['objects'] if o['type'] == 3] -> [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3] -> helper_get_leading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]), helper_get_subleading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]) -> helper_delta_r(helper_get_leading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]), helper_get_subleading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]))\n  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3\n  - structure: composite-derived\n\n* delta phi between ditau and dijet\n  - computed/defined as: helper_delta_phi(sum_objects(helper_get_leading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]), helper_get_subleading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]))['phi'], sum_objects(helper_get_leading([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]), helper_get_subleading([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]))['phi'])\n  - upstream chain: [o for o in event['objects'] if o['type'] == 3] -> [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3] -> helper_get_leading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]), helper_get_subleading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]) -> sum_objects(helper_get_leading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]), helper_get_subleading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]))['phi'], [o for o in event['objects'] if o['type'] == 4] -> [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7] -> helper_get_leading([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]), helper_get_subleading([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]) -> sum_objects(helper_get_leading([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]), helper_get_subleading([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]))['phi'] -> helper_delta_phi(sum_objects(helper_get_leading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]), helper_get_subleading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]))['phi'], sum_objects(helper_get_leading([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]), helper_get_subleading([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]))['phi'])\n  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3, j['pt'] > 30 and abs(j['eta']) < 4.7\n  - structure: composite-derived\n\n* centrality of ditau relative to jets\n  - computed/defined as: centrality_between_jets(sum_objects(helper_get_leading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]), helper_get_subleading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3])), helper_get_leading([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]), helper_get_subleading([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]))\n  - upstream chain: [o for o in event['objects'] if o['type'] == 3] -> [t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3] -> helper_get_leading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]), helper_get_subleading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]) -> sum_objects(helper_get_leading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]), helper_get_subleading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3])), [o for o in event['objects'] if o['type'] == 4] -> [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7] -> helper_get_leading([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]), helper_get_subleading([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]) -> centrality_between_jets(sum_objects(helper_get_leading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3]), helper_get_subleading([t for t in taus if t['pt'] > 20 and abs(t['eta']) < 2.3])), helper_get_leading([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]), helper_get_subleading([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 4.7]))\n  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3, j['pt'] > 30 and abs(j['eta']) < 4.7\n  - structure: composite-derived\n\n* cutflow\n  - computed/defined as: cutflow dictionary with counters for each selection step\n  - upstream chain: cutflow[\"initial\"], cutflow[\"2_taus\"], cutflow[\"2_jets\"], cutflow[\"opposite_sign\"], cutflow[\"m_jj > 400\"], cutflow[\"delta_eta_jj > 2.5\"], cutflow[\"m_tautau 60-150\"], cutflow[\"no_bjets\"]\n  - collection definition: N/A\n  - structure: multi-input",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1789518582,
+  "id": "chatcmpl-6a738ed7-9bc9-4372-8102-5b7833d2e668",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 1757,
+    "prompt_tokens": 13476,
+    "prompt_tokens_details": null,
+    "total_tokens": 15233
+  }
+}

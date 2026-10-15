@@ -1,0 +1,10 @@
+
+Cutflow:
+initial: 100000
+1 lepton: 24220
+4 jets: 11805
+2 b-jets: 4976
+MET > 20: 4482
+MT 30-150: 3806
+W hadronic 40-120: 1777
+Top hadronic 100-250: 1205

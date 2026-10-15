@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] z_obj reuse and definition timing
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum."
+
+Why this matters:
+The timing and scope of z_obj definition is critical. If z_obj is built before or after the invariant mass cut, or if it is reused in later steps (like the three-lepton system), the behavior of the analysis may change. The phrase does not clarify whether z_obj is a persistent object or only used for the invariant mass cut.
+
+Question to user:
+Is the z_obj meant to be a persistent object used in later steps (e.g., the three-lepton system pT plot), or is it only used to compute the invariant mass cut?
+
+Golden axe:
+z_obj is built once from the two selected electrons and reused in later steps.
+
+Silver axe:
+z_obj is only used to compute the invariant mass cut and not reused elsewhere.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] W candidate muon definition and timing
+
+Original phrase:
+"Define the selected muon as the W candidate lepton."
+
+Why this matters:
+The phrase does not clarify whether the W candidate muon is defined before or after the pT > 20 GeV cut. If the muon is defined before the cut, the W candidate may not satisfy the pT requirement. If it is defined after, the W candidate is guaranteed to meet the cut.
+
+Question to user:
+Is the W candidate muon defined before or after the pT > 20 GeV cut?
+
+Golden axe:
+The W candidate muon is defined after the pT > 20 GeV cut.
+
+Silver axe:
+The W candidate muon is defined before the pT > 20 GeV cut.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Three-lepton system definition
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Why this matters:
+The phrase does not clarify whether the three-lepton system is built from the same z_obj and W candidate muon used in earlier steps, or if it is a new combination. If the two electrons or the muon used in the three-lepton system differ from those used in earlier steps, the results may be inconsistent.
+
+Question to user:
+Is the three-lepton system built from the same two electrons used to form z_obj and the same selected muon used as the W candidate, or is it a new combination?
+
+Golden axe:
+The three-lepton system is built from the same two electrons and selected muon used in earlier steps.
+
+Silver axe:
+The three-lepton system is built from any combination of the selected electrons and muon, possibly different from earlier steps.
+
+Recommended default:
+Golden axe

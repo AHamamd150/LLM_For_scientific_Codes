@@ -1,0 +1,11 @@
+Cutflow:
+initial: 30000
+2 taus: 3089
+tau pT/eta cuts: 2752
+2 jets: 2384
+jet pT/eta cuts: 1988
+opposite-sign taus: 1920
+m_jj > 400 GeV: 978
+delta_eta_jj > 2.5: 946
+m_tautau 60-150 GeV: 843
+no b-jets: 779

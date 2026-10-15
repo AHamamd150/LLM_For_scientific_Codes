@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Delta phi between lepton and two-jet system
+
+Original phrase:
+"delta phi between the lepton and the two-jet system"
+
+Why this is dangerous:
+The phrase "two-jet system" could be interpreted as either a single reconstructed composite object (e.g., a dijet system with summed four-momenta) or as a scalar quantity derived from the two jets (e.g., their invariant mass or delta R). This affects whether the delta phi is computed between the lepton and a composite object or between the lepton and individual jets.
+
+Question to user:
+Are you referring to the azimuthal angle difference between the lepton and a reconstructed dijet system (as a single composite object), or between the lepton and the individual jets in the dijet system?
+
+Golden axe:
+The azimuthal angle difference between the lepton and a reconstructed dijet system (as a single composite object).
+
+Silver axe:
+The azimuthal angle difference between the lepton and the individual jets in the dijet system.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Leading and subleading jets
+
+Original phrase:
+"the two leading jets", "the leading jet", "the subleading jet"
+
+Why this is dangerous:
+The terms "leading" and "subleading" could refer to jets before or after applying selection cuts (e.g., pT > 30 GeV and |eta| < 2.5). This affects which jets are considered in the invariant mass calculation, delta R, and other observables.
+
+Question to user:
+Are the "leading" and "subleading" jets defined before or after applying the jet selection cuts (pT > 30 GeV and |eta| < 2.5)?
+
+Golden axe:
+Leading and subleading jets are defined after applying the jet selection cuts.
+
+Silver axe:
+Leading and subleading jets are defined before applying the jet selection cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Veto on b-tagged jets
+
+Original phrase:
+"Veto events with b-tagged jets"
+
+Why this is dangerous:
+The phrase "b-tagged jets" could refer to all b-tagged jets in the event (including those that may not pass the jet selection cuts) or only to the b-tagged jets that pass the jet selection cuts (pT > 30 GeV and |eta| < 2.5). This affects whether the veto is applied to all b-tagged jets or only to those that pass the jet cuts.
+
+Question to user:
+Are you vetoing events that contain any b-tagged jets (regardless of whether they pass the jet selection cuts), or only b-tagged jets that pass the jet selection cuts (pT > 30 GeV and |eta| < 2.5)?
+
+Golden axe:
+The veto applies to b-tagged jets that pass the jet selection cuts.
+
+Silver axe:
+The veto applies to all b-tagged jets in the event, regardless of whether they pass the jet selection cuts.
+
+Recommended default:
+Golden axe

@@ -1,0 +1,24 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+◎ correct implementation
+
+SPEC:
+none
+
+CODE:
+none
+
+Reason:
+The code correctly implements all the selection cuts, cutflow counters, and plotting requirements as specified in the SPEC. All quantities are computed using the appropriate helpers and definitions, and the code adheres to the LHCO domain rules.
+
+Evidence priority:
+All traced definitions match the SPEC requirements.
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

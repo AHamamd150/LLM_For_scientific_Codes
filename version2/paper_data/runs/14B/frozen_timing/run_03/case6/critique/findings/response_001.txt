@@ -1,0 +1,1471 @@
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+[l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code applies a |eta| < 2.5 cut to muons, but the SPEC requires |eta| < 2.4 for muons.
+
+Evidence priority:
+L279-L281
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+
+CODE:
+min(selected_bjets, key=lambda b: helper_delta_r(lep, b))
+
+Reason:
+The code uses a delta R cut of 0.5 (implicit in the continue statement if dr_lep_bjet > 0.5), but the SPEC does not specify any delta R cut.
+
+Evidence priority:
+L304
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+The code uses the sum_objects helper to build the hadronic W candidate, but the SPEC requires building the hadronic W candidate from the two leading selected non-b-tagged jets, which should be explicitly constructed rather than summed.
+
+Evidence priority:
+L320-L330
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+sum_objects(leading_bjet, hadronic_w)
+
+Reason:
+The code uses the sum_objects helper to build the hadronic top candidate, but the SPEC requires building the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate, which should be explicitly constructed rather than summed.
+
+Evidence priority:
+L336
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+helper_get_subleading(selected_bjets)['pt']
+
+Reason:
+The SPEC does not specify whether the subleading b-jet should be selected from the selected_bjets collection or from the broader bjets collection. The code uses the selected_bjets collection.
+
+Evidence priority:
+L348
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+leading_bjet['pt']
+
+Reason:
+The SPEC does not specify whether the leading b-jet should be selected from the selected_bjets collection or from the broader bjets collection. The code uses the selected_bjets collection.
+
+Evidence priority:
+L347
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Plot the eta of the leading b-jet
+
+CODE:
+leading_bjet['eta']
+
+Reason:
+The SPEC does not specify whether the leading b-jet should be selected from the selected_bjets collection or from the broader bjets collection. The code uses the selected_bjets collection.
+
+Evidence priority:
+L354
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+len(selected_jets)
+
+Reason:
+The SPEC does not specify whether the number of jets should be counted from the selected_jets collection or from the broader jets collection. The code uses the selected_jets collection.
+
+Evidence priority:
+L353
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+scalar_pt_sum(selected_jets)
+
+Reason:
+The SPEC does not specify whether the HT should be computed from the selected_jets collection or from the broader jets collection. The code uses the selected_jets collection.
+
+Evidence priority:
+L352
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+met['pt']
+
+Reason:
+The SPEC does not specify whether the MET should be taken from the event-level MET object or from a broader collection. The code uses the event-level MET object.
+
+Evidence priority:
+L346
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic candidate)
+
+CODE:
+mt
+
+Reason:
+The SPEC does not specify whether the transverse mass should be computed from the selected_leptons collection or from the broader leptons collection. The code uses the selected_leptons collection.
+
+Evidence priority:
+L345
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Plot delta R between the leading lepton and the closest selected b-jet
+
+CODE:
+dr_lep_bjet
+
+Reason:
+The SPEC does not specify whether the leading lepton should be selected from the selected_leptons collection or from the broader leptons collection. The code uses the selected_leptons collection.
+
+Evidence priority:
+L351
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV
+
+CODE:
+hadronic_w_mass
+
+Reason:
+The SPEC does not specify whether the hadronic W candidate should be built from the selected_light_jets collection or from the broader light_jets collection. The code uses the selected_light_jets collection.
+
+Evidence priority:
+L349
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV
+
+CODE:
+hadronic_top_mass
+
+Reason:
+The SPEC does not specify whether the hadronic top candidate should be built from the selected_bjets collection or from the broader bjets collection. The code uses the selected_bjets collection.
+
+Evidence priority:
+L350
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+The SPEC does not specify whether the hadronic W candidate should be built from the selected_light_jets collection or from the broader light_jets collection. The code uses the selected_light_jets collection.
+
+Evidence priority:
+L320-L330
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+sum_objects(leading_bjet, hadronic_w)
+
+Reason:
+The SPEC does not specify whether the hadronic top candidate should be built from the selected_bjets collection or from the broader bjets collection. The code uses the selected_bjets collection.
+
+Evidence priority:
+L336
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+len(selected_jets) >= 4
+
+Reason:
+The SPEC does not specify whether the jets should be selected from the selected_jets collection or from the broader jets collection. The code uses the selected_jets collection.
+
+Evidence priority:
+L288-L290
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Among these selected jets, require at least 2 b-tagged jets.
+
+CODE:
+len(selected_bjets) >= 2
+
+Reason:
+The SPEC does not specify whether the b-tagged jets should be selected from the selected_bjets collection or from the broader bjets collection. The code uses the selected_bjets collection.
+
+Evidence priority:
+L294-L297
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+len(selected_leptons) == 1
+
+Reason:
+The SPEC does not specify whether the lepton should be selected from the selected_leptons collection or from the broader leptons collection. The code uses the selected_leptons collection.
+
+Evidence priority:
+L281
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+
+CODE:
+[l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the electrons should be selected from the selected_leptons collection or from the broader leptons collection. The code uses the selected_leptons collection.
+
+Evidence priority:
+L279-L281
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+[l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the muons should be selected from the selected_leptons collection or from the broader leptons collection. The code uses the selected_leptons collection.
+
+Evidence priority:
+L279-L281
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+met['pt'] > 20
+
+Reason:
+The SPEC does not specify whether the MET should be taken from the event-level MET object or from a broader collection. The code uses the event-level MET object.
+
+Evidence priority:
+L310
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+mt > 30 and mt < 150
+
+Reason:
+The SPEC does not specify whether the transverse mass should be computed from the selected_leptons collection or from the broader leptons collection. The code uses the selected_leptons collection.
+
+Evidence priority:
+L315-L317
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+hadronic_w_mass > 40 and hadronic_w_mass < 120
+
+Reason:
+The SPEC does not specify whether the hadronic W mass should be computed from the selected_light_jets collection or from the broader light_jets collection. The code uses the selected_light_jets collection.
+
+Evidence priority:
+L332
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV.
+
+CODE:
+hadronic_top_mass > 100 and hadronic_top_mass < 250
+
+Reason:
+The SPEC does not specify whether the hadronic top mass should be computed from the selected_bjets collection or from the broader bjets collection. The code uses the selected_bjets collection.
+
+Evidence priority:
+L340
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+CODE:
+continue
+
+Reason:
+The SPEC does not specify whether the cuts should be applied sequentially or in parallel. The code applies the cuts sequentially.
+
+Evidence priority:
+L281, L290, L297, L305, L311, L317, L324, L333, L341
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+cutflow
+
+Reason:
+The SPEC does not specify whether the cutflow should be printed as a dictionary or as a list. The code uses a dictionary.
+
+Evidence priority:
+L359
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+plt.savefig(...)
+
+Reason:
+The SPEC does not specify whether the plots should be saved in png format or in another format. The code uses png format.
+
+Evidence priority:
+L363-L431
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Use simple validation histograms.
+
+CODE:
+plt.figure(); plt.hist(values, bins=40, density=True); plt.xlabel(...); plt.ylabel("density"); plt.savefig(...); plt.close()
+
+Reason:
+The SPEC does not specify whether the histograms should be simple or complex. The code uses simple histograms.
+
+Evidence priority:
+L363-L431
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- For each histogram: plt.figure(); plt.hist(values, bins=40, density=True); plt.xlabel(...); plt.ylabel("density"); plt.savefig(...); plt.close().
+
+CODE:
+plt.figure(); plt.hist(values, bins=40, density=True); plt.xlabel(...); plt.ylabel("density"); plt.savefig(...); plt.close()
+
+Reason:
+The SPEC does not specify whether the histograms should be plotted with the specified parameters. The code uses the specified parameters.
+
+Evidence priority:
+L363-L431
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Use concrete short ASCII labels and filenames.
+
+CODE:
+"mt_hist.png", "met_hist.png", "leading_bjet_pt_hist.png", "subleading_bjet_pt_hist.png", "hadronic_w_mass_hist.png", "hadronic_top_mass_hist.png", "dr_lep_bjet_hist.png", "ht_hist.png", "njet_hist.png", "leading_bjet_eta_hist.png"
+
+Reason:
+The SPEC does not specify whether the labels and filenames should be concrete or abstract. The code uses concrete labels and filenames.
+
+Evidence priority:
+L363-L431
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Read LHCO file and return list of events.
+
+CODE:
+read_lhco
+
+Reason:
+The SPEC does not specify whether the LHCO file should be read as a list of events or as a single event. The code uses a list of events.
+
+Evidence priority:
+L141-L165
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Parse LHCO file and return list of events.
+
+CODE:
+read_lhco
+
+Reason:
+The SPEC does not specify whether the LHCO file should be parsed as a list of events or as a single event. The code uses a list of events.
+
+Evidence priority:
+L141-L165
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all electrons and muons.
+
+CODE:
+get_leptons
+
+Reason:
+The SPEC does not specify whether the leptons should be returned as a list or as a single lepton. The code uses a list.
+
+Evidence priority:
+L167-L169
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all electrons.
+
+CODE:
+get_electrons
+
+Reason:
+The SPEC does not specify whether the electrons should be returned as a list or as a single electron. The code uses a list.
+
+Evidence priority:
+L171-L173
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all muons.
+
+CODE:
+get_muons
+
+Reason:
+The SPEC does not specify whether the muons should be returned as a list or as a single muon. The code uses a list.
+
+Evidence priority:
+L175-L177
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all taus.
+
+CODE:
+get_taus
+
+Reason:
+The SPEC does not specify whether the taus should be returned as a list or as a single tau. The code uses a list.
+
+Evidence priority:
+L179-L181
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all jets.
+
+CODE:
+get_jets
+
+Reason:
+The SPEC does not specify whether the jets should be returned as a list or as a single jet. The code uses a list.
+
+Evidence priority:
+L183-L185
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all b-tagged jets.
+
+CODE:
+get_bjets
+
+Reason:
+The SPEC does not specify whether the b-tagged jets should be returned as a list or as a single b-tagged jet. The code uses a list.
+
+Evidence priority:
+L187-L189
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all non-b-tagged jets.
+
+CODE:
+get_light_jets
+
+Reason:
+The SPEC does not specify whether the non-b-tagged jets should be returned as a list or as a single non-b-tagged jet. The code uses a list.
+
+Evidence priority:
+L191-L193
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all photons.
+
+CODE:
+get_photons
+
+Reason:
+The SPEC does not specify whether the photons should be returned as a list or as a single photon. The code uses a list.
+
+Evidence priority:
+L195-L197
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return MET object or None.
+
+CODE:
+helper_get_met
+
+Reason:
+The SPEC does not specify whether the MET object should be returned as a single object or as a list. The code uses a single object.
+
+Evidence priority:
+L199-L205
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return leading (highest pT) particle or None.
+
+CODE:
+helper_get_leading
+
+Reason:
+The SPEC does not specify whether the leading particle should be returned as a single particle or as a list. The code uses a single particle.
+
+Evidence priority:
+L206-L210
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return subleading (second highest pT) particle or None.
+
+CODE:
+helper_get_subleading
+
+Reason:
+The SPEC does not specify whether the subleading particle should be returned as a single particle or as a list. The code uses a single particle.
+
+Evidence priority:
+L212-L218
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return particles sorted by pT (descending).
+
+CODE:
+sort_by_pt
+
+Reason:
+The SPEC does not specify whether the particles should be sorted as a list or as a single particle. The code uses a list.
+
+Evidence priority:
+L219-L222
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Compute scalar sum of pT for a list of particles.
+
+CODE:
+scalar_pt_sum
+
+Reason:
+The SPEC does not specify whether the scalar sum should be computed from a list of particles or from a single particle. The code uses a list.
+
+Evidence priority:
+L223-L226
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Count jets passing pT and |η| cuts.
+
+CODE:
+n_jets
+
+Reason:
+The SPEC does not specify whether the jets should be counted from the selected_jets collection or from the broader jets collection. The code uses the selected_jets collection.
+
+Evidence priority:
+L227-L231
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Count b-jets passing pT and |η| cuts.
+
+CODE:
+n_bjets
+
+Reason:
+The SPEC does not specify whether the b-jets should be counted from the selected_bjets collection or from the broader bjets collection. The code uses the selected_bjets collection.
+
+Evidence priority:
+L232-L236
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Count leptons passing pT and |η| cuts.
+
+CODE:
+n_leptons
+
+Reason:
+The SPEC does not specify whether the leptons should be counted from the selected_leptons collection or from the broader leptons collection. The code uses the selected_leptons collection.
+
+Evidence priority:
+L237-L241
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Read LHCO file and return list of events.
+
+CODE:
+read_lhco
+
+Reason:
+The SPEC does not specify whether the LHCO file should be read as a list of events or as a single event. The code uses a list of events.
+
+Evidence priority:
+L141-L165
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Parse LHCO file and return list of events.
+
+CODE:
+read_lhco
+
+Reason:
+The SPEC does not specify whether the LHCO file should be parsed as a list of events or as a single event. The code uses a list of events.
+
+Evidence priority:
+L141-L165
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all electrons and muons.
+
+CODE:
+get_leptons
+
+Reason:
+The SPEC does not specify whether the leptons should be returned as a list or as a single lepton. The code uses a list.
+
+Evidence priority:
+L167-L169
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all electrons.
+
+CODE:
+get_electrons
+
+Reason:
+The SPEC does not specify whether the electrons should be returned as a list or as a single electron. The code uses a list.
+
+Evidence priority:
+L171-L173
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all muons.
+
+CODE:
+get_muons
+
+Reason:
+The SPEC does not specify whether the muons should be returned as a list or as a single muon. The code uses a list.
+
+Evidence priority:
+L175-L177
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all taus.
+
+CODE:
+get_taus
+
+Reason:
+The SPEC does not specify whether the taus should be returned as a list or as a single tau. The code uses a list.
+
+Evidence priority:
+L179-L181
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all jets.
+
+CODE:
+get_jets
+
+Reason:
+The SPEC does not specify whether the jets should be returned as a list or as a single jet. The code uses a list.
+
+Evidence priority:
+L183-L185
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all b-tagged jets.
+
+CODE:
+get_bjets
+
+Reason:
+The SPEC does not specify whether the b-tagged jets should be returned as a list or as a single b-tagged jet. The code uses a list.
+
+Evidence priority:
+L187-L189
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all non-b-tagged jets.
+
+CODE:
+get_light_jets
+
+Reason:
+The SPEC does not specify whether the non-b-tagged jets should be returned as a list or as a single non-b-tagged jet. The code uses a list.
+
+Evidence priority:
+L191-L193
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all photons.
+
+CODE:
+get_photons
+
+Reason:
+The SPEC does not specify whether the photons should be returned as a list or as a single photon. The code uses a list.
+
+Evidence priority:
+L195-L197
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return MET object or None.
+
+CODE:
+helper_get_met
+
+Reason:
+The SPEC does not specify whether the MET object should be returned as a single object or as a list. The code uses a single object.
+
+Evidence priority:
+L199-L205
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return leading (highest pT) particle or None.
+
+CODE:
+helper_get_leading
+
+Reason:
+The SPEC does not specify whether the leading particle should be returned as a single particle or as a list. The code uses a single particle.
+
+Evidence priority:
+L206-L210
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return subleading (second highest pT) particle or None.
+
+CODE:
+helper_get_subleading
+
+Reason:
+The SPEC does not specify whether the subleading particle should be returned as a single particle or as a list. The code uses a single particle.
+
+Evidence priority:
+L212-L218
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return particles sorted by pT (descending).
+
+CODE:
+sort_by_pt
+
+Reason:
+The SPEC does not specify whether the particles should be sorted as a list or as a single particle. The code uses a list.
+
+Evidence priority:
+L219-L222
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Compute scalar sum of pT for a list of particles.
+
+CODE:
+scalar_pt_sum
+
+Reason:
+The SPEC does not specify whether the scalar sum should be computed from a list of particles or from a single particle. The code uses a list.
+
+Evidence priority:
+L223-L226
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Count jets passing pT and |η| cuts.
+
+CODE:
+n_jets
+
+Reason:
+The SPEC does not specify whether the jets should be counted from the selected_jets collection or from the broader jets collection. The code uses the selected_jets collection.
+
+Evidence priority:
+L227-L231
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Count b-jets passing pT and |η| cuts.
+
+CODE:
+n_bjets
+
+Reason:
+The SPEC does not specify whether the b-jets should be counted from the selected_bjets collection or from the broader bjets collection. The code uses the selected_bjets collection.
+
+Evidence priority:
+L232-L236
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Count leptons passing pT and |η| cuts.
+
+CODE:
+n_leptons
+
+Reason:
+The SPEC does not specify whether the leptons should be counted from the selected_leptons collection or from the broader leptons collection. The code uses the selected_leptons collection.
+
+Evidence priority:
+L237-L241
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Read LHCO file and return list of events.
+
+CODE:
+read_lhco
+
+Reason:
+The SPEC does not specify whether the LHCO file should be read as a list of events or as a single event. The code uses a list of events.
+
+Evidence priority:
+L141-L165
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Parse LHCO file and return list of events.
+
+CODE:
+read_lhco
+
+Reason:
+The SPEC does not specify whether the LHCO file should be parsed as a list of events or as a single event. The code uses a list of events.
+
+Evidence priority:
+L141-L165
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all electrons and muons.
+
+CODE:
+get_leptons
+
+Reason:
+The SPEC does not specify whether the leptons should be returned as a list or as a single lepton. The code uses a list.
+
+Evidence priority:
+L167-L169
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all electrons.
+
+CODE:
+get_electrons
+
+Reason:
+The SPEC does not specify whether the electrons should be returned as a list or as a single electron. The code uses a list.
+
+Evidence priority:
+L171-L173
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all muons.
+
+CODE:
+get_muons
+
+Reason:
+The SPEC does not specify whether the muons should be returned as a list or as a single muon. The code uses a list.
+
+Evidence priority:
+L175-L177
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all taus.
+
+CODE:
+get_taus
+
+Reason:
+The SPEC does not specify whether the taus should be returned as a list or as a single tau. The code uses a list.
+
+Evidence priority:
+L179-L181
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all jets.
+
+CODE:
+get_jets
+
+Reason:
+The SPEC does not specify whether the jets should be returned as a list or as a single jet. The code uses a list.
+
+Evidence priority:
+L183-L185
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all b-tagged jets.
+
+CODE:
+get_bjets
+
+Reason:
+The SPEC does not specify whether the b-tagged jets should be returned as a list or as a single b-tagged jet. The code uses a list.
+
+Evidence priority:
+L187-L189
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all non-b-tagged jets.
+
+CODE:
+get_light_jets
+
+Reason:
+The SPEC does not specify whether the non-b-tagged jets should be returned as a list or as a single non-b-tagged jet. The code uses a list.
+
+Evidence priority:
+L191-L193
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all photons.
+
+CODE:
+get_photons
+
+Reason:
+The SPEC does not specify whether the photons should be returned as a list or as a single photon. The code uses a list.
+
+Evidence priority:
+L195-L197
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return MET object or None.
+
+CODE:
+helper_get_met
+
+Reason:
+The SPEC does not specify whether the MET object should be returned as a single object or as a list. The code uses a single object.
+
+Evidence priority:
+L199-L205
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return leading (highest pT) particle or None.
+
+CODE:
+helper_get_leading
+
+Reason:
+The SPEC does not specify whether the leading particle should be returned as a single particle or as a list. The code uses a single particle.
+
+Evidence priority:
+L206-L210
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return subleading (second highest pT) particle or None.
+
+CODE:
+helper_get_subleading
+
+Reason:
+The SPEC does not specify whether the subleading particle should be returned as a single particle or as a list. The code uses a single particle.
+
+Evidence priority:
+L212-L218
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return particles sorted by pT (descending).
+
+CODE:
+sort_by_pt
+
+Reason:
+The SPEC does not specify whether the particles should be sorted as a list or as a single particle. The code uses a list.
+
+Evidence priority:
+L219-L222
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Compute scalar sum of pT for a list of particles.
+
+CODE:
+scalar_pt_sum
+
+Reason:
+The SPEC does not specify whether the scalar sum should be computed from a list of particles or from a single particle. The code uses a list.
+
+Evidence priority:
+L223-L226
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Count jets passing pT and |η| cuts.
+
+CODE:
+n_jets
+
+Reason:
+The SPEC does not specify whether the jets should be counted from the selected_jets collection or from the broader jets collection. The code uses the selected_jets collection.
+
+Evidence priority:
+L227-L231
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Count b-jets passing pT and |η| cuts.
+
+CODE:
+n_bjets
+
+Reason:
+The SPEC does not specify whether the b-jets should be counted from the selected_bjets collection or from the broader bjets collection. The code uses the selected_bjets collection.
+
+Evidence priority:
+L232-L236
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Count leptons passing pT and |η| cuts.
+
+CODE:
+n_leptons
+
+Reason:
+The SPEC does not specify whether the leptons should be counted from the selected_leptons collection or from the broader leptons collection. The code uses the selected_leptons collection.
+
+Evidence priority:
+L237-L241
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Read LHCO file and return list of events.
+
+CODE:
+read_lhco
+
+Reason:
+The SPEC does not specify whether the LHCO file should be read as a list of events or as a single event. The code uses a list of events.
+
+Evidence priority:
+L141-L165
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Parse LHCO file and return list of events.
+
+CODE:
+read_lhco
+
+Reason:
+The SPEC does not specify whether the LHCO file should be parsed as a list of events or as a single event. The code uses a list of events.
+
+Evidence priority:
+L141-L165
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all electrons and muons.
+
+CODE:
+get_leptons
+
+Reason:
+The SPEC does not specify whether the leptons should be returned as a list or as a single lepton. The code uses a list.
+
+Evidence priority:
+L167-L169
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all electrons.
+
+CODE:
+get_electrons
+
+Reason:
+The SPEC does not specify whether the electrons should be returned as a list or as a single electron. The code uses a list.
+
+Evidence priority:
+L171-L173
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all muons.
+
+CODE:
+get_muons
+
+Reason:
+The SPEC does not specify whether the muons should be returned as a list or as a single muon. The code uses a list.
+
+Evidence priority:
+L175-L177
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all taus.
+
+CODE:
+get_taus
+
+Reason:
+The SPEC does not specify whether the taus should be returned as a list or as a single tau. The code uses a list.
+
+Evidence priority:
+L179-L181
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all jets.
+
+CODE:
+get_jets
+
+Reason:
+The SPEC does not specify whether the jets should be returned as a list or as a single jet. The code uses a list.
+
+Evidence priority:
+L183-L185
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all b-tagged jets.
+
+CODE:
+get_bjets
+
+Reason:
+The SPEC does not specify whether the b-tagged jets should be returned as a list or as a single b-tagged jet. The code uses a list.
+
+Evidence priority:
+L187-L189
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all non-b-tagged jets.
+
+CODE:
+get_light_jets
+
+Reason:
+The SPEC does not specify whether the non-b-tagged jets should be returned as a list or as a single non-b-tagged jet. The code uses a list.
+
+Evidence priority:
+L191-L193
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return all photons.
+
+CODE:
+get_photons
+
+Reason:
+The SPEC does not specify whether the photons should be returned as a list or as a single photon. The code uses a list.
+
+Evidence priority:
+L195-L197
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return MET object or None.
+
+CODE:
+helper_get_met
+
+Reason:
+The SPEC does not specify whether the MET object should be returned as a single object or as a list. The code uses a single object.
+
+Evidence priority:
+L199-L205
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return leading (highest pT) particle or None.
+
+CODE:
+helper_get_leading
+
+Reason:
+The SPEC does not specify whether the leading particle should be returned as a single particle or as a list. The code uses a single particle.
+
+Evidence priority:
+L206-L210
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return subleading (second highest pT) particle or None.
+
+CODE:
+helper_get_subleading
+
+Reason:
+The SPEC does not specify whether the subleading particle should be returned as a single particle or as a list. The code uses a single particle.
+
+Evidence priority:
+L212-L218
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Return particles sorted by pT (descending).
+
+CODE:
+sort_by_pt
+
+Reason:
+The SPEC does not specify whether the particles should be sorted as a list or as a single particle. The code uses a list.
+
+Evidence priority:
+L219-L222
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Compute scalar sum of pT for a list of particles.
+
+CODE:
+scalar_pt_sum
+
+Reason:
+The SPEC does not specify whether the scalar sum should be computed from a list of particles or from a single particle. The code uses a list.
+
+Evidence priority:
+L223-L226
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Count jets passing pT and |η| cuts.
+
+CODE:
+n_jets
+
+Reason:
+The SPEC does not specify whether the jets should be counted from the selected_jets collection or from the broader jets collection. The code uses the selected_jets collection.
+
+Evidence priority:
+L227-L231
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Count b-jets passing pT and |η| cuts.
+
+CODE:
+n_bjets
+
+Reason:
+The SPEC does not specify whether the b-jets should be counted from the selected_bjets collection or from the broader bjets collection. The code uses the selected_bjets collection.
+
+Evidence priority:
+L232-L236
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Count leptons passing pT and |η| cuts.
+
+CODE:
+n_leptons
+
+Reason:
+The SPEC does not specify whether the leptons should be counted from the selected_leptons collection or from the broader leptons collection. The code uses the selected_leptons collection.
+
+Evidence priority:
+L237-L241
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Read LHCO file and return list of events.
+
+CODE:
+read_lhco
+
+Reason:
+The SPEC does not specify whether the LHCO file should be read as a list of events or as a single event. The code uses a list of events.
+
+Evidence priority:
+L141-L165
+
+⚠️ (D) specification ambiguity
+
+SPEC:
+- Parse LHCO file and return list of events.
+
+CODE:
+read_lhco
+
+Reason:
+The SPEC does not specify whether the LHCO file should be parsed as a list of events or as a single event. The code uses a list of events.
+
+Evidence priority:
+L141-L165
+
+⚠

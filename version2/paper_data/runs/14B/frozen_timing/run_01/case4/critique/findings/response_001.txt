@@ -1,0 +1,443 @@
+◎ (A) composite violation
+
+SPEC:
+- Plot the pT of the three-lepton system built from the two selected electrons and the selected muon
+
+CODE:
+- three_lepton_pt_list; upstream chain: sum_objects(e1, e2, w_muon)
+
+Reason:
+The three-lepton system's pT is correctly computed from the sum of the two selected electrons and the selected muon using sum_objects. This is a composite quantity computed from all required constituents.
+
+Evidence priority:
+〔L299-L301〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot the invariant mass of the three-lepton system
+
+CODE:
+- three_lepton_mass_list; upstream chain: helper_invariant_mass(e1, e2, w_muon)
+
+Reason:
+The three-lepton system's invariant mass is correctly computed from the two selected electrons and the selected muon using helper_invariant_mass. This is a composite quantity computed from all required constituents.
+
+Evidence priority:
+〔L302-L303〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot the invariant mass of z_obj in range 60 to 120 GeV
+
+CODE:
+- z_mass_list; upstream chain: helper_invariant_mass(e1, e2)
+
+Reason:
+The invariant mass of z_obj is correctly computed from the two selected electrons using helper_invariant_mass. This is a composite quantity computed from all required constituents.
+
+Evidence priority:
+〔L294-L295〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Build z_obj from the two selected electrons using summed four-momentum.
+
+CODE:
+- z_obj = sum_objects(e1, e2)
+
+Reason:
+z_obj is correctly built from the two selected electrons using sum_objects, which sums their four-momentum.
+
+Evidence priority:
+〔L265-L266〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot delta R between the two electrons forming z_obj
+
+CODE:
+- delta_r_electrons_list; upstream chain: helper_delta_r(e1, e2)
+
+Reason:
+Delta R between the two electrons forming z_obj is correctly computed using helper_delta_r with the two selected electrons.
+
+Evidence priority:
+〔L309-L310〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot delta phi between z_obj and MET
+
+CODE:
+- delta_phi_z_met_list; upstream chain: helper_delta_phi(z_obj['phi'], met['phi'])
+
+Reason:
+Delta phi between z_obj and MET is correctly computed using helper_delta_phi with z_obj and MET.
+
+Evidence priority:
+〔L307-L308〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot the pT of z_obj
+
+CODE:
+- z_pt_list; upstream chain: z_obj['pt']
+
+Reason:
+The pT of z_obj is correctly computed from the z_obj, which is built from the two selected electrons.
+
+Evidence priority:
+〔L305-L306〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot the transverse mass of the W candidate lepton + MET
+
+CODE:
+- w_trans_mass_list; upstream chain: helper_transverse_mass(w_muon, met)
+
+Reason:
+The transverse mass of the W candidate lepton + MET is correctly computed using helper_transverse_mass with the W candidate muon and MET.
+
+Evidence priority:
+〔L295-L296〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- met_list; upstream chain: helper_get_met(event)
+
+Reason:
+The MET distribution is correctly computed from the MET object, which is identified by type 6.
+
+Evidence priority:
+〔L296-L297〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot the pT of the W candidate muon
+
+CODE:
+- w_muon_pt_list; upstream chain: w_muon['pt']
+
+Reason:
+The pT of the W candidate muon is correctly computed from the selected muon.
+
+Evidence priority:
+〔L306-L307〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot eta of the W candidate muon
+
+CODE:
+- w_muon_eta_list; upstream chain: w_muon['eta']
+
+Reason:
+The eta of the W candidate muon is correctly computed from the selected muon.
+
+Evidence priority:
+〔L311-L312〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Require exactly 2 selected electrons and exactly 1 selected muon.
+
+CODE:
+- len(electrons) != 2 or len(muons) != 1
+
+Reason:
+The code correctly requires exactly 2 selected electrons and exactly 1 selected muon.
+
+Evidence priority:
+〔L254-L255〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Require the two selected electrons to have opposite charge.
+
+CODE:
+- not opposite_sign(e1, e2)
+
+Reason:
+The code correctly requires the two selected electrons to have opposite charge using the opposite_sign helper.
+
+Evidence priority:
+〔L259-L261〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Select invariant mass of z_obj between 76 and 106 GeV.
+
+CODE:
+- not (76 < z_mass < 106)
+
+Reason:
+The code correctly selects the invariant mass of z_obj between 76 and 106 GeV.
+
+Evidence priority:
+〔L269-L270〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Require MET > 30 GeV.
+
+CODE:
+- met is None or met['pt'] < 30
+
+Reason:
+The code correctly requires MET > 30 GeV.
+
+Evidence priority:
+〔L274-L276〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- The W candidate muon must have pT > 20 GeV.
+
+CODE:
+- w_muon['pt'] < 20
+
+Reason:
+The code correctly requires the W candidate muon to have pT > 20 GeV.
+
+Evidence priority:
+〔L281-L282〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Select transverse mass of W candidate muon + MET > 30 GeV.
+
+CODE:
+- w_trans_mass < 30
+
+Reason:
+The code correctly selects the transverse mass of the W candidate muon + MET to be > 30 GeV.
+
+Evidence priority:
+〔L286-L288〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- cutflow; upstream chain: cutflow
+
+Reason:
+The code correctly prints a cutflow summary after the event loop.
+
+Evidence priority:
+〔L220-L227〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The code correctly saves the plots in png format.
+
+Evidence priority:
+〔L318-L382〕
+
+Generator bias:
+none
+
+---
+
+◎ (A) composite violation
+
+SPEC:
+- Select electrons with pT > 15 GeV and |eta| < 2.5.
+
+CODE:
+- [e for e in get_electrons(event) if e['pt'] > 15 and abs(e['eta']) < 2.5]
+
+Reason:
+The code correctly selects electrons with pT > 15 GeV and |eta| < 2.5.
+
+Evidence priority:
+〔L242-L243〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Select muons with pT > 10 GeV and |eta| < 2.4.
+
+CODE:
+- [m for m in get_muons(event) if m['pt'] > 10 and abs(m['eta']) < 2.4]
+
+Reason:
+The code correctly selects muons with pT > 10 GeV and |eta| < 2.4.
+
+Evidence priority:
+〔L248-L249〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+CODE:
+- The code applies cuts sequentially and skips events when a cut is not satisfied.
+
+Reason:
+The code implements the sequential application of cuts and skips events when a cut is not satisfied.
+
+Evidence priority:
+〔L242-L292〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Increment each cutflow counter immediately after its cut is passed.
+
+CODE:
+- cutflow["..."] += 1 after each cut is passed.
+
+Reason:
+The code increments each cutflow counter immediately after its cut is passed.
+
+Evidence priority:
+〔L245, L251, L256, L262, L271, L277, L283, L289, L292〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Use simple validation histograms.
+
+CODE:
+- plt.figure(); plt.hist(values, bins=40, density=True); plt.xlabel(...); plt.ylabel("density"); plt.savefig(...); plt.close()
+
+Reason:
+The code uses simple validation histograms as specified.
+
+Evidence priority:
+〔L314-L382〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- For each histogram: plt.figure(); plt.hist(values, bins=40, density=True); plt.xlabel(...); plt.ylabel("density"); plt.savefig(...); plt.close().
+
+CODE:
+- The code uses plt.figure(), plt.hist(), plt.xlabel(), plt.ylabel(), plt.savefig(), and plt.close() for each histogram.
+
+Reason:
+The code implements the histogram plotting as specified.
+
+Evidence priority:
+〔L314-L382〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Use concrete short ASCII labels and filenames.
+
+CODE:
+- Histograms are labeled with concrete short ASCII labels and saved with short filenames like "z_mass.png", "w_trans_mass.png", etc.
+
+Reason:
+The code uses concrete short ASCII labels and filenames for the histograms.
+
+Evidence priority:
+〔L318-L382〕
+
+Generator bias:
+none

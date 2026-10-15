@@ -1,0 +1,349 @@
+◎ (A) composite violation  
+SPEC:  
+- Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)  
+
+CODE:  
+- helper_invariant_mass(jet1, jet2)  
+
+Reason:  
+The code computes the invariant mass of the two leading jets using helper_invariant_mass(jet1, jet2), which is correct. The invariant mass of the two leading jets is computed from the two leading jets, which are the required constituents. This is not a composite violation.
+
+Evidence priority:  
+〔L332-L339〕
+
+Generator bias:  
+none
+
+◎ (A) composite violation  
+SPEC:  
+- Select delta R between the two leading jets < 3.0  
+
+CODE:  
+- helper_delta_r(jet1, jet2)  
+
+Reason:  
+The code computes the delta R between the two leading jets using helper_delta_r(jet1, jet2), which is correct. The delta R between the two leading jets is computed from the two leading jets, which are the required constituents. This is not a composite violation.
+
+Evidence priority:  
+〔L342-L345〕
+
+Generator bias:  
+none
+
+◎ (A) composite violation  
+SPEC:  
+- Plot delta phi between the lepton and the two-jet system  
+
+CODE:  
+- helper_delta_phi(lepton['phi'], jet_system['phi'])  
+
+Reason:  
+The code computes the delta phi between the lepton and the two-jet system using helper_delta_phi(lepton['phi'], jet_system['phi']). The two-jet system is constructed using sum_objects(jet1, jet2), which is correct. The delta phi is computed from the lepton and the two-jet system, which is the required composite object. This is not a composite violation.
+
+Evidence priority:  
+〔L364-L370〕
+
+Generator bias:  
+none
+
+◎ (B) definition mismatch  
+SPEC:  
+- Veto events with b-tagged jets  
+
+CODE:  
+- any(b['pt'] > 30 and abs(b['eta']) < 2.5 for b in bjets)  
+
+Reason:  
+The SPEC requires vetoing events with b-tagged jets, but the code only vetoes events with b-tagged jets that have pT > 30 GeV and |eta| < 2.5. This is a mismatch because the SPEC does not specify a pT or |eta| cut for b-jets, but the code applies such cuts.
+
+Evidence priority:  
+〔L314-L316〕
+
+Generator bias:  
+none
+
+◎ (D) specification ambiguity  
+SPEC:  
+- Select MET > 30 GeV  
+
+CODE:  
+- helper_get_met(event)  
+
+Reason:  
+The SPEC does not specify whether the MET should be selected from a specific collection or from the event-level MET. The code uses helper_get_met(event), which retrieves the MET from the event-level collection. This is a specification ambiguity because the SPEC does not explicitly constrain whether the MET should be selected from a specific collection or from the event-level MET.
+
+Evidence priority:  
+〔L320-L322〕
+
+Generator bias:  
+none
+
+◎ (D) specification ambiguity  
+SPEC:  
+- Select transverse mass of lepton + MET between 40 and 120 GeV (W leptonic candidate)  
+
+CODE:  
+- helper_transverse_mass(lepton, met)  
+
+Reason:  
+The SPEC does not specify whether the MET should be selected from a specific collection or from the event-level MET. The code uses helper_get_met(event), which retrieves the MET from the event-level collection. This is a specification ambiguity because the SPEC does not explicitly constrain whether the MET should be selected from a specific collection or from the event-level MET.
+
+Evidence priority:  
+〔L325-L329〕
+
+Generator bias:  
+none
+
+◎ (D) specification ambiguity  
+SPEC:  
+- Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)  
+
+CODE:  
+- helper_invariant_mass(jet1, jet2)  
+
+Reason:  
+The SPEC does not specify whether the jets should be selected from a specific collection or from the broader event-level jets. The code uses get_jets(event) to retrieve the jets and applies pT and |eta| cuts. This is a specification ambiguity because the SPEC does not explicitly constrain whether the jets should be selected from a specific collection or from the broader event-level jets.
+
+Evidence priority:  
+〔L332-L339〕
+
+Generator bias:  
+none
+
+◎ (D) specification ambiguity  
+SPEC:  
+- Select delta R between the two leading jets < 3.0  
+
+CODE:  
+- helper_delta_r(jet1, jet2)  
+
+Reason:  
+The SPEC does not specify whether the jets should be selected from a specific collection or from the broader event-level jets. The code uses get_jets(event) to retrieve the jets and applies pT and |eta| cuts. This is a specification ambiguity because the SPEC does not explicitly constrain whether the jets should be selected from a specific collection or from the broader event-level jets.
+
+Evidence priority:  
+〔L342-L345〕
+
+Generator bias:  
+none
+
+◎ (D) specification ambiguity  
+SPEC:  
+- Plot delta phi between the lepton and the two-jet system  
+
+CODE:  
+- helper_delta_phi(lepton['phi'], jet_system['phi'])  
+
+Reason:  
+The SPEC does not specify whether the jets should be selected from a specific collection or from the broader event-level jets. The code uses get_jets(event) to retrieve the jets and applies pT and |eta| cuts. This is a specification ambiguity because the SPEC does not explicitly constrain whether the jets should be selected from a specific collection or from the broader event-level jets.
+
+Evidence priority:  
+〔L364-L370〕
+
+Generator bias:  
+none
+
+◎ (D) specification ambiguity  
+SPEC:  
+- Save the following in a CSV file for MLP analysis:  
+  1- Transverse mass of lepton + MET  
+  2- Dijet invariant mass  
+  3- MET  
+  4- pT of the lepton  
+  5- Delta R between the two jets  
+  6- Delta phi between the lepton and the two-jet system  
+
+CODE:  
+- mt, mjj, met['pt'], lepton['pt'], dr, dphi_lepton_jets  
+
+Reason:  
+The SPEC does not specify whether the MET, lepton, jets, or two-jet system should be selected from a specific collection or from the broader event-level collection. The code uses get_jets(event) to retrieve the jets and applies pT and |eta| cuts. This is a specification ambiguity because the SPEC does not explicitly constrain whether the MET, lepton, jets, or two-jet system should be selected from a specific collection or from the broader event-level collection.
+
+Evidence priority:  
+〔L373-L380〕
+
+Generator bias:  
+none
+
+---
+
+◎ (B) definition mismatch  
+SPEC:  
+- Require at least 2 jets with pT > 30 GeV and |eta| < 2.5  
+
+CODE:  
+- [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]  
+
+Reason:  
+The code applies pT > 30 GeV and |eta| < 2.5 cuts to jets, which is correct. However, the SPEC requires "at least 2 jets" with these cuts, and the code correctly checks for this with `if len(jets) < 2`. This is not a definition mismatch.
+
+Evidence priority:  
+〔L307-L311〕
+
+Generator bias:  
+none
+
+◎ (B) definition mismatch  
+SPEC:  
+- Require exactly 1 selected lepton  
+
+CODE:  
+- if len(leptons) != 1: continue  
+
+Reason:  
+The code correctly requires exactly 1 selected lepton by checking `if len(leptons) != 1: continue`. This is not a definition mismatch.
+
+Evidence priority:  
+〔L297-L298〕
+
+Generator bias:  
+none
+
+◎ (B) definition mismatch  
+SPEC:  
+- Select electrons with pT > 25 GeV and |eta| < 2.5  
+
+CODE:  
+- [j for j in electrons if j['pt'] > 25 and abs(j['eta']) < 2.5]  
+
+Reason:  
+The code correctly selects electrons with pT > 25 GeV and |eta| < 2.5. This is not a definition mismatch.
+
+Evidence priority:  
+〔L288-L293〕
+
+Generator bias:  
+none
+
+◎ (B) definition mismatch  
+SPEC:  
+- Select muons with pT > 20 GeV and |eta| < 2.4  
+
+CODE:  
+- [j for j in muons if j['pt'] > 20 and abs(j['eta']) < 2.4]  
+
+Reason:  
+The code correctly selects muons with pT > 20 GeV and |eta| < 2.4. This is not a definition mismatch.
+
+Evidence priority:  
+〔L294-L296〕
+
+Generator bias:  
+none
+
+◎ (B) definition mismatch  
+SPEC:  
+- Use selected electrons and selected muons to define selected leptons.  
+
+CODE:  
+- [l for l in electrons if ...] + [l for l in muons if ...]  
+
+Reason:  
+The code correctly defines selected leptons as the union of selected electrons and selected muons. This is not a definition mismatch.
+
+Evidence priority:  
+〔L288-L296〕
+
+Generator bias:  
+none
+
+◎ (B) definition mismatch  
+SPEC:  
+- Plot the pT of the leading jet  
+
+CODE:  
+- jet1['pt']  
+
+Reason:  
+The code correctly plots the pT of the leading jet by using `jet1['pt']`. This is not a definition mismatch.
+
+Evidence priority:  
+〔L353〕
+
+Generator bias:  
+none
+
+◎ (B) definition mismatch  
+SPEC:  
+- Plot the pT of the subleading jet  
+
+CODE:  
+- jet2['pt']  
+
+Reason:  
+The code correctly plots the pT of the subleading jet by using `jet2['pt']`. This is not a definition mismatch.
+
+Evidence priority:  
+〔L354〕
+
+Generator bias:  
+none
+
+◎ (B) definition mismatch  
+SPEC:  
+- Plot the eta of the lepton  
+
+CODE:  
+- lepton['eta']  
+
+Reason:  
+The code correctly plots the eta of the lepton by using `lepton['eta']`. This is not a definition mismatch.
+
+Evidence priority:  
+〔L361〕
+
+Generator bias:  
+none
+
+◎ (B) definition mismatch  
+SPEC:  
+- Plot delta phi between the lepton and MET  
+
+CODE:  
+- helper_delta_phi(lepton['phi'], met['phi'])  
+
+Reason:  
+The code correctly plots the delta phi between the lepton and MET by using `helper_delta_phi(lepton['phi'], met['phi'])`. This is not a definition mismatch.
+
+Evidence priority:  
+〔L357-L359〕
+
+Generator bias:  
+none
+
+◎ (B) definition mismatch  
+SPEC:  
+- Plot delta phi between the lepton and the two-jet system  
+
+CODE:  
+- helper_delta_phi(lepton['phi'], jet_system['phi'])  
+
+Reason:  
+The code correctly plots the delta phi between the lepton and the two-jet system by using `helper_delta_phi(lepton['phi'], jet_system['phi'])`. This is not a definition mismatch.
+
+Evidence priority:  
+〔L364-L370〕
+
+Generator bias:  
+none
+
+◎ (B) definition mismatch  
+SPEC:  
+- Save the following in a CSV file for MLP analysis:  
+  1- Transverse mass of lepton + MET  
+  2- Dijet invariant mass  
+  3- MET  
+  4- pT of the lepton  
+  5- Delta R between the two jets  
+  6- Delta phi between the lepton and the two-jet system  
+
+CODE:  
+- mt, mjj, met['pt'], lepton['pt'], dr, dphi_lepton_jets  
+
+Reason:  
+The code correctly saves the required quantities in the CSV file. This is not a definition mismatch.
+
+Evidence priority:  
+〔L373-L380〕
+
+Generator bias:  
+none

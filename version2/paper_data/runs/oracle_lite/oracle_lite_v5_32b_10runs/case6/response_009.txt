@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] b-jet selection for delta R with lepton
+
+Original phrase:
+"Among these selected jets, require at least 2 b-tagged jets. Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R."
+
+Why this matters:
+The phrase is ambiguous about whether the b-jet closest to the lepton is selected from all b-tagged jets in the event or only from those that passed the earlier jet selection (pT > 30 GeV and |eta| < 2.5). This affects which jets are considered in the delta R calculation and could change the resulting object.
+
+Question to user:
+Are the b-tagged jets used to find the closest one to the lepton required to have passed the jet pT and eta cuts, or are all b-tagged jets in the event considered regardless of those cuts?
+
+Golden axe:
+Use only the b-tagged jets that passed the jet pT and eta cuts.
+
+Silver axe:
+Use all b-tagged jets in the event, regardless of jet pT and eta cuts.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Leading and subleading b-jet definition
+
+Original phrase:
+"Plot the pT of the leading b-jet" and "Plot the pT of the subleading b-jet"
+
+Why this matters:
+The phrase does not specify whether the leading and subleading b-jets are defined based on the selected b-tagged jets (those that passed the jet pT and eta cuts), or based on all b-tagged jets in the event. This choice affects which jets are considered in the plots.
+
+Question to user:
+Are the leading and subleading b-jets defined from all b-tagged jets in the event, or only from the subset that passed the jet pT and eta cuts?
+
+Golden axe:
+Leading and subleading b-jets are defined from the subset of b-tagged jets that passed the jet pT and eta cuts.
+
+Silver axe:
+Leading and subleading b-jets are defined from all b-tagged jets in the event, regardless of jet pT and eta cuts.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Hadronic W candidate construction
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Why this matters:
+The phrase is ambiguous about whether "selected non-b-tagged jets" refers to jets that passed the jet pT and eta cuts but are not b-tagged, or whether it refers to a separate selection of non-b-tagged jets. This affects which jets are used to build the hadronic W candidate.
+
+Question to user:
+Are the two leading jets used to build the hadronic W candidate selected from all non-b-tagged jets in the event, or only from the subset of jets that passed the jet pT and eta cuts?
+
+Golden axe:
+Use the two leading jets from the subset of jets that passed the jet pT and eta cuts and are not b-tagged.
+
+Silver axe:
+Use the two leading jets from all non-b-tagged jets in the event, regardless of jet pT and eta cuts.
+
+Recommended default:
+Golden axe

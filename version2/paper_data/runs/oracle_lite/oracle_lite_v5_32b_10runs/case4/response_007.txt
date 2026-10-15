@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] z_obj reuse and definition
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum."
+
+Why this matters:
+The phrase does not clarify whether z_obj is a temporary object used only for the invariant mass cut, or if it is a persistent object that will be used in later steps (e.g., for plotting the pT of z_obj or for angular separation with MET). This affects whether and how the object is stored and reused.
+
+Question to user:
+Is z_obj meant to be a persistent object used in multiple plots and selections, or is it only used temporarily for the invariant mass cut?
+
+Golden axe:
+z_obj is built and retained for all plots and further selections.
+
+Silver axe:
+z_obj is built only for the invariant mass cut and not stored for later use.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] W candidate muon definition
+
+Original phrase:
+"Define the selected muon as the W candidate lepton."
+
+Why this matters:
+The phrase does not clarify whether this definition applies to a single muon in the event (which is implied by the earlier requirement of exactly 1 selected muon), or if it refers to a selection among multiple muons (e.g., leading or subleading). This could affect how the muon is identified and used in subsequent steps.
+
+Question to user:
+Is the W candidate muon simply the single selected muon in the event, or is it chosen from multiple muons (e.g., leading by pT)?
+
+Golden axe:
+The W candidate muon is the single selected muon in the event.
+
+Silver axe:
+The W candidate muon is selected as the leading muon from a list of muons in the event.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Three-lepton system definition
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Why this matters:
+The phrase does not clarify whether the three-lepton system is built from the final selected electrons and muon (after all cuts), or if it refers to some earlier or alternative combination (e.g., before the invariant mass cut on z_obj). This affects the composition and timing of the system construction.
+
+Question to user:
+Is the three-lepton system built from the final selected electrons and muon (after all cuts), or is it built at an earlier stage in the selection?
+
+Golden axe:
+The three-lepton system is built from the final selected electrons and muon.
+
+Silver axe:
+The three-lepton system is built from the initial selected electrons and muon, before the invariant mass cut on z_obj.
+
+Recommended default:
+Golden axe

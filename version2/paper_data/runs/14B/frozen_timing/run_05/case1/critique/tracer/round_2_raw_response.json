@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* jet_system\n  - computed/defined as: jet_system = sum_objects(jet1, jet2)\n  - upstream chain: jet1, jet2 -> jet_system\n  - collection definition: None\n  - structure: composite-derived\n\n* jet1\n  - computed/defined as: jet1 = helper_get_leading(jets)\n  - upstream chain: jets -> jet1\n  - collection definition: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - structure: single-constituent\n\n* jet2\n  - computed/defined as: jet2 = helper_get_subleading(jets)\n  - upstream chain: jets -> jet2\n  - collection definition: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - structure: single-constituent\n\n* lepton\n  - computed/defined as: lepton = leptons[0]\n  - upstream chain: leptons -> lepton\n  - collection definition: [l for l in electrons if ...] + [l for l in muons if ...]\n  - structure: single-constituent\n\n* bjets\n  - computed/defined as: bjets = get_bjets(event)\n  - upstream chain: event -> bjets\n  - collection definition: [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]\n  - structure: composite-derived\n\n* electrons\n  - computed/defined as: electrons = get_electrons(event)\n  - upstream chain: event -> electrons\n  - collection definition: [o for o in event['objects'] if o['type'] == 1]\n  - structure: composite-derived\n\n* muons\n  - computed/defined as: muons = get_muons(event)\n  - upstream chain: event -> muons\n  - collection definition: [o for o in event['objects'] if o['type'] == 2]\n  - structure: composite-derived\n\n* jets\n  - computed/defined as: jets = get_jets(event)\n  - upstream chain: event -> jets\n  - collection definition: [o for o in event['objects'] if o['type'] == 4]\n  - structure: composite-derived\n\n* met\n  - computed/defined as: met = helper_get_met(event)\n  - upstream chain: event -> met\n  - collection definition: [o for o in event['objects'] if o['type'] == 6]\n  - structure: single-constituent\n\n* cutflow\n  - computed/defined as: cutflow = { ... }\n  - upstream chain: None\n  - collection definition: None\n  - structure: composite-derived",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788624430,
+  "id": "chatcmpl-7e6f8afd-ca00-4ac5-88b2-022417b8774e",
+  "model": "Qwen/Qwen3-14B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-7e17f8bc",
+  "usage": {
+    "completion_tokens": 604,
+    "prompt_tokens": 11815,
+    "prompt_tokens_details": null,
+    "total_tokens": 12419
+  }
+}

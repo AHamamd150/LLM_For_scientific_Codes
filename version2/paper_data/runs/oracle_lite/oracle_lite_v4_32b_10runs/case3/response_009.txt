@@ -1,0 +1,65 @@
+[CANDIDATE 1] Photon selection and crack exclusion
+
+Original phrase:
+"Select photons with pT > 25 GeV and |eta| < 2.37. Exclude photons in the crack region 1.37 < |eta| < 1.52."
+
+Unresolved choice:
+It is unclear whether the crack region exclusion is applied to the full event-level photon collection or to the already pT- and |eta|-selected photons.
+
+Why this may matter:
+If the crack region veto is applied before the pT and |eta| cuts, it may remove photons that would otherwise pass the selection. If it is applied after, it may affect the final photon collection differently, potentially changing the number of photons available for the rest of the analysis.
+
+[CANDIDATE 2] Leading and subleading photon definition
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection. Leading photon pT > 35 GeV. Subleading photon pT > 25 GeV."
+
+Unresolved choice:
+It is unclear whether the leading and subleading photon pT thresholds are applied to the full event-level photon collection or to the already selected photon collection.
+
+Why this may matter:
+If the pT thresholds are applied before the selection, the photon collection may be different than if the thresholds are applied after the selection. This could change which photons are considered leading and subleading, and thus affect the diphoton system and all derived quantities.
+
+[CANDIDATE 3] Diphoton system definition
+
+Original phrase:
+"Build the diphoton system from the leading photon and the subleading photon."
+
+Unresolved choice:
+It is unclear whether the diphoton system is defined as a composite object (with summed four-momenta) or as a pair of objects to be used for further calculations.
+
+Why this may matter:
+If the diphoton system is defined as a composite object, it may be used in further calculations (e.g., for angular variables). If it is defined as a pair of objects, it may require additional steps to compute derived quantities like invariant mass or pT.
+
+[CANDIDATE 4] Diphoton pT computation
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT."
+
+Unresolved choice:
+It is unclear whether the diphoton pT is computed as the vector sum of the photon pTs or as the scalar sum.
+
+Why this may matter:
+The vector sum would give the true pT of the diphoton system, while the scalar sum would give a different quantity that may not be meaningful for the analysis.
+
+[CANDIDATE 5] Cutflow counter increment
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether the cutflow counter is incremented before or after the cut is applied.
+
+Why this may matter:
+If the counter is incremented before the cut is applied, it may count events that are later rejected. If it is incremented after the cut is applied, it may not count events that are rejected.
+
+[CANDIDATE 6] Cut order
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied."
+
+Unresolved choice:
+It is unclear whether the cuts are applied in the order they are listed in the SELECTION_CUTS section or in a different order.
+
+Why this may matter:
+The order of cuts can affect the efficiency of the analysis and the interpretation of the cutflow. If the cuts are applied in a different order, the results may be different.

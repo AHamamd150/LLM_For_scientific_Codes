@@ -1,0 +1,73 @@
+
+
+* dphi_photons
+  - computed/defined as: helper_delta_phi(leading_photon['phi'], subleading_photon['phi'])
+  - upstream chain: leading_photon['phi'], subleading_photon['phi']
+  - collection definition: normalized Δφ between leading and subleading photons
+  - structure: multi-input
+
+* cos_theta_star
+  - computed/defined as: abs(cos_theta_star_collins_soper(leading_photon, subleading_photon))
+  - upstream chain: leading_photon, subleading_photon
+  - collection definition: absolute value of Collins-Soper cos(theta*) for diphoton system
+  - structure: composite-derived
+
+* cutflow
+  - computed/defined as: dictionary with counters for each selection step
+  - upstream chain: cutflow["..."] += 1 for each step
+  - collection definition: cumulative counts after each cut
+  - structure: multi-input
+
+* m_gammagamma_list
+  - computed/defined as: [m_gammagamma for each event passing all cuts]
+  - upstream chain: m_gammagamma
+  - collection definition: diphoton invariant mass values
+  - structure: single-constituent
+
+* pt_leading_photon_list
+  - computed/defined as: [leading_photon['pt'] for each event passing all cuts]
+  - upstream chain: leading_photon['pt']
+  - collection definition: leading photon pT values
+  - structure: single-constituent
+
+* pt_subleading_photon_list
+  - computed/defined as: [subleading_photon['pt'] for each event passing all cuts]
+  - upstream chain: subleading_photon['pt']
+  - collection definition: subleading photon pT values
+  - structure: single-constituent
+
+* pt_diphoton_list
+  - computed/defined as: [diphoton['pt'] for each event passing all cuts]
+  - upstream chain: diphoton['pt']
+  - collection definition: diphoton system pT values
+  - structure: composite-derived
+
+* eta_leading_photon_list
+  - computed/defined as: [leading_photon['eta'] for each event passing all cuts]
+  - upstream chain: leading_photon['eta']
+  - collection definition: leading photon pseudorapidity values
+  - structure: single-constituent
+
+* eta_subleading_photon_list
+  - computed/defined as: [subleading_photon['eta'] for each event passing all cuts]
+  - upstream chain: subleading_photon['eta']
+  - collection definition: subleading photon pseudorapidity values
+  - structure: single-constituent
+
+* dr_photons_list
+  - computed/defined as: [helper_delta_r(leading_photon, subleading_photon) for each event passing all cuts]
+  - upstream chain: helper_delta_r(leading_photon, subleading_photon)
+  - collection definition: ΔR between leading and subleading photons
+  - structure: multi-input
+
+* dphi_photons_list
+  - computed/defined as: [helper_delta_phi(leading_photon['phi'], subleading_photon['phi']) for each event passing all cuts]
+  - upstream chain: helper_delta_phi(leading_photon['phi'], subleading_photon['phi'])
+  - collection definition: Δφ between leading and subleading photons
+  - structure: multi-input
+
+* cos_theta_star_list
+  - computed/defined as: [abs(cos_theta_star_collins_soper(leading_photon, subleading_photon)) for each event passing all cuts]
+  - upstream chain: abs(cos_theta_star_collins_soper(leading_photon, subleading_photon))
+  - collection definition: |cos(theta*)| in Collins-Soper frame for diphoton system
+  - structure: composite-derived

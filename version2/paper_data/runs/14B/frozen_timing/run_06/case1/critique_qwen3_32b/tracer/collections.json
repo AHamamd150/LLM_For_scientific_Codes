@@ -1,0 +1,34 @@
+{
+  "bjets": {
+    "name": "bjets",
+    "definition": "[o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]",
+    "used_by": [
+      "Veto b-tagged jets"
+    ]
+  },
+  "lepton": {
+    "name": "lepton",
+    "definition": "leptons[0], met = helper_get_met(event)",
+    "used_by": [
+      "Transverse mass of lepton + MET",
+      "Delta phi between lepton and two-jet system",
+      "Plotted transverse mass",
+      "Plotted delta phi between lepton and MET",
+      "Plotted delta phi between lepton and two-jet system",
+      "CSV transverse mass",
+      "CSV delta phi between lepton and two-jet system"
+    ]
+  },
+  "jet1": {
+    "name": "jet1",
+    "definition": "helper_get_leading(jets), jet2 = helper_get_subleading(jets)",
+    "used_by": [
+      "Invariant mass of two leading jets",
+      "Delta R between two leading jets",
+      "Plotted invariant mass",
+      "Plotted delta R between jets",
+      "CSV dijet invariant mass",
+      "CSV delta R between jets"
+    ]
+  }
+}

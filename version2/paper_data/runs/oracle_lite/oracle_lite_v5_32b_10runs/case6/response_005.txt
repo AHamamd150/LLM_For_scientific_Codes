@@ -1,0 +1,56 @@
+[UNDERSPECIFICATION 1] Definition of "selected b-tagged jets" for delta R computation
+
+Original phrase:
+"Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R."
+
+Why this matters:
+The phrase "selected b-tagged jets" could refer to the full collection of b-tagged jets in the event (after pT and eta cuts), or it could refer to a subset of jets that survived earlier cuts (e.g. after the jet multiplicity and b-tag multiplicity cuts). This affects which jets are considered when computing the delta R to the lepton.
+
+Question to user:
+Are we computing the delta R between the lepton and the closest b-tagged jet among all jets in the event (after pT/eta cuts), or only among jets that passed all previous selection cuts (including jet multiplicity and b-tag multiplicity)?
+
+Golden axe:
+Compute delta R using all b-tagged jets in the event that passed pT and eta cuts.
+
+Silver axe:
+Compute delta R using only b-tagged jets that survived all previous selection cuts.
+
+Recommended default: Golden axe
+
+[UNDERSPECIFICATION 2] Definition of "selected non-b-tagged jets" for hadronic W candidate
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Why this matters:
+The phrase "selected non-b-tagged jets" could refer to all jets in the event that are not b-tagged (after pT and eta cuts), or it could refer to a subset of jets that survived all previous selection cuts (including jet multiplicity and b-tag multiplicity). This affects which jets are considered when building the hadronic W candidate.
+
+Question to user:
+Are we building the hadronic W candidate from the two leading jets in the full non-b-tagged collection (after pT/eta cuts), or only from the non-b-tagged jets that passed all previous selection cuts?
+
+Golden axe:
+Use all non-b-tagged jets in the event that passed pT and eta cuts.
+
+Silver axe:
+Use only non-b-tagged jets that survived all previous selection cuts.
+
+Recommended default: Silver axe
+
+[UNDERSPECIFICATION 3] Definition of "leading b-jet" for plots
+
+Original phrase:
+"Plot the pT of the leading b-jet" and "Plot the pT of the subleading b-jet"
+
+Why this matters:
+The definition of "leading b-jet" depends on whether we consider all b-tagged jets in the event (after pT/eta cuts) or only those that survived all previous selection cuts. This affects which jets are considered for the pT plots.
+
+Question to user:
+For the b-jet pT plots, should we consider all b-tagged jets in the event (after pT/eta cuts) or only those that passed all previous selection cuts when determining leading/subleading?
+
+Golden axe:
+Use all b-tagged jets in the event that passed pT and eta cuts.
+
+Silver axe:
+Use only b-tagged jets that survived all previous selection cuts.
+
+Recommended default: Golden axe

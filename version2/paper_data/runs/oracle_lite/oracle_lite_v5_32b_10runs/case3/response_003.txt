@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Diphoton system reuse in pT and mass
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT."
+
+Why this matters:
+The diphoton system is defined as the combination of the leading and subleading photon. However, it is not explicitly stated whether the diphoton pT is computed from the same four-momentum used to compute the invariant mass, or if a different method or definition is intended. This could lead to inconsistencies in the system definition if not clarified.
+
+Question to user:
+Are the diphoton pT and invariant mass computed from the same combined four-momentum of the leading and subleading photons?
+
+Golden axe:
+Compute both diphoton pT and invariant mass from the four-momentum sum of the leading and subleading photons.
+
+Silver axe:
+Compute diphoton invariant mass from the combined four-momentum, but compute diphoton pT from a different method or definition.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Leading and subleading photon definition timing
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection."
+
+Why this matters:
+It is not explicitly stated whether the leading and subleading photons are defined before or after the additional pT cuts on the leading (pT > 35 GeV) and subleading (pT > 25 GeV) photons. This affects which photons are considered in the diphoton system.
+
+Question to user:
+Are the leading and subleading photons defined before or after applying the pT cuts of 35 GeV and 25 GeV?
+
+Golden axe:
+Define leading and subleading photons after applying all photon pT and eta cuts, including the 35 GeV and 25 GeV pT thresholds.
+
+Silver axe:
+Define leading and subleading photons before applying the 35 GeV and 25 GeV pT thresholds, then apply the thresholds as separate cuts.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Diphoton system reuse in plots and CSV
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT."
+
+Why this matters:
+The diphoton system is defined for the purpose of computing the invariant mass and pT, but it is not explicitly stated whether the same system is used for all plots and CSV outputs, or if different combinations of photons might be used for different observables.
+
+Question to user:
+Is the same diphoton system (leading + subleading) used for all plots and CSV outputs, or are different photon pairs used for different observables?
+
+Golden axe:
+Use the same diphoton system (leading + subleading) for all plots and CSV outputs.
+
+Silver axe:
+Use the same diphoton system for invariant mass and pT, but consider different photon pairs for other observables like delta R or cos(theta*).
+
+Recommended default:
+Golden axe

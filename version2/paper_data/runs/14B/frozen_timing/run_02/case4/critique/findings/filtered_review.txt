@@ -1,0 +1,416 @@
+===== RUN 1 =====
+
+---- KEPT ----
+(none)
+
+---- DROPPED ----
+[DROPPED 1] drop: matched noise signal 'inclusive'
+◎ (A) composite violation
+
+SPEC:
+- Build z_obj from the two selected electrons using summed four-momentum.
+- Plot the pT of the three-lepton system built from the two selected electrons and the selected muon.
+
+CODE:
+- z_obj = sum_objects(e1, e2)
+- three_lepton = sum_objects(e1, e2, w_muon)
+
+Reason:
+The code correctly constructs z_obj and three_lepton using summed four-momentum from the required constituents.
+
+Evidence priority:
+〔L270〕, 〔L309〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of z_obj between 76 and 106 GeV.
+
+CODE:
+- if not (76 < z_mass < 106):
+
+Reason:
+The code uses a strict inequality (76 < z_mass < 106), but the SPEC does not specify whether the mass range is inclusive or exclusive.
+
+Evidence priority:
+〔L274-L275〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the three-lepton system built from the two selected electrons and the selected muon.
+
+CODE:
+- three_lepton_pt is computed from three_lepton['pt'], where three_lepton is constructed from e1, e2, and w_muon.
+
+Reason:
+The SPEC does not specify whether the three-lepton pT should be computed from the composite object or from the individual constituents. The code uses the composite object.
+
+Evidence priority:
+〔L309-L311〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the three-lepton system.
+
+CODE:
+- three_lepton_mass is computed from helper_invariant_mass(e1, e2, w_muon).
+
+Reason:
+The SPEC does not specify whether the three-lepton invariant mass should be computed from the composite object or from the individual constituents. The code uses the individual constituents.
+
+Evidence priority:
+〔L312〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot delta phi between z_obj and MET.
+
+CODE:
+- delta_phi_z_met is computed from helper_delta_phi(z_obj['phi'], met['phi']).
+
+Reason:
+The SPEC does not specify whether the delta phi should be computed from the composite object or from the individual constituents. The code uses the composite object.
+
+Evidence priority:
+〔L320〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot delta R between the two electrons forming z_obj.
+
+CODE:
+- delta_r_electrons is computed from helper_delta_r(e1, e2).
+
+Reason:
+The SPEC does not specify whether the delta R should be computed from the composite object or from the individual constituents. The code uses the individual constituents.
+
+Evidence priority:
+〔L323〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of z_obj.
+
+CODE:
+- z_pt is computed from z_obj['pt'].
+
+Reason:
+The SPEC does not specify whether the pT should be computed from the composite object or from the individual constituents. The code uses the composite object.
+
+Evidence priority:
+〔L314〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the W candidate muon.
+
+CODE:
+- w_muon_pt is computed from w_muon['pt'].
+
+Reason:
+The SPEC does not specify whether the pT should be computed from the composite object or from the individual constituents. The code uses the individual constituent.
+
+Evidence priority:
+〔L317〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the eta of the W candidate muon.
+
+CODE:
+- w_muon_eta is computed from w_muon['eta'].
+
+Reason:
+The SPEC does not specify whether the eta should be computed from the composite object or from the individual constituents. The code uses the individual constituent.
+
+Evidence priority:
+〔L326〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select transverse mass of W candidate muon + MET > 30 GeV.
+
+CODE:
+- w_trans_mass is computed from helper_transverse_mass(w_muon, met).
+
+Reason:
+The SPEC does not specify whether the transverse mass should be computed from the composite object or from the individual constituents. The code uses the individual constituents.
+
+Evidence priority:
+〔L291〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select invariant mass of z_obj between 76 and 106 GeV.
+
+CODE:
+- z_mass is computed from helper_invariant_mass(e1, e2).
+
+Reason:
+The SPEC does not specify whether the invariant mass should be computed from the composite object or from the individual constituents. The code uses the individual constituents.
+
+Evidence priority:
+〔L273〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Build z_obj from the two selected electrons using summed four-momentum.
+
+CODE:
+- z_obj is computed from sum_objects(e1, e2).
+
+Reason:
+The SPEC does not specify whether the z_obj should be built as a composite object or as a collection. The code uses a composite object.
+
+Evidence priority:
+〔L270〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Define the selected muon as the W candidate lepton.
+
+CODE:
+- w_muon is computed from muons[0].
+
+Reason:
+The SPEC does not specify whether the W candidate lepton should be selected from a filtered collection or from the broader input collection. The code uses the first muon in the filtered collection.
+
+Evidence priority:
+〔L285〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select electrons with pT > 15 GeV and |eta| < 2.5.
+
+CODE:
+- electrons is computed from [e for e in get_electrons(event) if e['pt'] > 15 and abs(e['eta']) < 2.5].
+
+Reason:
+The SPEC does not specify whether the electron selection should be applied to a filtered collection or to the broader input collection. The code uses a filtered collection.
+
+Evidence priority:
+〔L247-L248〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select muons with pT > 10 GeV and |eta| < 2.4.
+
+CODE:
+- muons is computed from [m for m in get_muons(event) if m['pt'] > 10 and abs(m['eta']) < 2.4].
+
+Reason:
+The SPEC does not specify whether the muon selection should be applied to a filtered collection or to the broader input collection. The code uses a filtered collection.
+
+Evidence priority:
+〔L253-L254〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Require exactly 2 selected electrons and exactly 1 selected muon.
+
+CODE:
+- electrons and muons are computed from filtered collections.
+
+Reason:
+The SPEC does not specify whether the selection should be applied to a filtered collection or to the broader input collection. The code uses a filtered collection.
+
+Evidence priority:
+〔L259-L260〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Require the two selected electrons to have opposite charge.
+
+CODE:
+- e1 and e2 are computed from filtered collections.
+
+Reason:
+The SPEC does not specify whether the selection should be applied to a filtered collection or to the broader input collection. The code uses a filtered collection.
+
+Evidence priority:
+〔L264-L266〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Require MET > 30 GeV.
+
+CODE:
+- met is computed from helper_get_met(event).
+
+Reason:
+The SPEC does not specify whether the MET should be selected from a filtered collection or from the broader input collection. The code uses the broader input collection.
+
+Evidence priority:
+〔L279-L281〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- The W candidate muon must have pT > 20 GeV.
+
+CODE:
+- w_muon is computed from muons[0].
+
+Reason:
+The SPEC does not specify whether the W candidate muon should be selected from a filtered collection or from the broader input collection. The code uses the first muon in the filtered collection.
+
+Evidence priority:
+〔L286-L287〕
+
+---
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the MET distribution.
+
+CODE:
+- met_values is computed from met['pt'].
+
+Reason:
+The SPEC does not specify whether the MET distribution should be computed from the composite object or from the individual constituents. The code uses the individual constituent.
+
+Evidence priority:
+〔L305〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot delta phi between z_obj and MET.
+
+CODE:
+- delta_phi_z_met is computed from helper_delta_phi(z_obj['phi'], met['phi']).
+
+Reason:
+The SPEC does not specify whether the delta phi should be computed from the composite object or from the individual constituents. The code uses the composite object for z_obj and the individual constituent for MET.
+
+Evidence priority:
+〔L320〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of z_obj between 76 and 106 GeV.
+
+CODE:
+- z_mass is computed from helper_invariant_mass(e1, e2).
+
+Reason:
+The SPEC does not specify whether the invariant mass should be computed from the composite object or from the individual constituents. The code uses the individual constituents.
+
+Evidence priority:
+〔L273〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of z_obj.
+
+CODE:
+- z_pt is computed from z_obj['pt'].
+
+Reason:
+The SPEC does not specify whether the pT should be computed from the composite object or from the individual constituents. The code uses the composite object.
+
+Evidence priority:
+〔L314〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the transverse mass of the W candidate lepton + MET.
+
+CODE:
+- w_trans_mass is computed from helper_transverse_mass(w_muon, met).
+
+Reason:
+The SPEC does not specify whether the transverse mass should be computed from the composite object or from the individual constituents. The code uses the individual constituents.
+
+Evidence priority:
+〔L291〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the W candidate muon.
+
+CODE:
+- w_muon_pt is computed from w_muon['pt'].
+
+Reason:
+The SPEC does not specify whether the pT should be computed from the composite object or from the individual constituents. The code uses the individual constituent.
+
+Evidence priority:
+〔L317〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the eta of the W candidate muon.
+
+CODE:
+- w_muon_eta is computed from w_muon['eta'].
+
+Reason:
+The SPEC does not specify whether the eta should be computed from the composite object or from the individual constituents. The code uses the individual constituent.
+
+Evidence priority:
+〔L326〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot delta R between the two electrons forming z_obj.
+
+CODE:
+- delta_r_electrons is computed from helper_delta_r(e1, e2).
+
+Reason:
+The SPEC does not specify whether the delta R should be computed from the composite object or from the individual constituents. The code uses the individual constituents.
+
+Evidence priority:
+〔L323〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the three-lepton system.
+
+CODE:
+- three_lepton_mass is computed from helper_invariant_mass(e1, e2, w_muon).
+
+Reason:
+The SPEC does not specify whether the invariant mass should be computed from the composite object or from the individual constituents. The code uses the individual constituents.
+
+Evidence priority:
+〔L312〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the three-lepton system built from the two selected electrons and the selected muon.
+
+CODE:
+- three_lepton_pt is computed from three_lepton['pt'], where three_lepton is constructed from e1, e2, and w_muon.
+
+Reason:
+The SPEC does not specify whether the pT should be computed from the composite object or from the individual constituents. The code uses the composite object.
+
+Evidence priority:
+〔L309-L311〕

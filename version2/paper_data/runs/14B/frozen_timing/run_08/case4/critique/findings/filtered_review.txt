@@ -1,0 +1,250 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+◎ (A) composite violation
+
+SPEC:
+- Build z_obj from the two selected electrons using summed four-momentum.
+
+CODE:
+- z_obj = sum_objects(e1, e2)
+
+Reason:
+The code correctly constructs z_obj as a composite object from the two selected electrons using summed four-momentum.
+
+Evidence priority:
+〔L265〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of z_obj between 76 and 106 GeV.
+
+CODE:
+- z_mass = helper_invariant_mass(e1, e2)
+
+Reason:
+The code computes the invariant mass of z_obj using the helper_invariant_mass function with e1 and e2 as inputs, not the z_obj composite object itself. This is a definition mismatch because the SPEC explicitly refers to the invariant mass of z_obj, which should be computed from the composite object, not from the original constituents.
+
+Evidence priority:
+〔L268〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of z_obj
+
+CODE:
+- z_pt_list.append(z_obj['pt'])
+
+Reason:
+The code correctly uses the pT of the z_obj composite object, which is derived from the summed four-momentum of the two selected electrons.
+
+Evidence priority:
+〔L310〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the three-lepton system built from the two selected electrons and the selected muon
+
+CODE:
+- three_lepton = sum_objects(e1, e2, w_muon)
+
+Reason:
+The code correctly constructs the three-lepton system as a composite object from the two selected electrons and the selected muon using summed four-momentum.
+
+Evidence priority:
+〔L306〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of the three-lepton system
+
+CODE:
+- three_lepton_mass = helper_invariant_mass(e1, e2, w_muon)
+
+Reason:
+The code computes the invariant mass of the three-lepton system using the helper_invariant_mass function with e1, e2, and w_muon as inputs, not the three_lepton composite object itself. This is a definition mismatch because the SPEC explicitly refers to the invariant mass of the three-lepton system, which should be computed from the composite object, not from the original constituents.
+
+Evidence priority:
+〔L320〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between z_obj and MET
+
+CODE:
+- delta_phi_z_met = helper_delta_phi(z_obj['phi'], met['phi'])
+
+Reason:
+The code correctly uses the phi of the z_obj composite object and the MET object to compute the delta phi.
+
+Evidence priority:
+〔L316〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta R between the two electrons forming z_obj
+
+CODE:
+- delta_r_electrons = helper_delta_r(e1, e2)
+
+Reason:
+The code correctly uses the two electrons forming z_obj to compute the delta R.
+
+Evidence priority:
+〔L324〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the transverse mass of the W candidate lepton + MET
+
+CODE:
+- w_transverse_mass = helper_transverse_mass(w_muon, met)
+
+Reason:
+The code correctly uses the W candidate muon and MET to compute the transverse mass.
+
+Evidence priority:
+〔L288〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- met_list.append(met['pt'])
+
+Reason:
+The code correctly uses the MET object to compute the MET distribution.
+
+Evidence priority:
+〔L303〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the eta of the W candidate muon
+
+CODE:
+- w_muon_eta_list.append(w_muon['eta'])
+
+Reason:
+The code correctly uses the eta of the W candidate muon.
+
+Evidence priority:
+〔L328〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+CODE:
+- The code applies the cuts sequentially and skips the event when a cut is not satisfied.
+
+Reason:
+The code correctly applies the cuts sequentially and skips the event when a cut is not satisfied.
+
+Evidence priority:
+〔L243, L250, L255, L261, L270, L280, L284, L290〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Increment each cutflow counter immediately after its cut is passed.
+
+CODE:
+- The code increments each cutflow counter immediately after its cut is passed.
+
+Reason:
+The code correctly increments each cutflow counter immediately after its cut is passed.
+
+Evidence priority:
+〔L245, L251, L256, L262, L271, L281, L285, L291, L294〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(filename)
+
+Reason:
+The code correctly saves the plots in png format.
+
+Evidence priority:
+〔L344-L353〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- The code prints the cutflow summary after the event loop.
+
+Reason:
+The code correctly prints the cutflow summary after the event loop.
+
+Evidence priority:
+〔L331-L332〕
+
+---
+
+[KEPT 2] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of z_obj between 76 and 106 GeV.
+
+CODE:
+- z_mass = helper_invariant_mass(e1, e2)
+
+Reason:
+The code computes the invariant mass of z_obj using the helper_invariant_mass function with e1 and e2 as inputs, not the z_obj composite object itself. This is a definition mismatch because the SPEC explicitly refers to the invariant mass of z_obj, which should be computed from the composite object, not from the original constituents.
+
+Evidence priority:
+〔L268〕
+
+[KEPT 3] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of z_obj in range 60 to 120 GeV
+
+CODE:
+- z_mass_list.append(z_mass)
+
+Reason:
+The code collects the invariant mass of z_obj using the helper_invariant_mass function with e1 and e2 as inputs, not the z_obj composite object itself. This is a definition mismatch because the SPEC explicitly refers to the invariant mass of z_obj, which should be computed from the composite object, not from the original constituents.
+
+Evidence priority:
+〔L297〕
+
+[KEPT 4] keep: no obvious noise signal
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of the three-lepton system
+
+CODE:
+- three_lepton_mass_list.append(three_lepton_mass)
+
+Reason:
+The code computes the invariant mass of the three-lepton system using the helper_invariant_mass function with e1, e2, and w_muon as inputs, not the three_lepton composite object itself. This is a definition mismatch because the SPEC explicitly refers to the invariant mass of the three-lepton system, which should be computed from the composite object, not from the original constituents.
+
+Evidence priority:
+〔L321〕
+
+
+---- DROPPED ----
+(none)

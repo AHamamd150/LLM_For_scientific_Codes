@@ -1,0 +1,25 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+1,4,requirement,R1,Select electrons with pT > 25 GeV and |eta| < 2.5,yes,yes,yes,no,"Electron selection is implemented in the loop at lines 288-295, with the stated thresholds at lines 292-293."
+1,4,requirement,R2,Select muons with pT > 20 GeV and |eta| < 2.4,yes,yes,yes,no,"Muon selection is implemented at lines 288-295, specifically lines 294-295."
+1,4,requirement,R3,Use selected electrons and selected muons to define selected leptons,yes,yes,yes,no,The tracer correctly identifies electrons and muons as inputs to the selected lepton collection at lines 288-295.
+1,4,requirement,R4,Require exactly 1 selected lepton,yes,yes,yes,no,The condition len(leptons) != 1 with continue is at lines 298-301.
+1,4,requirement,R5,Require at least 2 jets with pT > 30 GeV and |eta| < 2.5,yes,yes,yes,no,Jet filtering and multiplicity are correctly traced to lines 303-308.
+1,4,requirement,R6,Select MET > 30 GeV,yes,no,yes,yes,"The tracer states met['pt'] > 30, but the code rejects only met['pt'] < 30 at lines 315-319, thereby accepting equality at 30."
+1,4,requirement,R7,Veto events with b-tagged jets,yes,yes,partial,no,"The veto is correctly located at lines 310-313 and uses n_bjets. However, the trace does not emphasize that the implementation counts b-jets with pT > 30 and |eta| < 2.5 via lines 229-232."
+1,4,requirement,R8,Select transverse mass of lepton + MET between 40 and 120 GeV,yes,yes,yes,no,The helper call and range test are correctly traced at lines 321-326.
+1,4,requirement,R9,Select invariant mass of the two leading jets between 60 and 100 GeV,yes,yes,yes,no,"Leading/subleading jet construction, invariant-mass calculation, and range test are at lines 328-336."
+1,4,requirement,R10,Select delta R between the two leading jets < 3.0,yes,yes,yes,no,The delta-R calculation and veto condition are correctly traced to lines 338-342.
+1,4,requirement,R11,Plot transverse mass in the range 30 to 150 GeV,partial,yes,yes,no,"The tracer identifies mt_list and its dependency, but does not cite the actual histogram and range=(30, 150) at lines 384-390."
+1,4,requirement,R12,Plot dijet invariant mass in the range 40 to 120 GeV,partial,yes,yes,no,"The value collection is traced, but the histogram range and plotting operation at lines 392-397 are omitted."
+1,4,requirement,R13,Plot the MET distribution,partial,yes,yes,no,"met_list is correctly traced, but the actual histogram call at lines 399-404 is not cited."
+1,4,requirement,R14,Plot the pT of the lepton,partial,yes,yes,no,"The lepton pT collection is correctly identified, but the plotting operation at lines 406-411 is omitted."
+1,4,requirement,R15,Plot the pT of the leading jet,partial,yes,yes,no,"The data source is correct, but the histogram call at lines 413-418 is not represented."
+1,4,requirement,R16,Plot the pT of the subleading jet,partial,yes,yes,no,"The data source is correct, but the histogram call at lines 420-425 is not represented."
+1,4,requirement,R17,Plot delta R between the two leading jets,partial,yes,yes,no,"dr_list and its dependency are correct, but the histogram operation at lines 427-432 is omitted."
+1,4,requirement,R18,Plot delta phi between the lepton and MET,partial,yes,yes,no,"The value calculation is correctly traced, but the histogram call at lines 434-439 is not cited."
+1,4,requirement,R19,Plot the eta of the lepton,partial,yes,yes,no,"The lepton eta collection is correct, but the plotting operation at lines 441-446 is omitted."
+1,4,requirement,R20,Plot delta phi between the lepton and the two-jet system,partial,yes,yes,no,"The calculation and composite dependency are correct, but the histogram operation at lines 448-453 is omitted."
+1,4,requirement,R21,Apply the cuts sequentially and skip the event immediately when a cut is not satisfied,partial,uncertain,uncertain,no,"The tracer lists individual continue-based cuts, but does not trace their ordering. The code places the b-jet veto before MET, whereas the task-card order places MET before the b-jet veto (lines 310-319)."
+1,4,requirement,R22,"After the event loop, print one cutflow summary with the number of events after each selection step",yes,yes,yes,no,The cutflow dictionary and post-loop printing are correctly cited at lines 260-270 and 380-382.
+1,4,requirement,R23,Save the plots in PNG format,yes,yes,yes,no,The tracer identifies the plot outputs; savefig calls with .png filenames are at lines 384-454.
+1,4,requirement,R24,Save the specified six variables in a CSV file for MLP analysis,partial,yes,yes,no,"All six CSV values and their dependencies are correctly traced at lines 368-375, but the CSV filename and write operation at lines 455-459 are not cited."

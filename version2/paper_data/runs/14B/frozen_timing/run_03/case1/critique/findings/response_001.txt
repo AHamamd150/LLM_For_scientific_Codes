@@ -1,0 +1,16 @@
+◎ correct implementation
+
+SPEC:
+none
+
+CODE:
+none
+
+Reason:
+The code correctly implements all the selection cuts, plotting requirements, and output structure as specified in the SPEC. All quantities are computed using the appropriate helper functions and selections, and the cutflow is properly tracked and printed.
+
+Evidence priority:
+The tracer output confirms that all SPEC items are implemented correctly with the appropriate upstream chains.
+
+Generator bias:
+none

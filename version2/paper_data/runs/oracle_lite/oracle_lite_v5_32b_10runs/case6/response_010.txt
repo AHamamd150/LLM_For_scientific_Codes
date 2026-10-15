@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Definition of "selected b-tagged jets" for delta R computation
+
+Original phrase:
+"Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R."
+
+Why this matters:
+The phrase is ambiguous about whether the "selected b-tagged jets" refers to all jets that are both b-tagged and pass the jet selection (pT > 30 GeV, |eta| < 2.5), or only those that survive all prior selection steps including the "at least 2 b-tagged jets" requirement.
+
+Question to user:
+Are we to consider all b-tagged jets that pass the jet pT and eta cuts, or only those that survive the full selection up to and including the "at least 2 b-tagged jets" requirement when computing the closest delta R to the lepton?
+
+Golden axe:
+Consider all b-tagged jets that pass the jet pT and eta cuts.
+
+Silver axe:
+Consider only the b-tagged jets that survive the full selection up to that point.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Definition of "leading selected non-b-tagged jets" for hadronic W candidate
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Why this matters:
+It is unclear whether "selected non-b-tagged jets" refers to jets that pass the jet pT and eta cuts and are non-b-tagged, or whether it refers to jets that survive all prior selection steps including the "at least 2 b-tagged jets" requirement.
+
+Question to user:
+Are the "selected non-b-tagged jets" defined only by the jet pT and eta cuts, or must they also survive all prior selection steps including the b-jet multiplicity requirement?
+
+Golden axe:
+Use jets that pass the jet pT and eta cuts and are non-b-tagged.
+
+Silver axe:
+Use jets that survive all prior selection steps and are non-b-tagged.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Reuse of hadronic W and top candidates
+
+Original phrase:
+"Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate."
+
+Why this matters:
+It is unclear whether the hadronic W candidate and hadronic top candidate defined here are meant to be used in subsequent selections or only for the purpose of computing their invariant masses.
+
+Question to user:
+Are the hadronic W and top candidates defined here intended to be used in any subsequent selections or only for computing their invariant mass?
+
+Golden axe:
+Use the hadronic W and top candidates only for computing their invariant masses.
+
+Silver axe:
+Use the hadronic W and top candidates as objects for further selections.
+
+Recommended default:
+Golden axe

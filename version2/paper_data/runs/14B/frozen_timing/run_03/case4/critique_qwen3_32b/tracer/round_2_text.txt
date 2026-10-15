@@ -1,0 +1,13 @@
+
+
+* delta_phi_z_met (delta phi between z_obj and MET)
+  - computed/defined as: helper_delta_phi(z_obj['phi'], met['phi'])
+  - upstream chain: z_obj['phi'], met['phi'] -> helper_delta_phi(z_obj['phi'], met['phi'])
+  - collection definition: z_obj from sum_objects(e1, e2), met from helper_get_met(event)
+  - structure: composite-derived
+
+* delta_r_electrons (delta R between the two electrons forming z_obj)
+  - computed/defined as: helper_delta_r(e1, e2)
+  - upstream chain: e1, e2 -> helper_delta_r(e1, e2)
+  - collection definition: e1, e2 from [e for e in get_electrons(event) if e['pt'] > 15 and abs(e['eta']) < 2.5]
+  - structure: composite-derived

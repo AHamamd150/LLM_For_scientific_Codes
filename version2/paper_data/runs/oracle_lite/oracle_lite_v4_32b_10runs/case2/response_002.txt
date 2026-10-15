@@ -1,0 +1,87 @@
+[CANDIDATE 1] Lepton definition and selection
+
+Original phrase:
+"Require exactly one lepton (electron or muon)"
+
+Unresolved choice:
+It is unclear whether the lepton is defined as the highest-pT electron or muon, or if there is a specific selection or ordering to be applied before counting.
+
+Why this may matter:
+Different interpretations could lead to different lepton candidates being selected, affecting subsequent cuts and plots involving the lepton, such as the transverse mass and delta R with b-jets.
+
+[CANDIDATE 2] Jet selection for hadronic W candidate
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Unresolved choice:
+It is unclear whether the "leading non-b-tagged jets" are determined before or after applying the jet pT and eta cuts, and whether they are selected from all jets or only from the light jets collection.
+
+Why this may matter:
+If the jets are selected after cuts, the hadronic W candidate will be based on a different jet collection than if the jets are selected before applying the cuts, potentially changing the invariant mass distribution.
+
+[CANDIDATE 3] Jet selection for b-jets
+
+Original phrase:
+"Require at least 2 b-tagged jets"
+
+Unresolved choice:
+It is unclear whether the b-tagged jets are required to pass the same pT and eta cuts as the jets in the "at least 4 jets" requirement, or if they are selected independently.
+
+Why this may matter:
+If the b-tagged jets are not required to pass the same cuts, the b-jet collection may include jets that are not used in other parts of the analysis, potentially leading to inconsistencies in the top candidate construction.
+
+[CANDIDATE 4] Leading and subleading b-jets for plots
+
+Original phrase:
+"Plot the pT of the leading b-jet" and "Plot the pT of the subleading b-jet"
+
+Unresolved choice:
+It is unclear whether the leading and subleading b-jets are defined based on their pT within the b-tagged jet collection or if they are selected from all jets in the event.
+
+Why this may matter:
+If the leading and subleading b-jets are not defined consistently with the b-jet selection used in the cuts, the plots may not reflect the same b-jets used in the analysis, leading to confusion or misinterpretation.
+
+[CANDIDATE 5] Hadronic top candidate construction
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Unresolved choice:
+It is unclear whether the "leading b-jet" is defined based on the b-tagged jet collection or if it is selected from all jets in the event.
+
+Why this may matter:
+If the leading b-jet is not defined consistently with the b-jet selection used in the cuts, the hadronic top candidate may not be built from the same b-jets used in the analysis, potentially affecting the invariant mass distribution.
+
+[CANDIDATE 6] MET and transverse mass computation
+
+Original phrase:
+"Select MET > 20 GeV" and "Select the transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)"
+
+Unresolved choice:
+It is unclear whether the MET is computed as a vector sum or scalar sum of the transverse momenta, and whether the transverse mass is computed using the standard formula or a modified version.
+
+Why this may matter:
+Different methods of computing MET and transverse mass can lead to different values, which could affect the selection efficiency and the shape of the transverse mass distribution.
+
+[CANDIDATE 7] HT computation
+
+Original phrase:
+"Plot the HT distribution (scalar sum of all jet pT)"
+
+Unresolved choice:
+It is unclear whether the HT is computed from all jets in the event or only from the jets that pass the pT and eta cuts.
+
+Why this may matter:
+If the HT is computed from all jets, it may include jets that are not used in the analysis, potentially leading to a different interpretation of the scalar sum compared to the jet selection used in the cuts.
+
+[CANDIDATE 8] Jet multiplicity and b-jet multiplicity
+
+Original phrase:
+"Require at least 4 jets with pT > 30 GeV and |eta| < 2.5" and "Require at least 2 b-tagged jets"
+
+Unresolved choice:
+It is unclear whether the jet and b-jet multiplicities are computed before or after applying the cuts on the lepton and MET.
+
+Why this may matter:
+If the multiplicities are computed before the cuts, the jet and b-jet counts may include jets that are later vetoed by other cuts, potentially leading to an overcount of jets or b-jets in the analysis.

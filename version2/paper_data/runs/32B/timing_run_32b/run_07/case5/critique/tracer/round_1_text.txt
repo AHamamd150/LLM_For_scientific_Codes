@@ -1,0 +1,74 @@
+
+
+SECTION 1: SPEC BULLET ANALYSIS
+
+✅ * Select taus with pT > 20 GeV and |eta| < 2.3; computed as: [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]; upstream chain: get_taus(event) -> [o for o in event['objects'] if o['type'] == 3]; 〔L262-L264〕
+✅ * Select jets with pT > 30 GeV and |eta| < 4.7; computed as: [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]; upstream chain: get_jets(event) -> [o for o in event['objects'] if o['type'] == 4]; 〔L274-L276〕
+✅ * Require at least 2 taus; computed as: len(taus) >= 2; upstream chain: taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]; 〔L263-L265〕
+✅ * Define the leading tau and subleading tau from the selected taus.; computed as: helper_get_leading(taus), helper_get_subleading(taus); upstream chain: helper_get_leading -> max(particles, key=lambda p: p['pt']), helper_get_subleading -> sorted(particles, key=lambda p: p['pt'], reverse=True)[1]; 〔L268-L273〕
+✅ * Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.; computed as: sum_objects(tau1, tau2); upstream chain: sum_objects -> obj_from_four_momentum(E_tot, px_tot, py_tot, pz_tot); 〔L302-L304〕
+✅ * Require at least 2 jets (VBF topology); computed as: len(jets) >= 2; upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]; 〔L275-L278〕
+✅ * Define the leading jet and subleading jet from the selected jets.; computed as: helper_get_leading(jets), helper_get_subleading(jets); upstream chain: helper_get_leading -> max(particles, key=lambda p: p['pt']), helper_get_subleading -> sorted(particles, key=lambda p: p['pt'], reverse=True)[1]; 〔L280-L284〕
+✅ * Define dijet_obj from the summed momentum of the leading jet and subleading jet.; computed as: sum_objects(jet1, jet2); upstream chain: sum_objects -> obj_from_four_momentum(E_tot, px_tot, py_tot, pz_tot); 〔L291-L293〕
+✅ * Require opposite-sign tau pair; computed as: opposite_sign(tau1, tau2); upstream chain: opposite_sign -> obj1['charge'] * obj2['charge'] < 0; 〔L286-L289〕
+✅ * Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV; computed as: dijet_obj['mass'] > 400; upstream chain: dijet_obj = sum_objects(jet1, jet2); 〔L292-L295〕
+✅ * Select |delta eta| between the two leading jets > 2.5; computed as: abs_delta_eta(jet1, jet2) > 2.5; upstream chain: abs_delta_eta -> abs(obj1['eta'] - obj2['eta']); 〔L297-L300〕
+✅ * Select ditau invariant mass between 60 and 150 GeV; computed as: 60 < ditau_obj['mass'] < 150; upstream chain: ditau_obj = sum_objects(tau1, tau2); 〔L302-L306〕
+✅ * Veto events with b-tagged jets; computed as: not get_bjets(event); upstream chain: get_bjets(event) -> [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]; 〔L308-L311〕
+✅ * Plot the ditau invariant mass in the range 50 to 160 GeV; computed as: ditau_obj['mass']; upstream chain: ditau_obj = sum_objects(tau1, tau2); 〔L313, L268-L273, L302-L304〕
+✅ * Plot the dijet invariant mass (m_jj) in the range 200 to 2000 GeV; computed as: dijet_obj['mass']; upstream chain: dijet_obj = sum_objects(jet1, jet2); 〔L314, L280-L284, L291-L293〕
+✅ * Plot delta eta between the two leading jets; computed as: abs_delta_eta(jet1, jet2); upstream chain: abs_delta_eta -> abs(obj1['eta'] - obj2['eta']); 〔L315, L280-L284, L297-L300〕
+✅ * Plot the pT of the leading tau; computed as: tau1['pt']; upstream chain: tau1 = helper_get_leading(taus); 〔L316, L268-L273〕
+✅ * Plot the pT of the subleading tau; computed as: tau2['pt']; upstream chain: tau2 = helper_get_subleading(taus); 〔L317, L268-L273〕
+✅ * Plot the pT of the leading jet; computed as: jet1['pt']; upstream chain: jet1 = helper_get_leading(jets); 〔L318, L280-L284〕
+✅ * Plot the pT of the subleading jet; computed as: jet2['pt']; upstream chain: jet2 = helper_get_subleading(jets); 〔L319, L280-L284〕
+✅ * Plot delta R between the two taus; computed as: helper_delta_r(tau1, tau2); upstream chain: helper_delta_r -> math.sqrt(deta**2 + dphi**2); 〔L320, L268-L273, L110-L114〕
+✅ * Plot delta phi between the ditau system and the dijet system; computed as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi']); upstream chain: helper_delta_phi -> phi1 - phi2 normalized to [-π, π]; 〔L321, L302-L304, L291-L293, L100-L107〕
+✅ * Plot the centrality of the ditau system relative to the two jets; computed as: centrality_between_jets(ditau_obj, jet1, jet2); upstream chain: centrality_between_jets -> min(abs(dphi1), abs(dphi2)) / math.pi; 〔L322, L302-L304, L280-L284, L216-L223〕
+✅ * After the event loop, print one cutflow summary with the number of events after each selection step; computed as: cutflow dictionary with counters; upstream chain: cutflow = {"initial": len(all_events), "2_taus": 0, ...}; 〔L396-L400, L235-L244, L260-L311〕
+✅ * Save the plots in png format; computed as: plt.savefig("filename.png"); upstream chain: plt.figure(); plt.hist(...); plt.savefig(...); plt.close(); 〔L325-L394, L326-L331, L333-L338, L340-L345, L347-L353, L354-L359, L360-L366, L367-L373, L374-L380, L381-L387, L388-L394〕
+
+SECTION 2: DEFINITION SUMMARY
+
+* [CHECK CAREFULLY] DEFINITION SUMMARY
+
+* taus
+  - computed/defined as: [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]
+  - upstream chain: get_taus(event) -> [o for o in event['objects'] if o['type'] == 3]
+  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3
+  - structure: single-constituent
+
+* jets
+  - computed/defined as: [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - upstream chain: get_jets(event) -> [o for o in event['objects'] if o['type'] == 4]
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7
+  - structure: single-constituent
+
+* tau1
+  - computed/defined as: helper_get_leading(taus)
+  - upstream chain: helper_get_leading -> max(particles, key=lambda p: p['pt'])
+  - collection definition: taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]
+  - structure: single-constituent
+
+* tau2
+  - computed/defined as: helper_get_subleading(taus)
+  - upstream chain: helper_get_subleading -> sorted(particles, key=lambda p: p['pt'], reverse=True)[1]
+  - collection definition: taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]
+  - structure: single-constituent
+
+* ditau_obj
+  - computed/defined as: sum_objects(tau1, tau2)
+  - upstream chain: sum_objects -> obj_from_four_momentum(E_tot, px_tot, py_tot, pz_tot)
+  - collection definition: tau1 = helper_get_leading(taus), tau2 = helper_get_subleading(taus)
+  - structure: composite-derived
+
+* jet1
+  - computed/defined as: helper_get_leading(jets)
+  - upstream chain: helper_get_leading -> max(particles, key=lambda p: p['pt'])
+  - collection definition: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+  - structure: single-constituent
+
+* jet2
+  - computed/defined as: helper_get_subleading(jets)
+  - upstream chain: helper_get_subleading -> sorted(particles, key=lambda p: p['pt'], reverse=True)[1]
+  -

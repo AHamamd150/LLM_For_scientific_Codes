@@ -1,0 +1,189 @@
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+- Select muons with pT > 20 GeV and |eta| < 2.4
+
+CODE:
+- l['pt'] > 25 and abs(l['eta']) < 2.5
+- l['pt'] > 20 and abs(l['eta']) < 2.4
+
+Reason:
+The code uses inclusive cuts for pT and |eta|, but the SPEC does not explicitly specify whether the cuts are inclusive or exclusive. However, the code uses strict inequality (e.g., `> 25` and `< 2.5`), which may not match the intended behavior if the SPEC expects inclusive cuts (e.g., `>= 25` and `<= 2.5`). This is a definition mismatch if the SPEC implicitly expects inclusive cuts.
+
+Evidence priority:
+L292-L293, L294-L296
+
+Generator bias:
+none
+
+---
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Require at least 2 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the jet selection should be applied to all jets or only to non-b-tagged jets. The code uses the full jet collection, including b-tagged jets, but the veto on b-tagged jets is applied in a separate step. This is a specification ambiguity because the SPEC does not clarify whether the jet selection should exclude b-tagged jets at this stage.
+
+Evidence priority:
+L307-L310
+
+Generator bias:
+none
+
+---
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Select delta phi between the lepton and the two-jet system
+
+CODE:
+- helper_delta_phi(lepton['phi'], jet_system['phi'])
+
+Reason:
+The SPEC does not specify whether the two-jet system should be constructed from the selected jets (pT > 30 GeV and |eta| < 2.5) or from the full jet collection. The code uses the selected jets, but this is not explicitly required by the SPEC. This is a specification ambiguity.
+
+Evidence priority:
+L365-L367
+
+Generator bias:
+none
+
+---
+
+⚠️ (A) composite violation
+
+SPEC:
+- Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)
+
+CODE:
+- helper_invariant_mass(jet1, jet2)
+
+Reason:
+The code computes the invariant mass of the two leading jets, which is correct. However, the SPEC refers to the W hadronic candidate, which should be a system-level object. The code correctly constructs the invariant mass from the two leading jets, so this is not a violation. No issue here.
+
+Evidence priority:
+L337-L340
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select transverse mass of lepton + MET between 40 and 120 GeV (W leptonic candidate)
+
+CODE:
+- 40 < mt < 120
+
+Reason:
+The code uses strict inequality for the transverse mass cut. If the SPEC implicitly expects inclusive bounds (e.g., 40 ≤ mt ≤ 120), this is a definition mismatch. The SPEC does not explicitly clarify this, but the code's strict inequality may exclude valid W leptonic candidates.
+
+Evidence priority:
+L328-L330
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select delta R between the two leading jets < 3.0
+
+CODE:
+- dr < 3.0
+
+Reason:
+The code uses strict inequality for the delta R cut. If the SPEC implicitly expects inclusive bounds (e.g., dr ≤ 3.0), this is a definition mismatch. The SPEC does not explicitly clarify this, but the code's strict inequality may exclude valid jet pairs.
+
+Evidence priority:
+L343-L345
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic) in the range 30 to 150 GeV
+
+CODE:
+- plt.hist(mt_list, bins=40, range=(30, 150), density=True)
+
+Reason:
+The code uses the `range=(30, 150)` parameter, which in matplotlib is exclusive of the upper bound. If the SPEC expects the upper bound to be inclusive (i.e., 150 GeV included), this is a definition mismatch.
+
+Evidence priority:
+L390-L394
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of the two leading jets (W hadronic) in the range 40 to 120 GeV
+
+CODE:
+- plt.hist(mjj_list, bins=40, range=(40, 120), density=True)
+
+Reason:
+Same as above: the `range=(40, 120)` in matplotlib is exclusive of the upper bound. If the SPEC expects the upper bound to be inclusive, this is a definition mismatch.
+
+Evidence priority:
+L396-L400
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- plt.hist(met_list, bins=40, range=(0, 200), density=True)
+
+Reason:
+The code uses a fixed range of (0, 200) for the MET distribution, but the SPEC does not specify the range. This is a definition mismatch if the intended range is different.
+
+Evidence priority:
+L403-L407
+
+Generator bias:
+none
+
+---
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Save the following in a CSV file for MLP analysis: 6- Delta phi between lepton and the two-jet system
+
+CODE:
+- helper_delta_phi(lepton['phi'], jet_system['phi'])
+
+Reason:
+The SPEC does not specify whether the two-jet system should be constructed from the selected jets or from the full jet collection. The code uses the selected jets, but this is not explicitly required by the SPEC. This is a specification ambiguity.
+
+Evidence priority:
+L365-L367
+
+Generator bias:
+none

@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] Definition of "selected jets" for dijet invariant mass and veto
+
+Original phrase:
+"Require at least 2 jets with pT > 30 GeV and |eta| < 2.5"
+"Veto events with b-tagged jets"
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+
+Why this matters:
+The phrase "b-tagged jets" could refer to jets from the full event or only to the selected jets (pT > 30 GeV, |eta| < 2.5). Similarly, the two leading jets for the invariant mass could be from the full jet collection or only from the selected jets. This choice affects which jets are considered for vetoing and for building the W hadronic candidate.
+
+Question to user:
+Are the b-tagged jets to be vetoed from the full event, or only from the selected jets (pT > 30 GeV, |eta| < 2.5)? Are the two leading jets for the invariant mass to be selected from the full jet collection or only from the selected jets?
+
+Golden axe:
+Apply the b-tag veto and leading jet selection to the selected jets (pT > 30 GeV, |eta| < 2.5).
+
+Silver axe:
+Apply the b-tag veto to all jets in the event, and select the leading jets from the full jet collection.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Definition of "two leading jets" for delta R and invariant mass
+
+Original phrase:
+"Select delta R between the two leading jets < 3.0"
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+
+Why this matters:
+The phrase "two leading jets" could be defined before or after the jet pT and eta cuts. If defined before, the leading jets might include jets that fail the pT or eta requirements. If defined after, the leading jets are from the selected jets only. This affects the jet pair used for both the delta R and invariant mass cuts.
+
+Question to user:
+Are the two leading jets for the delta R and invariant mass cuts to be selected from the full jet collection or only from the jets that pass the pT > 30 GeV and |eta| < 2.5 cuts?
+
+Golden axe:
+Define the two leading jets from the selected jets (pT > 30 GeV, |eta| < 2.5).
+
+Silver axe:
+Define the two leading jets from the full jet collection before applying the jet cuts.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Definition of "lepton" for delta phi with two-jet system
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+"Save the following in a CSV file for MLP analysis: 6- Delta phi between lepton and the two-jet system"
+
+Why this matters:
+The phrase "lepton" could refer to the selected lepton (after all cuts) or to the original lepton (before any cuts). Since the delta phi is computed with the two-jet system, it is important to know whether the lepton is the final selected one or a pre-cut object.
+
+Question to user:
+Is the lepton used in the delta phi with the two-jet system the final selected lepton (after all cuts), or is it the original lepton before any cuts?
+
+Golden axe:
+Use the final selected lepton (after all cuts) for the delta phi with the two-jet system.
+
+Silver axe:
+Use the original lepton (before any cuts) for the delta phi with the two-jet system.
+
+Recommended default:
+Golden axe

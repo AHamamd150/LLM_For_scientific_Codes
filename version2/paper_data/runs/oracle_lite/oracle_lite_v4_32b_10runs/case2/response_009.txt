@@ -1,0 +1,89 @@
+[CANDIDATE 1] Lepton definition and selection
+
+Original phrase:
+"Require exactly one lepton (electron or muon)"
+
+Unresolved choice:
+It is not clear whether "exactly one lepton" refers to the total number of electrons and muons combined after applying the pT and |eta| cuts, or whether it refers to the number of lepton candidates after all cuts including b-tagging and jet requirements.
+
+Why this may matter:
+If the lepton count is applied before or after other cuts (e.g., jet selection or b-tagging), it could affect which events are kept or rejected, and thus the final analysis results.
+
+[CANDIDATE 2] Jet selection and b-tagging timing
+
+Original phrase:
+"Require at least 4 jets with pT > 30 GeV and |eta| < 2.5"
+"Require at least 2 b-tagged jets"
+
+Unresolved choice:
+It is not clear whether the jet and b-tagged jet requirements are applied to the full jet collection or to a subset of jets that may have been previously filtered (e.g., excluding jets overlapping with the lepton or MET direction).
+
+Why this may matter:
+If the jet and b-tagged jet counts are applied to a modified jet collection (e.g., after vetoes or overlaps), the number of jets and b-jets may differ from the full collection, potentially changing the event selection.
+
+[CANDIDATE 3] Leading and subleading b-jet definition
+
+Original phrase:
+"Plot the pT of the leading b-jet"
+"Plot the pT of the subleading b-jet"
+
+Unresolved choice:
+It is not clear whether the leading and subleading b-jets are defined before or after the jet and b-tagging cuts, or whether they are selected from the full jet collection.
+
+Why this may matter:
+If the leading and subleading b-jets are defined from a filtered or unfiltered jet collection, the resulting pT values may differ, affecting the plots and the interpretation of the b-jet structure.
+
+[CANDIDATE 4] Hadronic W candidate construction
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Unresolved choice:
+It is not clear whether the "non-b-tagged jets" are selected from the full jet collection or from a subset of jets that may have been previously filtered (e.g., after lepton veto or MET-based selection).
+
+Why this may matter:
+If the non-b-tagged jets are selected from a different jet collection than the one used for the jet count or b-tagging, the hadronic W candidate may be built from a different set of jets, changing the invariant mass and other derived quantities.
+
+[CANDIDATE 5] Hadronic W mass selection
+
+Original phrase:
+"Select the hadronic W mass between 40 to 120GeV."
+
+Unresolved choice:
+It is not clear whether this cut is applied to the final hadronic W candidate (after all previous cuts), or whether it is applied to a preselected or intermediate hadronic W candidate.
+
+Why this may matter:
+If the hadronic W mass cut is applied at a different stage of the selection, it could affect the number of events passing the cut and the distribution of other observables.
+
+[CANDIDATE 6] Hadronic top candidate construction
+
+Original phrase:
+"Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Unresolved choice:
+It is not clear whether the "leading b-jet" is defined before or after the b-tagging and jet selection cuts, or whether it is selected from the full jet collection.
+
+Why this may matter:
+If the leading b-jet is defined from a different jet collection than the one used for the b-tagging or jet count, the hadronic top candidate may be built from a different set of jets, changing the invariant mass and other derived quantities.
+
+[CANDIDATE 7] Cutflow summary timing
+
+Original phrase:
+"After the event loop, print one cutflow summary with the number of events after each selection step."
+
+Unresolved choice:
+It is not clear whether the cutflow counts are based on the number of events passing each cut in sequence, or whether they are based on the number of events passing all previous cuts up to that point.
+
+Why this may matter:
+If the cutflow is based on cumulative or per-cut event counts, the interpretation of the cutflow summary may differ, potentially affecting the understanding of the selection efficiency.
+
+[CANDIDATE 8] HT definition
+
+Original phrase:
+"Plot the HT distribution (scalar sum of all jet pT)"
+
+Unresolved choice:
+It is not clear whether the HT is computed from the full jet collection or from a subset of jets that may have been previously filtered (e.g., after lepton veto or MET-based selection).
+
+Why this may matter:
+If the HT is computed from a different jet collection than the one used for the jet count or b-tagging, the HT distribution may differ, affecting the interpretation of the event activity.

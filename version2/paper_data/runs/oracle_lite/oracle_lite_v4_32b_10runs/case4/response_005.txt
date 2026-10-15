@@ -1,0 +1,87 @@
+[CANDIDATE 1] z_obj definition and reuse
+
+Original phrase:
+"- Build z_obj from the two selected electrons using summed four-momentum."
+
+Unresolved choice:
+It is unclear whether the z_obj is meant to be a composite object that will be reused in subsequent steps (e.g., for plotting or further cuts), or if it is only used to compute the invariant mass in the next step.
+
+Why this may matter:
+If z_obj is intended to be reused (e.g., for the three-lepton system or delta phi with MET), it must be defined as a persistent object. If it is only used for the invariant mass cut, it may not need to be stored explicitly, which could affect how the code is structured and what variables are retained.
+
+[CANDIDATE 2] W candidate lepton definition and reuse
+
+Original phrase:
+"- Define the selected muon as the W candidate lepton."
+
+Unresolved choice:
+It is unclear whether the "W candidate lepton" is meant to be a named object that will be reused in multiple steps (e.g., for transverse mass, pT, and delta phi calculations), or if it is only a label for the muon in the current step.
+
+Why this may matter:
+If the W candidate lepton is reused, it must be stored as a named object for later access. If it is only a label, the code may not need to explicitly assign it a name, which could affect the clarity and maintainability of the code.
+
+[CANDIDATE 3] Three-lepton system definition
+
+Original phrase:
+"4 Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Unresolved choice:
+It is unclear whether the three-lepton system is meant to be built from the same selected electrons and muon used to define z_obj and the W candidate lepton, or if it is a separate combination (e.g., using different selection criteria or ordering).
+
+Why this may matter:
+If the three-lepton system is built from the same objects as z_obj and the W candidate lepton, it must be constructed using the same selections. If it is a separate combination, the code may need to reselect or reorder the objects, which could affect the consistency of the analysis.
+
+[CANDIDATE 4] MET and W candidate muon transverse mass
+
+Original phrase:
+"- Select transverse mass of W candidate muon + MET > 30 GeV."
+
+Unresolved choice:
+It is unclear whether the transverse mass is computed using the selected W candidate muon (after pT > 20 GeV cut) or the original muon before any cuts.
+
+Why this may matter:
+If the transverse mass is computed using the selected muon, it must be computed after the pT > 20 GeV cut. If it is computed using the original muon, the code may need to access the muon before the cut, which could affect the logic of the analysis.
+
+[CANDIDATE 5] Cutflow counter timing
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether the cutflow counter for each step is incremented only after the cut is applied and passed, or if the counter is incremented before the cut is applied.
+
+Why this may matter:
+If the counter is incremented after the cut is passed, the cutflow will correctly reflect the number of events passing each step. If it is incremented before the cut, the cutflow will be incorrect, which could affect the interpretation of the analysis.
+
+[CANDIDATE 6] Delta phi between z_obj and MET
+
+Original phrase:
+"7 Plot delta phi between z_obj and MET"
+
+Unresolved choice:
+It is unclear whether the delta phi is computed using the z_obj as defined in the selection step (from the two selected electrons) or if it is computed using a different z_obj (e.g., from a different selection or combination).
+
+Why this may matter:
+If the delta phi is computed using the same z_obj as in the selection step, it must be computed using the same object. If it is computed using a different z_obj, the code may need to recompute it, which could affect the consistency of the analysis.
+
+[CANDIDATE 7] Delta R between the two electrons forming z_obj
+
+Original phrase:
+"9 Plot delta R between the two electrons forming z_obj"
+
+Unresolved choice:
+It is unclear whether the two electrons used to form z_obj are the same as the two selected electrons used in the selection step, or if they are a different pair (e.g., after additional cuts or ordering).
+
+Why this may matter:
+If the two electrons are the same as in the selection step, the code must use the same pair. If they are a different pair, the code may need to reselect or reorder the electrons, which could affect the consistency of the analysis.
+
+[CANDIDATE 8] Invariant mass of the three-lepton system
+
+Original phrase:
+"8 Plot the invariant mass of the three-lepton system"
+
+Unresolved choice:
+It is unclear whether the three-lepton system is built from the same selected electrons and muon used in the selection step, or if it is built from a different combination (e.g., using different selection criteria or ordering).
+
+Why this may matter:
+If the three-lepton system is built from the same objects as in the selection step, it must be constructed using the same selections. If it is a different combination, the code may need to reselect or reorder the objects, which could affect the consistency of the analysis.

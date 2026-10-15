@@ -1,0 +1,26 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+2,8,requirement,R1,Select electrons with pT > 25 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly identifies the electron filter at L281.
+2,8,requirement,R2,Select muons with pT > 25 GeV and |eta| < 2.4,yes,yes,yes,no,Correctly identifies the muon filter at L282.
+2,8,requirement,R3,Require exactly one lepton,yes,yes,yes,no,Correctly traces selected_electrons + selected_muons and the length test at L283-L286.
+2,8,requirement,R4,Require at least 4 jets with pT > 30 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly identifies selected_jets and the multiplicity cut at L291-L294.
+2,8,requirement,R5,Require at least 2 b-tagged jets,yes,yes,yes,no,"Correctly traces b-tagged jets, their kinematic filtering, and the count cut at L297-L301."
+2,8,requirement,R6,Select MET > 20 GeV,yes,yes,yes,no,Correctly identifies helper_get_met and the MET threshold at L303-L307.
+2,8,requirement,R7,Select transverse mass of the lepton and MET between 30 and 150 GeV,yes,yes,yes,no,Correctly traces helper_transverse_mass and the range test at L309-L314.
+2,8,requirement,R8,Build the hadronic W candidate from the two leading non-b-tagged jets,yes,yes,yes,no,"Correctly traces light-jet filtering, leading/subleading selection, and sum_objects at L316-L325."
+2,8,requirement,R9,Select the hadronic W mass between 40 and 120 GeV,yes,yes,yes,no,Correctly identifies w_mass and its range test at L326-L328.
+2,8,requirement,R10,Build the hadronic top candidate from the leading b-jet and hadronic W candidate,yes,yes,yes,no,Correctly traces leading_bjet and sum_objects at L331-L334.
+2,8,requirement,R11,Apply cuts sequentially and skip the event immediately when a cut is not satisfied,partial,uncertain,uncertain,no,The output lists individual cut expressions but does not explicitly trace the sequential continue statements or their ordering; the code uses continue at L285-L337.
+2,8,requirement,R12,Plot the transverse mass of lepton plus MET,partial,no,yes,no,"The tracer identifies mt_list at L340-L341, but not the actual histogram operation at L351-L357."
+2,8,requirement,R13,Plot the MET distribution,partial,no,yes,no,It traces met_list at L341-L342 but omits the actual plot at L359-L364.
+2,8,requirement,R14,Plot the pT of the leading b-jet,partial,no,yes,no,It traces the values at L342-L343 but not the histogram call at L366-L371.
+2,8,requirement,R15,Plot the pT of the subleading b-jet,partial,no,yes,no,It traces the list population at L343-L344 but omits the plot at L373-L378.
+2,8,requirement,R16,Plot the invariant mass of the two leading non-b-tagged jets in range 40 to 120 GeV,partial,no,yes,no,It traces w_hadronic_mass_list at L344-L345 but not the histogram at L380-L385 or its range configuration.
+2,8,requirement,R17,Plot the invariant mass of leading b-jet plus hadronic W in range 100 to 250 GeV,partial,no,yes,no,It traces top_hadronic_mass_list at L345-L346 but not the histogram at L387-L392 or its range configuration.
+2,8,requirement,R18,Plot delta R between the leading lepton and the closest b-jet,partial,no,no,yes,"The tracer claims closest b-jet, but code uses leading_bjet at L346; no closest-b-jet search is implemented."
+2,8,requirement,R19,Plot the HT distribution as the scalar sum of all jet pT,partial,uncertain,no,no,"The tracer correctly identifies scalar_pt_sum at L347, but the code sums selected_jets rather than all jets; the actual plot is at L401-L406."
+2,8,requirement,R20,Plot the number of jets per event,partial,no,yes,no,It traces njet_list at L348-L349 but not the histogram operation at L408-L413.
+2,8,requirement,R21,Plot eta of the leading b-jet,partial,no,yes,no,It traces the values at L349-L350 but omits the histogram at L415-L420.
+2,8,requirement,R22,"Use simple validation histograms with plt.figure, plt.hist(values, bins=40, density=True), labels, savefig, and close",partial,no,na,no,"The tracer generally identifies value lists and savefig calls, but does not trace the required plotting operations, labels, bins, density, figure creation, or close calls."
+2,8,requirement,R23,Use concrete short ASCII labels and filenames,partial,uncertain,na,no,The output mentions savefig locations at L356-L420 but does not assess or trace the labels and filenames themselves.
+2,8,requirement,R24,"After the event loop, print one cutflow summary with the number of events after each selection step",partial,no,yes,no,"It points only to cutflow initialization at L252-L261, not the post-loop print at L422-L424; it also omits the duplicated Hadronic W increment at L321 and L329."
+2,8,requirement,R25,Save the plots in PNG format,yes,yes,na,no,The tracer correctly cites all .png savefig calls at L356-L420.

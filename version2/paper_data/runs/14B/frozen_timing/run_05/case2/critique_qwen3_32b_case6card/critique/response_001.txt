@@ -1,0 +1,16 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- computed as: sum_objects(leading_light_jet, subleading_light_jet); upstream chain: w_hadronic; 〔L338-L339〕
+
+Reason:
+The code builds the hadronic W candidate from the two leading non-b-tagged jets, but the jets are selected from the event-level collection of non-b-tagged jets, not from the selected jets collection that passed the pT and |eta| cuts. This is a composite violation because the hadronic W candidate should be built from the selected non-b-tagged jets, not from the broader event-level collection.
+
+Evidence priority:
+- selected_light_jets is defined as [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]; upstream chain: light_jets -> get_light_jets(event)
+
+Generator bias:
+none

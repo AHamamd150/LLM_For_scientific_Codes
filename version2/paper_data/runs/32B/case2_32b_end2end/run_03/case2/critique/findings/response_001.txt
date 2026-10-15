@@ -1,0 +1,124 @@
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- [e for e in get_electrons(event) if e['pt'] > 25 and abs(e['eta']) < 2.5]
+- [m for m in get_muons(event) if m['pt'] > 25 and abs(m['eta']) < 2.4]
+
+Reason:
+The code applies the pT and |eta| cuts to the selected electrons and muons, but the helper functions `get_electrons` and `get_muons` return all electrons and muons without any cuts. The cuts are applied in the list comprehensions, but the SPEC explicitly requires the selection to be part of the object definition. The implementation uses a filtered collection, but the definition of the base collection (electrons/muons) is unconstrained by the SPEC.
+
+Evidence priority:
+- electrons: [o for o in event['objects'] if o['type'] == 1]
+- muons: [o for o in event['objects'] if o['type'] == 2]
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Require at least 2 b-tagged jets
+
+CODE:
+- [b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the b-tagged jet selection should use a filtered collection or the full b-jet collection. The code applies pT and |eta| cuts to the b-tagged jets, but the SPEC does not explicitly require this. This is a specification ambiguity.
+
+Evidence priority:
+- bjets: [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets
+
+CODE:
+- [j for j in jets if j not in bjets]
+
+Reason:
+The SPEC does not specify whether the non-b-tagged jets should be selected from a filtered jet collection or the full jet collection. The code uses the full jet collection and filters out b-tagged jets, but the SPEC does not explicitly require this. This is a specification ambiguity.
+
+Evidence priority:
+- jets: [o for o in event['objects'] if o['type'] == 4]
+- light_jets: [j for j in jets if j not in bjets]
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate
+
+CODE:
+- bjets_sorted = sort_by_pt(bjets)
+
+Reason:
+The SPEC does not specify whether the b-jet selection should use a filtered collection or the full b-jet collection. The code applies pT and |eta| cuts to the b-jets, but the SPEC does not explicitly require this. This is a specification ambiguity.
+
+Evidence priority:
+- bjets: [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The code applies the pT and |eta| cuts to the selected jets, but the helper function `get_jets` returns all jets without any cuts. The cuts are applied in the list comprehension, but the SPEC explicitly requires the selection to be part of the object definition. The implementation uses a filtered collection, but the definition of the base collection (jets) is unconstrained by the SPEC.
+
+Evidence priority:
+- jets: [o for o in event['objects'] if o['type'] == 4]
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV
+
+CODE:
+- if not (40 < w_hadronic['mass'] < 120): continue
+
+Reason:
+The code uses a strict inequality (40 < mass < 120), but the SPEC does not explicitly specify whether the bounds are inclusive or exclusive. This could lead to a mismatch if the intended behavior was to include the boundaries. The implementation assumes exclusivity, which is not explicitly constrained by the SPEC.
+
+Evidence priority:
+- w_hadronic: sum_objects(light_jets_sorted[0], light_jets_sorted[1]) -> w_hadronic['mass']
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV
+
+CODE:
+- if not (100 < top_hadronic['mass'] < 250): continue
+
+Reason:
+The code uses a strict inequality (100 < mass < 250), but the SPEC does not explicitly specify whether the bounds are inclusive or exclusive. This could lead to a mismatch if the intended behavior was to include the boundaries. The implementation assumes exclusivity, which is not explicitly constrained by the SPEC.
+
+Evidence priority:
+- top_hadronic: sum_objects(bjets_sorted[0], w_hadronic) -> top_hadronic['mass']
+
+Generator bias:
+none

@@ -1,0 +1,56 @@
+[UNDERSPECIFICATION 1] Hadronic W candidate jet selection timing
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Why this matters:
+The phrase does not specify whether "non-b-tagged jets" refers to all jets in the event or only to jets that survive earlier cuts (like pT > 30 GeV and |eta| < 2.5). This affects whether the jets used for the hadronic W are selected before or after the jet pT/eta cuts.
+
+Question to user:
+Are the two leading non-b-tagged jets used for the hadronic W candidate selected from all jets in the event, or only from jets that pass the pT > 30 GeV and |eta| < 2.5 requirements?
+
+Golden axe:
+Select jets from the full jet collection, then apply pT/eta cuts later.
+
+Silver axe:
+Apply pT/eta cuts first, then select leading non-b-tagged jets from the filtered list.
+
+Recommended default: Silver axe
+
+[UNDERSPECIFICATION 2] Lepton definition for W transverse mass
+
+Original phrase:
+"Select the transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)"
+
+Why this matters:
+The phrase does not clarify whether the "lepton" refers to the final selected lepton (exactly one) or to any lepton in the event. This affects the calculation of the transverse mass, especially if multiple leptons are present before the "exactly one lepton" cut.
+
+Question to user:
+Is the lepton used for the transverse mass calculation the final selected lepton (after the "exactly one lepton" cut), or is it any lepton in the event (before the cut)?
+
+Golden axe:
+Use the final selected lepton (after the "exactly one lepton" cut).
+
+Silver axe:
+Use the lepton with the highest pT among all pre-cut leptons.
+
+Recommended default: Golden axe
+
+[UNDERSPECIFICATION 3] Leading and subleading b-jet definition
+
+Original phrase:
+"Plot the pT of the leading b-jet" and "Plot the pT of the subleading b-jet"
+
+Why this matters:
+The phrase does not specify whether the leading and subleading b-jets are defined based on the full b-jet collection or only the b-jets that survive earlier cuts (like pT > 30 GeV and |eta| < 2.5). This affects which jets are considered for the top candidate and the plots.
+
+Question to user:
+Are the leading and subleading b-jets defined from all b-tagged jets in the event, or only from those that pass the pT > 30 GeV and |eta| < 2.5 requirements?
+
+Golden axe:
+Use all b-tagged jets in the event, regardless of pT/eta cuts.
+
+Silver axe:
+Use only b-tagged jets that pass the pT/eta cuts.
+
+Recommended default: Silver axe

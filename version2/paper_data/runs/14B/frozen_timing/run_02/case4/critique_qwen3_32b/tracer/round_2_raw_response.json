@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* z_mass (continued)\n  - structure: composite-derived\n\n* w_muon\n  - computed/defined as: muons[0]\n  - upstream chain: muons -> [m for m in get_muons(event) if m['pt'] > 10 and abs(m['eta']) < 2.4]\n  - collection definition: m['pt'] > 10 and abs(m['eta']) < 2.4\n  - structure: single-constituent\n\n* met\n  - computed/defined as: helper_get_met(event)\n  - upstream chain: helper_get_met -> [o for o in event['objects'] if o['type'] == 6]\n  - collection definition: o['type'] == 6\n  - structure: single-constituent\n\n* w_trans_mass\n  - computed/defined as: helper_transverse_mass(w_muon, met)\n  - upstream chain: helper_transverse_mass -> helper_delta_phi(w_muon['phi'], met['phi'])\n  - collection definition: w_muon = muons[0], met = helper_get_met(event)\n  - structure: composite-derived\n\n* three_lepton\n  - computed/defined as: sum_objects(e1, e2, w_muon)\n  - upstream chain: e1, e2 from [e for e in get_electrons(event) if e['pt'] > 15 and abs(e['eta']) < 2.5], w_muon = muons[0]\n  - collection definition: e['pt'] > 15 and abs(e['eta']) < 2.5, m['pt'] > 10 and abs(m['eta']) < 2.4\n  - structure: composite-derived\n\n* three_lepton_mass\n  - computed/defined as: helper_invariant_mass(e1, e2, w_muon)\n  - upstream chain: helper_invariant_mass -> sum_objects(e1, e2, w_muon) -> four_momentum(e1) + four_momentum(e2) + four_momentum(w_muon)\n  - collection definition: e['pt'] > 15 and abs(e['eta']) < 2.5, m['pt'] > 10 and abs(m['eta']) < 2.4\n  - structure: composite-derived\n\n* delta_phi_z_met\n  - computed/defined as: helper_delta_phi(z_obj['phi'], met['phi'])\n  - upstream chain: z_obj = sum_objects(e1, e2), met = helper_get_met(event)\n  - collection definition: e['pt'] > 15 and abs(e['eta']) < 2.5, o['type'] == 6\n  - structure: composite-derived\n\n* delta_r_electrons\n  - computed/defined as: helper_delta_r(e1, e2)\n  - upstream chain: e1, e2 from [e for e in get_electrons(event) if e['pt'] > 15 and abs(e['eta']) < 2.5]\n  - collection definition: e['pt'] > 15 and abs(e['eta']) < 2.5\n  - structure: composite-derived",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788937146,
+  "id": "chatcmpl-cc87b8b8-69e4-4d36-b688-a0ddc89cc80e",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 683,
+    "prompt_tokens": 10062,
+    "prompt_tokens_details": null,
+    "total_tokens": 10745
+  }
+}

@@ -1,0 +1,345 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The code correctly constructs the hadronic top candidate by combining the leading b-jet and the hadronic W candidate using the sum_objects function. This is consistent with the requirement to build the hadronic top candidate from the required constituents.
+
+Evidence priority:
+- The upstream chain for top_hadronic is: leading_bjet, w_hadronic -> sum_objects -> top_hadronic (〔L333-L334〕)
+
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+The code correctly constructs the hadronic W candidate by combining the two leading non-b-tagged jets using the sum_objects function. This is consistent with the requirement to build the hadronic W candidate from the required constituents.
+
+Evidence priority:
+- The upstream chain for w_hadronic is: leading_light_jet, subleading_light_jet -> sum_objects -> w_hadronic (〔L325-L326〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- len(selected_leptons) != 1
+
+Reason:
+The code uses the condition len(selected_leptons) != 1 to require exactly one lepton. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for selected_leptons is: selected_electrons + selected_muons -> selected_leptons (〔L285-L286〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- len(selected_jets) < 4
+
+Reason:
+The code uses the condition len(selected_jets) < 4 to require at least 4 jets. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for selected_jets is: jets -> selected_jets (〔L292-L293〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require at least 2 b-tagged jets
+
+CODE:
+- len(selected_bjets) < 2
+
+Reason:
+The code uses the condition len(selected_bjets) < 2 to require at least 2 b-tagged jets. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for selected_bjets is: bjets -> selected_bjets (〔L299-L300〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- met['pt'] < 20
+
+Reason:
+The code uses the condition met['pt'] < 20 to select MET > 20 GeV. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for met is: helper_get_met(event) -> met (〔L305-L306〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- mt < 30 or mt > 150
+
+Reason:
+The code uses the condition mt < 30 or mt > 150 to select the transverse mass of the lepton and MET between 30 and 150 GeV. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for mt is: helper_transverse_mass(lepton, met) -> mt (〔L312-L313〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- w_mass < 40 or w_mass > 120
+
+Reason:
+The code uses the condition w_mass < 40 or w_mass > 120 to select the hadronic W mass between 40 to 120 GeV. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for w_mass is: helper_invariant_mass(w_hadronic) -> w_mass (〔L327-L328〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV.
+
+CODE:
+- top_mass < 100 or top_mass > 250
+
+Reason:
+The code uses the condition top_mass < 100 or top_mass > 250 to select the hadronic top mass between 100 to 250 GeV. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for top_mass is: helper_invariant_mass(top_hadronic) -> top_mass (〔L336-L337〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic candidate)
+
+CODE:
+- mt_list
+
+Reason:
+The code collects the transverse mass of the lepton and MET in mt_list for plotting. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for mt_list is: helper_transverse_mass(lepton, met) -> mt -> mt_list (〔L340-L341〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- met_list
+
+Reason:
+The code collects the MET distribution in met_list for plotting. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for met_list is: met['pt'] -> met_list (〔L341-L342〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- leading_bjet_pt_list
+
+Reason:
+The code collects the pT of the leading b-jet in leading_bjet_pt_list for plotting. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for leading_bjet_pt_list is: leading_bjet['pt'] -> leading_bjet_pt_list (〔L342-L343〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- helper_get_subleading(selected_bjets)['pt']
+
+Reason:
+The code collects the pT of the subleading b-jet using helper_get_subleading(selected_bjets)['pt'] for plotting. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for subleading_bjet_pt_list is: selected_bjets -> helper_get_subleading -> subleading_bjet_pt_list (〔L343-L344〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of the two leading non-b-tagged jets (W hadronic candidate) in range 40 to 120 GeV
+
+CODE:
+- w_hadronic_mass_list
+
+Reason:
+The code collects the invariant mass of the two leading non-b-tagged jets in w_hadronic_mass_list for plotting. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for w_hadronic_mass_list is: helper_invariant_mass(w_hadronic) -> w_hadronic_mass_list (〔L344-L345〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of leading b-jet + W hadronic candidate (top hadronic) in range 100 to 250 GeV
+
+CODE:
+- top_hadronic_mass_list
+
+Reason:
+The code collects the invariant mass of the leading b-jet and W hadronic candidate in top_hadronic_mass_list for plotting. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for top_hadronic_mass_list is: helper_invariant_mass(top_hadronic) -> top_hadronic_mass_list (〔L345-L346〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta R between the leading lepton and the closest b-jet
+
+CODE:
+- helper_delta_r(lepton, leading_bjet)
+
+Reason:
+The code computes the delta R between the leading lepton and the closest b-jet using helper_delta_r(lepton, leading_bjet) for plotting. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for dr_lepton_bjet_list is: lepton, leading_bjet -> helper_delta_r -> dr_lepton_bjet_list (〔L346-L347〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- scalar_pt_sum(selected_jets)
+
+Reason:
+The code computes the HT distribution using scalar_pt_sum(selected_jets) for plotting. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for ht_list is: selected_jets -> scalar_pt_sum -> ht_list (〔L347-L348〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- len(selected_jets)
+
+Reason:
+The code computes the number of jets per event using len(selected_jets) for plotting. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for njet_list is: selected_jets -> len -> njet_list (〔L348-L349〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot eta of the leading b-jet
+
+CODE:
+- leading_bjet['eta']
+
+Reason:
+The code collects the eta of the leading b-jet in leading_bjet_eta_list for plotting. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for leading_bjet_eta_list is: leading_bjet -> leading_bjet_eta_list (〔L349-L350〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- cutflow
+
+Reason:
+The code prints the cutflow summary after the event loop. This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for cutflow is: cutflow (〔L252-L261〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The code saves the plots in png format using plt.savefig(...). This is a correct implementation of the requirement.
+
+Evidence priority:
+- The upstream chain for saving plots is: mt_list, met_list, etc. -> plt.savefig (〔L356-L420〕)
+
+---
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+
+CODE:
+- [e for e in electrons if e['pt'] > 25 and abs(e['eta']) < 2.5]
+
+Reason:
+The code correctly selects electrons with pT > 25 GeV and |eta| < 2.5 as specified in the SPEC.
+
+Evidence priority:
+- The upstream chain for selected_electrons is: electrons -> selected_electrons (〔L281-L282〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- [m for m in muons if m['pt'] > 25 and abs(m['eta']) < 2.4]
+
+Reason:
+The code correctly selects muons with pT > 25 GeV and |eta| < 2.4 as specified in the SPEC.
+
+Evidence priority:
+- The upstream chain for selected_muons is: muons -> selected_muons (〔L282-L283〕)
+
+◎ (B) definition mismatch
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+CODE:
+- The code applies the cuts sequentially and skips the event when a cut is not satisfied.
+
+Reason:
+The code implements the requirement to apply the cuts sequentially and skip the event when a cut is not satisfied.
+
+Evidence priority:
+- The upstream chain for the cutflow is: cutflow (〔L252-L261〕)
+
+
+---- DROPPED ----
+(none)

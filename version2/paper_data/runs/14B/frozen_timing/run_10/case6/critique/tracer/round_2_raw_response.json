@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n- computed/defined as: hadronic_top['mass'] if hadronic_top else 0.0\n  - upstream chain: hadronic_top -> hadronic_top_mass\n  - collection definition: None\n  - structure: single-constituent\n\n* ht\n  - computed/defined as: scalar_pt_sum(selected_jets)\n  - upstream chain: selected_jets -> ht\n  - collection definition: None\n  - structure: single-constituent\n\n* njet\n  - computed/defined as: len(selected_jets)\n  - upstream chain: selected_jets -> njet\n  - collection definition: None\n  - structure: single-constituent\n\n* leading_bjet_pt\n  - computed/defined as: leading_bjet['pt']\n  - upstream chain: leading_bjet -> leading_bjet_pt\n  - collection definition: None\n  - structure: single-constituent\n\n* subleading_bjet_pt\n  - computed/defined as: subleading_bjet['pt']\n  - upstream chain: subleading_bjet -> subleading_bjet_pt\n  - collection definition: None\n  - structure: single-constituent\n\n* leading_bjet_eta\n  - computed/defined as: leading_bjet['eta']\n  - upstream chain: leading_bjet -> leading_bjet_eta\n  - collection definition: None\n  - structure: single-constituent\n\n* dr_lep_bjet\n  - computed/defined as: helper_delta_r(lep, closest_bjet)\n  - upstream chain: lep, closest_bjet -> dr_lep_bjet\n  - collection definition: None\n  - structure: multi-input\n\n* met_pt\n  - computed/defined as: met['pt']\n  - upstream chain: met -> met_pt\n  - collection definition: None\n  - structure: single-constituent\n\n* mt_list\n  - computed/defined as: mt_list.append(mt)\n  - upstream chain: mt -> mt_list\n  - collection definition: None\n  - structure: single-constituent\n\n* met_list\n  - computed/defined as: met_list.append(met['pt'])\n  - upstream chain: met_pt -> met_list\n  - collection definition: None\n  - structure: single-constituent\n\n* leading_bjet_pt_list\n  - computed/defined as: leading_bjet_pt_list.append(leading_bjet['pt'])\n  - upstream chain: leading_bjet_pt -> leading_bjet_pt_list\n  - collection definition: None\n  - structure: single-constituent\n\n* subleading_bjet_pt_list\n  - computed/defined as: subleading_bjet_pt_list.append(subleading_bjet['pt'])\n  - upstream chain: subleading_bjet_pt -> subleading_bjet_pt_list\n  - collection definition: None\n  - structure: single-constituent\n\n* hadronic_w_mass_list\n  - computed/defined as: hadronic_w_mass_list.append(hadronic_w_mass)\n  - upstream chain: hadronic_w_mass -> hadronic_w_mass_list\n  - collection definition: None\n  - structure: single-constituent\n\n* hadronic_top_mass_list\n  - computed/defined as: hadronic_top_mass_list.append(hadronic_top_mass)\n  - upstream chain: hadronic_top_mass -> hadronic_top_mass_list\n  - collection definition: None\n  - structure: single-constituent\n\n* dr_lep_bjet_list\n  - computed/defined as: dr_lep_bjet_list.append(min_dr)\n  - upstream chain: dr_lep_bjet -> dr_lep_bjet_list\n  - collection definition: None\n  - structure: single-constituent\n\n* ht_list\n  - computed/defined as: ht_list.append(ht)\n  - upstream chain: ht -> ht_list\n  - collection definition: None\n  - structure: single-constituent\n\n* njet_list\n  - computed/defined as: njet_list.append(len(selected_jets))\n  - upstream chain: njet -> njet_list\n  - collection definition: None\n  - structure: single-constituent\n\n* leading_bjet_eta_list\n  - computed/defined as: leading_bjet_eta_list.append(leading_bjet['eta'])\n  - upstream chain: leading_bjet_eta -> leading_bjet_eta_list\n  - collection definition: None\n  - structure: single-constituent\n\n* cutflow\n  - computed/defined as: cutflow = { ... }\n  - upstream chain: None\n  - collection definition: None\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1789042563,
+  "id": "chatcmpl-9ee46d25-b746-4ceb-a2f0-9b5f887cc4a5",
+  "model": "Qwen/Qwen3-14B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-7e17f8bc",
+  "usage": {
+    "completion_tokens": 985,
+    "prompt_tokens": 11439,
+    "prompt_tokens_details": null,
+    "total_tokens": 12424
+  }
+}

@@ -1,0 +1,31 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+6,7,requirement,R1,Select electrons with pT > 25 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly traced to the electron filter at lines 298-299 and get_electrons at line 178.
+6,7,requirement,R2,Select muons with pT > 25 GeV and |eta| < 2.4,yes,yes,yes,no,Correctly traced to the muon filter at lines 299-300 and get_muons at line 183.
+6,7,requirement,R3,"Require exactly one lepton, electron or muon",yes,yes,yes,no,Correctly traces leptons = electrons + muons and the len(leptons) != 1 veto at lines 301-303.
+6,7,requirement,R4,Require at least 4 jets with pT > 30 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly traced to selected-jet construction and len(jets) < 4 veto at lines 308-312.
+6,7,requirement,R5,Require at least 2 b-tagged jets among the selected jets,yes,yes,yes,no,Correctly traces b-tagged selected jets and the multiplicity veto at lines 314-318; get_bjets is defined at lines 207-210.
+6,7,requirement,R6,Define the selected b-jet closest to the selected lepton in delta R,yes,yes,yes,no,"Correctly traced to min(..., key=lambda ...) at lines 320-322 and helper_delta_r at lines 109-113."
+6,7,requirement,R7,Require MET > 20 GeV,yes,yes,yes,no,Correctly traced to helper_get_met and the MET veto at lines 324-328.
+6,7,requirement,R8,Require lepton-MET transverse mass between 30 and 150 GeV,yes,yes,yes,no,Correctly traced to helper_transverse_mass and the 30 < mt < 150 cut at lines 331-335.
+6,7,requirement,R9,Build the hadronic W from the two leading selected non-b-tagged jets,yes,yes,yes,no,"Correctly traces non-b-tagged jet construction, sorting, and sum_objects at lines 338-344."
+6,7,requirement,R10,Require hadronic W mass between 40 and 120 GeV,yes,yes,no,yes,"The cut is correctly located at lines 345-347, but the tracer incorrectly reports helper_get_leading(light_jets_sorted) as an upstream dependency; no such call occurs in this implementation."
+6,7,requirement,R11,Build the hadronic top from the leading selected b-tagged jet and hadronic W,yes,yes,yes,no,Correctly traced to b-jet sorting and sum_objects at lines 350-352.
+6,7,requirement,R12,Require hadronic top mass between 100 and 250 GeV,yes,yes,no,yes,"The cut is correctly located at lines 353-355, but the tracer incorrectly reports helper_get_leading(bjets_sorted) as an upstream dependency; the code uses direct indexing after sorting."
+6,7,requirement,R13,Apply cuts sequentially and skip the event immediately when a cut fails,partial,yes,yes,no,"The individual continue statements and ordering are visible throughout lines 302-355, but the tracer does not explicitly represent this global sequential-control-flow requirement."
+6,7,requirement,R14,Plot the transverse mass of lepton plus MET,yes,yes,yes,no,Correctly traces mt_values collection and plotting at lines 331-337 and 374.
+6,7,requirement,R15,Plot the MET distribution,yes,yes,yes,no,Correctly traces met_values at lines 324-329 and plotting at line 375.
+6,7,requirement,R16,Plot pT of the leading b-jet,yes,yes,yes,no,Correctly traced to bjet1_pt at lines 359 and 376.
+6,7,requirement,R17,Plot pT of the subleading b-jet,yes,yes,yes,no,Correctly traced to bjet2_pt at lines 359-360 and plotting at line 377.
+6,7,requirement,R18,Plot invariant mass of the hadronic W candidate in the range 40 to 120 GeV,yes,yes,no,yes,"The histogram and mass source are present at lines 344-348 and 378, but the reported helper_get_leading dependency is unsupported."
+6,7,requirement,R19,Plot invariant mass of the hadronic top candidate in the range 100 to 250 GeV,yes,yes,no,yes,"The histogram and mass source are present at lines 351-356 and 379, but the reported helper_get_leading dependency is unsupported."
+6,7,requirement,R20,Plot delta R between the leading lepton and closest selected b-jet,yes,yes,yes,no,"Correctly traced to closest_bjet, helper_delta_r, and dr_lepton_bjet at lines 320-323 and 380."
+6,7,requirement,R21,Plot the HT distribution as scalar sum of all jet pT,yes,yes,yes,no,Correctly traces scalar_pt_sum(jets) at lines 362-363 and plotting at line 381.
+6,7,requirement,R22,Plot the number of jets per event,yes,yes,yes,no,Correctly traces len(jets) at lines 363-364 and plotting at line 382.
+6,7,requirement,R23,Plot eta of the leading b-jet,yes,yes,yes,no,Correctly traces bjet1_eta at lines 360-361 and plotting at line 383.
+6,7,requirement,R24,"Use simple validation histograms with plt.figure(), 40 bins, density=True, labels, PNG save, and close",partial,uncertain,na,no,"The tracer identifies the individual plot calls but does not trace the shared save_hist implementation at lines 366-372, which contains the required figure, bins, density, labels, save, and close behavior."
+6,7,requirement,R25,Use concrete short ASCII labels and filenames,partial,uncertain,na,no,"The tracer reports histogram variables and locations but does not explicitly trace the labels or filenames. The code uses mostly concrete filenames, but the delta-R label contains the non-ASCII character Δ at line 380."
+6,7,requirement,R26,"After the event loop, print one cutflow summary with the number of events after each selection step",no,na,na,no,"The tracer output does not cover the cutflow dictionary, updates, or summary printing at lines 273-283 and 385-394."
+6,7,requirement,R27,Save the plots in PNG format,partial,uncertain,na,no,The tracer identifies plot locations but does not explicitly trace the .png filenames or savefig operation at lines 371 and 374-383.
+6,7,extra_trace_claim,EXTRA1,Hadronic W mass depends upstream on helper_get_leading(light_jets_sorted),,,,yes,No helper_get_leading call is used for the W mass; the code directly accesses w_hadronic['mass'] at lines 345 and 348.
+6,7,extra_trace_claim,EXTRA2,Hadronic top mass depends upstream on helper_get_leading(bjets_sorted),,,,yes,No helper_get_leading call is used for the top mass; the code directly accesses top_hadronic['mass'] at lines 353 and 356.
+6,7,extra_trace_claim,EXTRA3,The selected b-jet collection is defined using abs(j['eta']) < 2.5,,,,yes,The definition summary uses j rather than b in the reported expression. The actual code uses b['eta'] at lines 315 and 215.

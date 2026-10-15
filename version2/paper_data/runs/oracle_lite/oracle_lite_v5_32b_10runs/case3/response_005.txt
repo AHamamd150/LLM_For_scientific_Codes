@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Diphoton system reuse
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT."
+
+Why this matters:
+The phrase implies that the diphoton system defined earlier should be reused for computing pT, but it's unclear whether this means the system must be stored as a named object for later use or if it's sufficient to recompute the pT from the same two photons without explicitly retaining the system object.
+
+Question to user:
+Should the diphoton system be stored as a named object for later use in the analysis, or is it sufficient to recompute the pT from the same two photons without retaining the system?
+
+Golden axe:
+Store the diphoton system as a named object for reuse in later steps.
+
+Silver axe:
+Recompute the diphoton pT from the same two photons without explicitly storing the system.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Leading and subleading photon definition
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection."
+
+Why this matters:
+It is not specified whether the leading and subleading photons are defined based on pT after all photon selection cuts, or if they are defined at an earlier stage in the selection process.
+
+Question to user:
+Are the leading and subleading photons defined based on pT after all photon selection cuts, or at an earlier stage in the selection?
+
+Golden axe:
+Define leading and subleading photons based on pT after all photon selection cuts.
+
+Silver axe:
+Define leading and subleading photons based on pT before applying the crack region veto or other selection cuts.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Diphoton system definition
+
+Original phrase:
+"Build the diphoton system from the leading photon and the subleading photon."
+
+Why this matters:
+It is not specified whether the diphoton system is a named object that should be retained for later analysis steps, or if it is only used to compute the invariant mass and pT for the current cut.
+
+Question to user:
+Should the diphoton system be retained as a named object for later analysis steps, or is it only needed to compute the invariant mass and pT for the current cut?
+
+Golden axe:
+Retain the diphoton system as a named object for later analysis steps.
+
+Silver axe:
+Use the diphoton system only to compute the invariant mass and pT for the current cut, without retaining it.
+
+Recommended default:
+Golden axe

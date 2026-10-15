@@ -1,0 +1,246 @@
+===== RUN 1 =====
+
+---- KEPT ----
+(none)
+
+---- DROPPED ----
+[DROPPED 1] drop: matched noise signal 'inclusive'
+◎ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+
+CODE:
+- ditau = sum_objects(tau1, tau2)
+
+Reason:
+The code correctly constructs the ditau system from the four-momentum sum of the leading and subleading tau, as required by the SPEC.
+
+Evidence priority:
+- ditau is defined as sum_objects(tau1, tau2) 〔L322-L324〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Define dijet_obj from the summed momentum of the leading jet and subleading jet.
+
+CODE:
+- dijet = sum_objects(jet1, jet2)
+
+Reason:
+The code correctly constructs the dijet system from the four-momentum sum of the leading and subleading jet, as required by the SPEC.
+
+Evidence priority:
+- dijet is defined as sum_objects(jet1, jet2) 〔L311-L313〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV
+
+CODE:
+- if dijet is None or dijet['mass'] < 400: continue
+
+Reason:
+The code uses a strict less-than comparison (< 400) for the m_jj cut, but the SPEC specifies "m_jj > 400 GeV", which is inclusive. The code excludes events with m_jj exactly equal to 400 GeV, which is a mismatch.
+
+Evidence priority:
+- m_jj cut is implemented as dijet['mass'] < 400 〔L313-L315〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select ditau invariant mass between 60 and 150 GeV
+
+CODE:
+- if ditau is None or not (60 < ditau['mass'] < 150): continue
+
+Reason:
+The code uses strict inequalities (60 < m < 150), but the SPEC says "between 60 and 150 GeV", which is ambiguous. However, the code excludes the boundaries, which may not match the intended behavior if the SPEC intended inclusive bounds.
+
+Evidence priority:
+- ditau invariant mass is checked as 60 < ditau['mass'] < 150 〔L322-L325〕
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the ditau invariant mass in the range 50 to 160 GeV
+
+CODE:
+- ditau['mass'] is plotted
+
+Reason:
+The SPEC does not specify whether the ditau invariant mass should be computed from the selected taus or from all taus in the event. The code uses the selected taus, which is a valid interpretation, but the choice is not constrained by the SPEC.
+
+Evidence priority:
+- ditau is defined from selected_taus 〔L297-L300, L322-L324〕
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the leading tau
+
+CODE:
+- tau1['pt'] is plotted
+
+Reason:
+The SPEC does not specify whether the leading tau should be selected from all taus or from the selected taus. The code uses the selected taus, which is a valid interpretation, but the choice is not constrained by the SPEC.
+
+Evidence priority:
+- tau1 is selected from selected_taus 〔L297-L300〕
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the leading jet
+
+CODE:
+- jet1['pt'] is plotted
+
+Reason:
+The SPEC does not specify whether the leading jet should be selected from all jets or from the selected jets. The code uses the selected jets, which is a valid interpretation, but the choice is not constrained by the SPEC.
+
+Evidence priority:
+- jet1 is selected from selected_jets 〔L304-L307〕
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- centrality_between_jets(ditau, jet1, jet2) is computed
+
+Reason:
+The SPEC does not specify whether the jets used for centrality should be the selected jets or all jets in the event. The code uses the selected jets, which is a valid interpretation, but the choice is not constrained by the SPEC.
+
+Evidence priority:
+- jet1 and jet2 are selected from selected_jets 〔L304-L307〕
+
+Generator bias:
+none
+
+◎ (E) extra behavior
+
+SPEC:
+- None
+
+CODE:
+- The code includes a `read_lhco` function that parses LHCO files and includes extra fields like 'ntrk', 'btag', 'had_em', etc.
+
+Reason:
+The SPEC does not mention parsing LHCO files or handling these additional fields. The code includes this functionality, which is not requested by the SPEC.
+
+Evidence priority:
+- read_lhco function is defined and used 〔L163-L214, L245-L251〕
+
+Generator bias:
+The code includes a `read_lhco` function that is not requested by the SPEC, possibly due to the availability of this helper in the generation system prompt.
+
+◎ (E) extra behavior
+
+SPEC:
+- None
+
+CODE:
+- The code includes a `get_bjets` function that is used to veto events with b-tagged jets.
+
+Reason:
+The SPEC does not explicitly mention the use of a `get_bjets` function, but it does mention vetoing events with b-tagged jets. The code includes this function, which is not requested by the SPEC.
+
+Evidence priority:
+- get_bjets is defined and used 〔L132-L134, L290-L331〕
+
+Generator bias:
+The code includes a `get_bjets` function that is not requested by the SPEC, possibly due to the availability of this helper in the generation system prompt.
+
+---
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading tau
+
+CODE:
+- tau2['pt'] is plotted
+
+Reason:
+The SPEC does not specify whether the subleading tau should be selected from all taus or from the selected taus. The code uses the selected taus, which is a valid interpretation, but the choice is not constrained by the SPEC.
+
+Evidence priority:
+- tau2 is selected from selected_taus 〔L297-L300〕
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading jet
+
+CODE:
+- jet2['pt'] is plotted
+
+Reason:
+The SPEC does not specify whether the subleading jet should be selected from all jets or from the selected jets. The code uses the selected jets, which is a valid interpretation, but the choice is not constrained by the SPEC.
+
+Evidence priority:
+- jet2 is selected from selected_jets 〔L304-L307〕
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot delta R between the two taus
+
+CODE:
+- helper_delta_r(tau1, tau2) is computed
+
+Reason:
+The SPEC does not specify whether the delta R should be computed from all taus or from the selected taus. The code uses the selected taus, which is a valid interpretation, but the choice is not constrained by the SPEC.
+
+Evidence priority:
+- tau1 and tau2 are selected from selected_taus 〔L297-L300〕
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot delta phi between the ditau system and the dijet system
+
+CODE:
+- helper_delta_phi(ditau['phi'], dijet['phi']) is computed
+
+Reason:
+The SPEC does not specify whether the ditau and dijet systems should be constructed from all objects or from the selected objects. The code uses the selected objects, which is a valid interpretation, but the choice is not constrained by the SPEC.
+
+Evidence priority:
+- ditau and dijet are constructed from selected_taus and selected_jets 〔L297-L300, L304-L307, L322-L324, L311-L313〕
+
+Generator bias:
+none

@@ -1,0 +1,9 @@
+Initial events: 30000
+Photon selection: 17580
+At least 2 photons: 15659
+Leading photon pT > 35 GeV: 15659
+Subleading photon pT > 25 GeV: 15539
+Diphoton mass 105-160 GeV: 31053
+Leading photon pT / m_gammagamma > 0.35: 15053
+Subleading photon pT / m_gammagamma > 0.25: 14361
+Final selected events: 14361

@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Selection of z_obj and W candidate lepton
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum. Define the selected muon as the W candidate lepton."
+
+Why this is dangerous:
+The phrase "selected muon" may refer to the first muon in the event (raw event-level object) or the only muon that passed the selection cuts. This ambiguity affects the definition of the W candidate lepton and the subsequent cuts and plots.
+
+Question to user:
+Are the selected muon and selected electrons defined as the only objects that passed the respective cuts, or are they the first objects in the event that meet the criteria?
+
+Golden axe:
+The selected muon is the only muon that passed the selection cuts.
+
+Silver axe:
+The selected muon is the first muon in the event that meets the criteria, regardless of other muons in the event.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Definition of three-lepton system
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Why this is dangerous:
+The phrase "three-lepton system" may be interpreted as a reconstructed composite object (summed four-momentum) or as a scalar quantity derived from the three leptons. This affects the calculation of pT and the interpretation of the plot.
+
+Question to user:
+Is the three-lepton system a reconstructed composite object built from the summed four-momentum of the two selected electrons and the selected muon, or is it a scalar quantity derived from the three leptons?
+
+Golden axe:
+The three-lepton system is a reconstructed composite object built from the summed four-momentum of the two selected electrons and the selected muon.
+
+Silver axe:
+The three-lepton system is a scalar quantity derived from the three leptons, not a reconstructed composite object.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Definition of transverse mass of W candidate lepton + MET
+
+Original phrase:
+"Select transverse mass of W candidate lepton + MET > 30 GeV."
+
+Why this is dangerous:
+The phrase "W candidate lepton + MET" may be interpreted as the transverse mass of the W candidate lepton and MET combined as a composite object, or as the transverse mass of the W candidate lepton and MET as separate entities. This affects the calculation of the transverse mass and the interpretation of the cut.
+
+Question to user:
+Is the transverse mass computed from the W candidate lepton and MET as a composite object, or is it computed separately for the W candidate lepton and MET?
+
+Golden axe:
+The transverse mass is computed from the W candidate lepton and MET as a composite object.
+
+Silver axe:
+The transverse mass is computed separately for the W candidate lepton and MET.
+
+Recommended default:
+Golden axe

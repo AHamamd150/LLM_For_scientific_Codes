@@ -1,0 +1,140 @@
+◎ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+- Define dijet_obj from the summed four-momentum of the leading jet and subleading jet.
+
+CODE:
+- ditau_obj = sum_objects(tau1, tau2)
+- dijet_obj = sum_objects(jet1, jet2)
+
+Reason:
+The code correctly constructs the ditau_obj and dijet_obj from the summed four-momentum of the leading and subleading tau and jet, respectively. This matches the composite system-level definition in the SPEC.
+
+Evidence priority:
+- ditau_obj = sum_objects(tau1, tau2); dijet_obj = sum_objects(jet1, jet2)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require opposite-sign tau pair
+
+CODE:
+- if not opposite_sign(tau1, tau2): continue
+
+Reason:
+The code correctly checks for opposite-sign tau pairs using the opposite_sign helper function, which is consistent with the SPEC.
+
+Evidence priority:
+- opposite_sign(tau1, tau2)
+
+Generator bias:
+none
+
+◎ (C) missing implementation
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+All required items from the SPEC are implemented.
+
+Evidence priority:
+- All required items from the SPEC are implemented.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+The SPEC does not specify whether the ditau or dijet invariant mass should be computed from the summed four-momentum or from the individual constituent masses. The code uses the summed four-momentum approach, which is a valid interpretation.
+
+Evidence priority:
+- helper_invariant_mass(tau1, tau2); helper_invariant_mass(jet1, jet2)
+
+Generator bias:
+none
+
+◎ (E) extra behavior
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+The code does not perform any behavior not requested by the SPEC.
+
+Evidence priority:
+- All behavior is requested by the SPEC.
+
+Generator bias:
+none
+
+◎ (F) generator-induced bias
+
+SPEC:
+- none
+
+CODE:
+- none
+
+Reason:
+The code does not show any signs of generator-induced bias.
+
+Evidence priority:
+- All behavior is consistent with the SPEC.
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV
+
+CODE:
+- m_jj_val = helper_invariant_mass(jet1, jet2)
+- if m_jj_val < 400: continue
+
+Reason:
+The code computes the dijet invariant mass using the helper_invariant_mass function, which sums the four-momenta of the two jets. This is correct, but the SPEC explicitly refers to the "leading and subleading jets" while the code uses the summed four-momentum of the two jets to compute the invariant mass. The mismatch is in the explicit reference to the jets themselves rather than their invariant mass.
+
+Evidence priority:
+- helper_invariant_mass(jet1, jet2)
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- centrality.append(centrality_between_jets(ditau_obj, jet1, jet2))
+
+Reason:
+The SPEC does not specify whether the centrality should be computed using the ditau system's four-momentum or its individual constituents. The code uses the summed four-momentum of the ditau system, which is a valid interpretation but introduces an ambiguity in the SPEC.
+
+Evidence priority:
+- centrality_between_jets(ditau_obj, jet1, jet2)
+
+Generator bias:
+none

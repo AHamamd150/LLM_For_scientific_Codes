@@ -1,0 +1,7 @@
+
+
+* leading_bjet_eta_list
+  - computed/defined as: leading_bjet_eta_list.append(bjet1['eta'])
+  - upstream chain: bjet1 -> sorted_bjets[0]
+  - collection definition: bjet1 from selected_bjets
+  - structure: single-constituent

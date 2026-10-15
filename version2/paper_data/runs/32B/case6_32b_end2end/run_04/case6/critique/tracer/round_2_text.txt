@@ -1,0 +1,43 @@
+
+
+* Hadronic top mass
+  - computed/defined as: top_hadronic['mass']
+  - upstream chain: sum_objects(leading_bjet, w_hadronic) -> top_hadronic['mass']
+  - collection definition: leading_bjet from bjets and w_hadronic from light_jets
+  - structure: composite-derived
+
+* Leading b-jet pT
+  - computed/defined as: leading_bjet['pt']
+  - upstream chain: helper_get_leading(bjets) -> leading_bjet['pt']
+  - collection definition: bjets with b['pt'] > 30 and abs(b['eta']) < 2.5
+  - structure: single-constituent
+
+* Subleading b-jet pT
+  - computed/defined as: helper_get_subleading(bjets)['pt']
+  - upstream chain: helper_get_subleading(bjets) -> ['pt']
+  - collection definition: bjets with b['pt'] > 30 and abs(b['eta']) < 2.5
+  - structure: single-constituent
+
+* ΔR between lepton and closest b-jet
+  - computed/defined as: helper_delta_r(selected_lepton, closest_bjet)
+  - upstream chain: helper_delta_phi(selected_lepton['phi'], closest_bjet['phi']) -> math.sqrt(deta**2 + dphi**2)
+  - collection definition: selected_lepton and closest_bjet from bjets
+  - structure: composite-derived
+
+* HT (scalar sum of jet pT)
+  - computed/defined as: scalar_pt_sum(jets)
+  - upstream chain: sum(p['pt'] for p in jets)
+  - collection definition: jets with j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: composite-derived
+
+* Number of jets per event
+  - computed/defined as: len(jets)
+  - upstream chain: [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: jets with j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* Leading b-jet η
+  - computed/defined as: leading_bjet['eta']
+  - upstream chain: helper_get_leading(bjets) -> leading_bjet['eta']
+  - collection definition: bjets with b['pt'] > 30 and abs(b['eta']) < 2.5
+  - structure: single-constituent

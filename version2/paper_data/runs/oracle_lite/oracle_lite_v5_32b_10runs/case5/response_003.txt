@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Ambiguity in "leading tau and subleading tau" definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this matters:
+The phrase does not specify whether the selection of leading and subleading taus is based on pT before or after the pT > 20 GeV and |eta| < 2.3 cuts. This affects which objects are considered for the ditau system.
+
+Question to user:
+Are the leading and subleading taus defined from all taus in the event, or only from those that pass the pT and |eta| cuts?
+
+Golden axe:
+Leading and subleading taus are defined from the selected (cut-passing) taus.
+
+Silver axe:
+Leading and subleading taus are defined from all taus in the event, and then the cuts are applied.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Ambiguity in "leading jet and subleading jet" definition
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Why this matters:
+The phrase does not clarify whether the leading and subleading jets are defined before or after the jet pT > 30 GeV and |eta| < 4.7 cuts. This affects the dijet system and the m_jj cut.
+
+Question to user:
+Are the leading and subleading jets defined from all jets in the event, or only from those that pass the pT and |eta| cuts?
+
+Golden axe:
+Leading and subleading jets are defined from the selected (cut-passing) jets.
+
+Silver axe:
+Leading and subleading jets are defined from all jets in the event, and then the cuts are applied.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Ambiguity in "centrality of the ditau system relative to the two jets"
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Why this matters:
+The phrase does not specify which two jets are used for the centrality calculation. This could be the two leading jets (after cuts), or the jets used to define the dijet system.
+
+Question to user:
+For the centrality calculation, should the two jets be the leading and subleading jets (after cuts), or the jets used to define the dijet system?
+
+Golden axe:
+Use the two leading jets (after jet pT and |eta| cuts).
+
+Silver axe:
+Use the two jets used to define the dijet system (i.e., the ones used to compute m_jj and |delta eta|).
+
+Recommended default:
+Golden axe

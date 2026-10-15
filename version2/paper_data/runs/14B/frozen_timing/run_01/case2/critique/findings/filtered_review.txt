@@ -1,0 +1,582 @@
+===== RUN 1 =====
+
+---- KEPT ----
+(none)
+
+---- DROPPED ----
+[DROPPED 1] drop: matched noise signal 'matches the spec'
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The code correctly constructs the hadronic top candidate by combining the leading b-jet and the hadronic W candidate using the sum_objects function. This is consistent with the requirement to build the hadronic top candidate from the required constituents.
+
+Evidence priority:
+〔L351〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- if len(selected_leptons) != 1: continue
+
+Reason:
+The code correctly implements the requirement to have exactly one lepton by checking the length of the selected_leptons list. This matches the specification.
+
+Evidence priority:
+〔L297-L298〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The code correctly implements the jet selection by applying the pT and |eta| cuts and checking the number of jets. This matches the specification.
+
+Evidence priority:
+〔L303-L304〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require at least 2 b-tagged jets
+
+CODE:
+- [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The code correctly implements the b-jet selection by applying the pT and |eta| cuts and checking the number of b-jets. This matches the specification.
+
+Evidence priority:
+〔L310-L311〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- if met is None or met['pt'] < 20: continue
+
+Reason:
+The code correctly implements the MET selection by checking the MET pT. This matches the specification.
+
+Evidence priority:
+〔L316-L317〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- if mt < 30 or mt > 150: continue
+
+Reason:
+The code correctly implements the transverse mass selection by checking the range of the transverse mass. This matches the specification.
+
+Evidence priority:
+〔L324-L325〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+The code correctly constructs the hadronic W candidate by combining the two leading non-b-tagged jets using the sum_objects function. This matches the specification.
+
+Evidence priority:
+〔L340〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if w_hadronic_mass < 40 or w_hadronic_mass > 120: continue
+
+Reason:
+The code correctly implements the hadronic W mass selection by checking the mass range. This matches the specification.
+
+Evidence priority:
+〔L343-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The code correctly constructs the hadronic top candidate by combining the leading b-jet and the hadronic W candidate using the sum_objects function. This matches the specification.
+
+Evidence priority:
+〔L351〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic candidate)
+
+CODE:
+- plt.hist(mt_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the transverse mass of the lepton and MET. This matches the specification.
+
+Evidence priority:
+〔L396-L400〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- plt.hist(met_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the MET distribution. This matches the specification.
+
+Evidence priority:
+〔L403-L407〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- plt.hist(leading_bjet_pt_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the pT of the leading b-jet. This matches the specification.
+
+Evidence priority:
+〔L410-L414〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- plt.hist(subleading_bjet_pt_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the pT of the subleading b-jet. This matches the specification.
+
+Evidence priority:
+〔L417-L421〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of the two leading non-b-tagged jets (W hadronic candidate) in range 40 to 120 GeV
+
+CODE:
+- plt.hist(w_hadronic_mass_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the invariant mass of the two leading non-b-tagged jets. This matches the specification.
+
+Evidence priority:
+〔L424-L428〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of leading b-jet + W hadronic candidate (top hadronic) in range 100 to 250 GeV
+
+CODE:
+- plt.hist(top_mass_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the invariant mass of the leading b-jet and the hadronic W candidate. This matches the specification.
+
+Evidence priority:
+〔L431-L435〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta R between the leading lepton and the closest b-jet
+
+CODE:
+- plt.hist(dr_lepton_bjet_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the delta R between the leading lepton and the closest b-jet. This matches the specification.
+
+Evidence priority:
+〔L438-L442〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- plt.hist(ht_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the HT distribution. This matches the specification.
+
+Evidence priority:
+〔L445-L449〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- plt.hist(njet_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the number of jets per event. This matches the specification.
+
+Evidence priority:
+〔L452-L456〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot eta of the leading b-jet
+
+CODE:
+- plt.hist(leading_bjet_eta_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the eta of the leading b-jet. This matches the specification.
+
+Evidence priority:
+〔L459-L463〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- print("Cutflow:"); for key, value in cutflow.items(): print(f"{key}: {value}")
+
+Reason:
+The code correctly prints the cutflow summary. This matches the specification.
+
+Evidence priority:
+〔L390-L394〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The code correctly saves the plots in png format. This matches the specification.
+
+Evidence priority:
+〔L400, L407, L414, L421, L428, L435, L442, L449, L456, L463〕
+
+---
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- selected_electrons + selected_muons -> selected_leptons
+
+Reason:
+The code correctly implements the requirement to have exactly one lepton by combining selected electrons and muons into a single list and checking its length. This matches the specification.
+
+Evidence priority:
+〔L295-L297〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The code correctly implements the jet selection by applying the pT and |eta| cuts and checking the number of jets. This matches the specification.
+
+Evidence priority:
+〔L303-L304〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require at least 2 b-tagged jets
+
+CODE:
+- [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The code correctly implements the b-jet selection by applying the pT and |eta| cuts and checking the number of b-jets. This matches the specification.
+
+Evidence priority:
+〔L310-L311〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- if met is None or met['pt'] < 20: continue
+
+Reason:
+The code correctly implements the MET selection by checking the MET pT. This matches the specification.
+
+Evidence priority:
+〔L316-L317〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- if mt < 30 or mt > 150: continue
+
+Reason:
+The code correctly implements the transverse mass selection by checking the range of the transverse mass. This matches the specification.
+
+Evidence priority:
+〔L324-L325〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+The code correctly constructs the hadronic W candidate by combining the two leading non-b-tagged jets using the sum_objects function. This matches the specification.
+
+Evidence priority:
+〔L340〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if w_hadronic_mass < 40 or w_hadronic_mass > 120: continue
+
+Reason:
+The code correctly implements the hadronic W mass selection by checking the mass range. This matches the specification.
+
+Evidence priority:
+〔L343-L344〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The code correctly constructs the hadronic top candidate by combining the leading b-jet and the hadronic W candidate using the sum_objects function. This matches the specification.
+
+Evidence priority:
+〔L351〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic candidate)
+
+CODE:
+- plt.hist(mt_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the transverse mass of the lepton and MET. This matches the specification.
+
+Evidence priority:
+〔L396-L400〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- plt.hist(met_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the MET distribution. This matches the specification.
+
+Evidence priority:
+〔L403-L407〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- plt.hist(leading_bjet_pt_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the pT of the leading b-jet. This matches the specification.
+
+Evidence priority:
+〔L410-L414〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- plt.hist(subleading_bjet_pt_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the pT of the subleading b-jet. This matches the specification.
+
+Evidence priority:
+〔L417-L421〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of the two leading non-b-tagged jets (W hadronic candidate) in range 40 to 120 GeV
+
+CODE:
+- plt.hist(w_hadronic_mass_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the invariant mass of the two leading non-b-tagged jets. This matches the specification.
+
+Evidence priority:
+〔L424-L428〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of leading b-jet + W hadronic candidate (top hadronic) in range 100 to 250 GeV
+
+CODE:
+- plt.hist(top_mass_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the invariant mass of the leading b-jet and the hadronic W candidate. This matches the specification.
+
+Evidence priority:
+〔L431-L435〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta R between the leading lepton and the closest b-jet
+
+CODE:
+- plt.hist(dr_lepton_bjet_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the delta R between the leading lepton and the closest b-jet. This matches the specification.
+
+Evidence priority:
+〔L438-L442〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- plt.hist(ht_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the HT distribution. This matches the specification.
+
+Evidence priority:
+〔L445-L449〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- plt.hist(njet_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the number of jets per event. This matches the specification.
+
+Evidence priority:
+〔L452-L456〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot eta of the leading b-jet
+
+CODE:
+- plt.hist(leading_bjet_eta_list, bins=40, density=True)
+
+Reason:
+The code correctly plots the eta of the leading b-jet. This matches the specification.
+
+Evidence priority:
+〔L459-L463〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- print("Cutflow:"); for key, value in cutflow.items(): print(f"{key}: {value}")
+
+Reason:
+The code correctly prints the cutflow summary. This matches the specification.
+
+Evidence priority:
+〔L390-L394〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The code correctly saves the plots in png format. This matches the specification.
+
+Evidence priority:
+〔L400, L407, L414, L421, L428, L435, L442, L449, L456, L463〕

@@ -1,0 +1,61 @@
+
+
+* jet_system
+  - computed/defined as: jet_system = sum_objects(jet1, jet2)
+  - upstream chain: jet1, jet2 -> jet_system
+  - collection definition: None
+  - structure: composite-derived
+
+* jet1
+  - computed/defined as: jet1 = helper_get_leading(jets)
+  - upstream chain: jets -> jet1
+  - collection definition: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - structure: single-constituent
+
+* jet2
+  - computed/defined as: jet2 = helper_get_subleading(jets)
+  - upstream chain: jets -> jet2
+  - collection definition: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - structure: single-constituent
+
+* lepton
+  - computed/defined as: lepton = leptons[0]
+  - upstream chain: leptons -> lepton
+  - collection definition: [l for l in electrons if ...] + [l for l in muons if ...]
+  - structure: single-constituent
+
+* bjets
+  - computed/defined as: bjets = get_bjets(event)
+  - upstream chain: event -> bjets
+  - collection definition: [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]
+  - structure: composite-derived
+
+* electrons
+  - computed/defined as: electrons = get_electrons(event)
+  - upstream chain: event -> electrons
+  - collection definition: [o for o in event['objects'] if o['type'] == 1]
+  - structure: composite-derived
+
+* muons
+  - computed/defined as: muons = get_muons(event)
+  - upstream chain: event -> muons
+  - collection definition: [o for o in event['objects'] if o['type'] == 2]
+  - structure: composite-derived
+
+* jets
+  - computed/defined as: jets = get_jets(event)
+  - upstream chain: event -> jets
+  - collection definition: [o for o in event['objects'] if o['type'] == 4]
+  - structure: composite-derived
+
+* met
+  - computed/defined as: met = helper_get_met(event)
+  - upstream chain: event -> met
+  - collection definition: [o for o in event['objects'] if o['type'] == 6]
+  - structure: single-constituent
+
+* cutflow
+  - computed/defined as: cutflow = { ... }
+  - upstream chain: None
+  - collection definition: None
+  - structure: composite-derived

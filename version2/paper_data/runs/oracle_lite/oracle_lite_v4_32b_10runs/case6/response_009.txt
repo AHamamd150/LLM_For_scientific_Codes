@@ -1,0 +1,142 @@
+[CANDIDATE 1] Lepton definition and selection
+
+Original phrase:
+"Require exactly one lepton (electron or muon)"
+
+Unresolved choice:
+It is unclear whether this refers to the total number of electrons and muons combined, or whether it implies a specific selection of one lepton from a collection after applying pT and |eta| cuts.
+
+Why this may matter:
+If the lepton is to be selected from a collection, the code may need to define how to choose which lepton (e.g., highest pT) when multiple pass the cuts, which is not specified.
+
+[CANDIDATE 2] Jet selection and b-tagging order
+
+Original phrase:
+"Among these selected jets, require at least 2 b-tagged jets."
+
+Unresolved choice:
+It is unclear whether the b-tagged jets are selected from the full jet collection or from a subset of jets that have already passed the pT and |eta| cuts.
+
+Why this may matter:
+If the b-tagging is applied to a different jet collection than the one used for the pT and |eta| cuts, the selection logic could change significantly.
+
+[CANDIDATE 3] Closest b-jet to lepton
+
+Original phrase:
+"Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R."
+
+Unresolved choice:
+It is unclear whether the "selected b-tagged jets" refers to the jets that have passed all prior cuts (including pT, |eta|, and b-tagging), or whether it refers to all jets in the event that are b-tagged.
+
+Why this may matter:
+If the b-tagged jets are not already selected, the code may need to apply additional cuts before computing delta R, which could affect the result.
+
+[CANDIDATE 4] Hadronic W candidate construction
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Unresolved choice:
+It is unclear whether "selected non-b-tagged jets" refers to jets that have passed the pT and |eta| cuts but are not b-tagged, or whether it refers to jets that have passed all prior selection cuts (including lepton and b-jet requirements).
+
+Why this may matter:
+The selection of jets for the hadronic W candidate could change depending on whether the jets are selected before or after all other cuts.
+
+[CANDIDATE 5] Hadronic top candidate construction
+
+Original phrase:
+"Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate."
+
+Unresolved choice:
+It is unclear whether the "leading selected b-tagged jet" refers to the highest-pT b-tagged jet among all jets in the event, or whether it refers to the highest-pT b-tagged jet among those that have passed all prior selection cuts.
+
+Why this may matter:
+If the jet is selected before all cuts, it may not be consistent with the rest of the selection logic, which could affect the invariant mass calculation.
+
+[CANDIDATE 6] Use of selected vs. unselected objects in plots
+
+Original phrase:
+"Plot the pT of the leading b-jet"
+
+Unresolved choice:
+It is unclear whether the "leading b-jet" refers to the highest-pT b-tagged jet in the event, or whether it refers to the highest-pT b-tagged jet that has passed all prior selection cuts.
+
+Why this may matter:
+If the jet is not selected according to the full cut sequence, the plot may include jets that would have been excluded in the actual analysis.
+
+[CANDIDATE 7] Use of selected vs. unselected objects in plots (continued)
+
+Original phrase:
+"Plot the pT of the subleading b-jet"
+
+Unresolved choice:
+It is unclear whether the "subleading b-jet" refers to the second-highest-pT b-tagged jet in the event, or whether it refers to the second-highest-pT b-tagged jet that has passed all prior selection cuts.
+
+Why this may matter:
+The subleading jet may not be consistent with the rest of the selection logic, which could affect the interpretation of the plot.
+
+[CANDIDATE 8] Use of selected vs. unselected objects in plots (continued)
+
+Original phrase:
+"Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV"
+
+Unresolved choice:
+It is unclear whether the W hadronic candidate is built from jets that have passed all prior selection cuts, or whether it is built from jets that have passed only the jet pT and |eta| cuts.
+
+Why this may matter:
+If the jets used to build the W candidate are not consistent with the rest of the selection, the invariant mass distribution may include events that would have been rejected in the actual analysis.
+
+[CANDIDATE 9] Use of selected vs. unselected objects in plots (continued)
+
+Original phrase:
+"Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV"
+
+Unresolved choice:
+It is unclear whether the hadronic top candidate is built from objects that have passed all prior selection cuts, or whether it is built from objects that have passed only the jet and b-tagging cuts.
+
+Why this may matter:
+If the top candidate is built from jets that have not passed all selection cuts, the invariant mass distribution may include events that would have been rejected in the actual analysis.
+
+[CANDIDATE 10] Use of selected vs. unselected objects in plots (continued)
+
+Original phrase:
+"Plot delta R between the leading lepton and the closest selected b-jet"
+
+Unresolved choice:
+It is unclear whether the "selected b-jet" refers to a jet that has passed all prior selection cuts, or whether it refers to a jet that has passed only the b-tagging and jet pT/|eta| cuts.
+
+Why this may matter:
+If the b-jet is not selected according to the full cut sequence, the delta R calculation may include jets that would have been excluded in the actual analysis.
+
+[CANDIDATE 11] Use of selected vs. unselected objects in plots (continued)
+
+Original phrase:
+"Plot the HT distribution (scalar sum of all jet pT)"
+
+Unresolved choice:
+It is unclear whether the "all jet pT" refers to the pT of all jets in the event, or whether it refers to the pT of jets that have passed the jet pT and |eta| cuts.
+
+Why this may matter:
+If the HT is computed from all jets in the event, it may include jets that are not used in the rest of the analysis, which could affect the interpretation of the plot.
+
+[CANDIDATE 12] Use of selected vs. unselected objects in plots (continued)
+
+Original phrase:
+"Plot the number of jets per event"
+
+Unresolved choice:
+It is unclear whether the "number of jets" refers to all jets in the event, or whether it refers to jets that have passed the jet pT and |eta| cuts.
+
+Why this may matter:
+If the jet count is based on all jets in the event, it may include jets that are not used in the rest of the analysis, which could affect the interpretation of the plot.
+
+[CANDIDATE 13] Use of selected vs. unselected objects in plots (continued)
+
+Original phrase:
+"Plot eta of the leading b-jet"
+
+Unresolved choice:
+It is unclear whether the "leading b-jet" refers to the highest-pT b-tagged jet in the event, or whether it refers to the highest-pT b-tagged jet that has passed all prior selection cuts.
+
+Why this may matter:
+If the jet is not selected according to the full cut sequence, the plot may include jets that would have been excluded in the actual analysis.

@@ -1,0 +1,61 @@
+[AMBIGUITY 1] Leading jets in selection vs. validation
+
+Original phrase:
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+and
+"Plot the invariant mass of the two leading jets (W hadronic) in the range 40 to 120 GeV"
+
+Why this is dangerous:
+The phrase "two leading jets" may refer to the two highest-pT jets in the full jet collection (before any cuts) or the two highest-pT jets among the selected jets (after applying pT and eta cuts).
+
+Question to user:
+Are the "two leading jets" defined before or after applying the jet pT and eta cuts?
+
+Golden axe:
+The two leading jets are defined after applying the jet pT and eta cuts.
+
+Silver axe:
+The two leading jets are defined before applying the jet pT and eta cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Two-jet system in delta phi calculation
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+
+Why this is dangerous:
+The phrase "two-jet system" could refer to a reconstructed composite object formed by summing the four-momenta of the two leading jets, or it could refer to the scalar quantity derived from the two jets (e.g., their combined transverse momentum or invariant mass).
+
+Question to user:
+Is the "two-jet system" a reconstructed composite object formed by summing the four-momenta of the two leading jets, or is it a scalar quantity derived from the two jets?
+
+Golden axe:
+The "two-jet system" refers to a reconstructed composite object formed by summing the four-momenta of the two leading jets.
+
+Silver axe:
+The "two-jet system" refers to a scalar quantity derived from the two jets, such as their combined transverse momentum or invariant mass.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Delta phi between lepton and MET
+
+Original phrase:
+"Plot delta phi between the lepton and MET"
+
+Why this is dangerous:
+The phrase "delta phi between the lepton and MET" could refer to the azimuthal angle difference between the lepton and the MET vector, or it could refer to the azimuthal angle difference between the lepton and the MET direction (which is a scalar quantity).
+
+Question to user:
+Is the "delta phi between the lepton and MET" the azimuthal angle difference between the lepton and the MET vector, or is it the azimuthal angle difference between the lepton and the MET direction (a scalar quantity)?
+
+Golden axe:
+The "delta phi between the lepton and MET" refers to the azimuthal angle difference between the lepton and the MET vector.
+
+Silver axe:
+The "delta phi between the lepton and MET" refers to the azimuthal angle difference between the lepton and the MET direction (a scalar quantity).
+
+Recommended default:
+Golden axe

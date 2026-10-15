@@ -1,0 +1,6 @@
+
+
+: bjets_sorted[0]['eta']
+  - upstream chain: bjets_sorted = sort_by_pt(bjets)
+  - collection definition: highest pT b-jet
+  - structure: single-constituent

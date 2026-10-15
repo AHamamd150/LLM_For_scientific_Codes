@@ -1,0 +1,11 @@
+run,requirements,code_variant_sha12,tracer_variant_sha12,provisional_tracer_errors,accepted_E3_E4_candidate_count,generator_plot_range_note_count,human_confirmed
+01,26,5ef7cbc6c8e8,f15832461f53,0,16,0,pending
+02,26,9cb0ac878f76,20fb460c4d02,0,15,1,pending
+03,26,5ef7cbc6c8e8,d4f2b3b01854,0,16,0,pending
+04,24,5ef7cbc6c8e8,9e29cc8b0fd0,0,14,0,pending
+05,24,5ef7cbc6c8e8,663e6c713540,0,14,0,pending
+06,25,5ef7cbc6c8e8,d4f2b3b01854,0,15,0,pending
+07,14,5ef7cbc6c8e8,d4f2b3b01854,0,4,0,pending
+08,24,111e377bc276,ac14e700c8ab,0,13,1,pending
+09,24,5ef7cbc6c8e8,64bc20a38225,0,14,0,pending
+10,25,5ef7cbc6c8e8,d4f2b3b01854,0,15,0,pending

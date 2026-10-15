@@ -1,0 +1,49 @@
+[UNDERSPECIFICATION 1] Leading jets definition
+
+Original phrase:
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+and
+"Plot the pT of the leading jet"
+and
+"Plot the pT of the subleading jet"
+and
+"Plot delta R between the two leading jets"
+and
+"Plot delta phi between the lepton and the two-jet system"
+
+Why this matters:
+The phrase "leading jets" could refer to the two highest-pT jets in the full event or in the selected jet collection. The selection of jets is not explicitly defined in the user input, so the meaning of "leading" depends on whether jet selection has already been applied.
+
+Question to user:
+Are the "leading jets" defined from the full jet collection in the event, or from the selected jets after the "at least 2 jets with pT > 30 GeV and |eta| < 2.5" cut?
+
+Golden axe:
+Leading jets are defined from the selected jets (after pT and eta cuts).
+
+Silver axe:
+Leading jets are defined from the full jet collection in the event, before any jet selection.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Delta phi between lepton and two-jet system
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+and
+"Save the following in a CSV file for MLP analysis: 6- Delta phi between lepton and the two-jet system"
+
+Why this matters:
+The phrase "two-jet system" could refer to the two leading jets in the event or in the selected jet collection. It is also unclear whether the two-jet system is defined before or after the invariant mass cut (60-100 GeV) for the W hadronic candidate.
+
+Question to user:
+Is the "two-jet system" used for the delta phi calculation defined as the two leading jets in the selected jet collection (after pT and eta cuts), and is it required to satisfy the invariant mass cut (60-100 GeV)?
+
+Golden axe:
+The two-jet system is defined as the two leading jets in the selected jet collection and must satisfy the invariant mass cut.
+
+Silver axe:
+The two-jet system is defined as the two leading jets in the event, and the invariant mass cut is not required for this purpose.
+
+Recommended default:
+Golden axe

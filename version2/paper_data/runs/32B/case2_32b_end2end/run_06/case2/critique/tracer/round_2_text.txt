@@ -1,0 +1,35 @@
+
+
+* Delta R between lepton and closest b-jet (continued)
+  - collection definition: lepton = [e for e in electrons if e['pt'] > 25 and abs(e['eta']) < 2.5] + [m for m in muons if m['pt'] > 25 and abs(m['eta']) < 2.4], bjet1 = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - structure: multi-input
+
+* HT (scalar sum of jet pT)
+  - computed/defined as: scalar_pt_sum(jets)
+  - upstream chain: jets (from jet selection)
+  - collection definition: jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - structure: single-constituent
+
+* Number of jets per event
+  - computed/defined as: len(jets)
+  - upstream chain: jets (from jet selection)
+  - collection definition: jets = [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - structure: single-constituent
+
+* Leading b-jet pT
+  - computed/defined as: bjet1['pt']
+  - upstream chain: bjet1 (from bjet selection)
+  - collection definition: bjet1 = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - structure: single-constituent
+
+* Subleading b-jet pT
+  - computed/defined as: bjet2['pt']
+  - upstream chain: bjet2 (from bjet selection)
+  - collection definition: bjet2 = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - structure: single-constituent
+
+* Leading b-jet η
+  - computed/defined as: bjet1['eta']
+  - upstream chain: bjet1 (from bjet selection)
+  - collection definition: bjet1 = [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - structure: single-constituent

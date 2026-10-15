@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n◎ (none)  \nSPEC: none  \nCODE: none  \nReason: No semantic inconsistencies found.  \nEvidence priority: All definitions in the TRACER OUTPUT match the SPEC.  \nGenerator bias: none",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788937224,
+  "id": "chatcmpl-fd10836a-8d70-4623-9573-ae4a9e77bc7e",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 46,
+    "prompt_tokens": 9799,
+    "prompt_tokens_details": null,
+    "total_tokens": 9845
+  }
+}

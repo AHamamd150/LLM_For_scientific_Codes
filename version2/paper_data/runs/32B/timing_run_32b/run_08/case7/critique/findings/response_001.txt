@@ -1,0 +1,136 @@
+◎ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+- Define dijet_obj from the summed four-momentum of the leading jet and subleading jet.
+
+CODE:
+- ditau_obj = sum_objects(tau1, tau2)
+- dijet_obj = sum_objects(jet1, jet2)
+
+Reason:
+The code correctly constructs the ditau_obj and dijet_obj from the summed four-momentum of the leading and subleading tau and jet, respectively. This matches the composite system-level definition in the SPEC.
+
+Evidence priority:
+- ditau_obj = sum_objects(tau1, tau2) 〔L283-L284〕
+- dijet_obj = sum_objects(jet1, jet2) 〔L311-L312〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV
+- Select |delta eta| between the two leading jets > 2.5
+- Select ditau invariant mass between 60 and 150 GeV
+
+CODE:
+- m_jj_val = helper_invariant_mass(jet1, jet2)
+- delta_eta_jj_val = abs(helper_delta_eta(jet1, jet2))
+- m_tautau_val = helper_invariant_mass(tau1, tau2)
+
+Reason:
+The code correctly computes the invariant mass and delta eta using the helper functions, and applies the correct thresholds. The definitions match the SPEC.
+
+Evidence priority:
+- m_jj_val = helper_invariant_mass(jet1, jet2) 〔L317-L318〕
+- delta_eta_jj_val = abs(helper_delta_eta(jet1, jet2)) 〔L323-L324〕
+- m_tautau_val = helper_invariant_mass(tau1, tau2) 〔L288-L289〕
+
+Generator bias:
+none
+
+◎ (C) missing implementation
+
+SPEC:
+- None
+
+CODE:
+- None
+
+Reason:
+No missing implementation found. All required definitions and cuts are implemented.
+
+Evidence priority:
+All required definitions and cuts are implemented as per the SPEC.
+
+Generator bias:
+none
+
+◎ (D) specification ambiguity
+
+SPEC:
+- None
+
+CODE:
+- None
+
+Reason:
+No specification ambiguity found. The code implements the SPEC without introducing any unconstrained choices.
+
+Evidence priority:
+All definitions and cuts are implemented as per the SPEC.
+
+Generator bias:
+none
+
+◎ (E) extra behavior
+
+SPEC:
+- None
+
+CODE:
+- None
+
+Reason:
+No extra behavior found. The code does not perform any behavior not requested by the SPEC.
+
+Evidence priority:
+All definitions and cuts are implemented as per the SPEC.
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Veto events with b-tagged jets among the selected jets 
+
+CODE:
+- if any(j['btag'] == 1.0 for j in jets): continue
+
+Reason:
+The code checks for b-tagged jets using the condition j['btag'] == 1.0, but the SPEC does not specify the exact value that indicates a b-tagged jet. This is a definition mismatch since the implementation assumes a specific value (1.0) for b-tagging without being explicitly constrained by the SPEC.
+
+Evidence priority:
+- if any(j['btag'] == 1.0 for j in jets): continue 〔L300-L302〕
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Define the leading tau and subleading tau from the selected taus.
+- Define the leading jet and subleading jet from the selected jets.
+
+CODE:
+- tau1 = helper_get_leading(taus)
+- tau2 = helper_get_subleading(taus)
+- jet1 = helper_get_leading(jets)
+- jet2 = helper_get_subleading(jets)
+
+Reason:
+The SPEC does not specify whether the leading and subleading objects should be determined based on pT or any other property. The implementation uses pT as the sorting criterion, which is a valid but unconstrained choice.
+
+Evidence priority:
+- tau1 = helper_get_leading(taus) 〔L272-L273〕
+- tau2 = helper_get_subleading(taus) 〔L274〕
+- jet1 = helper_get_leading(jets) 〔L305-L306〕
+- jet2 = helper_get_subleading(jets) 〔L307〕
+
+Generator bias:
+none

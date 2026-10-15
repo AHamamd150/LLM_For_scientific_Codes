@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Selection of z_obj and W candidate lepton
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum."
+
+Why this is dangerous:
+The phrase "selected electrons" may refer to electrons that have passed all previous cuts or only those that have passed cuts up to this point. This ambiguity affects whether the z_obj is built from electrons that have already been filtered by the invariant mass cut or not.
+
+Question to user:
+Are the two selected electrons used to build z_obj required to have passed all previous cuts, including the invariant mass cut?
+
+Golden axe:
+The two selected electrons used to build z_obj are those that have passed all previous cuts, including the invariant mass cut.
+
+Silver axe:
+The two selected electrons used to build z_obj are those that have passed only the initial selection cuts (pT and |eta|), but not necessarily the invariant mass cut.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Definition of W candidate lepton
+
+Original phrase:
+"Define the selected muon as the W candidate lepton."
+
+Why this is dangerous:
+The phrase "selected muon" may refer to a muon that has passed all previous cuts or only those that have passed cuts up to this point. This affects whether the W candidate lepton is defined after applying the pT > 20 GeV cut or not.
+
+Question to user:
+Is the W candidate lepton defined as the selected muon that has passed all previous cuts, including the pT > 20 GeV cut?
+
+Golden axe:
+The W candidate lepton is defined as the selected muon that has passed all previous cuts, including the pT > 20 GeV cut.
+
+Silver axe:
+The W candidate lepton is defined as the selected muon that has passed only the initial selection cuts (pT and |eta|), but not necessarily the pT > 20 GeV cut.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Definition of three-lepton system
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon."
+
+Why this is dangerous:
+The phrase "selected electrons" and "selected muon" may refer to objects that have passed all previous cuts or only those that have passed cuts up to this point. This affects whether the three-lepton system is built from objects that have passed all previous cuts, including the invariant mass and pT cuts.
+
+Question to user:
+Are the two selected electrons and the selected muon used to build the three-lepton system required to have passed all previous cuts, including the invariant mass and pT cuts?
+
+Golden axe:
+The three-lepton system is built from the two selected electrons and the selected muon that have passed all previous cuts, including the invariant mass and pT cuts.
+
+Silver axe:
+The three-lepton system is built from the two selected electrons and the selected muon that have passed only the initial selection cuts (pT and |eta|), but not necessarily the invariant mass and pT cuts.
+
+Recommended default:
+Golden axe

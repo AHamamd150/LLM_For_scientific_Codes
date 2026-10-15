@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* Subleading tau (continued)\n  - upstream chain: helper_get_subleading -> sorted(particles, key=lambda p: p['pt'], reverse=True)[1]\n  - collection definition: taus = [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]\n  - structure: single-constituent\n\n* Leading jet\n  - computed/defined as: helper_get_leading(jets)\n  - upstream chain: helper_get_leading -> max(particles, key=lambda p: p['pt'])\n  - collection definition: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: single-constituent\n\n* Subleading jet\n  - computed/defined as: helper_get_subleading(jets)\n  - upstream chain: helper_get_subleading -> sorted(particles, key=lambda p: p['pt'], reverse=True)[1]\n  - collection definition: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: single-constituent\n\n* Ditau invariant mass\n  - computed/defined as: helper_invariant_mass(leading_tau, subleading_tau)\n  - upstream chain: helper_invariant_mass -> sum_objects -> E, px, py, pz from four_momentum\n  - collection definition: leading_tau and subleading_tau from selected taus\n  - structure: composite-derived\n\n* Dijet invariant mass (m_jj)\n  - computed/defined as: helper_invariant_mass(leading_jet, subleading_jet)\n  - upstream chain: helper_invariant_mass -> sum_objects -> E, px, py, pz from four_momentum\n  - collection definition: leading_jet and subleading_jet from selected jets\n  - structure: composite-derived\n\n* Delta eta between jets (delta_eta_jj)\n  - computed/defined as: abs(leading_jet['eta'] - subleading_jet['eta'])\n  - upstream chain: leading_jet['eta'], subleading_jet['eta'] from helper_get_leading and helper_get_subleading\n  - collection definition: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - structure: single-constituent\n\n* Delta R between taus\n  - computed/defined as: helper_delta_r(leading_tau, subleading_tau)\n  - upstream chain: helper_delta_r -> deta = obj1['eta'] - obj2['eta'], dphi = helper_delta_phi(obj1['phi'], obj2['phi'])\n  - collection definition: leading_tau and subleading_tau from selected taus\n  - structure: composite-derived\n\n* Delta phi between ditau and dijet\n  - computed/defined as: helper_delta_phi(leading_tau['phi'] + subleading_tau['phi'], leading_jet['phi'] + subleading_jet['phi'])\n  - upstream chain: helper_delta_phi -> phi1 - phi2 normalized to [-π, π]\n  - collection definition: leading_tau, subleading_tau, leading_jet, subleading_jet from selected objects\n  - structure: composite-derived\n\n* Centrality of ditau relative to jets\n  - computed/defined as: centrality_between_jets(sum_objects(leading_tau, subleading_tau), leading_jet, subleading_jet)\n  - upstream chain: centrality_between_jets -> |eta_obj - eta_center_jj| / |delta_eta_jj|\n  - collection definition: leading_tau, subleading_tau, leading_jet, subleading_jet from selected objects\n  - structure: composite-derived\n\n* B-tagged jets\n  - computed/defined as: n_bjets(event, pt_cut=30, eta_cut=4.7)\n  - upstream chain: n_bjets -> get_bjets(event) -> [o for o in event['objects'] if o['type'] == 4 and int(o['btag']) == 1]\n  - collection definition: o['type'] == 4 and int(o['btag']) == 1\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788937654,
+  "id": "chatcmpl-041a6afe-292f-4a81-8a96-bede84c06087",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 911,
+    "prompt_tokens": 10292,
+    "prompt_tokens_details": null,
+    "total_tokens": 11203
+  }
+}

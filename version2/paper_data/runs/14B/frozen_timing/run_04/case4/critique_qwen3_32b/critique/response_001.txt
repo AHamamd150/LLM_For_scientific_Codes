@@ -1,0 +1,237 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the pT of the three-lepton system built from the two selected electrons and the selected muon
+
+CODE:
+- three_lepton_pt is defined as three_lepton['pt'], where three_lepton is the result of sum_objects(e1, e2, w_muon)
+
+Reason:
+The SPEC requests the pT of the three-lepton system, which should be computed from the full four-momentum sum of the two electrons and the selected muon. The code correctly constructs the three-lepton system using sum_objects(e1, e2, w_muon), and then plots the pT of the resulting composite object. This is a correct implementation and not a violation.
+
+Evidence priority:
+three_lepton_pt is defined as three_lepton['pt'], where three_lepton is the result of sum_objects(e1, e2, w_muon)
+
+Generator bias:
+none
+
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the invariant mass of the three-lepton system
+
+CODE:
+- three_lepton_mass is defined as helper_invariant_mass(e1, e2, w_muon)
+
+Reason:
+The SPEC requests the invariant mass of the three-lepton system, which should be computed from the full four-momentum sum of the two electrons and the selected muon. The code correctly computes the invariant mass using helper_invariant_mass(e1, e2, w_muon), which sums the four-momenta of the three particles. This is a correct implementation and not a violation.
+
+Evidence priority:
+three_lepton_mass is defined as helper_invariant_mass(e1, e2, w_muon)
+
+Generator bias:
+none
+
+⚠️ (A) composite violation
+
+SPEC:
+- Plot delta phi between z_obj and MET
+
+CODE:
+- delta_phi_z_met is defined as helper_delta_phi(z_obj['phi'], met['phi'])
+
+Reason:
+The SPEC requests the delta phi between the Z boson candidate (z_obj) and the MET. The code correctly computes this as the delta phi between the phi of z_obj and the phi of MET. This is a correct implementation and not a violation.
+
+Evidence priority:
+delta_phi_z_met is defined as helper_delta_phi(z_obj['phi'], met['phi'])
+
+Generator bias:
+none
+
+⚠️ (A) composite violation
+
+SPEC:
+- Plot delta R between the two electrons forming z_obj
+
+CODE:
+- delta_r_electrons is defined as helper_delta_r(e1, e2)
+
+Reason:
+The SPEC requests the delta R between the two electrons forming the Z boson candidate. The code correctly computes this as the delta R between the two electrons (e1 and e2). This is a correct implementation and not a violation.
+
+Evidence priority:
+delta_r_electrons is defined as helper_delta_r(e1, e2)
+
+Generator bias:
+none
+
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the pT of z_obj
+
+CODE:
+- z_pt is defined as z_obj['pt'], where z_obj is the result of sum_objects(e1, e2)
+
+Reason:
+The SPEC requests the pT of the Z boson candidate (z_obj), which should be computed from the full four-momentum sum of the two electrons. The code correctly constructs the Z boson candidate using sum_objects(e1, e2), and then plots the pT of the resulting composite object. This is a correct implementation and not a violation.
+
+Evidence priority:
+z_pt is defined as z_obj['pt'], where z_obj is the result of sum_objects(e1, e2)
+
+Generator bias:
+none
+
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the transverse mass of the W candidate lepton + MET
+
+CODE:
+- w_trans_mass is defined as helper_transverse_mass(w_muon, met)
+
+Reason:
+The SPEC requests the transverse mass of the W candidate lepton and MET. The code correctly computes this as the transverse mass between the W candidate lepton and MET. This is a correct implementation and not a violation.
+
+Evidence priority:
+w_trans_mass is defined as helper_transverse_mass(w_muon, met)
+
+Generator bias:
+none
+
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the invariant mass of z_obj in range 60 to 120 GeV
+
+CODE:
+- z_mass is defined as helper_invariant_mass(e1, e2)
+
+Reason:
+The SPEC requests the invariant mass of the Z boson candidate (z_obj), which should be computed from the full four-momentum sum of the two electrons. The code correctly computes the invariant mass using helper_invariant_mass(e1, e2), which sums the four-momenta of the two electrons. This is a correct implementation and not a violation.
+
+Evidence priority:
+z_mass is defined as helper_invariant_mass(e1, e2)
+
+Generator bias:
+none
+
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- met is defined as helper_get_met(event)
+
+Reason:
+The SPEC requests the MET distribution. The code correctly retrieves the MET object from the event and plots its pT. This is a correct implementation and not a violation.
+
+Evidence priority:
+met is defined as helper_get_met(event)
+
+Generator bias:
+none
+
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the pT of the W candidate muon
+
+CODE:
+- w_muon_pt is defined as w_muon['pt'], where w_muon is the selected muon
+
+Reason:
+The SPEC requests the pT of the W candidate muon. The code correctly retrieves the pT of the selected muon. This is a correct implementation and not a violation.
+
+Evidence priority:
+w_muon_pt is defined as w_muon['pt'], where w_muon is the selected muon
+
+Generator bias:
+none
+
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the eta of the W candidate muon
+
+CODE:
+- w_muon_eta is defined as w_muon['eta'], where w_muon is the selected muon
+
+Reason:
+The SPEC requests the eta of the W candidate muon. The code correctly retrieves the eta of the selected muon. This is a correct implementation and not a violation.
+
+Evidence priority:
+w_muon_eta is defined as w_muon['eta'], where w_muon is the selected muon
+
+Generator bias:
+none
+
+⚠️ (A) composite violation
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied
+
+CODE:
+- Cuts are applied sequentially with continue statements when a cut is not satisfied
+
+Reason:
+The SPEC requests that cuts be applied sequentially and events be skipped immediately when a cut is not satisfied. The code correctly implements this with continue statements after each cut. This is a correct implementation and not a violation.
+
+Evidence priority:
+Cuts are applied sequentially with continue statements when a cut is not satisfied
+
+Generator bias:
+none
+
+⚠️ (A) composite violation
+
+SPEC:
+- Increment each cutflow counter immediately after its cut is passed
+
+CODE:
+- Cutflow counters are incremented immediately after each cut is passed
+
+Reason:
+The SPEC requests that cutflow counters be incremented immediately after each cut is passed. The code correctly implements this with cutflow counter increments after each cut. This is a correct implementation and not a violation.
+
+Evidence priority:
+Cutflow counters are incremented immediately after each cut is passed
+
+Generator bias:
+none
+
+⚠️ (A) composite violation
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- Plots are saved in png format using plt.savefig("filename.png")
+
+Reason:
+The SPEC requests that plots be saved in png format. The code correctly implements this with plt.savefig("filename.png"). This is a correct implementation and not a violation.
+
+Evidence priority:
+Plots are saved in png format using plt.savefig("filename.png")
+
+Generator bias:
+none
+
+⚠️ (A) composite violation
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step
+
+CODE:
+- Cutflow summary is printed after the event loop
+
+Reason:
+The SPEC requests that a cutflow summary be printed after the event loop. The code correctly implements this with a for loop over the cutflow dictionary. This is a correct implementation and not a violation.
+
+Evidence priority:
+Cutflow summary is printed after the event loop
+
+Generator bias:
+none

@@ -1,0 +1,26 @@
+{
+  "light_jets": {
+    "name": "light_jets",
+    "definition": "[j for j in jets if j not in bjets]",
+    "used_by": [
+      "Hadronic W candidate"
+    ]
+  },
+  "bjets": {
+    "name": "bjets",
+    "definition": "[b for b in get_bjets(event) if b['pt'] > 30 and abs(b['eta']) < 2.5]",
+    "used_by": [
+      "Hadronic top candidate",
+      "Leading b-jet",
+      "Subleading b-jet",
+      "Leading b-jet eta"
+    ]
+  },
+  "jets": {
+    "name": "jets",
+    "definition": "[j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]",
+    "used_by": [
+      "Number of jets per event"
+    ]
+  }
+}

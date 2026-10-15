@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* [CHECK CAREFULLY] DEFINITION SUMMARY\n\n* taus\n  - computed/defined as: [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]\n  - upstream chain: get_taus -> event['objects']\n  - collection definition: t['pt'] > 20 and abs(t['eta']) < 2.3\n  - structure: single-constituent\n\n* jets\n  - computed/defined as: [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]\n  - upstream chain: get_jets -> event['objects']\n  - collection definition: j['pt'] > 30 and abs(j['eta']) < 4.7\n  - structure: single-constituent\n\n* leading_tau\n  - computed/defined as: helper_get_leading(taus)\n  - upstream chain: taus\n  - collection definition: taus\n  - structure: single-constituent\n\n* subleading_tau\n  - computed/defined as: helper_get_subleading(taus)\n  - upstream chain: taus\n  - collection definition: taus\n  - structure: single-constituent\n\n* leading_jet\n  - computed/defined as: helper_get_leading(jets)\n  - upstream chain: jets\n  - collection definition: jets\n  - structure: single-constituent\n\n* subleading_jet\n  - computed/defined as: helper_get_subleading(jets)\n  - upstream chain: jets\n  - collection definition: jets\n  - structure: single-constituent\n\n* ditau_mass\n  - computed/defined as: helper_invariant_mass(leading_tau, subleading_tau)\n  - upstream chain: leading_tau, subleading_tau -> helper_get_leading, helper_get_subleading -> taus\n  - collection definition: taus\n  - structure: multi-input\n\n* dijet_mass\n  - computed/defined as: helper_invariant_mass(leading_jet, subleading_jet)\n  - upstream chain: leading_jet, subleading_jet -> helper_get_leading, helper_get_subleading -> jets\n  - collection definition: jets\n  - structure: multi-input\n\n* delta_eta_jj\n  - computed/defined as: helper_delta_eta(leading_jet, subleading_jet)\n  - upstream chain: leading_jet, subleading_jet -> helper_get_leading, helper_get_subleading -> jets\n  - collection definition: jets\n  - structure: multi-input\n\n* leading_tau_pt\n  - computed/defined as: leading_tau['pt']\n  - upstream chain: leading_tau -> helper_get_leading -> taus\n  - collection definition: taus\n  - structure: single-constituent\n\n* subleading_tau_pt\n  - computed/defined as: subleading_tau['pt']\n  - upstream chain: subleading_tau -> helper_get_subleading -> taus\n  - collection definition: taus\n  - structure: single-constituent\n\n* leading_jet_pt\n  - computed/defined as: leading_jet['pt']\n  - upstream chain: leading_jet -> helper_get_leading -> jets\n  - collection definition: jets\n  - structure: single-constituent\n\n* subleading_jet_pt\n  - computed/defined as: subleading_jet['pt']\n  - upstream chain: subleading_jet -> helper_get_subleading -> jets\n  - collection definition: jets\n  - structure: single-constituent\n\n* delta_r_tt\n  - computed/defined as: helper_delta_r(leading_tau, subleading_tau)\n  - upstream chain: leading_tau, subleading_tau -> helper_get_leading, helper_get_subleading -> taus\n  - collection definition: taus\n  - structure: multi-input\n\n* delta_phi_tt_dijet\n  - computed/defined as: helper_delta_phi(leading_tau['phi'], leading_jet['phi'])\n  - upstream chain: leading_tau -> helper_get_leading -> taus, leading_jet -> helper_get_leading -> jets\n  - collection definition: taus, jets\n  - structure: multi-input\n\n* centrality_tt\n  - computed/defined as: centrality_between_jets(sum_objects(leading_tau, subleading_tau), leading_jet, subleading_jet)\n  - upstream chain: leading_tau, subleading_tau -> helper_get_leading, helper_get_subleading -> taus, leading_jet, subleading_jet -> helper_get_leading, helper_get_subleading -> jets\n  - collection definition: taus, jets\n  - structure: multi-input",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1789040770,
+  "id": "chatcmpl-4409e6d7-1731-4285-b211-afc51537923a",
+  "model": "Qwen/Qwen3-14B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-7e17f8bc",
+  "usage": {
+    "completion_tokens": 992,
+    "prompt_tokens": 17239,
+    "prompt_tokens_details": null,
+    "total_tokens": 18231
+  }
+}

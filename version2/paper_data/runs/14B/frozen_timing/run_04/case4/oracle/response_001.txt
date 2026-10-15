@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Selection of z_obj and its use in validation
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum."
+
+Why this is dangerous:
+The phrase does not clarify whether the two selected electrons are defined before or after applying the "exactly 2 selected electrons" cut, and whether the z_obj is used in subsequent cuts or validation plots as a reconstructed composite object or only as a scalar quantity.
+
+Question to user:
+Are the two selected electrons used to build z_obj defined before or after the "exactly 2 selected electrons" cut?
+
+Golden axe:
+The two selected electrons are defined after the "exactly 2 selected electrons" cut, and z_obj is treated as a reconstructed composite object.
+
+Silver axe:
+The two selected electrons are defined before the "exactly 2 selected electrons" cut, and z_obj is treated as a scalar quantity derived from the two electrons.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] MET and W candidate lepton in transverse mass
+
+Original phrase:
+"Select transverse mass of W candidate muon + MET > 30 GeV."
+
+Why this is dangerous:
+The phrase does not clarify whether the MET used in the transverse mass calculation is the raw MET or the MET after applying any cuts or corrections, and whether the W candidate muon is defined before or after applying the "pT > 20 GeV" cut.
+
+Question to user:
+Is the MET used in the transverse mass calculation the raw MET or the MET after applying any cuts or corrections? Is the W candidate muon defined before or after the "pT > 20 GeV" cut?
+
+Golden axe:
+The MET is the raw MET, and the W candidate muon is defined after the "pT > 20 GeV" cut.
+
+Silver axe:
+The MET is the MET after applying any cuts or corrections, and the W candidate muon is defined before the "pT > 20 GeV" cut.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Delta R between the two electrons forming z_obj
+
+Original phrase:
+"Plot delta R between the two electrons forming z_obj."
+
+Why this is dangerous:
+The phrase does not clarify whether the two electrons forming z_obj are defined before or after applying the "exactly 2 selected electrons" cut, and whether the delta R is computed using the raw electrons or the electrons used to build z_obj.
+
+Question to user:
+Are the two electrons forming z_obj defined before or after the "exactly 2 selected electrons" cut? Is the delta R computed using the raw electrons or the electrons used to build z_obj?
+
+Golden axe:
+The two electrons forming z_obj are defined after the "exactly 2 selected electrons" cut, and the delta R is computed using the electrons used to build z_obj.
+
+Silver axe:
+The two electrons forming z_obj are defined before the "exactly 2 selected electrons" cut, and the delta R is computed using the raw electrons.
+
+Recommended default:
+Golden axe

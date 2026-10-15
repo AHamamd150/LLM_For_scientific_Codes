@@ -1,0 +1,827 @@
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(leading_bjet, hadronic_w)
+
+Reason:
+The code correctly constructs the hadronic top candidate by combining the leading b-jet and the hadronic W candidate using the sum_objects function. This is a proper composite construction from the required constituents.
+
+Evidence priority:
+- The hadronic_top is defined as sum_objects(leading_bjet, hadronic_w) in the code, which correctly combines the required constituents.
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code applies a stricter eta cut of |eta| < 2.5 for muons, whereas the SPEC requires |eta| < 2.4 for muons. This is a mismatch in the definition of the selection criteria for muons.
+
+Evidence priority:
+- The code uses abs(l['eta']) < 2.5 for both electrons and muons in the selection of selected_leptons, which is traced in the upstream chain from leptons -> selected_leptons.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+
+CODE:
+- helper_delta_r(lep, b)
+
+Reason:
+The SPEC does not explicitly specify whether the selected b-tagged jets should be taken from the selected_bjets collection or from the broader bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets (filtered b-tagged jets) to find the closest b-jet to the lepton, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- light_jets -> selected_light_jets -> light_jets_sorted -> leading_light_jet, subleading_light_jet
+
+Reason:
+The SPEC does not explicitly specify whether the non-b-tagged jets should be taken from the selected_light_jets collection or from the broader light_jets collection. The code uses the selected_light_jets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_light_jets (filtered non-b-tagged jets) to build the hadronic W candidate, which is traced in the upstream chain from light_jets -> selected_light_jets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Among these selected jets, require at least 2 b-tagged jets.
+
+CODE:
+- bjets -> selected_bjets
+
+Reason:
+The SPEC does not explicitly specify whether the b-tagged jets should be taken from the selected_bjets collection or from the broader bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets (filtered b-tagged jets) to require at least 2 b-tagged jets, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- jets -> selected_jets
+
+Reason:
+The SPEC does not explicitly specify whether the jets should be taken from the selected_jets collection or from the broader jets collection. The code uses the selected_jets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_jets (filtered jets) to require at least 4 jets, which is traced in the upstream chain from jets -> selected_jets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+
+CODE:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The SPEC does not explicitly specify whether the leptons should be taken from the broader leptons collection or from a selected subset. The code uses the leptons collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses leptons (unfiltered leptons) to select electrons and muons, which is traced in the upstream chain from leptons -> selected_leptons.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- selected_leptons
+
+Reason:
+The SPEC does not explicitly specify whether the lepton should be taken from the selected_leptons collection or from the broader leptons collection. The code uses the selected_leptons collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_leptons (filtered leptons) to require exactly one lepton, which is traced in the upstream chain from leptons -> selected_leptons.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- helper_get_met(event)
+
+Reason:
+The SPEC does not explicitly specify whether the MET should be taken from the broader event collection or from a specific MET object. The code uses helper_get_met(event), which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses helper_get_met(event) to select MET, which is traced in the upstream chain from event -> helper_get_met(event).
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- helper_transverse_mass(lep, met)
+
+Reason:
+The SPEC does not explicitly specify whether the lepton and MET should be taken from the broader event collection or from specific selected objects. The code uses the selected_leptons and helper_get_met(event), which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_leptons[0] and helper_get_met(event) to compute the transverse mass, which is traced in the upstream chain from selected_leptons -> lep, event -> met.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV
+
+CODE:
+- hadronic_w['mass'] if hadronic_w else 0.0
+
+Reason:
+The SPEC does not explicitly specify whether the hadronic W mass should be computed from the broader event collection or from the specific hadronic W candidate. The code uses the hadronic_w object, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses hadronic_w['mass'] to select the hadronic W mass, which is traced in the upstream chain from hadronic_w -> sum_objects(leading_light_jet, subleading_light_jet).
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV
+
+CODE:
+- hadronic_top['mass'] if hadronic_top else 0.0
+
+Reason:
+The SPEC does not explicitly specify whether the hadronic top mass should be computed from the broader event collection or from the specific hadronic top candidate. The code uses the hadronic_top object, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses hadronic_top['mass'] to select the hadronic top mass, which is traced in the upstream chain from hadronic_top -> sum_objects(leading_bjet, hadronic_w).
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- len(selected_jets)
+
+Reason:
+The SPEC does not explicitly specify whether the number of jets should be taken from the broader jets collection or from the selected_jets collection. The code uses the selected_jets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses len(selected_jets) to plot the number of jets per event, which is traced in the upstream chain from jets -> selected_jets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- scalar_pt_sum(selected_jets)
+
+Reason:
+The SPEC does not explicitly specify whether the HT should be computed from the broader jets collection or from the selected_jets collection. The code uses the selected_jets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses scalar_pt_sum(selected_jets) to compute the HT distribution, which is traced in the upstream chain from jets -> selected_jets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- leading_bjet['pt']
+
+Reason:
+The SPEC does not explicitly specify whether the leading b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets_sorted[0] to get the leading b-jet, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- subleading_bjet['pt']
+
+Reason:
+The SPEC does not explicitly specify whether the subleading b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets_sorted[1] to get the subleading b-jet, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the eta of the leading b-jet
+
+CODE:
+- leading_bjet['eta']
+
+Reason:
+The SPEC does not explicitly specify whether the leading b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets_sorted[0] to get the leading b-jet, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot delta R between the leading lepton and the closest selected b-jet
+
+CODE:
+- helper_delta_r(lep, b)
+
+Reason:
+The SPEC does not explicitly specify whether the closest selected b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets to find the closest b-jet to the lepton, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV
+
+CODE:
+- hadronic_w['mass'] if hadronic_w else 0.0
+
+Reason:
+The SPEC does not explicitly specify whether the invariant mass of the W hadronic candidate should be computed from the broader event collection or from the specific hadronic W candidate. The code uses the hadronic_w object, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses hadronic_w['mass'] to plot the invariant mass of the W hadronic candidate, which is traced in the upstream chain from hadronic_w -> sum_objects(leading_light_jet, subleading_light_jet).
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV
+
+CODE:
+- hadronic_top['mass'] if hadronic_top else 0.0
+
+Reason:
+The SPEC does not explicitly specify whether the invariant mass of the hadronic top candidate should be computed from the broader event collection or from the specific hadronic top candidate. The code uses the hadronic_top object, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses hadronic_top['mass'] to plot the invariant mass of the hadronic top candidate, which is traced in the upstream chain from hadronic_top -> sum_objects(leading_bjet, hadronic_w).
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic candidate)
+
+CODE:
+- helper_transverse_mass(lep, met)
+
+Reason:
+The SPEC does not explicitly specify whether the transverse mass of the lepton and MET should be computed from the broader event collection or from specific selected objects. The code uses the selected_leptons and helper_get_met(event), which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_leptons[0] and helper_get_met(event) to compute the transverse mass, which is traced in the upstream chain from selected_leptons -> lep, event -> met.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- met['pt']
+
+Reason:
+The SPEC does not explicitly specify whether the MET should be taken from the broader event collection or from a specific MET object. The code uses helper_get_met(event), which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses helper_get_met(event) to get the MET, which is traced in the upstream chain from event -> helper_get_met(event).
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- scalar_pt_sum(selected_jets)
+
+Reason:
+The SPEC does not explicitly specify whether the HT should be computed from the broader jets collection or from the selected_jets collection. The code uses the selected_jets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses scalar_pt_sum(selected_jets) to compute the HT distribution, which is traced in the upstream chain from jets -> selected_jets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- len(selected_jets)
+
+Reason:
+The SPEC does not explicitly specify whether the number of jets should be taken from the broader jets collection or from the selected_jets collection. The code uses the selected_jets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses len(selected_jets) to plot the number of jets per event, which is traced in the upstream chain from jets -> selected_jets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- leading_bjet['pt']
+
+Reason:
+The SPEC does not explicitly specify whether the leading b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets_sorted[0] to get the leading b-jet, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- subleading_bjet['pt']
+
+Reason:
+The SPEC does not explicitly specify whether the subleading b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets_sorted[1] to get the subleading b-jet, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the eta of the leading b-jet
+
+CODE:
+- leading_bjet['eta']
+
+Reason:
+The SPEC does not explicitly specify whether the leading b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets_sorted[0] to get the leading b-jet, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot delta R between the leading lepton and the closest selected b-jet
+
+CODE:
+- helper_delta_r(lep, b)
+
+Reason:
+The SPEC does not explicitly specify whether the closest selected b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets to find the closest b-jet to the lepton, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV
+
+CODE:
+- hadronic_w['mass'] if hadronic_w else 0.0
+
+Reason:
+The SPEC does not explicitly specify whether the invariant mass of the W hadronic candidate should be computed from the broader event collection or from the specific hadronic W candidate. The code uses the hadronic_w object, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses hadronic_w['mass'] to plot the invariant mass of the W hadronic candidate, which is traced in the upstream chain from hadronic_w -> sum_objects(leading_light_jet, subleading_light_jet).
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV
+
+CODE:
+- hadronic_top['mass'] if hadronic_top else 0.0
+
+Reason:
+The SPEC does not explicitly specify whether the invariant mass of the hadronic top candidate should be computed from the broader event collection or from the specific hadronic top candidate. The code uses the hadronic_top object, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses hadronic_top['mass'] to plot the invariant mass of the hadronic top candidate, which is traced in the upstream chain from hadronic_top -> sum_objects(leading_bjet, hadronic_w).
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic candidate)
+
+CODE:
+- helper_transverse_mass(lep, met)
+
+Reason:
+The SPEC does not explicitly specify whether the transverse mass of the lepton and MET should be computed from the broader event collection or from specific selected objects. The code uses the selected_leptons and helper_get_met(event), which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_leptons[0] and helper_get_met(event) to compute the transverse mass, which is traced in the upstream chain from selected_leptons -> lep, event -> met.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- met['pt']
+
+Reason:
+The SPEC does not explicitly specify whether the MET should be taken from the broader event collection or from a specific MET object. The code uses helper_get_met(event), which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses helper_get_met(event) to get the MET, which is traced in the upstream chain from event -> helper_get_met(event).
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- scalar_pt_sum(selected_jets)
+
+Reason:
+The SPEC does not explicitly specify whether the HT should be computed from the broader jets collection or from the selected_jets collection. The code uses the selected_jets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses scalar_pt_sum(selected_jets) to compute the HT distribution, which is traced in the upstream chain from jets -> selected_jets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- len(selected_jets)
+
+Reason:
+The SPEC does not explicitly specify whether the number of jets should be taken from the broader jets collection or from the selected_jets collection. The code uses the selected_jets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses len(selected_jets) to plot the number of jets per event, which is traced in the upstream chain from jets -> selected_jets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- leading_bjet['pt']
+
+Reason:
+The SPEC does not explicitly specify whether the leading b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets_sorted[0] to get the leading b-jet, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- subleading_bjet['pt']
+
+Reason:
+The SPEC does not explicitly specify whether the subleading b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets_sorted[1] to get the subleading b-jet, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the eta of the leading b-jet
+
+CODE:
+- leading_bjet['eta']
+
+Reason:
+The SPEC does not explicitly specify whether the leading b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets_sorted[0] to get the leading b-jet, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot delta R between the leading lepton and the closest selected b-jet
+
+CODE:
+- helper_delta_r(lep, b)
+
+Reason:
+The SPEC does not explicitly specify whether the closest selected b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets to find the closest b-jet to the lepton, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV
+
+CODE:
+- hadronic_w['mass'] if hadronic_w else 0.0
+
+Reason:
+The SPEC does not explicitly specify whether the invariant mass of the W hadronic candidate should be computed from the broader event collection or from the specific hadronic W candidate. The code uses the hadronic_w object, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses hadronic_w['mass'] to plot the invariant mass of the W hadronic candidate, which is traced in the upstream chain from hadronic_w -> sum_objects(leading_light_jet, subleading_light_jet).
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV
+
+CODE:
+- hadronic_top['mass'] if hadronic_top else 0.0
+
+Reason:
+The SPEC does not explicitly specify whether the invariant mass of the hadronic top candidate should be computed from the broader event collection or from the specific hadronic top candidate. The code uses the hadronic_top object, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses hadronic_top['mass'] to plot the invariant mass of the hadronic top candidate, which is traced in the upstream chain from hadronic_top -> sum_objects(leading_bjet, hadronic_w).
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic candidate)
+
+CODE:
+- helper_transverse_mass(lep, met)
+
+Reason:
+The SPEC does not explicitly specify whether the transverse mass of the lepton and MET should be computed from the broader event collection or from specific selected objects. The code uses the selected_leptons and helper_get_met(event), which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_leptons[0] and helper_get_met(event) to compute the transverse mass, which is traced in the upstream chain from selected_leptons -> lep, event -> met.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- met['pt']
+
+Reason:
+The SPEC does not explicitly specify whether the MET should be taken from the broader event collection or from a specific MET object. The code uses helper_get_met(event), which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses helper_get_met(event) to get the MET, which is traced in the upstream chain from event -> helper_get_met(event).
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- scalar_pt_sum(selected_jets)
+
+Reason:
+The SPEC does not explicitly specify whether the HT should be computed from the broader jets collection or from the selected_jets collection. The code uses the selected_jets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses scalar_pt_sum(selected_jets) to compute the HT distribution, which is traced in the upstream chain from jets -> selected_jets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- len(selected_jets)
+
+Reason:
+The SPEC does not explicitly specify whether the number of jets should be taken from the broader jets collection or from the selected_jets collection. The code uses the selected_jets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses len(selected_jets) to plot the number of jets per event, which is traced in the upstream chain from jets -> selected_jets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- leading_bjet['pt']
+
+Reason:
+The SPEC does not explicitly specify whether the leading b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets_sorted[0] to get the leading b-jet, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- subleading_bjet['pt']
+
+Reason:
+The SPEC does not explicitly specify whether the subleading b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets_sorted[1] to get the subleading b-jet, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the eta of the leading b-jet
+
+CODE:
+- leading_bjet['eta']
+
+Reason:
+The SPEC does not explicitly specify whether the leading b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets_sorted[0] to get the leading b-jet, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot delta R between the leading lepton and the closest selected b-jet
+
+CODE:
+- helper_delta_r(lep, b)
+
+Reason:
+The SPEC does not explicitly specify whether the closest selected b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets to find the closest b-jet to the lepton, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV
+
+CODE:
+- hadronic_w['mass'] if hadronic_w else 0.0
+
+Reason:
+The SPEC does not explicitly specify whether the invariant mass of the W hadronic candidate should be computed from the broader event collection or from the specific hadronic W candidate. The code uses the hadronic_w object, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses hadronic_w['mass'] to plot the invariant mass of the W hadronic candidate, which is traced in the upstream chain from hadronic_w -> sum_objects(leading_light_jet, subleading_light_jet).
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV
+
+CODE:
+- hadronic_top['mass'] if hadronic_top else 0.0
+
+Reason:
+The SPEC does not explicitly specify whether the invariant mass of the hadronic top candidate should be computed from the broader event collection or from the specific hadronic top candidate. The code uses the hadronic_top object, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses hadronic_top['mass'] to plot the invariant mass of the hadronic top candidate, which is traced in the upstream chain from hadronic_top -> sum_objects(leading_bjet, hadronic_w).
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic candidate)
+
+CODE:
+- helper_transverse_mass(lep, met)
+
+Reason:
+The SPEC does not explicitly specify whether the transverse mass of the lepton and MET should be computed from the broader event collection or from specific selected objects. The code uses the selected_leptons and helper_get_met(event), which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_leptons[0] and helper_get_met(event) to compute the transverse mass, which is traced in the upstream chain from selected_leptons -> lep, event -> met.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- met['pt']
+
+Reason:
+The SPEC does not explicitly specify whether the MET should be taken from the broader event collection or from a specific MET object. The code uses helper_get_met(event), which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses helper_get_met(event) to get the MET, which is traced in the upstream chain from event -> helper_get_met(event).
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- scalar_pt_sum(selected_jets)
+
+Reason:
+The SPEC does not explicitly specify whether the HT should be computed from the broader jets collection or from the selected_jets collection. The code uses the selected_jets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses scalar_pt_sum(selected_jets) to compute the HT distribution, which is traced in the upstream chain from jets -> selected_jets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- len(selected_jets)
+
+Reason:
+The SPEC does not explicitly specify whether the number of jets should be taken from the broader jets collection or from the selected_jets collection. The code uses the selected_jets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses len(selected_jets) to plot the number of jets per event, which is traced in the upstream chain from jets -> selected_jets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- leading_bjet['pt']
+
+Reason:
+The SPEC does not explicitly specify whether the leading b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets_sorted[0] to get the leading b-jet, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- subleading_bjet['pt']
+
+Reason:
+The SPEC does not explicitly specify whether the subleading b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets_sorted[1] to get the subleading b-jet, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the eta of the leading b-jet
+
+CODE:
+- leading_bjet['eta']
+
+Reason:
+The SPEC does not explicitly specify whether the leading b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets_sorted[0] to get the leading b-jet, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot delta R between the leading lepton and the closest selected b-jet
+
+CODE:
+- helper_delta_r(lep, b)
+
+Reason:
+The SPEC does not explicitly specify whether the closest selected b-jet should be taken from the broader bjets collection or from the selected_bjets collection. The code uses the selected_bjets collection, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses selected_bjets to find the closest b-jet to the lepton, which is traced in the upstream chain from bjets -> selected_bjets.
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV
+
+CODE:
+- hadronic_w['mass'] if hadronic_w else 0.0
+
+Reason:
+The SPEC does not explicitly specify whether the invariant mass of the W hadronic candidate should be computed from the broader event collection or from the specific hadronic W candidate. The code uses the hadronic_w object, which is a plausible interpretation but introduces an ambiguity since the SPEC does not explicitly constrain this choice.
+
+Evidence priority:
+- The code uses hadronic_w['mass'] to plot the invariant mass of the W hadronic candidate, which is traced in the upstream chain from hadronic_w -> sum_objects(leading_light_jet, subleading_light_jet).
+
+◎

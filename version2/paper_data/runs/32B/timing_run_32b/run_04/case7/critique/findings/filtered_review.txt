@@ -1,0 +1,203 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+◎ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+- Define dijet_obj from the summed four-momentum of the leading jet and subleading jet.
+
+CODE:
+- ditau_obj = sum_objects(tau1, tau2)
+- dijet_obj = sum_objects(jet1, jet2)
+
+Reason:
+The code correctly constructs ditau_obj and dijet_obj from the four-momentum of the leading and subleading tau and jet, respectively. This matches the composite system-level definition in the SPEC.
+
+Evidence priority:
+- ditau_obj: sum_objects(helper_get_leading(taus), helper_get_subleading(taus))
+- dijet_obj: sum_objects(helper_get_leading(jets), helper_get_subleading(jets))
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require at least 2 taus
+- Require at least 2 jets (VBF topology)
+
+CODE:
+- if len(taus) < 2: continue
+- if len(jets) < 2: continue
+
+Reason:
+The code correctly implements the requirement for at least 2 taus and 2 jets. The implementation matches the explicit definition in the SPEC.
+
+Evidence priority:
+- len([t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]) >= 2
+- len([j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]) >= 2
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require opposite-sign tau pair
+
+CODE:
+- if not opposite_sign(tau1, tau2): continue
+
+Reason:
+The code correctly implements the opposite-sign requirement by checking the charge of the leading and subleading tau. This matches the definition in the SPEC.
+
+Evidence priority:
+- opposite_sign(helper_get_leading(taus), helper_get_subleading(taus))
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV
+- Select |delta eta| between the two leading jets > 2.5
+- Select ditau invariant mass between 60 and 150 GeV
+
+CODE:
+- if m_jj_val < 400: continue
+- if delta_eta_jj_val < 2.5: continue
+- if not (60 < m_tautau_val < 150): continue
+
+Reason:
+The code correctly implements the invariant mass and delta eta cuts as defined in the SPEC. The implementation matches the explicit definitions.
+
+Evidence priority:
+- helper_invariant_mass(helper_get_leading(jets), helper_get_subleading(jets)) > 400
+- abs(helper_delta_eta(helper_get_leading(jets), helper_get_subleading(jets))) > 2.5
+- 60 < helper_invariant_mass(helper_get_leading(taus), helper_get_subleading(taus)) < 150
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Veto events with b-tagged jets among the selected jets
+
+CODE:
+- if any(j['btag'] == 1.0 for j in jets): continue
+
+Reason:
+The code correctly implements the b-tagged jet veto by checking the selected jets. This matches the definition in the SPEC.
+
+Evidence priority:
+- not any(j['btag'] == 1.0 for j in [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7])
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the ditau invariant mass in the range 50 to 160 GeV
+- Plot the dijet invariant mass (m_jj) in the range 400 to 2000 GeV
+- Plot delta eta between the two leading jets
+- Plot the pT of the leading tau
+- Plot the pT of the subleading tau
+- Plot the pT of the leading jet
+- Plot the pT of the subleading jet
+- Plot delta R between the two taus
+- Plot delta phi between the ditau_obj and the dijet_obj
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- plt.hist(m_tautau, bins=40, range=(50, 160), density=True)
+- plt.hist(m_jj, bins=40, range=(400, 2000), density=True)
+- plt.hist(delta_eta_jj, bins=40, range=(0, 10), density=True)
+- plt.hist(pt_tau1, bins=40, range=(0, 200), density=True)
+- plt.hist(pt_tau2, bins=40, range=(0, 200), density=True)
+- plt.hist(pt_jet1, bins=40, range=(0, 500), density=True)
+- plt.hist(pt_jet2, bins=40, range=(0, 500), density=True)
+- plt.hist(delta_r_tautau, bins=40, range=(0, 5), density=True)
+- plt.hist(delta_phi_tautau_dijet, bins=40, range=(-math.pi, math.pi), density=True)
+- plt.hist(centrality, bins=40, range=(0, 1), density=True)
+
+Reason:
+The code correctly implements the requested histograms with the specified ranges and labels. This matches the definition in the SPEC.
+
+Evidence priority:
+- helper_invariant_mass(helper_get_leading(taus), helper_get_subleading(taus))
+- helper_invariant_mass(helper_get_leading(jets), helper_get_subleading(jets))
+- abs(helper_delta_eta(helper_get_leading(jets), helper_get_subleading(jets)))
+- helper_get_leading(taus)['pt']
+- helper_get_subleading(taus)['pt']
+- helper_get_leading(jets)['pt']
+- helper_get_subleading(jets)['pt']
+- helper_delta_r(helper_get_leading(taus), helper_get_subleading(taus))
+- helper_delta_phi(sum_objects(tau1, tau2)['phi'], sum_objects(jet1, jet2)['phi'])
+- centrality_between_jets(sum_objects(tau1, tau2), helper_get_leading(jets), helper_get_subleading(jets))
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+- Increment each cutflow counter immediately after its cut is passed.
+
+CODE:
+- cutflow["2_taus"] += 1
+- cutflow["opposite_sign"] += 1
+- cutflow["m_tautau 60-150"] += 1
+- cutflow["2_jets"] += 1
+- cutflow["no_bjets"] += 1
+- cutflow["m_jj > 400"] += 1
+- cutflow["delta_eta_jj > 2.5"] += 1
+- cutflow["no_bjets"] += 1
+
+Reason:
+The code correctly implements the cutflow by incrementing counters immediately after each cut is passed. This matches the definition in the SPEC.
+
+Evidence priority:
+- cutflow with keys "initial", "2_taus", "2_jets", "opposite_sign", "m_jj > 400", "delta_eta_jj > 2.5", "m_tautau 60-150", "no_bjets"
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig("m_tautau.png")
+- plt.savefig("m_jj.png")
+- plt.savefig("delta_eta_jj.png")
+- plt.savefig("pt_tau1.png")
+- plt.savefig("pt_tau2.png")
+- plt.savefig("pt_jet1.png")
+- plt.savefig("pt_jet2.png")
+- plt.savefig("delta_r_tautau.png")
+- plt.savefig("delta_phi_tautau_dijet.png")
+- plt.savefig("centrality.png")
+
+Reason:
+The code correctly saves the plots in png format as specified in the SPEC.
+
+Evidence priority:
+- plt.savefig("m_tautau.png"), plt.savefig("m_jj.png"), etc.
+
+Generator bias:
+none
+
+---
+
+None
+
+
+---- DROPPED ----
+(none)

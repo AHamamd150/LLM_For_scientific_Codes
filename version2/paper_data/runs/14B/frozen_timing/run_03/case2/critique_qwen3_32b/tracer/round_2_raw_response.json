@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* selected_light_jets\n  - computed/defined as: [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - upstream chain: light_jets -> get_light_jets(event)\n  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5\n  - structure: single-constituent\n\n* leading_bjet_eta\n  - computed/defined as: leading_bjet['eta']\n  - upstream chain: leading_bjet -> helper_get_leading(selected_bjets)\n  - collection definition: selected_bjets from [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788935862,
+  "id": "chatcmpl-3a989797-0034-4cda-8653-977c8aa986a0",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 179,
+    "prompt_tokens": 11108,
+    "prompt_tokens_details": null,
+    "total_tokens": 11287
+  }
+}

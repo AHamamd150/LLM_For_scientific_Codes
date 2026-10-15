@@ -1,0 +1,71 @@
+[AMBIGUITY 1] Leading b-jet definition timing
+
+Original phrase:
+"Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R."
+
+Why this is dangerous:
+This phrase is ambiguous about whether the "closest b-jet" is determined before or after all selection cuts. If the delta R is computed before cuts, it may reference objects that are later rejected by subsequent cuts, leading to inconsistent object associations.
+
+Question to user:
+Should the "closest b-jet" to the lepton be determined before or after all selection cuts are applied?
+
+Golden axe:
+Compute the closest b-jet to the lepton after all selection cuts have been applied.
+
+Silver axe:
+Compute the closest b-jet to the lepton before applying any cuts that could remove either the lepton or the b-jet.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Among the selected b-tagged jets that pass all previous cuts, define the b-jet closest to the selected lepton in delta R."
+- Silver axe rewrite: "Among all selected b-tagged jets, define the b-jet closest to the selected lepton in delta R before applying further cuts."
+
+[AMBIGUITY 2] Leading non-b-tagged jet definition
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Why this is dangerous:
+This phrase is ambiguous about whether "leading" refers to the highest-pT jets in the full jet collection or only among the non-b-tagged jets. These can yield different jet pairs, especially in events with high-pT b-jets.
+
+Question to user:
+Should the "leading selected non-b-tagged jets" be the two highest-pT jets among all selected jets that are non-b-tagged, or the two highest-pT jets in the full selected jet collection that happen to be non-b-tagged?
+
+Golden axe:
+The two highest-pT jets among the selected non-b-tagged jets.
+
+Silver axe:
+The two highest-pT jets in the full selected jet collection, regardless of b-tagging, that are non-b-tagged.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Build the hadronic W candidate from the two highest-pT jets among the selected non-b-tagged jets."
+- Silver axe rewrite: "Build the hadronic W candidate from the two highest-pT jets in the selected jet collection that are non-b-tagged."
+
+[AMBIGUITY 3] Leading and subleading b-jet definition
+
+Original phrase:
+"Plot the pT of the leading b-jet" and "Plot the pT of the subleading b-jet"
+
+Why this is dangerous:
+This phrase is ambiguous about whether the leading and subleading b-jets are defined before or after all selection cuts. If defined before cuts, they may reference objects that are later rejected, leading to inconsistent object associations.
+
+Question to user:
+Should the "leading" and "subleading" b-jets be determined before or after all selection cuts are applied?
+
+Golden axe:
+Define leading and subleading b-jets after all selection cuts have been applied.
+
+Silver axe:
+Define leading and subleading b-jets before applying any cuts that could remove b-jets.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Plot the pT of the leading and subleading b-jets among those that pass all previous selection cuts."
+- Silver axe rewrite: "Plot the pT of the leading and subleading b-jets in the full selected b-jet collection before applying further cuts."

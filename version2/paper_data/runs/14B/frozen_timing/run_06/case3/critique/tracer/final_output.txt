@@ -1,0 +1,93 @@
+SECTION 1: SPEC BULLET ANALYSIS
+
+✅ * Select photons with pT > 25 GeV and |eta| < 2.37.; computed as: [p for p in photons if p['pt'] > 25 and abs(p['eta']) < 2.37]; upstream chain: photons -> photons_selected; 〔L268-L270〕
+✅ * Exclude photons in the crack region 1.37 < |eta| < 1.52.; computed as: [p for p in photons_selected if not (1.37 < abs(p['eta']) < 1.52)]; upstream chain: photons_selected -> photons_clean; 〔L274-L276〕
+✅ * Require at least 2 photons; computed as: len(photons_clean) >= 2; upstream chain: photons_clean; 〔L277〕
+✅ * Define the leading photon and subleading photon after photon selection.; computed as: helper_get_leading(photons_clean), helper_get_subleading(photons_clean); upstream chain: photons_clean -> leading_photon, subleading_photon; 〔L281-L282〕
+✅ * Leading photon pT > 35 GeV; computed as: leading_photon['pt'] > 35; upstream chain: leading_photon; 〔L287-L289〕
+✅ * Subleading photon pT > 25 GeV; computed as: subleading_photon['pt'] > 25; upstream chain: subleading_photon; 〔L292-L294〕
+✅ * Build the diphoton system from the leading photon and the subleading photon.; computed as: sum_objects(leading_photon, subleading_photon); upstream chain: leading_photon, subleading_photon -> diphoton; 〔L297-298〕
+✅ * Define m_gammagamma as the invariant mass of this diphoton system.; computed as: diphoton['mass'] if diphoton else 0.0; upstream chain: diphoton -> m_gammagamma; 〔L299〕
+✅ * Use this same diphoton system to compute diphoton pT.; computed as: diphoton['pt'] if diphoton else 0.0; upstream chain: diphoton -> pt_diphoton_list; 〔L317〕
+✅ * Select diphoton invariant mass between 105 and 160 GeV.; computed as: 105 <= m_gammagamma <= 160; upstream chain: m_gammagamma; 〔L300-L302〕
+✅ * Select leading photon pT / m_gammagamma > 0.35.; computed as: leading_photon['pt'] / m_gammagamma > 0.35; upstream chain: leading_photon, m_gammagamma; 〔L304-L306〕
+✅ * Select subleading photon pT / m_gammagamma > 0.25.; computed as: subleading_photon['pt'] / m_gammagamma > 0.25; upstream chain: subleading_photon, m_gammagamma; 〔L309-L311〕
+✅ * Plot the following as histograms: 1 Plot diphoton invariant mass in the range 100 to 160 GeV; computed as: plt.hist(m_gammagamma_list, bins=40, range=(100, 160), density=True); upstream chain: m_gammagamma_list; 〔L332-L336〕
+✅ * Plot the following as histograms: 2 Plot pT of the leading photon; computed as: plt.hist(pt_leading_photon_list, bins=40, density=True); upstream chain: pt_leading_photon_list; 〔L339-L343〕
+✅ * Plot the following as histograms: 3 Plot pT of the subleading photon; computed as: plt.hist(pt_subleading_photon_list, bins=40, density=True); upstream chain: pt_subleading_photon_list; 〔L346-L350〕
+✅ * Plot the following as histograms: 4 Plot pT of the diphoton system; computed as: plt.hist(pt_diphoton_list, bins=40, density=True); upstream chain: pt_diphoton_list; 〔L353-L357〕
+✅ * Plot the following as histograms: 5 Plot eta of the leading photon; computed as: plt.hist(eta_leading_photon_list, bins=40, density=True); upstream chain: eta_leading_photon_list; 〔L360-L364〕
+✅ * Plot the following as histograms: 6 Plot eta of the subleading photon; computed as: plt.hist(eta_subleading_photon_list, bins=40, density=True); upstream chain: eta_subleading_photon_list; 〔L367-L371〕
+✅ * Plot the following as histograms: 7 Plot delta R between the two photons; computed as: plt.hist(dr_photons_list, bins=40, density=True); upstream chain: dr_photons_list; 〔L374-L378〕
+✅ * Plot the following as histograms: 8 Plot delta phi between the two photons; computed as: plt.hist(dphi_photons_list, bins=40, density=True); upstream chain: dphi_photons_list; 〔L381-L385〕
+✅ * Plot the following as histograms: 9 Plot the |cos(theta*)| of the diphoton system in Collins-Soper frame; computed as: plt.hist(cos_theta_star_list, bins=40, density=True); upstream chain: cos_theta_star_list; 〔L388-L392〕
+✅ * After the event loop, print one cutflow summary with the number of events after each selection step.; computed as: for key, value in cutflow.items(): print(f"{key}: {value}"); upstream chain: cutflow; 〔L327-L329〕
+✅ * save the figures in png format; computed as: plt.savefig(...); upstream chain: all plots; 〔L336, L343, L350, L357, L364, L371, L378, L385, L392〕
+✅ * Save to CSV for MLP analysis: 1- Diphoton invariant mass; computed as: m_gammagamma_list[i]; upstream chain: m_gammagamma_list; 〔L399-L402〕
+✅ * Save to CSV for MLP analysis: 2- Leading photon pT; computed as: pt_leading_photon_list[i]; upstream chain: pt_leading_photon_list; 〔L399-L402〕
+✅ * Save to CSV for MLP analysis: 3- Subleading photon pT; computed as: pt_subleading_photon_list[i]; upstream chain: pt_subleading_photon_list; 〔L399-L402〕
+✅ * Save to CSV for MLP analysis: 4- Delta R between photons; computed as: dr_photons_list[i]; upstream chain: dr_photons_list; 〔L399-L402〕
+✅ * Save to CSV for MLP analysis: 5- pT of diphoton system; computed as: pt_diphoton_list[i]; upstream chain: pt_diphoton_list; 〔L399-L402〕
+✅ * Save to CSV for MLP analysis: 6- |cos(theta*)|; computed as: cos_theta_star_list[i]; upstream chain: cos_theta_star_list; 〔L399-L402〕
+
+* [CHECK CAREFULLY] DEFINITION SUMMARY
+
+* photons_selected
+  - computed/defined as: [p for p in photons if p['pt'] > 25 and abs(p['eta']) < 2.37]
+  - upstream chain: photons -> photons_selected
+  - collection definition: p['pt'] > 25 and abs(p['eta']) < 2.37
+  - structure: single-constituent
+
+* photons_clean
+  - computed/defined as: [p for p in photons_selected if not (1.37 < abs(p['eta']) < 1.52)]
+  - upstream chain: photons_selected -> photons_clean
+  - collection definition: not (1.37 < abs(p['eta']) < 1.52)
+  - structure: single-constituent
+
+* leading_photon
+  - computed/defined as: helper_get_leading(photons_clean)
+  - upstream chain: photons_clean -> leading_photon
+  - collection definition: photons_clean
+  - structure: single-constituent
+
+* subleading_photon
+  - computed/defined as: helper_get_subleading(photons_clean)
+  - upstream chain: photons_clean -> subleading_photon
+  - collection definition: photons_clean
+  - structure: single-constituent
+
+* diphoton
+  - computed/defined as: sum_objects(leading_photon, subleading_photon)
+  - upstream chain: leading_photon, subleading_photon -> diphoton
+  - collection definition: leading_photon, subleading_photon
+  - structure: composite-derived
+
+* m_gammagamma
+  - computed/defined as: diphoton['mass'] if diphoton else 0.0
+  - upstream chain: diphoton -> m_gammagamma
+  - collection definition: diphoton
+  - structure: single-constituent
+
+* pt_diphoton_list
+  - computed/defined as: diphoton['pt'] if diphoton else 0.0
+  - upstream chain: diphoton -> pt_diphoton_list
+  - collection definition: diphoton
+  - structure: single-constituent
+
+* dr_photons_list
+  - computed/defined as: helper_delta_r(leading_photon, subleading_photon)
+  - upstream chain: leading_photon, subleading_photon -> dr_photons_list
+  - collection definition: leading_photon, subleading_photon
+  - structure: multi-input
+
+* dphi_photons_list
+  - computed/defined as: helper_delta_phi(leading_photon['phi'], subleading_photon['phi'])
+  - upstream chain: leading_photon, subleading_photon -> dphi_photons_list
+  - collection definition: leading_photon, subleading_photon
+  - structure: multi-input
+
+* cos_theta_star_list
+  - computed/defined as: abs(cos_theta_star_collins_soper(leading_photon, subleading_photon))
+  - upstream chain: leading_photon, subleading_photon -> cos_theta_star_list
+  - collection definition: leading_photon, subleading_photon
+  - structure: multi-input

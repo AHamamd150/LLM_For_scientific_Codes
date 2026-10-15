@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\ncomputed/defined as: sum_objects(light_jets_sorted[0], light_jets_sorted[1])\n  - upstream chain: light_jets_sorted = sorted(light_jets, key=lambda j: j['pt'], reverse=True); light_jets = [j for j in jets if j not in bjets]\n  - collection definition: jets with type == 4 and btag == 0\n  - structure: composite-derived\n\n* Hadronic top candidate\n  - computed/defined as: sum_objects(bjets_sorted[0], w_hadronic)\n  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True); w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])\n  - collection definition: bjets with type == 4 and btag == 1\n  - structure: composite-derived\n\n* Transverse mass values\n  - computed/defined as: mt_values = [helper_transverse_mass(lepton, met) for events]\n  - upstream chain: helper_transverse_mass -> helper_delta_phi -> math.sqrt(2 * pt1 * pt2 * (1 - cos(dphi)))\n  - collection definition: lepton and MET objects\n  - structure: composite-derived\n\n* MET values\n  - computed/defined as: met_values = [met['pt'] for events]\n  - upstream chain: helper_get_met(event) -> [o for o in event['objects'] if o['type'] == 6]\n  - collection definition: event['objects'] with type == 6\n  - structure: single-constituent\n\n* Leading b-jet pT\n  - computed/defined as: bjet1_pt = [bjets_sorted[0]['pt'] for events]\n  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)\n  - collection definition: bjets with type == 4 and btag == 1\n  - structure: single-constituent\n\n* Subleading b-jet pT\n  - computed/defined as: bjet2_pt = [bjets_sorted[1]['pt'] if len(bjets_sorted) > 1 else 0.0 for events]\n  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)\n  - collection definition: bjets with type == 4 and btag == 1\n  - structure: single-constituent\n\n* Hadronic W mass\n  - computed/defined as: w_hadronic_mass = [w_hadronic['mass'] for events]\n  - upstream chain: w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])\n  - collection definition: light_jets with type == 4 and btag == 0\n  - structure: composite-derived\n\n* Hadronic top mass\n  - computed/defined as: top_hadronic_mass = [top_hadronic['mass'] for events]\n  - upstream chain: top_hadronic = sum_objects(bjets_sorted[0], w_hadronic)\n  - collection definition: bjets with type == 4 and btag == 1\n  - structure: composite-derived\n\n* Delta R between lepton and closest b-jet\n  - computed/defined as: dr_lepton_bjet = [helper_delta_r(lepton, closest_bjet) for events]\n  - upstream chain: helper_delta_r -> helper_delta_phi -> math.sqrt(deta^2 + dphi^2)\n  - collection definition: lepton and bjet objects\n  - structure: composite-derived\n\n* HT (scalar sum of jet pT)\n  - computed/defined as: ht_values = [scalar_pt_sum(jets) for events]\n  - upstream chain: scalar_pt_sum(jets) -> sum(p['pt'] for p in jets)\n  - collection definition: jets with type == 4\n  - structure: composite-derived\n\n* Number of jets per event\n  - computed/defined as: njets_values = [len(jets) for events]\n  - upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - collection definition: jets with type == 4\n  - structure: single-constituent\n\n* Leading b-jet eta\n  - computed/defined as: bjet1_eta = [bjets_sorted[0]['eta'] for events]\n  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)\n  - collection definition: bjets with type == 4 and btag == 1\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788870867,
+  "id": "chatcmpl-6f364155-233c-4ebc-93ba-c20f0f51652b",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 1016,
+    "prompt_tokens": 11452,
+    "prompt_tokens_details": null,
+    "total_tokens": 12468
+  }
+}

@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading and subleading object definitions
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading and subleading taus are defined before or after applying the "opposite-sign tau pair" requirement. This can affect which taus are considered for the ditau_obj and subsequent cuts.
+
+Question to user:
+Are the leading and subleading taus defined before or after applying the opposite-sign requirement?
+
+Golden axe:
+Leading and subleading taus are defined after applying the opposite-sign requirement.
+
+Silver axe:
+Leading and subleading taus are defined before applying the opposite-sign requirement.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Dijet_obj and ditau_obj usage in delta phi calculation
+
+Original phrase:
+"Plot delta phi between the ditau_obj and the dijet_obj"
+
+Why this is dangerous:
+The phrase does not clarify whether the delta phi is computed using the four-momentum of the composite objects (as defined by the summed four-momenta) or using the individual constituents of the ditau and dijet systems. This can lead to different implementations of the delta phi calculation.
+
+Question to user:
+Should the delta phi be computed between the four-momenta of the composite ditau_obj and dijet_obj, or between the individual constituents of the ditau and dijet systems?
+
+Golden axe:
+Delta phi is computed between the four-momenta of the composite ditau_obj and dijet_obj.
+
+Silver axe:
+Delta phi is computed between the individual constituents of the ditau and dijet systems.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Centrality of the ditau system relative to the two jets
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Why this is dangerous:
+The phrase does not clarify whether the jets used for the centrality calculation are the selected jets (after cuts) or the raw jets in the event. This can lead to different implementations of the centrality calculation.
+
+Question to user:
+Are the jets used for the centrality calculation the selected jets (after cuts) or the raw jets in the event?
+
+Golden axe:
+The jets used for the centrality calculation are the selected jets (after cuts).
+
+Silver axe:
+The jets used for the centrality calculation are the raw jets in the event.
+
+Recommended default:
+Golden axe

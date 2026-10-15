@@ -1,0 +1,305 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+
+CODE:
+- sum_objects(leading_tau, subleading_tau)
+
+Reason:
+The code correctly constructs the ditau system from the leading and subleading tau, as required by the SPEC. This is not a violation.
+
+Evidence priority:
+sum_objects(leading_tau, subleading_tau) 〔L259, L65-L87, L27-L36〕
+
+Generator bias:
+none
+
+⚠️ (A) composite violation
+
+SPEC:
+- Define dijet_obj from the summed momentum of the leading jet and subleading jet.
+
+CODE:
+- sum_objects(leading_jet, subleading_jet)
+
+Reason:
+The code correctly constructs the dijet system from the leading and subleading jet, as required by the SPEC. This is not a violation.
+
+Evidence priority:
+sum_objects(leading_jet, subleading_jet) 〔L277, L65-L87, L27-L36〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- centrality_between_jets(sum_objects(leading_tau, subleading_tau), leading_jet, subleading_jet)
+
+Reason:
+The code correctly computes the centrality of the ditau system relative to the two jets, using the summed four-momentum of the leading and subleading tau as the ditau system. This is in full agreement with the SPEC.
+
+Evidence priority:
+centrality_between_jets(sum_objects(leading_tau, subleading_tau), leading_jet, subleading_jet) 〔L311, L143-L155, L65-L87, L27-L36, L109-L113, L114-L120, L275, L276〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Require opposite-sign tau pair
+
+CODE:
+- opposite_sign(leading_tau, subleading_tau)
+
+Reason:
+The code correctly checks for opposite-sign tau pairs by multiplying the charges of the leading and subleading tau and checking if the result is negative. This is in full agreement with the SPEC.
+
+Evidence priority:
+opposite_sign(leading_tau, subleading_tau) 〔L259, L139-L141〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV
+
+CODE:
+- helper_invariant_mass(leading_jet, subleading_jet) > 400
+
+Reason:
+The code correctly computes the invariant mass of the leading and subleading jets and checks if it is greater than 400 GeV. This is in full agreement with the SPEC.
+
+Evidence priority:
+helper_invariant_mass(leading_jet, subleading_jet) > 400 〔L278-L280, L89-L92, L65-L87, L27-L36〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select |delta eta| between the two leading jets > 2.5
+
+CODE:
+- abs(leading_jet['eta'] - subleading_jet['eta']) > 2.5
+
+Reason:
+The code correctly computes the absolute difference in pseudorapidity between the leading and subleading jets and checks if it is greater than 2.5. This is in full agreement with the SPEC.
+
+Evidence priority:
+abs(leading_jet['eta'] - subleading_jet['eta']) > 2.5 〔L283-L285, L109-L113, L114-L120〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select ditau invariant mass between 60 and 150 GeV
+
+CODE:
+- 60 < helper_invariant_mass(leading_tau, subleading_tau) < 150
+
+Reason:
+The code correctly computes the invariant mass of the leading and subleading tau and checks if it is between 60 and 150 GeV. This is in full agreement with the SPEC.
+
+Evidence priority:
+60 < helper_invariant_mass(leading_tau, subleading_tau) < 150 〔L294-L296, L89-L92, L65-L87, L27-L36〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Veto events with b-tagged jets
+
+CODE:
+- n_bjets(event, pt_cut=30, eta_cut=4.7) == 0
+
+Reason:
+The code correctly counts the number of b-tagged jets with pT > 30 GeV and |eta| < 4.7 and checks if it is zero. This is in full agreement with the SPEC.
+
+Evidence priority:
+n_bjets(event, pt_cut=30, eta_cut=4.7) == 0 〔L289-L291, L134-L137, L130-L132〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the ditau invariant mass in the range 50 to 160 GeV
+
+CODE:
+- ditau_mass_list
+
+Reason:
+The code correctly collects the ditau invariant mass values for plotting. This is in full agreement with the SPEC.
+
+Evidence priority:
+ditau_mass_list 〔L300, L294-L295, L89-L92, L65-L87, L27-L36〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the dijet invariant mass (m_jj) in the range 200 to 2000 GeV
+
+CODE:
+- dijet_mass_list
+
+Reason:
+The code correctly collects the dijet invariant mass values for plotting. This is in full agreement with the SPEC.
+
+Evidence priority:
+dijet_mass_list 〔L301, L277, L89-L92, L65-L87, L27-L36〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot delta eta between the two leading jets
+
+CODE:
+- delta_eta_jj_list
+
+Reason:
+The code correctly collects the delta eta values between the two leading jets for plotting. This is in full agreement with the SPEC.
+
+Evidence priority:
+delta_eta_jj_list 〔L302, L283, L109-L113, L114-L120〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading tau
+
+CODE:
+- leading_tau_pt_list
+
+Reason:
+The code correctly collects the pT values of the leading tau for plotting. This is in full agreement with the SPEC.
+
+Evidence priority:
+leading_tau_pt_list 〔L303, L257, L109-L113, L246-L247〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading tau
+
+CODE:
+- subleading_tau_pt_list
+
+Reason:
+The code correctly collects the pT values of the subleading tau for plotting. This is in full agreement with the SPEC.
+
+Evidence priority:
+subleading_tau_pt_list 〔L304, L258, L114-L120, L246-L247〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading jet
+
+CODE:
+- leading_jet_pt_list
+
+Reason:
+The code correctly collects the pT values of the leading jet for plotting. This is in full agreement with the SPEC.
+
+Evidence priority:
+leading_jet_pt_list 〔L305, L275, L109-L113, L264-L265〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading jet
+
+CODE:
+- subleading_jet_pt_list
+
+Reason:
+The code correctly collects the pT values of the subleading jet for plotting. This is in full agreement with the SPEC.
+
+Evidence priority:
+subleading_jet_pt_list 〔L306, L276, L114-L120, L264-L265〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot delta R between the two taus
+
+CODE:
+- delta_r_tt_list
+
+Reason:
+The code correctly collects the delta R values between the two taus for plotting. This is in full agreement with the SPEC.
+
+Evidence priority:
+delta_r_tt_list 〔L307, L275, L103-L107, L109-L113, L114-L120〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the ditau system and the dijet system
+
+CODE:
+- delta_phi_tt_jj_list
+
+Reason:
+The code correctly collects the delta phi values between the ditau system and the dijet system for plotting. This is in full agreement with the SPEC.
+
+Evidence priority:
+delta_phi_tt_jj_list 〔L310, L143-L149, L109-L113, L114-L120, L275, L276〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- centrality_tt_jj_list
+
+Reason:
+The code correctly collects the centrality values of the ditau system relative to the two jets for plotting. This is in full agreement with the SPEC.
+
+Evidence priority:
+centrality_tt_jj_list 〔L311, L143-L155, L65-L87, L27-L36, L109-L113, L114-L120, L275, L276〕
+
+Generator bias:
+none

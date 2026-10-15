@@ -1,0 +1,65 @@
+[CANDIDATE 1] Photon selection and veto regions
+
+Original phrase:
+"Select photons with pT > 25 GeV and |eta| < 2.37. Exclude photons in the crack region 1.37 < |eta| < 1.52."
+
+Unresolved choice:
+It is unclear whether the crack region veto is applied in addition to the |eta| < 2.37 cut or if it is already implicitly excluded by that condition.
+
+Why this may matter:
+If the crack veto is redundant with the |eta| < 2.37 cut, it would have no effect. If it is meant to remove a subset of the allowed |eta| range, the implementation must ensure the veto is applied correctly after the initial selection.
+
+[CANDIDATE 2] Leading and subleading photon definitions
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection. Leading photon pT > 35 GeV. Subleading photon pT > 25 GeV."
+
+Unresolved choice:
+It is unclear whether the leading and subleading photon pT thresholds are applied after sorting the selected photons by pT, or whether they are additional cuts that may further reduce the number of events.
+
+Why this may matter:
+If the pT thresholds are applied as cuts after sorting, the analysis will reject events where the leading or subleading photon does not meet the pT requirement. If they are definitions for naming purposes only, the analysis may proceed with lower pT photons but mislabel them.
+
+[CANDIDATE 3] Diphoton system reuse
+
+Original phrase:
+"Build the diphoton system from the leading photon and the subleading photon. Define m_gammagamma as the invariant mass of this diphoton system. Use this same diphoton system to compute diphoton pT."
+
+Unresolved choice:
+It is unclear whether the diphoton system is a fixed object defined once and reused for all subsequent calculations, or if it is a temporary object used only to compute the specific quantities mentioned.
+
+Why this may matter:
+If the diphoton system is meant to be reused in later steps (e.g., for angular variables or other derived quantities), it must be stored as a named object. If it is only used for the invariant mass and pT, it may be sufficient to compute those values directly without building a full system object.
+
+[CANDIDATE 4] Diphoton system for cuts
+
+Original phrase:
+"Select diphoton invariant mass between 105 and 160 GeV. Select leading photon pT / m_gammagamma > 0.35. Select subleading photon pT / m_gammagamma > 0.25."
+
+Unresolved choice:
+It is unclear whether the diphoton invariant mass used in the cuts is the same as the one defined earlier or if it is computed independently.
+
+Why this may matter:
+If the diphoton invariant mass is computed separately for the cuts, it may differ slightly from the one used for the plots or outputs, leading to inconsistencies in the analysis.
+
+[CANDIDATE 5] Cutflow counter timing
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether the cutflow counters are incremented for each individual cut or for the cumulative number of events passing all cuts up to that point.
+
+Why this may matter:
+If each cut has its own counter, the cutflow will show the number of events passing each individual cut. If the counters are cumulative, the interpretation of the cutflow will be different, and the implementation must track the cumulative counts correctly.
+
+[CANDIDATE 6] Cutflow counter naming
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether the cutflow counters are named after the specific cuts or if they are generic counters for the number of events at each stage.
+
+Why this may matter:
+If the counters are named after the cuts, the cutflow will be more informative for debugging and validation. If they are generic, the analysis may need to infer which cut corresponds to each counter, increasing the risk of misinterpretation.

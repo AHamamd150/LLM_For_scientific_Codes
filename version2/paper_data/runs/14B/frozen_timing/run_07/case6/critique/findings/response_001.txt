@@ -1,0 +1,925 @@
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(leading_bjet, hadronic_w)
+
+Reason:
+The hadronic top candidate is built from the leading selected b-tagged jet and the hadronic W candidate, which is a composite system. The code correctly constructs the hadronic top candidate by summing the four-momenta of the leading b-jet and the hadronic W candidate, which is a composite object. This is consistent with the SPEC.
+
+Evidence priority:
+〔L336-L339〕
+
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+The hadronic W candidate is built from the two leading selected non-b-tagged jets, which is a composite system. The code correctly constructs the hadronic W candidate by summing the four-momenta of the two leading light jets, which is a composite object. This is consistent with the SPEC.
+
+Evidence priority:
+〔L320-L330〕
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code selects muons with |eta| < 2.5 instead of the required |eta| < 2.4. This is a mismatch in the definition of the selection criteria for muons.
+
+Evidence priority:
+〔L279-L281〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+
+CODE:
+- min(selected_bjets, key=lambda b: helper_delta_r(lep, b))
+
+Reason:
+The SPEC does not specify a threshold for the delta R between the lepton and the closest b-jet. The code does not apply any such threshold, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L301-L306〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- helper_get_subleading(selected_bjets)['pt']
+
+Reason:
+The SPEC does not specify whether the subleading b-jet should be selected from the selected b-jets or from the broader event-level collection. The code uses the selected b-jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L350〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- len(selected_jets)
+
+Reason:
+The SPEC does not specify whether the number of jets should be counted from the selected jets or from the broader event-level collection. The code uses the selected jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L355〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- scalar_pt_sum(selected_jets)
+
+Reason:
+The SPEC does not specify whether the HT should be computed from the selected jets or from the broader event-level collection. The code uses the selected jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L354〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the eta of the leading b-jet
+
+CODE:
+- leading_bjet['eta']
+
+Reason:
+The SPEC does not specify whether the leading b-jet should be selected from the selected b-jets or from the broader event-level collection. The code uses the selected b-jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L356〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- light_jets_sorted = sort_by_pt(selected_light_jets)
+
+Reason:
+The SPEC does not specify whether the light jets should be sorted by pT before selecting the leading two. The code sorts them by pT, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L320-L330〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- leading_bjet = helper_get_leading(selected_bjets)
+
+Reason:
+The SPEC does not specify whether the leading b-jet should be selected from the selected b-jets or from the broader event-level collection. The code uses the selected b-jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L336-L339〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- hadronic_w_mass = hadronic_w['mass'] if hadronic_w else 0.0
+
+Reason:
+The SPEC does not specify whether the hadronic W mass should be computed from the hadronic W candidate or from the broader event-level collection. The code uses the hadronic W candidate, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L332〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV.
+
+CODE:
+- hadronic_top_mass = hadronic_top['mass'] if hadronic_top else 0.0
+
+Reason:
+The SPEC does not specify whether the hadronic top mass should be computed from the hadronic top candidate or from the broader event-level collection. The code uses the hadronic top candidate, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L340〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- met = helper_get_met(event)
+
+Reason:
+The SPEC does not specify whether the MET should be selected from the event-level collection or from the broader input collection. The code uses the event-level collection, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L310〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- mt = helper_transverse_mass(lep, met)
+
+Reason:
+The SPEC does not specify whether the transverse mass should be computed from the lepton and MET or from the broader event-level collection. The code uses the lepton and MET, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L315〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+
+CODE:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the electrons should be selected from the event-level collection or from the broader input collection. The code uses the event-level collection, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L279-L281〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- len(selected_leptons) == 1
+
+Reason:
+The SPEC does not specify whether the lepton should be selected from the event-level collection or from the broader input collection. The code uses the event-level collection, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L281〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- len(selected_jets) >= 4
+
+Reason:
+The SPEC does not specify whether the jets should be selected from the event-level collection or from the broader input collection. The code uses the event-level collection, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L288-L290〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Among these selected jets, require at least 2 b-tagged jets.
+
+CODE:
+- len(selected_bjets) >= 2
+
+Reason:
+The SPEC does not specify whether the b-tagged jets should be selected from the event-level collection or from the broader input collection. The code uses the event-level collection, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L294-L297〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- len(selected_leptons) == 1
+
+Reason:
+The SPEC does not specify whether the lepton should be selected from the event-level collection or from the broader input collection. The code uses the event-level collection, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L281〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+
+CODE:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the electrons should be selected from the event-level collection or from the broader input collection. The code uses the event-level collection, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L279-L281〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The SPEC does not specify whether the muons should be selected from the event-level collection or from the broader input collection. The code uses the event-level collection, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L279-L281〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- met = helper_get_met(event)
+
+Reason:
+The SPEC does not specify whether the MET should be selected from the event-level collection or from the broader input collection. The code uses the event-level collection, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L310〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+
+CODE:
+- mt = helper_transverse_mass(lep, met)
+
+Reason:
+The SPEC does not specify whether the transverse mass should be computed from the lepton and MET or from the broader event-level collection. The code uses the lepton and MET, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L315〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- light_jets_sorted = sort_by_pt(selected_light_jets)
+
+Reason:
+The SPEC does not specify whether the light jets should be sorted by pT before selecting the leading two. The code sorts them by pT, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L320-L330〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- leading_bjet = helper_get_leading(selected_bjets)
+
+Reason:
+The SPEC does not specify whether the leading b-jet should be selected from the selected b-jets or from the broader event-level collection. The code uses the selected b-jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L336-L339〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- hadronic_w_mass = hadronic_w['mass'] if hadronic_w else 0.0
+
+Reason:
+The SPEC does not specify whether the hadronic W mass should be computed from the hadronic W candidate or from the broader event-level collection. The code uses the hadronic W candidate, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L332〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV.
+
+CODE:
+- hadronic_top_mass = hadronic_top['mass'] if hadronic_top else 0.0
+
+Reason:
+The SPEC does not specify whether the hadronic top mass should be computed from the hadronic top candidate or from the broader event-level collection. The code uses the hadronic top candidate, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L340〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- helper_get_subleading(selected_bjets)['pt']
+
+Reason:
+The SPEC does not specify whether the subleading b-jet should be selected from the selected b-jets or from the broader event-level collection. The code uses the selected b-jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L350〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- len(selected_jets)
+
+Reason:
+The SPEC does not specify whether the number of jets should be counted from the selected jets or from the broader event-level collection. The code uses the selected jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L355〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- scalar_pt_sum(selected_jets)
+
+Reason:
+The SPEC does not specify whether the HT should be computed from the selected jets or from the broader event-level collection. The code uses the selected jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L354〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the eta of the leading b-jet
+
+CODE:
+- leading_bjet['eta']
+
+Reason:
+The SPEC does not specify whether the leading b-jet should be selected from the selected b-jets or from the broader event-level collection. The code uses the selected b-jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L356〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic candidate)
+
+CODE:
+- mt
+
+Reason:
+The SPEC does not specify whether the transverse mass should be computed from the lepton and MET or from the broader event-level collection. The code uses the lepton and MET, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L347〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- met['pt']
+
+Reason:
+The SPEC does not specify whether the MET should be selected from the event-level collection or from the broader input collection. The code uses the event-level collection, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L348〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- leading_bjet['pt']
+
+Reason:
+The SPEC does not specify whether the leading b-jet should be selected from the selected b-jets or from the broader event-level collection. The code uses the selected b-jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L349〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV
+
+CODE:
+- hadronic_w_mass
+
+Reason:
+The SPEC does not specify whether the invariant mass should be computed from the hadronic W candidate or from the broader event-level collection. The code uses the hadronic W candidate, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L351〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV
+
+CODE:
+- hadronic_top_mass
+
+Reason:
+The SPEC does not specify whether the invariant mass should be computed from the hadronic top candidate or from the broader event-level collection. The code uses the hadronic top candidate, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L352〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot delta R between the leading lepton and the closest selected b-jet
+
+CODE:
+- dr_lep_bjet
+
+Reason:
+The SPEC does not specify whether the delta R should be computed from the leading lepton and the closest selected b-jet or from the broader event-level collection. The code uses the leading lepton and the closest selected b-jet, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L353〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- scalar_pt_sum(selected_jets)
+
+Reason:
+The SPEC does not specify whether the HT should be computed from the selected jets or from the broader event-level collection. The code uses the selected jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L354〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- len(selected_jets)
+
+Reason:
+The SPEC does not specify whether the number of jets should be counted from the selected jets or from the broader event-level collection. The code uses the selected jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L355〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the eta of the leading b-jet
+
+CODE:
+- leading_bjet['eta']
+
+Reason:
+The SPEC does not specify whether the leading b-jet should be selected from the selected b-jets or from the broader event-level collection. The code uses the selected b-jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L356〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- cutflow
+
+Reason:
+The SPEC does not specify whether the cutflow should be computed from the event-level collection or from the broader input collection. The code uses the event-level collection, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L430-L432〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The SPEC does not specify whether the plots should be saved in png format or in another format. The code uses png format, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L359-L427〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic candidate)
+
+CODE:
+- mt
+
+Reason:
+The SPEC does not specify whether the transverse mass should be computed from the lepton and MET or from the broader event-level collection. The code uses the lepton and MET, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L347〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- met['pt']
+
+Reason:
+The SPEC does not specify whether the MET should be selected from the event-level collection or from the broader input collection. The code uses the event-level collection, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L348〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- leading_bjet['pt']
+
+Reason:
+The SPEC does not specify whether the leading b-jet should be selected from the selected b-jets or from the broader event-level collection. The code uses the selected b-jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L349〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV
+
+CODE:
+- hadronic_w_mass
+
+Reason:
+The SPEC does not specify whether the invariant mass should be computed from the hadronic W candidate or from the broader event-level collection. The code uses the hadronic W candidate, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L351〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV
+
+CODE:
+- hadronic_top_mass
+
+Reason:
+The SPEC does not specify whether the invariant mass should be computed from the hadronic top candidate or from the broader event-level collection. The code uses the hadronic top candidate, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L352〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot delta R between the leading lepton and the closest selected b-jet
+
+CODE:
+- dr_lep_bjet
+
+Reason:
+The SPEC does not specify whether the delta R should be computed from the leading lepton and the closest selected b-jet or from the broader event-level collection. The code uses the leading lepton and the closest selected b-jet, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L353〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- scalar_pt_sum(selected_jets)
+
+Reason:
+The SPEC does not specify whether the HT should be computed from the selected jets or from the broader event-level collection. The code uses the selected jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L354〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- len(selected_jets)
+
+Reason:
+The SPEC does not specify whether the number of jets should be counted from the selected jets or from the broader event-level collection. The code uses the selected jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L355〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Plot the eta of the leading b-jet
+
+CODE:
+- leading_bjet['eta']
+
+Reason:
+The SPEC does not specify whether the leading b-jet should be selected from the selected b-jets or from the broader event-level collection. The code uses the selected b-jets, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L356〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- cutflow
+
+Reason:
+The SPEC does not specify whether the cutflow should be computed from the event-level collection or from the broader input collection. The code uses the event-level collection, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L430-L432〕
+
+◎ (D) specification ambiguity
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The SPEC does not specify whether the plots should be saved in png format or in another format. The code uses png format, which is a plausible interpretation but introduces an ambiguity in the specification.
+
+Evidence priority:
+〔L359-L427〕
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- [l for l in leptons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+
+Reason:
+The code applies a stricter requirement on the muon eta than what is specified in the SPEC. The SPEC requires |eta| < 2.4, but the code uses |eta| < 2.5, which is a mismatch in the definition of the selection criteria for muons.
+
+Evidence priority:
+〔L279-L281〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- helper_get_subleading(selected_bjets)['pt']
+
+Reason:
+The code uses the selected b-jets to determine the subleading b-jet, but the SPEC does not specify whether the subleading b-jet should be selected from the selected b-jets or from the broader event-level collection. However, the code's implementation is not a mismatch but a plausible interpretation, so this is not a definition mismatch.
+
+Evidence priority:
+〔L350〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- len(selected_jets)
+
+Reason:
+The code uses the selected jets to count the number of jets per event, but the SPEC does not specify whether the number of jets should be counted from the selected jets or from the broader event-level collection. However, the code's implementation is not a mismatch but a plausible interpretation, so this is not a definition mismatch.
+
+Evidence priority:
+〔L355〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- scalar_pt_sum(selected_jets)
+
+Reason:
+The code uses the selected jets to compute the HT distribution, but the SPEC does not specify whether the HT should be computed from the selected jets or from the broader event-level collection. However, the code's implementation is not a mismatch but a plausible interpretation, so this is not a definition mismatch.
+
+Evidence priority:
+〔L354〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the eta of the leading b-jet
+
+CODE:
+- leading_bjet['eta']
+
+Reason:
+The code uses the selected b-jets to determine the leading b-jet, but the SPEC does not specify whether the leading b-jet should be selected from the selected b-jets or from the broader event-level collection. However, the code's implementation is not a mismatch but a plausible interpretation, so this is not a definition mismatch.
+
+Evidence priority:
+〔L356〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic candidate)
+
+CODE:
+- mt
+
+Reason:
+The code uses the lepton and MET to compute the transverse mass, but the SPEC does not specify whether the transverse mass should be computed from the lepton and MET or from the broader event-level collection. However, the code's implementation is not a mismatch but a plausible interpretation, so this is not a definition mismatch.
+
+Evidence priority:
+〔L347〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- met['pt']
+
+Reason:
+The code uses the event-level MET to compute the MET distribution, but the SPEC does not specify whether the MET should be selected from the event-level collection or from the broader input collection. However, the code's implementation is not a mismatch but a plausible interpretation, so this is not a definition mismatch.
+
+Evidence priority:
+〔L348〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- leading_bjet['pt']
+
+Reason:
+The code uses the selected b-jets to determine the leading b-jet, but the SPEC does not specify whether the leading b-jet should be selected from the selected b-jets or from the broader event-level collection. However, the code's implementation is not a mismatch but a plausible interpretation, so this is not a definition mismatch.
+
+Evidence priority:
+〔L349〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV
+
+CODE:
+- hadronic_w_mass
+
+Reason:
+The code uses the hadronic W candidate to compute the invariant mass, but the SPEC does not specify whether the invariant mass should be computed from the hadronic W candidate or from the broader event-level collection. However, the code's implementation is not a mismatch but a plausible interpretation, so this is not a definition mismatch.
+
+Evidence priority:
+〔L351〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV
+
+CODE:
+- hadronic_top_mass
+
+Reason:
+The code uses the hadronic top candidate to compute the invariant mass, but the SPEC does not specify whether the invariant mass should be computed from the hadronic top candidate or from the broader event-level collection. However, the code's implementation is not a mismatch but a plausible interpretation, so this is not a definition mismatch.
+
+Evidence priority:
+〔L352〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot delta R between the leading lepton and the closest selected b-jet
+
+CODE:
+- dr_lep_bjet
+
+Reason:
+The code uses the leading lepton and the closest selected b-jet to compute the delta R, but the SPEC does not specify whether the delta R should be computed from the leading lepton and the closest selected b-jet or from the broader event-level collection. However, the code's implementation is not a mismatch but a plausible interpretation, so this is not a definition mismatch.
+
+Evidence priority:
+〔L353〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- cutflow
+
+Reason:
+The code uses the event-level collection to compute the cutflow, but the SPEC does not specify whether the cutflow should be computed from the event-level collection or from the broader input collection. However, the code's implementation is not a mismatch but a plausible interpretation, so this is not a definition mismatch.
+
+Evidence priority:
+〔L430-L432〕
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The code uses the png format to save the plots, but the SPEC does not specify whether the plots should be saved in png format or in another format. However, the code's implementation is not a mismatch but a plausible interpretation, so this is not a definition mismatch.
+
+Evidence priority:
+〔L359-L427〕

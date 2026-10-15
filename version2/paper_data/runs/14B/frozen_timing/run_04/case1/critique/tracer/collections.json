@@ -1,0 +1,35 @@
+{
+  "lepton": {
+    "name": "lepton",
+    "definition": "leptons[0], met = helper_get_met(event)",
+    "used_by": [
+      "mt_list",
+      "dphi_list",
+      "dphi_lepton_jets_list"
+    ]
+  },
+  "jet1": {
+    "name": "jet1",
+    "definition": "helper_get_leading(jets), jet2 = helper_get_subleading(jets)",
+    "used_by": [
+      "mjj_list",
+      "dr_list"
+    ]
+  },
+  "leptons": {
+    "name": "leptons",
+    "definition": "[l for l in electrons + muons if ...]",
+    "used_by": [
+      "lepton_pt_list",
+      "lepton_eta_list"
+    ]
+  },
+  "jets": {
+    "name": "jets",
+    "definition": "[j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]",
+    "used_by": [
+      "jet1_pt_list",
+      "jet2_pt_list"
+    ]
+  }
+}

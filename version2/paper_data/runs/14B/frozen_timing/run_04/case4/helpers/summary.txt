@@ -1,0 +1,24 @@
+# Selected helpers
+
+- get_electrons
+- get_muons
+- opposite_sign
+- get_particle_mass: dependency of four_momentum
+- four_momentum: dependency of sum_objects
+- obj_from_four_momentum: dependency of sum_objects
+- sum_objects
+- helper_invariant_mass
+- helper_get_met
+- helper_delta_phi: dependency of helper_transverse_mass
+- helper_transverse_mass
+- abs_eta
+- helper_delta_r
+- scalar_pt_sum
+- vector_pt_components
+- compute_phi
+- helper_get_leading
+- n_electrons
+- n_muons
+
+# Rejected but close
+

@@ -1,0 +1,107 @@
+⚠️ (B) definition mismatch
+
+SPEC:
+- Among these selected jets, require at least 2 b-tagged jets.
+
+CODE:
+- [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The code applies jet pT and |eta| cuts to bjets (which are already b-tagged jets) rather than applying these cuts to the broader jet collection before selecting b-tagged jets. This changes the selection order and may exclude valid b-tagged jets that would have passed the cuts if selected from the full jet collection.
+
+Evidence priority:
+〔L295-L297〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- light_jets = get_light_jets(event)
+- selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The code applies jet pT and |eta| cuts to light jets (non-b-tagged jets) rather than applying these cuts to the broader jet collection before selecting non-b-tagged jets. This changes the selection order and may exclude valid non-b-tagged jets that would have passed the cuts if selected from the full jet collection.
+
+Evidence priority:
+〔L326-L328〕
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- bjets_sorted = sort_by_pt(selected_bjets)
+- leading_bjet = bjets_sorted[0]
+
+Reason:
+The SPEC refers to "leading selected b-tagged jet" but the code uses the leading jet from the selected_bjets collection, which may not be the same as the leading jet from the full jet collection. The SPEC does not clarify whether the leading jet should be selected from the full jet collection or from the selected b-tagged jets.
+
+Evidence priority:
+〔L342-L344〕
+
+Generator bias:
+none
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- light_jets = get_light_jets(event)
+- selected_light_jets = [j for j in light_jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Reason:
+The code applies jet pT and |eta| cuts to light jets (non-b-tagged jets) rather than applying these cuts to the broader jet collection before selecting non-b-tagged jets. This changes the selection order and may exclude valid non-b-tagged jets that would have passed the cuts if selected from the full jet collection.
+
+Evidence priority:
+〔L326-L328〕
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Among these selected jets, require at least 2 b-tagged jets.
+
+CODE:
+- [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+
+Reason:
+The code applies jet pT and |eta| cuts to bjets (which are already b-tagged jets) rather than applying these cuts to the broader jet collection before selecting b-tagged jets. This changes the selection order and may exclude valid b-tagged jets that would have passed the cuts if selected from the full jet collection.
+
+Evidence priority:
+〔L295-L297〕
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- bjets_sorted = sort_by_pt(selected_bjets)
+- leading_bjet = bjets_sorted[0]
+
+Reason:
+The SPEC refers to "leading selected b-tagged jet" but the code uses the leading jet from the selected_bjets collection, which may not be the same as the leading jet from the full jet collection. The SPEC does not clarify whether the leading jet should be selected from the full jet collection or from the selected b-tagged jets.
+
+Evidence priority:
+〔L342-L344〕
+
+Generator bias:
+none

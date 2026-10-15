@@ -1,0 +1,70 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+
+CODE:
+- sum_objects(leading_tau, subleading_tau)
+
+Reason:
+The code computes a composite object from the leading and subleading tau, which is correct. However, the variable ditau_obj is not stored or used explicitly in the code. The composite object is only used in the centrality calculation and not defined as a named object as requested by the SPEC.
+
+Evidence priority:
+sum_objects(leading_tau, subleading_tau) 〔L259, L65-L87, L27-L36〕
+
+Generator bias:
+none
+
+
+⚠️ (A) composite violation
+
+SPEC:
+- Define dijet_obj from the summed momentum of the leading jet and subleading jet.
+
+CODE:
+- sum_objects(leading_jet, subleading_jet)
+
+Reason:
+The code computes a composite object from the leading and subleading jet, which is correct. However, the variable dijet_obj is not stored or used explicitly in the code. The composite object is only used in the centrality calculation and not defined as a named object as requested by the SPEC.
+
+Evidence priority:
+sum_objects(leading_jet, subleading_jet) 〔L277, L65-L87, L27-L36〕
+
+Generator bias:
+none
+
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the ditau system and the dijet system
+
+CODE:
+- helper_delta_phi(leading_tau['phi'] + subleading_tau['phi'], leading_jet['phi'] + subleading_jet['phi'])
+
+Reason:
+The code computes the delta phi between the sum of the phi angles of the two taus and the sum of the phi angles of the two jets. This is not the correct definition of the delta phi between the ditau system and the dijet system. The correct definition would be the delta phi between the phi of the ditau system and the phi of the dijet system, not the sum of the individual phi angles.
+
+Evidence priority:
+helper_delta_phi(leading_tau['phi'] + subleading_tau['phi'], leading_jet['phi'] + subleading_jet['phi']) 〔L309-L310, L94-L101〕
+
+Generator bias:
+none
+
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- centrality_between_jets(sum_objects(leading_tau, subleading_tau), leading_jet, subleading_jet)
+
+Reason:
+The code computes the centrality of the ditau system relative to the two jets, which is correct. However, the implementation uses the summed four-momentum of the leading and subleading tau to compute the ditau system's eta, which is not the correct definition of the ditau system's eta. The correct definition would be the eta of the ditau system as a whole, not the sum of the individual eta values.
+
+Evidence priority:
+centrality_between_jets(sum_objects(leading_tau, subleading_tau), leading_jet, subleading_jet) 〔L311-L312, L143-L155, L65-L87, L27-L36, L110-L114, L115-L121〕
+
+Generator bias:
+none

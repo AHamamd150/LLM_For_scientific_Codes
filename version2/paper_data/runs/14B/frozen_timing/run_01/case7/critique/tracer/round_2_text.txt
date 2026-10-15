@@ -1,0 +1,19 @@
+
+
+* centrality of ditau relative to jets
+  - computed/defined as: centrality_between_jets(ditau_obj, leading jet, subleading jet)
+  - upstream chain: ditau_obj, leading jet, subleading jet -> leading tau, subleading tau, selected jets
+  - collection definition: |eta_obj - eta_center_jj| / |delta_eta_jj|
+  - structure: multi-input
+
+* cutflow
+  - computed/defined as: dictionary with counters for each selection step
+  - upstream chain: events
+  - collection definition: increment counters when conditions are passed
+  - structure: single-constituent
+
+* plots
+  - computed/defined as: histograms saved as PNG files
+  - upstream chain: ditau_mass_list, dijet_mass_list, delta_eta_jj_list, leading_tau_pt_list, subleading_tau_pt_list, leading_jet_pt_list, subleading_jet_pt_list, delta_r_tt_list, delta_phi_tt_jj_list, centrality_tt_jj_list
+  - collection definition: plt.hist(values, bins=40, density=True)
+  - structure: single-constituent

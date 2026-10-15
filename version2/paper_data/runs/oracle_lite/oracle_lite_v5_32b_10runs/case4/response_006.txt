@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] z_obj reuse and definition
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum."
+
+Why this matters:
+The phrase does not clarify whether z_obj is a temporary object used only for the invariant mass cut, or if it is meant to be reused in later steps (e.g., for plotting pT of z_obj or delta R between z_obj and MET). This affects whether the object must be preserved in the event state.
+
+Question to user:
+Is the z_obj meant to be used only for the invariant mass cut, or is it intended to be reused in later steps such as plotting or system-level calculations?
+
+Golden axe:
+z_obj is built and used only for the invariant mass cut, and not preserved for later steps.
+
+Silver axe:
+z_obj is built and preserved as a composite object for later use in plots or system-level calculations.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] W candidate muon definition
+
+Original phrase:
+"Define the selected muon as the W candidate lepton."
+
+Why this matters:
+It is not clear whether this definition is meant to be a label for the muon (e.g., for plotting or later reference) or if it implies additional selection or filtering logic (e.g., requiring it to be isolated or matched to a generator-level W). This could affect how the muon is treated in subsequent steps.
+
+Question to user:
+Does "define the selected muon as the W candidate lepton" imply only a label for the muon, or does it imply additional selection criteria or behavior?
+
+Golden axe:
+The phrase is interpreted as a label for the selected muon, with no additional selection logic.
+
+Silver axe:
+The phrase implies that the muon must satisfy additional W lepton selection criteria beyond the basic pT and charge requirements.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Three-lepton system definition
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Why this matters:
+It is not clear whether the three-lepton system is built from the raw objects (before any cuts) or from the selected and filtered objects (after cuts). This affects the pT value and the meaning of the plot.
+
+Question to user:
+Is the three-lepton system built from the raw electrons and muons, or from the selected and filtered electrons and muon?
+
+Golden axe:
+The three-lepton system is built from the selected and filtered electrons and muon.
+
+Silver axe:
+The three-lepton system is built from the raw electrons and muons, before any cuts.
+
+Recommended default:
+Golden axe

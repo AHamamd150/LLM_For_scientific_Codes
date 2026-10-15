@@ -1,0 +1,87 @@
+[CANDIDATE 1] Lepton definition for "exactly one lepton"
+
+Original phrase:
+"Require exactly one lepton (electron or muon)"
+
+Unresolved choice:
+It is unclear whether "exactly one lepton" refers to the total number of electrons and muons combined (after applying the pT and |eta| cuts), or whether it refers to the number of selected leptons after all cuts (including the jet and b-tag requirements).
+
+Why this may matter:
+If the lepton count is applied before or after other cuts, it could affect which events are retained and how the lepton is defined in the context of the full selection.
+
+[CANDIDATE 2] "Leading b-jet" and "subleading b-jet" definition
+
+Original phrase:
+"Plot the pT of the leading b-jet", "Plot the pT of the subleading b-jet"
+
+Unresolved choice:
+It is unclear whether the "leading b-jet" and "subleading b-jet" are defined based on the full jet collection (including b-tagged and non-b-tagged jets), or only among the b-tagged jets.
+
+Why this may matter:
+If the jets are sorted before or after b-tagging, the definition of "leading b-jet" may change, affecting the plots and the top candidate construction.
+
+[CANDIDATE 3] "Leading non-b-tagged jets" for the hadronic W candidate
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Unresolved choice:
+It is unclear whether "leading non-b-tagged jets" are defined based on the full jet collection or only among jets that pass the pT and |eta| cuts.
+
+Why this may matter:
+If the jets are sorted before or after applying jet cuts, the selection of the two leading non-b-tagged jets may differ, which affects the hadronic W candidate and the top candidate.
+
+[CANDIDATE 4] "Hadronic W mass" and "hadronic top candidate" definitions
+
+Original phrase:
+"Select the hadronic W mass between 40 to 120 GeV", "Build the hadronic top candidate from the leading b-jet and the hadronic W candidate."
+
+Unresolved choice:
+It is unclear whether the hadronic W and top candidates are built using the original jet four-momenta or the four-momenta of the composite system (i.e., summed jets or jets with corrections).
+
+Why this may matter:
+If the invariant mass is computed from the original jet objects or from a composite system, the resulting mass may differ, which could affect the selection and the plots.
+
+[CANDIDATE 5] "Lepton and MET" for transverse mass
+
+Original phrase:
+"Select the transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)"
+
+Unresolved choice:
+It is unclear whether the "lepton" used in the transverse mass calculation is the same as the one used in the final selection (i.e., the one that survives all cuts), or whether it refers to the first lepton in the event or a specific one.
+
+Why this may matter:
+If the lepton used for the transverse mass is not the same as the one used in the final plots or selections, the transverse mass cut may not correspond to the actual W candidate.
+
+[CANDIDATE 6] "Closest b-jet" for delta R
+
+Original phrase:
+"Plot delta R between the leading lepton and the closest b-jet"
+
+Unresolved choice:
+It is unclear whether the "closest b-jet" is defined among all b-tagged jets in the event or only among those that pass the jet and b-tagging cuts.
+
+Why this may matter:
+If the b-jet collection is filtered before or after the delta R calculation, the "closest b-jet" may differ, affecting the plot and the interpretation of the angular separation.
+
+[CANDIDATE 7] "HT distribution" definition
+
+Original phrase:
+"Plot the HT distribution (scalar sum of all jet pT)"
+
+Unresolved choice:
+It is unclear whether "all jet pT" refers to the full jet collection or only to jets that pass the pT and |eta| cuts.
+
+Why this may matter:
+If HT is computed from all jets or only selected jets, the distribution may differ significantly, affecting the validation and interpretation of event activity.
+
+[CANDIDATE 8] "Number of jets per event"
+
+Original phrase:
+"Plot the number of jets per event"
+
+Unresolved choice:
+It is unclear whether the "number of jets" refers to all jets in the event or only to those that pass the pT and |eta| cuts.
+
+Why this may matter:
+If the jet count is based on the full collection or a filtered one, the distribution may represent different physical quantities and affect the analysis validation.

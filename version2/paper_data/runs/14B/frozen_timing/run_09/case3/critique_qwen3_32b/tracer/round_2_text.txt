@@ -1,0 +1,4 @@
+
+
+Collins-Soper frame calculation using four-momenta of leading and subleading photons
+  - structure: composite-derived

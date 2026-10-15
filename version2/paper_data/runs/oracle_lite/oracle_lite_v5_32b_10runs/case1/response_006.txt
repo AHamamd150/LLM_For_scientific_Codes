@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] Lepton definition for delta phi between lepton and two-jet system
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+
+Why this matters:
+The phrase "the lepton" is ambiguous in the context of the event selection. The event contains exactly one selected lepton, but it is not clear whether this refers to the selected lepton (after all cuts) or a pre-selected lepton (e.g., before MET or jet cuts). This choice affects the delta phi calculation and the interpretation of the angular correlation.
+
+Question to user:
+Is the lepton used in the delta phi calculation the same as the one used in the transverse mass cut and the plots, or is it a different object (e.g., pre-selection or uncut)?
+
+Golden axe:
+The lepton is the one selected after all cuts, including MET and jet requirements.
+
+Silver axe:
+The lepton is the one selected only after lepton-specific cuts, but before MET or jet cuts.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Jet definition for the two-jet system in delta phi and invariant mass
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system" and "Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+
+Why this matters:
+The phrase "two leading jets" is used in both the invariant mass cut and the delta phi plot. However, it is not specified whether these jets are selected after the jet pT and eta cuts, or if they are the two leading jets in the full jet collection. This choice affects which jets are used in the invariant mass and angular correlation calculations.
+
+Question to user:
+Are the two leading jets used in the invariant mass and delta phi calculations selected after the jet pT and eta cuts, or are they the two leading jets in the full jet collection?
+
+Golden axe:
+The two leading jets are selected after the jet pT and eta cuts.
+
+Silver axe:
+The two leading jets are the highest-pT jets in the full jet collection, regardless of whether they pass the jet cuts.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Definition of the two-jet system for the delta phi and invariant mass
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system" and "Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+
+Why this matters:
+The phrase "two-jet system" is used in the delta phi plot, but it is not explicitly defined whether this system is the same as the one used in the invariant mass cut. If not, it could lead to using different jet pairs for different observables, which may be inconsistent with the physics interpretation.
+
+Question to user:
+Is the two-jet system used in the delta phi plot the same as the one used in the invariant mass cut?
+
+Golden axe:
+Yes, the same two-jet system is used for both the invariant mass and the delta phi.
+
+Silver axe:
+No, the two-jet system for the delta phi is a different pair of jets (e.g., all possible pairs or a different selection).
+
+Recommended default:
+Golden axe

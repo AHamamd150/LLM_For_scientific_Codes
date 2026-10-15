@@ -1,0 +1,305 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+◎ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+- Define dijet_obj from the summed momentum of the leading jet and subleading jet.
+
+CODE:
+- ditau_obj = sum_objects(lead_tau, sublead_tau)
+- dijet_obj = sum_objects(lead_jet, sublead_jet)
+
+Reason:
+The code correctly constructs the ditau_obj and dijet_obj from the four-momentum of the leading and subleading tau and jet, respectively. The summed four-momentum is used to compute the composite system-level quantities as required by the SPEC.
+
+Evidence priority:
+- ditau_obj -> sum_objects(lead_tau, sublead_tau)
+- dijet_obj -> sum_objects(lead_jet, sublead_jet)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV
+
+CODE:
+- if m_jj_val < 400: continue
+
+Reason:
+The code correctly implements the cut m_jj > 400 GeV as required by the SPEC.
+
+Evidence priority:
+- m_jj_val < 400
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select |delta eta| between the two leading jets > 2.5
+
+CODE:
+- if delta_eta_jj_val < 2.5: continue
+
+Reason:
+The code correctly implements the cut |delta eta| > 2.5 as required by the SPEC.
+
+Evidence priority:
+- delta_eta_jj_val < 2.5
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select ditau invariant mass between 60 and 150 GeV
+
+CODE:
+- if not (60 < m_tautau_val < 150): continue
+
+Reason:
+The code correctly implements the cut 60 < m_tautau < 150 GeV as required by the SPEC.
+
+Evidence priority:
+- 60 < m_tautau_val < 150
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Veto events with b-tagged jets
+
+CODE:
+- if n_bjets(event, pt_cut=30, eta_cut=4.7) > 0: continue
+
+Reason:
+The code correctly implements the veto on events with b-tagged jets as required by the SPEC.
+
+Evidence priority:
+- n_bjets(event, pt_cut=30, eta_cut=4.7) > 0
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the ditau invariant mass in the range 50 to 160 GeV
+
+CODE:
+- m_tautau.append(m_tautau_val)
+
+Reason:
+The code correctly collects the ditau invariant mass for plotting as required by the SPEC.
+
+Evidence priority:
+- m_tautau_val
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the dijet invariant mass (m_jj) in the range 200 to 2000 GeV
+
+CODE:
+- m_jj.append(m_jj_val)
+
+Reason:
+The code correctly collects the dijet invariant mass for plotting as required by the SPEC.
+
+Evidence priority:
+- m_jj_val
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta eta between the two leading jets
+
+CODE:
+- delta_eta_jj.append(delta_eta_jj_val)
+
+Reason:
+The code correctly collects the delta eta between the two leading jets for plotting as required by the SPEC.
+
+Evidence priority:
+- delta_eta_jj_val
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading tau
+
+CODE:
+- pt_lead_tau.append(lead_tau['pt'])
+
+Reason:
+The code correctly collects the pT of the leading tau for plotting as required by the SPEC.
+
+Evidence priority:
+- lead_tau['pt']
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading tau
+
+CODE:
+- pt_sublead_tau.append(sublead_tau['pt'])
+
+Reason:
+The code correctly collects the pT of the subleading tau for plotting as required by the SPEC.
+
+Evidence priority:
+- sublead_tau['pt']
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading jet
+
+CODE:
+- pt_lead_jet.append(lead_jet['pt'])
+
+Reason:
+The code correctly collects the pT of the leading jet for plotting as required by the SPEC.
+
+Evidence priority:
+- lead_jet['pt']
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading jet
+
+CODE:
+- pt_sublead_jet.append(sublead_jet['pt'])
+
+Reason:
+The code correctly collects the pT of the subleading jet for plotting as required by the SPEC.
+
+Evidence priority:
+- sublead_jet['pt']
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta R between the two taus
+
+CODE:
+- delta_r_tautau.append(helper_delta_r(lead_tau, sublead_tau))
+
+Reason:
+The code correctly collects the delta R between the two taus for plotting as required by the SPEC.
+
+Evidence priority:
+- helper_delta_r(lead_tau, sublead_tau)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the ditau system and the dijet system
+
+CODE:
+- delta_phi_tautau_dijet.append(helper_delta_phi(ditau_obj['phi'], dijet_obj['phi']))
+
+Reason:
+The code correctly collects the delta phi between the ditau system and the dijet system for plotting as required by the SPEC.
+
+Evidence priority:
+- helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- centrality_tautau_jj.append(centrality_between_jets(ditau_obj, lead_jet, sublead_jet))
+
+Reason:
+The code correctly collects the centrality of the ditau system relative to the two jets for plotting as required by the SPEC.
+
+Evidence priority:
+- centrality_between_jets(ditau_obj, lead_jet, sublead_jet)
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- print("Cutflow:")
+- for key, value in cutflow.items():
+-     print(f"{key}: {value}")
+
+Reason:
+The code correctly prints the cutflow summary as required by the SPEC.
+
+Evidence priority:
+- cutflow
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(filename)
+
+Reason:
+The code correctly saves the plots in png format as required by the SPEC.
+
+Evidence priority:
+- plt.savefig(filename)
+
+Generator bias:
+none
+
+---
+
+None
+
+
+---- DROPPED ----
+(none)

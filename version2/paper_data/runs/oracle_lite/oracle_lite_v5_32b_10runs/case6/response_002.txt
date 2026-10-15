@@ -1,0 +1,39 @@
+[UNDERSPECIFICATION 1] Definition of "selected b-tagged jets" for delta R calculation
+
+Original phrase:
+"Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R."
+
+Why this matters:
+This phrase is ambiguous about whether the "selected b-tagged jets" refers to the full set of b-tagged jets in the event (after pT and eta cuts but before any other selection), or only those b-tagged jets that have passed all prior selection steps (including the "at least 2 b-tagged jets" requirement). The delta R calculation could yield different results depending on which collection is used.
+
+Question to user:
+Are the b-tagged jets used to compute the delta R with the lepton the full set of b-tagged jets in the event (after pT and eta cuts), or only those that have passed all prior selection steps?
+
+Golden axe:
+Use all b-tagged jets in the event that pass pT and eta cuts.
+
+Silver axe:
+Use only the b-tagged jets that survive the full selection up to that point.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Definition of "leading" and "subleading" b-jets
+
+Original phrase:
+"Plot the pT of the leading b-jet" and "Plot the pT of the subleading b-jet"
+
+Why this matters:
+The terms "leading" and "subleading" are not clearly defined in the context of b-jets. It is unclear whether these refer to the highest and second-highest pT b-tagged jets in the full event, or only among the selected b-tagged jets that have passed all prior cuts.
+
+Question to user:
+Are the "leading" and "subleading" b-jets defined based on all b-tagged jets in the event (after pT and eta cuts), or only among those that have passed all prior selection steps?
+
+Golden axe:
+Leading and subleading b-jets are defined among all b-tagged jets in the event (after pT and eta cuts).
+
+Silver axe:
+Leading and subleading b-jets are defined only among those that have passed all prior selection steps.
+
+Recommended default:
+Golden axe

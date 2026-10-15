@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading b-jet definition
+
+Original phrase:
+"Plot the pT of the leading b-jet"
+
+Why this is dangerous:
+The phrase does not clarify whether the leading b-jet is defined before or after applying the b-tagging cuts and other selection criteria. This can affect which jets are considered in the selection.
+
+Question to user:
+Are the leading b-jet and subleading b-jet defined before or after applying the b-tagging cuts and other selection criteria?
+
+Golden axe:
+The leading b-jet is defined after applying the b-tagging cuts and other selection criteria.
+
+Silver axe:
+The leading b-jet is defined before applying the b-tagging cuts and other selection criteria.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Hadronic W candidate construction
+
+Original phrase:
+"Build the hadronic W candidate from the two leading non-b-tagged jets."
+
+Why this is dangerous:
+The phrase does not clarify whether the two leading non-b-tagged jets are defined before or after applying the jet pT and eta cuts. This can affect which jets are used to construct the hadronic W candidate.
+
+Question to user:
+Are the two leading non-b-tagged jets used to build the hadronic W candidate defined before or after applying the jet pT and eta cuts?
+
+Golden axe:
+The two leading non-b-tagged jets are defined after applying the jet pT and eta cuts.
+
+Silver axe:
+The two leading non-b-tagged jets are defined before applying the jet pT and eta cuts.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Delta R between leading lepton and closest b-jet
+
+Original phrase:
+"Plot delta R between the leading lepton and the closest b-jet"
+
+Why this is dangerous:
+The phrase does not clarify whether the closest b-jet is defined before or after applying the b-tagging cuts and other selection criteria. This can affect which b-jet is considered in the calculation.
+
+Question to user:
+Is the closest b-jet used in the delta R calculation defined before or after applying the b-tagging cuts and other selection criteria?
+
+Golden axe:
+The closest b-jet is defined after applying the b-tagging cuts and other selection criteria.
+
+Silver axe:
+The closest b-jet is defined before applying the b-tagging cuts and other selection criteria.
+
+Recommended default:
+Golden axe

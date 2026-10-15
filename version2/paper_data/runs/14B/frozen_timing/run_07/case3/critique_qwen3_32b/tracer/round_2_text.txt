@@ -1,0 +1,35 @@
+
+
+- upstream chain: diphoton['pt']
+  - collection definition: transverse momentum of diphoton system
+  - structure: composite-derived
+
+* eta_leading_photon_list
+  - computed/defined as: [leading_photon['eta'] for each event passing all cuts]
+  - upstream chain: leading_photon['eta']
+  - collection definition: pseudorapidity of leading photon
+  - structure: single-constituent
+
+* eta_subleading_photon_list
+  - computed/defined as: [subleading_photon['eta'] for each event passing all cuts]
+  - upstream chain: subleading_photon['eta']
+  - collection definition: pseudorapidity of subleading photon
+  - structure: single-constituent
+
+* dr_photons_list
+  - computed/defined as: [helper_delta_r(leading_photon, subleading_photon) for each event passing all cuts]
+  - upstream chain: leading_photon, subleading_photon
+  - collection definition: delta R between photons
+  - structure: multi-input
+
+* dphi_photons_list
+  - computed/defined as: [helper_delta_phi(leading_photon['phi'], subleading_photon['phi']) for each event passing all cuts]
+  - upstream chain: leading_photon['phi'], subleading_photon['phi']
+  - collection definition: delta phi between photons
+  - structure: multi-input
+
+* cos_theta_star_list
+  - computed/defined as: [abs(cos_theta_star_collins_soper(leading_photon, subleading_photon)) for each event passing all cuts]
+  - upstream chain: leading_photon, subleading_photon
+  - collection definition: |cos(theta*)| in Collins-Soper frame
+  - structure: composite-derived

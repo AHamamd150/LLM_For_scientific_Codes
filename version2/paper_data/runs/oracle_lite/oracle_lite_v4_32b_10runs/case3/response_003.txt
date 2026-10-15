@@ -1,0 +1,87 @@
+[CANDIDATE 1] Photon selection and veto regions
+
+Original phrase:
+"Select photons with pT > 25 GeV and |eta| < 2.37. Exclude photons in the crack region 1.37 < |eta| < 1.52."
+
+Unresolved choice:
+It is unclear whether the crack region veto is applied in addition to the |eta| < 2.37 cut or if the crack veto is already implicitly included in that cut.
+
+Why this may matter:
+If the crack veto is redundant with the |eta| < 2.37 cut, the code may apply an unnecessary or conflicting condition. If the crack veto is meant to remove a subset of the allowed |eta| range, the implementation must ensure the veto is applied after the initial selection.
+
+[CANDIDATE 2] Leading and subleading photon definitions
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection. Leading photon pT > 35 GeV. Subleading photon pT > 25 GeV."
+
+Unresolved choice:
+It is unclear whether the "leading" and "subleading" definitions are based on the full photon collection or only on the selected photon collection.
+
+Why this may matter:
+If the leading and subleading photons are defined before applying the pT > 35 GeV and pT > 25 GeV cuts, the selection could be applied to the wrong objects. The cuts may also be applied to the full collection, which could include photons that are later vetoed.
+
+[CANDIDATE 3] Diphoton system reuse
+
+Original phrase:
+"Build the diphoton system from the leading photon and the subleading photon. Define m_gammagamma as the invariant mass of this diphoton system. Use this same diphoton system to compute diphoton pT."
+
+Unresolved choice:
+It is unclear whether the diphoton system is meant to be a fixed object for all subsequent calculations or if it could be redefined in later steps.
+
+Why this may matter:
+If the diphoton system is not fixed, later calculations like the diphoton pT or the pT/mass ratios could be based on a different system than intended, leading to incorrect results.
+
+[CANDIDATE 4] Cutflow counter timing
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether the cutflow counters are incremented before or after the event is skipped, and whether the order of incrementing corresponds to the order of the cuts listed.
+
+Why this may matter:
+If the cutflow counters are not incremented in the exact order of the cuts and at the exact point of cut application, the cutflow will misrepresent the number of events passing each step, leading to incorrect validation and debugging.
+
+[CANDIDATE 5] Diphoton pT definition
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT."
+
+Unresolved choice:
+It is unclear whether the diphoton pT is the scalar sum of the individual photon pT values or the magnitude of the vector sum of the transverse momenta.
+
+Why this may matter:
+The scalar sum and vector sum can yield very different values, especially if the two photons are in opposite directions in the transverse plane. This could affect the interpretation of the diphoton system's overall transverse activity.
+
+[CANDIDATE 6] pT/mass ratio definitions
+
+Original phrase:
+"Select leading photon pT / m_gammagamma > 0.35. Select subleading photon pT / m_gammagamma > 0.25."
+
+Unresolved choice:
+It is unclear whether the pT values used in the ratios are the raw pT values or the pT values after any additional cuts or corrections.
+
+Why this may matter:
+If the pT values used in the ratios are not consistent with the pT values used in earlier selections, the ratios may not reflect the intended physical meaning, potentially leading to incorrect event selection.
+
+[CANDIDATE 7] Diphoton invariant mass selection
+
+Original phrase:
+"Select diphoton invariant mass between 105 and 160 GeV."
+
+Unresolved choice:
+It is unclear whether the mass window is inclusive or exclusive (i.e., whether the edges 105 and 160 GeV are included or excluded).
+
+Why this may matter:
+The inclusion or exclusion of the mass window edges can affect the number of events passing the cut, especially if the invariant mass distribution has significant statistics near the edges.
+
+[CANDIDATE 8] Plot range vs. cut range
+
+Original phrase:
+"Plot the following as histograms: 1 Plot diphoton invariant mass in the range 100 to 160 GeV"
+
+Unresolved choice:
+It is unclear whether the 100 to 160 GeV range for the histogram is meant to include events outside the 105 to 160 GeV cut range or if it is intended to reflect the same cut range.
+
+Why this may matter:
+If the histogram range is wider than the cut range, the plot will include events that were excluded by the analysis, potentially misleading the interpretation of the validation plot.

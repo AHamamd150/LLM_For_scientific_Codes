@@ -1,0 +1,72 @@
+[AMBIGUITY 1] Leading and subleading objects defined before or after cuts
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this is dangerous:
+The phrase "selected taus" implies that a prior cut has been applied, but it is unclear whether "leading" and "subleading" are defined from the raw collection or only from the selected ones. This affects the actual objects used in the ditau system and all subsequent cuts and plots.
+
+Question to user:
+Are the leading and subleading taus defined from the full uncut tau collection, or only from the tau collection after applying the pT and |eta| cuts?
+
+Golden axe:
+Leading and subleading taus are defined from the selected (cut-passing) tau collection.
+
+Silver axe:
+Leading and subleading taus are defined from the full uncut tau collection, and then the cuts are applied afterward.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Define the leading tau and subleading tau from the selected (pT > 20 GeV and |eta| < 2.3) taus."
+- Silver axe rewrite: "Define the leading tau and subleading tau from the full tau collection before applying any cuts."
+
+[AMBIGUITY 2] Dijet system definition and centrality calculation
+
+Original phrase:
+"Define dijet_obj from the summed four-momentum of the leading jet and subleading jet."
+"Plot the centrality of the ditau system relative to the two jets"
+
+Why this is dangerous:
+The phrase "dijet_obj" is defined as a composite object from the leading and subleading jets, but the centrality is defined relative to the "two jets". It is ambiguous whether "two jets" refers to the same jets used to define the dijet_obj or to the full jet collection. This affects the meaning of the centrality plot.
+
+Question to user:
+Does the centrality plot refer to the two jets used to define the dijet_obj, or to the full jet collection in the event?
+
+Golden axe:
+Centrality is computed relative to the two jets used to define the dijet_obj.
+
+Silver axe:
+Centrality is computed relative to the full jet collection, not just the two leading jets.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Plot the centrality of the ditau system relative to the two jets used to define the dijet_obj."
+- Silver axe rewrite: "Plot the centrality of the ditau system relative to all jets in the event."
+
+[AMBIGUITY 3] Veto on b-tagged jets applies to selected or all jets
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Why this is dangerous:
+The phrase "among the selected jets" implies that the veto is applied to a subset of jets, but it is unclear whether "selected jets" refers to the jets after the pT and |eta| cuts or to a different selection. This affects the jet veto logic and the final event count.
+
+Question to user:
+Does the b-tagged jet veto apply to the jets after the pT > 30 GeV and |eta| < 4.7 cuts, or to a different jet selection?
+
+Golden axe:
+The veto applies to the jets after the pT and |eta| cuts.
+
+Silver axe:
+The veto applies to a different jet selection, possibly with different cuts.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Veto events with b-tagged jets among the jets passing pT > 30 GeV and |eta| < 4.7."
+- Silver axe rewrite: "Veto events with b-tagged jets among the jets passing a different set of cuts."

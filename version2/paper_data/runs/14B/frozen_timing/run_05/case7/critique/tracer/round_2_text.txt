@@ -1,0 +1,25 @@
+
+
+* delta R between taus
+  - computed/defined as: helper_delta_r(leading tau, subleading tau)
+  - upstream chain: leading tau, subleading tau
+  - collection definition: math.sqrt(deta^2 + dphi^2)
+  - structure: multi-input
+
+* delta phi between ditau_obj and dijet_obj
+  - computed/defined as: helper_delta_phi(ditau_obj['phi'], dijet_obj['phi'])
+  - upstream chain: ditau_obj, dijet_obj
+  - collection definition: normalized Δφ calculation
+  - structure: multi-input
+
+* centrality of ditau system relative to jets
+  - computed/defined as: centrality_between_jets(ditau_obj, leading jet, subleading jet)
+  - upstream chain: ditau_obj, leading jet, subleading jet
+  - collection definition: |eta_obj - eta_center_jj| / |delta_eta_jj|
+  - structure: multi-input
+
+* cutflow
+  - computed/defined as: dictionary with keys and values tracking event counts
+  - upstream chain: cutflow
+  - collection definition: initial events, after each selection step
+  - structure: single-constituent

@@ -1,0 +1,71 @@
+[AMBIGUITY 1] Leading and subleading object definition timing
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this is dangerous:
+This phrase is ambiguous about whether the leading and subleading objects are defined before or after all selection cuts are applied. This can lead to different object selections if cuts are applied in a different order or if additional cuts are added later.
+
+Question to user:
+Should the leading and subleading tau be defined from the full selected tau collection (after all tau cuts), or should they be defined before applying the opposite-sign requirement?
+
+Golden axe:
+Leading and subleading tau are defined from the full selected tau collection after all tau cuts.
+
+Silver axe:
+Leading and subleading tau are defined before applying the opposite-sign requirement.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Define the leading tau and subleading tau from the selected taus after all tau cuts are applied."
+- Silver axe rewrite: "Define the leading tau and subleading tau before applying the opposite-sign requirement."
+
+[AMBIGUITY 2] Dijet system definition scope
+
+Original phrase:
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Why this is dangerous:
+This phrase is ambiguous about whether the dijet system should be treated as a reconstructed composite object or just as a scalar quantity derived from the two jets. This affects how the system is used in subsequent calculations like delta phi or centrality.
+
+Question to user:
+Should the dijet system be treated as a full reconstructed composite object for all subsequent calculations, or should we only use scalar quantities derived from the two jets?
+
+Golden axe:
+The dijet system should be treated as a full reconstructed composite object.
+
+Silver axe:
+We should only use scalar quantities derived from the two jets.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Define the dijet system as a composite object from the leading and subleading jets."
+- Silver axe rewrite: "Calculate scalar quantities from the leading and subleading jets without building a composite object."
+
+[AMBIGUITY 3] B-jet veto scope
+
+Original phrase:
+"Veto events with b-tagged jets"
+
+Why this is dangerous:
+This phrase is ambiguous about whether the veto applies to all jets in the event or only to the selected jets that passed the pT and eta cuts. This can lead to different event rejection rates depending on the interpretation.
+
+Question to user:
+Should the b-tagged jet veto apply to all jets in the event or only to the jets that passed the pT and eta selection criteria?
+
+Golden axe:
+The veto should apply to all jets in the event.
+
+Silver axe:
+The veto should apply only to the jets that passed the pT and eta selection criteria.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Veto events with any b-tagged jets in the full event."
+- Silver axe rewrite: "Veto events with b-tagged jets among the selected jets."

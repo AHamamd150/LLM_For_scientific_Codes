@@ -1,0 +1,28 @@
+{
+  "selected_helpers": [
+    "get_taus",
+    "abs_eta",
+    "helper_get_leading",
+    "helper_get_subleading",
+    "sum_objects",
+    "helper_invariant_mass",
+    "get_jets",
+    "n_jets",
+    "helper_get_leading",
+    "helper_get_subleading",
+    "sum_objects",
+    "helper_invariant_mass",
+    "opposite_sign",
+    "helper_invariant_mass",
+    "helper_delta_eta",
+    "helper_delta_phi",
+    "centrality_between_jets"
+  ],
+  "rejected_but_close": [
+    "helper_transverse_mass",
+    "get_bjets",
+    "min_delta_r",
+    "max_delta_r",
+    "pt_ratio"
+  ]
+}

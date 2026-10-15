@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading and subleading objects defined before or after cuts
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading and subleading taus are defined before or after applying the selection cuts. This can affect which objects are considered for further analysis, such as the ditau system.
+
+Question to user:
+Are the leading and subleading taus defined based on the full tau collection before any cuts, or based on the selected taus after applying the pT and |eta| cuts?
+
+Golden axe:
+Leading and subleading taus are defined from the selected taus after applying the pT and |eta| cuts.
+
+Silver axe:
+Leading and subleading taus are defined from the full tau collection before any cuts are applied.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Veto on b-tagged jets applied to selected jets or all jets
+
+Original phrase:
+"Veto events with b-tagged jets"
+
+Why this is dangerous:
+The phrase does not clarify whether the veto is applied to the selected jets (after cuts) or to all jets in the event. This can lead to different event rejection criteria.
+
+Question to user:
+Is the veto on b-tagged jets applied to the full jet collection before any cuts, or to the selected jets after applying the pT and |eta| cuts?
+
+Golden axe:
+The veto is applied to the selected jets after applying the pT and |eta| cuts.
+
+Silver axe:
+The veto is applied to the full jet collection before any cuts are applied.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Centrality of the ditau system relative to the two jets
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Why this is dangerous:
+The phrase does not clarify whether the jets used for the centrality calculation are the selected jets (after cuts) or the full jet collection. This can lead to different interpretations of the jet pair used for the centrality calculation.
+
+Question to user:
+Are the two jets used for the centrality calculation the selected jets after applying the pT and |eta| cuts, or the full jet collection before any cuts?
+
+Golden axe:
+The two jets used for the centrality calculation are the selected jets after applying the pT and |eta| cuts.
+
+Silver axe:
+The two jets used for the centrality calculation are the full jet collection before any cuts are applied.
+
+Recommended default:
+Golden axe

@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading b-jet definition
+
+Original phrase:
+"Plot the pT of the leading b-jet"
+
+Why this is dangerous:
+The phrase does not specify whether "leading b-jet" refers to the highest-pT b-tagged jet among all selected jets, or the highest-pT b-tagged jet among the selected b-tagged jets (which may be a subset of all jets).
+
+Question to user:
+Are you referring to the highest-pT b-tagged jet among all jets in the event, or the highest-pT b-tagged jet among the selected b-tagged jets?
+
+Golden axe:
+Highest-pT b-tagged jet among the selected b-tagged jets.
+
+Silver axe:
+Highest-pT b-tagged jet among all jets in the event.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Hadronic W candidate construction
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Why this is dangerous:
+The phrase does not clarify whether "leading selected non-b-tagged jets" refers to the two highest-pT non-b-tagged jets among all selected jets, or the two highest-pT non-b-tagged jets among the jets that passed all previous cuts.
+
+Question to user:
+Are you referring to the two highest-pT non-b-tagged jets among all selected jets, or the two highest-pT non-b-tagged jets among the jets that passed all previous cuts?
+
+Golden axe:
+Two highest-pT non-b-tagged jets among the jets that passed all previous cuts.
+
+Silver axe:
+Two highest-pT non-b-tagged jets among all selected jets.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Hadronic top candidate construction
+
+Original phrase:
+"Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate."
+
+Why this is dangerous:
+The phrase does not clarify whether "leading selected b-tagged jet" refers to the highest-pT b-tagged jet among all selected jets, or the highest-pT b-tagged jet among the selected b-tagged jets (which may be a subset of all jets).
+
+Question to user:
+Are you referring to the highest-pT b-tagged jet among all selected jets, or the highest-pT b-tagged jet among the selected b-tagged jets?
+
+Golden axe:
+Highest-pT b-tagged jet among the selected b-tagged jets.
+
+Silver axe:
+Highest-pT b-tagged jet among all selected jets.
+
+Recommended default:
+Golden axe

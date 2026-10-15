@@ -1,0 +1,59 @@
+[UNDERSPECIFICATION 1] Diphoton system reuse in pT calculation
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT."
+
+Why this matters:
+The phrase implies that the diphoton system's pT should be computed from the same two photons used to compute the invariant mass. However, it is not explicitly stated whether the diphoton pT should be computed as the vector sum of the two photons' pT or as the magnitude of the total transverse momentum of the diphoton system.
+
+Question to user:
+Should the diphoton pT be computed as the vector sum of the two photons' pT, or as the magnitude of the total transverse momentum of the diphoton system?
+
+Golden axe:
+Compute the diphoton pT as the magnitude of the total transverse momentum of the diphoton system.
+
+Silver axe:
+Compute the diphoton pT as the scalar sum of the two photons' pT.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Definition of leading and subleading photons
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection."
+
+Why this matters:
+The phrase does not specify whether the leading and subleading photons should be determined based on their pT before or after the additional pT cuts (35 GeV and 25 GeV) are applied.
+
+Question to user:
+Should the leading and subleading photons be defined based on their pT before or after applying the additional pT cuts?
+
+Golden axe:
+Define leading and subleading photons based on pT after applying the additional pT cuts.
+
+Silver axe:
+Define leading and subleading photons based on pT before applying the additional pT cuts.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Diphoton system reuse in validation plots
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT."
+
+Why this matters:
+While the phrase explicitly states to use the same diphoton system for computing diphoton pT, it does not clarify whether the same diphoton system should be used for all other validation plots (e.g., delta R, delta phi, |cos(theta*)|).
+
+Question to user:
+Should the same diphoton system used to compute the diphoton pT also be used for all other validation plots?
+
+Golden axe:
+Use the same diphoton system for all validation plots.
+
+Silver axe:
+Use the best diphoton system for each plot based on specific criteria.
+
+Recommended default:
+Golden axe

@@ -1,0 +1,6 @@
+﻿case,runs,requirement_items,extra_claims,high_requirement_rows,high_extra_claim_rows,high_affected_runs,medium_rows,low_rows
+1,10,247,4,47,3,8,47,154
+2,10,238,2,54,2,10,64,120
+3,10,311,4,15,3,8,73,224
+4,10,238,0,57,0,9,57,124
+5,10,269,17,43,16,10,36,191

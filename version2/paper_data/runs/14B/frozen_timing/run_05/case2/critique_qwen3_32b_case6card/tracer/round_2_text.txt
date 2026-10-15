@@ -1,0 +1,19 @@
+
+
+* ht_list
+  - computed/defined as: ht_list.append(ht)
+  - upstream chain: ht
+  - collection definition: ht from scalar_pt_sum(selected_jets)
+  - structure: single-constituent
+
+* njet_list
+  - computed/defined as: njet_list.append(len(selected_jets))
+  - upstream chain: len(selected_jets)
+  - collection definition: selected_jets from [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - structure: single-constituent
+
+* leading_bjet_eta_list
+  - computed/defined as: leading_bjet_eta_list.append(leading_bjet['eta'])
+  - upstream chain: leading_bjet['eta']
+  - collection definition: leading_bjet from helper_get_leading(selected_bjets)
+  - structure: single-constituent

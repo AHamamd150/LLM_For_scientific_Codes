@@ -1,0 +1,40 @@
+
+
+- collection definition: bjets_sorted (sorted by pt), w_hadronic
+  - structure: composite-derived
+
+* Leading b-jet pT
+  - computed/defined as: bjets_sorted[0]['pt']
+  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)
+  - collection definition: bjets (filtered by pt and eta)
+  - structure: single-constituent
+
+* Subleading b-jet pT
+  - computed/defined as: bjets_sorted[1]['pt'] if len(bjets_sorted) > 1 else 0.0
+  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)
+  - collection definition: bjets (filtered by pt and eta)
+  - structure: single-constituent
+
+* Leading b-jet η
+  - computed/defined as: bjets_sorted[0]['eta']
+  - upstream chain: bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)
+  - collection definition: bjets (filtered by pt and eta)
+  - structure: single-constituent
+
+* HT (scalar sum of jet pT)
+  - computed/defined as: scalar_pt_sum(jets)
+  - upstream chain: jets (filtered by pt and eta)
+  - collection definition: jets (filtered by pt and eta)
+  - structure: composite-derived
+
+* Number of jets
+  - computed/defined as: len(jets)
+  - upstream chain: jets (filtered by pt and eta)
+  - collection definition: jets (filtered by pt and eta)
+  - structure: single-constituent
+
+* ΔR between lepton and closest b-jet
+  - computed/defined as: helper_delta_r(lepton, closest_bjet)
+  - upstream chain: helper_delta_phi(obj1['phi'], obj2['phi'])
+  - collection definition: lepton (filtered by pt and eta), closest_bjet (from bjets)
+  - structure: composite-derived

@@ -1,0 +1,65 @@
+[UNDERSPECIFICATION 1] Lepton collection definition for "selected leptons"
+
+Original phrase:
+"Use selected electrons and selected muons to define selected leptons."
+
+Why this matters:
+This phrase is ambiguous about whether "selected leptons" refers to a merged collection of selected electrons and muons (with common or separate cuts), or whether it implies a new selection that applies additional criteria beyond the separate electron and muon cuts.
+
+Question to user:
+Are "selected leptons" simply the union of selected electrons and selected muons, or is there an additional selection or merging condition applied to define them?
+
+Golden axe:
+Selected leptons are the union of selected electrons and selected muons.
+
+Silver axe:
+Selected leptons are defined by applying a common set of cuts to both electrons and muons, possibly different from the individual cuts.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Jet collection for "two leading jets" in invariant mass and delta R
+
+Original phrase:
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+"Plot delta R between the two leading jets"
+
+Why this matters:
+It is unclear whether "leading jets" are defined before or after the jet pT and eta cuts, and whether the jet veto (b-tagged jets) affects the jet collection used to define the two leading jets.
+
+Question to user:
+Are the "two leading jets" chosen from the full jet collection, or from the jet collection after applying the pT, eta, and b-tag veto cuts?
+
+Golden axe:
+Leading jets are defined from the jet collection after all jet cuts and b-tag veto.
+
+Silver axe:
+Leading jets are defined from the full jet collection before any cuts or vetoes.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Delta phi between lepton and two-jet system
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+"Save the following in a CSV file for MLP analysis: 6- Delta phi between lepton and the two-jet system"
+
+Why this matters:
+The phrase "two-jet system" is ambiguous. It could refer to the system formed by the two leading jets (after cuts), or it could refer to a reconstructed dijet system that may include more than just the two leading jets (e.g., a merged or groomed system).
+
+Question to user:
+Does "two-jet system" refer to the system formed by the two leading jets, or is it a reconstructed system that may include additional jets or grooming?
+
+Golden axe:
+The two-jet system is the system formed by the two leading jets after jet cuts.
+
+Silver axe:
+The two-jet system is a reconstructed system that may include more than two jets or involve grooming.
+
+Recommended default:
+Golden axe

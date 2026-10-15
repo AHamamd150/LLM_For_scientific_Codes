@@ -1,0 +1,19 @@
+{
+  "taus": {
+    "name": "taus",
+    "definition": "[t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]",
+    "used_by": [
+      "leading tau",
+      "subleading tau"
+    ]
+  },
+  "jets": {
+    "name": "jets",
+    "definition": "[j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]",
+    "used_by": [
+      "leading jet",
+      "subleading jet",
+      "delta eta between jets"
+    ]
+  }
+}

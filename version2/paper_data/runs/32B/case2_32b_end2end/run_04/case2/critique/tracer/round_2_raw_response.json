@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* ht\n  - computed/defined as: scalar_pt_sum(jets)\n  - upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5\n  - structure: single-constituent\n\n* n_jets\n  - computed/defined as: len(jets)\n  - upstream chain: jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]\n  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5\n  - structure: single-constituent\n\n* leading_bjet_eta\n  - computed/defined as: leading_bjet['eta']\n  - upstream chain: leading_bjet = bjets_sorted[0]\n  - collection definition: bjets = [b for b in get_bjets(event) if b['pt'] > 30 and abs(j['eta']) < 2.5]\n  - structure: single-constituent",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788840776,
+  "id": "chatcmpl-b08ff410-8b9c-46f7-97ab-f3e2f2655b7c",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 265,
+    "prompt_tokens": 11386,
+    "prompt_tokens_details": null,
+    "total_tokens": 11651
+  }
+}

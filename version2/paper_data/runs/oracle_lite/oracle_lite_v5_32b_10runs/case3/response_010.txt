@@ -1,0 +1,56 @@
+[UNDERSPECIFICATION 1] Diphoton system reuse in pT computation
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT."
+
+Why this matters:
+The phrase implies that the diphoton system used for invariant mass should also be used for pT, but it's unclear whether this refers to the four-momentum sum of the selected leading and subleading photons, or if it refers to a separate pT calculation that might be affected by different object definitions or corrections.
+
+Question to user:
+Are you using the vector sum of the leading and subleading photon pT values, or the magnitude of the total transverse momentum of the diphoton system (i.e., the pT of the composite four-momentum)?
+
+Golden axe:
+Use the vector sum of the leading and subleading photon pT.
+
+Silver axe:
+Use the magnitude of the total transverse momentum of the diphoton system.
+
+Recommended default: Golden axe
+
+[UNDERSPECIFICATION 2] Leading and subleading photon definition timing
+
+Original phrase:
+"Define the leading photon and subleading photon after photon selection."
+
+Why this matters:
+It is unclear whether the leading and subleading photons are defined after all photon selection cuts (including the crack veto), or if the crack veto is applied after identifying the leading and subleading photons. This could affect whether a photon in the crack region is excluded before or after being considered for the leading/subleading role.
+
+Question to user:
+Should the crack veto be applied before or after identifying the leading and subleading photons?
+
+Golden axe:
+Apply the crack veto before identifying the leading and subleading photons.
+
+Silver axe:
+Identify the leading and subleading photons first, then apply the crack veto.
+
+Recommended default: Golden axe
+
+[UNDERSPECIFICATION 3] Diphoton system reuse in plots and CSV
+
+Original phrase:
+"Use this same diphoton system to compute diphoton pT."
+
+Why this matters:
+The phrase implies that the diphoton system used for invariant mass and pT should be reused for all plots and CSV outputs. However, it is not clear whether the same system (i.e., the same pair of photons) is used for all variables (e.g., delta R, delta phi, |cos(theta*)|), or if these variables might be computed from a different pair of photons (e.g., the two highest pT photons regardless of selection order).
+
+Question to user:
+Should all diphoton-derived variables (e.g., delta R, delta phi, |cos(theta*)|) be computed from the same diphoton system used for invariant mass and pT?
+
+Golden axe:
+Yes, all variables should be computed from the same diphoton system.
+
+Silver axe:
+No, variables like delta R and delta phi could be computed from the two highest pT photons regardless of selection order.
+
+Recommended default: Golden axe

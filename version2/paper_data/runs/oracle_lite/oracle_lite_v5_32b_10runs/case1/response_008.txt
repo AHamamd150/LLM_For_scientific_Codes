@@ -1,0 +1,65 @@
+[UNDERSPECIFICATION 1] Lepton collection for selection and plots
+
+Original phrase:
+"Use selected electrons and selected muons to define selected leptons."
+
+Why this matters:
+The phrase does not clarify whether the "selected leptons" collection is a merged list of selected electrons and muons, or if it refers to a separate selection process that may include additional criteria (e.g., isolation, charge, or other lepton-specific cuts). This affects how the lepton is treated in subsequent cuts and plots.
+
+Question to user:
+Are the "selected leptons" simply the union of selected electrons and muons, or is there an additional selection or merging logic to define them?
+
+Golden axe:
+Selected leptons are the union of selected electrons and muons.
+
+Silver axe:
+Selected leptons are defined by a separate selection that may include additional criteria not applied to electrons and muons individually.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Jet collection for invariant mass and delta R
+
+Original phrase:
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+"Select delta R between the two leading jets < 3.0"
+
+Why this matters:
+The phrase does not clarify whether the "leading jets" are selected from all jets in the event or from a subset (e.g., after b-tag veto or pT/eta cuts). This affects which jets are used for the invariant mass and delta R calculations.
+
+Question to user:
+Are the "leading jets" selected from the full jet collection, or are they selected from a subset (e.g., after b-tag veto or pT/eta cuts)?
+
+Golden axe:
+Leading jets are selected from the full jet collection.
+
+Silver axe:
+Leading jets are selected from the light-jet collection (after b-tag veto).
+
+Recommended default:
+Silver axe
+
+---
+
+[UNDERSPECIFICATION 3] Delta phi between lepton and two-jet system
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+"Save the following in a CSV file for MLP analysis: 6- Delta phi between lepton and the two-jet system"
+
+Why this matters:
+The phrase does not clarify whether the "two-jet system" refers to the two leading jets in the full jet collection, or the two leading jets in a subset (e.g., after b-tag veto or pT/eta cuts). This affects the definition of the system used for the delta phi calculation.
+
+Question to user:
+Is the "two-jet system" defined using the two leading jets from all jets in the event, or from a subset (e.g., after b-tag veto or pT/eta cuts)?
+
+Golden axe:
+Two-jet system is defined using the two leading jets from all jets in the event.
+
+Silver axe:
+Two-jet system is defined using the two leading jets from the light-jet collection (after b-tag veto).
+
+Recommended default:
+Silver axe

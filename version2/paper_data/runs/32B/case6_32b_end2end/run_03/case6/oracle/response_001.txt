@@ -1,0 +1,73 @@
+[AMBIGUITY 1] Leading b-jet definition
+
+Original phrase:
+"the b-jet closest to the selected lepton in delta R"
+
+Why this is dangerous:
+This phrase is ambiguous about whether the "selected b-jet" refers to the full b-jet collection before any cuts or only the subset of b-jets that passed all previous selection criteria.
+
+Question to user:
+Should the "closest b-jet" be determined from all b-tagged jets in the event, or only from those that passed all previous selection cuts?
+
+Golden axe:
+The closest b-jet should be determined from the full b-jet collection before any selection cuts.
+
+Silver axe:
+The closest b-jet should be determined from the subset of b-jets that passed all previous selection criteria.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "the b-jet closest to the selected lepton in delta R, among all b-tagged jets"
+- Silver axe rewrite: "the b-jet closest to the selected lepton in delta R, among the selected b-tagged jets"
+
+
+[AMBIGUITY 2] Leading non-b-tagged jets
+
+Original phrase:
+"Build the hadronic W candidate from the two leading selected non-b-tagged jets."
+
+Why this is dangerous:
+This phrase is ambiguous about whether "leading" refers to the highest-pT jets in the full jet collection (after all jet cuts but before b-tagging) or in the subset of non-b-tagged jets.
+
+Question to user:
+Should the "leading non-b-tagged jets" be determined by pT within the full jet collection (after jet cuts), or only within the non-b-tagged subset?
+
+Golden axe:
+The leading non-b-tagged jets should be determined by pT within the full jet collection (after jet cuts).
+
+Silver axe:
+The leading non-b-tagged jets should be determined by pT within the non-b-tagged subset only.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Build the hadronic W candidate from the two highest-pT selected non-b-tagged jets among all jets"
+- Silver axe rewrite: "Build the hadronic W candidate from the two leading jets in the selected non-b-tagged jet collection"
+
+
+[AMBIGUITY 3] Leading b-jet for plots
+
+Original phrase:
+"Plot the pT of the leading b-jet"
+
+Why this is dangerous:
+This phrase is ambiguous about whether the "leading b-jet" refers to the highest-pT b-jet in the full b-jet collection or in the subset of b-jets that passed all previous selection criteria.
+
+Question to user:
+Should the "leading b-jet" for plotting be determined from all b-tagged jets in the event, or only from those that passed all previous selection cuts?
+
+Golden axe:
+The leading b-jet should be determined from the full b-jet collection before any selection cuts.
+
+Silver axe:
+The leading b-jet should be determined from the subset of b-jets that passed all previous selection criteria.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Plot the pT of the highest-pT b-jet among all b-tagged jets"
+- Silver axe rewrite: "Plot the pT of the leading b-jet among the selected b-tagged jets"

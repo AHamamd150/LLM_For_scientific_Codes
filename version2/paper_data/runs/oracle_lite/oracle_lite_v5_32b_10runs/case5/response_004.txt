@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] Dijet invariant mass vs. leading jets' invariant mass
+
+Original phrase:
+"Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV"
+
+Why this matters:
+The phrase "leading and subleading jets" could refer to the jets selected after all jet cuts, or only after the jet pT and eta cuts. It is not clear whether the jet selection is applied before or after the m_jj cut. This choice affects which jets are used to compute m_jj and thus the event selection.
+
+Question to user:
+Are the jets used to compute m_jj selected using only the pT and eta cuts, or are they the final selected jets after all jet-related cuts?
+
+Golden axe:
+Use jets selected only with pT and eta cuts to compute m_jj.
+
+Silver axe:
+Use the final selected jets (after all jet-related cuts) to compute m_jj.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Dijet system definition and use in delta phi
+
+Original phrase:
+"Plot delta phi between the ditau system and the dijet system"
+
+Why this matters:
+The phrase "dijet system" is not explicitly defined in the input. It could refer to the system made from the two leading jets (as in the m_jj cut), or it could refer to the dijet_obj defined earlier. This ambiguity affects which jets are used in the delta phi calculation.
+
+Question to user:
+Does the "dijet system" in the delta phi plot refer to the two leading jets (as in the m_jj cut), or to the dijet_obj defined from the leading and subleading jets?
+
+Golden axe:
+Use the dijet_obj as defined from the leading and subleading jets.
+
+Silver axe:
+Use the two leading jets (as in the m_jj cut) to define the dijet system for the delta phi plot.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Dijet system definition for centrality
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Why this matters:
+The phrase "the two jets" is ambiguous. It could refer to the jets used to define the dijet_obj, or it could refer to the two leading jets (as in the m_jj cut). This affects the jets used in the centrality calculation.
+
+Question to user:
+Does "the two jets" in the centrality plot refer to the jets used to define the dijet_obj, or to the two leading jets (as in the m_jj cut)?
+
+Golden axe:
+Use the jets used to define the dijet_obj.
+
+Silver axe:
+Use the two leading jets (as in the m_jj cut) for the centrality calculation.
+
+Recommended default:
+Golden axe

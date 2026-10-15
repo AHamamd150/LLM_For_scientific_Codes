@@ -1,0 +1,52 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+
+CODE:
+- sum_objects(leading_tau, subleading_tau)
+
+Reason:
+The code correctly constructs the ditau system from the four-momentum of the leading and subleading tau. This is a valid composite system construction.
+
+Evidence priority:
+- sum_objects(leading_tau, subleading_tau); upstream chain: sum_objects -> E, px, py, pz from four_momentum; 〔L259, L65-L87, L27-L36〕
+
+Generator bias:
+none
+
+
+⚠️ (A) composite violation
+
+SPEC:
+- Define dijet_obj from the summed momentum of the leading jet and subleading jet.
+
+CODE:
+- sum_objects(leading_jet, subleading_jet)
+
+Reason:
+The code correctly constructs the dijet system from the four-momentum of the leading and subleading jet. This is a valid composite system construction.
+
+Evidence priority:
+- sum_objects(leading_jet, subleading_jet); upstream chain: sum_objects -> E, px, py, pz from four_momentum; 〔L277, L65-L87, L27-L36〕
+
+Generator bias:
+none
+
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the ditau system and the dijet system
+
+CODE:
+- helper_delta_phi(leading_tau['phi'] + subleading_tau['phi'], leading_jet['phi'] + subleading_jet['phi'])
+
+Reason:
+The code computes Δφ between the sum of individual phi angles of the taus and the sum of individual phi angles of the jets, rather than between the phi of the ditau system and the phi of the dijet system. This is a definition mismatch.
+
+Evidence priority:
+- helper_delta_phi(leading_tau['phi'] + subleading_tau['phi'], leading_jet['phi'] + subleading_jet['phi']); upstream chain: helper_delta_phi -> phi1 - phi2 normalized to [-π, π]; 〔L309, L94-L101, L110-L114, L115-L121, L275-L276〕
+
+Generator bias:
+none

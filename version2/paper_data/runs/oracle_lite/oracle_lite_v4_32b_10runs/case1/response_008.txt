@@ -1,0 +1,109 @@
+[CANDIDATE 1] Selected lepton definition
+
+Original phrase:
+"Use selected electrons and selected muons to define selected leptons."
+
+Unresolved choice:
+It is unclear whether "selected leptons" refers to the union of selected electrons and selected muons, or if there is a further selection or combination applied to define the lepton.
+
+Why this may matter:
+If "selected leptons" is a new collection, it could imply additional cuts or processing steps not mentioned in the original selection criteria for electrons and muons. This could affect the interpretation of the "require exactly 1 selected lepton" cut.
+
+[CANDIDATE 2] Jet selection for invariant mass
+
+Original phrase:
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+
+Unresolved choice:
+It is unclear whether the "two leading jets" refers to the two leading jets in the full event or the two leading jets among the selected jets (i.e., jets with pT > 30 GeV and |eta| < 2.5).
+
+Why this may matter:
+If the jets are selected first and then the two leading jets are chosen from the selected list, the invariant mass calculation will differ from a scenario where the two leading jets are selected based on the full jet collection before applying the jet cuts.
+
+[CANDIDATE 3] Jet selection for veto
+
+Original phrase:
+"Veto events with b-tagged jets"
+
+Unresolved choice:
+It is unclear whether this veto applies to all b-tagged jets in the event or only to b-tagged jets that pass the jet selection criteria (pT > 30 GeV and |eta| < 2.5).
+
+Why this may matter:
+If the veto applies to all b-tagged jets regardless of their pT or eta, it could reject events that would otherwise pass the jet selection. If it applies only to selected jets, the veto may be less restrictive.
+
+[CANDIDATE 4] Delta R between leading jets
+
+Original phrase:
+"Select delta R between the two leading jets < 3.0"
+
+Unresolved choice:
+It is unclear whether the "two leading jets" refers to the two leading jets in the full event or the two leading jets among the selected jets (i.e., jets with pT > 30 GeV and |eta| < 2.5).
+
+Why this may matter:
+The delta R calculation will differ depending on whether the jets are selected first or whether the leading jets are determined from the full jet collection before applying the jet cuts.
+
+[CANDIDATE 5] Delta phi between lepton and two-jet system
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+
+Unresolved choice:
+It is unclear whether the "two-jet system" refers to the two leading jets in the full event or the two leading jets among the selected jets (i.e., jets with pT > 30 GeV and |eta| < 2.5).
+
+Why this may matter:
+The delta phi calculation will differ depending on whether the jets are selected first or whether the two-jet system is determined from the full jet collection before applying the jet cuts.
+
+[CANDIDATE 6] Reuse of W hadronic candidate
+
+Original phrase:
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+
+Unresolved choice:
+It is unclear whether the "W hadronic candidate" defined by the invariant mass of the two leading jets is intended to be reused in other parts of the analysis, such as in the delta phi calculation with the lepton.
+
+Why this may matter:
+If the W hadronic candidate is intended to be reused, it implies that the two leading jets used for the invariant mass should also be used for the delta phi calculation. If not, the two leading jets for each calculation may differ.
+
+[CANDIDATE 7] Lepton definition for transverse mass
+
+Original phrase:
+"Select transverse mass of lepton + MET between 40 and 120 GeV (W leptonic candidate)"
+
+Unresolved choice:
+It is unclear whether the "lepton" used in the transverse mass calculation is the same as the "selected lepton" defined earlier, or if it refers to the raw lepton before any selection.
+
+Why this may matter:
+If the transverse mass is calculated using the selected lepton, it will be consistent with the final lepton selection. If it uses a raw lepton, the transverse mass may include leptons that are later vetoed or not selected.
+
+[CANDIDATE 8] Reuse of selected lepton in plots
+
+Original phrase:
+"Plot the pT of the lepton"
+
+Unresolved choice:
+It is unclear whether the "lepton" in the plot refers to the selected lepton (i.e., the one that passed the pT, eta, and multiplicity cuts) or if it refers to all leptons in the event.
+
+Why this may matter:
+If the plot includes all leptons, it may include multiple leptons in the same event, which could affect the shape and interpretation of the distribution. If it refers to the selected lepton, the plot will only include one lepton per event.
+
+[CANDIDATE 9] Reuse of selected jets in plots
+
+Original phrase:
+"Plot the pT of the leading jet" and "Plot the pT of the subleading jet"
+
+Unresolved choice:
+It is unclear whether the "leading jet" and "subleading jet" refer to the leading and subleading jets among the selected jets (i.e., jets with pT > 30 GeV and |eta| < 2.5), or the leading and subleading jets in the full event.
+
+Why this may matter:
+If the jets are selected first and then the leading and subleading jets are chosen from the selected list, the pT distributions will differ from a scenario where the leading and subleading jets are determined from the full jet collection before applying the jet cuts.
+
+[CANDIDATE 10] Reuse of selected jets in delta R plot
+
+Original phrase:
+"Plot delta R between the two leading jets"
+
+Unresolved choice:
+It is unclear whether the "two leading jets" refers to the two leading jets in the full event or the two leading jets among the selected jets (i.e., jets with pT > 30 GeV and |eta| < 2.5).
+
+Why this may matter:
+The delta R calculation will differ depending on whether the jets are selected first or whether the leading jets are determined from the full jet collection before applying the jet cuts.

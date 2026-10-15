@@ -1,0 +1,25 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+- Select the hadronic top mass between 100 to 250 GeV.
+
+CODE:
+- top_mass = helper_invariant_mass(bjet1, w_hadronic)
+
+Reason:
+The code computes the hadronic top mass as the invariant mass of only the leading b-jet and the hadronic W candidate. However, the SPEC explicitly requires the hadronic top candidate to be built from the leading selected b-tagged jet and the hadronic W candidate. The code correctly builds the top candidate as a composite object (top_hadronic = sum_objects(bjet1, w_hadronic)), but the mass is not used in the selection. Instead, the code computes the invariant mass of only the leading b-jet and the hadronic W, which is not the full system-level mass of the top candidate.
+
+Evidence priority:
+- top_mass = helper_invariant_mass(bjet1, w_hadronic) 〔L357-L358〕
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

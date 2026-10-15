@@ -1,0 +1,10 @@
+Initial: 30000
+Electron and muon selection: 13722
+Exactly 1 lepton: 13722
+At least 2 jets: 5729
+No b-jets: 5094
+MET > 30 GeV: 3471
+Transverse mass 40-120 GeV: 2973
+Dijet mass 60-100 GeV: 1561
+Delta R < 3.0: 1389
+Final: 1389

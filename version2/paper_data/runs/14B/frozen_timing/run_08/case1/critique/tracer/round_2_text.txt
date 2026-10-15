@@ -1,0 +1,25 @@
+
+
+* dphi_list
+  - computed/defined as: helper_delta_phi(lepton['phi'], met['phi'])
+  - upstream chain: lepton, met -> helper_delta_phi
+  - collection definition: N/A
+  - structure: multi-input
+
+* lepton_eta_list
+  - computed/defined as: lepton['eta']
+  - upstream chain: lepton
+  - collection definition: N/A
+  - structure: single-constituent
+
+* dphi_lepton_jets_list
+  - computed/defined as: helper_delta_phi(lepton['phi'], jet_system['phi'])
+  - upstream chain: lepton, jet_system -> helper_delta_phi
+  - collection definition: N/A
+  - structure: multi-input
+
+* csv_data
+  - computed/defined as: [mt, mjj, met['pt'], lepton['pt'], dr, dphi_lepton_jets]
+  - upstream chain: mt, mjj, met, lepton, dr, dphi_lepton_jets
+  - collection definition: N/A
+  - structure: composite-derived

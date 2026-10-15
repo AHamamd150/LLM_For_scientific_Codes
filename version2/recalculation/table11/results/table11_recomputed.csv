@@ -1,0 +1,5 @@
+Implementation issue,Case 2 / 14B,Case 2 / 32B,Case 6 / 32B
+Leading b-jet instead of closest b-jet,8,8,0
+Top-mass range inconsistent with task-card semantics,9,10,0
+Top-mass histogram not populated,1,3,0
+Runs with >=1 listed issue,10,10,0

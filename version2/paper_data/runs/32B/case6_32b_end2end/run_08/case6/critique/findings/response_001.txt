@@ -1,0 +1,104 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The code constructs the hadronic top candidate from only the leading b-tagged jet and the hadronic W candidate. However, the SPEC explicitly requires the hadronic top to be built from the "leading selected b-tagged jet and the hadronic W candidate", which is correct. The issue is that the code uses only the leading b-jet, but the SPEC does not explicitly require the use of additional b-jets in the top candidate. Therefore, this is not a violation.
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- light_jets = [j for j in jets if j not in bjets]
+- light_jets_sorted = sorted(light_jets, key=lambda j: j['pt'], reverse=True)
+- w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Reason:
+The code correctly builds the hadronic W candidate from the two leading non-b-tagged jets. However, the jets used are from the full jet collection (jets) after applying the jet pT and η cuts, not from the selected jets used in the cutflow. This is a definition mismatch because the jets used in the hadronic W candidate are not the same as the jets used in the jet selection cut (which requires at least 4 jets with pT > 30 GeV and |η| < 2.5). The jets used in the W candidate are not explicitly constrained to be from the selected jet collection.
+
+Evidence priority:
+- jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+- light_jets = [j for j in jets if j not in bjets]
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- bjet2_pt.append(bjets_sorted[1]['pt'] if len(bjets_sorted) > 1 else 0.0)
+
+Reason:
+The SPEC does not specify whether the subleading b-jet should be taken from the selected b-jet collection or from a broader collection. The code uses the selected b-jet collection (bjets_sorted), which is consistent with the jet and b-jet selection cuts. However, the SPEC does not explicitly constrain this choice, making it a specification ambiguity.
+
+Evidence priority:
+- bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- njets_values.append(len(jets))
+
+Reason:
+The SPEC does not specify whether the number of jets should be computed from the selected jet collection or from the full event-level jet collection. The code uses the selected jet collection (jets), which is consistent with the jet selection cuts. However, the SPEC does not explicitly constrain this choice, making it a specification ambiguity.
+
+Evidence priority:
+- jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Generator bias:
+none
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- bjets_sorted = sorted(bjets, key=lambda j: j['pt'], reverse=True)
+- top_hadronic = sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The code constructs the hadronic top candidate from the leading b-tagged jet and the hadronic W candidate, which aligns with the SPEC. However, the jets used in the hadronic W candidate are not explicitly constrained to be from the selected jet collection used in the jet selection cut (at least 4 jets with pT > 30 GeV and |η| < 2.5). The jets used in the W candidate are derived from the full jet collection after applying the jet cuts, not from the selected jet collection used in the cutflow. This is a definition mismatch because the jets used in the hadronic W candidate are not explicitly constrained to be from the selected jet collection.
+
+Evidence priority:
+- jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+- light_jets = [j for j in jets if j not in bjets]
+- light_jets_sorted = sorted(light_jets, key=lambda j: j['pt'], reverse=True)
+- w_hadronic = sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Generator bias:
+none
+
+❓ (D) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- ht_values.append(scalar_pt_sum(jets))
+
+Reason:
+The SPEC does not specify whether the HT should be computed from the selected jet collection or from the full event-level jet collection. The code uses the selected jet collection (jets), which is consistent with the jet selection cuts. However, the SPEC does not explicitly constrain this choice, making it a specification ambiguity.
+
+Evidence priority:
+- jets = [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 2.5]
+
+Generator bias:
+none

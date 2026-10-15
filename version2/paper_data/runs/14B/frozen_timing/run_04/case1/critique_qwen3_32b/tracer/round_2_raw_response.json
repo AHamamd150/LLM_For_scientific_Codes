@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n* Delta phi between lepton and two-jet system\n  - computed/defined as: helper_delta_phi(lepton['phi'], jet_system['phi'])\n  - upstream chain: helper_delta_phi(lepton['phi'], jet_system['phi'])\n  - collection definition: lepton = leptons[0], jet_system = sum_objects(jet1, jet2)\n  - structure: composite-derived\n\n* Cutflow summary\n  - computed/defined as: cutflow dictionary with counts at each step\n  - upstream chain: cutflow dictionary updated at each selection step\n  - collection definition: N/A\n  - structure: multi-input\n\n* Plotted transverse mass of lepton + MET\n  - computed/defined as: mt\n  - upstream chain: helper_transverse_mass(lepton, met)\n  - collection definition: lepton = leptons[0], met = helper_get_met(event)\n  - structure: composite-derived\n\n* Plotted invariant mass of two leading jets\n  - computed/defined as: mjj\n  - upstream chain: helper_invariant_mass(jet1, jet2)\n  - collection definition: jet1 = helper_get_leading(jets), jet2 = helper_get_subleading(jets)\n  - structure: composite-derived\n\n* Plotted MET\n  - computed/defined as: met['pt']\n  - upstream chain: helper_get_met(event)\n  - collection definition: N/A\n  - structure: single-constituent\n\n* Plotted lepton pT\n  - computed/defined as: lepton['pt']\n  - upstream chain: leptons[0]\n  - collection definition: N/A\n  - structure: single-constituent\n\n* Plotted leading jet pT\n  - computed/defined as: jet1['pt']\n  - upstream chain: helper_get_leading(jets)\n  - collection definition: jets filtered by pt and eta\n  - structure: single-constituent\n\n* Plotted subleading jet pT\n  - computed/defined as: jet2['pt']\n  - upstream chain: helper_get_subleading(jets)\n  - collection definition: jets filtered by pt and eta\n  - structure: single-constituent\n\n* Plotted delta R between two leading jets\n  - computed/defined as: dr\n  - upstream chain: helper_delta_r(jet1, jet2)\n  - collection definition: jet1 = helper_get_leading(jets), jet2 = helper_get_subleading(jets)\n  - structure: composite-derived\n\n* Plotted delta phi between lepton and MET\n  - computed/defined as: dphi\n  - upstream chain: helper_delta_phi(lepton['phi'], met['phi'])\n  - collection definition: lepton = leptons[0], met = helper_get_met(event)\n  - structure: composite-derived\n\n* Plotted lepton eta\n  - computed/defined as: lepton['eta']\n  - upstream chain: leptons[0]\n  - collection definition: N/A\n  - structure: single-constituent\n\n* Plotted delta phi between lepton and two-jet system\n  - computed/defined as: dphi_lepton_jets\n  - upstream chain: helper_delta_phi(lepton['phi'], jet_system['phi'])\n  - collection definition: lepton = leptons[0], jet_system = sum_objects(jet1, jet2)\n  - structure: composite-derived\n\n* CSV data for MLP analysis\n  - computed/defined as: [mt, mjj, met['pt'], lepton['pt'], dr, dphi_lepton_jets]\n  - upstream chain: mt, mjj, met['pt'], lepton['pt'], dr, dphi_lepton_jets\n  - collection definition: mt = helper_transverse_mass(lepton, met), mjj = helper_invariant_mass(jet1, jet2), met['pt'] = helper_get_met(event), lepton['pt'] = leptons[0], dr = helper_delta_r(jet1, jet2), dphi_lepton_jets = helper_delta_phi(lepton['phi'], jet_system['phi'])\n  - structure: multi-input",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788935191,
+  "id": "chatcmpl-67786cbc-5a38-4d2e-9fa9-0cef64c1bdfa",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 879,
+    "prompt_tokens": 11665,
+    "prompt_tokens_details": null,
+    "total_tokens": 12544
+  }
+}

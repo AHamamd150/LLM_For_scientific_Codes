@@ -1,0 +1,65 @@
+[CANDIDATE 1] Leading and subleading tau definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Unresolved choice:
+It is not specified whether the leading and subleading tau are defined based on pT only, or if other criteria (e.g., isolation, decay mode, or charge) are considered.
+
+Why this may matter:
+Different criteria for selecting the leading and subleading tau may affect the resulting ditau system and the subsequent invariant mass calculation, which is used in both the selection and the plots.
+
+[CANDIDATE 2] Leading and subleading jet definition
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Unresolved choice:
+It is not specified whether the leading and subleading jets are defined based on pT only, or if other criteria (e.g., b-tagging, jet flavor, or jet mass) are considered.
+
+Why this may matter:
+The selection of leading and subleading jets affects the dijet system and the calculation of m_jj and Δη(jj), which are key variables in the VBF topology and the selection criteria.
+
+[CANDIDATE 3] Opposite-sign tau pair requirement
+
+Original phrase:
+"Require opposite-sign tau pair"
+
+Unresolved choice:
+It is not specified whether this requirement applies to the leading and subleading tau pair only, or to all possible tau pairs in the event.
+
+Why this may matter:
+If the event contains more than two taus, the requirement could be interpreted as applying to the leading and subleading pair (as defined), or to any pair of taus in the event, which could change the number of events passing this cut.
+
+[CANDIDATE 4] Veto on b-tagged jets
+
+Original phrase:
+"Veto events with b-tagged jets"
+
+Unresolved choice:
+It is not specified whether the veto applies to all b-tagged jets in the event, or only to b-tagged jets among the selected jets.
+
+Why this may matter:
+If the veto applies to all b-tagged jets in the event, it may include jets that were not selected based on pT and η cuts, which could change the number of events passing this cut and affect the analysis.
+
+[CANDIDATE 5] Delta R between the two taus
+
+Original phrase:
+"Plot delta R between the two taus"
+
+Unresolved choice:
+It is not specified whether this refers to the leading and subleading tau pair, or to all possible tau pairs in the event.
+
+Why this may matter:
+If the event contains more than two taus, the interpretation of "the two taus" could affect which delta R is plotted, potentially leading to different distributions.
+
+[CANDIDATE 6] Centrality of the ditau system relative to the two jets
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Unresolved choice:
+It is not specified whether the "two jets" refers to the leading and subleading jets defined earlier, or to any two jets in the event.
+
+Why this may matter:
+The centrality calculation depends on the specific jets used, and using a different pair of jets could lead to a different centrality distribution.

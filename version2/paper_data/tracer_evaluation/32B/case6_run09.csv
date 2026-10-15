@@ -1,0 +1,29 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+6,9,requirement,R1,Select electrons with pT > 25 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly identifies the electron selection and get_electrons dependency at L298.
+6,9,requirement,R2,Select muons with pT > 25 GeV and |eta| < 2.4,yes,yes,yes,no,Correctly identifies the muon selection and get_muons dependency at L299.
+6,9,requirement,R3,Require exactly one lepton,yes,yes,yes,no,Correctly traces len(leptons) != 1 and leptons = electrons + muons at L300-L303.
+6,9,requirement,R4,Require at least 4 jets with pT > 30 GeV and |eta| < 2.5,yes,yes,yes,no,Correctly traces selected jets and the multiplicity cut at L309-L311.
+6,9,requirement,R5,"Among selected jets, require at least 2 b-tagged jets",yes,yes,yes,no,Correctly traces b-tagged selected jets and len(bjets) < 2 at L315-L317.
+6,9,requirement,R6,"Among selected b-tagged jets, define the b-jet closest to the selected lepton in delta R",yes,yes,yes,no,Correctly traces min over bjets using helper_delta_r at L320-L322.
+6,9,requirement,R7,Select MET > 20 GeV,yes,yes,yes,no,Correctly traces helper_get_met and the MET threshold at L325-L328.
+6,9,requirement,R8,Select transverse mass of lepton and MET between 30 and 150 GeV,yes,yes,yes,no,Correctly traces helper_transverse_mass and the cut at L332-L335.
+6,9,requirement,R9,Build the hadronic W candidate from the two leading selected non-b-tagged jets,yes,yes,yes,no,"Correctly traces removal of bjets, pT sorting, and sum_objects at L338-L344."
+6,9,requirement,R10,Select the hadronic W mass between 40 and 120 GeV,yes,yes,no,yes,"The cut location at L345-L347 is correct, but the tracer incorrectly attributes helper_invariant_mass at L346; the code directly uses w_hadronic['mass']."
+6,9,requirement,R11,Build the hadronic top candidate from the leading selected b-tagged jet and hadronic W candidate,yes,yes,yes,no,Correctly traces b-jet sorting and sum_objects at L350-L352.
+6,9,requirement,R12,Select the hadronic top mass between 100 and 250 GeV,yes,yes,no,yes,"The cut at L353-L355 is correct, but the tracer incorrectly claims helper_invariant_mass; the code directly uses top_hadronic['mass']."
+6,9,requirement,R13,Apply the cuts sequentially and skip the event immediately when a cut is not satisfied,no,na,na,no,The tracer does not explicitly cover the sequential continue control flow at L302-L355.
+6,9,requirement,R14,Plot the transverse mass of lepton plus MET,partial,yes,yes,no,"It identifies mt_values and its computation at L332-L336, but omits the actual histogram call at L375."
+6,9,requirement,R15,Plot the MET distribution,partial,yes,yes,no,It identifies met_values at L329-L330 but does not trace save_hist at L376.
+6,9,requirement,R16,Plot pT of the leading b-jet,partial,yes,yes,no,"The value source at L359 is correct, but the plot realization at L377 is omitted."
+6,9,requirement,R17,Plot pT of the subleading b-jet,partial,yes,yes,no,"The value source at L360 is correct, but the plot realization at L378 is omitted."
+6,9,requirement,R18,Plot invariant mass of the hadronic W candidate in range 40 to 120 GeV,partial,yes,no,yes,"The plotted collection and save call are omitted; additionally, the claimed helper_invariant_mass dependency is unsupported because the code uses w_hadronic['mass'] at L348 and plots it at L379."
+6,9,requirement,R19,Plot invariant mass of the hadronic top candidate in range 100 to 250 GeV,partial,yes,no,yes,The plotted collection and save call are omitted; the claimed helper_invariant_mass dependency is unsupported because the code uses top_hadronic['mass'] at L356 and plots it at L380.
+6,9,requirement,R20,Plot delta R between the leading lepton and closest selected b-jet,partial,yes,yes,no,"It correctly traces dr_lepton_bjet at L322, but omits the histogram call at L381."
+6,9,requirement,R21,Plot the HT distribution,partial,yes,yes,no,"It correctly traces ht_values at L363, but omits the save_hist call at L382."
+6,9,requirement,R22,Plot the number of jets per event,partial,yes,yes,no,"It correctly traces njets_values at L364, but omits the histogram call at L383."
+6,9,requirement,R23,Plot eta of the leading b-jet,partial,yes,yes,no,"It correctly traces bjet1_eta at L361, but omits the histogram call at L384."
+6,9,requirement,R24,"Use simple validation histograms with plt.figure, plt.hist(..., bins=40, density=True), labels, savefig, and close",no,na,na,no,The tracer does not cover the shared save_hist implementation at L367-L373 or its use for all plots.
+6,9,requirement,R25,"After the event loop, print one cutflow summary with the number of events after each selection step",no,na,na,no,The tracer omits the cutflow construction and printout at L273-L283 and L386-L395; it also does not address the missing explicit count for the closest-b-jet step.
+6,9,requirement,R26,Save the plots in PNG format,no,na,na,no,The tracer omits the savefig calls and .png filenames at L375-L384.
+6,9,extra_trace_claim,EXTRA1,The hadronic W mass is computed through helper_invariant_mass.,,,,yes,The code constructs w_hadronic with sum_objects at L344 and reads w_hadronic['mass'] directly at L345; helper_invariant_mass is not called.
+6,9,extra_trace_claim,EXTRA2,The hadronic top mass is computed through helper_invariant_mass.,,,,yes,The code constructs top_hadronic with sum_objects at L352 and reads top_hadronic['mass'] directly at L353; helper_invariant_mass is not called.

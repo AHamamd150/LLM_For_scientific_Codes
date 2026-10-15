@@ -1,0 +1,419 @@
+===== RUN 1 =====
+
+---- KEPT ----
+[KEPT 1] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading b-jet and the hadronic W candidate.
+
+CODE:
+- top_hadronic = sum_objects(leading_bjet, w_hadronic)
+
+Reason:
+The hadronic top candidate is built from the leading b-jet and the hadronic W candidate, which is correct. However, the hadronic W candidate is constructed from the two leading non-b-tagged jets, which is also correct. The implementation correctly combines the required constituents to form the hadronic top candidate.
+
+Evidence priority:
+- top_hadronic = sum_objects(leading_bjet, w_hadronic) 〔L347-L349〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading non-b-tagged jets.
+
+CODE:
+- w_hadronic = sum_objects(leading_light_jet, subleading_light_jet)
+
+Reason:
+The hadronic W candidate is correctly built from the two leading non-b-tagged jets.
+
+Evidence priority:
+- w_hadronic = sum_objects(leading_light_jet, subleading_light_jet) 〔L336-L338〕
+
+Generator bias:
+none
+
+[KEPT 2] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Select the hadronic W mass between 40 to 120GeV.
+
+CODE:
+- if w_mass < 40 or w_mass > 120: continue
+
+Reason:
+The hadronic W mass is correctly selected between 40 and 120 GeV.
+
+Evidence priority:
+- if w_mass < 40 or w_mass > 120: continue 〔L340-L341〕
+
+Generator bias:
+none
+
+[KEPT 3] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Select the transverse mass of the lepton and MET between 30 and 150 GeV (W candidate).
+
+CODE:
+- if mt < 30 or mt > 150: continue
+
+Reason:
+The transverse mass of the lepton and MET is correctly selected between 30 and 150 GeV.
+
+Evidence priority:
+- if mt < 30 or mt > 150: continue 〔L322-L323〕
+
+Generator bias:
+none
+
+[KEPT 4] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+
+CODE:
+- selected_electrons = [e for e in electrons if e['pt'] > 25 and abs(e['eta']) < 2.5]
+
+Reason:
+The electrons are correctly selected with pT > 25 GeV and |eta| < 2.5.
+
+Evidence priority:
+- selected_electrons = [e for e in electrons if e['pt'] > 25 and abs(e['eta']) < 2.5] 〔L291-L292〕
+
+Generator bias:
+none
+
+[KEPT 5] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Select muons with pT > 25 GeV and |eta| < 2.4
+
+CODE:
+- selected_muons = [m for m in muons if m['pt'] > 25 and abs(m['eta']) < 2.4]
+
+Reason:
+The muons are correctly selected with pT > 25 GeV and |eta| < 2.4.
+
+Evidence priority:
+- selected_muons = [m for m in muons if m['pt'] > 25 and abs(m['eta']) < 2.4] 〔L293-L294〕
+
+Generator bias:
+none
+
+[KEPT 6] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Require exactly one lepton (electron or muon)
+
+CODE:
+- if len(selected_leptons) != 1: continue
+
+Reason:
+Exactly one lepton is required, and the code correctly enforces this.
+
+Evidence priority:
+- if len(selected_leptons) != 1: continue 〔L295-L296〕
+
+Generator bias:
+none
+
+[KEPT 7] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+
+CODE:
+- if len(selected_jets) < 4: continue
+
+Reason:
+At least 4 jets are required, and the code correctly enforces this.
+
+Evidence priority:
+- if len(selected_jets) < 4: continue 〔L302-L303〕
+
+Generator bias:
+none
+
+[KEPT 8] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Require at least 2 b-tagged jets
+
+CODE:
+- if len(selected_bjets) < 2: continue
+
+Reason:
+At least 2 b-tagged jets are required, and the code correctly enforces this.
+
+Evidence priority:
+- if len(selected_bjets) < 2: continue 〔L309-L310〕
+
+Generator bias:
+none
+
+[KEPT 9] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Select MET > 20 GeV
+
+CODE:
+- if met is None or met['pt'] < 20: continue
+
+Reason:
+The MET is correctly selected to be greater than 20 GeV.
+
+Evidence priority:
+- if met is None or met['pt'] < 20: continue 〔L315-L316〕
+
+Generator bias:
+none
+
+[KEPT 10] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the transverse mass of lepton + MET (W leptonic candidate)
+
+CODE:
+- mt_list.append(mt)
+
+Reason:
+The transverse mass of the lepton and MET is correctly plotted.
+
+Evidence priority:
+- mt_list.append(mt) 〔L326-L327〕
+
+Generator bias:
+none
+
+[KEPT 11] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the MET distribution
+
+CODE:
+- met_list.append(met['pt'])
+
+Reason:
+The MET distribution is correctly plotted.
+
+Evidence priority:
+- met_list.append(met['pt']) 〔L328-L329〕
+
+Generator bias:
+none
+
+[KEPT 12] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the pT of the leading b-jet
+
+CODE:
+- leading_bjet_pt_list.append(leading_bjet['pt'])
+
+Reason:
+The pT of the leading b-jet is correctly plotted.
+
+Evidence priority:
+- leading_bjet_pt_list.append(leading_bjet['pt']) 〔L357-L358〕
+
+Generator bias:
+none
+
+[KEPT 13] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the pT of the subleading b-jet
+
+CODE:
+- subleading_bjet_pt_list.append(subleading_bjet['pt'] if subleading_bjet else 0.0)
+
+Reason:
+The pT of the subleading b-jet is correctly plotted.
+
+Evidence priority:
+- subleading_bjet_pt_list.append(subleading_bjet['pt'] if subleading_bjet else 0.0) 〔L358-L359〕
+
+Generator bias:
+none
+
+[KEPT 14] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the invariant mass of the two leading non-b-tagged jets (W hadronic candidate) in range 40 to 120 GeV
+
+CODE:
+- w_hadronic_mass_list.append(w_mass)
+
+Reason:
+The invariant mass of the two leading non-b-tagged jets is correctly plotted.
+
+Evidence priority:
+- w_hadronic_mass_list.append(w_mass) 〔L343-L344〕
+
+Generator bias:
+none
+
+[KEPT 15] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the invariant mass of leading b-jet + W hadronic candidate (top hadronic) in range 100 to 250 GeV
+
+CODE:
+- top_hadronic_mass_list.append(top_mass)
+
+Reason:
+The invariant mass of the leading b-jet and the hadronic W candidate is correctly plotted.
+
+Evidence priority:
+- top_hadronic_mass_list.append(top_mass) 〔L354-L355〕
+
+Generator bias:
+none
+
+[KEPT 16] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Plot delta R between the leading lepton and the closest b-jet
+
+CODE:
+- dr_lepton_bjet_list.append(dr_lepton_bjet)
+
+Reason:
+The delta R between the leading lepton and the closest b-jet is correctly plotted.
+
+Evidence priority:
+- dr_lepton_bjet_list.append(dr_lepton_bjet) 〔L361-L362〕
+
+Generator bias:
+none
+
+[KEPT 17] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- ht_list.append(ht)
+
+Reason:
+The HT distribution is correctly plotted.
+
+Evidence priority:
+- ht_list.append(ht) 〔L363-L364〕
+
+Generator bias:
+none
+
+[KEPT 18] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- njet_list.append(len(selected_jets))
+
+Reason:
+The number of jets per event is correctly plotted.
+
+Evidence priority:
+- njet_list.append(len(selected_jets)) 〔L365-L366〕
+
+Generator bias:
+none
+
+[KEPT 19] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Plot eta of the leading b-jet
+
+CODE:
+- leading_bjet_eta_list.append(leading_bjet['eta'])
+
+Reason:
+The eta of the leading b-jet is correctly plotted.
+
+Evidence priority:
+- leading_bjet_eta_list.append(leading_bjet['eta']) 〔L366-L367〕
+
+Generator bias:
+none
+
+[KEPT 20] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied
+
+CODE:
+- continue
+
+Reason:
+The cuts are correctly applied sequentially, and events are skipped when a cut is not satisfied.
+
+Evidence priority:
+- continue 〔L295-L351〕
+
+Generator bias:
+none
+
+[KEPT 21] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step
+
+CODE:
+- for key, value in cutflow.items(): print(f"{key}: {value}")
+
+Reason:
+The cutflow summary is correctly printed after the event loop.
+
+Evidence priority:
+- for key, value in cutflow.items(): print(f"{key}: {value}") 〔L438-L440〕
+
+Generator bias:
+none
+
+[KEPT 22] keep: no obvious noise signal
+⚠️ (A) composite violation
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The plots are correctly saved in png format.
+
+Evidence priority:
+- plt.savefig(...) 〔L368-L436〕
+
+Generator bias:
+none
+
+
+---- DROPPED ----
+(none)

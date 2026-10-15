@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n  - computed/defined as: helper_delta_r(lepton, bjet)\n  - upstream chain: lepton, bjet -> helper_delta_r(lepton, bjet) -> min_dr\n  - collection definition: N/A\n  - structure: multi-input\n\n* ht\n  - computed/defined as: scalar_pt_sum(selected_jets)\n  - upstream chain: selected_jets -> scalar_pt_sum(selected_jets) -> ht\n  - collection definition: N/A\n  - structure: single-constituent\n\n* njet\n  - computed/defined as: len(selected_jets)\n  - upstream chain: selected_jets -> len(selected_jets) -> njet\n  - collection definition: N/A\n  - structure: single-constituent\n\n* leading_bjet_pt\n  - computed/defined as: bjet1['pt']\n  - upstream chain: sorted_bjets -> bjet1 -> bjet1['pt']\n  - collection definition: N/A\n  - structure: single-constituent\n\n* subleading_bjet_pt\n  - computed/defined as: bjet2['pt']\n  - upstream chain: sorted_bjets -> bjet2 -> bjet2['pt']\n  - collection definition: N/A\n  - structure: single-constituent\n\n* leading_bjet_eta\n  - computed/defined as: bjet1['eta']\n  - upstream chain: sorted_bjets -> bjet1 -> bjet1['eta']\n  - collection definition: N/A\n  - structure: single-constituent\n\n* mt_list\n  - computed/defined as: mt_list.append(mt)\n  - upstream chain: mt -> mt_list\n  - collection definition: N/A\n  - structure: single-constituent\n\n* met_list\n  - computed/defined as: met_list.append(met['pt'])\n  - upstream chain: met['pt'] -> met_list\n  - collection definition: N/A\n  - structure: single-constituent\n\n* leading_bjet_pt_list\n  - computed/defined as: leading_bjet_pt_list.append(bjet1['pt'])\n  - upstream chain: bjet1['pt'] -> leading_bjet_pt_list\n  - collection definition: N/A\n  - structure: single-constituent\n\n* subleading_bjet_pt_list\n  - computed/defined as: subleading_bjet_pt_list.append(bjet2['pt'])\n  - upstream chain: bjet2['pt'] -> subleading_bjet_pt_list\n  - collection definition: N/A\n  - structure: single-constituent\n\n* w_hadronic_mass_list\n  - computed/defined as: w_hadronic_mass_list.append(w_mass)\n  - upstream chain: w_mass -> w_hadronic_mass_list\n  - collection definition: N/A\n  - structure: single-constituent\n\n* top_mass_list\n  - computed/defined as: top_mass_list.append(top_mass)\n  - upstream chain: top_mass -> top_mass_list\n  - collection definition: N/A\n  - structure: single-constituent\n\n* dr_lepton_bjet_list\n  - computed/defined as: dr_lepton_bjet_list.append(min_dr)\n  - upstream chain: min_dr -> dr_lepton_bjet_list\n  - collection definition: N/A\n  - structure: single-constituent\n\n* ht_list\n  - computed/defined as: ht_list.append(ht)\n  - upstream chain: ht -> ht_list\n  - collection definition: N/A\n  - structure: single-constituent\n\n* njet_list\n  - computed/defined as: njet_list.append(len(selected_jets))\n  - upstream chain: len(selected_jets) -> njet_list\n  - collection definition: N/A\n  - structure: single-constituent\n\n* leading_bjet_eta_list\n  - computed/defined as: leading_bjet_eta_list.append(bjet1['eta'])\n  - upstream chain: bjet1['eta'] -> leading_bjet_eta_list\n  - collection definition: N/A\n  - structure: single-constituent\n\n* cutflow\n  - computed/defined as: cutflow dictionary\n  - upstream chain: N/A\n  - collection definition: N/A\n  - structure: composite-derived",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788625394,
+  "id": "chatcmpl-ea619641-7c67-40f1-962f-7c70c46e2800",
+  "model": "Qwen/Qwen3-14B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-7e17f8bc",
+  "usage": {
+    "completion_tokens": 918,
+    "prompt_tokens": 11636,
+    "prompt_tokens_details": null,
+    "total_tokens": 12554
+  }
+}

@@ -1,0 +1,22 @@
+setting,issue_id,generation_errors,tracer_exposed,strict_from_runs,partial_from_runs,unresolved_count
+Case 2 / 14B,closest_b_leading_instead,8,8,1,0,0
+Case 2 / 14B,cutflow_double_count,6,0,0,0,0
+Case 2 / 14B,extra_top_mass_cut,9,0,0,0,0
+Case 2 / 14B,muon_eta_mismatch,0,0,0,0,0
+Case 2 / 14B,top_mass_hist_unfilled,1,0,0,0,0
+Case 5 / 14B,wrong_ditau_dijet_dphi,10,10,10,0,0
+Case 5 / 14B code + 32B post-review,wrong_ditau_dijet_dphi,10,10,5,0,0
+Case 5 / 32B,initial_cutflow_double_count,5,0,0,0,0
+Case 5 / 32B,wrong_ditau_dijet_dphi,0,0,0,0,0
+Case 6 / 14B,closest_b_leading_instead,0,0,0,0,0
+Case 6 / 14B,extra_top_mass_cut,0,0,0,0,0
+Case 6 / 14B,muon_eta_mismatch,10,10,,,10
+Case 6 / 14B,unrequested_dr_lb_cut,3,0,1,1,0
+Case 6 / 32B,bookkeeping_initial_double_count,2,0,0,0,0
+Case 6 / 32B,closest_b_leading_instead,0,0,0,0,0
+Case 6 / 32B,muon_eta_mismatch,0,0,0,0,0
+Case 6 / 32B,unrequested_dr_lb_cut,0,0,0,0,0
+Case 7 / 14B,b_veto_prefilter,0,0,0,0,0
+Case 7 / 14B,wrong_ditau_dijet_dphi,1,1,0,0,0
+Case 7 / 32B,b_veto_prefilter,2,2,0,0,0
+Case 7 / 32B,cut_order_mismatch,10,10,0,0,0

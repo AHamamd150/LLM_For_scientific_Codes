@@ -1,0 +1,65 @@
+[CANDIDATE 1] Tau selection and ordering
+
+Original phrase:
+"Select taus with pT > 20 GeV and |eta| < 2.3 [...] Define the leading tau and subleading tau from the selected taus."
+
+Unresolved choice:
+It is unclear whether the pT and |eta| cuts are applied before or after defining the leading and subleading taus.
+
+Why this may matter:
+If the cuts are applied after defining the leading and subleading taus, it could result in fewer taus passing the selection, potentially violating the "require at least 2 taus" cut. The phrase implies the cuts are applied first, but the exact sequence is not explicitly stated.
+
+[CANDIDATE 2] Jet selection and ordering
+
+Original phrase:
+"Select jets with pT > 30 GeV and |eta| < 4.7 [...] Define the leading jet and subleading jet from the selected jets."
+
+Unresolved choice:
+It is unclear whether the pT and |eta| cuts are applied before or after defining the leading and subleading jets.
+
+Why this may matter:
+If the cuts are applied after defining the leading and subleading jets, it could result in fewer jets passing the selection, potentially violating the "require at least 2 jets" cut. The phrase implies the cuts are applied first, but the exact sequence is not explicitly stated.
+
+[CANDIDATE 3] Jet veto for b-tagged jets
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Unresolved choice:
+It is unclear whether the b-tagged jet veto is applied to the full jet collection or only to the selected jets (after pT and |eta| cuts).
+
+Why this may matter:
+If the veto is applied to the full jet collection, it could result in more events being vetoed compared to applying the veto only to the selected jets. The phrase mentions "selected jets," but it is not clear whether this refers to the jets after all previous jet-related cuts.
+
+[CANDIDATE 4] Dijet invariant mass and delta eta
+
+Original phrase:
+"Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV [...] Select |delta eta| between the two leading jets > 2.5"
+
+Unresolved choice:
+It is unclear whether "leading and subleading jets" and "two leading jets" refer to the same jets or if the selection is based on different jet definitions.
+
+Why this may matter:
+If the jets used for m_jj and delta eta are not the same, the selection criteria may be inconsistent or ambiguous. The phrase implies the same jets are used for both, but this is not explicitly stated.
+
+[CANDIDATE 5] Ditau invariant mass and delta R
+
+Original phrase:
+"Select ditau invariant mass between 60 and 150 GeV [...] Plot delta R between the two taus"
+
+Unresolved choice:
+It is unclear whether the "two taus" in the delta R plot refer to the same leading and subleading taus used in the ditau invariant mass selection.
+
+Why this may matter:
+If the delta R is computed using a different pair of taus than those used for the invariant mass, the plot may not reflect the same physical system as the selection criteria.
+
+[CANDIDATE 6] Dijet system and centrality
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Unresolved choice:
+It is unclear whether the "two jets" refer to the leading and subleading jets used in the dijet_obj or to some other jet pair.
+
+Why this may matter:
+If the centrality is computed relative to a different jet pair than the one used in the dijet_obj, the result may not be consistent with the rest of the analysis. The phrase implies the same jets are used, but this is not explicitly stated.

@@ -1,0 +1,70 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+
+CODE:
+- sum_objects(leading_tau, subleading_tau)
+
+Reason:
+The code computes a composite object from the leading and subleading tau, which is correct. However, the variable ditau_obj is not explicitly defined or used in the code. The composite object is only used as an input to the centrality calculation, but it is not stored or used elsewhere as a named object as implied by the SPEC.
+
+Evidence priority:
+- sum_objects(leading_tau, subleading_tau) 〔L259, L65-L87, L27-L36〕
+
+Generator bias:
+none
+
+
+⚠️ (A) composite violation
+
+SPEC:
+- Define dijet_obj from the summed momentum of the leading jet and subleading jet.
+
+CODE:
+- sum_objects(leading_jet, subleading_jet)
+
+Reason:
+The code computes a composite object from the leading and subleading jet, which is correct. However, the variable dijet_obj is not explicitly defined or used in the code. The composite object is only used as an input to the invariant mass calculation, but it is not stored or used elsewhere as a named object as implied by the SPEC.
+
+Evidence priority:
+- sum_objects(leading_jet, subleading_jet) 〔L277, L65-L87, L27-L36〕
+
+Generator bias:
+none
+
+
+⚠️ (A) composite violation
+
+SPEC:
+- Plot delta phi between the ditau system and the dijet system
+
+CODE:
+- helper_delta_phi(leading_tau['phi'] + subleading_tau['phi'], leading_jet['phi'] + subleading_jet['phi'])
+
+Reason:
+The code computes the delta phi between the sum of the individual phi angles of the taus and the sum of the individual phi angles of the jets, rather than the phi of the composite ditau and dijet systems. This is a composite violation because the SPEC refers to the system-level phi of the ditau and dijet, but the code uses a constituent-based proxy.
+
+Evidence priority:
+- helper_delta_phi(leading_tau['phi'] + subleading_tau['phi'], leading_jet['phi'] + subleading_jet['phi']) 〔L309-L310, L94-L101〕
+
+Generator bias:
+none
+
+
+⚠️ (A) composite violation
+
+SPEC:
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- centrality_between_jets(sum_objects(leading_tau, subleading_tau), leading_jet, subleading_jet)
+
+Reason:
+The code correctly computes the centrality of the ditau system relative to the two jets by using the composite ditau object. However, the variable ditau_obj is not explicitly defined or used in the code. The composite object is only used as an input to the centrality calculation, but it is not stored or used elsewhere as a named object as implied by the SPEC.
+
+Evidence priority:
+- centrality_between_jets(sum_objects(leading_tau, subleading_tau), leading_jet, subleading_jet) 〔L311-L312, L143-L155, L65-L87, L27-L36, L110-L114, L115-L121〕
+
+Generator bias:
+none

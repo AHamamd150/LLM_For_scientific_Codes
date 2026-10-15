@@ -1,0 +1,75 @@
+[AMBIGUITY 1] Leading and subleading object definitions
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+"Define the leading jet and subleading jet from the selected jets."
+
+Why this is dangerous:
+The phrase is ambiguous about whether the leading/subleading objects are defined before or after applying the pT and |eta| cuts. This affects which objects are considered in the ordering.
+
+Question to user:
+Are the leading and subleading objects defined from the full collection before cuts, or from the collection after applying the pT and |eta| cuts?
+
+Golden axe:
+Leading and subleading objects are defined from the collection after applying the pT and |eta| cuts.
+
+Silver axe:
+Leading and subleading objects are defined from the full collection before applying any cuts.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Define the leading tau and subleading tau from the selected taus after applying the pT and |eta| cuts."
+- Silver axe rewrite: "Define the leading tau and subleading tau from all taus in the event before applying any cuts."
+
+
+[AMBIGUITY 2] Composite system definition
+
+Original phrase:
+"Define ditau_obj from the summed four-momentum of the leading tau and subleading tau."
+"Define dijet_obj from the summed four-momentum of the leading jet and subleading jet."
+
+Why this is dangerous:
+The phrase is ambiguous about whether this is a reconstructed composite object (with all kinematic properties) or just a scalar quantity derived from the sum.
+
+Question to user:
+Should the ditau and dijet objects be treated as full reconstructed composite objects with all kinematic properties, or is the sum only needed for specific observables like invariant mass?
+
+Golden axe:
+The ditau and dijet objects should be treated as full reconstructed composite objects with all kinematic properties.
+
+Silver axe:
+Only the summed four-momentum is needed for observables like invariant mass, and no full composite object needs to be reconstructed.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Define a reconstructed ditau system from the leading and subleading tau."
+- Silver axe rewrite: "Compute the summed four-momentum of the leading and subleading tau for observables like invariant mass."
+
+
+[AMBIGUITY 3] Jet veto scope
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Why this is dangerous:
+The phrase is ambiguous about whether the veto applies to all jets in the event or only to the selected jets that passed the pT and |eta| cuts.
+
+Question to user:
+Should the b-tag veto be applied to all jets in the event, or only to the jets that passed the pT and |eta| selection cuts?
+
+Golden axe:
+The veto should apply only to the jets that passed the pT and |eta| selection cuts.
+
+Silver axe:
+The veto should apply to all jets in the event regardless of whether they passed the selection cuts.
+
+Recommended default:
+Golden axe
+
+POSSIBLE_CLARIFYING_REWRITES:
+- Golden axe rewrite: "Veto events with b-tagged jets among the selected jets after applying the pT and |eta| cuts."
+- Silver axe rewrite: "Veto events with any b-tagged jets in the entire event, regardless of selection cuts."

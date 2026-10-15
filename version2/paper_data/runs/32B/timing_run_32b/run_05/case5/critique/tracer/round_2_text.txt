@@ -1,0 +1,43 @@
+
+
+* subleading tau pT
+  - computed/defined as: tau2['pt']
+  - upstream chain: selected_taus -> helper_get_subleading(selected_taus) -> tau2['pt']
+  - collection definition: selected_taus
+  - structure: single-constituent
+
+* leading jet pT
+  - computed/defined as: jet1['pt']
+  - upstream chain: selected_jets -> helper_get_leading(selected_jets) -> jet1['pt']
+  - collection definition: selected_jets
+  - structure: single-constituent
+
+* subleading jet pT
+  - computed/defined as: jet2['pt']
+  - upstream chain: selected_jets -> helper_get_subleading(selected_jets) -> jet2['pt']
+  - collection definition: selected_jets
+  - structure: single-constituent
+
+* delta R between taus
+  - computed/defined as: helper_delta_r(tau1, tau2)
+  - upstream chain: tau1, tau2 -> helper_delta_r(tau1, tau2)
+  - collection definition: tau1, tau2
+  - structure: multi-input
+
+* delta phi between ditau and dijet
+  - computed/defined as: helper_delta_phi(ditau['phi'], dijet['phi'])
+  - upstream chain: ditau, dijet -> helper_delta_phi(ditau['phi'], dijet['phi'])
+  - collection definition: ditau, dijet
+  - structure: multi-input
+
+* centrality of ditau relative to jets
+  - computed/defined as: centrality_between_jets(ditau, jet1, jet2)
+  - upstream chain: ditau, jet1, jet2 -> centrality_between_jets(ditau, jet1, jet2)
+  - collection definition: ditau, jet1, jet2
+  - structure: multi-input
+
+* cutflow
+  - computed/defined as: cutflow
+  - upstream chain: cutflow -> print(cutflow)
+  - collection definition: cutflow
+  - structure: single-constituent

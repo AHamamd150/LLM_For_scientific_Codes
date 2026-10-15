@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "golden-axe-oracle"
+version = "0.1.0"
+description = "A preflight ambiguity critic for code-generation task cards"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+huggingface = ["huggingface-hub>=0.27"]
+
+[project.scripts]
+golden-axe = "golden_axe.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+golden_axe = ["profiles/*.txt"]
+

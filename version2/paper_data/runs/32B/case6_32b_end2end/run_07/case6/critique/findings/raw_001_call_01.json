@@ -1,0 +1,27 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "\n\n⚠️ (A) composite violation\n\nSPEC:\n- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.\n\nCODE:\n- sum_objects(bjets_sorted[0], w_hadronic)\n\nReason:\nThe code builds the hadronic top candidate from only the leading b-tagged jet and the hadronic W candidate. However, the SPEC explicitly refers to a \"hadronic top candidate\" which is a system-level object that should be constructed from all required constituents of the top decay. In the physics process, the top quark decays into a W boson and a b quark. The implementation correctly includes the W candidate, but the b-jet is only the leading one. The SPEC does not specify that only the leading b-jet should be used, and using a single constituent as a proxy for the full system is a composite violation.\n\nEvidence priority:\n- sum_objects(bjets_sorted[0], w_hadronic); 〔L0350-L0352〕\n\nGenerator bias:\nnone",
+        "reasoning_content": "\n\n",
+        "role": "assistant",
+        "tool_calls": []
+      },
+      "stop_reason": null
+    }
+  ],
+  "created": 1788871087,
+  "id": "chatcmpl-b8327084-cf48-4a77-8151-6ea5216aaac0",
+  "model": "Qwen/Qwen3-32B",
+  "object": "chat.completion",
+  "prompt_logprobs": null,
+  "system_fingerprint": "vllm-0.21.0-5e58c442",
+  "usage": {
+    "completion_tokens": 220,
+    "prompt_tokens": 10560,
+    "prompt_tokens_details": null,
+    "total_tokens": 10780
+  }
+}

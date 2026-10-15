@@ -1,0 +1,37 @@
+
+
+* w_hadronic_mass_list
+  - computed/defined as: w_hadronic_mass_list.append(w_mass)
+  - upstream chain: w_mass -> helper_invariant_mass(w_hadronic)
+  - collection definition: w_hadronic from sum_objects(leading_light_jet, subleading_light_jet)
+  - structure: composite-derived
+
+* top_hadronic_mass_list
+  - computed/defined as: top_hadronic_mass_list.append(top_mass)
+  - upstream chain: top_mass -> helper_invariant_mass(top_hadronic)
+  - collection definition: top_hadronic from sum_objects(leading_bjet, w_hadronic)
+  - structure: composite-derived
+
+* dr_lepton_bjet_list
+  - computed/defined as: dr_lepton_bjet_list.append(helper_delta_r(lepton, leading_bjet))
+  - upstream chain: lepton -> selected_leptons[0], leading_bjet -> helper_get_leading(selected_bjets)
+  - collection definition: lepton from selected_leptons, leading_bjet from selected_bjets
+  - structure: composite-derived
+
+* ht_list
+  - computed/defined as: ht_list.append(scalar_pt_sum(selected_jets))
+  - upstream chain: selected_jets -> [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: selected_jets from [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - structure: single-constituent
+
+* njet_list
+  - computed/defined as: njet_list.append(len(selected_jets))
+  - upstream chain: selected_jets -> [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - collection definition: selected_jets from [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - structure: single-constituent
+
+* leading_bjet_eta_list
+  - computed/defined as: leading_bjet_eta_list.append(leading_bjet['eta'])
+  - upstream chain: leading_bjet -> helper_get_leading(selected_bjets)
+  - collection definition: selected_bjets -> [b for b in bjets if b['pt'] > 30 and abs(b['eta']) < 2.5]
+  - structure: single-constituent

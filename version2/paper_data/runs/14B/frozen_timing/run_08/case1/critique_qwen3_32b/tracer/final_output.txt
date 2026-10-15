@@ -1,0 +1,96 @@
+SECTION 1: SPEC BULLET ANALYSIS
+
+✅ * Select electrons with pT > 25 GeV and |eta| < 2.5; computed as: l['pt'] > 25 and abs(l['eta']) < 2.5; upstream chain: electrons; 〔L289-L293〕
+✅ * Select muons with pT > 20 GeV and |eta| < 2.4; computed as: l['pt'] > 20 and abs(l['eta']) < 2.4; upstream chain: muons; 〔L294-L296〕
+✅ * Use selected electrons and selected muons to define selected leptons.; computed as: leptons = [l for l in electrons if l['pt'] > 25 and abs(l['eta']) < 2.5] + [l for l in muons if l['pt'] > 20 and abs(l['eta']) < 2.4]; upstream chain: electrons, muons; 〔L290-L297〕
+✅ * Require exactly 1 selected lepton; computed as: len(leptons) == 1; upstream chain: leptons; 〔L297-L299〕
+✅ * Require at least 2 jets with pT > 30 GeV and |eta| < 2.5; computed as: len([j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]) >= 2; upstream chain: jets; 〔L307-L310〕
+✅ * Select MET > 30 GeV; computed as: met['pt'] > 30; upstream chain: met; 〔L320-L322〕
+✅ * Veto events with b-tagged jets; computed as: not any(b['pt'] > 30 and abs(b['eta']) < 2.5 for b in bjets); upstream chain: bjets; 〔L314-L316〕
+✅ * Select transverse mass of lepton + MET between 40 and 120 GeV (W leptonic candidate); computed as: 40 < mt < 120; upstream chain: lepton, met; 〔L326-L330〕
+✅ * Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate); computed as: 60 < mjj < 100; upstream chain: jet1, jet2; 〔L337-L340〕
+✅ * Select delta R between the two leading jets < 3.0; computed as: dr < 3.0; upstream chain: jet1, jet2; 〔L343-L345〕
+
+✅ * Plot the transverse mass of lepton + MET (W leptonic) in the range 30 to 150 GeV; computed as: mt; upstream chain: lepton, met; 〔L390-L394〕
+✅ * Plot the invariant mass of the two leading jets (W hadronic) in the range 40 to 120 GeV; computed as: mjj; upstream chain: jet1, jet2; 〔L396-L400〕
+✅ * Plot the MET distribution; computed as: met['pt']; upstream chain: met; 〔L403-L407〕
+✅ * Plot the pT of the lepton; computed as: lepton['pt']; upstream chain: lepton; 〔L410-L414〕
+✅ * Plot the pT of the leading jet; computed as: jet1['pt']; upstream chain: jet1; 〔L417-L421〕
+✅ * Plot the pT of the subleading jet; computed as: jet2['pt']; upstream chain: jet2; 〔L424-L428〕
+✅ * Plot delta R between the two leading jets; computed as: dr; upstream chain: jet1, jet2; 〔L431-L435〕
+✅ * Plot delta phi between the lepton and MET; computed as: dphi; upstream chain: lepton, met; 〔L438-L442〕
+✅ * Plot the eta of the lepton; computed as: lepton['eta']; upstream chain: lepton; 〔L445-L449〕
+✅ * Plot delta phi between the lepton and the two-jet system; computed as: dphi_lepton_jets; upstream chain: lepton, jet1, jet2; 〔L452-L456〕
+
+✅ * After the event loop, print one cutflow summary with the number of events after each selection step.; computed as: cutflow; upstream chain: cutflow; 〔L485-L489〕
+✅ * Save the plots in png format; computed as: plt.savefig(...); upstream chain: mt_hist.png, mjj_hist.png, met_hist.png, lepton_pt_hist.png, jet1_pt_hist.png, jet2_pt_hist.png, dr_hist.png, dphi_lepton_met_hist.png, lepton_eta_hist.png, dphi_lepton_jets_hist.png; 〔L393, L399, L406, L413, L420, L427, L434, L441, L448, L455〕
+✅ * Save the following in a CSV file for MLP analysis: 1- Transverse mass of lepton + MET; computed as: mt; upstream chain: lepton, met; 〔L374〕
+✅ * Save the following in a CSV file for MLP analysis: 2- Dijet invariant mass; computed as: mjj; upstream chain: jet1, jet2; 〔L375〕
+✅ * Save the following in a CSV file for MLP analysis: 3- MET; computed as: met['pt']; upstream chain: met; 〔L376〕
+✅ * Save the following in a CSV file for MLP analysis: 4- pT of the lepton; computed as: lepton['pt']; upstream chain: lepton; 〔L377〕
+✅ * Save the following in a CSV file for MLP analysis: 5- Delta R between the two jets; computed as: dr; upstream chain: jet1, jet2; 〔L378〕
+✅ * Save the following in a CSV file for MLP analysis: 6- Delta phi between lepton and the two-jet system; computed as: dphi_lepton_jets; upstream chain: lepton, jet1, jet2; 〔L379〕
+
+SECTION 2: DEFINITION SUMMARY
+
+* [CHECK CAREFULLY] DEFINITION SUMMARY
+
+* Selected electrons
+  - computed/defined as: [l for l in electrons if l['pt'] > 25 and abs(l['eta']) < 2.5]
+  - upstream chain: electrons
+  - collection definition: l['pt'] > 25 and abs(l['eta']) < 2.5
+  - structure: single-constituent
+
+* Selected muons
+  - computed/defined as: [l for l in muons if l['pt'] > 20 and abs(l['eta']) < 2.4]
+  - upstream chain: muons
+  - collection definition: l['pt'] > 20 and abs(l['eta']) < 2.4
+  - structure: single-constituent
+
+* Selected leptons
+  - computed/defined as: [l for l in electrons if l['pt'] > 25 and abs(l['eta']) < 2.5] + [l for l in muons if l['pt'] > 20 and abs(l['eta']) < 2.4]
+  - upstream chain: electrons, muons
+  - collection definition: l['pt'] > 25 and abs(l['eta']) < 2.5 for electrons, l['pt'] > 20 and abs(l['eta']) < 2.4 for muons
+  - structure: multi-input
+
+* Selected jets
+  - computed/defined as: [j for j in jets if j['pt'] > 30 and abs(j['eta']) < 2.5]
+  - upstream chain: jets
+  - collection definition: j['pt'] > 30 and abs(j['eta']) < 2.5
+  - structure: single-constituent
+
+* MET
+  - computed/defined as: met['pt']
+  - upstream chain: met
+  - collection definition: type == 6
+  - structure: single-constituent
+
+* Transverse mass of lepton + MET
+  - computed/defined as: helper_transverse_mass(lepton, met)
+  - upstream chain: lepton, met
+  - collection definition: lepton from selected leptons, met from MET
+  - structure: composite-derived
+
+* Invariant mass of two leading jets
+  - computed/defined as: helper_invariant_mass(jet1, jet2)
+  - upstream chain: jet1, jet2
+  - collection definition: jet1 = helper_get_leading(jets), jet2 = helper_get_subleading(jets)
+  - structure: composite-derived
+
+* Delta R between two leading jets
+  - computed/defined as: helper_delta_r(jet1, jet2)
+  - upstream chain: jet1, jet2
+  - collection definition: jet1 = helper_get_leading(jets), jet2 = helper_get_subleading(jets)
+  - structure: composite-derived
+
+* Delta phi between lepton and MET
+  - computed/defined as: helper_delta_phi(lepton['phi'], met['phi'])
+  - upstream chain: lepton, met
+  - collection definition: lepton from selected leptons, met from MET
+  - structure: composite-derived
+
+* Delta phi between lepton and two-jet system
+  - computed/defined as: helper_delta_phi(lepton['phi'], jet_system['phi'])
+  - upstream chain: lepton, jet1, jet2
+  - collection definition: jet_system = sum_objects(jet1, jet2)
+  - structure: composite-derived

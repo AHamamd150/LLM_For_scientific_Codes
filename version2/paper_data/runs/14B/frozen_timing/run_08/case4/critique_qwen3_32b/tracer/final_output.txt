@@ -1,0 +1,106 @@
+SECTION 1: SPEC BULLET ANALYSIS
+
+✅ * Select electrons with pT > 15 GeV and |eta| < 2.5; computed as: [e for e in get_electrons(event) if e['pt'] > 15 and abs(e['eta']) < 2.5]; upstream chain: get_electrons(event); 〔L242-L244〕
+✅ * Select muons with pT > 10 GeV and |eta| < 2.4; computed as: [m for m in get_muons(event) if m['pt'] > 10 and abs(m['eta']) < 2.4]; upstream chain: get_muons(event); 〔L247-L249〕
+✅ * Require exactly 2 selected electrons and exactly 1 selected muon; computed as: if len(electrons) != 2 or len(muons) != 1; upstream chain: electrons, muons; 〔L253-L255〕
+✅ * Require the two selected electrons to have opposite charge; computed as: if not opposite_sign(e1, e2); upstream chain: e1, e2; 〔L258-L261〕
+✅ * Build z_obj from the two selected electrons using summed four-momentum; computed as: sum_objects(e1, e2); upstream chain: e1, e2; 〔L264-L265〕
+✅ * Select invariant mass of z_obj between 76 and 106 GeV; computed as: if not (76 < z_mass < 106); upstream chain: helper_invariant_mass(e1, e2); 〔L268-L270〕
+✅ * Define the selected muon as the W candidate lepton; computed as: muons[0]; upstream chain: muons; 〔L273-L274〕
+✅ * Require MET > 30 GeV; computed as: if met is None or met['pt'] < 30; upstream chain: helper_get_met(event); 〔L277-L279〕
+✅ * The W candidate muon must have pT > 20 GeV; computed as: if w_muon['pt'] < 20; upstream chain: w_muon; 〔L282-L284〕
+✅ * Select transverse mass of W candidate muon + MET > 30 GeV; computed as: if w_transverse_mass < 30; upstream chain: helper_transverse_mass(w_muon, met); 〔L287-L289〕
+✅ * Plot the invariant mass of z_obj in range 60 to 120 GeV; computed as: z_mass_list; upstream chain: helper_invariant_mass(e1, e2); 〔L296-L297〕
+✅ * Plot the transverse mass of the W candidate lepton + MET; computed as: w_transverse_mass_list; upstream chain: helper_transverse_mass(w_muon, met); 〔L299-L300〕
+✅ * Plot the MET distribution; computed as: met_list; upstream chain: met['pt']; 〔L302-L303〕
+✅ * Plot the pT of the three-lepton system built from the two selected electrons and the selected muon; computed as: three_lepton_pt_list; upstream chain: sum_objects(e1, e2, w_muon); 〔L305-L307〕
+✅ * Plot the pT of z_obj; computed as: z_pt_list; upstream chain: z_obj['pt']; 〔L309-L310〕
+✅ * Plot the pT of the W candidate muon; computed as: w_muon_pt_list; upstream chain: w_muon['pt']; 〔L312-L313〕
+✅ * Plot delta phi between z_obj and MET; computed as: delta_phi_z_met_list; upstream chain: helper_delta_phi(z_obj['phi'], met['phi']); 〔L315-L317〕
+✅ * Plot the invariant mass of the three-lepton system; computed as: three_lepton_mass_list; upstream chain: helper_invariant_mass(e1, e2, w_muon); 〔L319-L321〕
+✅ * Plot delta R between the two electrons forming z_obj; computed as: delta_r_electrons_list; upstream chain: helper_delta_r(e1, e2); 〔L323-L325〕
+✅ * Plot eta of the W candidate muon; computed as: w_muon_eta_list; upstream chain: w_muon['eta']; 〔L326-L328〕
+✅ * After the event loop, print one cutflow summary with the number of events after each selection step; computed as: for key, value in cutflow.items(): print(f"{key}: {value}"); upstream chain: cutflow; 〔L330-L332〕
+✅ * Save the plots in png format; computed as: plt.savefig(filename); upstream chain: plot_histogram; 〔L341-L342〕
+
+SECTION 2: DEFINITION SUMMARY
+
+* [CHECK CAREFULLY] DEFINITION SUMMARY
+
+* electrons
+  - computed/defined as: [o for o in event['objects'] if o['type'] == 1]
+  - upstream chain: get_electrons(event)
+  - collection definition: o['type'] == 1
+  - structure: single-constituent
+
+* muons
+  - computed/defined as: [o for o in event['objects'] if o['type'] == 2]
+  - upstream chain: get_muons(event)
+  - collection definition: o['type'] == 2
+  - structure: single-constituent
+
+* selected electrons
+  - computed/defined as: [e for e in get_electrons(event) if e['pt'] > 15 and abs(e['eta']) < 2.5]
+  - upstream chain: electrons
+  - collection definition: e['pt'] > 15 and abs(e['eta']) < 2.5
+  - structure: filtered
+
+* selected muons
+  - computed/defined as: [m for m in get_muons(event) if m['pt'] > 10 and abs(m['eta']) < 2.4]
+  - upstream chain: muons
+  - collection definition: m['pt'] > 10 and abs(m['eta']) < 2.4
+  - structure: filtered
+
+* z_obj
+  - computed/defined as: sum_objects(e1, e2)
+  - upstream chain: e1, e2
+  - collection definition: N/A
+  - structure: composite-derived
+
+* z_mass
+  - computed/defined as: helper_invariant_mass(e1, e2)
+  - upstream chain: e1, e2
+  - collection definition: N/A
+  - structure: composite-derived
+
+* w_muon
+  - computed/defined as: muons[0]
+  - upstream chain: muons
+  - collection definition: N/A
+  - structure: single-constituent
+
+* met
+  - computed/defined as: helper_get_met(event)
+  - upstream chain: event['objects']
+  - collection definition: o['type'] == 6
+  - structure: single-constituent
+
+* w_transverse_mass
+  - computed/defined as: helper_transverse_mass(w_muon, met)
+  - upstream chain: w_muon, met
+  - collection definition: N/A
+  - structure: composite-derived
+
+* three_lepton
+  - computed/defined as: sum_objects(e1, e2, w_muon)
+  - upstream chain: e1, e2, w_muon
+  - collection definition: N/A
+  - structure: composite-derived
+
+* three_lepton_mass
+  - computed/defined as: helper_invariant_mass(e1, e2, w_muon)
+  - upstream chain: e1, e2, w_muon
+  - collection definition: N/A
+  - structure: composite-derived
+
+* delta_r_electrons
+  - computed/defined as: helper_delta_r(e1, e2)
+  - upstream chain: e1, e2
+  - collection definition: N/A
+  - structure: composite-derived
+
+* cutflow
+  - computed/defined as: cutflow = { ... }
+  - upstream chain: N/A
+  - collection definition: N/A
+  - structure: multi-input

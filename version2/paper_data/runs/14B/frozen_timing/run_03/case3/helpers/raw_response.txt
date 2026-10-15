@@ -1,0 +1,16 @@
+{
+  "selected_helpers": [
+    "get_photons",
+    "helper_get_leading",
+    "helper_get_subleading",
+    "helper_invariant_mass",
+    "sum_objects",
+    "helper_delta_r",
+    "helper_delta_phi",
+    "cos_theta_star_collins_soper",
+    "pt_ratio",
+    "n_photons",
+    "abs_eta"
+  ],
+  "rejected_but_close": []
+}

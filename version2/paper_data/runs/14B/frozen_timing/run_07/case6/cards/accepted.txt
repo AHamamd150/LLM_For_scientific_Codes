@@ -1,0 +1,40 @@
+# Physics Process: p p > t t~, t > b W+, W+ > l+ nu, t~ > b~ W-, W- > j j
+# ========================================================================
+
+[SELECTION_CUTS]
+- Select electrons with pT > 25 GeV and |eta| < 2.5
+- Select muons with pT > 25 GeV and |eta| < 2.4
+- Require exactly one lepton (electron or muon)
+- Require at least 4 jets with pT > 30 GeV and |eta| < 2.5
+- Among these selected jets, require at least 2 b-tagged jets.
+- Among the selected b-tagged jets, define the b-jet closest to the selected lepton in delta R.
+- Select MET > 20 GeV
+- Select transverse mass of the lepton and MET between 30 and 150 GeV (W candidate)
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+- Select the hadronic W mass between 40 to 120 GeV.
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+- Select the hadronic top mass between 100 to 250 GeV.
+
+Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+[PLOTS_FOR_VALIDATION]
+- Plot the following as histograms:
+1 Plot the transverse mass of lepton + MET (W leptonic candidate)
+2 Plot the MET distribution
+3 Plot the pT of the leading b-jet
+4 Plot the pT of the subleading b-jet
+5 Plot the invariant mass of the W hadronic candidate in range 40 to 120 GeV
+6 Plot the invariant mass of the hadronic top candidate in range 100 to 250 GeV
+7 Plot delta R between the leading lepton and the closest selected  b-jet
+8 Plot the HT distribution (scalar sum of all jet pT)
+9 Plot the number of jets per event
+10 Plot eta of the leading b-jet
+
+
+Use simple validation histograms.
+For each histogram: plt.figure(); plt.hist(values, bins=40, density=True); plt.xlabel(...); plt.ylabel("density"); plt.savefig(...); plt.close().
+Use concrete short ASCII labels and filenames.
+
+[OUTPUT_STRUCTURE]
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+- Save the plots in png format

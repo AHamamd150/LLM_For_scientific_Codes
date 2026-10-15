@@ -1,0 +1,18 @@
+
+
+  - computed/defined as: lepton['eta']
+  - upstream chain: lepton -> lepton_eta_list
+  - collection definition: None
+  - structure: single-constituent
+
+* dphi_lepton_jets_list
+  - computed/defined as: helper_delta_phi(lepton['phi'], jet_system['phi'])
+  - upstream chain: lepton, jet_system -> helper_delta_phi -> dphi_lepton_jets_list
+  - collection definition: lepton is selected from leptons, jet_system is sum_objects(jet1, jet2)
+  - structure: multi-input
+
+* csv_data
+  - computed/defined as: [mt, mjj, met['pt'], lepton['pt'], dr, dphi_lepton_jets]
+  - upstream chain: mt, mjj, met, lepton, dr, dphi_lepton_jets -> csv_data
+  - collection definition: None
+  - structure: multi-input

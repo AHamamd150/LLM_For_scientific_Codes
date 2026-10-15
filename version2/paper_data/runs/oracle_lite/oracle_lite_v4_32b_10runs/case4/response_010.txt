@@ -1,0 +1,76 @@
+[CANDIDATE 1] z_obj definition and reuse
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum."
+
+Unresolved choice:
+It is unclear whether the z_obj is a temporary object for the purpose of the invariant mass cut, or if it is meant to be reused in later steps (e.g., for plotting the pT of z_obj or for delta phi with MET).
+
+Why this may matter:
+If z_obj is only used for the invariant mass cut, it may not be stored for later use. If it is meant to be reused, the code must ensure it is preserved and accessible for all relevant plots and calculations.
+
+[CANDIDATE 2] W candidate lepton definition and reuse
+
+Original phrase:
+"Define the selected muon as the W candidate lepton."
+
+Unresolved choice:
+It is unclear whether the W candidate lepton is a temporary label for the purpose of the transverse mass cut, or if it is meant to be reused in later steps (e.g., for building the three-lepton system or for plotting its pT and eta).
+
+Why this may matter:
+If the W candidate lepton is only used for the transverse mass cut, it may not be stored for later use. If it is meant to be reused, the code must ensure it is preserved and accessible for all relevant plots and calculations.
+
+[CANDIDATE 3] Three-lepton system definition
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Unresolved choice:
+It is unclear whether the three-lepton system is built using the same z_obj and W candidate lepton as defined earlier, or if it is a separate combination that may include different objects or be built at a different stage of the selection.
+
+Why this may matter:
+If the three-lepton system is built from different or newly selected objects, it could lead to inconsistencies in the analysis. If it is built from the same objects, the code must ensure that the same objects are used consistently.
+
+[CANDIDATE 4] Cutflow counter timing
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied. Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether the cutflow counter for a given cut is incremented before or after the event is modified by subsequent operations (e.g., object selection, vetoing, or system building) that may affect the outcome of later cuts.
+
+Why this may matter:
+If the cutflow is incremented before the event is modified, the counter may not reflect the actual number of events that pass the cut. If it is incremented after modification, the counter may include events that later fail due to changes in the event state.
+
+[CANDIDATE 5] MET usage in transverse mass
+
+Original phrase:
+"Select transverse mass of W candidate muon + MET > 30 GeV."
+
+Unresolved choice:
+It is unclear whether the MET used in the transverse mass calculation is the raw MET from the event or a corrected MET that may be affected by other objects or selection steps.
+
+Why this may matter:
+If the MET is not corrected or is modified by earlier selections, the transverse mass calculation may not reflect the true kinematic relationship between the W candidate muon and the missing transverse energy.
+
+[CANDIDATE 6] Three-lepton system pT calculation
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Unresolved choice:
+It is unclear whether the pT of the three-lepton system is calculated using the four-momentum sum of the selected electrons and muon (as defined earlier), or if it is a separate calculation that may use different objects or a different method.
+
+Why this may matter:
+If the three-lepton system pT is calculated differently from the z_obj or W candidate lepton, it could lead to inconsistencies in the analysis. If it is calculated using the same objects, the code must ensure that the same objects are used consistently.
+
+[CANDIDATE 7] Delta phi between z_obj and MET
+
+Original phrase:
+"Plot delta phi between z_obj and MET"
+
+Unresolved choice:
+It is unclear whether the z_obj used in this delta phi calculation is the same as the one used in the invariant mass cut, or if it is a different or newly defined object.
+
+Why this may matter:
+If the z_obj is different, the delta phi calculation may not correspond to the same object used in earlier steps, leading to inconsistencies in the analysis. If it is the same, the code must ensure that the same object is used consistently.

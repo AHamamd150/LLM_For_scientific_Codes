@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] Ambiguity in "selected jets" for b-tag veto
+
+Original phrase:
+"Veto events with b-tagged jets among the selected jets"
+
+Why this matters:
+The phrase "selected jets" could refer to jets that passed the pT and |eta| cuts, or to jets that passed all previous cuts including the jet multiplicity and jet selection. This ambiguity affects whether the veto applies to all jets in the event or only to a subset that has already been filtered.
+
+Question to user:
+Does the b-tag veto apply to all jets in the event that passed the pT and |eta| cuts, or only to the jets that have already been selected for the dijet system (i.e., the leading and subleading jets)?
+
+Golden axe:
+Apply the veto to all jets that passed the pT and |eta| cuts.
+
+Silver axe:
+Apply the veto only to the jets that are used to define the dijet system.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Ambiguity in "leading tau" and "subleading tau" definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this matters:
+The phrase does not specify whether "leading" and "subleading" are defined before or after the opposite-sign requirement is applied. This affects which tau pair is used for the ditau system and the invariant mass cut.
+
+Question to user:
+Are the leading and subleading taus determined from all selected taus (before applying the opposite-sign requirement), or only from the subset of selected taus that form an opposite-sign pair?
+
+Golden axe:
+Leading and subleading are defined from all selected taus, and then the opposite-sign requirement is applied.
+
+Silver axe:
+Leading and subleading are defined only from the subset of selected taus that are opposite-sign.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Ambiguity in "ditau system centrality" relative to jets
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Why this matters:
+The phrase does not clarify whether the "two jets" refers to all selected jets, the two leading jets, or the two jets used in the dijet system. This affects the reference frame for the centrality calculation.
+
+Question to user:
+For the centrality calculation, should the ditau system be compared to the two leading jets (after jet selection), or to all selected jets?
+
+Golden axe:
+Use the two leading jets (after jet selection) for the centrality calculation.
+
+Silver axe:
+Use all selected jets for the centrality calculation.
+
+Recommended default:
+Golden axe

@@ -1,0 +1,468 @@
+===== RUN 1 =====
+
+---- KEPT ----
+(none)
+
+---- DROPPED ----
+[DROPPED 1] drop: matched noise signal 'matches the spec'
+◎ (A) composite violation
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+
+CODE:
+- sum_objects(leading_tau, subleading_tau)
+
+Reason:
+The code correctly constructs ditau_obj from the summed four-momentum of the leading and subleading taus. This is a proper composite object construction.
+
+Evidence priority:
+〔L300〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Define dijet_obj from the summed four-momentum of the leading jet and subleading jet.
+
+CODE:
+- sum_objects(leading_jet, subleading_jet)
+
+Reason:
+The code correctly constructs dijet_obj from the summed four-momentum of the leading and subleading jets. This is a proper composite object construction.
+
+Evidence priority:
+〔L287〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select invariant mass of the leading and subleading jets (m_jj) > 400 GeV
+
+CODE:
+- dijet_obj['mass'] > 400
+
+Reason:
+The code uses the mass of the dijet_obj, which is derived from the summed four-momentum of the leading and subleading jets. This is consistent with the specification.
+
+Evidence priority:
+〔L288-L290〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select |delta eta| between the two leading jets > 2.5
+
+CODE:
+- abs(helper_delta_eta(leading_jet, subleading_jet)) > 2.5
+
+Reason:
+The code computes the absolute value of the delta eta between the leading and subleading jets, which matches the specification.
+
+Evidence priority:
+〔L294-L296〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select ditau invariant mass between 60 and 150 GeV
+
+CODE:
+- 60 < m_tt < 150
+
+Reason:
+The code correctly selects events where the invariant mass of the ditau system is between 60 and 150 GeV.
+
+Evidence priority:
+〔L301-L303〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Veto events with b-tagged jets among the selected jets
+
+CODE:
+- n_bjets(event, pt_cut=30, eta_cut=4.7) == 0
+
+Reason:
+The code correctly vetoes events with b-tagged jets among the selected jets by checking if there are no b-jets passing the same pT and |eta| cuts as the selected jets.
+
+Evidence priority:
+〔L306-L308〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the following as histograms:
+1 Plot the ditau invariant mass in the range 50 to 160 GeV
+
+CODE:
+- plt.hist(ditau_masses, bins=40, range=(50, 160), density=True)
+
+Reason:
+The code correctly plots the ditau invariant mass in the specified range.
+
+Evidence priority:
+〔L331-L335〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the dijet invariant mass (m_jj) in the range 400 to 2000 GeV
+
+CODE:
+- plt.hist(dijet_masses, bins=40, range=(400, 2000), density=True)
+
+Reason:
+The code correctly plots the dijet invariant mass in the specified range.
+
+Evidence priority:
+〔L338-L342〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta eta between the two leading jets
+
+CODE:
+- plt.hist(delta_eta_jj, bins=40, density=True)
+
+Reason:
+The code correctly plots the delta eta between the two leading jets.
+
+Evidence priority:
+〔L345-L349〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading tau
+
+CODE:
+- plt.hist(leading_tau_pt, bins=40, density=True)
+
+Reason:
+The code correctly plots the pT of the leading tau.
+
+Evidence priority:
+〔L353-L357〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading tau
+
+CODE:
+- plt.hist(subleading_tau_pt, bins=40, density=True)
+
+Reason:
+The code correctly plots the pT of the subleading tau.
+
+Evidence priority:
+〔L359-L363〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the leading jet
+
+CODE:
+- plt.hist(leading_jet_pt, bins=40, density=True)
+
+Reason:
+The code correctly plots the pT of the leading jet.
+
+Evidence priority:
+〔L366-L370〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the pT of the subleading jet
+
+CODE:
+- plt.hist(subleading_jet_pt, bins=40, density=True)
+
+Reason:
+The code correctly plots the pT of the subleading jet.
+
+Evidence priority:
+〔L373-L377〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta R between the two taus
+
+CODE:
+- plt.hist(delta_r_tt, bins=40, density=True)
+
+Reason:
+The code correctly plots the delta R between the two taus.
+
+Evidence priority:
+〔L380-L384〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot delta phi between the ditau_obj and the dijet_obj
+
+CODE:
+- plt.hist(delta_phi_tt_dijet, bins=40, density=True)
+
+Reason:
+The code correctly plots the delta phi between the ditau_obj and the dijet_obj.
+
+Evidence priority:
+〔L387-L391〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Plot the centrality of the ditau system relative to the two jets
+
+CODE:
+- plt.hist(centrality_tt_jj, bins=40, density=True)
+
+Reason:
+The code correctly plots the centrality of the ditau system relative to the two jets.
+
+Evidence priority:
+〔L394-L398〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- After the event loop, print one cutflow summary with the number of events after each selection step.
+
+CODE:
+- for key, value in cutflow.items(): print(f"{key}: {value}")
+
+Reason:
+The code correctly prints the cutflow summary after the event loop.
+
+Evidence priority:
+〔L327-L328〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- plt.savefig(...)
+
+Reason:
+The code correctly saves the plots in png format.
+
+Evidence priority:
+〔L335, L342, L349, L357, L363, L370, L377, L384, L391, L398〕
+
+Generator bias:
+none
+
+---
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select taus with pT > 20 GeV and |eta| < 2.3
+
+CODE:
+- [t for t in get_taus(event) if t['pt'] > 20 and abs(t['eta']) < 2.3]
+
+Reason:
+The code correctly selects taus with pT > 20 GeV and |eta| < 2.3.
+
+Evidence priority:
+〔L256-L257〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Select jets with pT > 30 GeV and |eta| < 4.7
+
+CODE:
+- [j for j in get_jets(event) if j['pt'] > 30 and abs(j['eta']) < 4.7]
+
+Reason:
+The code correctly selects jets with pT > 30 GeV and |eta| < 4.7.
+
+Evidence priority:
+〔L262-L263〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require at least 2 taus
+
+CODE:
+- len(taus) >= 2
+
+Reason:
+The code correctly requires at least 2 taus.
+
+Evidence priority:
+〔L257-L258〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Define the leading tau and subleading tau from the selected taus.
+
+CODE:
+- helper_get_leading(taus), helper_get_subleading(taus)
+
+Reason:
+The code correctly defines the leading and subleading taus from the selected taus.
+
+Evidence priority:
+〔L278-L279〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require at least 2 jets (VBF topology)
+
+CODE:
+- len(jets) >= 2
+
+Reason:
+The code correctly requires at least 2 jets for the VBF topology.
+
+Evidence priority:
+〔L263-L264〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Define the leading jet and subleading jet from the selected jets.
+
+CODE:
+- helper_get_leading(jets), helper_get_subleading(jets)
+
+Reason:
+The code correctly defines the leading and subleading jets from the selected jets.
+
+Evidence priority:
+〔L285-L286〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Require opposite-sign tau pair
+
+CODE:
+- opposite_sign(leading_tau, subleading_tau)
+
+Reason:
+The code correctly requires an opposite-sign tau pair.
+
+Evidence priority:
+〔L280〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+CODE:
+- The code applies the cuts sequentially and skips the event when a cut is not satisfied.
+
+Reason:
+The code applies the cuts in sequence and skips events when a cut is not satisfied.
+
+Evidence priority:
+〔L257-L311〕
+
+Generator bias:
+none
+
+◎ (B) definition mismatch
+
+SPEC:
+- Increment each cutflow counter immediately after its cut is passed.
+
+CODE:
+- The code increments each cutflow counter immediately after its cut is passed.
+
+Reason:
+The code increments the cutflow counter immediately after each cut is passed.
+
+Evidence priority:
+〔L259, L265, L270, L275, L282, L291, L297, L304, L309, L312〕
+
+Generator bias:
+none

@@ -1,0 +1,4 @@
+issue,setting,generation_error,tracer_exposure,critique_detection,provenance
+Incorrect ditau-dijet Delta phi,Case 5 / 14B,10/10,10/10,10/10,run-level reproduced
+Incorrect ditau-dijet Delta phi,Case 7 / 14B,1/10,1/1,0/1,run-level reproduced
+b-jet pre-filter instead of veto,Case 7 / 32B,2/10,2/2,0/2,run-level reproduced

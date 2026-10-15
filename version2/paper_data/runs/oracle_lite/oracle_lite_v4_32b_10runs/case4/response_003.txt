@@ -1,0 +1,88 @@
+[CANDIDATE 1] z_obj definition and reuse
+
+Original phrase:
+"Build z_obj from the two selected electrons using summed four-momentum."
+
+Unresolved choice:
+It is unclear whether the z_obj is a temporary object used only for the invariant mass cut, or if it is meant to be reused in later steps (e.g., for plotting the pT of z_obj or for delta phi between z_obj and MET).
+
+Why this may matter:
+If z_obj is only used for the invariant mass cut, it may not be stored for later use, requiring it to be rebuilt in subsequent steps. If it is meant to be reused, it must be explicitly defined and stored as a composite object.
+
+[CANDIDATE 2] W candidate lepton definition and reuse
+
+Original phrase:
+"Define the selected muon as the W candidate lepton."
+
+Unresolved choice:
+It is unclear whether the W candidate lepton is a temporary label for the muon used only in the transverse mass calculation, or if it is meant to be reused in other steps (e.g., for plotting the pT or eta of the W candidate muon).
+
+Why this may matter:
+If the W candidate lepton is only used for the transverse mass calculation, it may not be stored for later use, requiring it to be referenced again in subsequent steps. If it is meant to be reused, it must be explicitly stored as a named object.
+
+[CANDIDATE 3] Three-lepton system definition and reuse
+
+Original phrase:
+"Plot the pT of the three-lepton system built from the two selected electrons and the selected muon"
+
+Unresolved choice:
+It is unclear whether the three-lepton system is a temporary object used only for this plot, or if it is meant to be reused in other steps (e.g., for the invariant mass of the three-lepton system).
+
+Why this may matter:
+If the three-lepton system is only used for this plot, it may not be stored for later use, requiring it to be rebuilt in subsequent steps. If it is meant to be reused, it must be explicitly defined and stored as a composite object.
+
+[CANDIDATE 4] Selection order and event skipping
+
+Original phrase:
+"Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied."
+
+Unresolved choice:
+It is unclear whether the cuts are applied in the exact order listed, or if any cuts may be re-ordered or applied conditionally based on intermediate results.
+
+Why this may matter:
+The order of cuts can affect the final event selection and the cutflow. For example, if the invariant mass of z_obj is computed before the two electrons are selected, the cut may fail or produce incorrect results.
+
+[CANDIDATE 5] Cutflow counter timing
+
+Original phrase:
+"Increment each cutflow counter immediately after its cut is passed."
+
+Unresolved choice:
+It is unclear whether the cutflow counter is incremented before or after the cut is applied, and whether the counter corresponds to the number of events passing the cut or the number of events failing the cut.
+
+Why this may matter:
+The timing of the cutflow counter increment can affect the interpretation of the cutflow summary. For example, if the counter is incremented before the cut is applied, it may not reflect the actual number of events passing the cut.
+
+[CANDIDATE 6] MET usage in transverse mass
+
+Original phrase:
+"Select transverse mass of W candidate muon + MET > 30 GeV."
+
+Unresolved choice:
+It is unclear whether the MET used in the transverse mass calculation is the raw MET or the MET after any potential corrections or vetoes.
+
+Why this may matter:
+If the MET is not corrected or vetted, the transverse mass calculation may be inaccurate or misleading. If the MET is corrected or vetted, the transverse mass calculation may be more meaningful but require additional steps.
+
+[CANDIDATE 7] Electron and muon selection order
+
+Original phrase:
+"Select electrons with pT > 15 GeV and |eta| < 2.5."
+"Select muons with pT > 10 GeV and |eta| < 2.4."
+
+Unresolved choice:
+It is unclear whether the electron and muon selections are applied in the order listed, or if they may be applied in a different order or in parallel.
+
+Why this may matter:
+The order of selection may affect the final event selection. For example, if the muon selection is applied before the electron selection, the electron selection may be affected by the presence of the muon.
+
+[CANDIDATE 8] Electron charge requirement
+
+Original phrase:
+"Require the two selected electrons to have opposite charge."
+
+Unresolved choice:
+It is unclear whether the charge requirement is applied to the two selected electrons before or after the invariant mass cut.
+
+Why this may matter:
+If the charge requirement is applied before the invariant mass cut, it may affect the invariant mass calculation. If it is applied after the invariant mass cut, it may affect the final event selection.

@@ -1,0 +1,25 @@
+case,run,row_type,req_id,requirement_or_claim,traced,source_correct,dependency_correct,hallucination,note
+4,4,requirement,R1,Select electrons with pT > 15 GeV and |eta| < 2.5.,yes,yes,yes,no,Correctly identifies the electron selection at L242-L243 and its dependency on get_electrons(event).
+4,4,requirement,R2,Select muons with pT > 10 GeV and |eta| < 2.4.,yes,yes,yes,no,Correctly identifies the muon selection at L248-L249 and its dependency on get_muons(event).
+4,4,requirement,R3,Require exactly 2 selected electrons and exactly 1 selected muon.,yes,yes,yes,no,Correctly identifies the exact multiplicity check at L254-L255 using electrons and muons.
+4,4,requirement,R4,Require the two selected electrons to have opposite charge.,yes,yes,yes,no,"Correctly traces the opposite_sign check at L259-L261, including e1 and e2."
+4,4,requirement,R5,Build z_obj from the two selected electrons using summed four-momentum.,yes,yes,yes,no,"Correctly identifies z_obj = sum_objects(e1, e2) at L265, with the electron inputs."
+4,4,requirement,R6,Select invariant mass of z_obj between 76 and 106 GeV.,yes,yes,yes,no,Correctly traces the 76 < z_mass < 106 selection at L268-L270 and the invariant-mass helper dependency.
+4,4,requirement,R7,Define the selected muon as the W candidate lepton.,yes,yes,yes,no,Correctly identifies w_muon = muons[0] at L280 and its dependency on the selected muon collection.
+4,4,requirement,R8,Require MET > 30 GeV.,yes,yes,yes,no,Correctly traces MET retrieval and the threshold check at L274-L276.
+4,4,requirement,R9,Require the W candidate muon to have pT > 20 GeV.,yes,yes,yes,no,Correctly identifies the pT check at L281-L282 on w_muon.
+4,4,requirement,R10,Select transverse mass of the W candidate muon plus MET greater than 30 GeV.,yes,yes,yes,no,Correctly traces the transverse-mass computation at L286 and threshold check at L287-L288.
+4,4,requirement,R11,"Apply the cuts sequentially, skipping the event immediately when a cut fails, and increment each cutflow counter immediately after it passes.",partial,uncertain,uncertain,no,"The output lists individual cut locations, but does not explicitly trace the sequential early-continue control flow or the immediate counter increments after each passed cut."
+4,4,requirement,R12,Plot the invariant mass of z_obj as a histogram in the range 60 to 120 GeV.,partial,no,yes,no,"The plotted value and invariant-mass dependency are traced at L294-L295, but the cited location is data collection rather than the histogram operation at L314-L319 and does not mention the range."
+4,4,requirement,R13,Plot the transverse mass of the W candidate lepton plus MET as a histogram.,partial,no,yes,no,"The value list is traced at L295-L296, but the actual histogram call is at L321-L326 and is not cited."
+4,4,requirement,R14,Plot the MET distribution as a histogram.,partial,no,yes,no,"The MET values are traced at L296-L297, but the actual histogram operation is at L328-L333."
+4,4,requirement,R15,Plot the pT of the three-lepton system built from the two electrons and selected muon.,partial,no,yes,no,"The three-lepton value construction is traced at L299-L301, but the histogram operation at L335-L340 is omitted."
+4,4,requirement,R16,Plot the pT of z_obj as a histogram.,partial,no,yes,no,"The value collection is traced at L305-L306, but the histogram call is at L342-L347."
+4,4,requirement,R17,Plot the pT of the W candidate muon as a histogram.,partial,no,yes,no,"The value collection is traced at L306-L307, but the histogram call is at L349-L354."
+4,4,requirement,R18,Plot delta phi between z_obj and MET as a histogram.,partial,no,yes,no,"The delta-phi value construction is traced at L307-L308, but the histogram operation and range at L356-L361 are not cited."
+4,4,requirement,R19,Plot the invariant mass of the three-lepton system as a histogram.,partial,no,yes,no,"The value collection is traced at L302-L303, but the histogram call is at L363-L368."
+4,4,requirement,R20,Plot delta R between the two electrons forming z_obj as a histogram.,partial,no,yes,no,"The delta-R value construction is traced at L309-L310, but the histogram call is at L370-L375."
+4,4,requirement,R21,Plot eta of the W candidate muon as a histogram.,partial,no,yes,no,"The value collection is traced at L311-L312, but the histogram call is at L377-L382."
+4,4,requirement,R22,"Use simple validation histograms with plt.figure, plt.hist(..., bins=40, density=True), labels, PNG save, and close for each histogram.",partial,no,uncertain,no,"The tracer identifies histogram data and PNG saving generally, but does not trace the required per-histogram figure, bins, density, labels, and close operations at L313-L382."
+4,4,requirement,R23,"After the event loop, print one cutflow summary with the number of events after each selection step.",partial,no,yes,no,"The tracer cites cutflow initialization at L216-L227, not the post-loop print at L384-L386."
+4,4,requirement,R24,Save the plots in PNG format.,yes,yes,yes,no,Correctly identifies plt.savefig calls with .png filenames at L318-L382.

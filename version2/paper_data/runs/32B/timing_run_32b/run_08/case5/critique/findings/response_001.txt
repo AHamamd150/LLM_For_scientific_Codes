@@ -1,0 +1,35 @@
+⚠️ (B) definition mismatch
+
+SPEC:
+- Define ditau_obj from the summed four-momentum of the leading tau and subleading tau.
+
+CODE:
+- ditau_obj = sum_objects(tau1, tau2)
+
+Reason:
+The code correctly constructs the ditau_obj from the four-momentum of the leading and subleading tau. However, the implementation of `sum_objects` uses a generic summation of any number of particles, which may not be explicitly constrained by the SPEC. The SPEC explicitly refers to the "summed four-momentum of the leading tau and subleading tau", and the code uses a helper function that is not explicitly constrained to only two particles. While the function works correctly in this case, the implementation is not fully aligned with the explicit wording of the SPEC.
+
+Evidence priority:
+- ditau_obj = sum_objects(tau1, tau2) 〔L295-L296〕
+
+Generator bias:
+- The use of a generic `sum_objects` function may be encouraged by the generation system prompt, as it abstracts away the explicit two-particle summation requested in the SPEC.
+
+---
+
+⚠️ (B) definition mismatch
+
+SPEC:
+- Define dijet_obj from the summed momentum of the leading jet and subleading jet.
+
+CODE:
+- dijet_obj = sum_objects(jet1, jet2)
+
+Reason:
+The code correctly constructs the dijet_obj from the four-momentum of the leading and subleading jet. However, the implementation of `sum_objects` uses a generic summation of any number of particles, which may not be explicitly constrained by the SPEC. The SPEC explicitly refers to the "summed momentum of the leading jet and subleading jet", and the code uses a helper function that is not explicitly constrained to only two particles. While the function works correctly in this case, the implementation is not fully aligned with the explicit wording of the SPEC.
+
+Evidence priority:
+- dijet_obj = sum_objects(jet1, jet2) 〔L315-L316〕
+
+Generator bias:
+- The use of a generic `sum_objects` function may be encouraged by the generation system prompt, as it abstracts away the explicit two-particle summation requested in the SPEC.

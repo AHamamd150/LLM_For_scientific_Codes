@@ -1,0 +1,24 @@
+{
+  "type": {
+    "name": "type",
+    "definition": "= 6",
+    "used_by": [
+      "MET"
+    ]
+  },
+  "jet1": {
+    "name": "jet1",
+    "definition": "helper_get_leading(jets), jet2 = helper_get_subleading(jets)",
+    "used_by": [
+      "Invariant mass of two leading jets",
+      "Delta R between two leading jets"
+    ]
+  },
+  "jet_system": {
+    "name": "jet_system",
+    "definition": "sum_objects(jet1, jet2)",
+    "used_by": [
+      "Delta phi between lepton and two-jet system"
+    ]
+  }
+}

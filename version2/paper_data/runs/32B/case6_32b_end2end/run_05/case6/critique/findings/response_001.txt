@@ -1,0 +1,137 @@
+⚠️ (A) composite violation
+
+SPEC:
+- Build the hadronic W candidate from the two leading selected non-b-tagged jets.
+
+CODE:
+- sum_objects(light_jets_sorted[0], light_jets_sorted[1])
+
+Reason:
+The code builds the hadronic W candidate from the two leading non-b-tagged jets, but the SPEC explicitly requires the jets to be "selected" (i.e., passing the pT and |eta| cuts). The code correctly uses the selected jets collection, but the implementation uses only the two leading jets as a proxy for the full hadronic W system. This is a composite violation because the hadronic W is a system-level object that should be constructed from the two leading jets, which is correctly implemented. No violation.
+
+Evidence priority:
+- sum_objects(light_jets_sorted[0], light_jets_sorted[1]); 〔L344-L345〕
+
+Generator bias:
+none
+
+◎ (A) composite violation
+
+SPEC:
+- Build the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate.
+
+CODE:
+- sum_objects(bjets_sorted[0], w_hadronic)
+
+Reason:
+The code correctly builds the hadronic top candidate from the leading selected b-tagged jet and the hadronic W candidate. This is a system-level object that is correctly constructed from all required constituents. No violation.
+
+Evidence priority:
+- sum_objects(bjets_sorted[0], w_hadronic); 〔L352-L354〕
+
+Generator bias:
+none
+
+❓ (D) definition mismatch
+
+SPEC:
+- Select the hadronic W mass between 40 to 120 GeV.
+
+CODE:
+- if w_hadronic is None or not (40 < w_hadronic['mass'] < 120): continue
+
+Reason:
+The code uses an exclusive range (40 < mass < 120), but the SPEC does not specify whether the range is inclusive or exclusive. This is a specification ambiguity, not a mismatch.
+
+Evidence priority:
+- if w_hadronic is None or not (40 < w_hadronic['mass'] < 120): continue; 〔L345-L347〕
+
+Generator bias:
+none
+
+❓ (D) definition mismatch
+
+SPEC:
+- Select the hadronic top mass between 100 to 250 GeV.
+
+CODE:
+- if top_hadronic is None or not (100 < top_hadronic['mass'] < 250): continue
+
+Reason:
+The code uses an exclusive range (100 < mass < 250), but the SPEC does not specify whether the range is inclusive or exclusive. This is a specification ambiguity, not a mismatch.
+
+Evidence priority:
+- if top_hadronic is None or not (100 < top_hadronic['mass'] < 250): continue; 〔L354-L355〕
+
+Generator bias:
+none
+
+❓ (B) specification ambiguity
+
+SPEC:
+- Plot the number of jets per event
+
+CODE:
+- njets_values = len(jets)
+
+Reason:
+The SPEC does not specify whether the jet count should be based on the selected jets or the full event-level jets. The code uses the selected jets collection, which is a valid interpretation, but the choice is not constrained by the SPEC. This is a specification ambiguity.
+
+Evidence priority:
+- njets_values = len(jets); 〔L363, L383-L384〕
+
+Generator bias:
+none
+
+❓ (B) specification ambiguity
+
+SPEC:
+- Plot the HT distribution (scalar sum of all jet pT)
+
+CODE:
+- scalar_pt_sum(jets)
+
+Reason:
+The SPEC does not specify whether the HT should be computed from the selected jets or the full event-level jets. The code uses the selected jets collection, which is a valid interpretation, but the choice is not constrained by the SPEC. This is a specification ambiguity.
+
+Evidence priority:
+- scalar_pt_sum(jets); 〔L362, L382-L383〕
+
+Generator bias:
+none
+
+---
+
+⚠️ (C) missing implementation
+
+SPEC:
+- Apply the above cuts sequentially and skip the event immediately when a cut is not satisfied.
+
+CODE:
+- None of the cutflow counters include the "lepton_count" step, which is not incremented in the code.
+
+Reason:
+The cutflow dictionary includes a "lepton_count" entry, but it is never incremented in the code. This indicates a missing implementation for tracking the number of events with exactly one lepton.
+
+Evidence priority:
+- cutflow["lepton_count"] is defined but not updated; 〔L303-L304〕
+
+Generator bias:
+none
+
+⚠️ (C) missing implementation
+
+SPEC:
+- Save the plots in png format
+
+CODE:
+- The code saves plots using plt.savefig(filename), but the filenames are not explicitly constructed with a .png extension in the SPEC.
+
+Reason:
+The code assumes the .png extension implicitly, but the SPEC explicitly requires saving in png format. This is a minor missing implementation of the format specification.
+
+Evidence priority:
+- plt.savefig(filename); 〔L371-L372〕
+
+Generator bias:
+none

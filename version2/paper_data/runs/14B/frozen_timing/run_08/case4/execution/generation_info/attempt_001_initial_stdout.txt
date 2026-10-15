@@ -1,0 +1,10 @@
+Initial: 30000
+Electron Selection: 5676
+Muon Selection: 1306
+Exactly 2 Electrons and 1 Muon: 1305
+Opposite Charge Electrons: 1305
+Z Mass Cut: 1251
+MET Cut: 907
+W Muon pT Cut: 789
+W Transverse Mass Cut: 722
+Final: 722

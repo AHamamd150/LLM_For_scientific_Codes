@@ -1,0 +1,63 @@
+[UNDERSPECIFICATION 1] Lepton definition for plots and outputs
+
+Original phrase:
+"Use selected electrons and selected muons to define selected leptons."
+
+Why this matters:
+The phrase "selected leptons" is defined as the union of selected electrons and selected muons, but it is unclear whether this definition is meant to be used consistently for all subsequent plots and outputs, or if the term "lepton" later refers to the specific type (electron or muon) that passed the selection. This could affect plots like "pT of the lepton" or "eta of the lepton" if the user expects to treat electrons and muons separately.
+
+Question to user:
+Should all plots and outputs that refer to "the lepton" treat it as a single merged collection (electron or muon), or should they be split into electron and muon channels?
+
+Golden axe:
+Treat "the lepton" as a single merged collection of selected electrons and muons.
+
+Silver axe:
+Treat "the lepton" as separate channels (electron or muon) depending on which passed the selection.
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Jet selection for delta phi between lepton and two-jet system
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+
+Why this matters:
+It is unclear whether the "two-jet system" refers to the two leading jets after all jet cuts, or if it refers to the two jets used to compute the W hadronic candidate (i.e., the two leading jets in the event, possibly before or after b-jet veto). This choice affects the definition of the two-jet system used in angular correlations.
+
+Question to user:
+Should the "two-jet system" for the delta phi be computed from the two leading jets in the event (after jet cuts and b-jet veto), or from the two jets used to define the W hadronic candidate?
+
+Golden axe:
+Use the two leading jets after jet cuts and b-jet veto.
+
+Silver axe:
+Use the two leading jets used to define the W hadronic candidate (invariant mass cut).
+
+Recommended default:
+Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Definition of "the two leading jets" for W hadronic candidate
+
+Original phrase:
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+
+Why this matters:
+The term "leading jets" is not explicitly defined in the context of the jet selection. It could refer to the two highest-pT jets in the full jet collection, or in the light-jet collection after b-jet veto. This affects the jet selection and the definition of the W hadronic candidate.
+
+Question to user:
+Should the "two leading jets" for the W hadronic candidate be selected from all jets, or only from non-b-tagged jets?
+
+Golden axe:
+Select from non-b-tagged jets.
+
+Silver axe:
+Select from all jets.
+
+Recommended default:
+Golden axe

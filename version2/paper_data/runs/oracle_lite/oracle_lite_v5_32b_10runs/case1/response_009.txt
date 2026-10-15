@@ -1,0 +1,62 @@
+[UNDERSPECIFICATION 1] Definition of "selected jets" for dijet invariant mass and delta R
+
+Original phrase:
+"Select invariant mass of the two leading jets between 60 and 100 GeV (W hadronic candidate)"
+"Select delta R between the two leading jets < 3.0"
+
+Why this matters:
+The phrase "leading jets" could refer to the two highest-pT jets in the full event or in the selected jet collection (after pT > 30 GeV and |eta| < 2.5). This choice affects which jets are used for the invariant mass and delta R cuts.
+
+Question to user:
+Are the two leading jets used for the invariant mass and delta R cuts selected from the full event, or only from the jets that passed the pT > 30 GeV and |eta| < 2.5 cuts?
+
+Golden axe:
+The two leading jets are selected from the jets that passed the pT > 30 GeV and |eta| < 2.5 cuts.
+
+Silver axe:
+The two leading jets are selected from the full jet collection in the event, regardless of whether they passed the pT and |eta| cuts.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 2] Definition of "lepton" for delta phi between lepton and two-jet system
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+"Save the following in a CSV file for MLP analysis: 6- Delta phi between lepton and the two-jet system"
+
+Why this matters:
+The phrase "the lepton" implies a single lepton, but it is not clear whether this refers to the selected lepton (after the "exactly 1 selected lepton" cut) or to a lepton from the full collection (e.g., the highest-pT lepton in the event).
+
+Question to user:
+Does "the lepton" in the delta phi between lepton and two-jet system refer to the selected lepton (after the "exactly 1 selected lepton" cut), or to the highest-pT lepton in the event?
+
+Golden axe:
+"The lepton" refers to the selected lepton that passed the "exactly 1 selected lepton" cut.
+
+Silver axe:
+"The lepton" refers to the highest-pT lepton in the event, regardless of whether it passed the selection cuts.
+
+Recommended default:
+Golden axe
+
+[UNDERSPECIFICATION 3] Definition of "two-jet system" for delta phi
+
+Original phrase:
+"Plot delta phi between the lepton and the two-jet system"
+"Save the following in a CSV file for MLP analysis: 6- Delta phi between lepton and the two-jet system"
+
+Why this matters:
+The phrase "two-jet system" could refer to the two leading jets in the full event or in the selected jet collection. This choice affects which jets are used to define the system for the delta phi calculation.
+
+Question to user:
+Does the "two-jet system" for the delta phi calculation refer to the two leading jets in the full event, or to the two leading jets that passed the pT > 30 GeV and |eta| < 2.5 cuts?
+
+Golden axe:
+The "two-jet system" refers to the two leading jets that passed the pT > 30 GeV and |eta| < 2.5 cuts.
+
+Silver axe:
+The "two-jet system" refers to the two leading jets in the full event, regardless of whether they passed the pT and |eta| cuts.
+
+Recommended default:
+Golden axe

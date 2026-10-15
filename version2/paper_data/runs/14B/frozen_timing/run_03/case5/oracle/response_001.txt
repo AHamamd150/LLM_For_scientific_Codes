@@ -1,0 +1,59 @@
+[AMBIGUITY 1] Leading and subleading object definitions
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading and subleading taus are defined before or after applying the "opposite-sign tau pair" cut. This affects which objects are considered for the ditau system and subsequent cuts.
+
+Question to user:
+Are the leading and subleading taus defined before or after applying the opposite-sign requirement?
+
+Golden axe:
+Leading and subleading taus are defined after applying the opposite-sign requirement.
+
+Silver axe:
+Leading and subleading taus are defined before applying the opposite-sign requirement.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 2] Dijet system definition
+
+Original phrase:
+"Define dijet_obj from the summed momentum of the leading jet and subleading jet."
+
+Why this is dangerous:
+The phrase does not clarify whether the leading and subleading jets are defined before or after the "VBF topology" cut requiring at least 2 jets. This affects which jets are used to construct the dijet system.
+
+Question to user:
+Are the leading and subleading jets defined before or after requiring at least 2 jets for the VBF topology?
+
+Golden axe:
+Leading and subleading jets are defined after requiring at least 2 jets for the VBF topology.
+
+Silver axe:
+Leading and subleading jets are defined before requiring at least 2 jets for the VBF topology.
+
+Recommended default:
+Golden axe
+
+[AMBIGUITY 3] Delta phi between ditau and dijet systems
+
+Original phrase:
+"Plot delta phi between the ditau system and the dijet system"
+
+Why this is dangerous:
+The phrase does not clarify whether the delta phi is computed using the MET direction or the actual azimuthal direction of the ditau system. This affects the interpretation of the angular separation.
+
+Question to user:
+Should the delta phi be computed between the ditau system and the MET direction, or between the ditau system and the dijet system's azimuthal direction?
+
+Golden axe:
+Delta phi is computed between the ditau system and the dijet system's azimuthal direction.
+
+Silver axe:
+Delta phi is computed between the ditau system and the MET direction.
+
+Recommended default:
+Golden axe

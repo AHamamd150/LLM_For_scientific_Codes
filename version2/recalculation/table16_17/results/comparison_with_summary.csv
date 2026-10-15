@@ -1,0 +1,17 @@
+issue,setting,generation_errors,tracer_exposed,unresolved_run_mapping,strict_from_runs,strict_from_summary,provenance
+Closest b-jet replaced by leading b-jet,Case 2 / 14B,8,8,0,1,1,run-level reproduced
+Closest b-jet replaced by leading b-jet,Case 6 / 14B,0,0,0,0,,run-level (no generation error)
+Closest b-jet replaced by leading b-jet,Case 6 / 32B,0,0,0,0,,run-level (no generation error)
+Muon eta threshold mismatch,Case 2 / 14B,0,0,0,0,,run-level (no generation error)
+Muon eta threshold mismatch,Case 6 / 14B,10,10,10,,9,summary-only critique count; exact run mapping unresolved
+Muon eta threshold mismatch,Case 6 / 32B,0,0,0,0,,run-level (no generation error)
+Unrequested top-mass cut,Case 2 / 14B,9,0,0,0,0,run-level reproduced
+Unrequested top-mass cut,Case 6 / 14B,0,0,0,0,,run-level (no generation error)
+"Unrequested DeltaR(l,b) < 0.5 cut",Case 6 / 14B,3,0,0,1,1,run-level reproduced
+"Unrequested DeltaR(l,b) < 0.5 cut",Case 6 / 32B,0,0,0,0,,run-level (no generation error)
+Incorrect ditau-dijet Delta phi,Case 5 / 14B,10,10,0,10,10,run-level reproduced
+Incorrect ditau-dijet Delta phi,Case 7 / 14B,1,1,0,0,0,run-level reproduced
+b-jet pre-filter instead of veto,Case 7 / 32B,2,2,0,0,0,run-level reproduced
+Incorrect ditau-dijet Delta phi,"Same Case 5 / 14B code, 32B post-review",10,10,0,5,5,run-level reproduced
+Cutflow bookkeeping / ordering,Case 5 / 32B,5,0,0,0,,supplemental: prior summary leaves strict count unknown
+Cutflow bookkeeping / ordering,Case 7 / 32B,10,10,0,0,0,run-level reproduced

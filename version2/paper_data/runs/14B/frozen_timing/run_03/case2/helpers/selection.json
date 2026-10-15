@@ -1,0 +1,85 @@
+{
+  "selected_helpers": [
+    {
+      "name": "helper_delta_phi",
+      "reason": "dependency of helper_transverse_mass"
+    },
+    {
+      "name": "helper_transverse_mass",
+      "reason": ""
+    },
+    {
+      "name": "helper_delta_r",
+      "reason": ""
+    },
+    {
+      "name": "get_particle_mass",
+      "reason": "dependency of four_momentum"
+    },
+    {
+      "name": "four_momentum",
+      "reason": "dependency of sum_objects"
+    },
+    {
+      "name": "obj_from_four_momentum",
+      "reason": "dependency of sum_objects"
+    },
+    {
+      "name": "sum_objects",
+      "reason": "dependency of helper_invariant_mass"
+    },
+    {
+      "name": "helper_invariant_mass",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_leading",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_subleading",
+      "reason": ""
+    },
+    {
+      "name": "get_bjets",
+      "reason": ""
+    },
+    {
+      "name": "get_light_jets",
+      "reason": ""
+    },
+    {
+      "name": "helper_get_met",
+      "reason": ""
+    },
+    {
+      "name": "scalar_pt_sum",
+      "reason": ""
+    },
+    {
+      "name": "get_jets",
+      "reason": "dependency of n_jets"
+    },
+    {
+      "name": "n_jets",
+      "reason": ""
+    },
+    {
+      "name": "n_bjets",
+      "reason": ""
+    },
+    {
+      "name": "get_leptons",
+      "reason": "dependency of n_leptons"
+    },
+    {
+      "name": "n_leptons",
+      "reason": ""
+    },
+    {
+      "name": "sort_by_pt",
+      "reason": ""
+    }
+  ],
+  "rejected_but_close": []
+}

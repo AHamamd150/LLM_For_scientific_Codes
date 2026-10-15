@@ -1,0 +1,60 @@
+[UNDERSPECIFICATION 1] Ambiguity in "leading tau and subleading tau" definition
+
+Original phrase:
+"Define the leading tau and subleading tau from the selected taus."
+
+Why this matters:
+The phrase does not specify whether "leading" and "subleading" are defined before or after the "opposite-sign tau pair" cut. This affects whether the selection of leading and subleading taus is based on all selected taus or only on the surviving opposite-sign pair.
+
+Question to user:
+Are the leading and subleading taus defined from all selected taus before the opposite-sign requirement, or only from the subset of taus that form an opposite-sign pair?
+
+Golden axe:
+Leading and subleading taus are defined from all selected taus before the opposite-sign requirement.
+
+Silver axe:
+Leading and subleading taus are defined from the surviving opposite-sign pair only.
+
+Recommended default: Golden axe
+
+---
+
+[UNDERSPECIFICATION 2] Ambiguity in "leading jet and subleading jet" definition
+
+Original phrase:
+"Define the leading jet and subleading jet from the selected jets."
+
+Why this matters:
+The phrase does not clarify whether the leading and subleading jets are defined before or after the "m_jj > 400 GeV" and "delta eta > 2.5" cuts. This affects whether the jet ordering is based on the full selected jet collection or only on the jets that satisfy the VBF-like dijet criteria.
+
+Question to user:
+Are the leading and subleading jets defined from all selected jets before the m_jj and delta eta cuts, or only from the jets that satisfy the VBF-like dijet criteria?
+
+Golden axe:
+Leading and subleading jets are defined from all selected jets before the m_jj and delta eta cuts.
+
+Silver axe:
+Leading and subleading jets are defined from the subset of jets that satisfy the VBF-like dijet criteria.
+
+Recommended default: Golden axe
+
+---
+
+[UNDERSPECIFICATION 3] Ambiguity in "centrality of the ditau system relative to the two jets"
+
+Original phrase:
+"Plot the centrality of the ditau system relative to the two jets"
+
+Why this matters:
+The phrase does not clarify which two jets are used for the centrality calculation. Since the event may contain more than two jets, it is ambiguous whether the two jets refer to the leading and subleading jets as defined earlier, or to the two jets used in the dijet system (which may differ if additional cuts or selections are applied).
+
+Question to user:
+For the centrality calculation, should the two jets be the leading and subleading jets as defined from the selected jet collection, or the two jets used in the dijet system (e.g., those satisfying m_jj and delta eta cuts)?
+
+Golden axe:
+Use the leading and subleading jets as defined from the selected jet collection.
+
+Silver axe:
+Use the two jets that form the dijet system (e.g., satisfying m_jj and delta eta cuts).
+
+Recommended default: Golden axe
