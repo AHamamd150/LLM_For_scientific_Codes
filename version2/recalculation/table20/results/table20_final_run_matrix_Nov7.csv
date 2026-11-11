@@ -1,0 +1,18 @@
+﻿issue_id,case,benchmark_issue,run_01,run_02,run_03,run_04,run_05,run_06,run_07,run_08,run_09,run_10,final_detected,denominator,final_fraction,original_table20,change_vs_original,source,decision_note
+C1-I1,1,b-jet veto: selected vs. event-level jets,Y,Y,Y,Y,Y,Y,N,Y,Y,Y,9,10,9/10,9/10,0,oracle_lite_v4_32b_10runs / Qwen3-32B,
+C1-I2,1,Leading jets: selected vs. full jet collection,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,10,10,10/10,10/10,0,oracle_lite_v4_32b_10runs / Qwen3-32B,
+C1-I3,1,Definition of the two-jet system,Y,Y,Y,Y,Y,Y,N,Y,Y,Y,9,10,9/10,9/10,0,oracle_lite_v4_32b_10runs / Qwen3-32B,
+C2-I1,2,Hadronic W: selected vs. full non-b jets,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,10,10,10/10,10/10,0,oracle_lite_v4_32b_10runs / Qwen3-32B,Author adjudicated broader semantic jet-scope question; no exact phrase requirement.
+C2-I2,2,Hadronic top: selected vs. full b jets,Y,N,Y,Y,Y,N,Y,Y,Y,Y,8,10,8/10,8/10,0,oracle_lite_v4_32b_10runs / Qwen3-32B,
+C2-I3,2,>=2 b-jets: collection scope,Y,Y,N,N,Y,N,Y,N,N,Y,5,10,5/10,5/10,0,oracle_lite_v4_32b_10runs / Qwen3-32B,
+C2-I4,2,Closest b-jet: collection scope,N,N,N,N,Y,Y,Y,N,N,Y,4,10,4/10,4/10,0,oracle_lite_v4_32b_10runs / Qwen3-32B,
+C2-I5,2,Jet collection entering HT,Y,Y,Y,N,N,Y,Y,N,N,Y,6,10,6/10,6/10,0,oracle_lite_v4_32b_10runs / Qwen3-32B,
+C2-I6,2,Jet collection entering the jet multiplicity,Y,N,Y,N,N,Y,Y,N,N,Y,5,10,5/10,5/10,0,oracle_lite_v4_32b_10runs / Qwen3-32B,"Run 09 is related physics caution, not a benchmark match; 5/10 retained."
+C5-I1,5,Opposite-sign tau pair / pairing order,Y,N,N,N,Y,Y,N,Y,Y,Y,6,10,6/10,7/10,-1,oracle_lite_v4_32b_10runs / Qwen3-32B,"Run 02 deals with timing of tau ordering vs charge cuts, not OS tau pair selection; 6/10 correction."
+C5-I2,5,b-jet veto: collection scope,Y,N,N,Y,Y,Y,Y,Y,Y,Y,8,10,8/10,8/10,0,oracle_lite_v4_32b_10runs / Qwen3-32B,
+C5-I4,5,Definition of ditau centrality,N,N,N,N,Y,N,N,N,N,N,1,10,1/10,1/10,0,oracle_lite_v4_32b_10runs / Qwen3-32B,
+C6-I1,6,Jet collection entering HT,Y,Y,Y,Y,Y,Y,Y,N,Y,Y,9,10,9/10,9/10,0,oracle_lite_v4_32b_10runs / Qwen3-32B,
+C6-I2,6,Jet collection entering the jet multiplicity,N,Y,Y,Y,Y,Y,N,N,Y,Y,7,10,7/10,6/10,1,oracle_lite_v4_32b_10runs / Qwen3-32B,Run 02 matches concept despite no literal plot wording; plot-collection benchmark 7/10 correction; selection-only Run 07 excluded.
+C7-I1,7,Opposite-sign tau pair / pairing order,Y,Y,Y,N,Y,Y,Y,Y,N,Y,8,10,8/10,8/10,0,oracle_lite_v4_32b_10runs / Qwen3-32B,
+C7-I2,7,"Interpretation of ""summed momentum""",Y,Y,Y,Y,Y,Y,Y,Y,N,Y,9,10,9/10,9/10,0,oracle_lite_v4_32b_10runs / Qwen3-32B,Reuse of explicitly defined ditau_obj/dijet_obj in later computations is the intended semantic benchmark; 9/10.
+C7-I3,7,Definition of ditau centrality,N,N,N,N,N,N,N,Y,N,N,1,10,1/10,1/10,0,oracle_lite_v4_32b_10runs / Qwen3-32B,
